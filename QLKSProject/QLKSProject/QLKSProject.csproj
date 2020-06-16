@@ -44,6 +44,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -54,6 +57,24 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -80,6 +101,233 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\QuanLy\css\material_style.css" />
+    <Content Include="Content\QuanLy\css\pages\animate_page.css" />
+    <Content Include="Content\QuanLy\css\pages\extra_pages.css" />
+    <Content Include="Content\QuanLy\css\pages\formlayout.css" />
+    <Content Include="Content\QuanLy\css\pages\inbox.min.css" />
+    <Content Include="Content\QuanLy\css\pages\pricing.css" />
+    <Content Include="Content\QuanLy\css\pages\steps.css" />
+    <Content Include="Content\QuanLy\css\pages\timeline.css" />
+    <Content Include="Content\QuanLy\css\pages\typography.css" />
+    <Content Include="Content\QuanLy\css\plugins.min.css" />
+    <Content Include="Content\QuanLy\css\responsive.css" />
+    <Content Include="Content\QuanLy\css\style.css" />
+    <Content Include="Content\QuanLy\css\theme-color.css" />
+    <Content Include="Content\QuanLy\img\bg-01.jpg" />
+    <Content Include="Content\QuanLy\img\blog\blog1.jpg" />
+    <Content Include="Content\QuanLy\img\blog\blog2.jpg" />
+    <Content Include="Content\QuanLy\img\blog\blog3.jpg" />
+    <Content Include="Content\QuanLy\img\blog\blog4.jpg" />
+    <Content Include="Content\QuanLy\img\datatable-row-openclose.html" />
+    <Content Include="Content\QuanLy\img\dp.jpg" />
+    <Content Include="Content\QuanLy\img\favicon.ico" />
+    <Content Include="Content\QuanLy\img\image-gallery\1.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\10.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\11.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\12.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\13.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\14.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\15.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\2.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\3.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\4.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\5.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\6.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\7.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\8.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\9.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-1.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-10.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-11.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-12.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-13.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-14.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-15.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-2.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-3.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-4.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-5.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-6.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-7.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-8.jpg" />
+    <Content Include="Content\QuanLy\img\image-gallery\thumb\thumb-9.jpg" />
+    <Content Include="Content\QuanLy\img\invoice_logo.png" />
+    <Content Include="Content\QuanLy\img\logo.png" />
+    <Content Include="Content\QuanLy\img\mega-img1.jpg" />
+    <Content Include="Content\QuanLy\img\mega-img2.jpg" />
+    <Content Include="Content\QuanLy\img\mega-img3.jpg" />
+    <Content Include="Content\QuanLy\img\slider\fullimage1.jpg" />
+    <Content Include="Content\QuanLy\img\slider\fullimage2.jpg" />
+    <Content Include="Content\QuanLy\img\slider\fullimage3.jpg" />
+    <Content Include="Content\QuanLy\img\slider\owl1.jpg" />
+    <Content Include="Content\QuanLy\img\slider\owl2.jpg" />
+    <Content Include="Content\QuanLy\img\slider\owl3.jpg" />
+    <Content Include="Content\QuanLy\img\slider\owl4.jpg" />
+    <Content Include="Content\QuanLy\img\slider\owl5.jpg" />
+    <Content Include="Content\QuanLy\img\slider\owl6.jpg" />
+    <Content Include="Content\QuanLy\img\slider\owl7.jpg" />
+    <Content Include="Content\QuanLy\img\slider\owl8.jpg" />
+    <Content Include="Content\QuanLy\img\slider\slider1.jpg" />
+    <Content Include="Content\QuanLy\img\slider\slider2.jpg" />
+    <Content Include="Content\QuanLy\img\slider\slider3.jpg" />
+    <Content Include="Content\QuanLy\img\user\user1.jpg" />
+    <Content Include="Content\QuanLy\img\user\user10.jpg" />
+    <Content Include="Content\QuanLy\img\user\user2.jpg" />
+    <Content Include="Content\QuanLy\img\user\user3.jpg" />
+    <Content Include="Content\QuanLy\img\user\user4.jpg" />
+    <Content Include="Content\QuanLy\img\user\user5.jpg" />
+    <Content Include="Content\QuanLy\img\user\user6.jpg" />
+    <Content Include="Content\QuanLy\img\user\user7.jpg" />
+    <Content Include="Content\QuanLy\img\user\user8.jpg" />
+    <Content Include="Content\QuanLy\img\user\user9.jpg" />
+    <Content Include="Content\QuanLy\img\user\usrbig1.jpg" />
+    <Content Include="Content\QuanLy\img\user\usrbig2.jpg" />
+    <Content Include="Content\QuanLy\img\user\usrbig3.jpg" />
+    <Content Include="Content\QuanLy\img\user\usrbig4.jpg" />
+    <Content Include="Content\QuanLy\img\user\usrbig5.jpg" />
+    <Content Include="Content\QuanLy\img\user\usrbig6.jpg" />
+    <Content Include="Content\QuanLy\img\user\usrbig7.jpg" />
+    <Content Include="Content\QuanLy\img\user\usrbig8.jpg" />
+    <Content Include="Content\QuanLy\img\user\usrbig9.jpg" />
+    <Content Include="Content\QuanLy\img\vehicle\v1.jpg" />
+    <Content Include="Content\QuanLy\img\vehicle\v2.jpg" />
+    <Content Include="Content\QuanLy\img\vehicle\v3.jpg" />
+    <Content Include="Content\QuanLy\img\vehicle\v4.jpg" />
+    <Content Include="Content\QuanLy\img\vehicle\v5.jpg" />
+    <Content Include="Content\QuanLy\img\vehicle\v6.jpg" />
+    <Content Include="Content\QuanLy\js\app.js" />
+    <Content Include="Content\QuanLy\js\layout.js" />
+    <Content Include="Content\QuanLy\js\pages\calendar\calendar.min.js" />
+    <Content Include="Content\QuanLy\js\pages\chart\chartjs\chartjs-data.js" />
+    <Content Include="Content\QuanLy\js\pages\chart\chartjs\home-data2.js" />
+    <Content Include="Content\QuanLy\js\pages\chart\echart\echart-data.js" />
+    <Content Include="Content\QuanLy\js\pages\chart\morris\morris_chart_data.js" />
+    <Content Include="Content\QuanLy\js\pages\chart\morris\morris_home_data.js" />
+    <Content Include="Content\QuanLy\js\pages\datetime\datetime-data.js" />
+    <Content Include="Content\QuanLy\js\pages\extra_pages\login.js" />
+    <Content Include="Content\QuanLy\js\pages\map\google-maps-data.js" />
+    <Content Include="Content\QuanLy\js\pages\map\vector-data.js" />
+    <Content Include="Content\QuanLy\js\pages\material-loading\material-loading.js" />
+    <Content Include="Content\QuanLy\js\pages\material_select\getmdl-select.js" />
+    <Content Include="Content\QuanLy\js\pages\owl-carousel\owl_data.js" />
+    <Content Include="Content\QuanLy\js\pages\select2\select2-init.js" />
+    <Content Include="Content\QuanLy\js\pages\sparkline\sparkline-data.js" />
+    <Content Include="Content\QuanLy\js\pages\steps\steps-data.js" />
+    <Content Include="Content\QuanLy\js\pages\summernote\summernote-data.js" />
+    <Content Include="Content\QuanLy\js\pages\sweet-alert\sweet-alert-data.js" />
+    <Content Include="Content\QuanLy\js\pages\table\editable_table_data.js" />
+    <Content Include="Content\QuanLy\js\pages\table\table_data.js" />
+    <Content Include="Content\QuanLy\js\pages\timeline\timeline.js" />
+    <Content Include="Content\QuanLy\js\pages\treeview\treeview-data.js" />
+    <Content Include="Content\QuanLy\js\pages\ui\animations.js" />
+    <Content Include="Content\QuanLy\js\pages\validation\form-validation.js" />
+    <Content Include="Content\QuanLy\js\theme-color.js" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha-horizontal.png" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha.png" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\hue-horizontal.png" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\hue.png" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\saturation.png" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker-init.js" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-datepicker\css\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-datepicker\js\bootstrap-datepicker.min.js" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-datetimepicker\js\bootstrap-datetimepicker-init.js" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-datetimepicker\js\bootstrap-datetimepicker.js" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-editable\bootstrap-editable\css\bootstrap-editable.css" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-editable\bootstrap-editable\img\clear.png" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-editable\bootstrap-editable\img\loading.gif" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-editable\inputs-ext\address\address.css" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-tabdrop\js\bootstrap-tabdrop.js" />
+    <Content Include="Content\QuanLy\plugins\bootstrap-treeview\bootstrap-treeview.js" />
+    <Content Include="Content\QuanLy\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\QuanLy\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\QuanLy\plugins\chart-js\Chart.bundle.js" />
+    <Content Include="Content\QuanLy\plugins\chart-js\utils.js" />
+    <Content Include="Content\QuanLy\plugins\counterup\jquery.counterup.min.js" />
+    <Content Include="Content\QuanLy\plugins\counterup\jquery.waypoints.min.js" />
+    <Content Include="Content\QuanLy\plugins\datatables\editabletable.js" />
+    <Content Include="Content\QuanLy\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Content\QuanLy\plugins\datatables\plugins\bootstrap\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\QuanLy\plugins\datatables\plugins\bootstrap\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\QuanLy\plugins\dropzone\dropzone-call.js" />
+    <Content Include="Content\QuanLy\plugins\dropzone\dropzone.css" />
+    <Content Include="Content\QuanLy\plugins\dropzone\dropzone.js" />
+    <Content Include="Content\QuanLy\plugins\echarts\echarts.js" />
+    <Content Include="Content\QuanLy\plugins\flatpicker\flatpickr.min.css" />
+    <Content Include="Content\QuanLy\plugins\flatpicker\flatpickr.min.js" />
+    <Content Include="Content\QuanLy\plugins\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\QuanLy\plugins\font-awesome\fonts\fontawesome-webfont3e6e.svg" />
+    <Content Include="Content\QuanLy\plugins\fullcalendar\fullcalendar.css" />
+    <Content Include="Content\QuanLy\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Content\QuanLy\plugins\gmaps\gmaps.min.js" />
+    <Content Include="Content\QuanLy\plugins\iconic\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\QuanLy\plugins\jquery-blockui\jquery.blockui.min.js" />
+    <Content Include="Content\QuanLy\plugins\jquery-file-upload\blueimp-gallery\blueimp-gallery.min.css" />
+    <Content Include="Content\QuanLy\plugins\jquery-file-upload\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\QuanLy\plugins\jquery-file-upload\css\jquery.fileupload.css" />
+    <Content Include="Content\QuanLy\plugins\jquery-file-upload\img\error-2.html" />
+    <Content Include="Content\QuanLy\plugins\jquery-file-upload\img\error.html" />
+    <Content Include="Content\QuanLy\plugins\jquery-file-upload\img\loading.gif" />
+    <Content Include="Content\QuanLy\plugins\jquery-file-upload\img\play-pause-2.html" />
+    <Content Include="Content\QuanLy\plugins\jquery-file-upload\img\play-pause.html" />
+    <Content Include="Content\QuanLy\plugins\jquery-file-upload\img\progressbar.gif" />
+    <Content Include="Content\QuanLy\plugins\jquery-file-upload\img\video-play-2.html" />
+    <Content Include="Content\QuanLy\plugins\jquery-file-upload\img\video-play.html" />
+    <Content Include="Content\QuanLy\plugins\jquery-slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Content\QuanLy\plugins\jquery-tags-input\jquery-tags-input-init.js" />
+    <Content Include="Content\QuanLy\plugins\jquery-tags-input\jquery-tags-input.css" />
+    <Content Include="Content\QuanLy\plugins\jquery-tags-input\jquery-tags-input.js" />
+    <Content Include="Content\QuanLy\plugins\jquery-toast\dist\jquery.toast.min.css" />
+    <Content Include="Content\QuanLy\plugins\jquery-toast\dist\jquery.toast.min.js" />
+    <Content Include="Content\QuanLy\plugins\jquery-toast\dist\toast.js" />
+    <Content Include="Content\QuanLy\plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Content\QuanLy\plugins\jquery-validation\js\additional-methods.min.js" />
+    <Content Include="Content\QuanLy\plugins\jquery-validation\js\jquery.validate.min.js" />
+    <Content Include="Content\QuanLy\plugins\jquery\jquery.min.js" />
+    <Content Include="Content\QuanLy\plugins\jqvmap\data\jquery.vmap.sampledata.js" />
+    <Content Include="Content\QuanLy\plugins\jqvmap\jquery.vmap.js" />
+    <Content Include="Content\QuanLy\plugins\jqvmap\jqvmap.css" />
+    <Content Include="Content\QuanLy\plugins\jqvmap\maps\jquery.vmap.europe.js" />
+    <Content Include="Content\QuanLy\plugins\jqvmap\maps\jquery.vmap.germany.js" />
+    <Content Include="Content\QuanLy\plugins\jqvmap\maps\jquery.vmap.russia.js" />
+    <Content Include="Content\QuanLy\plugins\jqvmap\maps\jquery.vmap.usa.js" />
+    <Content Include="Content\QuanLy\plugins\jqvmap\maps\jquery.vmap.world.js" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\css\lightgallery.css" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\fonts\lg.svg" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\img\loading.gif" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\img\video-play.png" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\img\vimeo-play.png" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\img\youtube-play.png" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\js\image-gallery.js" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\js\lightgallery-all.js" />
+    <Content Include="Content\QuanLy\plugins\material\material.min.css" />
+    <Content Include="Content\QuanLy\plugins\material\material.min.js" />
+    <Content Include="Content\QuanLy\plugins\modernizr\modernizr.min.js" />
+    <Content Include="Content\QuanLy\plugins\moment\moment.min.js" />
+    <Content Include="Content\QuanLy\plugins\morris\morris.css" />
+    <Content Include="Content\QuanLy\plugins\morris\morris.min.js" />
+    <Content Include="Content\QuanLy\plugins\morris\raphael-min.js" />
+    <Content Include="Content\QuanLy\plugins\owl-carousel\AjaxLoader.html" />
+    <Content Include="Content\QuanLy\plugins\owl-carousel\grabbing.html" />
+    <Content Include="Content\QuanLy\plugins\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\QuanLy\plugins\owl-carousel\owl.carousel.js" />
+    <Content Include="Content\QuanLy\plugins\owl-carousel\owl.theme.css" />
+    <Content Include="Content\QuanLy\plugins\popper\popper.min.js" />
+    <Content Include="Content\QuanLy\plugins\select2\css\select2-bootstrap.min.css" />
+    <Content Include="Content\QuanLy\plugins\select2\css\select2.css" />
+    <Content Include="Content\QuanLy\plugins\select2\js\select2.js" />
+    <Content Include="Content\QuanLy\plugins\simple-line-icons\fonts\Simple-Line-Iconsb26c.svg" />
+    <Content Include="Content\QuanLy\plugins\simple-line-icons\simple-line-icons.min.css" />
+    <Content Include="Content\QuanLy\plugins\sparkline\jquery.sparkline.min.js" />
+    <Content Include="Content\QuanLy\plugins\steps\jquery.steps.js" />
+    <Content Include="Content\QuanLy\plugins\summernote\summernote.css" />
+    <Content Include="Content\QuanLy\plugins\summernote\summernote.min.js" />
+    <Content Include="Content\QuanLy\plugins\sweet-alert\sweetalert.min.css" />
+    <Content Include="Content\QuanLy\plugins\sweet-alert\sweetalert.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -91,7 +339,35 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\QuanLy\plugins\font-awesome\fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="Content\QuanLy\plugins\font-awesome\fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="Content\QuanLy\plugins\font-awesome\fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="Content\QuanLy\plugins\font-awesome\fonts\fontawesome-webfont3e6e.woff2" />
+    <Content Include="Content\QuanLy\plugins\font-awesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Content\QuanLy\plugins\iconic\fonts\Material-Design-Iconic-Fontd1f1.ttf" />
+    <Content Include="Content\QuanLy\plugins\iconic\fonts\Material-Design-Iconic-Fontd1f1.woff" />
+    <Content Include="Content\QuanLy\plugins\iconic\fonts\Material-Design-Iconic-Fontd1f1.woff2" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\fonts\lg.eot" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\fonts\lg.ttf" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\fonts\lg.woff" />
+    <Content Include="Content\QuanLy\plugins\light-gallery\fonts\lgd41d.eot" />
+    <Content Include="Content\QuanLy\plugins\material-icons\iconfont\MaterialIcons-Regular.eot" />
+    <Content Include="Content\QuanLy\plugins\material-icons\iconfont\MaterialIcons-Regular.ttf" />
+    <Content Include="Content\QuanLy\plugins\material-icons\iconfont\MaterialIcons-Regular.woff" />
+    <Content Include="Content\QuanLy\plugins\material-icons\iconfont\MaterialIcons-Regular.woff2" />
+    <Content Include="Content\QuanLy\plugins\simple-line-icons\fonts\Simple-Line-Iconsb26c.eot" />
+    <Content Include="Content\QuanLy\plugins\simple-line-icons\fonts\Simple-Line-Iconsb26c.ttf" />
+    <Content Include="Content\QuanLy\plugins\simple-line-icons\fonts\Simple-Line-Iconsb26c.woff" />
+    <Content Include="Content\QuanLy\plugins\simple-line-icons\fonts\Simple-Line-Iconsb26c.woff2" />
+    <Content Include="Content\QuanLy\plugins\summernote\font\summernote291f.eot" />
+    <Content Include="Content\QuanLy\plugins\summernote\font\summernote291f.ttf" />
+    <Content Include="Content\QuanLy\plugins\summernote\font\summernote291f.woff" />
+    <Content Include="Content\QuanLy\plugins\summernote\font\summernoted41d.eot" />
     <None Include="packages.config" />
+    <Content Include="View\QuanLyView\Phong\ChinhSuaPhong.cshtml" />
+    <Content Include="View\QuanLyView\Phong\DSPhong.cshtml" />
+    <Content Include="View\QuanLyView\Phong\ThemMoiPhong.cshtml" />
+    <Content Include="View\Shared\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -103,6 +379,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+    <Folder Include="View\HomeView\" />
+    <Folder Include="View\NhanVienView\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
