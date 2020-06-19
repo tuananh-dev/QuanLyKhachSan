@@ -16,8 +16,8 @@ namespace QLKSProject.Controllers.Home
         {
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
-                homeBusiness.LuuDuLieuXuongCSDL(dsKhachHang);
-                return true;
+                
+                return homeBusiness.LuuDuLieuXuongCSDL(dsKhachHang);
             }
 
                

@@ -405,6 +405,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Business\BaseBusiness.cs" />
     <Compile Include="Business\Home\HomeBusiness.cs" />
+    <Compile Include="Business\NhanVien\NhanVienBusiness.cs" />
+    <Compile Include="Business\QuanLy\QuanLyBusiness.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\NhanVien\NhanVienController.cs" />
     <Compile Include="Controllers\QuanLy\QuanLyController.cs" />
@@ -478,8 +480,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Business\NhanVien\" />
-    <Folder Include="Business\QuanLy\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006190746478_createTable.resx">

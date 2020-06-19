@@ -11,10 +11,21 @@ namespace QLKSProject.Business.Home
 
         public bool LuuDuLieuXuongCSDL(KhachHang dsKhachHang)
         {
-            models.KhachHangs.Add(dsKhachHang);
+            try
+            {
+
+                models.KhachHangs.Remove(dsKhachHang);
+                models.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
            
-            models.SaveChanges();
-            return true;
+           
         }
+
     }
 }
