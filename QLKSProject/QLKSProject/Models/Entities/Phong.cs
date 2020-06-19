@@ -7,32 +7,30 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QLKSProject.Models
 {
-    public class TaiKhoan
+    public class Phong
     {
         [Key]
         public int ID { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string TenTaiKhoan { get; set; }
+        [StringLength(5)]
+        public string SoPhong { get; set; }
 
         [Required]
-        [StringLength(8)]
-        public string MatKhau { get; set; }
+        [StringLength(10)]
+        public string LoaiPhong { get; set; }    
 
         [Required]
-        [StringLength(50)]
-        public string HoVaTen { get; set; }
+        public int Gia { get; set; }
 
         [Required]
-        public int SoDienThoai { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Mail { get; set; }
+        public bool TrangThai { get; set; }
 
         [Required]
         public bool IsDelete { get; set; }
+
+        public virtual PhongSuDungDichVu PhongSuDungDichVu { get; set; }
+
 
     }
 }

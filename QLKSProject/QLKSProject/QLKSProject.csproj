@@ -108,10 +108,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\QLKSConnection2.mdf" />
-    <Content Include="App_Data\QLKSConnection2_log.ldf">
-      <DependentUpon>QLKSConnection2.mdf</DependentUpon>
-    </Content>
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
@@ -407,26 +403,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Business\BaseBusiness.cs" />
+    <Compile Include="Business\Home\HomeBusiness.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\NhanVien\NhanVienController.cs" />
     <Compile Include="Controllers\QuanLy\QuanLyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006161029542_init.cs" />
-    <Compile Include="Migrations\202006161029542_init.designer.cs">
-      <DependentUpon>202006161029542_init.cs</DependentUpon>
+    <Compile Include="Migrations\202006190746478_createTable.cs" />
+    <Compile Include="Migrations\202006190746478_createTable.designer.cs">
+      <DependentUpon>202006190746478_createTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\DatPhongThanhCong.cs" />
-    <Compile Include="Models\DatPhongThatBai.cs" />
-    <Compile Include="Models\DichVu.cs" />
-    <Compile Include="Models\KhachHang.cs" />
-    <Compile Include="Models\Phong.cs" />
-    <Compile Include="Models\PhongSuDungDichVu.cs" />
+    <Compile Include="Models\Entities\DanhSachFileGui.cs" />
+    <Compile Include="Models\Entities\DatPhongThanhCong.cs" />
+    <Compile Include="Models\Entities\DatPhongThatBai.cs" />
+    <Compile Include="Models\Entities\DichVu.cs" />
+    <Compile Include="Models\Entities\KhachHang.cs" />
+    <Compile Include="Models\Entities\Phong.cs" />
+    <Compile Include="Models\Entities\PhongSuDungDichVu.cs" />
     <Compile Include="Models\QLKSDbContext.cs" />
-    <Compile Include="Models\TaiKhoan.cs" />
-    <Compile Include="Models\TienIch.cs" />
+    <Compile Include="Models\Entities\TaiKhoan.cs" />
+    <Compile Include="Models\Entities\TienIch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -478,13 +477,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Business\Home\" />
+    <Folder Include="App_Data\" />
     <Folder Include="Business\NhanVien\" />
     <Folder Include="Business\QuanLy\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006161029542_init.resx">
-      <DependentUpon>202006161029542_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006190746478_createTable.resx">
+      <DependentUpon>202006190746478_createTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

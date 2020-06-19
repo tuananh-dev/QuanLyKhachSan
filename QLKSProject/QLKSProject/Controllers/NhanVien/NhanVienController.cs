@@ -9,5 +9,10 @@ namespace QLKSProject.Controllers.NhanVien
 {
     public class NhanVienController : ApiController
     {
+        [HttpPost]
+        public String LayTen()
+        {
+            return "AAAAA";
+        }
     }
 }

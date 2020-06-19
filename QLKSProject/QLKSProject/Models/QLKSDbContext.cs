@@ -9,7 +9,7 @@ namespace QLKSProject.Models
 {
     public class QLKSDbContext : DbContext
     {
-        public QLKSDbContext() : base("QLKSConnection2")
+        public QLKSDbContext() : base("Team2Connection1")
         {
 
         }

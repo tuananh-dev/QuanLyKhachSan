@@ -9,5 +9,10 @@ namespace QLKSProject.Controllers.QuanLy
 {
     public class QuanLyController : ApiController
     {
+        [HttpPost]
+        public string Name()
+        {
+            return "xxxxx";
+        }
     }
 }

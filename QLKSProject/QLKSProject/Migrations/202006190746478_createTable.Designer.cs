@@ -7,13 +7,13 @@ namespace QLKSProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class init : IMigrationMetadata
+    public sealed partial class createTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(createTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202006161029542_init"; }
+            get { return "202006190746478_createTable"; }
         }
         
         string IMigrationMetadata.Source
