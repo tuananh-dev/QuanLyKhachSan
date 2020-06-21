@@ -11,16 +11,14 @@ namespace QLKSProject.Controllers.Home
 {
     public class HomeController : ApiController
     {
-        [HttpPost]
-        public bool LayDanhSachKhachHang(KhachHang dsKhachHang)
+/*        [HttpPost]
+        public bool LayFileKhachHangGui(FileKhachHang fileKhachHang)
         {
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
                 
-                return homeBusiness.LuuDuLieuXuongCSDL(dsKhachHang);
-            }
-
-               
-        }
+                return homeBusiness.LuuDuLieuXuongCSDL(fileKhachHang);
+            }       
+        }*/
     }
 }

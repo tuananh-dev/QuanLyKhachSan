@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using QLKSProject.Models.Entities;
+
 
 
 namespace QLKSProject.Models
@@ -25,7 +25,7 @@ namespace QLKSProject.Models
    
         public virtual ICollection<KhachHang> KhachHangs { get; set; }
         public virtual ICollection<Phong> Phongs { get; set; }
-        public virtual ICollection<DanhSachFileGui> DanhSachFileGui { get; set; }
+
 
     }
 }

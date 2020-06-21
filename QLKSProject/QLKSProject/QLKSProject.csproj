@@ -417,17 +417,21 @@
     <Compile Include="Migrations\202006190746478_createTable.designer.cs">
       <DependentUpon>202006190746478_createTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006201920283_update-v001.cs" />
+    <Compile Include="Migrations\202006201920283_update-v001.designer.cs">
+      <DependentUpon>202006201920283_update-v001.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Entities\DanhSachFileGui.cs" />
     <Compile Include="Models\Entities\DatPhongThanhCong.cs" />
     <Compile Include="Models\Entities\DatPhongThatBai.cs" />
     <Compile Include="Models\Entities\DichVu.cs" />
     <Compile Include="Models\Entities\KhachHang.cs" />
     <Compile Include="Models\Entities\Phong.cs" />
     <Compile Include="Models\Entities\PhongSuDungDichVu.cs" />
-    <Compile Include="Models\QLKSDbContext.cs" />
     <Compile Include="Models\Entities\TaiKhoan.cs" />
     <Compile Include="Models\Entities\TienIch.cs" />
+    <Compile Include="Models\FileKhachHang.cs" />
+    <Compile Include="Models\QLKSDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -484,6 +488,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006190746478_createTable.resx">
       <DependentUpon>202006190746478_createTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006201920283_update-v001.resx">
+      <DependentUpon>202006201920283_update-v001.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

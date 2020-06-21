@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
 namespace QLKSProject.Models
 {
     public class DatPhongThatBai
@@ -22,5 +23,6 @@ namespace QLKSProject.Models
         public bool IsDelete { get; set; }
 
         public virtual ICollection<KhachHang> KhachHangs { get; set; }
+
     }
 }
