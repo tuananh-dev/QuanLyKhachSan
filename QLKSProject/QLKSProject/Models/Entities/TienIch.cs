@@ -18,6 +18,7 @@ namespace QLKSProject.Models
 
         [Required]
         public string HinhAnh { get; set; }
-
+        [Required]
+        public bool IsDelete { get; set; }
     }
 }
