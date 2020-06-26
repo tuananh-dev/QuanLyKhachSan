@@ -425,9 +425,15 @@
     <Compile Include="Migrations\202006260658213_update-26-6.designer.cs">
       <DependentUpon>202006260658213_update-26-6.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Migrations\202006260733464_updatetienich-v01.cs" />
     <Compile Include="Migrations\202006260733464_updatetienich-v01.designer.cs">
       <DependentUpon>202006260733464_updatetienich-v01.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\202006260717094_dbupdate-v002.cs" />
+    <Compile Include="Migrations\202006260717094_dbupdate-v002.designer.cs">
+      <DependentUpon>202006260717094_dbupdate-v002.cs</DependentUpon>
+>>>>>>> 19824839d821891a0d44c22b8d2ff077d4d1981a
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\DatPhongThanhCong.cs" />
@@ -504,8 +510,13 @@
     <EmbeddedResource Include="Migrations\202006260658213_update-26-6.resx">
       <DependentUpon>202006260658213_update-26-6.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\202006260733464_updatetienich-v01.resx">
       <DependentUpon>202006260733464_updatetienich-v01.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Migrations\202006260717094_dbupdate-v002.resx">
+      <DependentUpon>202006260717094_dbupdate-v002.cs</DependentUpon>
+>>>>>>> 19824839d821891a0d44c22b8d2ff077d4d1981a
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
