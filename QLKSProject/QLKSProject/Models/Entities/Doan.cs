@@ -27,6 +27,9 @@ namespace QLKSProject.Models.Entities
         [StringLength(50)]
         public string MaDoan { get; set; }
 
+        [Required]
+        public bool IsDelete { get; set; }
+
         public virtual ICollection<KhachHang> KhachHangs { get; set; }
 
     }
