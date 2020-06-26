@@ -407,8 +407,12 @@
     <Compile Include="Business\Home\HomeBusiness.cs" />
     <Compile Include="Business\NhanVien\NhanVienBusiness.cs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="Business\QuanLy\QuanLyBusiness.cs" />
 =======
+>>>>>>> origin/nhatnam
+=======
+    <Compile Include="Business\QuanLy\QuanLyBusiness.cs" />
 >>>>>>> origin/nhatnam
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\NhanVien\NhanVienController.cs" />
@@ -488,8 +492,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <Folder Include="Business\QuanLy\" />
+>>>>>>> origin/nhatnam
+=======
 >>>>>>> origin/nhatnam
   </ItemGroup>
   <ItemGroup>
