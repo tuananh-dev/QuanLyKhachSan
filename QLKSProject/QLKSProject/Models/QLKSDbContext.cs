@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿
+=======
+﻿using QLKSProject.Models.Entities;
+>>>>>>> origin/nhatnam
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,5 +27,6 @@ namespace QLKSProject.Models
         public DbSet<PhongSuDungDichVu> PhongSuDungDichVus { get; set; }
         public DbSet<TaiKhoan> TaiKhoans { get; set; }
         public DbSet<TienIch> TienIches { get; set; }
+        public DbSet<DanhSachFileGui> DanhSachFileGuis { get; set; }
     }
 }
