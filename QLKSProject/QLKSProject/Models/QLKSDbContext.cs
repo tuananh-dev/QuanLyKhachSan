@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using QLKSProject.Models.Entities;
 
 
 namespace QLKSProject.Models
@@ -23,5 +24,7 @@ namespace QLKSProject.Models
         public DbSet<PhongSuDungDichVu> PhongSuDungDichVus { get; set; }
         public DbSet<TaiKhoan> TaiKhoans { get; set; }
         public DbSet<TienIch> TienIches { get; set; }
+        public DbSet<Doan> Doans { get; set; }
+
     }
 }

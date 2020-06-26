@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using QLKSProject.Models.Entities;
 
 namespace QLKSProject.Models
 {
@@ -30,6 +31,8 @@ namespace QLKSProject.Models
         public bool IsDelete { get; set; }
 
         public virtual PhongSuDungDichVu PhongSuDungDichVu { get; set; }
+
+        public virtual Doan Doan { get; set; }
 
 
     }
