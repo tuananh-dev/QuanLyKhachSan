@@ -429,6 +429,10 @@
     <Compile Include="Migrations\202006260717094_dbupdate-v002.designer.cs">
       <DependentUpon>202006260717094_dbupdate-v002.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006260913277_update-tienich.cs" />
+    <Compile Include="Migrations\202006260913277_update-tienich.designer.cs">
+      <DependentUpon>202006260913277_update-tienich.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\DatPhongThanhCong.cs" />
     <Compile Include="Models\Entities\DatPhongThatBai.cs" />
@@ -506,6 +510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006260717094_dbupdate-v002.resx">
       <DependentUpon>202006260717094_dbupdate-v002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006260913277_update-tienich.resx">
+      <DependentUpon>202006260913277_update-tienich.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
