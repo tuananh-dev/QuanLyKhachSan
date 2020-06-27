@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class createtable : DbMigration
+    public partial class createdatabase : DbMigration
     {
         public override void Up()
         {
@@ -134,7 +134,7 @@
                         TenTaiKhoan = c.String(nullable: false, maxLength: 50),
                         MatKhau = c.String(nullable: false, maxLength: 8),
                         HoVaTen = c.String(nullable: false, maxLength: 50),
-                        SoDienThoai = c.Int(nullable: false),
+                        SoDienThoai = c.String(nullable: false, maxLength: 50),
                         Mail = c.String(nullable: false, maxLength: 50),
                         LoaiTaiKhoan = c.String(nullable: false, maxLength: 6),
                         IsDelete = c.Boolean(nullable: false),

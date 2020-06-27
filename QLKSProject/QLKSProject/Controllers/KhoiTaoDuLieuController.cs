@@ -4,16 +4,21 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using QLKSProject.Business;
 
 namespace QLKSProject.Controllers
 {
     public class KhoiTaoDuLieuController : ApiController
     {
         [HttpGet]
-        public bool KhoiTaoCSDL()
+        public bool TaoMoiCSDL()
         {
-
-            return true;
+            bool b = false;
+            using(KhoiTaoCSDL khoiTaoCSDL = new KhoiTaoCSDL())
+            {
+                b = khoiTaoCSDL.TaoCSDL();
+            }
+            return b;
         }
     }
 }
