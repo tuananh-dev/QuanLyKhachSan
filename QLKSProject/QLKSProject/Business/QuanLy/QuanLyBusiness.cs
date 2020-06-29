@@ -29,8 +29,24 @@ namespace QLKSProject.Business.QuanLy
 
         public List<Phong> LayDanhSachPhong()
         {
-            var phong = models.Phongs.Where(e => e.IsDelete == false).Select(e => e).ToList();
-            return phong;
+            //var phong = models.Phongs.Where(e => e.IsDelete == false).Select(e => e).ToList();
+          
+               
+            //TimeSpan timenhan=  - time1970;
+            //TimeSpan timetra = -time1970;
+            List<Phong> dsphong = models.Phongs.Where(e => e.IsDelete == false).OrderBy(e => e.DatPhongThanhCong_IDPhongs).Select(e => e).ToList();
+           
+            foreach (var itemphong in dsphong)
+            {
+                List<DatPhongThanhCong> dsPhongDaDuocDatThanhCong = models.DatPhongThanhCongs.Where(s => s.IDPhong == itemphong.ID).Select(a => a).ToList();                
+                foreach(var itemdatphong in dsPhongDaDuocDatThanhCong)
+                {
+                    var khachhang = models.KhachHangs.Where(b => b.ID == itemdatphong.IDKhachHang).Select(b => b).FirstOrDefault();
+                    
+                }
+
+            }
+            return dsphong;
         }
         public bool ThemPhong(Phong phong)
         {
@@ -81,5 +97,14 @@ namespace QLKSProject.Business.QuanLy
                 return false;
             }
         }
+        #region Private Methods
+        private bool CapNhatTrangThaiPhong(DateTime datenhan,DateTime datetra)
+        {
+            DateTime datenow = DateTime.Now;
+            DateTime time1970 = new DateTime(1970, 1, 1);
+           
+            return true;
+        }
+        #endregion
     }
 }

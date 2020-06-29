@@ -415,9 +415,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006271023373_createdatabase.cs" />
-    <Compile Include="Migrations\202006271023373_createdatabase.designer.cs">
-      <DependentUpon>202006271023373_createdatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202006290812118_g.cs" />
+    <Compile Include="Migrations\202006290812118_g.designer.cs">
+      <DependentUpon>202006290812118_g.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\DatPhongThanhCong.cs" />
@@ -426,7 +426,7 @@
     <Compile Include="Models\Entities\Doan.cs" />
     <Compile Include="Models\Entities\KhachHang.cs" />
     <Compile Include="Models\Entities\Phong.cs" />
-    <Compile Include="Models\Entities\PhongSuDungDichVu.cs" />
+    <Compile Include="Models\Entities\LichSuDichVu.cs" />
     <Compile Include="Models\Entities\TaiKhoan.cs" />
     <Compile Include="Models\Entities\TienIch.cs" />
     <Compile Include="Models\FileKhachHang.cs" />
@@ -485,8 +485,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006271023373_createdatabase.resx">
-      <DependentUpon>202006271023373_createdatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006290812118_g.resx">
+      <DependentUpon>202006290812118_g.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
