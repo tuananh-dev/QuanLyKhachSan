@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class createdatabase : DbMigration
+    public partial class createDBv01 : DbMigration
     {
         public override void Up()
         {
@@ -12,11 +12,16 @@
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        ThoiGianNhan = c.DateTime(nullable: false),
-                        ThoiGianTra = c.DateTime(nullable: false),
+                        IDKhachHang = c.Int(nullable: false),
+                        IDPhong = c.Int(nullable: false),
                         IsDelete = c.Boolean(nullable: false),
+                        NgayTraPhongThucTe = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.KhachHangs", t => t.IDKhachHang, cascadeDelete: true)
+                .ForeignKey("dbo.Phongs", t => t.IDPhong, cascadeDelete: true)
+                .Index(t => t.IDKhachHang)
+                .Index(t => t.IDPhong);
             
             CreateTable(
                 "dbo.KhachHangs",
@@ -30,51 +35,61 @@
                         Nhom = c.String(nullable: false, maxLength: 50),
                         NguoiDaiDienCuaTreEm = c.String(nullable: false, maxLength: 100),
                         MaDoan = c.String(nullable: false, maxLength: 50),
-                        TenDoan = c.String(nullable: false, maxLength: 50),
                         GioiTinh = c.Boolean(nullable: false),
                         LoaiKhachHang = c.Boolean(nullable: false),
                         TruongDoan = c.Boolean(nullable: false),
                         IsDelete = c.Boolean(nullable: false),
-                        NgayGui = c.DateTime(),
-                        TenTruongDoan = c.String(),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
-                        DatPhongThanhCong_ID = c.Int(),
-                        DatPhongThatBai_ID = c.Int(),
-                        PhongSuDungDichVu_ID = c.Int(),
-                        Doan_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.DatPhongThanhCongs", t => t.DatPhongThanhCong_ID)
-                .ForeignKey("dbo.DatPhongThatBais", t => t.DatPhongThatBai_ID)
-                .ForeignKey("dbo.PhongSuDungDichVus", t => t.PhongSuDungDichVu_ID)
-                .ForeignKey("dbo.Doans", t => t.Doan_ID)
-                .Index(t => t.DatPhongThanhCong_ID)
-                .Index(t => t.DatPhongThatBai_ID)
-                .Index(t => t.PhongSuDungDichVu_ID)
-                .Index(t => t.Doan_ID);
+                .ForeignKey("dbo.Doans", t => t.MaDoan, cascadeDelete: true)
+                .Index(t => t.MaDoan);
+            
+            CreateTable(
+                "dbo.Doans",
+                c => new
+                    {
+                        MaDoan = c.String(nullable: false, maxLength: 50),
+                        TenDoan = c.String(nullable: false, maxLength: 50),
+                        NgayGui = c.DateTime(nullable: false),
+                        TenTruongDoan = c.String(nullable: false, maxLength: 50),
+                        ThoiGianNhan = c.DateTime(nullable: false),
+                        ThoiGianTra = c.DateTime(nullable: false),
+                        IsDelete = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.MaDoan);
             
             CreateTable(
                 "dbo.DatPhongThatBais",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        IDKhachHang = c.Int(nullable: false),
-                        GhiChu = c.String(maxLength: 300),
+                        TenDoan = c.String(nullable: false, maxLength: 200),
+                        MaDoan = c.String(nullable: false, maxLength: 50),
+                        GhiChu = c.String(maxLength: 2000),
                         IsDelete = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Doans", t => t.MaDoan, cascadeDelete: true)
+                .Index(t => t.MaDoan);
             
             CreateTable(
-                "dbo.PhongSuDungDichVus",
+                "dbo.LichSuDichVus",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
                         IDPhong = c.Int(nullable: false),
                         IDDichVu = c.Int(nullable: false),
                         NgayGoiDichVu = c.DateTime(nullable: false),
+                        GhiChu = c.String(),
                         IDKhachHang = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.DichVus", t => t.IDDichVu, cascadeDelete: true)
+                .ForeignKey("dbo.KhachHangs", t => t.IDKhachHang, cascadeDelete: true)
+                .ForeignKey("dbo.Phongs", t => t.IDPhong, cascadeDelete: true)
+                .Index(t => t.IDPhong)
+                .Index(t => t.IDDichVu)
+                .Index(t => t.IDKhachHang);
             
             CreateTable(
                 "dbo.DichVus",
@@ -84,11 +99,8 @@
                         TenDichVu = c.String(nullable: false, maxLength: 50),
                         Gia = c.Int(nullable: false),
                         IsDelete = c.Boolean(nullable: false),
-                        PhongSuDungDichVu_ID = c.Int(),
                     })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.PhongSuDungDichVus", t => t.PhongSuDungDichVu_ID)
-                .Index(t => t.PhongSuDungDichVu_ID);
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
                 "dbo.Phongs",
@@ -100,28 +112,6 @@
                         LoaiPhong = c.String(nullable: false, maxLength: 10),
                         Gia = c.Int(nullable: false),
                         TrangThai = c.Boolean(nullable: false),
-                        IsDelete = c.Boolean(nullable: false),
-                        Doan_ID = c.Int(),
-                        PhongSuDungDichVu_ID = c.Int(),
-                        DatPhongThanhCong_ID = c.Int(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Doans", t => t.Doan_ID)
-                .ForeignKey("dbo.PhongSuDungDichVus", t => t.PhongSuDungDichVu_ID)
-                .ForeignKey("dbo.DatPhongThanhCongs", t => t.DatPhongThanhCong_ID)
-                .Index(t => t.Doan_ID)
-                .Index(t => t.PhongSuDungDichVu_ID)
-                .Index(t => t.DatPhongThanhCong_ID);
-            
-            CreateTable(
-                "dbo.Doans",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        TenDoan = c.String(nullable: false, maxLength: 50),
-                        NgayGui = c.DateTime(nullable: false),
-                        TenTruongDoan = c.String(nullable: false, maxLength: 50),
-                        MaDoan = c.String(nullable: false, maxLength: 50),
                         IsDelete = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -156,29 +146,27 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.Phongs", "DatPhongThanhCong_ID", "dbo.DatPhongThanhCongs");
-            DropForeignKey("dbo.Phongs", "PhongSuDungDichVu_ID", "dbo.PhongSuDungDichVus");
-            DropForeignKey("dbo.Phongs", "Doan_ID", "dbo.Doans");
-            DropForeignKey("dbo.KhachHangs", "Doan_ID", "dbo.Doans");
-            DropForeignKey("dbo.KhachHangs", "PhongSuDungDichVu_ID", "dbo.PhongSuDungDichVus");
-            DropForeignKey("dbo.DichVus", "PhongSuDungDichVu_ID", "dbo.PhongSuDungDichVus");
-            DropForeignKey("dbo.KhachHangs", "DatPhongThatBai_ID", "dbo.DatPhongThatBais");
-            DropForeignKey("dbo.KhachHangs", "DatPhongThanhCong_ID", "dbo.DatPhongThanhCongs");
-            DropIndex("dbo.Phongs", new[] { "DatPhongThanhCong_ID" });
-            DropIndex("dbo.Phongs", new[] { "PhongSuDungDichVu_ID" });
-            DropIndex("dbo.Phongs", new[] { "Doan_ID" });
-            DropIndex("dbo.DichVus", new[] { "PhongSuDungDichVu_ID" });
-            DropIndex("dbo.KhachHangs", new[] { "Doan_ID" });
-            DropIndex("dbo.KhachHangs", new[] { "PhongSuDungDichVu_ID" });
-            DropIndex("dbo.KhachHangs", new[] { "DatPhongThatBai_ID" });
-            DropIndex("dbo.KhachHangs", new[] { "DatPhongThanhCong_ID" });
+            DropForeignKey("dbo.LichSuDichVus", "IDPhong", "dbo.Phongs");
+            DropForeignKey("dbo.DatPhongThanhCongs", "IDPhong", "dbo.Phongs");
+            DropForeignKey("dbo.LichSuDichVus", "IDKhachHang", "dbo.KhachHangs");
+            DropForeignKey("dbo.LichSuDichVus", "IDDichVu", "dbo.DichVus");
+            DropForeignKey("dbo.KhachHangs", "MaDoan", "dbo.Doans");
+            DropForeignKey("dbo.DatPhongThatBais", "MaDoan", "dbo.Doans");
+            DropForeignKey("dbo.DatPhongThanhCongs", "IDKhachHang", "dbo.KhachHangs");
+            DropIndex("dbo.LichSuDichVus", new[] { "IDKhachHang" });
+            DropIndex("dbo.LichSuDichVus", new[] { "IDDichVu" });
+            DropIndex("dbo.LichSuDichVus", new[] { "IDPhong" });
+            DropIndex("dbo.DatPhongThatBais", new[] { "MaDoan" });
+            DropIndex("dbo.KhachHangs", new[] { "MaDoan" });
+            DropIndex("dbo.DatPhongThanhCongs", new[] { "IDPhong" });
+            DropIndex("dbo.DatPhongThanhCongs", new[] { "IDKhachHang" });
             DropTable("dbo.TienIches");
             DropTable("dbo.TaiKhoans");
-            DropTable("dbo.Doans");
             DropTable("dbo.Phongs");
             DropTable("dbo.DichVus");
-            DropTable("dbo.PhongSuDungDichVus");
+            DropTable("dbo.LichSuDichVus");
             DropTable("dbo.DatPhongThatBais");
+            DropTable("dbo.Doans");
             DropTable("dbo.KhachHangs");
             DropTable("dbo.DatPhongThanhCongs");
         }

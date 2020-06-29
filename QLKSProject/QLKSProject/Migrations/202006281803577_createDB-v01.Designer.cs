@@ -7,13 +7,13 @@ namespace QLKSProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class createdatabase : IMigrationMetadata
+    public sealed partial class createDBv01 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(createdatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(createDBv01));
         
         string IMigrationMetadata.Id
         {
-            get { return "202006271023373_createdatabase"; }
+            get { return "202006281803577_createDB-v01"; }
         }
         
         string IMigrationMetadata.Source

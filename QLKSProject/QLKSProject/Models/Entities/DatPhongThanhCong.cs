@@ -15,16 +15,21 @@ namespace QLKSProject.Models
         public int ID { get; set; }
 
         [Required]
-        public DateTime ThoiGianNhan { get; set; }
+        public int IDKhachHang { get; set; }
 
         [Required]
-        public DateTime ThoiGianTra { get; set; }
+        public int IDPhong { get; set; }
 
         [Required]
         public bool IsDelete { get; set; }
-   
-        public virtual ICollection<KhachHang> KhachHangs { get; set; }
-        public virtual ICollection<Phong> Phongs { get; set; }
+
+        public DateTime NgayTraPhongThucTe { get; set; }
+        
+        [ForeignKey("IDKhachHang")]
+        public virtual KhachHang KhachHang_IDKhachHang { get; set; }
+
+        [ForeignKey("IDPhong")]
+        public virtual Phong Phong_IDPhong { get; set; }
 
 
     }

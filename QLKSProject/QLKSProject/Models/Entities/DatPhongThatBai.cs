@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using QLKSProject.Models.Entities;
 
 
 namespace QLKSProject.Models
@@ -14,15 +15,22 @@ namespace QLKSProject.Models
         public int ID { get; set; }
 
         [Required]
-        public int IDKhachHang { get; set; }
+        [StringLength(200)]
+        public string TenDoan { get; set; }
 
-        [StringLength(300)]
+        [Required]
+        [StringLength(50)]
+        public string MaDoan { get; set; }
+
+        [StringLength(2000)]
         public string GhiChu { get; set; }
 
         [Required]
         public bool IsDelete { get; set; }
 
-        public virtual ICollection<KhachHang> KhachHangs { get; set; }
+        [ForeignKey("MaDoan")]
+        public virtual Doan Doan_MaDoan { get; set; }
+
 
     }
 }

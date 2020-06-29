@@ -10,7 +10,9 @@ namespace QLKSProject.Models.Entities
     public class Doan
     {
         [Key]
-        public int ID { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string MaDoan { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -24,13 +26,16 @@ namespace QLKSProject.Models.Entities
         public string TenTruongDoan { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string MaDoan { get; set; }
+        public DateTime ThoiGianNhan { get; set; }
+
+        [Required]
+        public DateTime ThoiGianTra { get; set; }
 
         [Required]
         public bool IsDelete { get; set; }
 
-        public virtual ICollection<KhachHang> KhachHangs { get; set; }
+        public virtual ICollection<KhachHang> KhachHang_MaDoans { get; set; }
+        public virtual ICollection<DatPhongThatBai> DatPhongThatBai_MaDoans { get; set; }
 
     }
 }

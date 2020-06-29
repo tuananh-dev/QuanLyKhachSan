@@ -22,6 +22,6 @@ namespace QLKSProject.Models
         [Required]
         public bool IsDelete { get; set; }
 
-        public PhongSuDungDichVu PhongSuDungDichVu { get; set; }
+        public virtual ICollection<LichSuDichVu> LichSuDichVu_IDDichVu { get; set; }
     }
 }

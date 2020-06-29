@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QLKSProject.Models
 {
-    public class PhongSuDungDichVu
+    public class LichSuDichVu
     {
         [Key]
         public int ID { get; set; }
@@ -21,12 +21,19 @@ namespace QLKSProject.Models
         [Required]
         public DateTime NgayGoiDichVu { get; set; }
 
+        public string GhiChu { get; set; }
+
         [Required]
         public int IDKhachHang { get; set; }
 
-        public virtual ICollection<Phong> Phongs { get; set; }
-        public virtual ICollection<KhachHang> KhachHangs { get; set; }
-        public virtual ICollection<DichVu> DichVus { get; set; }
+        [ForeignKey("IDPhong")]
+        public virtual Phong Phong_IDPhong { get; set; }
+
+        [ForeignKey("IDKhachHang")]
+        public virtual KhachHang KhachHang_IDKhachHang { get; set; }
+
+        [ForeignKey("IDDichVu")]
+        public virtual DichVu DichVu_IDDichVu { get; set; }
 
     }
 }

@@ -33,11 +33,9 @@ namespace QLKSProject.Models
 
         [Required]
         public bool IsDelete { get; set; }
-
-        public virtual PhongSuDungDichVu PhongSuDungDichVu { get; set; }
-
-        public virtual Doan Doan { get; set; }
-
+        
+        public virtual ICollection<DatPhongThanhCong> DatPhongThanhCong_IDPhongs { get; set; }
+        public virtual ICollection<LichSuDichVu> LichSuDichVu_IDPhongs { get; set; }
 
     }
 }
