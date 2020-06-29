@@ -415,9 +415,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006281803577_createDB-v01.cs" />
-    <Compile Include="Migrations\202006281803577_createDB-v01.designer.cs">
-      <DependentUpon>202006281803577_createDB-v01.cs</DependentUpon>
+    <Compile Include="Migrations\202006291006510_createDB.cs" />
+    <Compile Include="Migrations\202006291006510_createDB.designer.cs">
+      <DependentUpon>202006291006510_createDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\DatPhongThanhCong.cs" />
@@ -493,8 +493,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006281803577_createDB-v01.resx">
-      <DependentUpon>202006281803577_createDB-v01.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006291006510_createDB.resx">
+      <DependentUpon>202006291006510_createDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

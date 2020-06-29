@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class createDBv01 : DbMigration
+    public partial class createDB : DbMigration
     {
         public override void Up()
         {
@@ -34,6 +34,8 @@
                         DiaChi = c.String(nullable: false, maxLength: 200),
                         Nhom = c.String(nullable: false, maxLength: 50),
                         NguoiDaiDienCuaTreEm = c.String(nullable: false, maxLength: 100),
+                        ThoiGianNhan = c.DateTime(nullable: false),
+                        ThoiGianTra = c.DateTime(nullable: false),
                         MaDoan = c.String(nullable: false, maxLength: 50),
                         GioiTinh = c.Boolean(nullable: false),
                         LoaiKhachHang = c.Boolean(nullable: false),

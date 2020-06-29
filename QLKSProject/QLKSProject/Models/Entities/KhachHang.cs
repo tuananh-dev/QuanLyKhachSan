@@ -38,6 +38,12 @@ namespace QLKSProject.Models
         [StringLength(100)]
         public string NguoiDaiDienCuaTreEm { get; set; }
 
+        [Required]
+        public DateTime ThoiGianNhan { get; set; }
+
+        [Required]
+        public DateTime ThoiGianTra { get; set; }
+
 
         [Required]
         [StringLength(50)]
