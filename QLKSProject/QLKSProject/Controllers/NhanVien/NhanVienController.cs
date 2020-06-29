@@ -36,5 +36,23 @@ namespace QLKSProject.Controllers.NhanVien
                 return datphongthatbai.LayDanhSachDatPhongThatBai();
             }
         }
+        [HttpPost]
+        public bool LuuDoanDatPhongThanhCong(DatPhongThanhCong datPhongThanhCong)
+        {
+            using (NhanVienBusiness doan = new NhanVienBusiness())
+            {
+                doan.LuuDoanDatPhongThanhCong(datPhongThanhCong);
+                return true;
+            }
+        }
+        [HttpPost]
+        public bool LuuDoanDatPhongThatBai(DatPhongThatBai datPhongThatBai)
+        {
+            using (NhanVienBusiness doan = new NhanVienBusiness())
+            {
+                doan.LuuDoanDatPhongThatBai(datPhongThatBai);
+                return true;
+            }
+        }
     }
 }

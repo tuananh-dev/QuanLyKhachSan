@@ -1,5 +1,6 @@
 ﻿using QLKSProject.Models;
 using QLKSProject.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,6 +24,32 @@ namespace QLKSProject.Business.NhanVien
         {
             var datphongthatbai = models.DatPhongThatBais.Select(s => s).ToList();
             return datphongthatbai;
+        }
+        public bool LuuDoanDatPhongThanhCong(DatPhongThanhCong datPhongThanhCong)
+        {
+            try
+            {
+                models.DatPhongThanhCongs.Add(datPhongThanhCong);
+                models.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool LuuDoanDatPhongThatBai(DatPhongThatBai datPhongThatBai)
+        {
+            try
+            {
+                models.DatPhongThatBais.Add(datPhongThatBai);
+                models.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
