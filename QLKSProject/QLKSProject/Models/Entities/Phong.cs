@@ -15,6 +15,10 @@ namespace QLKSProject.Models
 
         [Required]
         [StringLength(5)]
+        public string MaPhong { get; set; }
+
+        [Required]
+        [StringLength(3)]
         public string SoPhong { get; set; }
 
         [Required]

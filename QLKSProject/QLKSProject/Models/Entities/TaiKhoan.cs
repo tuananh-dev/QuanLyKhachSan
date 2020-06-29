@@ -25,7 +25,8 @@ namespace QLKSProject.Models
         public string HoVaTen { get; set; }
 
         [Required]
-        public int SoDienThoai { get; set; }
+        [StringLength(50)]
+        public string SoDienThoai { get; set; }
 
         [Required]
         [StringLength(50)]
