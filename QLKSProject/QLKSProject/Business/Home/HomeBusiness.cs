@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using QLKSProject.Models;
-
+using QLKSProject.Models.Entities;
 
 namespace QLKSProject.Business.Home
 {
@@ -27,5 +27,19 @@ namespace QLKSProject.Business.Home
             return true;
         }
 
-    }
+		internal List<Doan> LayDuLieuXuongCSDL(object fileKhachHang)
+		{
+			throw new NotImplementedException();
+		}
+
+		internal List<Doan> LayDanhSachDoan()
+		{
+			throw new NotImplementedException();
+		}
+
+		internal List<KhachHang> LayDanhSachKhachHang()
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

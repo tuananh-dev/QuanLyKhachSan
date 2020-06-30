@@ -11,7 +11,7 @@ namespace QLKSProject.Controllers.Home
 {
     public class HomeController : ApiController
     {
-/*        [HttpPost]
+        [HttpPost]
         public bool LayFileKhachHangGui(FileKhachHang fileKhachHang)
         {
             using (HomeBusiness homeBusiness = new HomeBusiness())
@@ -19,6 +19,23 @@ namespace QLKSProject.Controllers.Home
                 
                 return homeBusiness.LuuDuLieuXuongCSDL(fileKhachHang);
             }       
-        }*/
+        }
+        [HttpGet]
+        public List<Models.Entities.Doan> LayDanhSachDoan()
+        {
+           using (HomeBusiness homeBusiness = new HomeBusiness())
+            {
+                return homeBusiness.LayDanhSachDoan();
+            }
+        }
+        [HttpGet]
+        public List<KhachHang> LayDanhSachKhachHang()
+        {
+            using (HomeBusiness homeBusiness = new HomeBusiness())
+            {
+
+				return homeBusiness.LayDanhSachKhachHang();
+            }
+        }
     }
 }
