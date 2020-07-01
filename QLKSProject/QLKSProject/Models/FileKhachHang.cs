@@ -1,4 +1,4 @@
-﻿using QLKSProject.Models.Entities;
+﻿using QLKSProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

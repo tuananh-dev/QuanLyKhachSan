@@ -1,5 +1,5 @@
 ﻿using QLKSProject.Models;
-using QLKSProject.Models.Entities;
+using QLKSProject.Models;
 using System.Collections.Generic;
 using System.Linq;
 

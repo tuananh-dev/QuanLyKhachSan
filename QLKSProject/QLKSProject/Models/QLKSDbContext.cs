@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using QLKSProject.Models.Entities;
+using QLKSProject.Models;
 
 
 namespace QLKSProject.Models

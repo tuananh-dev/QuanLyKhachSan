@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using QLKSProject.Models.Entities;
+using QLKSProject.Models;
 
 namespace QLKSProject.Models
 {

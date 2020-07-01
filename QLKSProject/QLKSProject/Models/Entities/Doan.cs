@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace QLKSProject.Models.Entities
+namespace QLKSProject.Models
 {
     public class Doan
     {
@@ -19,6 +19,7 @@ namespace QLKSProject.Models.Entities
         public string TenDoan { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime2")]
         public DateTime NgayGui { get; set; }
 
         [Required]
@@ -26,9 +27,11 @@ namespace QLKSProject.Models.Entities
         public string TenTruongDoan { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime2")]
         public DateTime ThoiGianNhan { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime2")]
         public DateTime ThoiGianTra { get; set; }
 
         [Required]

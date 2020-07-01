@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using QLKSProject.Business.NhanVien;
 using QLKSProject.Models;
-using QLKSProject.Models.Entities;
+using QLKSProject.Models;
 
 namespace QLKSProject.Controllers.NhanVien
 {

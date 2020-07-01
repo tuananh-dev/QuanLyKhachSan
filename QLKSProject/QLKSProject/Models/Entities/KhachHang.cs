@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using QLKSProject.Models.Entities;
+using QLKSProject.Models;
 
 
 
@@ -34,14 +34,15 @@ namespace QLKSProject.Models
         [StringLength(50)]
         public string Nhom { get; set; }
 
-        [Required]
         [StringLength(100)]
         public string NguoiDaiDienCuaTreEm { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime2")]
         public DateTime ThoiGianNhan { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime2")]
         public DateTime ThoiGianTra { get; set; }
 
 

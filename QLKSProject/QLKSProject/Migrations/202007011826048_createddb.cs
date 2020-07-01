@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class createDB : DbMigration
+    public partial class createddb : DbMigration
     {
         public override void Up()
         {
@@ -15,7 +15,7 @@
                         IDKhachHang = c.Int(nullable: false),
                         IDPhong = c.Int(nullable: false),
                         IsDelete = c.Boolean(nullable: false),
-                        NgayTraPhongThucTe = c.DateTime(nullable: false),
+                        NgayTraPhongThucTe = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.KhachHangs", t => t.IDKhachHang, cascadeDelete: true)
@@ -33,9 +33,9 @@
                         Email = c.String(nullable: false, maxLength: 50),
                         DiaChi = c.String(nullable: false, maxLength: 200),
                         Nhom = c.String(nullable: false, maxLength: 50),
-                        NguoiDaiDienCuaTreEm = c.String(nullable: false, maxLength: 100),
-                        ThoiGianNhan = c.DateTime(nullable: false),
-                        ThoiGianTra = c.DateTime(nullable: false),
+                        NguoiDaiDienCuaTreEm = c.String(maxLength: 100),
+                        ThoiGianNhan = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        ThoiGianTra = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         MaDoan = c.String(nullable: false, maxLength: 50),
                         GioiTinh = c.Boolean(nullable: false),
                         LoaiKhachHang = c.Boolean(nullable: false),
@@ -52,10 +52,10 @@
                     {
                         MaDoan = c.String(nullable: false, maxLength: 50),
                         TenDoan = c.String(nullable: false, maxLength: 50),
-                        NgayGui = c.DateTime(nullable: false),
+                        NgayGui = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         TenTruongDoan = c.String(nullable: false, maxLength: 50),
-                        ThoiGianNhan = c.DateTime(nullable: false),
-                        ThoiGianTra = c.DateTime(nullable: false),
+                        ThoiGianNhan = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        ThoiGianTra = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         IsDelete = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.MaDoan);
@@ -81,7 +81,7 @@
                         ID = c.Int(nullable: false, identity: true),
                         IDPhong = c.Int(nullable: false),
                         IDDichVu = c.Int(nullable: false),
-                        NgayGoiDichVu = c.DateTime(nullable: false),
+                        NgayGoiDichVu = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         GhiChu = c.String(),
                         IDKhachHang = c.Int(nullable: false),
                     })
