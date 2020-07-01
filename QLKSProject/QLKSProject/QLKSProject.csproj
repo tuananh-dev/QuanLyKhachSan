@@ -468,17 +468,37 @@
     <Content Include="Content\QuanLy\plugins\sweet-alert\sweetalert.min.css" />
     <Content Include="Content\QuanLy\plugins\sweet-alert\sweetalert.min.js" />
     <Content Include="Global.asax" />
+    <Content Include="Views\AccountViews\DangNhap.cshtml" />
+    <Content Include="Views\HomeViews\GioiThieu.cshtml" />
+    <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
+    <Content Include="Views\HomeViews\TrangChu.cshtml" />
+    <Content Include="Views\QuanLyViews\DichVu\ChinhSuaDichVu.cshtml" />
+    <Content Include="Views\QuanLyViews\DichVu\DSDichVu.cshtml" />
+    <Content Include="Views\QuanLyViews\DichVu\ThemMoiDichVu.cshtml" />
+    <Content Include="Views\QuanLyViews\Phong\ChinhSuaPhong.cshtml" />
+    <Content Include="Views\QuanLyViews\Phong\DSPhong.cshtml" />
+    <Content Include="Views\QuanLyViews\Phong\ThemMoiPhong.cshtml" />
+    <Content Include="Views\QuanLyViews\TaiKhoan\DangNhap.cshtml" />
+    <Content Include="Views\QuanLyViews\TaiKhoan\DKTaiKhoan.cshtml" />
+    <Content Include="Views\QuanLyViews\TaiKhoan\KhoaManHinh.cshtml" />
+    <Content Include="Views\QuanLyViews\TKNhanVien\ChinhSuaTKNhanVien.cshtml" />
+    <Content Include="Views\QuanLyViews\TKNhanVien\DSTKNhanVien.cshtml" />
+    <Content Include="Views\QuanLyViews\TKNhanVien\ThemMoiTKNhanVien.cshtml" />
+    <Content Include="Views\QuanLyViews\TKNhanVien\XemChiTietTKNhanVien.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Business\BaseBusiness.cs" />
     <Compile Include="Business\Home\HomeBusiness.cs" />
-    <Compile Include="Business\KhoiTaoCSDL.cs" />
+    <Compile Include="Business\KhoiTaoDuLieu\KhoiTaoCSDL.cs" />
     <Compile Include="Business\NhanVien\NhanVienBusiness.cs" />
     <Compile Include="Business\QuanLy\QuanLyBusiness.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
-    <Compile Include="Controllers\KhoiTaoDuLieuController.cs" />
+    <Compile Include="Controllers\KhoiTaoDuLieu\KhoiTaoDuLieuController.cs" />
     <Compile Include="Controllers\NhanVien\NhanVienController.cs" />
     <Compile Include="Controllers\QuanLy\QuanLyController.cs" />
     <Compile Include="Global.asax.cs">
@@ -637,26 +657,6 @@
     <Content Include="Content\Home\scss\_site-blocks.scss" />
     <Content Include="Content\Home\scss\_site-navbar.scss" />
     <None Include="packages.config" />
-    <Content Include="Views\QuanLyViews\Phong\ChinhSuaPhong.cshtml" />
-    <Content Include="Views\QuanLyViews\Phong\DSPhong.cshtml" />
-    <Content Include="Views\QuanLyViews\Phong\ThemMoiPhong.cshtml" />
-    <Content Include="Views\QuanLyViews\DichVu\ChinhSuaDichVu.cshtml" />
-    <Content Include="Views\QuanLyViews\DichVu\DSDichVu.cshtml" />
-    <Content Include="Views\QuanLyViews\DichVu\ThemMoiDichVu.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\QuanLyViews\TKNhanVien\ChinhSuaTKNhanVien.cshtml" />
-    <Content Include="Views\QuanLyViews\TKNhanVien\DSTKNhanVien.cshtml" />
-    <Content Include="Views\QuanLyViews\TKNhanVien\ThemMoiTKNhanVien.cshtml" />
-    <Content Include="Views\QuanLyViews\TKNhanVien\XemChiTietTKNhanVien.cshtml" />
-    <Content Include="Views\QuanLyViews\TaiKhoan\DKTaiKhoan.cshtml" />
-    <Content Include="Views\QuanLyViews\TaiKhoan\DangNhap.cshtml" />
-    <Content Include="Views\QuanLyViews\TaiKhoan\KhoaManHinh.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\HomeViews\TrangChu.cshtml" />
-    <Content Include="Views\HomeViews\GioiThieu.cshtml" />
-    <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
-    <Content Include="Views\AccountViews\DangNhap.cshtml" />
-    <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -666,7 +666,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\HomeViews\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006291006510_createDB.resx">
