@@ -7,6 +7,7 @@ namespace QLKSProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
+<<<<<<< HEAD:QLKSProject/QLKSProject/Migrations/202006290812118_g.Designer.cs
     public sealed partial class g : IMigrationMetadata
     {
         private readonly ResourceManager Resources = new ResourceManager(typeof(g));
@@ -14,6 +15,15 @@ namespace QLKSProject.Migrations
         string IMigrationMetadata.Id
         {
             get { return "202006290812118_g"; }
+=======
+    public sealed partial class createDB : IMigrationMetadata
+    {
+        private readonly ResourceManager Resources = new ResourceManager(typeof(createDB));
+        
+        string IMigrationMetadata.Id
+        {
+            get { return "202006291006510_createDB"; }
+>>>>>>> b4de312ef247bbb90f834c12e3bdad425a1fda8b:QLKSProject/QLKSProject/Migrations/202006291006510_createDB.Designer.cs
         }
         
         string IMigrationMetadata.Source

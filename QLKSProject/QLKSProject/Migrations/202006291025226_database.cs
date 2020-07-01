@@ -3,11 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-<<<<<<< HEAD:QLKSProject/QLKSProject/Migrations/202006290812118_g.cs
-    public partial class g : DbMigration
-=======
-    public partial class createDB : DbMigration
->>>>>>> b4de312ef247bbb90f834c12e3bdad425a1fda8b:QLKSProject/QLKSProject/Migrations/202006291006510_createDB.cs
+    public partial class database : DbMigration
     {
         public override void Up()
         {
@@ -45,12 +41,6 @@
                         LoaiKhachHang = c.Boolean(nullable: false),
                         TruongDoan = c.Boolean(nullable: false),
                         IsDelete = c.Boolean(nullable: false),
-                        TenDoan = c.String(),
-                        NgayGui = c.DateTime(),
-                        TenTruongDoan = c.String(),
-                        ThoiGianNhan = c.DateTime(),
-                        ThoiGianTra = c.DateTime(),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Doans", t => t.MaDoan, cascadeDelete: true)
