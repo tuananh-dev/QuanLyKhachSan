@@ -9,6 +9,9 @@ namespace QLKSProject.Models
 {
     public class Doan
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+
         [Key]
         [Required]
         [StringLength(50)]

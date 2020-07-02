@@ -14,11 +14,11 @@ namespace QLKSProject.Business
             bool b = true;
             try
             {
-                TaoPhong(2, 2);
+                TaoPhong(9, 22);
                 TaoDichVu();
                 TaoTaiKhoan();
                 TaoTienIch();
-                TaoDoanKhachHang(5);
+                TaoDoanKhachHang(12);
             }
             catch (Exception)
             {
@@ -32,7 +32,7 @@ namespace QLKSProject.Business
 
 
         #region Private Methods
-        private void TaoPhong(int soPhong, int soTang)
+        private void TaoPhong(int soTang, int soPhong )
         {
             for (int i = 1; i <= soTang; i++)
             {
@@ -42,8 +42,8 @@ namespace QLKSProject.Business
                     phong.SoPhong = (i * 100 + j) + "";
                     phong.MaPhong = rd.Next(1, 4).ToString() + (i < 10 ? "0" + i : "" + i) + (j < 10 ? "0" + j : "" + j);
                     phong.LoaiPhong = rd.Next(1, 4).ToString();
-                    phong.Gia = rd.Next(1, 4) * 1000000;
-                    if (rd.Next(0, 1) == 1)
+                    phong.Gia = rd.Next(1, 5) * 1000000;
+                    if (rd.Next(0, 2) == 1)
                         phong.TrangThai = false;
                     else
                         phong.TrangThai = true;
@@ -51,16 +51,8 @@ namespace QLKSProject.Business
                         phong.IsDelete = true;
                     else
                         phong.IsDelete = false;
-                    try
-                    {
-                        models.Phongs.Add(phong);
 
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Loi luu doi tuong xuong csdl !!!");
-                    }
-
+                    models.Phongs.Add(phong);
                 }
             }
         }
@@ -80,14 +72,14 @@ namespace QLKSProject.Business
                     else
                         khachHang.HoVaTen = TaoTenKhachHang();
                   
-                    khachHang.SoDienThoai = rd.Next(012222222, 999999999).ToString();
+                    khachHang.SoDienThoai = "098"+ rd.Next(222222, 999999);
                     khachHang.Email = khachHang.HoVaTen.ToLower().Replace(" ","") + "@gmail.com";
                     khachHang.DiaChi = rd.Next(1, 1234) + tenDuong[rd.Next(0, tenDuong.Length - 1)];
                     khachHang.Nhom = "n" + rd.Next(1, 10);
                     khachHang.ThoiGianNhan = doan.ThoiGianNhan;
                     khachHang.ThoiGianTra = doan.ThoiGianTra;
                     khachHang.MaDoan = doan.MaDoan;
-                    khachHang.GioiTinh = (rd.Next(0, 1) == 1) ? true : false;
+                    khachHang.GioiTinh = (rd.Next(0, 2) == 1) ? true : false;
                     khachHang.LoaiKhachHang = (rd.Next(0, 20) == 3) ? true : false;
                     khachHang.TruongDoan = (j == 0) ? true : false;
                     khachHang.IsDelete = false;
@@ -150,7 +142,7 @@ namespace QLKSProject.Business
                 taiKhoan.MatKhau = rd.Next(111, 333).ToString();
                 taiKhoan.SoDienThoai = "0" + rd.Next(23456789, 88765432).ToString();
                 taiKhoan.Mail = lstTenTaiKhoan[i] + "@gmail.com";
-                switch (rd.Next(1, 4))
+                switch (rd.Next(1, 5))
                 {
                     case 1: taiKhoan.LoaiTaiKhoan = "NV"; break;
                     case 2: taiKhoan.LoaiTaiKhoan = "QL"; break;
@@ -203,6 +195,7 @@ namespace QLKSProject.Business
             newDoan.TenDoan = TaoTenDoan();
             newDoan.TenTruongDoan = TaoTenKhachHang();
             newDoan.ThoiGianNhan = TaoThoiGian();
+            newDoan.NgayGui = newDoan.ThoiGianNhan;
             newDoan.ThoiGianTra = TaoThoiGian();
             if (newDoan.ThoiGianTra.CompareTo(newDoan.ThoiGianNhan) == -1)
             {

@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class createddb : DbMigration
+    public partial class createDB : DbMigration
     {
         public override void Up()
         {
@@ -51,6 +51,7 @@
                 c => new
                     {
                         MaDoan = c.String(nullable: false, maxLength: 50),
+                        ID = c.Int(nullable: false, identity: true),
                         TenDoan = c.String(nullable: false, maxLength: 50),
                         NgayGui = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         TenTruongDoan = c.String(nullable: false, maxLength: 50),
