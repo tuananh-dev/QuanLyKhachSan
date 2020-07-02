@@ -17,6 +17,7 @@ namespace QLKSProject.Business.NhanVien
         public List<DatPhongThanhCong> LayDanhSachDatPhongThanhCong()
         {
             var datphongthanhcong = models.DatPhongThanhCongs.Select(s => s).ToList();
+
             return datphongthanhcong;
         }
 
@@ -25,31 +26,44 @@ namespace QLKSProject.Business.NhanVien
             var datphongthatbai = models.DatPhongThatBais.Select(s => s).ToList();
             return datphongthatbai;
         }
-        public bool LuuDoanDatPhongThanhCong(DatPhongThanhCong datPhongThanhCong)
+        #region private methods
+        private bool LuuDatPhongThanhCong(KhachHang khachHangs, int IDPhong)
         {
+            DatPhongThanhCong datPhongThanhCong = new DatPhongThanhCong();
+            datPhongThanhCong.IDPhong = IDPhong;
+            datPhongThanhCong.IDKhachHang = khachHangs.ID;
+            datPhongThanhCong.NgayTraPhongThucTe = khachHangs.ThoiGianTra;
+            datPhongThanhCong.IsDelete = false;
+
             try
             {
                 models.DatPhongThanhCongs.Add(datPhongThanhCong);
-                models.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch
             {
+                Console.WriteLine("Lưu bảng thành công!");
                 return false;
             }
         }
-        public bool LuuDoanDatPhongThatBai(DatPhongThatBai datPhongThatBai)
+        private bool LuuDatPhongThatBai(KhachHang khachHangs, int IDKhachHang)
         {
+            DatPhongThatBai datPhongThatBai = new DatPhongThatBai();
+            datPhongThatBai.ID = IDKhachHang;
+            datPhongThatBai.MaDoan = khachHangs.MaDoan;
+            datPhongThatBai.IsDelete = false;
+
             try
             {
                 models.DatPhongThatBais.Add(datPhongThatBai);
-                models.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch
             {
+                Console.WriteLine("Lưu bảng thành công!");
                 return false;
             }
         }
+        #endregion
     }
 }
