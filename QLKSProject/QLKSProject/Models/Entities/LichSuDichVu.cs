@@ -19,6 +19,7 @@ namespace QLKSProject.Models
         public int IDDichVu { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime2")]
         public DateTime NgayGoiDichVu { get; set; }
 
         public string GhiChu { get; set; }

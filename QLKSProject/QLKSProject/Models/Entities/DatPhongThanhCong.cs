@@ -23,6 +23,7 @@ namespace QLKSProject.Models
         [Required]
         public bool IsDelete { get; set; }
 
+        [Column(TypeName = "datetime2")]
         public DateTime NgayTraPhongThucTe { get; set; }
         
         [ForeignKey("IDKhachHang")]
