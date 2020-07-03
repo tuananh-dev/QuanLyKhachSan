@@ -1,3 +1,4 @@
+﻿using System;
 ﻿using QLKSProject.Models;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,8 @@ using System.Web;
 
 namespace QLKSProject.Models
 {
-    public class FileKhachHang 
+	public class FileKhachHang : KhachHang
+
     {
         public string TenDoan { get; set; }
         public DateTime NgayGui { get; set; }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QLKSProject.Business.Home;
+using QLKSProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,9 +12,16 @@ namespace QLKSProject.Controllers.Home
 {
     public class HomeController : ApiController
     {
-/*        [HttpGet]
-        public IHttpActionResult Home()
+        [HttpPost]
+        public bool LayFileKhachHangGui(List<FileKhachHang> lstfileKhachHang)
         {
-        }*/
+            using (HomeBusiness homeBusiness = new HomeBusiness())
+            {
+                
+                return homeBusiness.LayFileKhachHangGui(lstfileKhachHang);
+            }       
+        }
+
+
     }
 }
