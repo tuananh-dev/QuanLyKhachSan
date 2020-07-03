@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/View/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -10,17 +10,17 @@
         <div class="page-bar">
             <div class="page-title-breadcrumb">
                 <div class=" pull-left">
-                    <div class="page-title">All Bookings</div>
+                    <div class="page-title">Danh Sách Phòng</div>
                 </div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li>
                         <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                           href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                           href="index.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                     </li>
                     <li>
-                        <a class="parent-item" href="#">Booking</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        <a class="parent-item" href="#">Quản Lý Phòng</a>&nbsp;<i class="fa fa-angle-right"></i>
                     </li>
-                    <li class="active">All Bookings</li>
+                    <li class="active">Danh Sách Phòng</li>
                 </ol>
             </div>
         </div>
@@ -28,7 +28,7 @@
             <div class="col-md-12">
                 <div class="card card-box">
                     <div class="card-head">
-                        <header>All Bookings</header>
+                        <header>Danh Sách Phòng</header>
                         <div class="tools">
                             <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
                             <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
@@ -39,7 +39,7 @@
                         <div class="row p-b-20">
                             <div class="col-md-6 col-sm-6 col-6">
                                 <div class="btn-group">
-                                    <a href="" id="addRow" class="btn btn-info">
+                                    <a href="https://localhost:44339/Views/QuanLyViews/Phong/ThemMoiPhong.cshtml" id="addRow" class="btn btn-info">
                                         @*@Url.Action("ThemMoiPhong", "Phong")*@
                                         Thêm Mới Phòng <i class="fa fa-plus"></i>
                                     </a>
@@ -89,9 +89,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @*****************@
+                                    @**For Each Data**@
+                                    @*****************@
                                     <tr class="odd gradeX">
                                         <td class="user-circle-img">
-                                            <img src="assets/img/user/user1.jpg" alt="">
+                                            <img src="~/Content/QuanLy/img/user/user1.jpg" alt="">
                                         </td>
                                         <td class="center">101</td>
                                         <td class="center">Single</td>
@@ -101,7 +104,7 @@
                                         <td class="center">123456789</td>
                                         <td class="center">25$</td>
                                         <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
+                                            <a href="https://localhost:44339/Views/QuanLyViews/Phong/ChinhSuaPhong.cshtml" class="btn btn-tbl-edit btn-xs">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <a class="btn btn-tbl-delete btn-xs">
@@ -109,226 +112,8 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="user-circle-img">
-                                            <img src="assets/img/user/user2.jpg" alt="">
-                                        </td>
-                                        <td class="center">102</td>
-                                        <td class="center">Double</td>
-                                        <td class="center">Non AC</td>
-                                        <td class="center">Free Lunch</td>
-                                        <td class="center">3</td>
-                                        <td class="center">123456789</td>
-                                        <td class="center">35$</td>
-                                        <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-tbl-delete btn-xs">
-                                                <i class="fa fa-trash-o "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="user-circle-img">
-                                            <img src="assets/img/user/user3.jpg" alt="">
-                                        </td>
-                                        <td class="center">103</td>
-                                        <td class="center">King</td>
-                                        <td class="center">AC</td>
-                                        <td class="center">None</td>
-                                        <td class="center">5</td>
-                                        <td class="center">123456789</td>
-                                        <td class="center">65$</td>
-                                        <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-tbl-delete btn-xs">
-                                                <i class="fa fa-trash-o "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="user-circle-img">
-                                            <img src="assets/img/user/user1.jpg" alt="">
-                                        </td>
-                                        <td class="center">101</td>
-                                        <td class="center">Single</td>
-                                        <td class="center">AC</td>
-                                        <td class="center">Free Dinner</td>
-                                        <td class="center">2</td>
-                                        <td class="center">123456789</td>
-                                        <td class="center">25$</td>
-                                        <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-tbl-delete btn-xs">
-                                                <i class="fa fa-trash-o "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="user-circle-img">
-                                            <img src="assets/img/user/user2.jpg" alt="">
-                                        </td>
-                                        <td class="center">102</td>
-                                        <td class="center">Double</td>
-                                        <td class="center">Non AC</td>
-                                        <td class="center">Free Lunch</td>
-                                        <td class="center">3</td>
-                                        <td class="center">123456789</td>
-                                        <td class="center">35$</td>
-                                        <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-tbl-delete btn-xs">
-                                                <i class="fa fa-trash-o "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="user-circle-img">
-                                            <img src="assets/img/user/user3.jpg" alt="">
-                                        </td>
-                                        <td class="center">103</td>
-                                        <td class="center">King</td>
-                                        <td class="center">AC</td>
-                                        <td class="center">None</td>
-                                        <td class="center">5</td>
-                                        <td class="center">123456789</td>
-                                        <td class="center">65$</td>
-                                        <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-tbl-delete btn-xs">
-                                                <i class="fa fa-trash-o "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="user-circle-img">
-                                            <img src="assets/img/user/user1.jpg" alt="">
-                                        </td>
-                                        <td class="center">101</td>
-                                        <td class="center">Single</td>
-                                        <td class="center">AC</td>
-                                        <td class="center">Free Dinner</td>
-                                        <td class="center">2</td>
-                                        <td class="center">123456789</td>
-                                        <td class="center">25$</td>
-                                        <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-tbl-delete btn-xs">
-                                                <i class="fa fa-trash-o "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="user-circle-img">
-                                            <img src="assets/img/user/user2.jpg" alt="">
-                                        </td>
-                                        <td class="center">102</td>
-                                        <td class="center">Double</td>
-                                        <td class="center">Non AC</td>
-                                        <td class="center">Free Lunch</td>
-                                        <td class="center">3</td>
-                                        <td class="center">123456789</td>
-                                        <td class="center">35$</td>
-                                        <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-tbl-delete btn-xs">
-                                                <i class="fa fa-trash-o "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="user-circle-img">
-                                            <img src="assets/img/user/user3.jpg" alt="">
-                                        </td>
-                                        <td class="center">103</td>
-                                        <td class="center">King</td>
-                                        <td class="center">AC</td>
-                                        <td class="center">None</td>
-                                        <td class="center">5</td>
-                                        <td class="center">123456789</td>
-                                        <td class="center">65$</td>
-                                        <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-tbl-delete btn-xs">
-                                                <i class="fa fa-trash-o "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="user-circle-img">
-                                            <img src="assets/img/user/user1.jpg" alt="">
-                                        </td>
-                                        <td class="center">101</td>
-                                        <td class="center">Single</td>
-                                        <td class="center">AC</td>
-                                        <td class="center">Free Dinner</td>
-                                        <td class="center">2</td>
-                                        <td class="center">123456789</td>
-                                        <td class="center">25$</td>
-                                        <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-tbl-delete btn-xs">
-                                                <i class="fa fa-trash-o "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="user-circle-img">
-                                            <img src="assets/img/user/user2.jpg" alt="">
-                                        </td>
-                                        <td class="center">102</td>
-                                        <td class="center">Double</td>
-                                        <td class="center">Non AC</td>
-                                        <td class="center">Free Lunch</td>
-                                        <td class="center">3</td>
-                                        <td class="center">123456789</td>
-                                        <td class="center">35$</td>
-                                        <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-tbl-delete btn-xs">
-                                                <i class="fa fa-trash-o "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="user-circle-img">
-                                            <img src="assets/img/user/user3.jpg" alt="">
-                                        </td>
-                                        <td class="center">103</td>
-                                        <td class="center">King</td>
-                                        <td class="center">AC</td>
-                                        <td class="center">None</td>
-                                        <td class="center">5</td>
-                                        <td class="center">123456789</td>
-                                        <td class="center">65$</td>
-                                        <td class="center">
-                                            <a href="edit_room.html" class="btn btn-tbl-edit btn-xs">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-tbl-delete btn-xs">
-                                                <i class="fa fa-trash-o "></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+
+
                                 </tbody>
                             </table>
                         </div>

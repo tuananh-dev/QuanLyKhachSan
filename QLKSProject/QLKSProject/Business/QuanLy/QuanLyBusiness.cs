@@ -81,5 +81,13 @@ namespace QLKSProject.Business.QuanLy
                 return false;
             }
         }
+
+        #region Private Methods
+        private void Test()
+        {
+
+        }
+
+        #endregion
     }
 }
