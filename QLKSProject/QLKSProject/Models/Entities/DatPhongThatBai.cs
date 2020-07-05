@@ -4,10 +4,9 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using QLKSProject.Models;
 
 
-namespace QLKSProject.Models
+namespace QLKSProject.Models.Entities
 {
     public class DatPhongThatBai
     {

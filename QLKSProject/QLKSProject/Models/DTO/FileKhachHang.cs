@@ -1,13 +1,8 @@
 ﻿using System;
-﻿using QLKSProject.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace QLKSProject.Models
+namespace QLKSProject.Models.DTO
 {
-	public class FileKhachHang : KhachHang
+	public class FileKhachHang
 
     {
         public string TenDoan { get; set; }
@@ -26,6 +21,5 @@ namespace QLKSProject.Models
         public bool GioiTinh { get; set; }
         public bool LoaiKhachHang { get; set; }
         public bool TruongDoan { get; set; }
-
     }
 }

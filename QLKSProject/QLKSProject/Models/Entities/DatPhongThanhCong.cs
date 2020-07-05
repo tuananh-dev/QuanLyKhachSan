@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace QLKSProject.Models
+namespace QLKSProject.Models.Entities
 {
     public class DatPhongThanhCong
     {

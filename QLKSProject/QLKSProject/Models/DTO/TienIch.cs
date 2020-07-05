@@ -1,20 +1,12 @@
 ﻿
-using System.ComponentModel.DataAnnotations;
 
-namespace QLKSProject.Models.Entities
+namespace QLKSProject.Models.DTO
 {
     public class TienIch
     {
-        [Key]
         public int ID { get; set; }
-
-        [Required]
-        [StringLength(50)]
         public string TenTienIch { get; set; }
-
-        [Required]
         public string HinhAnh { get; set; }
-        [Required]
         public bool IsDelete { get; set; }
     }
 }

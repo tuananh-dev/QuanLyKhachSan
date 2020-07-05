@@ -5,8 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using QLKSProject.Business.NhanVien;
-using QLKSProject.Models;
-using QLKSProject.Models;
+using QLKSProject.Models.DTO;
+
 
 namespace QLKSProject.Controllers.NhanVien
 {
@@ -20,7 +20,7 @@ namespace QLKSProject.Controllers.NhanVien
                 return nhanvien.LayDanhSachDoan();
             }
         }
-        [HttpPost]
+/*        [HttpPost]
         public List<DatPhongThanhCong> LayDanhSachDatPhongThanhCong()
         {
             using (NhanVienBusiness datphongthanhcong = new NhanVienBusiness())
@@ -35,6 +35,6 @@ namespace QLKSProject.Controllers.NhanVien
             {
                 return datphongthatbai.LayDanhSachDatPhongThatBai();
             }
-        }
+        }*/
     }
 }

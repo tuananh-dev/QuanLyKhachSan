@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using QLKSProject.Models;
+using QLKSProject.Models.Entities;
 namespace QLKSProject.Business
 {
     public class KhoiTaoCSDL : BaseBusiness
@@ -30,7 +30,6 @@ namespace QLKSProject.Business
         }
         #endregion
 
-
         #region Private Methods
         private void TaoPhong(int soTang, int soPhong )
         {
@@ -56,7 +55,6 @@ namespace QLKSProject.Business
                 }
             }
         }
-
         private void TaoDoanKhachHang(int soluong)
         {
             string[] tenDuong = { "Nguyen Van Troi", "Ham Nghi", "Cach Mang Thang 8", "Le Huu Tho", "Le Trong Tan", "Pham Van Dong", "Mai Duong Vuong", "Vo Thi Sau", "Phan Dinh Phung", "Le Lai", "Le Loi" };
@@ -71,10 +69,10 @@ namespace QLKSProject.Business
                         khachHang.HoVaTen = doan.TenTruongDoan;
                     else
                         khachHang.HoVaTen = TaoTenKhachHang();
-                  
-                    khachHang.SoDienThoai = "098"+ rd.Next(222222, 999999);
-                    khachHang.Email = khachHang.HoVaTen.ToLower().Replace(" ","") + "@gmail.com";
-                    khachHang.DiaChi = rd.Next(1, 1234) + tenDuong[rd.Next(0, tenDuong.Length - 1)];
+
+                    khachHang.SoDienThoai = "098" + rd.Next(222222, 999999);
+                    khachHang.Email = khachHang.HoVaTen.ToLower().Replace(" ", "") + "@gmail.com";
+                    khachHang.DiaChi = rd.Next(1, 1234) + " " + tenDuong[rd.Next(0, tenDuong.Length - 1)];
                     khachHang.Nhom = "n" + rd.Next(1, 10);
                     khachHang.ThoiGianNhan = doan.ThoiGianNhan;
                     khachHang.ThoiGianTra = doan.ThoiGianTra;
@@ -83,28 +81,11 @@ namespace QLKSProject.Business
                     khachHang.LoaiKhachHang = (rd.Next(0, 20) == 3) ? true : false;
                     khachHang.TruongDoan = (j == 0) ? true : false;
                     khachHang.IsDelete = false;
-                    try
-                    {
-                        models.KhachHangs.Add(khachHang);
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Loi luu khach hang !!!");
-                    }
 
-                }
-                try
-                {
+                    models.KhachHangs.Add(khachHang);
                     models.Doans.Add(doan);
                 }
-                catch (Exception)
-                {
-                    Console.WriteLine("Loi luu doan !!!");
-                }
-
             }
-
-
         }
         private void TaoDichVu()
         {
@@ -170,7 +151,7 @@ namespace QLKSProject.Business
             {
                 TienIch tienIch = new TienIch();
                 tienIch.TenTienIch = lstTenTienIch[i];
-                tienIch.HinhAnh = lstTenTienIch[i] + "picture";
+                tienIch.HinhAnh = lstTenTienIch[i] + " picture";
                 if (rd.Next(0, 10) == 0)
                     tienIch.IsDelete = true;
                 else
@@ -206,12 +187,12 @@ namespace QLKSProject.Business
             newDoan.IsDelete = false;
             return newDoan;
         }
-        private double TaoMaDoan()
+        private ulong TaoMaDoan()
         {
             DateTime now = DateTime.Now;
             DateTime time1970 = new DateTime(1970, 1, 1);
             TimeSpan layMa = now - time1970;
-            return layMa.TotalMilliseconds;
+            return (ulong)layMa.TotalMilliseconds;
         }
         private string TaoTenDoan()
         {
@@ -224,7 +205,7 @@ namespace QLKSProject.Business
             string[] ten = { "Nam", "Bac", "Dong", "Tay", "Nam", "Sau", "Anh", "An", "Phuong", "Chuyen", "Thuy", "Son", "Lam", "Lan", "Huong", "Thao", "Trang", "Dan", "Vinh", "Trung", "Hoang", "Loi", "Duc", "Phuc", "My" };
             string[] tenDem = { "Duc", "Van", "Phuong", "Nhu", "Ngoc", "Bao", "Thi", "Tuan", "Tan", "Thien", "Ngan", "Gia", "Binh", "Tuong" };
             string[] ho = { "Nguyen", "Tran", "Le", "Ho", "Dinh", "Luu", "Huynh", "Trinh", "Ly", "Phan", "Vu" };
-            if (rd.Next(0, 1) == 1)
+            if (rd.Next(0, 2) == 1)
                 return ho[rd.Next(0, ho.Length - 1)] + " " + tenDem[rd.Next(0, tenDem.Length - 1)] + " " + ten[rd.Next(0, ten.Length - 1)];
             else
                 return ho[rd.Next(0, ho.Length - 1)]+" " + ten[rd.Next(0, ten.Length - 1)] + " " + tenDem[rd.Next(0, tenDem.Length - 1)] + " " + ten[rd.Next(0, ten.Length - 1)];

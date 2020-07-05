@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace QLKSProject.Models
+namespace QLKSProject.Models.Entities
 {
     public class DichVu
     {

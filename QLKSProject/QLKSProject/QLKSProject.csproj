@@ -504,11 +504,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007020449165_createDB.cs" />
-    <Compile Include="Migrations\202007020449165_createDB.designer.cs">
-      <DependentUpon>202007020449165_createDB.cs</DependentUpon>
+    <Compile Include="Migrations\202007051006166_crdb.cs" />
+    <Compile Include="Migrations\202007051006166_crdb.designer.cs">
+      <DependentUpon>202007051006166_crdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
+    <Compile Include="Models\DTO\DatPhongThatBai.cs" />
+    <Compile Include="Models\DTO\DichVu.cs" />
+    <Compile Include="Models\DTO\Doan.cs" />
+    <Compile Include="Models\DTO\FileKhachHang.cs" />
+    <Compile Include="Models\DTO\KhachHang.cs" />
+    <Compile Include="Models\DTO\LichSuDichVu.cs" />
+    <Compile Include="Models\DTO\Phong.cs" />
+    <Compile Include="Models\DTO\TaiKhoan.cs" />
+    <Compile Include="Models\DTO\TienIch.cs" />
     <Compile Include="Models\Entities\DatPhongThanhCong.cs" />
     <Compile Include="Models\Entities\DatPhongThatBai.cs" />
     <Compile Include="Models\Entities\DichVu.cs" />
@@ -518,7 +528,6 @@
     <Compile Include="Models\Entities\LichSuDichVu.cs" />
     <Compile Include="Models\Entities\TaiKhoan.cs" />
     <Compile Include="Models\Entities\TienIch.cs" />
-    <Compile Include="Models\FileKhachHang.cs" />
     <Compile Include="Models\QLKSDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -668,8 +677,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007020449165_createDB.resx">
-      <DependentUpon>202007020449165_createDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007051006166_crdb.resx">
+      <DependentUpon>202007051006166_crdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

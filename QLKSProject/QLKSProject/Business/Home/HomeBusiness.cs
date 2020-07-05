@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using QLKSProject.Models;
+using QLKSProject.Models.DTO;
 namespace QLKSProject.Business.Home
 {
 	public class HomeBusiness : BaseBusiness
 	{
 
-		public bool LayFileKhachHangGui(List<FileKhachHang> lstFileKhachHang)
+/*		public bool LayFileKhachHangGui(List<FileKhachHang> lstFileKhachHang)
 		{
 
 			foreach (var item in lstFileKhachHang)
@@ -26,7 +26,6 @@ namespace QLKSProject.Business.Home
 				KhachHang.LoaiKhachHang = item.LoaiKhachHang;
 				KhachHang.TruongDoan = item.TruongDoan;
 				KhachHang.IsDelete = true;
-				KhachHang.Doan_MaDoan = item.Doan_MaDoan;
 				Doan.MaDoan = item.MaDoan;
 				Doan.TenDoan = item.TenDoan;
 				Doan.NgayGui = item.NgayGui;
@@ -51,7 +50,7 @@ namespace QLKSProject.Business.Home
 			return false;
 
 		}
-
+*/
 
 		}
 	}

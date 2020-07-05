@@ -1,4 +1,4 @@
-﻿using QLKSProject.Models;
+﻿using QLKSProject.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +9,21 @@ namespace QLKSProject.Business.NhanVien
     {
         public List<Doan> LayDanhSachDoan()
         {
-            var dsDoan = models.Doans.Select(s => s).ToList();
-            return dsDoan;
+            var lstDoan = models.Doans.Select(s => new Doan
+            {
+                ID = s.ID,
+                MaDoan = s.MaDoan,
+                TenDoan = s.TenDoan,
+                NgayGui = s.NgayGui,
+                TenTruongDoan = s.TenTruongDoan,
+                ThoiGianNhan = s.ThoiGianNhan,
+                ThoiGianTra = s.ThoiGianTra,
+                IsDelete = s.IsDelete,
+            });
+            return lstDoan.ToList();
         }
 
-        public List<DatPhongThanhCong> LayDanhSachDatPhongThanhCong()
+/*        public List<DatPhongThanhCong> LayDanhSachDatPhongThanhCong()
         {
             var datphongthanhcong = models.DatPhongThanhCongs.Select(s => s).ToList();
 
@@ -63,6 +73,6 @@ namespace QLKSProject.Business.NhanVien
                 return false;
             }
         }
-        #endregion
+        #endregion*/
     }
 }

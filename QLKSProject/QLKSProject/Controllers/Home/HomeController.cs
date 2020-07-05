@@ -1,5 +1,5 @@
 ﻿using QLKSProject.Business.Home;
-using QLKSProject.Models;
+using QLKSProject.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +12,15 @@ namespace QLKSProject.Controllers.Home
 {
     public class HomeController : ApiController
     {
-        [HttpPost]
-        public bool LayFileKhachHangGui(List<FileKhachHang> lstfileKhachHang)
-        {
-            using (HomeBusiness homeBusiness = new HomeBusiness())
+        /*    [HttpPost]
+            public bool LayFileKhachHangGui(List<FileKhachHang> lstfileKhachHang)
             {
-                
-                return homeBusiness.LayFileKhachHangGui(lstfileKhachHang);
-            }       
-        }
+                using (HomeBusiness homeBusiness = new HomeBusiness())
+                {
+
+                    return homeBusiness.LayFileKhachHangGui(lstfileKhachHang);
+                }       
+            }*/
 
 
     }
