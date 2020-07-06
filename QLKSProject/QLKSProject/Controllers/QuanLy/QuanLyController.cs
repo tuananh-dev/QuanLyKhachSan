@@ -41,6 +41,16 @@ namespace QLKSProject.Controllers.QuanLy
             }
 
         }
+        [HttpPost]
+        public IHttpActionResult ThemTaiKhoan(TaiKhoan taiKhoan)
+        {
+            IHttpActionResult respon = Ok();
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.ThemTaiKhoan(taiKhoan));
+                return respon;
+            }
+        }
         [HttpPut]
         public IHttpActionResult CapNhatTaiKhoan(TaiKhoan taiKhoan)
         {
@@ -50,6 +60,17 @@ namespace QLKSProject.Controllers.QuanLy
                 respon = Ok(quanLy.CapNhatTaiKhoan(taiKhoan));
                 return respon;
             }                
+        }
+        [HttpDelete]
+        public IHttpActionResult XoaTaiKhoan(dynamic dynamic)
+        {
+            IHttpActionResult respon = Ok();
+            int idTaiKhoan = int.Parse(dynamic.ID.ToString());
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.XoaTaiKhoan(idTaiKhoan));
+                return respon;
+            }
         }
         //PHONG
         [HttpGet]
@@ -80,6 +101,16 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
+        [HttpPost]
+        public IHttpActionResult ThemPhong(Phong phong)
+        {
+            IHttpActionResult respon = Ok();
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.ThemPhong(phong));
+                return respon;
+            }
+        }
         [HttpPut]
         public IHttpActionResult CapNhatPhong(Phong phong)
         {
@@ -90,9 +121,20 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
+        [HttpDelete]
+        public IHttpActionResult XoaPhong(dynamic dynamic)
+        {
+            IHttpActionResult respon = Ok();
+            int idPhong = int.Parse(dynamic.ID.ToString());
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.XoaPhong(idPhong));
+                return respon;
+            }
+        }
         //DICHVU
         [HttpGet]
-        public IHttpActionResult LayDanhDichVu()
+        public IHttpActionResult LayDanhSachDichVu()
         {
             IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
@@ -120,6 +162,16 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
+        [HttpPost]
+        public IHttpActionResult ThemDichVu(DichVu dichVu)
+        {
+            IHttpActionResult respon = Ok();
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.ThemDichVu(dichVu));
+                return respon;
+            }
+        }
         [HttpPut]
         public IHttpActionResult CapNhatDichVu(DichVu dichVu)
         {
@@ -130,9 +182,20 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
+        [HttpDelete]
+        public IHttpActionResult XoaDichVu(dynamic dynamic)
+        {
+            IHttpActionResult respon = Ok();
+            int idDichVu = int.Parse(dynamic.ID.ToString());
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.XoaTaiKhoan(idDichVu));
+                return respon;
+            }
+        }
         //TIENICH
         [HttpGet]
-        public IHttpActionResult LayDanhTienIch()
+        public IHttpActionResult LayDanhSachTienIch()
         {
                 IHttpActionResult respon = Ok();
                 using (QuanLyBusiness quanLy = new QuanLyBusiness())
@@ -160,6 +223,17 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
+        [HttpPost]
+        public IHttpActionResult ThemTienIch(TienIch tienIch)
+
+        {
+            IHttpActionResult respon = Ok();
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.ThemTienIch(tienIch));
+                return respon;
+            }
+        }
         [HttpPut]
         public IHttpActionResult CapNhatTienIch(TienIch tienIch)
         {
@@ -167,6 +241,17 @@ namespace QLKSProject.Controllers.QuanLy
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.CapNhatTienIch(tienIch));
+                return respon;
+            }
+        }
+        [HttpDelete]
+        public IHttpActionResult XoaTienIch(dynamic dynamic)
+        {
+            IHttpActionResult respon = Ok();
+            int idTienIch = int.Parse(dynamic.ID.ToString());
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.XoaTaiKhoan(idTienIch));
                 return respon;
             }
         }
