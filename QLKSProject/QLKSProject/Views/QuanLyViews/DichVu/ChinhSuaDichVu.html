@@ -1,37 +1,35 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <!-- BEGIN HEAD -->
-<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:35:49 GMT -->
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/new_booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:14 GMT -->
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="description" content="Responsive Admin Template" />
     <meta name="author" content="SmartUniversity" />
-    <title>Spice Hotel</title>
+    <title>Spice Hotel | Bootstrap 4 Admin Dashboard Template + UI Kit</title>
     <!-- icons -->
-    <link href="~/Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!--bootstrap -->
-    <link href="~/Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/plugins/summernote/summernote.css" rel="stylesheet">
-    <!-- morris chart -->
-    <link href="~/Content/QuanLy/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Material Design Lite CSS -->
-    <link rel="stylesheet" href="~/Content/QuanLy/plugins/material/material.min.css">
-    <link rel="stylesheet" href="~/Content/QuanLy/css/material_style.css">
+    <link rel="stylesheet" href="../../../Content/QuanLy/plugins/material/material.min.css">
+    <link rel="stylesheet" href="../../../Content/QuanLy/css/material_style.css">
     <!-- animation -->
-    <link href="~/Content/QuanLy/css/pages/animate_page.css" rel="stylesheet">
+    <link href="../../../Content/QuanLy/css/pages/animate_page.css" rel="stylesheet">
     <!-- Template Styles -->
-    <link href="~/Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
+    <!-- dropzone -->
+    <link href="../../../Content/QuanLy/plugins/dropzone/dropzone.css" rel="stylesheet" media="screen">
+    <!-- Date Time item CSS -->
+    <link rel="stylesheet" href="../../../Content/QuanLy/plugins/flatpicker/flatpickr.min.css">
     <!-- favicon -->
-    <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
-
-    <script src="Scripts/jquery-1.10.2.js"></script>
-    
+    <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
 </head>
 <!-- END HEAD -->
 
@@ -43,7 +41,7 @@
                 <!-- logo start -->
                 <div class="page-logo">
                     <a href="index.html">
-                        <img alt="" src="~/Content/QuanLy/img/logo.png">
+                        <img alt="" src="../../../Content/QuanLy/img/logo.png">
                         <span class="logo-default">Spice</span>
                     </a>
                 </div>
@@ -75,16 +73,78 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                data-close-others="true">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="badge headerBadgeColor1"> 0 </span>
+                                <span class="badge headerBadgeColor1"> 6 </span>
                             </a>
                             <ul class="dropdown-menu animated swing">
                                 <li class="external">
                                     <h3><span class="bold">Notifications</span></h3>
-                                    <span class="notification-label purple-bgcolor">New 0</span>
+                                    <span class="notification-label purple-bgcolor">New 6</span>
                                 </li>
                                 <li>
                                     <ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
-                                       
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">just now</span>
+                                                <span class="details">
+                                                    <span class="notification-icon circle deepPink-bgcolor">
+                                                        <i class="fa fa-check"></i>
+                                                    </span> Congratulations!.
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">3 mins</span>
+                                                <span class="details">
+                                                    <span class="notification-icon circle purple-bgcolor">
+                                                        <i class="fa fa-user o"></i>
+                                                    </span>
+                                                    <b>John Micle </b>is now following you.
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">7 mins</span>
+                                                <span class="details">
+                                                    <span class="notification-icon circle blue-bgcolor">
+                                                        <i class="fa fa-comments-o"></i>
+                                                    </span>
+                                                    <b>Sneha Jogi </b>sent you a message.
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">12 mins</span>
+                                                <span class="details">
+                                                    <span class="notification-icon circle pink">
+                                                        <i class="fa fa-heart"></i>
+                                                    </span>
+                                                    <b>Ravi Patel </b>like your photo.
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">15 mins</span>
+                                                <span class="details">
+                                                    <span class="notification-icon circle yellow">
+                                                        <i class="fa fa-warning"></i>
+                                                    </span> Warning!
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">10 hrs</span>
+                                                <span class="details">
+                                                    <span class="notification-icon circle red">
+                                                        <i class="fa fa-times"></i>
+                                                    </span> Application error.
+                                                </span>
+                                            </a>
+                                        </li>
                                     </ul>
                                     <div class="dropdown-menu-footer">
                                         <a href="javascript:void(0)"> All notifications </a>
@@ -98,16 +158,78 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                data-close-others="true">
                                 <i class="fa fa-envelope-o"></i>
-                                <span class="badge headerBadgeColor2"> 0 </span>
+                                <span class="badge headerBadgeColor2"> 2 </span>
                             </a>
                             <ul class="dropdown-menu animated slideInDown">
                                 <li class="external">
                                     <h3><span class="bold">Messages</span></h3>
-                                    <span class="notification-label cyan-bgcolor">New 0</span>
+                                    <span class="notification-label cyan-bgcolor">New 2</span>
                                 </li>
                                 <li>
                                     <ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
-                                       
+                                        <li>
+                                            <a href="#">
+                                                <span class="photo">
+                                                    <img src="../../../Content/QuanLy/img/user/user2.jpg" class="img-circle" alt="">
+                                                </span>
+                                                <span class="subject">
+                                                    <span class="from"> Sarah Smith </span>
+                                                    <span class="time">Just Now </span>
+                                                </span>
+                                                <span class="message"> Jatin I found you on LinkedIn... </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="photo">
+                                                    <img src="../../../Content/QuanLy/img/user/user3.jpg" class="img-circle" alt="">
+                                                </span>
+                                                <span class="subject">
+                                                    <span class="from"> John Deo </span>
+                                                    <span class="time">16 mins </span>
+                                                </span>
+                                                <span class="message">
+                                                    Fwd: Important Notice Regarding Your Domain
+                                                    Name...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="photo">
+                                                    <img src="../../../Content/QuanLy/img/user/user1.jpg" class="img-circle" alt="">
+                                                </span>
+                                                <span class="subject">
+                                                    <span class="from"> Rajesh </span>
+                                                    <span class="time">2 hrs </span>
+                                                </span>
+                                                <span class="message"> pls take a print of attachments. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="photo">
+                                                    <img src="../../../Content/QuanLy/img/user/user8.jpg" class="img-circle" alt="">
+                                                </span>
+                                                <span class="subject">
+                                                    <span class="from"> Lina Smith </span>
+                                                    <span class="time">40 mins </span>
+                                                </span>
+                                                <span class="message"> Apply for Ortho Surgeon </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="photo">
+                                                    <img src="../../../Content/QuanLy/img/user/user5.jpg" class="img-circle" alt="">
+                                                </span>
+                                                <span class="subject">
+                                                    <span class="from"> Jacob Ryan </span>
+                                                    <span class="time">46 mins </span>
+                                                </span>
+                                                <span class="message"> Request for leave application. </span>
+                                            </a>
+                                        </li>
                                     </ul>
                                     <div class="dropdown-menu-footer">
                                         <a href="#"> All Messages </a>
@@ -120,25 +242,34 @@
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                data-close-others="true">
-                                <img alt="" class="img-circle " src="~/Content/QuanLy/img/dp.jpg" />
+                                <img alt="" class="img-circle " src="../../../Content/QuanLy/img/dp.jpg" />
                                 <span class="username username-hide-on-mobile"> John </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
                                 <li>
-                                    <a href="https://localhost:44339/View/QuanLyView/NhanVien/XemChiTietNhanVien.cshtml">
+                                    <a href="user_profile.html">
                                         <i class="icon-user"></i> Profile
                                     </a>
                                 </li>
-                                
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-settings"></i> Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-directions"></i> Help
+                                    </a>
+                                </li>
                                 <li class="divider"> </li>
                                 <li>
-                                    <a href="https://localhost:44339/View/QuanLyView/TaiKhoan/KhoaManHinh.cshtml">
+                                    <a href="lock_screen.html">
                                         <i class="icon-lock"></i> Lock
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://localhost:44339/View/QuanLyView/TaiKhoan/DangNhap.cshtml">
+                                    <a href="login.html">
                                         <i class="icon-logout"></i> Log Out
                                     </a>
                                 </li>
@@ -173,7 +304,7 @@
                                 <div class="user-panel">
                                     <div class="row">
                                         <div class="sidebar-userpic">
-                                            <img src="~/Content/QuanLy/img/dp.jpg" class="img-responsive" alt="">
+                                            <img src="../../../Content/QuanLy/img/dp.jpg" class="img-responsive" alt="">
                                         </div>
                                     </div>
                                     <div class="profile-usertitle">
@@ -201,34 +332,9 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item">
-                                <a href="#" class="nav-link nav-toggle">
-                                    <i class="material-icons">dashboard</i>
-                                    <span class="title">Thống Kê</span>
-                                    <span class="selected"></span>
-                                    <span class="arrow open"></span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a href="index.html" class="nav-link ">
-                                            <span class="title">Phòng</span>
-                                            <span class="selected"></span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a href="dashboard2.html" class="nav-link ">
-                                            <span class="title">Dịch Vụ</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a href="dashboard2.html" class="nav-link ">
-                                            <span class="title">Chi Phí</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
                             
-                            <li class="nav-item">
+
+                            <li class="nav-item active">
                                 <a href="#" class="nav-link nav-toggle">
                                     <i class="material-icons">business_center</i>
                                     <span class="title">Dịch Vụ</span>
@@ -236,21 +342,21 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/DichVu/ThemMoiDichVu.cshtml" class="nav-link ">
-                                            
+                                        <a href="https://localhost:44339/Views/QuanLyViews/DichVu/ThemMoiDichVu.html" class="nav-link ">
+
                                             <span class="title">Thêm Mới Dịch Vụ</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/DichVu/DSDichVu.cshtml" class="nav-link ">
-                                            
+                                        <a href="https://localhost:44339/Views/QuanLyViews/DichVu/DSDichVu.html" class="nav-link ">
+
                                             <span class="title">Danh Sách Dịch Vụ</span>
                                         </a>
                                     </li>
 
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a href="#" class="nav-link nav-toggle">
                                     <i class="material-icons">vpn_key</i>
                                     <span class="title">Phòng</span>
@@ -258,21 +364,21 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/Phong/ThemMoiPhong.cshtml" class="nav-link ">
-                                           
+                                        <a href="https://localhost:44339/Views/QuanLyViews/Phong/ThemMoiPhong.html" class="nav-link ">
+
                                             <span class="title">Thêm Mới Phòng</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/Phong/DSPhong.cshtml" class="nav-link ">
-                                           
+                                        <a href="https://localhost:44339/Views/QuanLyViews/Phong/DSPhong.html" class="nav-link ">
+
                                             <span class="title">Xem Danh Sách Phòng</span>
                                         </a>
                                     </li>
 
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a href="#" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Tài Khoản Nhân Viên</span>
@@ -280,14 +386,14 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/TKNhanVien/ThemMoiTKNhanVien.cshtml" class="nav-link ">
-                                            
+                                        <a href="https://localhost:44339/Views/QuanLyViews/TKNhanVien/ThemMoiTKNhanVien.html" class="nav-link ">
+
                                             <span class="title">Thêm Mới Tài Khoản Nhân Viên</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.cshtml" class="nav-link ">
-                                            
+                                        <a href="https://localhost:44339/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.html" class="nav-link ">
+
                                             <span class="title">Xem Danh Sách Tài Khoản Nhân Viên</span>
                                         </a>
                                     </li>
@@ -295,31 +401,113 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-item">
-                                <a href="https://localhost:44339/Views/NhanVienViews/Phong/DSPhong.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Phòng Đang Hoạt Động</span>
-                                    <span class="arrow"></span>
-                                </a>
+                            
 
-                            </li>
 
-                            <li class="nav-item">
-                                <a href="https://localhost:44339/Views/NhanVienViews/LuDoan/DSLuDoan.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Lữ Đoàn</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-
-                           
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- end sidebar menu -->
-            @RenderBody()
+            <!-- start page content -->
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    <div class="page-bar">
+                        <div class="page-title-breadcrumb">
+                            <div class=" pull-left">
+                                <div class="page-title">Chỉnh Sửa Dịch Vụ</div>
+                            </div>
+                            <ol class="breadcrumb page-breadcrumb pull-right">
+                                <li>
+                                    <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+                                                                       href="index.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
+                                    <a class="parent-item" href="#">Dịch Vụ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                </li>
+                                <li class="active">Chỉnh Sửa Dịch Vụ</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-box">
+                                <div class="card-head">
+
+                                    <button id="panel-button"
+                                            class="mdl-button mdl-js-button mdl-button--icon pull-right"
+                                            data-upgraded=",MaterialButton">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                        data-mdl-for="panel-button">
+                                        <li class="mdl-menu__item">
+                                            <i class="material-icons">assistant_photo</i>Action
+                                        </li>
+                                        <li class="mdl-menu__item">
+                                            <i class="material-icons">print</i>Another action
+                                        </li>
+                                        <li class="mdl-menu__item">
+                                            <i class="material-icons">favorite</i>Something else
+                                            here
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-body row">
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text" id="txtFirstName">
+                                            <label class="mdl-textfield__label">Tên Dịch Vụ</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text"
+                                                   pattern="-?[0-9]*(\.[0-9]+)?" id="text5">
+                                            <label class="mdl-textfield__label" for="text5">Giá</label>
+                                            <span class="mdl-textfield__error">Number required!</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                            <input class="mdl-textfield__input" type="text" id="sample2" value=""
+                                                   readonly tabIndex="-1">
+                                            <label for="sample2" class="pull-right margin-0">
+                                                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                            </label>
+                                            <label for="sample2" class="mdl-textfield__label">Trạng Thái</label>
+                                            <ul data-mdl-for="sample2"
+                                                class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                                <li class="mdl-menu__item" data-val="DE">Đã Xóa</li>
+                                                <li class="mdl-menu__item" data-val="BY">Chưa Xóa</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                                            <textarea class="mdl-textfield__input" rows="4" id="education"></textarea>
+                                            <label class="mdl-textfield__label" for="text7">Comment</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 p-t-20 text-center">
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">
+                                            Submit
+                                        </button>
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page content -->
             <!-- start chat sidebar -->
             <div class="chat-sidebar-container" data-close-on-body-click="false">
                 <div class="chat-sidebar">
@@ -455,7 +643,7 @@
                                     </div>
                                     <ul class="media-list list-items">
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user3.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user3.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="online dot"></i>
                                             <div class="media-body">
@@ -466,7 +654,7 @@
                                         <li class="media">
                                             <div class="media-status">
                                                 <span class="badge badge-success">5</span>
-                                            </div> <img class="media-object" src="~/Content/QuanLy/img/user/user1.jpg" width="35"
+                                            </div> <img class="media-object" src="../../../Content/QuanLy/img/user/user1.jpg" width="35"
                                                         height="35" alt="...">
                                             <i class="busy dot"></i>
                                             <div class="media-body">
@@ -475,7 +663,7 @@
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user5.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user5.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="away dot"></i>
                                             <div class="media-body">
@@ -486,7 +674,7 @@
                                         <li class="media">
                                             <div class="media-status">
                                                 <span class="badge badge-danger">8</span>
-                                            </div> <img class="media-object" src="~/Content/QuanLy/img/user/user4.jpg" width="35"
+                                            </div> <img class="media-object" src="../../../Content/QuanLy/img/user/user4.jpg" width="35"
                                                         height="35" alt="...">
                                             <i class="online dot"></i>
                                             <div class="media-body">
@@ -495,7 +683,7 @@
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user2.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user2.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="busy dot"></i>
                                             <div class="media-body">
@@ -504,7 +692,7 @@
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user7.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user7.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="online dot"></i>
                                             <div class="media-body">
@@ -520,7 +708,7 @@
                                         <li class="media">
                                             <div class="media-status">
                                                 <span class="badge badge-warning">4</span>
-                                            </div> <img class="media-object" src="~/Content/QuanLy/img/user/user6.jpg" width="35"
+                                            </div> <img class="media-object" src="../../../Content/QuanLy/img/user/user6.jpg" width="35"
                                                         height="35" alt="...">
                                             <i class="offline dot"></i>
                                             <div class="media-body">
@@ -530,7 +718,7 @@
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user8.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user8.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="offline dot"></i>
                                             <div class="media-body">
@@ -542,7 +730,7 @@
                                         <li class="media">
                                             <div class="media-status">
                                                 <span class="badge badge-success">9</span>
-                                            </div> <img class="media-object" src="~/Content/QuanLy/img/user/user9.jpg" width="35"
+                                            </div> <img class="media-object" src="../../../Content/QuanLy/img/user/user9.jpg" width="35"
                                                         height="35" alt="...">
                                             <i class="offline dot"></i>
                                             <div class="media-body">
@@ -552,7 +740,7 @@
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user10.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user10.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="offline dot"></i>
                                             <div class="media-body">
@@ -727,29 +915,30 @@
         <!-- end footer -->
     </div>
     <!-- start js include path -->
-    <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/popper/popper.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/jquery/jquery.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/popper/popper.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- bootstrap -->
-    <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/sparkline/jquery.sparkline.min.js"></script>
-    <script src="~/Content/QuanLy/js/pages/sparkline/sparkline-data.js"></script>
+    <script src="../../../Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- Common js-->
-    <script src="~/Content/QuanLy/js/app.js"></script>
-    <script src="~/Content/QuanLy/js/layout.js"></script>
-    <script src="~/Content/QuanLy/js/theme-color.js"></script>
-    <!-- material -->
-    <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
+    <script src="../../../Content/QuanLy/js/app.js"></script>
+    <script src="../../../Content/QuanLy/js/layout.js"></script>
+    <script src="../../../Content/QuanLy/js/theme-color.js"></script>
+    <!-- Material -->
+    <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>
+    <script src="../../../Content/QuanLy/js/pages/material_select/getmdl-select.js"></script>
+    <!-- dropzone -->
+    <script src="../../../Content/QuanLy/plugins/dropzone/dropzone.js"></script>
+    <script src="../../../Content/QuanLy/plugins/dropzone/dropzone-call.js"></script>
+    <!-- date and time 	 -->
+    <script src="../../../Content/QuanLy/plugins/flatpicker/flatpickr.min.js"></script>
+    <script src="../../../Content/QuanLy/js/pages/datetime/datetime-data.js"></script>
     <!-- animation -->
-    <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
-    <!-- morris chart -->
-    <script src="~/Content/QuanLy/plugins/morris/morris.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/morris/raphael-min.js"></script>
-    <script src="~/Content/QuanLy/js/pages/chart/morris/morris_home_data.js"></script>
+    <script src="../../../Content/QuanLy/js/pages/ui/animations.js"></script>
     <!-- end js include path -->
 </body>
 
 
-<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:36:48 GMT -->
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/new_booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:28 GMT -->
 </html>
