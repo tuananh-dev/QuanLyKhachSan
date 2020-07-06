@@ -33,6 +33,17 @@ namespace QLKSProject.Controllers.QuanLy
 
 
         }
+        [HttpPut]
+        public IHttpActionResult CapNhatDichVu(dynamic dynamic)
+        {
+            IHttpActionResult respon = Ok();
+            int idDichVu = int.Parse(dynamic.ID.ToString());
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.CapNhatDichVu(idDichVu));
+            }
+            return respon;
+        }
         /*
        [HttpPost]
        public bool ThemTaiKhoan(TaiKhoan taikhoan)

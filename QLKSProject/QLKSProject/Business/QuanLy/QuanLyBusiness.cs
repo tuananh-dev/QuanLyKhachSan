@@ -40,82 +40,19 @@ namespace QLKSProject.Business.QuanLy
             }).FirstOrDefault();
             return taiKhoan;
         }
-        /*
-       public bool ThemTaiKhoan(TaiKhoan taikhoan)
-       {
-           try
-           {
-               models.TaiKhoans.Add(taikhoan);
-               models.SaveChanges();
-               return true;
-           }
-           catch (Exception)
-           {
-               return false;
-           }
-       }
-
-       public List<Phong> LayDanhSachPhong()
-       {
-           var phong = models.Phongs.Where(e => e.IsDelete == false).Select(e => e).ToList();
-           return phong;
-       }
-       public bool ThemPhong(Phong phong)
-       {
-           try
-           {
-               models.Phongs.Add(phong);
-               models.SaveChanges();
-               return true;
-           }
-           catch (Exception)
-           {
-               return false;
-           }
-       }
-       public List<DichVu> LayDanhSachDichVu()
-       {
-           var dichvu = models.DichVus.Where(e => e.IsDelete == false).Select(e => e).ToList();
-           return dichvu;
-       }
-       public bool ThemDichVu(DichVu dichvu)
-       {
-           try
-           {
-               models.DichVus.Add(dichvu);
-               models.SaveChanges();
-               return true;
-           }
-           catch (Exception)
-           {
-               return false;
-           }
-       }
-       public List<TienIch> LayDanhSachTienIch()
-       {
-           var tienich = models.TienIches.Where(e => e.IsDelete == false).Select(e => e).ToList();
-           return tienich;
-       }
-       public bool ThemTienIch(TienIch tienich)
-       {
-           try
-           {
-               models.TienIches.Add(tienich);
-               models.SaveChanges();
-               return true;
-           }
-           catch (Exception)
-           {
-               return false;
-           }
-       }
-
-       #region Private Methods
-       private void Test()
-       {
-
-       }
-
-       #endregion*/
+        public bool CapNhatDichVu(int idDichVu)
+        {
+            try
+            {
+                var dichVu = models.DichVus.Where(s => s.ID == idDichVu).FirstOrDefault();
+                dichVu.TenDichVu = "dacapnhat";
+                models.SaveChanges();
+                return true;
+            }catch (Exception)
+            {
+                return false;
+            }
+        }
+        
     }
 }

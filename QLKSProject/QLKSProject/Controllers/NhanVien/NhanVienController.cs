@@ -13,21 +13,31 @@ namespace QLKSProject.Controllers.NhanVien
     public class NhanVienController : ApiController
     {
         [HttpPost]
-        public List<Doan> LayDanhSachDoan()
+        public IHttpActionResult LayDanhSachDoan()
         {
+            IHttpActionResult respon = Ok(); 
             using (NhanVienBusiness nhanvien = new NhanVienBusiness())
             {
-                return nhanvien.LayDanhSachDoan();
+                if (nhanvien.LayDanhSachDoan() == null)
+                    respon = Ok("Khong co du lieu");
+                else
+                    respon = Ok(nhanvien.LayDanhSachDoan());
+
             }
+            return respon;
         }
-/*        [HttpPost]
-        public List<DatPhongThanhCong> LayDanhSachDatPhongThanhCong()
+        [HttpPost]
+        public IHttpActionResult LayDanhSachDatPhongThanhCong()
         {
+            IHttpActionResult respon = Ok();
             using (NhanVienBusiness datphongthanhcong = new NhanVienBusiness())
             {
-                return datphongthanhcong.LayDanhSachDatPhongThanhCong();
+                respon = Ok(datphongthanhcong.LayDanhSachDatPhongThanhCong());
+                      
             }
+            return respon;
         }
+        /*
         [HttpPost]
         public List<DatPhongThatBai> LayDanhSachDatPhongThatBai()
         {
