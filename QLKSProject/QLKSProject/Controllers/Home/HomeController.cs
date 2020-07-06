@@ -12,15 +12,6 @@ namespace QLKSProject.Controllers.Home
 {
     public class HomeController : ApiController
     {
-        /*    [HttpPost]
-            public bool LayFileKhachHangGui(List<FileKhachHang> lstfileKhachHang)
-            {
-                using (HomeBusiness homeBusiness = new HomeBusiness())
-                {
-
-                    return homeBusiness.LayFileKhachHangGui(lstfileKhachHang);
-                }       
-            }*/
 
 
     }
