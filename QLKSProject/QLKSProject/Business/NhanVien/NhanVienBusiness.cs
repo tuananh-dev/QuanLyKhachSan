@@ -22,57 +22,69 @@ namespace QLKSProject.Business.NhanVien
             });
             return lstDoan.ToList();
         }
-
-/*        public List<DatPhongThanhCong> LayDanhSachDatPhongThanhCong()
+        public List<DatPhongThanhCong> LayDanhSachDatPhongThanhCong()
         {
-            var datphongthanhcong = models.DatPhongThanhCongs.Select(s => s).ToList();
-
-            return datphongthanhcong;
+            var lstdatPhongThanhCongs = models.DatPhongThanhCongs.Select(s => new DatPhongThanhCong
+            {
+                ID = s.ID,
+                IDKhachHang = s.IDKhachHang,
+                IDPhong = s.IDPhong,
+                IsDelete = s.IsDelete,
+                NgayTraPhongThucTe = s.NgayTraPhongThucTe
+            });
+            return lstdatPhongThanhCongs.ToList();
         }
-
         public List<DatPhongThatBai> LayDanhSachDatPhongThatBai()
         {
-            var datphongthatbai = models.DatPhongThatBais.Select(s => s).ToList();
-            return datphongthatbai;
+            var datPhongThatBais = models.DatPhongThatBais.Select(s => new DatPhongThatBai
+            {
+                ID = s.ID,
+                TenDoan = s.TenDoan,
+                MaDoan = s.MaDoan,
+                IsDelete = s.IsDelete,
+                GhiChu = s.GhiChu
+            });
+            return datPhongThatBais.ToList();
         }
+
         #region private methods
         private bool LuuDatPhongThanhCong(KhachHang khachHangs, int IDPhong)
         {
-            DatPhongThanhCong datPhongThanhCong = new DatPhongThanhCong();
-            datPhongThanhCong.IDPhong = IDPhong;
-            datPhongThanhCong.IDKhachHang = khachHangs.ID;
-            datPhongThanhCong.NgayTraPhongThucTe = khachHangs.ThoiGianTra;
-            datPhongThanhCong.IsDelete = false;
-
             try
             {
+                Models.Entities.DatPhongThanhCong datPhongThanhCong = new Models.Entities.DatPhongThanhCong();
+                datPhongThanhCong.IDPhong = IDPhong;
+                datPhongThanhCong.IDKhachHang = khachHangs.ID;
+                datPhongThanhCong.NgayTraPhongThucTe = khachHangs.ThoiGianTra;
+                datPhongThanhCong.IsDelete = false;
+
                 models.DatPhongThanhCongs.Add(datPhongThanhCong);
                 return true;
             }
-            catch
+            catch (Exception)
             {
-                Console.WriteLine("Lưu bảng thành công!");
+
                 return false;
             }
+ 
         }
         private bool LuuDatPhongThatBai(KhachHang khachHangs, int IDKhachHang)
         {
-            DatPhongThatBai datPhongThatBai = new DatPhongThatBai();
-            datPhongThatBai.ID = IDKhachHang;
-            datPhongThatBai.MaDoan = khachHangs.MaDoan;
-            datPhongThatBai.IsDelete = false;
-
             try
             {
+                Models.Entities.DatPhongThatBai datPhongThatBai = new Models.Entities.DatPhongThatBai();
+                datPhongThatBai.ID = IDKhachHang;
+                datPhongThatBai.MaDoan = khachHangs.MaDoan;
+                datPhongThatBai.IsDelete = false;
+
                 models.DatPhongThatBais.Add(datPhongThatBai);
                 return true;
             }
             catch
-            {
-                Console.WriteLine("Lưu bảng thành công!");
+            {            
                 return false;
             }
         }
-        #endregion*/
+        #endregion
     }
 }

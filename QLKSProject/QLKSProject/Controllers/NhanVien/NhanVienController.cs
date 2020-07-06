@@ -13,28 +13,46 @@ namespace QLKSProject.Controllers.NhanVien
     public class NhanVienController : ApiController
     {
         [HttpPost]
-        public List<Doan> LayDanhSachDoan()
+        public IHttpActionResult LayDanhSachDoan()
         {
+            IHttpActionResult respon = Ok();
             using (NhanVienBusiness nhanvien = new NhanVienBusiness())
             {
-                return nhanvien.LayDanhSachDoan();
+                if (nhanvien.LayDanhSachDoan() == null)
+                    respon = Ok("Không có dữ liệu");
+                else
+                    respon = Ok(nhanvien.LayDanhSachDoan());
+                
             }
-        }
-/*        [HttpPost]
-        public List<DatPhongThanhCong> LayDanhSachDatPhongThanhCong()
-        {
-            using (NhanVienBusiness datphongthanhcong = new NhanVienBusiness())
-            {
-                return datphongthanhcong.LayDanhSachDatPhongThanhCong();
-            }
+            return respon;
         }
         [HttpPost]
-        public List<DatPhongThatBai> LayDanhSachDatPhongThatBai()
+        public IHttpActionResult LayDanhSachDatPhongThanhCong()
         {
-            using (NhanVienBusiness datphongthatbai = new NhanVienBusiness())
+            IHttpActionResult respon = Ok();
+            using (NhanVienBusiness datphongthanhcong = new NhanVienBusiness())
             {
-                return datphongthatbai.LayDanhSachDatPhongThatBai();
+                if (datphongthanhcong.LayDanhSachDatPhongThanhCong() != null)
+                    respon = Ok(datphongthanhcong.LayDanhSachDatPhongThanhCong());
+                else
+                    respon = Ok("Không có dữ liệu");
             }
-        }*/
+            return respon;
+
+        }
+        [HttpPost]
+        public IHttpActionResult LayDanhSachDatPhongThatBai()
+        {
+            IHttpActionResult respon = Ok();
+            using (NhanVienBusiness datPhongThatBai = new NhanVienBusiness())
+            {
+                if (datPhongThatBai.LayDanhSachDatPhongThatBai() != null)
+                    respon = Ok(datPhongThatBai.LayDanhSachDatPhongThatBai());
+                else
+                    respon = Ok("Không có dữ liệu");
+            }
+            return respon;
+
+        }        
     }
 }

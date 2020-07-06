@@ -504,9 +504,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007051006166_crdb.cs" />
-    <Compile Include="Migrations\202007051006166_crdb.designer.cs">
-      <DependentUpon>202007051006166_crdb.cs</DependentUpon>
+    <Compile Include="Migrations\202007060422596_g.cs" />
+    <Compile Include="Migrations\202007060422596_g.designer.cs">
+      <DependentUpon>202007060422596_g.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
@@ -677,8 +677,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007051006166_crdb.resx">
-      <DependentUpon>202007051006166_crdb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007060422596_g.resx">
+      <DependentUpon>202007060422596_g.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
