@@ -4,36 +4,43 @@
 <!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:35:49 GMT -->
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta name="description" content="Responsive Admin Template" />
-    <meta name="author" content="SmartUniversity" />
     <title>Spice Hotel</title>
     <!-- icons -->
-    <link href="~/Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!--bootstrap -->
-    <link href="~/Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="../../../Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/plugins/summernote/summernote.css" rel="stylesheet">
     <!-- morris chart -->
-    <link href="~/Content/QuanLy/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
     <!-- Material Design Lite CSS -->
-    <link rel="stylesheet" href="~/Content/QuanLy/plugins/material/material.min.css">
-    <link rel="stylesheet" href="~/Content/QuanLy/css/material_style.css">
+    <link rel="stylesheet" href="../../../Content/QuanLy/plugins/material/material.min.css">
+    <link rel="stylesheet" href="../../../Content/QuanLy/css/material_style.css">
     <!-- animation -->
-    <link href="~/Content/QuanLy/css/pages/animate_page.css" rel="stylesheet">
+    <link href="../../../Content/QuanLy/css/pages/animate_page.css" rel="stylesheet">
     <!-- Template Styles -->
-    <link href="~/Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
-    <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
+    <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
+    <script src="../../../Content/QuanLy/Jquery.js"></script>
 
-    <script src="Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            alert("hello");
+            var dichvu = $('#dsdv');
+            $.ajax({
+                type: 'GET',
+                url: 'https://localhost:44339/api/Quanly/LayDanhSachDichVu',
+                dataType: 'json',
+                success: function(data) {
+                $.each(data, function (index, val) {
+                    dichvu.append('<tr class="odd gradeX"><td class="center">'+val.TenDichVu+'</td><td class="center">'+val.Gia+'</td><td class="center">'+val.IsDeleted+'</td><td class="center"><a href="https://localhost:44339/View/QuanLyView/NhanVien/XemChiTietNhanVien.html?id='+val.ID+'" class="btn btn-tbl-edit btn-xs"><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                });
+                    
+            }
+            });
         });
     </script>
 </head>
@@ -47,7 +54,7 @@
                 <!-- logo start -->
                 <div class="page-logo">
                     <a href="index.html">
-                        <img alt="" src="~/Content/QuanLy/img/logo.png">
+                        <img alt="" src="../../../Content/QuanLy/img/logo.png">
                         <span class="logo-default">Spice</span>
                     </a>
                 </div>
@@ -88,7 +95,6 @@
                                 </li>
                                 <li>
                                     <ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
-                                       
                                     </ul>
                                     <div class="dropdown-menu-footer">
                                         <a href="javascript:void(0)"> All notifications </a>
@@ -111,7 +117,6 @@
                                 </li>
                                 <li>
                                     <ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
-                                       
                                     </ul>
                                     <div class="dropdown-menu-footer">
                                         <a href="#"> All Messages </a>
@@ -130,19 +135,19 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
                                 <li>
-                                    <a href="https://localhost:44339/View/QuanLyView/NhanVien/XemChiTietNhanVien.cshtml">
+                                    <a href="https://localhost:44339/View/QuanLyView/NhanVien/XemChiTietNhanVien.html">
                                         <i class="icon-user"></i> Profile
                                     </a>
                                 </li>
-                                
+
                                 <li class="divider"> </li>
                                 <li>
-                                    <a href="https://localhost:44339/View/QuanLyView/TaiKhoan/KhoaManHinh.cshtml">
+                                    <a href="https://localhost:44339/View/QuanLyView/TaiKhoan/KhoaManHinh.html">
                                         <i class="icon-lock"></i> Lock
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://localhost:44339/View/QuanLyView/TaiKhoan/DangNhap.cshtml">
+                                    <a href="https://localhost:44339/View/QuanLyView/TaiKhoan/DangNhap.html">
                                         <i class="icon-logout"></i> Log Out
                                     </a>
                                 </li>
@@ -177,7 +182,7 @@
                                 <div class="user-panel">
                                     <div class="row">
                                         <div class="sidebar-userpic">
-                                            <img src="~/Content/QuanLy/img/dp.jpg" class="img-responsive" alt="">
+                                            <img src="../../../Content/QuanLy/img/dp.jpg" class="img-responsive" alt="">
                                         </div>
                                     </div>
                                     <div class="profile-usertitle">
@@ -231,8 +236,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            
-                            <li class="nav-item">
+
+                            <li class="nav-item active">
                                 <a href="#" class="nav-link nav-toggle">
                                     <i class="material-icons">business_center</i>
                                     <span class="title">Dịch Vụ</span>
@@ -240,14 +245,14 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/DichVu/ThemMoiDichVu.cshtml" class="nav-link ">
-                                            
+                                        <a href="https://localhost:44339/Views/QuanLyViews/DichVu/ThemMoiDichVu.html" class="nav-link ">
+
                                             <span class="title">Thêm Mới Dịch Vụ</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/DichVu/DSDichVu.cshtml" class="nav-link ">
-                                            
+                                        <a href="https://localhost:44339/Views/QuanLyViews/DichVu/DSDichVu.html" class="nav-link ">
+
                                             <span class="title">Danh Sách Dịch Vụ</span>
                                         </a>
                                     </li>
@@ -262,14 +267,14 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/Phong/ThemMoiPhong.cshtml" class="nav-link ">
-                                           
+                                        <a href="https://localhost:44339/Views/QuanLyViews/Phong/ThemMoiPhong.html" class="nav-link ">
+
                                             <span class="title">Thêm Mới Phòng</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/Phong/DSPhong.cshtml" class="nav-link ">
-                                           
+                                        <a href="https://localhost:44339/Views/QuanLyViews/Phong/DSPhong.html" class="nav-link ">
+
                                             <span class="title">Xem Danh Sách Phòng</span>
                                         </a>
                                     </li>
@@ -284,14 +289,14 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/TKNhanVien/ThemMoiTKNhanVien.cshtml" class="nav-link ">
-                                            
+                                        <a href="https://localhost:44339/Views/QuanLyViews/TKNhanVien/ThemMoiTKNhanVien.html" class="nav-link ">
+
                                             <span class="title">Thêm Mới Tài Khoản Nhân Viên</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="https://localhost:44339/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.cshtml" class="nav-link ">
-                                            
+                                        <a href="https://localhost:44339/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.html" class="nav-link ">
+
                                             <span class="title">Xem Danh Sách Tài Khoản Nhân Viên</span>
                                         </a>
                                     </li>
@@ -300,7 +305,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="https://localhost:44339/Views/NhanVienViews/Phong/DSPhong.cshtml" class="nav-link nav-toggle">
+                                <a href="https://localhost:44339/Views/NhanVienViews/Phong/DSPhong.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Phòng Đang Hoạt Động</span>
                                     <span class="arrow"></span>
@@ -309,7 +314,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="https://localhost:44339/Views/NhanVienViews/LuDoan/DSLuDoan.cshtml" class="nav-link nav-toggle">
+                                <a href="https://localhost:44339/Views/NhanVienViews/LuDoan/DSLuDoan.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Lữ Đoàn</span>
                                     <span class="arrow"></span>
@@ -317,13 +322,101 @@
 
                             </li>
 
-                           
+
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- end sidebar menu -->
-            @RenderBody()
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    <div class="page-bar">
+                        <div class="page-title-breadcrumb">
+                            <div class=" pull-left">
+                                <div class="page-title">Danh Sách Dịch Vụ</div>
+                            </div>
+                            <ol class="breadcrumb page-breadcrumb pull-right">
+                                <li>
+                                    <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+                                                                       href="index.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
+                                    <a class="parent-item" href="#">Dịch Vụ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                </li>
+                                <li class="active">Danh Sách Dịch Vụ</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-box">
+                                <div class="card-head">
+                                    <div class="tools">
+                                        <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                                        <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                                        <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                                    </div>
+                                </div>
+                                <div class="card-body ">
+                                    <div class="row p-b-20">
+                                        <div class="col-md-6 col-sm-6 col-6">
+                                            <div class="btn-group">
+                                                <a href="https://localhost:44339/Views/QuanLyViews/DichVu/ThemMoiDichVu.html" id="addRow" class="btn btn-info">
+
+                                                    Thêm Mới Dịch Vụ <i class="fa fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-6">
+                                            <div class="btn-group pull-right">
+                                                <a class="btn deepPink-bgcolor  btn-outline dropdown-toggle"
+                                                   data-toggle="dropdown">
+                                                    Tools
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-print"></i> Print
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-file-pdf-o"></i> Save as PDF
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-file-excel-o"></i> Export to Excel
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-scrollable">
+                                        <table class="table table-hover table-checkable order-column full-width"
+                                               id="example4">
+                                            <thead>
+                                                <tr>
+
+                                                    <th class="center"> Tên </th>
+                                                    <th class="center"> Giá </th>
+                                                    <th class="center"> Trạng Thái </th>
+                                                    <th class="center"> Chức Năng </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="dsdv">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page ../../../Content -->
             <!-- start chat sidebar -->
             <div class="chat-sidebar-container" data-close-on-body-click="false">
                 <div class="chat-sidebar">
@@ -344,7 +437,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content">
+                    <div class="tab-../../../Content">
                         <div class="tab-pane chat-sidebar-settings in show active animated shake" role="tabpanel"
                              id="quick_sidebar_tab_1">
                             <div class="slimscroll-style">
@@ -459,7 +552,7 @@
                                     </div>
                                     <ul class="media-list list-items">
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user3.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user3.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="online dot"></i>
                                             <div class="media-body">
@@ -470,7 +563,7 @@
                                         <li class="media">
                                             <div class="media-status">
                                                 <span class="badge badge-success">5</span>
-                                            </div> <img class="media-object" src="~/Content/QuanLy/img/user/user1.jpg" width="35"
+                                            </div> <img class="media-object" src="../../../Content/QuanLy/img/user/user1.jpg" width="35"
                                                         height="35" alt="...">
                                             <i class="busy dot"></i>
                                             <div class="media-body">
@@ -479,7 +572,7 @@
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user5.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user5.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="away dot"></i>
                                             <div class="media-body">
@@ -490,7 +583,7 @@
                                         <li class="media">
                                             <div class="media-status">
                                                 <span class="badge badge-danger">8</span>
-                                            </div> <img class="media-object" src="~/Content/QuanLy/img/user/user4.jpg" width="35"
+                                            </div> <img class="media-object" src="../../../Content/QuanLy/img/user/user4.jpg" width="35"
                                                         height="35" alt="...">
                                             <i class="online dot"></i>
                                             <div class="media-body">
@@ -499,7 +592,7 @@
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user2.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user2.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="busy dot"></i>
                                             <div class="media-body">
@@ -508,7 +601,7 @@
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user7.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user7.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="online dot"></i>
                                             <div class="media-body">
@@ -524,7 +617,7 @@
                                         <li class="media">
                                             <div class="media-status">
                                                 <span class="badge badge-warning">4</span>
-                                            </div> <img class="media-object" src="~/Content/QuanLy/img/user/user6.jpg" width="35"
+                                            </div> <img class="media-object" src="../../../Content/QuanLy/img/user/user6.jpg" width="35"
                                                         height="35" alt="...">
                                             <i class="offline dot"></i>
                                             <div class="media-body">
@@ -534,7 +627,7 @@
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user8.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user8.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="offline dot"></i>
                                             <div class="media-body">
@@ -546,7 +639,7 @@
                                         <li class="media">
                                             <div class="media-status">
                                                 <span class="badge badge-success">9</span>
-                                            </div> <img class="media-object" src="~/Content/QuanLy/img/user/user9.jpg" width="35"
+                                            </div> <img class="media-object" src="../../../Content/QuanLy/img/user/user9.jpg" width="35"
                                                         height="35" alt="...">
                                             <i class="offline dot"></i>
                                             <div class="media-body">
@@ -556,7 +649,7 @@
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="~/Content/QuanLy/img/user/user10.jpg"
+                                            <img class="media-object" src="../../../Content/QuanLy/img/user/user10.jpg"
                                                  width="35" height="35" alt="...">
                                             <i class="offline dot"></i>
                                             <div class="media-body">
@@ -576,7 +669,7 @@
                                 <div class="chat-header">
                                     <h5 class="list-heading">Layout Settings</h5>
                                 </div>
-                                <div class="chatpane inner-content ">
+                                <div class="chatpane inner-../../../Content ">
                                     <div class="settings-list">
                                         <div class="setting-item">
                                             <div class="setting-text">Sidebar Position</div>
@@ -731,26 +824,26 @@
         <!-- end footer -->
     </div>
     <!-- start js include path -->
-    <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/popper/popper.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/jquery/jquery.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/popper/popper.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- bootstrap -->
-    <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/sparkline/jquery.sparkline.min.js"></script>
-    <script src="~/Content/QuanLy/js/pages/sparkline/sparkline-data.js"></script>
+    <script src="../../../Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="../../../Content/QuanLy/js/pages/sparkline/sparkline-data.js"></script>
     <!-- Common js-->
-    <script src="~/Content/QuanLy/js/app.js"></script>
-    <script src="~/Content/QuanLy/js/layout.js"></script>
-    <script src="~/Content/QuanLy/js/theme-color.js"></script>
+    <script src="../../../Content/QuanLy/js/app.js"></script>
+    <script src="../../../Content/QuanLy/js/layout.js"></script>
+    <script src="../../../Content/QuanLy/js/theme-color.js"></script>
     <!-- material -->
-    <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>
     <!-- animation -->
-    <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
+    <script src="../../../Content/QuanLy/js/pages/ui/animations.js"></script>
     <!-- morris chart -->
-    <script src="~/Content/QuanLy/plugins/morris/morris.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/morris/raphael-min.js"></script>
-    <script src="~/Content/QuanLy/js/pages/chart/morris/morris_home_data.js"></script>
+    <script src="../../../Content/QuanLy/plugins/morris/morris.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/morris/raphael-min.js"></script>
+    <script src="../../../Content/QuanLy/js/pages/chart/morris/morris_home_data.js"></script>
     <!-- end js include path -->
 </body>
 
