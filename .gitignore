@@ -348,3 +348,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+QLKSProject/QLKSProject/Migrations/202007060833276_createdb.cs
+QLKSProject/QLKSProject/Migrations/202007060833276_createdb.Designer.cs
+QLKSProject/QLKSProject/Migrations/202007060833276_createdb.resx
+QLKSProject/QLKSProject/Migrations/Configuration.cs
