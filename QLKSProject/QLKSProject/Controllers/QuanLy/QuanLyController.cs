@@ -41,12 +41,15 @@ namespace QLKSProject.Controllers.QuanLy
             }
 
         }
-        [HttpPost]
-        public IHttpActionResult CapNhatTaiKhoan(dynamic dynamic)
+        [HttpPut]
+        public IHttpActionResult CapNhatTaiKhoan(TaiKhoan taiKhoan)
         {
             IHttpActionResult respon = Ok();
-            return respon;
-
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.CapNhatTaiKhoan(taiKhoan));
+                return respon;
+            }                
         }
         //PHONG
         [HttpGet]
@@ -74,6 +77,16 @@ namespace QLKSProject.Controllers.QuanLy
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.LayPhong(idPhong));
+                return respon;
+            }
+        }
+        [HttpPut]
+        public IHttpActionResult CapNhatPhong(Phong phong)
+        {
+            IHttpActionResult respon = Ok();
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.CapNhatPhong(phong));
                 return respon;
             }
         }
@@ -107,7 +120,16 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
-
+        [HttpPut]
+        public IHttpActionResult CapNhatDichVu(DichVu dichVu)
+        {
+            IHttpActionResult respon = Ok();
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.CapNhatDichVu(dichVu));
+                return respon;
+            }
+        }
         //TIENICH
         [HttpGet]
         public IHttpActionResult LayDanhTienIch()
@@ -138,87 +160,97 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
-            /*
-           [HttpPost]
-           public bool ThemTaiKhoan(TaiKhoa n taikhoan)
-
         [HttpPut]
-        public IHttpActionResult CapNhatDichVu(dynamic dynamic)
+        public IHttpActionResult CapNhatTienIch(TienIch tienIch)
         {
             IHttpActionResult respon = Ok();
-            int idDichVu = int.Parse(dynamic.ID.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.CapNhatDichVu(idDichVu));
+                respon = Ok(quanLy.CapNhatTienIch(tienIch));
+                return respon;
             }
-            return respon;
         }
         /*
        [HttpPost]
-       public bool ThemTaiKhoan(TaiKhoan taikhoan)
+       public bool ThemTaiKhoan(TaiKhoa n taikhoan)
+
+    [HttpPut]
+    public IHttpActionResult CapNhatDichVu(dynamic dynamic)
+    {
+        IHttpActionResult respon = Ok();
+        int idDichVu = int.Parse(dynamic.ID.ToString());
+        using (QuanLyBusiness quanLy = new QuanLyBusiness())
+        {
+            respon = Ok(quanLy.CapNhatDichVu(idDichVu));
+        }
+        return respon;
+    }
+    /*
+   [HttpPost]
+   public bool ThemTaiKhoan(TaiKhoan taikhoan)
+   {
+       using (QuanLyBusiness quanLy = new QuanLyBusiness())
+
        {
            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+           {
+               quanLy.ThemTaiKhoan(taikhoan);
+               return true;
+           }
+       }
+       [HttpGet]
+       public List<Phong> LayDanhSachPhong()
+       {
+           using (QuanLyBusiness quanLy = new QuanLyBusiness())
+           {
 
-           {
-               using (QuanLyBusiness quanLy = new QuanLyBusiness())
-               {
-                   quanLy.ThemTaiKhoan(taikhoan);
-                   return true;
-               }
+               return quanLy.LayDanhSachPhong(); ;
            }
-           [HttpGet]
-           public List<Phong> LayDanhSachPhong()
+       }
+       [HttpPost]
+       public bool ThemPhong (Phong phong)
+       {
+           using (QuanLyBusiness quanLy = new QuanLyBusiness())
            {
-               using (QuanLyBusiness quanLy = new QuanLyBusiness())
-               {
+               quanLy.ThemPhong(phong);
+               return true;
+           }
+       }
+       [HttpGet]
+       public List<DichVu> LayDanhSachDichVu()
+       {
+           using (QuanLyBusiness quanLy = new QuanLyBusiness())
+           {
 
-                   return quanLy.LayDanhSachPhong(); ;
-               }
+               return quanLy.LayDanhSachDichVu(); ;
            }
-           [HttpPost]
-           public bool ThemPhong (Phong phong)
+       }
+       [HttpPost]
+       public bool ThemDichVu(DichVu dichvu)
+       {
+           using (QuanLyBusiness quanLy = new QuanLyBusiness())
            {
-               using (QuanLyBusiness quanLy = new QuanLyBusiness())
-               {
-                   quanLy.ThemPhong(phong);
-                   return true;
-               }
+               quanLy.ThemDichVu(dichvu);
+               return true;
            }
-           [HttpGet]
-           public List<DichVu> LayDanhSachDichVu()
+       }
+       [HttpGet]
+       public List<TienIch> LayDanhSachTienIch()
+       {
+           using (QuanLyBusiness quanLy = new QuanLyBusiness())
            {
-               using (QuanLyBusiness quanLy = new QuanLyBusiness())
-               {
 
-                   return quanLy.LayDanhSachDichVu(); ;
-               }
+               return quanLy.LayDanhSachTienIch(); ;
            }
-           [HttpPost]
-           public bool ThemDichVu(DichVu dichvu)
+       }
+       [HttpPost]
+       public bool ThemTienIch(TienIch tienich)
+       {
+           using (QuanLyBusiness quanLy = new QuanLyBusiness())
            {
-               using (QuanLyBusiness quanLy = new QuanLyBusiness())
-               {
-                   quanLy.ThemDichVu(dichvu);
-                   return true;
-               }
+               quanLy.ThemTienIch(tienich);
+               return true;
            }
-           [HttpGet]
-           public List<TienIch> LayDanhSachTienIch()
-           {
-               using (QuanLyBusiness quanLy = new QuanLyBusiness())
-               {
-
-                   return quanLy.LayDanhSachTienIch(); ;
-               }
-           }
-           [HttpPost]
-           public bool ThemTienIch(TienIch tienich)
-           {
-               using (QuanLyBusiness quanLy = new QuanLyBusiness())
-               {
-                   quanLy.ThemTienIch(tienich);
-                   return true;
-               }
-           }*/
-        }
+       }*/
+    }
 }

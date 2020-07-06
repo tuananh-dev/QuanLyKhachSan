@@ -60,9 +60,9 @@ namespace QLKSProject.Business.QuanLy
                 return false;
             }
         }
-        public bool XoaTaiKhoan(TaiKhoan taiKhoan)
+        public bool XoaTaiKhoan(int idTaiKhoan)
         {
-            var taikhoan = models.TaiKhoans.Where(e => e.ID == taiKhoan.ID).FirstOrDefault();
+            var taikhoan = models.TaiKhoans.Where(e => e.ID == idTaiKhoan).FirstOrDefault();
             if (taikhoan != null)
             {
                 taikhoan.IsDelete = true;
