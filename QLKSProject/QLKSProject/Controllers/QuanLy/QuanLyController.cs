@@ -11,24 +11,27 @@ namespace QLKSProject.Controllers.QuanLy
 {
     public class QuanLyController : ApiController
     {
-       [HttpGet]
-        public List<TaiKhoan> LayDanhSachTaiKhoan()
+        [HttpGet]
+        public IHttpActionResult LayDanhSachTaiKhoan()
         {
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                return quanLy.LayDanhSachTaiKhoan(); ;
+                IHttpActionResult respon = Ok(quanLy.LayDanhSachTaiKhoan());
+                return respon;
             }
         }
         [HttpGet]
         public IHttpActionResult LayTaiKhoan(dynamic dynamic)
         {
+            IHttpActionResult respon;
             int idTaiKhoan = int.Parse(dynamic.ID.ToString());
-            IHttpActionResult respon = Ok("Khong co tra ve");
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.LayTaiKhoan(idTaiKhoan));
                 return respon;
             }
+
+
         }
         /*
        [HttpPost]
