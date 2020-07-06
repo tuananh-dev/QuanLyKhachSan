@@ -11,7 +11,7 @@ namespace QLKSProject
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -26,9 +26,9 @@ namespace QLKSProject
                 );
 
             config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
-            /*            var json = config.Formatters.JsonFormatter;
-                        json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
-                        config.Formatters.Remove(config.Formatters.XmlFormatter);*/
+            /*var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);*/
         }
     }
 }

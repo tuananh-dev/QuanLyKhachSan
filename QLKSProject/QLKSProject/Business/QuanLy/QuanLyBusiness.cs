@@ -23,7 +23,7 @@ namespace QLKSProject.Business.QuanLy
                 IsDelete = e.IsDelete
             });
             return lstTaiKhoan.ToList();
-        }   
+        }
 
         public TaiKhoan LayTaiKhoan(int idTaiKhoan)
         {
@@ -41,8 +41,9 @@ namespace QLKSProject.Business.QuanLy
             }).FirstOrDefault();
             return taiKhoan;
         }
-        public bool CapNhatTaiKhoan(TaiKhoan taiKhoan){
-           
+
+        public bool CapNhatTaiKhoan(TaiKhoan taiKhoan) {
+
             try
             {
                 var tk = models.TaiKhoans.Where(s => s.ID == taiKhoan.ID).FirstOrDefault();
@@ -128,7 +129,7 @@ namespace QLKSProject.Business.QuanLy
             });
             return lstdichvu.ToList();
         }
-       
+
         public DichVu LayDichVu(int idDichVu)
         {
             var dichvu = models.DichVus.Where(e => e.ID == idDichVu).Select(e => new DichVu
@@ -186,12 +187,16 @@ namespace QLKSProject.Business.QuanLy
                 tienich.HinhAnh = tienIch.HinhAnh;
                 models.SaveChanges();
                 return true;
-            }
-            catch (Exception)
+            
+           }catch (Exception)
+
             {
                 return false;
             }
-        }
+           }
+
+    
+
         /*
        public bool ThemTaiKhoan(TaiKhoan taikhoan)
        {
@@ -269,5 +274,6 @@ namespace QLKSProject.Business.QuanLy
        }
 
        #endregion*/
+
     }
 }

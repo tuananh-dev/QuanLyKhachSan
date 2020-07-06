@@ -107,6 +107,7 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
+
         //TIENICH
         [HttpGet]
         public IHttpActionResult LayDanhTienIch()
@@ -140,6 +141,24 @@ namespace QLKSProject.Controllers.QuanLy
             /*
            [HttpPost]
            public bool ThemTaiKhoan(TaiKhoa n taikhoan)
+
+        [HttpPut]
+        public IHttpActionResult CapNhatDichVu(dynamic dynamic)
+        {
+            IHttpActionResult respon = Ok();
+            int idDichVu = int.Parse(dynamic.ID.ToString());
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.CapNhatDichVu(idDichVu));
+            }
+            return respon;
+        }
+        /*
+       [HttpPost]
+       public bool ThemTaiKhoan(TaiKhoan taikhoan)
+       {
+           using (QuanLyBusiness quanLy = new QuanLyBusiness())
+
            {
                using (QuanLyBusiness quanLy = new QuanLyBusiness())
                {
