@@ -37,14 +37,5 @@ namespace QLKSProject.Controllers.NhanVien
             }
             return respon;
         }
-        /*
-        [HttpPost]
-        public List<DatPhongThatBai> LayDanhSachDatPhongThatBai()
-        {
-            using (NhanVienBusiness datphongthatbai = new NhanVienBusiness())
-            {
-                return datphongthatbai.LayDanhSachDatPhongThatBai();
-            }
-        }*/
     }
 }
