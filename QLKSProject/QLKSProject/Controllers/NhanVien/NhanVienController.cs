@@ -15,16 +15,7 @@ namespace QLKSProject.Controllers.NhanVien
         [HttpPost]
         public IHttpActionResult LayDanhSachDoan()
         {
-<<<<<<< HEAD
-            IHttpActionResult respon = Ok(); 
-            using (NhanVienBusiness nhanvien = new NhanVienBusiness())
-            {
-                if (nhanvien.LayDanhSachDoan() == null)
-                    respon = Ok("Khong co du lieu");
-                else
-                    respon = Ok(nhanvien.LayDanhSachDoan());
 
-=======
             IHttpActionResult respon = Ok();
             using (NhanVienBusiness nhanvien = new NhanVienBusiness())
             {
@@ -33,7 +24,6 @@ namespace QLKSProject.Controllers.NhanVien
                 else
                     respon = Ok(nhanvien.LayDanhSachDoan());
                 
->>>>>>> 56bf1b3d7694bce56da28206eb39c7b2ebcd860a
             }
             return respon;
         }
@@ -43,21 +33,13 @@ namespace QLKSProject.Controllers.NhanVien
             IHttpActionResult respon = Ok();
             using (NhanVienBusiness datphongthanhcong = new NhanVienBusiness())
             {
-<<<<<<< HEAD
+
                 respon = Ok(datphongthanhcong.LayDanhSachDatPhongThanhCong());
                       
             }
             return respon;
         }
-=======
-                if (datphongthanhcong.LayDanhSachDatPhongThanhCong() != null)
-                    respon = Ok(datphongthanhcong.LayDanhSachDatPhongThanhCong());
-                else
-                    respon = Ok("Không có dữ liệu");
-            }
-            return respon;
 
-        }
         [HttpPost]
         public IHttpActionResult LayDanhSachDatPhongThatBai()
         {
@@ -72,6 +54,5 @@ namespace QLKSProject.Controllers.NhanVien
             return respon;
 
         }        
->>>>>>> 56bf1b3d7694bce56da28206eb39c7b2ebcd860a
     }
 }
