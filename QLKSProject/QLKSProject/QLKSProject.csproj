@@ -249,6 +249,7 @@
     <Content Include="Content\Home\js\owl.carousel.min.js" />
     <Content Include="Content\Home\js\popper.min.js" />
     <Content Include="Content\Home\js\slick.min.js" />
+    <Content Include="Content\QuanLy\Bootstrap.js" />
     <Content Include="Content\QuanLy\css\material_style.css" />
     <Content Include="Content\QuanLy\css\pages\animate_page.css" />
     <Content Include="Content\QuanLy\css\pages\extra_pages.css" />
