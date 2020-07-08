@@ -30,7 +30,6 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="../../../Content/QuanLy/Jquery.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function () {
             var dichvu = $('#dstk');
@@ -40,12 +39,14 @@
                 dataType: 'json',
                 success: function (data) {
                     $.each(data, function (index, val) {
-                        dichvu.append('<tr class="odd gradeX"><td class="center">'+val.TenTaiKhoan+'</td><td class="center">'+val.MatKhau+'</td><td class="center">'+val.HoVaTen+'</td><td class="center">'+val.SoDienThoai+'</td><td class="center">'+val.Mail+'</td><td class="center">'+val.LoaiTaiKhoan+'</td><td class="center">'+val.IsDeleted+'</td><td class="center"><a href="https://localhost:44339/Views/QuanLyViews/TKNhanVien/ChinhSuaTKNhanVien.html" class="btn btn-tbl-edit btn-xs"><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                        dichvu.append('<tr class="odd gradeX"><td class="center">' + val.TenTaiKhoan + '</td><td class="center">' + val.MatKhau + '</td><td class="center">' + val.HoVaTen + '</td><td class="center">' + val.SoDienThoai + '</td><td class="center">' + val.Mail + '</td><td class="center">' + val.LoaiTaiKhoan + '</td><td class="center">' + val.IsDeleted + '</td><td class="center"><a href="https://localhost:44339/Views/QuanLyViews/TKNhanVien/ChinhSuaTKNhanVien.html" class="btn btn-tbl-edit btn-xs"><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
                     });
                 }
             });
         });
     </script>
+
+
 </head>
 <!-- END HEAD -->
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white dark-sidebar-color logo-dark">
@@ -212,7 +213,7 @@
                                 </div>
                             </li>
 
-                            
+
 
                             <li class="nav-item active">
                                 <a href="#" class="nav-link nav-toggle">
@@ -281,7 +282,7 @@
                                 </ul>
                             </li>
 
-                            
+
 
 
                         </ul>
@@ -407,6 +408,7 @@
     <!-- animation -->
     <script src="../../../Content/QuanLy/js/pages/ui/animations.js"></script>
     <!-- end js include path -->
+    
 </body>
 <!-- Mirrored from radixtouch.in/templates/admin/hotel/source/all_staffs.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:54 GMT -->
 </html>
