@@ -12,7 +12,12 @@ namespace QLKSProject.Controllers.Home
 {
     public class HomeController : ApiController
     {
-
+        [HttpPost]
+        public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
+        {
+            IHttpActionResult respon = Ok(dynamic);
+            return respon;
+        }
 
     }
 }
