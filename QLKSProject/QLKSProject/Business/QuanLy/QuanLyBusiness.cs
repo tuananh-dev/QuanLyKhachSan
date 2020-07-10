@@ -306,5 +306,23 @@ namespace QLKSProject.Business.QuanLy
             }
             return false;
         }
+        //THONG KE
+        public bool XuatThongKeTheoTuan(int idtuan)
+        {
+        
+            return false;
+        }
+        public bool XuatThongKeTheoThang()
+        {
+            return false;
+        }
+        public bool XuatThongKeTheoNam()
+        {
+            return false;
+        }
+        public bool XuatThongKeTheoQuy()
+        {
+            return false;
+        }
     }
 }
