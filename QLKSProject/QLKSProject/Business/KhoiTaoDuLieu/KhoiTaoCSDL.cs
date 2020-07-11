@@ -95,6 +95,7 @@ namespace QLKSProject.Business
                 DichVu dichVu = new DichVu();
                 dichVu.TenDichVu = lstTenDichVu[i];
                 dichVu.Gia = rd.Next(3, 15) * 100000;
+                dichVu.MoTa = lstTenDichVu[i];
                 if (rd.Next(0, 10) == 0)
                     dichVu.IsDelete = true;
                 else

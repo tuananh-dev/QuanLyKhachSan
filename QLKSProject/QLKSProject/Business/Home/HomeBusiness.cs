@@ -5,6 +5,9 @@ namespace QLKSProject.Business.Home
 {
 	public class HomeBusiness : BaseBusiness
 	{
-
+		public dynamic TestDuLieuTruyenXuong(dynamic dynamic)
+		{
+			return dynamic;
+		}
 	}
 }

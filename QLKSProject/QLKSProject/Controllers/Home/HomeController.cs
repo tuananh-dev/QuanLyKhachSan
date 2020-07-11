@@ -19,5 +19,17 @@ namespace QLKSProject.Controllers.Home
             return respon;
         }
 
+        [HttpPost]
+        public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
+        {
+            IHttpActionResult respon = Ok();
+
+            using(HomeBusiness homeBusiness = new HomeBusiness())
+            {
+                respon = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
+            }
+            return respon;
+        }
+
     }
 }
