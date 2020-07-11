@@ -519,6 +519,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007060833276_createdb.cs" />
+    <Compile Include="Migrations\202007060833276_createdb.Designer.cs">
+      <DependentUpon>202007060833276_createdb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
     <Compile Include="Models\DTO\DatPhongThatBai.cs" />
     <Compile Include="Models\DTO\DichVu.cs" />
@@ -687,6 +692,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007060833276_createdb.resx">
+      <DependentUpon>202007060833276_createdb.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
