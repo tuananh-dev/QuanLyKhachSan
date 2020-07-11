@@ -43,28 +43,25 @@ namespace QLKSProject.Business.QuanLy
         }
         public bool ThemTaiKhoan(TaiKhoan taiKhoan)
         {
-            try
-            {
+
+                Models.Entities.TaiKhoan tk = new Models.Entities.TaiKhoan();
                 if (CheckTaiKhoan(taiKhoan.TenTaiKhoan))
-                {
-                    Models.Entities.TaiKhoan tk = new Models.Entities.TaiKhoan();
-                    tk.TenTaiKhoan = taiKhoan.TenTaiKhoan;
-                    tk.MatKhau = taiKhoan.MatKhau;
-                    tk.HoVaTen = taiKhoan.HoVaTen;
-                    tk.SoDienThoai = taiKhoan.SoDienThoai;
-                    tk.Mail = taiKhoan.Mail;
-                    tk.LoaiTaiKhoan = taiKhoan.LoaiTaiKhoan;
-                    tk.IsDelete = taiKhoan.IsDelete;
-                    models.TaiKhoans.Add(tk);
-                    models.SaveChanges();
-                }
-                
+                {     
+                tk.TenTaiKhoan = taiKhoan.TenTaiKhoan;
+                tk.MatKhau = taiKhoan.MatKhau;
+                tk.HoVaTen = taiKhoan.HoVaTen;
+                tk.SoDienThoai = taiKhoan.SoDienThoai;
+                tk.Mail = taiKhoan.Mail;
+                tk.LoaiTaiKhoan = taiKhoan.LoaiTaiKhoan;
+                tk.IsDelete = taiKhoan.IsDelete;
+                models.TaiKhoans.Add(tk);
+                models.SaveChanges();
+                return true;
             }
-            catch (Exception)
+            else
             {
-                throw;
-            }
-            return CheckTaiKhoan(taiKhoan.TenTaiKhoan);
+                return false;
+            }    
         }
         public bool CapNhatTaiKhoan(TaiKhoan taiKhoan) {
 
@@ -126,29 +123,26 @@ namespace QLKSProject.Business.QuanLy
         }
         public bool ThemPhong(Phong phong)
         {
+
+            Models.Entities.Phong ph = new Models.Entities.Phong();
+            if (CheckPhong(phong.SoPhong))
+            {
+                
+                ph.MaPhong = phong.MaPhong;
+                ph.SoPhong = phong.SoPhong;
+                ph.LoaiPhong = phong.LoaiPhong;
+                ph.Gia = phong.Gia;
+                ph.TrangThai = phong.TrangThai;
+                ph.IsDelete = phong.IsDelete;
+                models.Phongs.Add(ph);
+                models.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
            
-            try
-            {
-                if (CheckPhong(phong.SoPhong))
-                {
-                    Models.Entities.Phong ph = new Models.Entities.Phong();
-                    ph.MaPhong = phong.MaPhong;
-                    ph.SoPhong = phong.SoPhong;
-                    ph.LoaiPhong = phong.LoaiPhong;
-                    ph.Gia = phong.Gia;
-                    ph.IsDelete = phong.IsDelete;
-
-                    models.Phongs.Add(ph);
-                    models.SaveChanges();
-                    
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            return CheckPhong(phong.SoPhong);
         }
         public bool CapNhatPhong(Phong phong)
         {
@@ -203,22 +197,23 @@ namespace QLKSProject.Business.QuanLy
         }
         public bool ThemDichVu(DichVu dichVu)
         {
-            try
-            {
-                if (CheckDichVu(dichVu.TenDichVu)) {
-                    Models.Entities.DichVu dv = new Models.Entities.DichVu();
+            Models.Entities.DichVu dv = new Models.Entities.DichVu();
+            if (CheckDichVu(dichVu.TenDichVu)) {
+                   
                     dv.TenDichVu = dichVu.TenDichVu;
                     dv.Gia = dichVu.Gia;
                     dv.IsDelete = dichVu.IsDelete;
+                    dv.MoTa = dichVu.MoTa;
                     models.DichVus.Add(dv);
                     models.SaveChanges();
-                }
+                return true;
             }
-            catch (Exception)
+            else
             {
-                throw;
+                return false;
             }
-            return CheckDichVu(dichVu.TenDichVu);
+           
+            
 
         }
         public bool CapNhatDichVu(DichVu dichVu)
@@ -272,8 +267,7 @@ namespace QLKSProject.Business.QuanLy
         }
         public bool ThemTienIch(TienIch tienIch)
         {
-            try
-            {
+           
                 if (CheckTienIch(tienIch.TenTienIch))
                 {
                     Models.Entities.TienIch tienich = new Models.Entities.TienIch();
@@ -282,15 +276,12 @@ namespace QLKSProject.Business.QuanLy
                     tienich.IsDelete = tienIch.IsDelete;
                     models.TienIches.Add(tienich);
                     models.SaveChanges();
-                }
-             
+                return true;
             }
-            catch (Exception)
+            else
             {
-                throw;
-            }
-            return CheckTienIch(tienIch.TenTienIch);
-
+                return false;
+            }           
         }
         public bool CapNhatTienIch(TienIch tienIch)
         {
@@ -339,7 +330,7 @@ namespace QLKSProject.Business.QuanLy
             return false;
         }
         #region
-        private bool CheckTaiKhoan(string tenTaiKhoan)
+        private bool CheckTaiKhoan(String tenTaiKhoan)
         {
             bool b = true;
             List<TaiKhoan> lstTaiKhoan = models.TaiKhoans.Select(s => new TaiKhoan
@@ -354,15 +345,11 @@ namespace QLKSProject.Business.QuanLy
             }).ToList();
             foreach (var item in lstTaiKhoan)
             {
-                if (tenTaiKhoan.Equals(item.TenTaiKhoan)) { 
-                    b = false;
-                }
-                else
-                {
-                    b = true;
-                }
+                if (tenTaiKhoan.Equals(item.TenTaiKhoan)) 
+                b = false;
+                    
             }
-            return b;
+            return  b;
         }
         private bool CheckPhong(String soPhong)
         {
