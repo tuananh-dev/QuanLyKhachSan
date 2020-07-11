@@ -8,5 +8,6 @@ namespace QLKSProject.Models.DTO
         public string TenDichVu { get; set; }
         public int Gia { get; set; }
         public bool IsDelete { get; set; }
+        public string MoTa { get; set; }
     }
 }
