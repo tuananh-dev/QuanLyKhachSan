@@ -237,6 +237,7 @@
     <Content Include="Content\Home\js\aos.js" />
     <Content Include="Content\Home\js\bootstrap-datepicker.min.js" />
     <Content Include="Content\Home\js\bootstrap.min.js" />
+    <Content Include="Content\Home\js\excel.js" />
     <Content Include="Content\Home\js\fileupload.js" />
     <Content Include="Content\Home\js\jquery-3.3.1.min.js" />
     <Content Include="Content\Home\js\jquery-migrate-3.0.1.min.js" />
@@ -676,6 +677,7 @@
     <Content Include="Content\Home\scss\_site-navbar.scss" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\HomeViews\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
