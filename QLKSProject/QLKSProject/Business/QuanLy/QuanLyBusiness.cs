@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 using QLKSProject.Models.DTO;
 
 namespace QLKSProject.Business.QuanLy
@@ -44,22 +45,26 @@ namespace QLKSProject.Business.QuanLy
         {
             try
             {
-                Models.Entities.TaiKhoan tk = new Models.Entities.TaiKhoan();
-                tk.TenTaiKhoan = taiKhoan.TenTaiKhoan;
-                tk.MatKhau = taiKhoan.MatKhau;
-                tk.HoVaTen = taiKhoan.HoVaTen;
-                tk.SoDienThoai = taiKhoan.SoDienThoai;
-                tk.Mail = taiKhoan.Mail;
-                tk.LoaiTaiKhoan = taiKhoan.LoaiTaiKhoan;
-                tk.IsDelete = taiKhoan.IsDelete;
-                models.TaiKhoans.Add(tk);
-                models.SaveChanges();
-                return true;
+                if (CheckTaiKhoan(taiKhoan.TenTaiKhoan))
+                {
+                    Models.Entities.TaiKhoan tk = new Models.Entities.TaiKhoan();
+                    tk.TenTaiKhoan = taiKhoan.TenTaiKhoan;
+                    tk.MatKhau = taiKhoan.MatKhau;
+                    tk.HoVaTen = taiKhoan.HoVaTen;
+                    tk.SoDienThoai = taiKhoan.SoDienThoai;
+                    tk.Mail = taiKhoan.Mail;
+                    tk.LoaiTaiKhoan = taiKhoan.LoaiTaiKhoan;
+                    tk.IsDelete = taiKhoan.IsDelete;
+                    models.TaiKhoans.Add(tk);
+                    models.SaveChanges();
+                }
+                
             }
             catch (Exception)
             {
-                return false;
-            }  
+                throw;
+            }
+            return CheckTaiKhoan(taiKhoan.TenTaiKhoan);
         }
         public bool CapNhatTaiKhoan(TaiKhoan taiKhoan) {
 
@@ -121,24 +126,29 @@ namespace QLKSProject.Business.QuanLy
         }
         public bool ThemPhong(Phong phong)
         {
+           
             try
             {
-                Models.Entities.Phong ph = new Models.Entities.Phong();
-                ph.MaPhong = phong.MaPhong;
-                ph.SoPhong = phong.SoPhong;
-                ph.LoaiPhong = phong.LoaiPhong;
-                ph.Gia = phong.Gia;
-                ph.IsDelete = phong.IsDelete;
-                models.Phongs.Add(ph);
-                models.SaveChanges();
-                return true;
+                if (CheckPhong(phong.SoPhong))
+                {
+                    Models.Entities.Phong ph = new Models.Entities.Phong();
+                    ph.MaPhong = phong.MaPhong;
+                    ph.SoPhong = phong.SoPhong;
+                    ph.LoaiPhong = phong.LoaiPhong;
+                    ph.Gia = phong.Gia;
+                    ph.IsDelete = phong.IsDelete;
+
+                    models.Phongs.Add(ph);
+                    models.SaveChanges();
+                    
+                }
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
 
-
+            return CheckPhong(phong.SoPhong);
         }
         public bool CapNhatPhong(Phong phong)
         {
@@ -195,19 +205,20 @@ namespace QLKSProject.Business.QuanLy
         {
             try
             {
-                Models.Entities.DichVu dv = new Models.Entities.DichVu();
-                dv.TenDichVu = dichVu.TenDichVu;
-                dv.Gia = dichVu.Gia;
-                dv.IsDelete = dichVu.IsDelete;
-                models.DichVus.Add(dv);
-                models.SaveChanges();
-                return true;
+                if (CheckDichVu(dichVu.TenDichVu)) {
+                    Models.Entities.DichVu dv = new Models.Entities.DichVu();
+                    dv.TenDichVu = dichVu.TenDichVu;
+                    dv.Gia = dichVu.Gia;
+                    dv.IsDelete = dichVu.IsDelete;
+                    models.DichVus.Add(dv);
+                    models.SaveChanges();
+                }
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
-
+            return CheckDichVu(dichVu.TenDichVu);
 
         }
         public bool CapNhatDichVu(DichVu dichVu)
@@ -263,19 +274,22 @@ namespace QLKSProject.Business.QuanLy
         {
             try
             {
-                Models.Entities.TienIch tienich = new Models.Entities.TienIch();
-                tienich.TenTienIch = tienIch.TenTienIch;
-                tienich.HinhAnh = tienIch.HinhAnh;
-                tienich.IsDelete = tienIch.IsDelete;
-                models.TienIches.Add(tienich);
-                models.SaveChanges();
-                return true;
+                if (CheckTienIch(tienIch.TenTienIch))
+                {
+                    Models.Entities.TienIch tienich = new Models.Entities.TienIch();
+                    tienich.TenTienIch = tienIch.TenTienIch;
+                    tienich.HinhAnh = tienIch.HinhAnh;
+                    tienich.IsDelete = tienIch.IsDelete;
+                    models.TienIches.Add(tienich);
+                    models.SaveChanges();
+                }
+             
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
-
+            return CheckTienIch(tienIch.TenTienIch);
 
         }
         public bool CapNhatTienIch(TienIch tienIch)
@@ -324,5 +338,83 @@ namespace QLKSProject.Business.QuanLy
         {
             return false;
         }
+        #region
+        private bool CheckTaiKhoan(string tenTaiKhoan)
+        {
+            bool b = true;
+            List<TaiKhoan> lstTaiKhoan = models.TaiKhoans.Select(s => new TaiKhoan
+            {
+                TenTaiKhoan = s.TenTaiKhoan,
+                MatKhau = s.MatKhau,
+                HoVaTen = s.HoVaTen,
+                SoDienThoai = s.SoDienThoai,
+                Mail = s.Mail,
+                LoaiTaiKhoan = s.LoaiTaiKhoan,
+                IsDelete = s.IsDelete
+            }).ToList();
+            foreach (var item in lstTaiKhoan)
+            {
+                if (tenTaiKhoan.Equals(item.TenTaiKhoan)) { 
+                    b = false;
+                }
+                else
+                {
+                    b = true;
+                }
+            }
+            return b;
+        }
+        private bool CheckPhong(String soPhong)
+        {
+            bool b = true;
+            List<Phong> lstPhong = models.Phongs.Select(s => new Phong {
+                MaPhong = s.MaPhong,
+                SoPhong = s.SoPhong,
+                LoaiPhong = s.LoaiPhong,
+                Gia = s.Gia,
+                TrangThai = s.TrangThai,
+                IsDelete = s.IsDelete
+            }).ToList();
+            foreach(var item in lstPhong)
+            {
+                if (soPhong.Equals(item.SoPhong))
+                    b = false;
+            }
+            return b;
+        }
+        private bool CheckDichVu(String tenDichVu)
+        {
+            bool b = true;
+            List<DichVu> lstDichVu = models.DichVus.Select(s => new DichVu
+            {
+                TenDichVu = s.TenDichVu,
+                Gia = s.Gia,
+                MoTa = s.MoTa,
+                IsDelete = s.IsDelete
+            }).ToList();
+            foreach (var item in lstDichVu)
+            {
+                if (tenDichVu.Equals(item.TenDichVu))
+                    b = false;
+            }
+            return b;
+        }
+        private bool CheckTienIch(String tenTienIch)
+        {
+            bool b = true;
+            List<TienIch> lstTienIch= models.TienIches.Select(s => new TienIch
+            {
+                TenTienIch = s.TenTienIch,
+                HinhAnh = s.HinhAnh,
+                IsDelete = s.IsDelete
+            }).ToList();
+            foreach (var item in lstTienIch)
+            {
+                if (tenTienIch.Equals(item.TenTienIch))
+                    b = false;
+            }
+            return b;
+        }
+        #endregion
     }
 }
