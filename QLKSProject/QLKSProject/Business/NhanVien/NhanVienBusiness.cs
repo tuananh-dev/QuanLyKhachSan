@@ -85,6 +85,39 @@ namespace QLKSProject.Business.NhanVien
                 return false;
             }
         }
+        private List<KhachHang> LayDanhSachKhachHangTheoDoan(string maDoan)
+        {
+            var lstKhachHang = models.KhachHangs.Where(s => s.MaDoan.Equals(maDoan)).Select(s => new KhachHang {
+                ID = s.ID,
+                HoVaTen = s.HoVaTen,
+                SoDienThoai = s.SoDienThoai,
+                Email = s.Email,
+                DiaChi = s.DiaChi,
+                Nhom = s.Nhom,
+                NguoiDaiDienCuaTreEm = s.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = s.ThoiGianNhan,
+                ThoiGianTra = s.ThoiGianTra,
+                MaDoan = s.MaDoan,
+                GioiTinh = s.GioiTinh,
+                LoaiKhachHang = s.LoaiKhachHang,
+                TruongDoan = s.TruongDoan,
+                IsDelete = s.IsDelete
+            }).ToList();
+            return lstKhachHang;
+        }
+        private List<int> LayDSNhomTrongDSKhachHang(List<KhachHang> lstKhachHang)
+        {
+            var lstNhom = lstKhachHang.GroupBy(s => s.Nhom).Select(g => g.Key).ToList();                             
+            return lstNhom;
+        }
+/*        private bool KiemTraTreEmCoTrongDanhSach (List<KhachHang> lstKhachHang)
+        {
+            foreach (var item in lstKhachHang)
+            {
+
+            }
+        }*/
         #endregion
+
     }
 }
