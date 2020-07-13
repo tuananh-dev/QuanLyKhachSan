@@ -15,7 +15,7 @@ namespace QLKSProject.Models.DTO
         public string SoDienThoai { get; set; }
         public string Email { get; set; }
         public string DiaChi { get; set; }
-        public string Nhom { get; set; }
+        public int Nhom { get; set; }
         public string NguoiDaiDienCuaTreEm { get; set; }
         public string MaDoan { get; set; }
         public bool GioiTinh { get; set; }

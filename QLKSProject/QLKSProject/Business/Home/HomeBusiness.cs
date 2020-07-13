@@ -5,11 +5,7 @@ namespace QLKSProject.Business.Home
 {
 	public class HomeBusiness : BaseBusiness
 	{
-<<<<<<< HEAD
-		public dynamic TestDuLieuTruyenXuong(dynamic dynamic)
-		{
-			return dynamic;
-=======
+
 		public bool LayFileDanhSachKhachHang(List<FileKhachHang> lstfileKhachHang)
 		{
 			foreach (var item in lstfileKhachHang)
@@ -55,10 +51,6 @@ namespace QLKSProject.Business.Home
 
 		}
 
-		internal class KiemTraTaiKhoan
-		{
->>>>>>> origin/HaNam
-		}
 	}
 
 }
