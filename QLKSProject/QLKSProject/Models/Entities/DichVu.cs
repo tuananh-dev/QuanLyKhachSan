@@ -17,6 +17,10 @@ namespace QLKSProject.Models.Entities
         public string TenDichVu { get; set; }
 
         [Required]
+        [StringLength(2000)]
+        public string MoTa { get; set; }
+
+        [Required]
         public int Gia { get; set; }
 
         [Required]

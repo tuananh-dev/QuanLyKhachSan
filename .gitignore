@@ -352,3 +352,6 @@ QLKSProject/QLKSProject/Migrations/202007060833276_createdb.cs
 QLKSProject/QLKSProject/Migrations/202007060833276_createdb.Designer.cs
 QLKSProject/QLKSProject/Migrations/202007060833276_createdb.resx
 QLKSProject/QLKSProject/Migrations/Configuration.cs
+QLKSProject/QLKSProject/Migrations/202007110347137_createDB.cs
+QLKSProject/QLKSProject/Migrations/202007110347137_createDB.Designer.cs
+QLKSProject/QLKSProject/Migrations/202007110347137_createDB.resx

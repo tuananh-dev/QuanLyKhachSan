@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using QLKSProject.Models.DTO;
 namespace QLKSProject.Business.Home
 {
 	public class HomeBusiness : BaseBusiness
 	{
+
 		public bool LayFileDanhSachKhachHang(List<FileKhachHang> lstfileKhachHang)
 		{
 			foreach (var item in lstfileKhachHang)
@@ -49,9 +51,16 @@ namespace QLKSProject.Business.Home
 			}
 
 		}
+		public bool KiemTraTaiKHoan(TaiKhoan taiKhoan)
+			{
 
-		internal class KiemTraTaiKhoan
+		
+			return true;
+			}
+		public dynamic TestDuLieuTruyenXuong(dynamic dynamic)
 		{
+			return dynamic;
+
 		}
 	}
 

@@ -23,14 +23,28 @@ namespace QLKSProject.Controllers.Home
             }
         }
         [HttpPost]
-        public IHttpActionResult KiemTraTaiKhoan(username, password);
+        public IHttpActionResult KiemTraTaiKhoan(TaiKhoan taiKhoanS);
         {
-            IHttpActionResult respone = Ok(username, password);
+            IHttpActionResult respone = Ok(taiKhoanS);
             using (HomeBusiness homeBusiness = new HomeBusiness())
+            {
+                respone = Ok(homeBusiness.KiemTraTaiKhoan(taiKhoanS));
+                return respone; 
+            }
+        }
+
+
+        [HttpPost]
+        public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
         {
-            respone = Ok(homeBusiness.KiemTraTaiKhoan(username, password));
-            return respone; 
+            IHttpActionResult respone = Ok(dynamic);
+
+            using(HomeBusiness homeBusiness = new HomeBusiness())
+            {
+                respone = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
+                return respone;
+             }
         }
-        }
+
     }
 }
