@@ -517,9 +517,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Migrations\202007130152508_createdb.cs" />
     <Compile Include="Migrations\202007130152508_createdb.designer.cs">
       <DependentUpon>202007130152508_createdb.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\202007110634268_createdb.cs" />
+    <Compile Include="Migrations\202007110634268_createdb.designer.cs">
+      <DependentUpon>202007110634268_createdb.cs</DependentUpon>
+>>>>>>> a5f04fcf6895cb4012b1c909d1e462dc67b679e8
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
@@ -692,8 +698,13 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\202007130152508_createdb.resx">
       <DependentUpon>202007130152508_createdb.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Migrations\202007110634268_createdb.resx">
+      <DependentUpon>202007110634268_createdb.cs</DependentUpon>
+>>>>>>> a5f04fcf6895cb4012b1c909d1e462dc67b679e8
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

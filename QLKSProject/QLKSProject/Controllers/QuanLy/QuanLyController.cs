@@ -47,7 +47,8 @@ namespace QLKSProject.Controllers.QuanLy
             IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.ThemTaiKhoan(taiKhoan));
+                    
+                    respon = Ok(quanLy.ThemTaiKhoan(taiKhoan));
                 return respon;
             }
         }
