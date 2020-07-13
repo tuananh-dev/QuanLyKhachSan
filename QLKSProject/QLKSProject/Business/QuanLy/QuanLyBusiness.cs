@@ -251,7 +251,7 @@ namespace QLKSProject.Business.QuanLy
             var tienich = models.TienIches.Where(e => e.IsDelete == false).Select(e => new TienIch {
                 ID = e.ID,
                 TenTienIch = e.TenTienIch,
-                HinhAnh = e.HinhAnh,
+                MoTa = e.MoTa,
                 IsDelete = e.IsDelete
             });
             return tienich.ToList();
@@ -262,7 +262,7 @@ namespace QLKSProject.Business.QuanLy
             {
                 ID = e.ID,
                 TenTienIch = e.TenTienIch,
-                HinhAnh = e.HinhAnh,
+                MoTa = e.MoTa,
                 IsDelete = e.IsDelete
             }).FirstOrDefault();
             return tienich;
@@ -274,7 +274,7 @@ namespace QLKSProject.Business.QuanLy
                 {
                     Models.Entities.TienIch tienich = new Models.Entities.TienIch();
                     tienich.TenTienIch = tienIch.TenTienIch;
-                    tienich.HinhAnh = tienIch.HinhAnh;
+                    tienich.MoTa = tienIch.MoTa;
                     tienich.IsDelete = tienIch.IsDelete;
                     models.TienIches.Add(tienich);
                     models.SaveChanges();
@@ -291,7 +291,7 @@ namespace QLKSProject.Business.QuanLy
             {
                 var tienich = models.TienIches.Where(s => s.ID == tienIch.ID).FirstOrDefault();
                 tienich.TenTienIch = tienIch.TenTienIch;
-                tienich.HinhAnh = tienIch.HinhAnh;
+                tienich.MoTa = tienIch.MoTa;
                
                 models.SaveChanges();
                 return true;
@@ -394,7 +394,7 @@ namespace QLKSProject.Business.QuanLy
             List<TienIch> lstTienIch= models.TienIches.Select(s => new TienIch
             {
                 TenTienIch = s.TenTienIch,
-                HinhAnh = s.HinhAnh,
+                MoTa = s.MoTa,
                 IsDelete = s.IsDelete
             }).ToList();
             foreach (var item in lstTienIch)

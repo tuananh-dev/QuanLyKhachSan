@@ -481,6 +481,7 @@
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="Views\NhanVienViews\Phong_NhanVien\DanhSachPhong.html" />
     <Content Include="Views\QuanLyViews\DichVu\ChinhSuaDichVu.html" />
     <Content Include="Views\QuanLyViews\DichVu\DSDichVu.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -517,15 +518,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Migrations\202007130152508_createdb.cs" />
-    <Compile Include="Migrations\202007130152508_createdb.designer.cs">
-      <DependentUpon>202007130152508_createdb.cs</DependentUpon>
-=======
-    <Compile Include="Migrations\202007110634268_createdb.cs" />
-    <Compile Include="Migrations\202007110634268_createdb.designer.cs">
-      <DependentUpon>202007110634268_createdb.cs</DependentUpon>
->>>>>>> a5f04fcf6895cb4012b1c909d1e462dc67b679e8
+    <Compile Include="Migrations\202007130451167_createDB.cs" />
+    <Compile Include="Migrations\202007130451167_createDB.designer.cs">
+      <DependentUpon>202007130451167_createDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007130458576_update01.cs" />
+    <Compile Include="Migrations\202007130458576_update01.designer.cs">
+      <DependentUpon>202007130458576_update01.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
@@ -698,13 +697,11 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <EmbeddedResource Include="Migrations\202007130152508_createdb.resx">
-      <DependentUpon>202007130152508_createdb.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="Migrations\202007110634268_createdb.resx">
-      <DependentUpon>202007110634268_createdb.cs</DependentUpon>
->>>>>>> a5f04fcf6895cb4012b1c909d1e462dc67b679e8
+    <EmbeddedResource Include="Migrations\202007130451167_createDB.resx">
+      <DependentUpon>202007130451167_createDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007130458576_update01.resx">
+      <DependentUpon>202007130458576_update01.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
