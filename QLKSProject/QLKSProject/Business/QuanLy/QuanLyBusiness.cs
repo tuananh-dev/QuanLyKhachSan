@@ -180,6 +180,7 @@ namespace QLKSProject.Business.QuanLy
                 ID = e.ID,
                 TenDichVu = e.TenDichVu,
                 Gia = e.Gia,
+                MoTa = e.MoTa,
                 IsDelete = e.IsDelete
             });
             return lstdichvu.ToList();
@@ -191,6 +192,7 @@ namespace QLKSProject.Business.QuanLy
                 ID = e.ID,
                 TenDichVu = e.TenDichVu,
                 Gia = e.Gia,
+                MoTa = e.MoTa,
                 IsDelete = e.IsDelete
             }).FirstOrDefault();
             return dichvu;
@@ -223,7 +225,7 @@ namespace QLKSProject.Business.QuanLy
                 var dv = models.DichVus.Where(s => s.ID == dichVu.ID).FirstOrDefault();
                 dv.TenDichVu = dichVu.TenDichVu;
                 dv.Gia = dichVu.Gia;
-               
+                dv.MoTa = dichVu.MoTa;
                 models.SaveChanges();
                 return true;
             }
