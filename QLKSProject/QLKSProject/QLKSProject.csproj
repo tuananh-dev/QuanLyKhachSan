@@ -523,7 +523,6 @@
     <Compile Include="Migrations\202007110634268_createdb.designer.cs">
       <DependentUpon>202007110634268_createdb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
     <Compile Include="Models\DTO\DatPhongThatBai.cs" />
     <Compile Include="Models\DTO\DichVu.cs" />
