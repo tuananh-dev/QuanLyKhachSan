@@ -34,14 +34,14 @@
             var dichvu = $('#dsdv');
             $.ajax({
                 type: 'GET',
-                url: '/api/Quanly/LayDanhSachDichVu',
+                url: '/api/Quanly/LayDanhSachTienIch',
                 dataType: 'json',
                 success: function (data) {
                     dichvu.empty();
 
                     $.each(data, function (index, val) {
 
-                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center"></td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.HinhAnh + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
                     });
 
                 }
@@ -51,26 +51,24 @@
             })
             $('#btn').click(function () {
                 $.ajax({
-                    url: '/api/Quanly/themdichvu',
+                    url: '/api/Quanly/ThemTienIch',
                     method: 'POST',
                     data: {
-                        TenDichVu: $('#tenDV').val(),
-                        Gia: $('#gia').val(),
-
+                        TenTienIch: $('#tenTI').val(),
+                        HInhAnh: $('#hinhanh').val(),
                         IsDelete: false,
                     }, success: function () {
                         $('#addModal').modal('hide');
-                        var dichvu = $('#dsdv');
                         $.ajax({
                             type: 'GET',
-                            url: '/api/Quanly/LayDanhSachDichVu',
+                            url: '/api/Quanly/LayDanhSachTienIch',
                             dataType: 'json',
                             success: function (data) {
                                 dichvu.empty();
 
                                 $.each(data, function (index, val) {
 
-                                    dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center"></td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                                    dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.HinhAnh + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
                                 });
 
                             }
@@ -246,6 +244,7 @@
 
 
 
+
                         </ul>
                     </div>
                 </div>
@@ -256,17 +255,17 @@
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
-                                <div class="page-title">Danh Sách Dịch Vụ</div>
+                                <div class="page-title">Danh Sách Tiện Ích</div>
                             </div>
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="index.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                                       href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
                                 <li>
-                                    <a class="parent-item" href="#">Dịch Vụ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                    <a class="parent-item" href="#">Tiện Ích</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li class="active">Danh Sách Dịch Vụ</li>
+                                <li class="active">Danh Sách Tiện Ích</li>
                             </ol>
                         </div>
                     </div>
@@ -280,7 +279,7 @@
                                             <div class="btn-group">
                                                 <button href="" id="addRow" class="btn btn-info">
 
-                                                    Thêm Mới Dịch Vụ <i class="fa fa-plus"></i>
+                                                    Thêm Mới Tiện Ích<i class="fa fa-plus"></i>
                                                 </button>
 
 
@@ -293,9 +292,8 @@
                                                id="example">
                                             <thead>
                                                 <tr>
-                                                    <th class="center"> Tên </th>
-                                                    <th class="center"> Giá </th>
-                                                    <th class="center"> Mô tả </th>
+                                                    <th class="center"> Tên tiện ích </th>
+                                                    <th class="center"> Hình ảnh </th>
                                                     <th class="center"> Chức Năng </th>
                                                 </tr>
                                             </thead>
@@ -323,16 +321,14 @@
                                         <div class="card-body row">
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="tenDV">
-                                                    <label class="mdl-textfield__label">Tên Dịch Vụ</label>
+                                                    <input class="mdl-textfield__input" type="text" id="tenTI" required>
+                                                    <label class="mdl-textfield__label">Tên Tiện Ích</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text"
-                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia">
-                                                    <label class="mdl-textfield__label" for="gia">Giá</label>
-                                                    <span class="mdl-textfield__error">Phải là số</span>
+                                                    <input class="mdl-textfield__input" type="text" id="hinhanh" required>
+                                                    <label class="mdl-textfield__label" for="hinhanh">Hinh Ảnh</label>
                                                 </div>
                                             </div>
                                         </div>

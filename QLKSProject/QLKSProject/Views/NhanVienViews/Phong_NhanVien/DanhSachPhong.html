@@ -1,26 +1,30 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <!-- BEGIN HEAD -->
-<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:35:49 GMT -->
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/all_rooms.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:32 GMT -->
 <head>
     <meta charset="utf-8" />
-    <title>Spice Hotel</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description" content="Responsive Admin Template" />
+    <meta name="author" content="SmartUniversity" />
+    <title>Spice Hotel | Bootstrap 4 Admin Dashboard Template + UI Kit</title>
     <!-- icons -->
     <link href="../../../Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="../../../Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!--bootstrap -->
     <link href="../../../Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../../../Content/QuanLy/plugins/summernote/summernote.css" rel="stylesheet">
-    <!-- morris chart -->
-    <link href="../../../Content/QuanLy/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
     <!-- Material Design Lite CSS -->
     <link rel="stylesheet" href="../../../Content/QuanLy/plugins/material/material.min.css">
     <link rel="stylesheet" href="../../../Content/QuanLy/css/material_style.css">
+    <!-- data tables -->
+    <link href="../../../Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet"
+          type="text/css" />
     <!-- animation -->
     <link href="../../../Content/QuanLy/css/pages/animate_page.css" rel="stylesheet">
     <!-- Template Styles -->
-    <link href="../../../Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <link href="../../../Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <link href="../../../Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="../../../Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
@@ -28,57 +32,26 @@
     <script src="../../../Content/QuanLy/Jquery.js"></script>
 
     <script type="text/javascript">
-
         $(document).ready(function () {
-
-            var dichvu = $('#dsdv');
+            var phong = $('#dsphong');
             $.ajax({
                 type: 'GET',
-                url: '/api/Quanly/LayDanhSachDichVu',
+                url: 'https://localhost:44339/api/Quanly/LayDanhSachPhong',
                 dataType: 'json',
                 success: function (data) {
-                    dichvu.empty();
-
                     $.each(data, function (index, val) {
+                        var color = "lightgreen";
+                        var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
+                        if (val.TrangThai) {
+                            color = "white";
+                        }
+                        phong.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="'+info+'">' + val.SoPhong + ' </button>\n');
 
-                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center"></td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+
+
                     });
 
                 }
-            });
-            $("#addRow").click(function () {
-                $("#addModal").modal('show');
-            })
-            $('#btn').click(function () {
-                $.ajax({
-                    url: '/api/Quanly/themdichvu',
-                    method: 'POST',
-                    data: {
-                        TenDichVu: $('#tenDV').val(),
-                        Gia: $('#gia').val(),
-
-                        IsDelete: false,
-                    }, success: function () {
-                        $('#addModal').modal('hide');
-                        var dichvu = $('#dsdv');
-                        $.ajax({
-                            type: 'GET',
-                            url: '/api/Quanly/LayDanhSachDichVu',
-                            dataType: 'json',
-                            success: function (data) {
-                                dichvu.empty();
-
-                                $.each(data, function (index, val) {
-
-                                    dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center"></td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
-                                });
-
-                            }
-                        });
-
-                    }
-
-                })
             });
         });
     </script>
@@ -104,7 +77,11 @@
                 <form class="search-form-opened" action="#" method="GET">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search..." name="query">
-
+                        <span class="input-group-btn search-btn">
+                            <a href="javascript:;" class="btn submit">
+                                <i class="icon-magnifier"></i>
+                            </a>
+                        </span>
                     </div>
                 </form>
                 <!-- start mobile menu -->
@@ -246,130 +223,52 @@
 
 
 
+
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- end sidebar menu -->
+            <!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content">
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
-                                <div class="page-title">Danh Sách Dịch Vụ</div>
+                                <div class="page-title">Danh Sách Phòng</div>
                             </div>
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="index.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                                       href="https://localhost:44339/Views/QuanLyViews/Phong/DSPhong.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
                                 <li>
-                                    <a class="parent-item" href="#">Dịch Vụ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                    <a class="parent-item" href="#">Phòng</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li class="active">Danh Sách Dịch Vụ</li>
+                                <li class="active">Danh Sách Phòng</li>
                             </ol>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-box">
-
-                                <div class="card-body ">
-                                    <div class="row p-b-20">
-                                        <div class="col-md-6 col-sm-6 col-6">
-                                            <div class="btn-group">
-                                                <button href="" id="addRow" class="btn btn-info">
-
-                                                    Thêm Mới Dịch Vụ <i class="fa fa-plus"></i>
-                                                </button>
+                    <div class="row" style="margin:0" id="dsphong">
 
 
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="table-scrollable">
-                                        <table class="table table-hover table-checkable order-column full-width"
-                                               id="example">
-                                            <thead>
-                                                <tr>
-                                                    <th class="center"> Tên </th>
-                                                    <th class="center"> Giá </th>
-                                                    <th class="center"> Mô tả </th>
-                                                    <th class="center"> Chức Năng </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="dsdv">
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
-            <div class="modal fade" tabindex="-1" id="addModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
-
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Dịch Vụ</h4>
-                                    <div class="card-box">
-
-                                        <div class="card-body row">
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="tenDV">
-                                                    <label class="mdl-textfield__label">Tên Dịch Vụ</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text"
-                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia">
-                                                    <label class="mdl-textfield__label" for="gia">Giá</label>
-                                                    <span class="mdl-textfield__error">Phải là số</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn">
-                                            Thêm
-                                        </button>
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                            Hủy
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-- End Modal -->
-                <!-- end chat sidebar -->
-            </div>
-            <!-- end page container -->
-            <!-- start footer -->
-            <div class="page-footer">
-                <div class="page-footer-inner">
-                    2020 &copy; Hotel Spice
-
-                </div>
-                <div class="scroll-to-top">
-                    <i class="icon-arrow-up"></i>
-                </div>
-            </div>
-            <!-- end footer -->
+            <!-- end page content -->
         </div>
+        <!-- end page container -->
+        <!-- start footer -->
+        <div class="page-footer">
+            <div class="page-footer-inner">
+                2020 &copy; Hotel Spice
+
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- end footer -->
     </div>
     <!-- start js include path -->
     <script src="../../../Content/QuanLy/plugins/jquery/jquery.min.js"></script>
@@ -378,20 +277,21 @@
     <script src="../../../Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- bootstrap -->
     <script src="../../../Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../../Content/QuanLy/plugins/sparkline/jquery.sparkline.min.js"></script>
-    <script src="../../../Content/QuanLy/js/pages/sparkline/sparkline-data.js"></script>
     <!-- Common js-->
     <script src="../../../Content/QuanLy/js/app.js"></script>
     <script src="../../../Content/QuanLy/js/layout.js"></script>
     <script src="../../../Content/QuanLy/js/theme-color.js"></script>
-    <!-- material -->
+    <!-- data tables -->
+    <!--<script src="../../../Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
+    <script src="../../../Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
+    <script src="../../../Content/QuanLy/js/pages/table/table_data.js"></script>
+    <!-- Material -->
     <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>
-
     <!-- animation -->
     <script src="../../../Content/QuanLy/js/pages/ui/animations.js"></script>
     <!-- end js include path -->
 </body>
 
 
-<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:36:48 GMT -->
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/all_rooms.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:33 GMT -->
 </html>
