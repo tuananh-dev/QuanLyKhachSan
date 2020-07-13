@@ -73,7 +73,7 @@ namespace QLKSProject.Business
                     khachHang.SoDienThoai = "098" + rd.Next(222222, 999999);
                     khachHang.Email = khachHang.HoVaTen.ToLower().Replace(" ", "") + "@gmail.com";
                     khachHang.DiaChi = rd.Next(1, 1234) + " " + tenDuong[rd.Next(0, tenDuong.Length - 1)];
-                    khachHang.Nhom = "n" + rd.Next(1, 10);
+                    //khachHang.Nhom = "n" + rd.Next(1, 10);
                     khachHang.ThoiGianNhan = doan.ThoiGianNhan;
                     khachHang.ThoiGianTra = doan.ThoiGianTra;
                     khachHang.MaDoan = doan.MaDoan;
