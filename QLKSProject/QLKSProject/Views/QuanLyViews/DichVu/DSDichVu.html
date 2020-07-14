@@ -40,8 +40,13 @@
                     dichvu.empty();
 
                     $.each(data, function (index, val) {
+<<<<<<< HEAD
                         val.ID;
                         dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center"></td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+=======
+
+                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center">' + val.MoTa + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+>>>>>>> b8555cc8026709f9da4bab9fa053e0b95169e22e
                     });
 
                 }
@@ -59,7 +64,7 @@
                     data: {
                         TenDichVu: $('#tenDV').val(),
                         Gia: $('#gia').val(),
-
+                        MoTa: $('#mota').val(),
                         IsDelete: false,
                     }, success: function () {
                         $('#addModal').modal('hide');
@@ -73,7 +78,7 @@
 
                                 $.each(data, function (index, val) {
 
-                                    dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center"></td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                                    dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center">' + val.MoTa + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
                                 });
 
                             }
@@ -83,6 +88,9 @@
 
                 })
             });
+            $('.btn-edit').click(function () {
+                alert("hello");
+            })
         });
     </script>
 </head>
@@ -140,12 +148,12 @@
 
                                 <li class="divider"> </li>
                                 <li>
-                                    <a href="/Views/QuanLyViews/TaiKhoan/KhoaManHinh.cshtml">
+                                    <a href="/Views/TaiKhoanViews/KhoaManHinh.html">
                                         <i class="icon-lock"></i> Lock
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Views/QuanLyViews/TaiKhoan/DangNhap.cshtml">
+                                    <a href="/Views/TaiKhoanViews/DangNhap.html">
                                         <i class="icon-logout"></i> Log Out
                                     </a>
                                 </li>
@@ -246,9 +254,30 @@
                                 </a>
 
                             </li>
+                            <li class="nav-item active">
+                                <a href="/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.html" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Đặt Phòng Thành Công</span>
+                                    <span class="arrow"></span>
+                                </a>
 
+                            </li>
+                            <li class="nav-item active">
+                                <a href="/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.html" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Đặt Phòng Thất Bại</span>
+                                    <span class="arrow"></span>
+                                </a>
 
+                            </li>
+                            <li class="nav-item active">
+                                <a href="/Views/NhanVienViews/Doan/Doan.html" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Đoàn</span>
+                                    <span class="arrow"></span>
+                                </a>
 
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -285,6 +314,7 @@
 
                                                     Thêm Mới Dịch Vụ <i class="fa fa-plus"></i>
                                                 </button>
+                                               
 
 
                                             </div>
@@ -303,6 +333,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="dsdv">
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -330,12 +361,20 @@
                                                     <label class="mdl-textfield__label">Tên Dịch Vụ</label>
                                                 </div>
                                             </div>
+
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="text"
                                                            pattern="-?[0-9]*(\.[0-9]+)?" id="gia">
                                                     <label class="mdl-textfield__label" for="gia">Giá</label>
                                                     <span class="mdl-textfield__error">Phải là số</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <textarea class="mdl-textfield__input" type="text" id="mota" rows="3" cols="50"></textarea>
+                                                    <label class="mdl-textfield__label">Mô Tả</label>
                                                 </div>
                                             </div>
                                         </div>

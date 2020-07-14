@@ -41,7 +41,7 @@
 
                     $.each(data, function (index, val) {
 
-                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.HinhAnh + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
                     });
 
                 }
@@ -135,12 +135,12 @@
 
                                 <li class="divider"> </li>
                                 <li>
-                                    <a href="/Views/QuanLyViews/TaiKhoan/KhoaManHinh.cshtml">
+                                    <a href="/Views/TaiKhoanViews/KhoaManHinh.html">
                                         <i class="icon-lock"></i> Lock
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Views/QuanLyViews/TaiKhoan/DangNhap.cshtml">
+                                    <a href="/Views/TaiKhoanViews/DangNhap.html">
                                         <i class="icon-logout"></i> Log Out
                                     </a>
                                 </li>
@@ -242,9 +242,30 @@
 
                             </li>
 
+                            <li class="nav-item active">
+                                <a href="/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.html" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Đặt Phòng Thành Công</span>
+                                    <span class="arrow"></span>
+                                </a>
 
+                            </li>
+                            <li class="nav-item active">
+                                <a href="/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.html" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Đặt Phòng Thất Bại</span>
+                                    <span class="arrow"></span>
+                                </a>
 
+                            </li>
+                            <li class="nav-item active">
+                                <a href="/Views/NhanVienViews/Doan/Doan.html" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Đoàn</span>
+                                    <span class="arrow"></span>
+                                </a>
 
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -328,7 +349,7 @@
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="text" id="hinhanh" required>
-                                                    <label class="mdl-textfield__label" for="hinhanh">Hinh Ảnh</label>
+                                                    <label class="mdl-textfield__label" for="hinhanh">Mô Tả</label>
                                                 </div>
                                             </div>
                                         </div>
