@@ -46,7 +46,7 @@
                         if (val.TrangThai) {
                             tt = "Đang sử dụng"
                         }
-                        phong.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + val.Gia + '</td><td class="center">' + tt + '</td><td class="center"></td><td class="center"><a class="btn btn-tbl-edit btn-xs"><i class="fa fa-pencil"></i></><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                        phong.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + val.Gia + '</td><td class="center">' + tt + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs"><i class="fa fa-pencil"></i></><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
                     });
 
                 }
@@ -83,7 +83,7 @@
                                         tt = "Đang sử dụng"
                                     }
 
-                                    phong.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + val.Gia + '</td><td class="center">' + tt + '</td><td class="center"></td><td class="center"><a class="btn btn-tbl-edit btn-xs"><i class="fa fa-pencil"></i></><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                                    phong.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + val.Gia + '</td><td class="center">' + tt + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs"><i class="fa fa-pencil"></i></><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
                                 });
 
                             }
@@ -155,12 +155,12 @@
 
                                 <li class="divider"> </li>
                                 <li>
-                                    <a href="/Views/QuanLyViews/TaiKhoan/KhoaManHinh.cshtml">
+                                    <a href="/Views/TaiKhoanViews/KhoaManHinh.html">
                                         <i class="icon-lock"></i> Lock
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Views/QuanLyViews/TaiKhoan/DangNhap.cshtml">
+                                    <a href="/Views/TaiKhoanViews/DangNhap.html">
                                         <i class="icon-logout"></i> Log Out
                                     </a>
                                 </li>
@@ -261,6 +261,30 @@
                                 </a>
 
                             </li>
+                            <li class="nav-item active">
+                                <a href="/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.html" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Đặt Phòng Thành Công</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active">
+                                <a href="/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.html" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Đặt Phòng Thất Bại</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active">
+                                <a href="/Views/NhanVienViews/Doan/Doan.html" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Đoàn</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
 
 
 
@@ -280,7 +304,7 @@
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="https://localhost:44339/Views/QuanLyViews/Phong/DSPhong.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                                       href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
                                 <li>
                                     <a class="parent-item" href="#">Phòng</a>&nbsp;<i class="fa fa-angle-right"></i>
@@ -314,7 +338,6 @@
                                                     <th class="center"> Loại Phòng </th>
                                                     <th class="center"> Giá </th>
                                                     <th class="center"> Tình Trạng </th>
-                                                    <th class="center"> Mô tả </th>
                                                     <th class="center"> Chức Năng </th>
                                                 </tr>
                                             </thead>
