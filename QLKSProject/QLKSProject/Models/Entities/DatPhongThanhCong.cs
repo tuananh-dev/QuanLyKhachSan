@@ -32,6 +32,9 @@ namespace QLKSProject.Models.Entities
         [ForeignKey("IDPhong")]
         public virtual Phong Phong_IDPhong { get; set; }
 
+        [Required]
+        public int TrangThaiDatPhong { get; set; }
+
 
     }
 }

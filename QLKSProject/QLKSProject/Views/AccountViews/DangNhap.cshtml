@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="~/Content/QuanLy/css/pages/extra_pages.css">
     <!-- favicon -->
     <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+
 </head>
 
 <body>
@@ -38,11 +40,11 @@
                         Đăng Nhập
                     </span>
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
-                        <input class="input100" type="text" name="username" placeholder="Username">
+                        <input class="input100" type="text" name="username" id="name" placeholder="Username">
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100" type="password" name="pass" placeholder="Password">
+                        <input class="input100" type="password" name="pass" id="pass" placeholder="Password">
                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
                     </div>
                     <div class="contact100-form-checkbox">
@@ -67,16 +69,24 @@
         <script type="text/javascript">
             $(document).ready(function () {
 
-                $("login").click(function() {
+                $("#login").click(function() {
                     
                     $.ajax({
-                        url: 'https://localhost:44339/api/Home/KiemTraTaiKhoan',
+                        url: '/api/Home/TestDuLieuTruyenXuong',
                         type: "POST",
                         dataType: 'json', 
-                        data: $("#dangnhap").serialize(), 
-                        success: function () {
-                           
-                            alert(1);
+                        data: {
+                            UserName: $('#name').val(),
+                            Pass: $('#pass').val(),
+                            
+                        },
+
+
+
+
+                        success: function (res) {
+
+                            alert(res);
                         }
                        
                     })

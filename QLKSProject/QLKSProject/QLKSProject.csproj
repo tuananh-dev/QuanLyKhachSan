@@ -250,6 +250,7 @@
     <Content Include="Content\Home\js\owl.carousel.min.js" />
     <Content Include="Content\Home\js\popper.min.js" />
     <Content Include="Content\Home\js\slick.min.js" />
+    <Content Include="Content\QuanLy\Bootstrap.js" />
     <Content Include="Content\QuanLy\css\material_style.css" />
     <Content Include="Content\QuanLy\css\pages\animate_page.css" />
     <Content Include="Content\QuanLy\css\pages\extra_pages.css" />
@@ -481,13 +482,14 @@
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="Views\HomeViews\data.php" />
     <Content Include="Views\QuanLyViews\DichVu\ChinhSuaDichVu.html" />
     <Content Include="Views\QuanLyViews\DichVu\DSDichVu.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Views\AccountViews\DangNhap.cshtml" />
     <Content Include="Views\HomeViews\GioiThieu.cshtml" />
-    <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
+    <None Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
     <Content Include="Views\HomeViews\TrangChu.cshtml" />
     <Content Include="Views\QuanLyViews\DichVu\ThemMoiDichVu.html" />
     <Content Include="Views\QuanLyViews\Phong\ChinhSuaPhong.html" />
@@ -518,6 +520,10 @@
     <Compile Include="Controllers\QuanLy\QuanLyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007110347137_createDB.cs" />
+    <Compile Include="Migrations\202007110347137_createDB.designer.cs">
+      <DependentUpon>202007110347137_createDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
     <Compile Include="Models\DTO\DatPhongThatBai.cs" />
@@ -678,6 +684,7 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\HomeViews\Index.cshtml" />
+    <Content Include="Views\HomeViews\test.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -688,6 +695,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007110347137_createDB.resx">
+      <DependentUpon>202007110347137_createDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

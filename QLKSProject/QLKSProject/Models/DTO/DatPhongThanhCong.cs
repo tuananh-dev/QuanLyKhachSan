@@ -10,5 +10,6 @@ namespace QLKSProject.Models.DTO
         public int IDPhong { get; set; }
         public bool IsDelete { get; set; }
         public DateTime NgayTraPhongThucTe { get; set; }
+        public int TrangThaiDatPhong { get; set; }
     }
 }

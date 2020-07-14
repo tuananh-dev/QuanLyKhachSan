@@ -30,6 +30,42 @@
     <link rel="stylesheet" href="../../../Content/QuanLy/plugins/flatpicker/flatpickr.min.css">
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
+
+    <script src="../../../Content/QuanLy/Jquery.js"></script>
+
+    <script src="../../../Content/QuanLy/Bootstrap.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#btn').click(function () {
+
+                $.ajax({
+                    url: '/api/Quanly/themdichvu',
+                    method: 'POST',
+                    data: {
+                        TenDichVu: $('#tenDV').val(),
+                        Gia: $('#gia').val(),
+                        IsDelete: false,
+                    }, success: function () {
+                        $('#successModal').modal('show');
+
+
+                    }
+
+                })
+
+            });
+            $('#back').click(function () {
+                window.location.href = 'DSDichVu.html';
+            });
+
+        });
+
+
+
+
+    </script>
 </head>
 <!-- END HEAD -->
 
@@ -332,7 +368,7 @@
                                 </div>
                             </li>
 
-                            
+
 
                             <li class="nav-item active">
                                 <a href="#" class="nav-link nav-toggle">
@@ -401,9 +437,9 @@
                                 </ul>
                             </li>
 
-                           
 
-                            
+
+
 
 
                         </ul>
@@ -454,47 +490,31 @@
                                         </li>
                                     </ul>
                                 </div>
+
+
+
                                 <div class="card-body row">
                                     <div class="col-lg-6 p-t-20">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <input class="mdl-textfield__input" type="text" id="txtFirstName">
+                                            <input class="mdl-textfield__input" type="text" id="tenDV">
                                             <label class="mdl-textfield__label">Tên Dịch Vụ</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 p-t-20">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                             <input class="mdl-textfield__input" type="text"
-                                                   pattern="-?[0-9]*(\.[0-9]+)?" id="text5">
-                                            <label class="mdl-textfield__label" for="text5">Giá</label>
+                                                   pattern="-?[0-9]*(\.[0-9]+)?" id="gia">
+                                            <label class="mdl-textfield__label" for="gia">Giá</label>
                                             <span class="mdl-textfield__error">Number required!</span>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6 p-t-20">
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                            <input class="mdl-textfield__input" type="text" id="sample2" value=""
-                                                   readonly tabIndex="-1">
-                                            <label for="sample2" class="pull-right margin-0">
-                                                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                            </label>
-                                            <label for="sample2" class="mdl-textfield__label">Trạng Thái</label>
-                                            <ul data-mdl-for="sample2"
-                                                class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                                <li class="mdl-menu__item" data-val="DE">Đã Xóa</li>
-                                                <li class="mdl-menu__item" data-val="BY">Chưa Xóa</li>
-                                            </ul>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-lg-12 p-t-20">
-                                        <div class="mdl-textfield mdl-js-textfield txt-full-width">
-                                            <textarea class="mdl-textfield__input" rows="4" id="education"></textarea>
-                                            <label class="mdl-textfield__label" for="text7">Comment</label>
-                                        </div>
-                                    </div>
+
+
                                     <div class="col-lg-12 p-t-20 text-center">
                                         <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" id="btn">
                                             Submit
                                         </button>
                                         <button type="button"
@@ -504,10 +524,33 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="modal fade" tabindex="-1" id="successModal" data-keyboard="false" data-backdrop="static">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content" style="width:400px">
+                                        <div class="modal-header">
+                                            <h4>Thành Công</h4>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                &times;
+                                            </button>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <h3>Thêm Dịch Vụ Thành Công</h3>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-success" id="back">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- end page content -->
             <!-- start chat sidebar -->
             <div class="chat-sidebar-container" data-close-on-body-click="false">

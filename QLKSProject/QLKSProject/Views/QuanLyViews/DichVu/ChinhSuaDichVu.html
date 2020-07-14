@@ -30,6 +30,44 @@
     <link rel="stylesheet" href="../../../Content/QuanLy/plugins/flatpicker/flatpickr.min.css">
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
+    <script src="../../../Content/QuanLy/Jquery.js"></script>
+
+    <script src="../../../Content/QuanLy/Bootstrap.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#btn').click(function () {
+
+                $.ajax({
+                    url: '/api/Quanly/themphong',
+                    method: 'POST',
+                    data: {
+                        MaPhong: $('#maphong').val(),
+                        LoaiPhong: $('#loaiphong').val(),
+                        Gia: $('#gia').val(),
+                        SoPhong: $('#sophong').val(),
+                        TrangThai: $('#tinhtrang').val(),
+                        IsDelete: false,
+                    }, success: function () {
+                        $('#successModal').modal('show');
+
+
+                    }
+
+                })
+
+            });
+            $('#back').click(function () {
+                window.location.href = 'DSPhong.html';
+
+            });
+
+        });
+
+
+
+
+    </script>
 </head>
 <!-- END HEAD -->
 
