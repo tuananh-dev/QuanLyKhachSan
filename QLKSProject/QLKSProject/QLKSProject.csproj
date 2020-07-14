@@ -489,16 +489,14 @@
     <Content Include="Views\HomeViews\GioiThieu.cshtml" />
     <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
     <Content Include="Views\HomeViews\TrangChu.cshtml" />
-    <Content Include="Views\QuanLyViews\DichVu\ThemMoiDichVu.html" />
     <Content Include="Views\QuanLyViews\Phong\ChinhSuaPhong.html" />
     <Content Include="Views\QuanLyViews\Phong\DSPhong.html" />
-    <Content Include="Views\QuanLyViews\Phong\ThemMoiPhong.html" />
     <Content Include="Views\QuanLyViews\TaiKhoan\DangNhap.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\DKTaiKhoan.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\KhoaManHinh.cshtml" />
+    <Content Include="Views\QuanLyViews\TienIch\DSTienIch.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\ChinhSuaTKNhanVien.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\DSTKNhanVien.html" />
-    <Content Include="Views\QuanLyViews\TKNhanVien\ThemMoiTKNhanVien.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\XemChiTietTKNhanVien.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
@@ -519,9 +517,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007110347137_createDB.cs" />
-    <Compile Include="Migrations\202007110347137_createDB.designer.cs">
-      <DependentUpon>202007110347137_createDB.cs</DependentUpon>
+    <Compile Include="Migrations\202007130152508_createdb.cs" />
+    <Compile Include="Migrations\202007130152508_createdb.designer.cs">
+      <DependentUpon>202007130152508_createdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
@@ -694,8 +692,8 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007110347137_createDB.resx">
-      <DependentUpon>202007110347137_createDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007130152508_createdb.resx">
+      <DependentUpon>202007130152508_createdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

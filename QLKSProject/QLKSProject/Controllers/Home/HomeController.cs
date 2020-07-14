@@ -23,15 +23,15 @@ namespace QLKSProject.Controllers.Home
             }
         }
         [HttpPost]
-        public IHttpActionResult KiemTraTaiKhoan(TaiKhoan taiKhoanS);
-        {
-            IHttpActionResult respone = Ok(taiKhoanS);
+        public IHttpActionResult KiemTraTaiKhoan (TaiKhoan taiKhoan)
+		{
+            IHttpActionResult respone = Ok(taiKhoan);
             using (HomeBusiness homeBusiness = new HomeBusiness())
-            {
-                respone = Ok(homeBusiness.KiemTraTaiKhoan(taiKhoanS));
-                return respone; 
-            }
-        }
+			{
+                respone = Ok(homeBusiness.KiemTraTaiKhoan(taiKhoan));
+                return respone;
+			}
+		}
 
 
         [HttpPost]
@@ -45,6 +45,7 @@ namespace QLKSProject.Controllers.Home
                 return respone;
              }
         }
+
 
     }
 }

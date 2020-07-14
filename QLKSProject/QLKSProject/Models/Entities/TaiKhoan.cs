@@ -6,7 +6,9 @@ namespace QLKSProject.Models.Entities
 {
     public class TaiKhoan
     {
-        [Key]
+		internal object username;
+
+		[Key]
         public int ID { get; set; }
 
         [Required]
