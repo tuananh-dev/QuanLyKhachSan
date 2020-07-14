@@ -38,12 +38,22 @@ namespace QLKSProject.Controllers.Home
                 {
                     IHttpActionResult respon = Ok();
 
+<<<<<<< HEAD
                     using (HomeBusiness homeBusiness = new HomeBusiness())
                     {
                         respon = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
                     }
                     return respon;
                 }*/
+=======
+            using(HomeBusiness homeBusiness = new HomeBusiness())
+            {
+                respon = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
+            }
+            return respon;
+
+        }
+>>>>>>> da25927b547fbbb3235c2bd98ccac248bad4056b
 
     }
 }

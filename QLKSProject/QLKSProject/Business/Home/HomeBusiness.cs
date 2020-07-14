@@ -5,6 +5,7 @@ namespace QLKSProject.Business.Home
 {
 	public class HomeBusiness : BaseBusiness
 	{
+<<<<<<< HEAD
 
 		public bool LayFileDanhSachKhachHang(List<FileKhachHang> lstfileKhachHang)
 		{
@@ -49,6 +50,19 @@ namespace QLKSProject.Business.Home
 
 			}
 
+=======
+		public string TestDuLieuTruyenXuong(dynamic dynamic)
+		{
+            //using (System.IO.StreamWriter file =
+            //new System.IO.StreamWriter(@"D:/WriteLines2.txt", false))
+            //{
+               
+            //    file.WriteLine(s);
+            //    file.Close();
+            //}
+            string s = dynamic.ToString();
+            return s;
+>>>>>>> da25927b547fbbb3235c2bd98ccac248bad4056b
 		}
 
 	}
