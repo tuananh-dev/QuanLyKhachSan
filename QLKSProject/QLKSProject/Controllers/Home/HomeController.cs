@@ -13,28 +13,43 @@ namespace QLKSProject.Controllers.Home
     public class HomeController : ApiController
     {
         [HttpPost]
-        public IHttpActionResult LayFileDanhSachKhachHang(List<FileKhachHang> lstfileKhachHang)
+        public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
         {
-            IHttpActionResult respone = Ok(lstfileKhachHang);
+            IHttpActionResult respone = Ok();
+            if(dynamic == null)
+            {
+                return respone = BadRequest();
+            }
+            return respone;
+        }
+        //[HttpPost]
+        //public IHttpActionResult KiemTraTaiKhoan(username, password)
+        //{
+        //    IHttpActionResult respone = Ok(username, password);
+        //    using (HomeBusiness homeBusiness = new HomeBusiness())
+        //    {
+        //        respone = Ok(homeBusiness.KiemTraTaiKhoan(username, password));
+        //        return respone;
+        //    }
+
+
+
+
+
+        //}
+
+
+        public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
+        {
+            IHttpActionResult respon = Ok();
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
-                respone = Ok(homeBusiness.LayFileDanhSachKhachHang(lstfileKhachHang));
-                return respone;
+                respon = Ok(homeBusiness.LayFileDanhSachKhachHang(dynamic));
+                return respon;
             }
         }
         /*        [HttpPost]
-                public IHttpActionResult KiemTraTaiKhoan(username, password)
-                {
-                    IHttpActionResult respone = Ok(username, password);
-                    using (HomeBusiness homeBusiness = new HomeBusiness())
-                    {
-                        respone = Ok(homeBusiness.KiemTraTaiKhoan(username, password));
-                        return respone;
-                    }
-
-
-        [HttpPost]
-                public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
+                public IHttpActionResult LDuLieuTruyenXuong(dynamic dynamic)
                 {
                     IHttpActionResult respon = Ok();
 
@@ -44,6 +59,5 @@ namespace QLKSProject.Controllers.Home
                     }
                     return respon;
                 }*/
-
     }
 }

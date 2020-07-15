@@ -110,13 +110,16 @@ namespace QLKSProject.Business.NhanVien
             var lstNhom = lstKhachHang.GroupBy(s => s.Nhom).Select(g => g.Key).ToList();                             
             return lstNhom;
         }
-/*        private bool KiemTraTreEmCoTrongDanhSach (List<KhachHang> lstKhachHang)
+        private bool KiemTraTreEmCoTrongDanhSach (List<KhachHang> lstKhachHang)
         {
             foreach (var item in lstKhachHang)
             {
-
+                if (item.LoaiKhachHang.Equals("tre"))
+                    return true;
             }
-        }*/
+            return false;
+        }
+
         #endregion
 
     }
