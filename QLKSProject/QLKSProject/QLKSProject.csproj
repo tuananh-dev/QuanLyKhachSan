@@ -488,14 +488,21 @@
     <Content Include="Views\NhanVienViews\Phong_NhanVien\DanhSachPhong.html" />
 =======
     <Content Include="HtmlPage1.html" />
+<<<<<<< HEAD
 >>>>>>> 3c7bf7249dc3742b570ddee51a4642f8b75ad4bc
+=======
+    <Content Include="Views\HomeViews\data.php" />
+    <Content Include="Views\HomeViews\GioiThieu.cshtml" />
+    <Content Include="Views\HomeViews\TrangChu.cshtml" />
+    <Content Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.html" />
+    <Content Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.html" />
+    <Content Include="Views\NhanVienViews\Doan\Doan.html" />
+    <Content Include="Views\NhanVienViews\Phong_NhanVien\DanhSachPhong.html" />
+>>>>>>> 0d38478c7b15808491b8f0dd76e4d30439ad443f
     <Content Include="Views\QuanLyViews\DichVu\ChinhSuaDichVu.html" />
     <Content Include="Views\QuanLyViews\DichVu\DSDichVu.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Views\HomeViews\GioiThieu.cshtml" />
-    <None Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
-    <Content Include="Views\HomeViews\TrangChu.cshtml" />
     <Content Include="Views\QuanLyViews\Phong\ChinhSuaPhong.html" />
     <Content Include="Views\QuanLyViews\Phong\DSPhong.html" />
     <Content Include="Views\QuanLyViews\TaiKhoan\DangNhap.cshtml" />
@@ -507,6 +514,8 @@
     <Content Include="Views\QuanLyViews\TKNhanVien\XemChiTietTKNhanVien.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\TaiKhoanViews\DangNhap.html" />
+    <Content Include="Views\TaiKhoanViews\KhoaManHinh.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -536,6 +545,7 @@
     <Compile Include="Models\DTO\DatPhongThatBai.cs" />
     <Compile Include="Models\DTO\DichVu.cs" />
     <Compile Include="Models\DTO\Doan.cs" />
+    <Compile Include="Models\DTO\File.cs" />
     <Compile Include="Models\DTO\FileKhachHang.cs" />
     <Compile Include="Models\DTO\KhachHang.cs" />
     <Compile Include="Models\DTO\LichSuDichVu.cs" />
@@ -690,6 +700,9 @@
     <Content Include="Content\Home\scss\_site-navbar.scss" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
+    <Content Include="Views\HomeViews\Index.cshtml" />
+    <Content Include="Views\HomeViews\test.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

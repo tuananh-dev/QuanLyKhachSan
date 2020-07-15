@@ -13,14 +13,14 @@ namespace QLKSProject.Controllers.Home
     public class HomeController : ApiController
     {
         [HttpPost]
-        public IHttpActionResult LayFileDanhSachKhachHang(List<FileKhachHang> lstfileKhachHang)
+        public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
         {
-            IHttpActionResult respone = Ok(lstfileKhachHang);
-            using (HomeBusiness homeBusiness = new HomeBusiness())
+            IHttpActionResult respone = Ok();
+            if(dynamic == null)
             {
-                respone = Ok(homeBusiness.LayFileDanhSachKhachHang(lstfileKhachHang));
-                return respone;
+                return respone = BadRequest();
             }
+<<<<<<< HEAD
         }
         //[HttpPost]
         //public IHttpActionResult KiemTraTaiKhoan(username, password)
@@ -42,12 +42,26 @@ namespace QLKSProject.Controllers.Home
         public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
+=======
+>>>>>>> 0d38478c7b15808491b8f0dd76e4d30439ad443f
 
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
-                respon = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
+
+                respone = Ok(homeBusiness.LayFileDanhSachKhachHang(dynamic));
+                return respone;
             }
-            return respon;
         }
+        /*        [HttpPost]
+                public IHttpActionResult LDuLieuTruyenXuong(dynamic dynamic)
+                {
+                    IHttpActionResult respon = Ok();
+
+                    using (HomeBusiness homeBusiness = new HomeBusiness())
+                    {
+                        respon = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
+                    }
+                    return respon;
+                }*/
     }
 }
