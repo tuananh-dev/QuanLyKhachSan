@@ -12,7 +12,7 @@ namespace QLKSProject.Business.QuanLy
         //TAIKHOAN
         public List<TaiKhoan> LayDanhSachTaiKhoan()
         {
-            var lstTaiKhoan = models.TaiKhoans.Where(e => e.IsDelete == false).Select(e => new TaiKhoan
+            var lstTaiKhoan = models.TaiKhoans.Where(e => e.IsDelete == false && e.LoaiTaiKhoan == "NV").Select(e => new TaiKhoan
             {
                 ID = e.ID,
                 TenTaiKhoan = e.TenTaiKhoan,
