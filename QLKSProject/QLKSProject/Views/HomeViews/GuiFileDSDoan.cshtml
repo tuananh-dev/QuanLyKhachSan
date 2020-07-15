@@ -18,13 +18,14 @@
            
             $("#gui").click(function () {
                 var person = {
-                    TenDoan: $ ('#tendoan').val(),
+                    TenDoan: $('#tendoan').val(),
                     HovaTenTruongDoan: $('#Tentruongdoan').val(),
                     Dattungay: $('#datphongtungay').val(),
                     DenNgay: $('#denngay').val(),
                     Files: $('#xlx_json').val(),
 
                 }
+
                 $.ajax({
                     url: '/api/Home/LayFileDanhSachKhachHang',
                     method: 'POST',

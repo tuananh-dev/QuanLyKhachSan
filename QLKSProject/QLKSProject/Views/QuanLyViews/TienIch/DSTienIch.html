@@ -31,17 +31,17 @@
 
         $(document).ready(function () {
 
-            var dichvu = $('#dsdv');
+            var mota = $('#dsmota');
             $.ajax({
                 type: 'GET',
                 url: '/api/Quanly/LayDanhSachTienIch',
                 dataType: 'json',
                 success: function (data) {
-                    dichvu.empty();
+                    mota.empty();
 
                     $.each(data, function (index, val) {
 
-                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                        mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
                     });
 
                 }
@@ -49,7 +49,77 @@
             $("#addRow").click(function () {
                 $("#addModal").modal('show');
             })
-            $('#btn').click(function () {
+            var dataId;
+            $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
+                $("#editModal").modal('show');
+                dataId = $(this).attr("data-id");
+
+            })
+            $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
+                $("#deleteModal").modal('show');
+                dataId = parseInt($(this).attr("data-id"), 10);
+
+            })
+
+            $('#btn-del').click(function () {
+                $.ajax({
+                    url: '/api/Quanly/XoaTienIch',
+                    method: 'DELETE',
+                    data: {
+                        ID: dataId
+                    }, success: function () {
+                        $('#deleteModal').modal('hide');
+                        $.ajax({
+                            type: 'GET',
+                            url: '/api/Quanly/LayDanhSachTienIch',
+                            dataType: 'json',
+                            success: function (data) {
+                                mota.empty();
+
+                                $.each(data, function (index, val) {
+
+                                    mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+                                });
+
+                            }
+                        });
+
+                    }
+
+                })
+            });
+            $('#btn-edit').click(function () {
+                $.ajax({
+                    url: '/api/Quanly/CapNhatTienIch',
+                    method: 'PUT',
+                    data: {
+                        ID: dataId,
+                        TenTienIch: $('#tenTI-edit').val(),
+                        Mota: $('#mota-edit').val(),
+                        IsDelete: false,
+                    }, success: function () {
+                        $('#editModal').modal('hide');
+                        $.ajax({
+                            type: 'GET',
+                            url: '/api/Quanly/LayDanhSachTienIch',
+                            dataType: 'json',
+                            success: function (data) {
+                                mota.empty();
+
+                                $.each(data, function (index, val) {
+
+                                    mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+                                });
+
+                            }
+                        });
+
+                    }
+
+                })
+            });
+
+            $('#btn-add').click(function () {
                 $.ajax({
                     url: '/api/Quanly/ThemTienIch',
                     method: 'POST',
@@ -64,11 +134,11 @@
                             url: '/api/Quanly/LayDanhSachTienIch',
                             dataType: 'json',
                             success: function (data) {
-                                dichvu.empty();
+                                mota.empty();
 
                                 $.each(data, function (index, val) {
 
-                                    dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                                    mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '"><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
                                 });
 
                             }
@@ -241,7 +311,6 @@
                                 </a>
 
                             </li>
-
                             <li class="nav-item active">
                                 <a href="/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
@@ -318,7 +387,7 @@
                                                     <th class="center"> Chức Năng </th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="dsdv">
+                                            <tbody id="dsmota">
                                             </tbody>
                                         </table>
                                     </div>
@@ -356,8 +425,82 @@
                                     </div>
                                     <div class="col-lg-12 p-t-20 text-center">
                                         <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn">
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-add">
                                             Thêm
+                                        </button>
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                            Hủy
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Modal -->
+                <!-- end chat sidebar -->
+            </div>
+            <div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="width:400px">
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Chỉnh Sửa Tiện Ích</h4>
+                                    <div class="card-box">
+
+                                        <div class="card-body row">
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <input class="mdl-textfield__input" type="text" id="tenTI-edit" required>
+                                                    <label class="mdl-textfield__label">Tên Tiện Ích</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <input class="mdl-textfield__input" type="text" id="mota-edit" required>
+                                                    <label class="mdl-textfield__label" for="mota">Mô Tả</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 p-t-20 text-center">
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-edit">
+                                            Sửa
+                                        </button>
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                            Hủy
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Modal -->
+                <!-- end chat sidebar -->
+            </div>
+            <div class="modal fade" tabindex="-1" id="deleteModal" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="width:400px">
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Xác Nhận Xóa Tiện Ích</h4>
+
+                                    <div class="col-lg-12 p-t-20 text-center">
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-del">
+                                            Xóa
                                         </button>
                                         <button type="button"
                                                 class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">

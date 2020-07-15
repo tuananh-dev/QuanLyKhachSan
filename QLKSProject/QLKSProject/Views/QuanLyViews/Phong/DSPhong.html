@@ -54,12 +54,94 @@
             $("#addRow").click(function () {
                 $("#addModal").modal('show');
             })
-            
-            $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs.btn-edit', function () {
-                debugger;
+
+            var dataId;
+            $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
+                $("#editModal").modal('show');
+                dataId = $(this).attr("data-id");
+
+            })
+            $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
+                $("#deleteModal").modal('show');
+                dataId = parseInt($(this).attr("data-id"), 10);
+
+            })
+
+            $('#btn-del').click(function () {
+                $.ajax({
+                    url: '/api/Quanly/XoaTienIch',
+                    method: 'DELETE',
+                    data: {
+                        ID: dataId
+                    }, success: function () {
+                        $('#deleteModal').modal('hide');
+                        $.ajax({
+                            type: 'GET',
+                            url: '/api/Quanly/LayDanhSachTienIch',
+                            dataType: 'json',
+                            success: function (data) {
+                                mota.empty();
+
+                                $.each(data, function (index, val) {
+
+                                    mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+                                });
+
+                            }
+                        });
+
+                    }
+
+                })
+            });
+            $('#btn-edit').click(function () {
+                var loaiPhong = "0";
+                if ($('#loaiphong').val() == "Phòng Loại 1") {
+                    loaiPhong = "1";
+                }
+                if ($('#loaiphong').val() == "Phòng Loại 2") {
+                    loaiPhong = "2";
+                }
+                if ($('#loaiphong').val() == "Phòng Loại 3") {
+                    loaiPhong = "3";
+                }
+                if ($('#loaiphong').val() == "Phòng Loại 4") {
+                    loaiPhong = "4";
+                }
+                $.ajax({
+                    url: '/api/Quanly/CapNhatPhong',
+                    method: 'PUT',
+                    data: {
+                        ID: dataId,
+                        MaPhong: loaiPhong + "0" + $('#solau').val() + $('#sophong').val(),
+                        LoaiPhong: loaiPhong,
+                        Gia: $('#gia').val(),
+                        SoPhong: $('#solau').val() + $('#sophong').val()
+                    }, success: function () {
+                        $('#editModal').modal('hide');
+                        $.ajax({
+                            type: 'GET',
+                            url: '/api/Quanly/LayDanhSachPhong',
+                            dataType: 'json',
+                            success: function (data) {
+                                mota.empty();
+
+                                $.each(data, function (index, val) {
+
+                                    mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+                                });
+
+                            }
+                        });
+
+                    }
+
+                })
             });
 
-            $('#btn').click(function () {
+
+
+            $('#btn-add').click(function () {
                 var loaiPhong = "0";
                 if ($('#loaiphong').val() == "Phòng Loại 1") {
                     loaiPhong = "1";
@@ -115,6 +197,7 @@
                     alert("Click");
                 })
             });
+
         });
 
     </script>
@@ -411,17 +494,18 @@
 
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="loaiphong" value="" readonly
+                                                    <input class="mdl-textfield__input" type="text" id="loaiphong" value="" readonly data-id=""
                                                            tabIndex="-1">
                                                     <label for="loaiphong" class="pull-right margin-0">
                                                         <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
                                                     </label>
                                                     <label for="loaiphong" class="mdl-textfield__label">Loại Phòng</label>
                                                     <ul data-mdl-for="loaiphong" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                                        <li class="mdl-menu__item">Phòng Loại 1</li>
-                                                        <li class="mdl-menu__item">Phòng Loại 2</li>
-                                                        <li class="mdl-menu__item">Phòng Loại 3</li>
-                                                        <li class="mdl-menu__item">Phòng Loại 4</li>
+                                                        <li class="mdl-menu__item" data-id="1">Phòng Loại 1</li>
+                                                        <li class="mdl-menu__item" data-id="2">Phòng Loại 2</li>
+                                                        <li class="mdl-menu__item" data-id="3">Phòng Loại 3</li>
+                                                        <li class="mdl-menu__item" data-id="4">Phòng Loại 4</li>
+
 
                                                     </ul>
                                                 </div>
@@ -433,14 +517,14 @@
                                                     <input class="mdl-textfield__input" type="text"
                                                            pattern="-?[0-9]*(\.[0-9]+)?" id="gia">
                                                     <label class="mdl-textfield__label" for="gia">Giá</label>
-                                                    <span class="mdl-textfield__error">Number required!</span>
+                                                    <span class="mdl-textfield__error">Phải Là Số</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 p-t-20 text-center">
                                         <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn">
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-add">
                                             Thêm
                                         </button>
                                         <button type="button"
