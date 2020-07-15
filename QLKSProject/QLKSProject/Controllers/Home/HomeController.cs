@@ -20,7 +20,7 @@ namespace QLKSProject.Controllers.Home
             {
                 return respone = BadRequest();
             }
-<<<<<<< HEAD
+            return respone;
         }
         //[HttpPost]
         //public IHttpActionResult KiemTraTaiKhoan(username, password)
@@ -42,14 +42,10 @@ namespace QLKSProject.Controllers.Home
         public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-=======
->>>>>>> 0d38478c7b15808491b8f0dd76e4d30439ad443f
-
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
-
-                respone = Ok(homeBusiness.LayFileDanhSachKhachHang(dynamic));
-                return respone;
+                respon = Ok(homeBusiness.LayFileDanhSachKhachHang(dynamic));
+                return respon;
             }
         }
         /*        [HttpPost]
