@@ -13,25 +13,31 @@ namespace QLKSProject.Controllers.Home
     public class HomeController : ApiController
     {
         [HttpPost]
-        public IHttpActionResult LayFileDanhSachKhachHang(List<FileKhachHang> lstfileKhachHang)
+        public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
         {
-            IHttpActionResult respone = Ok(lstfileKhachHang);
+            IHttpActionResult respone = Ok();
+            if(dynamic == null)
+            {
+                return respone = BadRequest();
+            }
+
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
-                respone = Ok(homeBusiness.LayFileDanhSachKhachHang(lstfileKhachHang));
+
+                respone = Ok(homeBusiness.LayFileDanhSachKhachHang(dynamic));
                 return respone;
             }
         }
+        /*        [HttpPost]
+                public IHttpActionResult LDuLieuTruyenXuong(dynamic dynamic)
+                {
+                    IHttpActionResult respon = Ok();
 
-        public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
-        {
-            IHttpActionResult respon = Ok();
-
-            using (HomeBusiness homeBusiness = new HomeBusiness())
-            {
-                respon = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
-            }
-            return respon;
-        }
+                    using (HomeBusiness homeBusiness = new HomeBusiness())
+                    {
+                        respon = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
+                    }
+                    return respon;
+                }*/
     }
 }
