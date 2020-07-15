@@ -46,7 +46,7 @@
                         if (val.TrangThai) {
                             tt = "Đang sử dụng"
                         }
-                        phong.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + val.Gia + '</td><td class="center">' + tt + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs"><i class="fa fa-pencil"></i></><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                        phong.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + val.Gia + '</td><td class="center">' + tt + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs btn-edit" data-id="' + val.ID + '"><i class="fa fa-pencil"></i></><a class="btn btn-tbl-delete btn-xs btn-delete"><i class="fa fa-trash-o "></i></a></td></tr>');
                     });
 
                 }
@@ -54,15 +54,34 @@
             $("#addRow").click(function () {
                 $("#addModal").modal('show');
             })
+            
+            $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs.btn-edit', function () {
+                debugger;
+            });
+
             $('#btn').click(function () {
+                var loaiPhong = "0";
+                if ($('#loaiphong').val() == "Phòng Loại 1") {
+                    loaiPhong = "1";
+                }
+                if ($('#loaiphong').val() == "Phòng Loại 2") {
+                    loaiPhong = "2";
+                }
+                if ($('#loaiphong').val() == "Phòng Loại 3") {
+                    loaiPhong = "3";
+                }
+                if ($('#loaiphong').val() == "Phòng Loại 4") {
+                    loaiPhong = "4";
+                }
+
                 $.ajax({
                     url: '/api/Quanly/ThemPhong',
                     method: 'POST',
                     data: {
-                        MaPhong: $('#maphong').val(),
-                        LoaiPhong: $('#loaiphong').val(),
+                        MaPhong: loaiPhong + "0" + $('#solau').val() + $('#sophong').val(),
+                        LoaiPhong: loaiPhong,
                         Gia: $('#gia').val(),
-                        SoPhong: $('#sophong').val(),
+                        SoPhong: $('#solau').val() + $('#sophong').val(),
                         TrangThai: false,
                         IsDelete: false,
                     }, success: function () {
@@ -91,6 +110,9 @@
 
                     }
 
+                })
+                $('.btn-edit').click(function () {
+                    alert("Click");
                 })
             });
         });
@@ -365,25 +387,43 @@
                                         <div class="card-body row">
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="maphong">
-                                                    <label class="mdl-textfield__label">Mã Phòng</label>
+                                                    <input class="mdl-textfield__input" type="text"
+                                                           pattern="^[0-9]{1,2}[:.,-]?$" id="solau">
+                                                    <label class="mdl-textfield__label">Số Lầu</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="text"
-                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="sophong">
+                                                           pattern="^[0-9]{1,2}[:.,-]?$" id="sophong">
                                                     <label class="mdl-textfield__label" for="sophong">Số Phòng</label>
-                                                    <span class="mdl-textfield__error">Number required!</span>
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-6 p-t-20">
+                                            <!--<div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="text"
                                                            pattern="-?[0-9]*(\.[0-9]+)?" id="loaiphong">
                                                     <label class="mdl-textfield__label" for="loaiphong">Loại Phòng</label>
                                                     <span class="mdl-textfield__error">Number required!</span>
+                                                </div>
+                                            </div>-->
+
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                                    <input class="mdl-textfield__input" type="text" id="loaiphong" value="" readonly
+                                                           tabIndex="-1">
+                                                    <label for="loaiphong" class="pull-right margin-0">
+                                                        <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                                    </label>
+                                                    <label for="loaiphong" class="mdl-textfield__label">Loại Phòng</label>
+                                                    <ul data-mdl-for="loaiphong" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                                        <li class="mdl-menu__item">Phòng Loại 1</li>
+                                                        <li class="mdl-menu__item">Phòng Loại 2</li>
+                                                        <li class="mdl-menu__item">Phòng Loại 3</li>
+                                                        <li class="mdl-menu__item">Phòng Loại 4</li>
+
+                                                    </ul>
                                                 </div>
                                             </div>
 
@@ -433,20 +473,22 @@
         </div>
         <!-- start js include path -->
         <script src="../../../Content/QuanLy/plugins/jquery/jquery.min.js"></script>
-        <script src="../../../Content/QuanLy/plugins/popper/popper.min.js"></script>
+        <!--<script src="../../../Content/QuanLy/plugins/popper/popper.min.js"></script>-->
         <script src="../../../Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
         <script src="../../../Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
         <!-- bootstrap -->
         <script src="../../../Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Material -->
+        <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>
+        <script src="../../../Content/QuanLy/js/pages/material_select/getmdl-select.js"></script>
         <!-- Common js-->
         <script src="../../../Content/QuanLy/js/app.js"></script>
         <script src="../../../Content/QuanLy/js/layout.js"></script>
         <script src="../../../Content/QuanLy/js/theme-color.js"></script>
-        <!-- data tables -->
-        <!--<script src="../../../Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
-        <!--<script src="../../../Content/QuanLy/js/pages/table/table_data.js"></script>-->
+        <!--<script src="../../..//plugins/dropzone/dropzone.js"></script>-->
+        <!--<script src="../../..//plugins/dropzone/dropzone-call.js"></script>-->
         <!-- Material -->
-        <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>
+        <!--<script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>-->
         <!-- animation -->
         <script src="../../../Content/QuanLy/js/pages/ui/animations.js"></script>
         <!-- end js include path -->

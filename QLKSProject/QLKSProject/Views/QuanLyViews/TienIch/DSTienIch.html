@@ -55,7 +55,7 @@
                     method: 'POST',
                     data: {
                         TenTienIch: $('#tenTI').val(),
-                        HInhAnh: $('#hinhanh').val(),
+                        Mota: $('#mota').val(),
                         IsDelete: false,
                     }, success: function () {
                         $('#addModal').modal('hide');
@@ -68,7 +68,7 @@
 
                                 $.each(data, function (index, val) {
 
-                                    dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.HinhAnh + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+                                    dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
                                 });
 
                             }
@@ -314,7 +314,7 @@
                                             <thead>
                                                 <tr>
                                                     <th class="center"> Tên tiện ích </th>
-                                                    <th class="center"> Hình ảnh </th>
+                                                    <th class="center"> Mô Tả </th>
                                                     <th class="center"> Chức Năng </th>
                                                 </tr>
                                             </thead>
@@ -348,8 +348,8 @@
                                             </div>
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="hinhanh" required>
-                                                    <label class="mdl-textfield__label" for="hinhanh">Mô Tả</label>
+                                                    <input class="mdl-textfield__input" type="text" id="mota" required>
+                                                    <label class="mdl-textfield__label" for="mota">Mô Tả</label>
                                                 </div>
                                             </div>
                                         </div>

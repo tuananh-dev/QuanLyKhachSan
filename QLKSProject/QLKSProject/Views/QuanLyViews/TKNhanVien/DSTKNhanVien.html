@@ -47,6 +47,7 @@
                 $("#addModal").modal('show');
             })
             $('#btn').click(function () {
+                 
                 $.ajax({
                     url: '/api/Quanly/ThemTaiKhoan',
                     method: 'POST',
@@ -386,10 +387,25 @@
                                                     <label class="mdl-textfield__label">Mail</label>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 p-t-20">
+                                            <!--<div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="text" id="loaitk" required>
                                                     <label class="mdl-textfield__label">Cấp Bậc</label>
+                                                </div>
+                                            </div>-->
+
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                                    <input class="mdl-textfield__input" type="text" id="loaitk" value="" readonly
+                                                           tabIndex="-1">
+                                                    <label for="loaitk" class="pull-right margin-0">
+                                                        <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                                    </label>
+                                                    <label for="loaitk" class="mdl-textfield__label">Loại Tài Khoản</label>
+                                                    <ul data-mdl-for="loaitk" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                                        <li class="mdl-menu__item">QL</li>
+                                                        <li class="mdl-menu__item">NV</li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
@@ -440,6 +456,9 @@
     <script src="../../../Content/QuanLy/js/app.js"></script>
     <script src="../../../Content/QuanLy/js/layout.js"></script>
     <script src="../../../Content/QuanLy/js/theme-color.js"></script>
+    <!-- Material -->
+    <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>
+    <script src="../../../Content/QuanLy/js/pages/material_select/getmdl-select.js"></script>
     <!-- data tables -->
     <!--<script src="../../../Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
     <script src="../../../Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>

@@ -31,6 +31,21 @@ namespace QLKSProject.Controllers.Home
                         respone = Ok(homeBusiness.KiemTraTaiKhoan(username, password));
                         return respone;
                     }
+                    
+                    var tk = user.where(x => x.usernam = usernma && x.pasword == pasword).firstordefault();
+                    if(tk có) {
+                    Sesion["usernmae"] == tk.username;
+                    Sesion["usernmae"] == tk.username;
+                    Sesion["usernmae"] == tk.username;
+                    Sesion["usernmae"] == tk.username;
+                    Sesion["usernmae"] == tk.username;
+                    reruen true;
+                    }
+                    return false;
+                        
+                    
+                                
+            }
 
 
         [HttpPost]
