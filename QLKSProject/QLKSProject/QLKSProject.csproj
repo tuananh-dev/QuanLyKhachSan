@@ -237,6 +237,7 @@
     <Content Include="Content\Home\js\aos.js" />
     <Content Include="Content\Home\js\bootstrap-datepicker.min.js" />
     <Content Include="Content\Home\js\bootstrap.min.js" />
+    <Content Include="Content\Home\js\excel.js" />
     <Content Include="Content\Home\js\fileupload.js" />
     <Content Include="Content\Home\js\jquery-3.3.1.min.js" />
     <Content Include="Content\Home\js\jquery-migrate-3.0.1.min.js" />
@@ -480,16 +481,20 @@
     <Content Include="Content\QuanLy\plugins\sweet-alert\sweetalert.min.js" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+<<<<<<< HEAD
     <Content Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.html" />
     <Content Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.html" />
     <Content Include="Views\NhanVienViews\Doan\Doan.html" />
     <Content Include="Views\NhanVienViews\Phong_NhanVien\DanhSachPhong.html" />
+=======
+    <Content Include="HtmlPage1.html" />
+>>>>>>> 3c7bf7249dc3742b570ddee51a4642f8b75ad4bc
     <Content Include="Views\QuanLyViews\DichVu\ChinhSuaDichVu.html" />
     <Content Include="Views\QuanLyViews\DichVu\DSDichVu.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Views\HomeViews\GioiThieu.cshtml" />
-    <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
+    <None Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
     <Content Include="Views\HomeViews\TrangChu.cshtml" />
     <Content Include="Views\QuanLyViews\Phong\ChinhSuaPhong.html" />
     <Content Include="Views\QuanLyViews\Phong\DSPhong.html" />
@@ -685,8 +690,6 @@
     <Content Include="Content\Home\scss\_site-navbar.scss" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\TaiKhoanViews\DangNhap.html" />
-    <Content Include="Views\TaiKhoanViews\KhoaManHinh.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

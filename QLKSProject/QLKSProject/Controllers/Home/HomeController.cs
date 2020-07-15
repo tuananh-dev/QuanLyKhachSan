@@ -22,43 +22,32 @@ namespace QLKSProject.Controllers.Home
                 return respone;
             }
         }
-        /*        [HttpPost]
-                public IHttpActionResult KiemTraTaiKhoan(username, password)
-                {
-                    IHttpActionResult respone = Ok(username, password);
-                    using (HomeBusiness homeBusiness = new HomeBusiness())
-                    {
-                        respone = Ok(homeBusiness.KiemTraTaiKhoan(username, password));
-                        return respone;
-                    }
-                    
-                    var tk = user.where(x => x.usernam = usernma && x.pasword == pasword).firstordefault();
-                    if(tk có) {
-                    Sesion["usernmae"] == tk.username;
-                    Sesion["usernmae"] == tk.username;
-                    Sesion["usernmae"] == tk.username;
-                    Sesion["usernmae"] == tk.username;
-                    Sesion["usernmae"] == tk.username;
-                    reruen true;
-                    }
-                    return false;
-                        
-                    
-                                
+        //[HttpPost]
+        //public IHttpActionResult KiemTraTaiKhoan(username, password)
+        //{
+        //    IHttpActionResult respone = Ok(username, password);
+        //    using (HomeBusiness homeBusiness = new HomeBusiness())
+        //    {
+        //        respone = Ok(homeBusiness.KiemTraTaiKhoan(username, password));
+        //        return respone;
+        //    }
+
+
+
+
+
+        //}
+
+
+        public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
+        {
+            IHttpActionResult respon = Ok();
+
+            using (HomeBusiness homeBusiness = new HomeBusiness())
+            {
+                respon = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
             }
-
-
-        [HttpPost]
-                public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
-                {
-                    IHttpActionResult respon = Ok();
-
-                    using (HomeBusiness homeBusiness = new HomeBusiness())
-                    {
-                        respon = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
-                    }
-                    return respon;
-                }*/
-
+            return respon;
+        }
     }
 }

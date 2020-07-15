@@ -41,13 +41,21 @@
 
                     $.each(data, function (index, val) {
 
+                        val.ID;
+                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center"></td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+
+
                         dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center">' + val.MoTa + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
+
                     });
 
                 }
             });
             $("#addRow").click(function () {
                 $("#addModal").modal('show');
+            })
+            $('.btn-edit').bind('click', function () {
+                alert("click");
             })
             $('#btn').click(function () {
                 $.ajax({
