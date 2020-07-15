@@ -316,6 +316,10 @@ namespace QLKSProject.Business.QuanLy
         //THONG KE
         public bool XuatThongKeTheoTuan(int idtuan)
         {
+            //var tktuan = models.DatPhongThanhCongs.Where(e => e.ID == idtuan).Select(e => new DatPhongThanhCong { 
+            
+            
+            //} ).ToList
         
             return false;
         }
@@ -403,6 +407,11 @@ namespace QLKSProject.Business.QuanLy
                     b = false;
             }
             return b;
+        }
+        private bool ChonTuan(DateTime dateTime)
+        {
+            
+            return false;
         }
         #endregion
     }

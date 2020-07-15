@@ -518,14 +518,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007130451167_createDB.cs" />
-    <Compile Include="Migrations\202007130451167_createDB.designer.cs">
-      <DependentUpon>202007130451167_createDB.cs</DependentUpon>
+    <Compile Include="Migrations\202007130619370_createdb.cs" />
+    <Compile Include="Migrations\202007130619370_createdb.designer.cs">
+      <DependentUpon>202007130619370_createdb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007130458576_update01.cs" />
-    <Compile Include="Migrations\202007130458576_update01.designer.cs">
-      <DependentUpon>202007130458576_update01.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
     <Compile Include="Models\DTO\DatPhongThatBai.cs" />
     <Compile Include="Models\DTO\DichVu.cs" />
@@ -696,11 +693,8 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007130451167_createDB.resx">
-      <DependentUpon>202007130451167_createDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007130458576_update01.resx">
-      <DependentUpon>202007130458576_update01.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007130619370_createdb.resx">
+      <DependentUpon>202007130619370_createdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
