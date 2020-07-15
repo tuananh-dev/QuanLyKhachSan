@@ -190,7 +190,7 @@ namespace QLKSProject.Controllers.QuanLy
             int idDichVu = int.Parse(dynamic.ID.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.XoaTaiKhoan(idDichVu));
+                respon = Ok(quanLy.XoaDichVu(idDichVu));
                 return respon;
             }
         }
@@ -213,7 +213,7 @@ namespace QLKSProject.Controllers.QuanLy
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         public IHttpActionResult LayTienIch(dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
@@ -253,7 +253,7 @@ namespace QLKSProject.Controllers.QuanLy
             int idTienIch = int.Parse(dynamic.ID.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.XoaTaiKhoan(idTienIch));
+                respon = Ok(quanLy.XoaTienIch(idTienIch));
                 return respon;
             }
         }

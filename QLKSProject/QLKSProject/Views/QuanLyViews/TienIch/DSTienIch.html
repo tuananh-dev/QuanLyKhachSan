@@ -32,6 +32,7 @@
         $(document).ready(function () {
 
             var mota = $('#dsmota');
+            var dataId;
             $.ajax({
                 type: 'GET',
                 url: '/api/Quanly/LayDanhSachTienIch',
@@ -49,45 +50,62 @@
             $("#addRow").click(function () {
                 $("#addModal").modal('show');
             })
-            var dataId;
+
             $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
-                $("#editModal").modal('show');
+
                 dataId = $(this).attr("data-id");
-
-            })
-            $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
-                $("#deleteModal").modal('show');
-                dataId = parseInt($(this).attr("data-id"), 10);
-
-            })
-
-            $('#btn-del').click(function () {
+                console.log(dataId);
                 $.ajax({
-                    url: '/api/Quanly/XoaTienIch',
-                    method: 'DELETE',
+
+                    url: '/api/quanly/LayTienIch',
+                    type: 'POST',
                     data: {
                         ID: dataId
-                    }, success: function () {
-                        $('#deleteModal').modal('hide');
-                        $.ajax({
-                            type: 'GET',
-                            url: '/api/Quanly/LayDanhSachTienIch',
-                            dataType: 'json',
-                            success: function (data) {
-                                mota.empty();
-
-                                $.each(data, function (index, val) {
-
-                                    mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                                });
-
-                            }
-                        });
-
+                    },
+                    success: function (data) {
+                        $.each(data, function (index, val) {
+                            console.log(val.TenTienIch);
+                        })
                     }
-
                 })
-            });
+                $("#editModal").modal('show');
+
+            })
+            //$('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
+
+            //    dataId = $(this).attr("data-id");
+            //    $.ajax({
+            //        url: '/api/Quanly/XoaTienIch',
+            //        method: 'DELETE',
+            //        data: {
+            //            ID: dataId,
+            //        }, success: function () {
+            //            //$('#editModal').modal('hide');
+            //            $.ajax({
+            //                type: 'GET',
+            //                url: '/api/Quanly/LayDanhSachTienIch',
+            //                dataType: 'json',
+            //                success: function (data) {
+            //                    mota.empty();
+
+            //                    $.each(data, function (index, val) {
+
+            //                        mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+            //                    });
+
+            //                }
+            //            });
+
+            //        }
+
+            //    })
+
+            //})
+
+            //$('#btn-del').click(function () {
+            //    console.log(typeof (dataId));
+
+            //});
             $('#btn-edit').click(function () {
                 $.ajax({
                     url: '/api/Quanly/CapNhatTienIch',
