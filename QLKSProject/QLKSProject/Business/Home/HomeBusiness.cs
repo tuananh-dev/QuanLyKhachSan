@@ -11,12 +11,7 @@ namespace QLKSProject.Business.Home
 		{
 			string maDoan = TaoMaDoan().ToString();
 			TaoDoiTuongDoan(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, maDoan);
-
-
-				using (StreamWriter sw = new StreamWriter("C:\\Users\\TuA\\Documents\\1. VLU\\textfile.txt"))
-				{
-					sw.WriteLine(fileDSKhachHang);
-				}
+			TaoDoiTuongKhachHang(fileDSKhachHang, maDoan, thoiGianNhan, thoiGianTra, tenTruongDoan);
 
 			models.SaveChanges();
 			return true;
@@ -44,11 +39,42 @@ namespace QLKSProject.Business.Home
 			doan.NgayGui = today;
 			models.Doans.Add(doan);
 		}
-		private void TaoDoiTuongKhachHang(string fileKhachHang, string maDoan, DateTime thoiGianNhan, DateTime thoiGianTra)
+		private void TaoDoiTuongKhachHang(string fileKhachHang, string maDoan, DateTime thoiGianNhan, DateTime thoiGianTra, string tenTruongDoan)
 		{
+			string strKhachHang = fileKhachHang.Replace("}", "{");
+			strKhachHang = strKhachHang.Replace(":", "");
+			strKhachHang = strKhachHang.Replace(",", "");
+			string[] lstKhachHang = strKhachHang.Split('{');
+			foreach (var item in lstKhachHang)
+			{
+				string[] lstThuocTinh = item.Split('"');
+				if (lstThuocTinh.Length >= 8)
+				{
+					Models.Entities.KhachHang khachHang = new Models.Entities.KhachHang();
+					khachHang.HoVaTen = lstThuocTinh[7];
+					khachHang.SoDienThoai = lstThuocTinh[11];
+					khachHang.Email = lstThuocTinh[15];
+					khachHang.DiaChi = lstThuocTinh[19];
+					khachHang.Nhom = int.Parse(lstThuocTinh[23]);
+					khachHang.LoaiKhachHang = lstThuocTinh[27].Trim().Equals("nl") ? false : true;
+					khachHang.NguoiDaiDienCuaTreEm = lstThuocTinh[31];
+					khachHang.GioiTinh = lstThuocTinh[35].Trim().Equals("nu") ? false : true;
+					khachHang.IsDelete = false;
+					khachHang.MaDoan = maDoan;
+					khachHang.ThoiGianNhan = thoiGianNhan;
+					khachHang.ThoiGianTra = thoiGianTra;
+					khachHang.TruongDoan = khachHang.HoVaTen.Trim().Equals(tenTruongDoan.Trim()) ? true : false;
+					models.KhachHangs.Add(khachHang);
+				}
+			}
 
 		}
 		#endregion
+		/*using (StreamWriter sw = new StreamWriter("C:\\Users\\TuA\\Documents\\1. VLU\\textfile.txt"))
+		  {
+		    for(int i = 0; i<lstThuocTinh.Length;i++)
+				sw.WriteLine(lstThuocTinh[i]+i);
+          }*/
 	}
 }
 
