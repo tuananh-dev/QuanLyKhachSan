@@ -77,10 +77,11 @@
 
                     url: '/api/Quanly/XoaTienIch',
                     method: 'PUT',
-                    data: {
+                    headers: { 'content-type': 'application/json', 'data-type': 'json' },
+                    data: JSON.stringify({
                         ID: dataId,
                         
-                    },
+                    }),
                     success: function (data, textStatus, xhr) {
                         console.log("success");
                          $('#deleteModal').modal('hide');

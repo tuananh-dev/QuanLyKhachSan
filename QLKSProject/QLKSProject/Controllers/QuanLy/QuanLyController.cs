@@ -247,13 +247,13 @@ namespace QLKSProject.Controllers.QuanLy
             }
         }
         [HttpPut]
-        public IHttpActionResult XoaTienIch(TienIch tienIch)
+        public IHttpActionResult XoaTienIch(dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            //int idTienIch = int.Parse(tienIch.ID);
+            int idTienIch = int.Parse(dynamic.ID.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.XoaTienIch(tienIch.ID));
+                respon = Ok(quanLy.XoaTienIch(idTienIch));
                 return respon;
             }
         }
