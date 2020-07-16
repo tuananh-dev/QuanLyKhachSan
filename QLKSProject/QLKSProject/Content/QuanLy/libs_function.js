@@ -49,6 +49,7 @@ function addData(info, dataInput) {
     $.ajax({
         url: '/api/' + info.url,
         method: 'POST',
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
         data: JSON.stringify(dataInput),
         success: function () {
             $(info.modal).modal('hide');

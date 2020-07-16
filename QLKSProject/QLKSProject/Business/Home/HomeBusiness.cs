@@ -12,9 +12,15 @@ namespace QLKSProject.Business.Home
 			string maDoan = TaoMaDoan().ToString();
 			TaoDoiTuongDoan(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, maDoan);
 			TaoDoiTuongKhachHang(fileDSKhachHang, maDoan, thoiGianNhan, thoiGianTra, tenTruongDoan);
-
-			models.SaveChanges();
-			return true;
+			try
+			{
+				models.SaveChanges();
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
 		}
 		#endregion
 
@@ -70,6 +76,7 @@ namespace QLKSProject.Business.Home
 
 		}
 		#endregion
+
 		/*using (StreamWriter sw = new StreamWriter("C:\\Users\\TuA\\Documents\\1. VLU\\textfile.txt"))
 		  {
 		    for(int i = 0; i<lstThuocTinh.Length;i++)

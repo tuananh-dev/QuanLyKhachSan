@@ -19,5 +19,6 @@ namespace QLKSProject.Models.DTO
         public bool LoaiKhachHang { get; set; }
         public bool TruongDoan { get; set; }
         public bool IsDelete { get; set; }
+        public bool TrangThaiDatPhong { get; set; }
     }
 }

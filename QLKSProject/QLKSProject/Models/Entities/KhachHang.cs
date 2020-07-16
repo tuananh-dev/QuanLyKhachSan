@@ -58,6 +58,10 @@ namespace QLKSProject.Models.Entities
 
         [Required]
         public bool IsDelete { get; set; }
+        
+        [Required]
+        public bool TrangThaiDatPhong { get; set; }
+
 
         [ForeignKey("MaDoan")]
         public virtual Doan Doan_MaDoan { get; set; }

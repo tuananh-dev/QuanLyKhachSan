@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,7 +13,7 @@ namespace QLKSProject.Controllers.QuanLy
 {
     public class QuanLyController : ApiController
     {
-        //TAIKHOAN
+        #region API xu ly TaiKhoan
         [HttpGet]
         public IHttpActionResult LayDanhSachTaiKhoan()
         {
@@ -74,7 +75,8 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
-        //PHONG
+        #endregion
+        #region API xu ly Phong
         [HttpGet]
         public IHttpActionResult LayDanhSachPhong()
         {
@@ -134,7 +136,8 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
-        //DICHVU
+        #endregion
+        #region API xu ly DichVu
         [HttpGet]
         public IHttpActionResult LayDanhSachDichVu()
         {
@@ -168,13 +171,12 @@ namespace QLKSProject.Controllers.QuanLy
         public IHttpActionResult ThemDichVu(dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            return respon = Ok(dynamic.ToString());
-            //DichVu dv = JsonConvert.DeserializeObject<DichVu>(dynamic.ToString());
-            //using (QuanLyBusiness quanLy = new QuanLyBusiness())
-            //{
-            //    respon = Ok(quanLy.ThemDichVu(dv));
-            //    return respon;
-            //}
+            DichVu dv = JsonConvert.DeserializeObject<DichVu>(dynamic.ToString());
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                respon = Ok(quanLy.ThemDichVu(dv));
+                return respon;
+            }
         }
         [HttpPut]
         public IHttpActionResult CapNhatDichVu(DichVu dichVu)
@@ -197,7 +199,8 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
-        //TIENICH
+        #endregion
+        #region API xu ly TienIch
         [HttpGet]
         public IHttpActionResult LayDanhSachTienIch()
         {
@@ -260,6 +263,6 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
-
+        #endregion
     }
 }

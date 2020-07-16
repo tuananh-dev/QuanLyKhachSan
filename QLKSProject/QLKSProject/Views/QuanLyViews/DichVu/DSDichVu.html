@@ -98,8 +98,8 @@
                     ID: 0,
                     TenDichVu: $('#tenDV-add').val(),
                     Gia: $('#gia-add').val(),
-                    MoTa: $('#mota-add').val(),
                     IsDelete: false,
+                    MoTa: $('#mota-add').val()
                 }
                 var info = {
                     id: idList,
@@ -107,7 +107,7 @@
                     urlLoad: layDSDichVu,
                     modal: idModalAdd
                 };
-                console.log(addData(info,data));
+                addData(info,data);
             });
         });
     </script>

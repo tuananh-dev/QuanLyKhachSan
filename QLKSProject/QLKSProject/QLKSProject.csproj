@@ -485,7 +485,6 @@
     <Content Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.html" />
     <Content Include="Views\NhanVienViews\Doan\Doan.html" />
     <Content Include="Views\NhanVienViews\Phong_NhanVien\DanhSachPhong.html" />
-    <Content Include="Views\QuanLyViews\DichVu\ChinhSuaDichVu.html" />
     <Content Include="Views\QuanLyViews\DichVu\DSDichVu.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -493,13 +492,11 @@
     <Content Include="Views\HomeViews\GioiThieu.cshtml" />
     <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
     <Content Include="Views\HomeViews\TrangChu.cshtml" />
-    <Content Include="Views\QuanLyViews\Phong\ChinhSuaPhong.html" />
     <Content Include="Views\QuanLyViews\Phong\DSPhong.html" />
     <Content Include="Views\QuanLyViews\TaiKhoan\DangNhap.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\DKTaiKhoan.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\KhoaManHinh.cshtml" />
     <Content Include="Views\QuanLyViews\TienIch\DSTienIch.html" />
-    <Content Include="Views\QuanLyViews\TKNhanVien\ChinhSuaTKNhanVien.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\DSTKNhanVien.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\XemChiTietTKNhanVien.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -523,6 +520,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007161705487_updatedb.cs" />
+    <Compile Include="Migrations\202007161705487_updatedb.designer.cs">
+      <DependentUpon>202007161705487_updatedb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
     <Compile Include="Models\DTO\DatPhongThatBai.cs" />
     <Compile Include="Models\DTO\DichVu.cs" />
@@ -690,8 +692,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Migrations\" />
     <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007161705487_updatedb.resx">
+      <DependentUpon>202007161705487_updatedb.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
