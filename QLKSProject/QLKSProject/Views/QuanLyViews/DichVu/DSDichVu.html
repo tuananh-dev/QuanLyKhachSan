@@ -26,65 +26,89 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="../../../Content/QuanLy/Jquery.js"></script>
-
+    <script src="../../../Content/QuanLy/libs_function.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
 
-            var dichvu = $('#dsdv');
-            $.ajax({
-                type: 'GET',
-                url: '/api/Quanly/LayDanhSachDichVu',
-                dataType: 'json',
-                success: function (data) {
-                    dichvu.empty();
+            //var mota = $();
+            var dataId;
+            var idList = '#dsdichvu';
+            //Modal
+            var idModalAdd = '#addModal';
+            var idModalEdit = '#editModal';
+            var idModalDelete = '#deleteModal';
 
-                    $.each(data, function (index, val) {
-                        val.ID;
-                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center">' + val.MoTa + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
-                    });
+            //API
+            var layDSDichVu = 'Quanly/LayDanhSachDichVu';
+            var themDichVu = 'Quanly/themDichVu';
+            var suaDichVu = 'Quanly/CapNhatDichVu';
+            var xoaDichVu = 'Quanly/XoaDichVu';
 
+
+            loadData(idList, layDSDichVu);
+
+            $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
+                $(idModalDelete).modal('show');
+                dataId = $(this).attr("data-id");
+            })
+
+            $('#btn-del').click(function () {
+                var data = {
+                    ID: dataId
                 }
+                 var info = {
+                    id: idList,
+                    url: xoaDichVu,
+                    urlLoad: layDSDichVu,
+                    modal: idModalDelete
+                };
+                deleteData(info,data);
+                
+            })
+            $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
+                $(idModalEdit).modal('show');
+                dataId = $(this).attr("data-id");
+            })
+
+            $('#btn-edit').click(function () {
+                var data = {
+                    ID: dataId,
+                    TenDichVu: $('#tenDV-edit').val(),
+                    Gia: $('#gia-edit').val(),
+                    MoTa: $('#mota-edit').val(),
+                    IsDelete: false,
+                };
+                var info = {
+                    id: idList,
+                    url: suaDichVu,
+                    urlLoad: layDSDichVu,
+                    modal: idModalEdit
+                };
+                editData(info, data);
+                
+
             });
             $("#addRow").click(function () {
-                $("#addModal").modal('show');
+                $(idModalAdd).modal('show');
             })
-            $('.btn-edit').bind('click', function () {
-                alert("click");
-            })
-            $('#btn').click(function () {
-                $.ajax({
-                    url: '/api/Quanly/themdichvu',
-                    method: 'POST',
-                    data: {
-                        TenDichVu: $('#tenDV').val(),
-                        Gia: $('#gia').val(),
-                        MoTa: $('#mota').val(),
-                        IsDelete: false,
-                    }, success: function () {
-                        $('#addModal').modal('hide');
-                        var dichvu = $('#dsdv');
-                        $.ajax({
-                            type: 'GET',
-                            url: '/api/Quanly/LayDanhSachDichVu',
-                            dataType: 'json',
-                            success: function (data) {
-                                dichvu.empty();
 
-                                $.each(data, function (index, val) {
-                                    dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDichVu + '</td><td class="center">' + val.Gia + '</td><td class="center">' + val.MoTa + '</td><td class="center"><button class="btn btn-tbl-edit btn-xs" class="btn-edit"><i class="fa fa-pencil"></i></button><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
-                                });
-
-                            }
-                        });
-
-                    }
-
-                })
+            $('#btn-add').click(function () {
+                var data = {
+                    ID: 0,
+                    TenDichVu: $('#tenDV-add').val(),
+                    Gia: $('#gia-add').val(),
+                    MoTa: $('#mota-add').val(),
+                    IsDelete: false,
+                }
+                var info = {
+                    id: idList,
+                    url: themDichVu,
+                    urlLoad: layDSDichVu,
+                    modal: idModalAdd
+                };
+                console.log(addData(info,data));
             });
-            $('.btn-edit').click(function () {
-                alert("hello");
-            })
         });
     </script>
 </head>
@@ -308,7 +332,7 @@
 
                                                     Thêm Mới Dịch Vụ <i class="fa fa-plus"></i>
                                                 </button>
-                                               
+
 
 
                                             </div>
@@ -326,8 +350,7 @@
                                                     <th class="center"> Chức Năng </th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="dsdv">
-                                                
+                                            <tbody id="dsdichvu">
                                             </tbody>
                                         </table>
                                     </div>
@@ -351,23 +374,23 @@
                                         <div class="card-body row">
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="tenDV">
+                                                    <input class="mdl-textfield__input" type="text" id="tenDV-add">
                                                     <label class="mdl-textfield__label">Tên Dịch Vụ</label>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text"
-                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia">
-                                                    <label class="mdl-textfield__label" for="gia">Giá</label>
+                                                    <input class="mdl-textfield__input" type="number"
+                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia-add">
+                                                    <label class="mdl-textfield__label" for="gia-add">Giá</label>
                                                     <span class="mdl-textfield__error">Phải là số</span>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-12 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <textarea class="mdl-textfield__input" type="text" id="mota" rows="3" cols="50"></textarea>
+                                                    <textarea class="mdl-textfield__input" type="text" id="mota-add" rows="3" cols="50"></textarea>
                                                     <label class="mdl-textfield__label">Mô Tả</label>
                                                 </div>
                                             </div>
@@ -375,8 +398,92 @@
                                     </div>
                                     <div class="col-lg-12 p-t-20 text-center">
                                         <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn">
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-add">
                                             Thêm
+                                        </button>
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                            Hủy
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Modal -->
+                <!-- end chat sidebar -->
+            </div>
+            <div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="width:400px">
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Dịch Vụ</h4>
+                                    <div class="card-box">
+
+                                        <div class="card-body row">
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <input class="mdl-textfield__input" type="text" id="tenDV-edit">
+                                                    <label class="mdl-textfield__label">Tên Dịch Vụ</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <input class="mdl-textfield__input" type="number"
+                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia-edit">
+                                                    <label class="mdl-textfield__label" for="gia-edit">Giá</label>
+                                                    <span class="mdl-textfield__error">Phải là số</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <textarea class="mdl-textfield__input" type="text" id="mota-edit" rows="3" cols="50"></textarea>
+                                                    <label class="mdl-textfield__label">Mô Tả</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 p-t-20 text-center">
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-edit">
+                                            Thêm
+                                        </button>
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                            Hủy
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Modal -->
+                <!-- end chat sidebar -->
+            </div>
+            <div class="modal fade" tabindex="-1" id="deleteModal" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="width:400px">
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Xác Nhận Xóa Dịch Vụ</h4>
+
+                                    <div class="col-lg-12 p-t-20 text-center">
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-del">
+                                            Xóa
                                         </button>
                                         <button type="button"
                                                 class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">

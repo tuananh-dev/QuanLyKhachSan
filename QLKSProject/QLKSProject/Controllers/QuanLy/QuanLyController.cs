@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Newtonsoft.Json;
 using QLKSProject.Business.QuanLy;
 using QLKSProject.Models.DTO;
 
@@ -164,14 +165,16 @@ namespace QLKSProject.Controllers.QuanLy
             }
         }
         [HttpPost]
-        public IHttpActionResult ThemDichVu(DichVu dichVu)
+        public IHttpActionResult ThemDichVu(dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            using (QuanLyBusiness quanLy = new QuanLyBusiness())
-            {
-                respon = Ok(quanLy.ThemDichVu(dichVu));
-                return respon;
-            }
+            return respon = Ok(dynamic.ToString());
+            //DichVu dv = JsonConvert.DeserializeObject<DichVu>(dynamic.ToString());
+            //using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            //{
+            //    respon = Ok(quanLy.ThemDichVu(dv));
+            //    return respon;
+            //}
         }
         [HttpPut]
         public IHttpActionResult CapNhatDichVu(DichVu dichVu)
@@ -213,11 +216,11 @@ namespace QLKSProject.Controllers.QuanLy
             }
         }
 
-        [HttpPost]
-        public IHttpActionResult LayTienIch(dynamic dynamic)
+        [HttpGet]
+        public IHttpActionResult LayTienIch([FromUri]string ID)
         {
             IHttpActionResult respon = Ok();
-            int idTienIch = int.Parse(dynamic.ID.ToString());
+            int idTienIch = int.Parse(ID.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.LayTienIch(idTienIch));
@@ -246,14 +249,14 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
-        [HttpPut]
-        public IHttpActionResult XoaTienIch(TienIch tienIch)
+        [HttpDelete]
+        public IHttpActionResult XoaTienIch(dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            //int idTienIch = int.Parse(tienIch.ID);
+            int idTienIch = int.Parse(dynamic.ID.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.XoaTienIch(tienIch.ID));
+                respon = Ok(quanLy.XoaTienIch(idTienIch));
                 return respon;
             }
         }

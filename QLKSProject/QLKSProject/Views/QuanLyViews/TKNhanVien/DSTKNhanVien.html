@@ -30,57 +30,92 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="../../../Content/QuanLy/Jquery.js"></script>
+    <script src="../../../Content/QuanLy/libs_function.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var tk = $('#dstk');
-            $.ajax({
-                type: 'GET',
-                url: '/api/Quanly/LayDanhSachTaiKhoan',
-                dataType: 'json',
-                success: function (data) {
-                    $.each(data, function (index, val) {
-                        tk.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTaiKhoan + '</td><td class="center">' + val.MatKhau + '</td><td class="center">' + val.HoVaTen + '</td><td class="center">' + val.SoDienThoai + '</td><td class="center">' + val.Mail + '</td><td class="center">' + val.LoaiTaiKhoan + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs"><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
-                    });
+
+            //var mota = $();
+            var dataId;
+            var idList = '#dstk';
+            //Modal
+            var idModalAdd = '#addModal';
+            var idModalEdit = '#editModal';
+            var idModalDelete = '#deleteModal';
+
+            //API
+            var layDSTaiKhoan = 'Quanly/LayDanhSachTaiKhoan';
+            var themTaiKhoan = 'Quanly/ThemTaiKhoan';
+            var suaTaiKhoan = 'Quanly/CapNhatTaiKhoan';
+            var xoaTaiKhoan = 'Quanly/XoaTaiKhoan';
+
+
+            loadData(idList, layDSTaiKhoan);
+
+            $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
+                $(idModalDelete).modal('show');
+                dataId = $(this).attr("data-id");
+            })
+
+            $('#btn-del').click(function () {
+                var data = {
+                    ID: dataId
                 }
+                var info = {
+                    id: idList,
+                    url: xoaTaiKhoan,
+                    urlLoad: layDSTaiKhoan,
+                    modal: idModalDelete
+                };
+                deleteData(info, data);
+            })
+            $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
+                $(idModalEdit).modal('show');
+                dataId = $(this).attr("data-id");
+            })
+
+            $('#btn-edit').click(function () {
+
+
+                var data = {
+                    ID: dataId,
+                    TenTaiKhoan: $('#tentk-edit').val(),
+                    MatKhau: $('#matkhau-edit').val(),
+                    HoVaTen: $('#hoten-edit').val(),
+                    SoDienThoai: $('#sdt-edit').val(),
+                    Mail: $('#mail-edit').val(),
+                    LoaiTaiKhoan: "NV",
+                };
+                var info = {
+                    id: idList,
+                    url: suaTaiKhoan,
+                    urlLoad: layDSTaiKhoan,
+                    modal: idModalEdit
+                };
+                editData(info, data);
+
             });
             $("#addRow").click(function () {
-                $("#addModal").modal('show');
+                $(idModalAdd).modal('show');
             })
-            $('#btn').click(function () {
-                 
-                $.ajax({
-                    url: '/api/Quanly/ThemTaiKhoan',
-                    method: 'POST',
-                    data: {
-                        TenTaiKhoan: $('#tentk').val(),
-                        MatKhau: $('#matkhau').val(),
-                        HoVaTen: $('#hoten').val(),
-                        SoDienThoai: $('#sdt').val(),
-                        Mail: $('#mail').val(),
-                        LoaiTaiKhoan: $('#loaitk').val(),
-                        IsDelete: false,
-                    }, success: function () {
-                        $('#addModal').modal('hide');
-                        var tk = $('#dstk');
-                        $.ajax({
-                            type: 'GET',
-                            url: '/api/Quanly/LayDanhSachTaiKhoan',
-                            dataType: 'json',
-                            success: function (data) {
-                                tk.empty();
 
-                                $.each(data, function (index, val) {
-                                    tk.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTaiKhoan + '</td><td class="center">' + val.MatKhau + '</td><td class="center">' + val.HoVaTen + '</td><td class="center">' + val.SoDienThoai + '</td><td class="center">' + val.Mail + '</td><td class="center">' + val.LoaiTaiKhoan + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs"><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs"><i class="fa fa-trash-o "></i></a></td></tr>');
-                                });
+            $('#btn-add').click(function () {
 
-                            }
-                        });
-
-                    }, fail: function () {
-                        console.log("nhap sai")
-                    }
-
-                })
+                var data = {
+                    TenTaiKhoan: $('#tentk-add').val(),
+                    MatKhau: $('#matkhau-add').val(),
+                    HoVaTen: $('#hoten-add').val(),
+                    SoDienThoai: $('#sdt-add').val(),
+                    Mail: $('#mail-add').val(),
+                    LoaiTaiKhoan: "NV",
+                    IsDelete: false,
+                }
+                var info = {
+                    id: idList,
+                    url: themTaiKhoan,
+                    urlLoad: layDSTaiKhoan,
+                    modal: idModalAdd
+                };
+                addData(info, data);
             });
         });
     </script>
@@ -351,68 +386,48 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Dịch Vụ</h4>
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Tài Khoản</h4>
                                     <div class="card-box">
 
                                         <div class="card-body row">
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="tentk" required>
+                                                    <input class="mdl-textfield__input" type="text" id="tentk-add" required>
                                                     <label class="mdl-textfield__label">Tên Tài Khoản</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="matkhau" required>
+                                                    <input class="mdl-textfield__input" type="text" id="matkhau-add" required>
                                                     <label class="mdl-textfield__label">Mật Khẩu</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="hoten" required>
+                                                    <input class="mdl-textfield__input" type="text" id="hoten-add" required>
                                                     <label class="mdl-textfield__label">Họ Và Tên</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="text"
-                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="sdt">
-                                                    <label class="mdl-textfield__label" for="sdt">SDT</label>
-                                                    <span class="mdl-textfield__error">Nhập số</span>
+                                                           pattern="" id="sdt-add">
+                                                    <label class="mdl-textfield__label" for="sdt-add">SDT</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="mail" requireds>
+                                                    <input class="mdl-textfield__input" type="email" id="mail-add" requireds>
                                                     <label class="mdl-textfield__label">Mail</label>
                                                 </div>
                                             </div>
-                                            <!--<div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="loaitk" required>
-                                                    <label class="mdl-textfield__label">Cấp Bậc</label>
-                                                </div>
-                                            </div>-->
 
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="loaitk" value="" readonly
-                                                           tabIndex="-1">
-                                                    <label for="loaitk" class="pull-right margin-0">
-                                                        <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                                    </label>
-                                                    <label for="loaitk" class="mdl-textfield__label">Loại Tài Khoản</label>
-                                                    <ul data-mdl-for="loaitk" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                                        <li class="mdl-menu__item">QL</li>
-                                                        <li class="mdl-menu__item">NV</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-lg-12 p-t-20 text-center">
                                         <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn">
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-add">
                                             Thêm
                                         </button>
                                         <button type="button"
@@ -429,6 +444,101 @@
                 </div>
                 <!-----end modal-->
                 <!-- end page content -->
+            </div>
+            <div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="width:400px">
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Chỉnh Sửa Tài Khoản</h4>
+                                    <div class="card-box">
+
+                                        <div class="card-body row">
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <input class="mdl-textfield__input" type="text" id="tentk-edit" required>
+                                                    <label class="mdl-textfield__label">Tên Tài Khoản</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <input class="mdl-textfield__input" type="text" id="matkhau-edit" required>
+                                                    <label class="mdl-textfield__label">Mật Khẩu</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <input class="mdl-textfield__input" type="text" id="hoten-edit" required>
+                                                    <label class="mdl-textfield__label">Họ Và Tên</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <input class="mdl-textfield__input" type="text"
+                                                           pattern="" id="sdt-edit">
+                                                    <label class="mdl-textfield__label" for="sdt-edit">SDT</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <input class="mdl-textfield__input" type="email" id="mail-edit" requireds>
+                                                    <label class="mdl-textfield__label">Mail</label>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 p-t-20 text-center">
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-edit">
+                                            Sửa
+                                        </button>
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                            Hủy
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-----end modal-->
+                <!-- end page content -->
+            </div>
+            <div class="modal fade" tabindex="-1" id="deleteModal" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="width:400px">
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Xác Nhận Xóa Tài Khoản</h4>
+
+                                    <div class="col-lg-12 p-t-20 text-center">
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-del">
+                                            Xóa
+                                        </button>
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                            Hủy
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Modal -->
+                <!-- end chat sidebar -->
             </div>
             <!-- end page content -->
         </div>
@@ -447,27 +557,22 @@
     </div>
     <!-- start js include path -->
     <script src="../../../Content/QuanLy/plugins/jquery/jquery.min.js"></script>
-    <script src="../../../Content/QuanLy/plugins/popper/popper.min.js"></script>
     <script src="../../../Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
     <script src="../../../Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- bootstrap -->
     <script src="../../../Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Material -->
+    <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>
+    <script src="../../../Content/QuanLy/js/pages/material_select/getmdl-select.js"></script>
     <!-- Common js-->
     <script src="../../../Content/QuanLy/js/app.js"></script>
     <script src="../../../Content/QuanLy/js/layout.js"></script>
     <script src="../../../Content/QuanLy/js/theme-color.js"></script>
-    <!-- Material -->
-    <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>
-    <script src="../../../Content/QuanLy/js/pages/material_select/getmdl-select.js"></script>
-    <!-- data tables -->
-    <!--<script src="../../../Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
-    <script src="../../../Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
-    <script src="../../../Content/QuanLy/js/pages/table/table_data.js"></script>
-    <!-- Material -->
-    <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>
+
     <!-- animation -->
     <script src="../../../Content/QuanLy/js/pages/ui/animations.js"></script>
     <!-- end js include path -->
+    
 
 </body>
 <!-- Mirrored from radixtouch.in/templates/admin/hotel/source/all_staffs.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:54 GMT -->

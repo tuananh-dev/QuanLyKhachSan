@@ -26,29 +26,16 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="../../../Content/QuanLy/Jquery.js"></script>
-
+    <script src="../../../Content/QuanLy/libs_function.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
 
-            var dichvu = $('#dsdoan');
-            $.ajax({
-                type: 'POST',
-                url: '/api/NhanVien/LayDanhSachDoan',
-                dataType: 'json',
-                success: function (data) {
-                    dichvu.empty();
+            var idList = $('#dsdoan');
+            var layDSDoan = 'NhanVien/LayDanhSachDoan';
+            loadData(idList, layDSDoan);
 
-                    $.each(data, function (index, val) {
-                        var tgNhan = new Date(val.ThoiGianNhan);
-                        var tgTra = new Date(val.ThoiGianTra);
-                        var ngayGui = new Date(val.NgayGui);
-                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDoan + '</td><td class="center">' + val.TenTruongDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td></tr>');
-
-                    });
-
-                }
-            });
+            
 
         });
     </script>

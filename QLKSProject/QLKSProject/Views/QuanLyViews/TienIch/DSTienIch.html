@@ -26,141 +26,83 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="../../../Content/QuanLy/Jquery.js"></script>
-
+    <script src="../../../Content/QuanLy/libs_function.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
 
-            var mota = $('#dsmota');
+            //var mota = $();
             var dataId;
+            var idList = '#dstienich';
+            //Modal
+            var idModalAdd = '#addModal';
+            var idModalEdit = '#editModal';
+            var idModalDelete = '#deleteModal';
+
+            //API
+            var layDSTienIch = 'Quanly/LayDanhSachTienIch';
+            var themTienIch = 'Quanly/ThemTienIch';
+            var suaTienIch = 'Quanly/CapNhatTienIch';
+            var xoaTienIch = 'Quanly/XoaTienIch';
 
 
-            $.ajax({
-                type: 'GET',
-                url: '/api/Quanly/LayDanhSachTienIch',
-                dataType: 'json',
-                success: function (data) {
-                    mota.empty();
+            loadData(idList, layDSTienIch);
 
-                    $.each(data, function (index, val) {
-
-                        mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-
-                    });
-
-                }
-            });
-            $("#addRow").click(function () {
-                $("#addModal").modal('show');
-            })
-
-            $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
-                $("#editModal").modal('show');
-                dataId = $(this).attr("data-id");
-
-
-
-
-            })
             $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
-                $("#deleteModal").modal('show');
+                $(idModalDelete).modal('show');
                 dataId = $(this).attr("data-id");
-
-
-
             })
 
             $('#btn-del').click(function () {
-                console.log(dataId);
-
-                $.ajax({
-
-                    url: '/api/Quanly/XoaTienIch',
-                    method: 'PUT',
-                    data: {
-                        ID: dataId,
-                        
-                    },
-                    success: function (data, textStatus, xhr) {
-                        console.log("success");
-                         $('#deleteModal').modal('hide');
-                        $.ajax({
-                            type: 'GET',
-                            url: '/api/Quanly/LayDanhSachTienIch',
-                            dataType: 'json',
-                            success: function (data) {
-                                mota.empty();
-
-                                $.each(data, function (index, val) {
-
-                                    mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                                });
-
-                            }
-                        });
-                    }
-                })
+                var data = {
+                    ID: dataId
+                }
+                var info = {
+                    id: idList,
+                    url: xoaTienIch,
+                    urlLoad: layDSTienIch,
+                    modal: idModalDelete
+                };
+                deleteData(info,data );
+            })
+            $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
+                $(idModalEdit).modal('show');
+                dataId = $(this).attr("data-id");
             })
 
             $('#btn-edit').click(function () {
-                $.ajax({
-                    url: '/api/Quanly/CapNhatTienIch',
-                    method: 'PUT',
-                    data: {
-                        ID: dataId,
-                        TenTienIch: $('#tenTI-edit').val(),
-                        Mota: $('#mota-edit').val(),
-                        IsDelete: false,
-                    }, success: function () {
-                        $('#editModal').modal('hide');
-                        $.ajax({
-                            type: 'GET',
-                            url: '/api/Quanly/LayDanhSachTienIch',
-                            dataType: 'json',
-                            success: function (data) {
-                                mota.empty();
+                var data = {
+                    ID: dataId,
+                    TenTienIch: $('#tenTI-edit').val(),
+                    Mota: $('#mota-edit').val(),
+                    IsDelete: false,
+                };
+                var info = {
+                    id: idList,
+                    url: suaTienIch,
+                    urlLoad: layDSTienIch,
+                    modal: idModalEdit
+                };
+                editData(info, data);
 
-                                $.each(data, function (index, val) {
-
-                                    mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                                });
-
-                            }
-                        });
-
-                    }
-
-                })
             });
+            $("#addRow").click(function () {
+                $(idModalAdd).modal('show');
+            })
 
             $('#btn-add').click(function () {
-                $.ajax({
-                    url: '/api/Quanly/ThemTienIch',
-                    method: 'POST',
-                    data: {
-                        TenTienIch: $('#tenTI').val(),
-                        Mota: $('#mota').val(),
-                        IsDelete: false,
-                    }, success: function () {
-                        $('#addModal').modal('hide');
-                        $.ajax({
-                            type: 'GET',
-                            url: '/api/Quanly/LayDanhSachTienIch',
-                            dataType: 'json',
-                            success: function (data) {
-                                mota.empty();
-
-                                $.each(data, function (index, val) {
-
-                                    mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '"><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                                });
-
-                            }
-                        });
-
-                    }
-
-                })
+                var data = {
+                    TenTienIch: $('#tenTI').val(),
+                    Mota: $('#mota').val(),
+                    IsDelete: false,
+                }
+                 var info = {
+                    id: idList,
+                    url: themTienIch,
+                    urlLoad: layDSTienIch,
+                    modal: idModalAdd
+                };
+                addData(info, data);
             });
         });
     </script>
@@ -401,7 +343,7 @@
                                                     <th class="center"> Chức Năng </th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="dsmota">
+                                            <tbody id="dstienich">
                                             </tbody>
                                         </table>
                                     </div>
@@ -419,7 +361,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Dịch Vụ</h4>
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Tiện Ích</h4>
                                     <div class="card-box">
 
                                         <div class="card-body row">

@@ -373,6 +373,7 @@
     <Content Include="Content\QuanLy\js\pages\ui\animations.js" />
     <Content Include="Content\QuanLy\js\pages\validation\form-validation.js" />
     <Content Include="Content\QuanLy\js\theme-color.js" />
+    <Content Include="Content\QuanLy\libs_function.js" />
     <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha-horizontal.png" />
     <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha.png" />
