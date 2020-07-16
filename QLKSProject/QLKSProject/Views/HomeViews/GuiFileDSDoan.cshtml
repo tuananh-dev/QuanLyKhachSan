@@ -18,13 +18,21 @@
            
             $("#gui").click(function () {
                 var person = {
+<<<<<<< HEAD
+                    TenDoan: $('#tendoan').val(),
+                    HovaTenTruongDoan: $('#Tentruongdoan').val(),
+                    Dattungay: $('#datphongtungay').val(),
+                    DenNgay: $('#denngay').val(),
+=======
                     TenDoan: $ ('#tendoan').val(),
                     TenTruongDoan: $('#Tentruongdoan').val(),
                     ThoiGianNhan: $('#datphongtungay').val(),
                     ThoiGianTra: $('#denngay').val(),
+>>>>>>> 2e5c7004caf409f0abda0dcd4e7311817a11bbce
                     Files: $('#xlx_json').val(),
 
                 }
+
                 $.ajax({
                     url: '/api/Home/LayFileDanhSachKhachHang',
                     method: 'POST',
