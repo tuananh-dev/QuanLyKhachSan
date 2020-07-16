@@ -33,6 +33,8 @@
 
             var mota = $('#dsmota');
             var dataId;
+
+
             $.ajax({
                 type: 'GET',
                 url: '/api/Quanly/LayDanhSachTienIch',
@@ -43,6 +45,7 @@
                     $.each(data, function (index, val) {
 
                         mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+
                     });
 
                 }
@@ -52,60 +55,53 @@
             })
 
             $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
-
-                dataId = $(this).attr("data-id");
-                console.log(dataId);
-                $.ajax({
-
-                    url: '/api/quanly/LayTienIch',
-                    type: 'POST',
-                    data: {
-                        ID: dataId
-                    },
-                    success: function (data) {
-                        $.each(data, function (index, val) {
-                            console.log(val.TenTienIch);
-                        })
-                    }
-                })
                 $("#editModal").modal('show');
+                dataId = $(this).attr("data-id");
+
+
+
 
             })
-            //$('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
+            $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
+                $("#deleteModal").modal('show');
+                dataId = $(this).attr("data-id");
 
-            //    dataId = $(this).attr("data-id");
-            //    $.ajax({
-            //        url: '/api/Quanly/XoaTienIch',
-            //        method: 'DELETE',
-            //        data: {
-            //            ID: dataId,
-            //        }, success: function () {
-            //            //$('#editModal').modal('hide');
-            //            $.ajax({
-            //                type: 'GET',
-            //                url: '/api/Quanly/LayDanhSachTienIch',
-            //                dataType: 'json',
-            //                success: function (data) {
-            //                    mota.empty();
 
-            //                    $.each(data, function (index, val) {
 
-            //                        mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-            //                    });
+            })
 
-            //                }
-            //            });
+            $('#btn-del').click(function () {
+                console.log(dataId);
 
-            //        }
+                $.ajax({
 
-            //    })
+                    url: '/api/Quanly/XoaTienIch',
+                    method: 'PUT',
+                    data: {
+                        ID: dataId,
+                        
+                    },
+                    success: function (data, textStatus, xhr) {
+                        console.log("success");
+                         $('#deleteModal').modal('hide');
+                        $.ajax({
+                            type: 'GET',
+                            url: '/api/Quanly/LayDanhSachTienIch',
+                            dataType: 'json',
+                            success: function (data) {
+                                mota.empty();
 
-            //})
+                                $.each(data, function (index, val) {
 
-            //$('#btn-del').click(function () {
-            //    console.log(typeof (dataId));
+                                    mota.prepend('<tr class="odd gradeX"><td class="center">' + val.TenTienIch + '</td><td class="center">' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+                                });
 
-            //});
+                            }
+                        });
+                    }
+                })
+            })
+
             $('#btn-edit').click(function () {
                 $.ajax({
                     url: '/api/Quanly/CapNhatTienIch',

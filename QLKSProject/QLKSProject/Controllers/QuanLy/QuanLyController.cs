@@ -246,14 +246,14 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
-        [HttpDelete]
-        public IHttpActionResult XoaTienIch(dynamic dynamic)
+        [HttpPut]
+        public IHttpActionResult XoaTienIch(TienIch tienIch)
         {
             IHttpActionResult respon = Ok();
-            int idTienIch = int.Parse(dynamic.ID.ToString());
+            //int idTienIch = int.Parse(tienIch.ID);
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.XoaTienIch(idTienIch));
+                respon = Ok(quanLy.XoaTienIch(tienIch.ID));
                 return respon;
             }
         }
