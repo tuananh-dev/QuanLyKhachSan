@@ -522,9 +522,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-
-    
-  
+    <Compile Include="Migrations\202007170437096_createdb.cs" />
+    <Compile Include="Migrations\202007170437096_createdb.designer.cs">
+      <DependentUpon>202007170437096_createdb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
     <Compile Include="Models\DTO\DatPhongThatBai.cs" />
@@ -684,10 +685,8 @@
     <Content Include="Content\Home\scss\_site-navbar.scss" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-
     <Content Include="Views\HomeViews\Index.cshtml" />
     <None Include="Views\HomeViews\test.cshtml" />
-
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -700,15 +699,12 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-
-    <EmbeddedResource Include="Migrations\202007170410570_createdb.resx">
-      <DependentUpon>202007170410570_createdb.cs</DependentUpon>
-
-  
-    </EmbeddedResource>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <EmbeddedResource Include="Migrations\202007170437096_createdb.resx">
+      <DependentUpon>202007170437096_createdb.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

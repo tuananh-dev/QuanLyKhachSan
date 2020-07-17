@@ -4,7 +4,7 @@ using System.IO;
 using QLKSProject.Models.DTO;
 namespace QLKSProject.Business.Home
 {
-<<<<<<< HEAD
+
 	public class HomeBusiness : BaseBusiness
 	{
 		#region Public methods
@@ -84,22 +84,6 @@ namespace QLKSProject.Business.Home
 				sw.WriteLine(lstThuocTinh[i]+i);
           }*/
 	}
-=======
-    public class HomeBusiness : BaseBusiness
-    {
-        public string TestDuLieuTruyenXuong(dynamic dynamic)
-        {
-            //using (System.IO.StreamWriter file =
-            //new System.IO.StreamWriter(@"D:/WriteLines2.txt", false))
-            //{
 
-            //    file.WriteLine(s);
-            //    file.Close();
-            //}
-            string s = dynamic.ToString();
-            return s;
-        }
-    }
->>>>>>> e094c0ce5cf61a237d0afe055b285517535e0c10
 }
 
