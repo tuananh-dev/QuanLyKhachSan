@@ -361,3 +361,6 @@ QLKSProject/QLKSProject/Migrations/202007130619370_createdb.resx
 QLKSProject/QLKSProject/Migrations/202007161705487_updatedb.resx
 QLKSProject/QLKSProject/Migrations/202007161705487_updatedb.cs
 QLKSProject/QLKSProject/Migrations/202007161705487_updatedb.Designer.cs
+QLKSProject/QLKSProject/Migrations/202007170410570_createdb.cs
+QLKSProject/QLKSProject/Migrations/202007170410570_createdb.Designer.cs
+QLKSProject/QLKSProject/Migrations/202007170410570_createdb.resx

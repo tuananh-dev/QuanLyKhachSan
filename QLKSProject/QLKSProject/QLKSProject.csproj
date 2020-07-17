@@ -520,9 +520,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007161705487_updatedb.cs" />
-    <Compile Include="Migrations\202007161705487_updatedb.designer.cs">
-      <DependentUpon>202007161705487_updatedb.cs</DependentUpon>
+    <Compile Include="Migrations\202007170410570_createdb.cs" />
+    <Compile Include="Migrations\202007170410570_createdb.designer.cs">
+      <DependentUpon>202007170410570_createdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
@@ -695,8 +695,8 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007161705487_updatedb.resx">
-      <DependentUpon>202007161705487_updatedb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007170410570_createdb.resx">
+      <DependentUpon>202007170410570_createdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

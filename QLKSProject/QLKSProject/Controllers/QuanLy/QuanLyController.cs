@@ -220,10 +220,10 @@ namespace QLKSProject.Controllers.QuanLy
         }
 
         [HttpGet]
-        public IHttpActionResult LayTienIch([FromUri]string ID)
+        public IHttpActionResult LayTienIch(dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            int idTienIch = int.Parse(ID.ToString());
+            int idTienIch = int.Parse(dynamic.ID.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.LayTienIch(idTienIch));
