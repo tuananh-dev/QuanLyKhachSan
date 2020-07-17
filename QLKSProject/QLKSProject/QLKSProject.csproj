@@ -522,6 +522,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="Migrations\202007170447443_updatedb-v01.cs" />
+    <Compile Include="Migrations\202007170447443_updatedb-v01.designer.cs">
+      <DependentUpon>202007170447443_updatedb-v01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+>>>>>>> 4f58971dca54c77c67d70c3a60ca96b3166f246a
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
     <Compile Include="Models\DTO\DatPhongThatBai.cs" />
     <Compile Include="Models\DTO\DichVu.cs" />
@@ -680,8 +688,11 @@
     <Content Include="Content\Home\scss\_site-navbar.scss" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+<<<<<<< HEAD
     <Content Include="Views\HomeViews\Index.cshtml" />
     <None Include="Views\HomeViews\test.cshtml" />
+=======
+>>>>>>> 4f58971dca54c77c67d70c3a60ca96b3166f246a
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -696,6 +707,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+<<<<<<< HEAD
+=======
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007170447443_updatedb-v01.resx">
+      <DependentUpon>202007170447443_updatedb-v01.cs</DependentUpon>
+    </EmbeddedResource>
+>>>>>>> 4f58971dca54c77c67d70c3a60ca96b3166f246a
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
