@@ -358,3 +358,12 @@ QLKSProject/QLKSProject/Migrations/202007110634268_createdb.resx
 QLKSProject/QLKSProject/Migrations/202007130619370_createdb.cs
 QLKSProject/QLKSProject/Migrations/202007130619370_createdb.Designer.cs
 QLKSProject/QLKSProject/Migrations/202007130619370_createdb.resx
+QLKSProject/QLKSProject/Migrations/202007161705487_updatedb.resx
+QLKSProject/QLKSProject/Migrations/202007161705487_updatedb.cs
+QLKSProject/QLKSProject/Migrations/202007161705487_updatedb.Designer.cs
+QLKSProject/QLKSProject/Migrations/202007170410570_createdb.cs
+QLKSProject/QLKSProject/Migrations/202007170410570_createdb.Designer.cs
+QLKSProject/QLKSProject/Migrations/202007170410570_createdb.resx
+QLKSProject/QLKSProject/Migrations/202007170437096_createdb.cs
+QLKSProject/QLKSProject/Migrations/202007170437096_createdb.Designer.cs
+QLKSProject/QLKSProject/Migrations/202007170437096_createdb.resx
