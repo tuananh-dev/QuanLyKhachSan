@@ -12,7 +12,7 @@ namespace QLKSProject.Controllers.NhanVien
 {
     public class NhanVienController : ApiController
     {
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult LayDanhSachDoan()
         {
             IHttpActionResult respon = Ok();
@@ -22,11 +22,10 @@ namespace QLKSProject.Controllers.NhanVien
                     respon = Ok("Không có dữ liệu");
                 else
                     respon = Ok(nhanvien.LayDanhSachDoan());
-                
             }
             return respon;
         }
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult LayDanhSachDatPhongThanhCong()
         {
             IHttpActionResult respon = Ok();
@@ -40,7 +39,7 @@ namespace QLKSProject.Controllers.NhanVien
             return respon;
 
         }
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult LayDanhSachDatPhongThatBai()
         {
             IHttpActionResult respon = Ok();
