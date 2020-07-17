@@ -522,9 +522,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007161917281_updatedb.cs" />
-    <Compile Include="Migrations\202007161917281_updatedb.designer.cs">
-      <DependentUpon>202007161917281_updatedb.cs</DependentUpon>
+    <Compile Include="Migrations\202007170447443_updatedb-v01.cs" />
+    <Compile Include="Migrations\202007170447443_updatedb-v01.designer.cs">
+      <DependentUpon>202007170447443_updatedb-v01.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
@@ -685,11 +685,6 @@
     <Content Include="Content\Home\scss\_site-navbar.scss" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-<<<<<<< HEAD
-=======
-    <Content Include="Views\HomeViews\Index.cshtml" />
-    <None Include="Views\HomeViews\test.cshtml" />
->>>>>>> e094c0ce5cf61a237d0afe055b285517535e0c10
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -702,12 +697,12 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007161917281_updatedb.resx">
-      <DependentUpon>202007161917281_updatedb.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <EmbeddedResource Include="Migrations\202007170447443_updatedb-v01.resx">
+      <DependentUpon>202007170447443_updatedb-v01.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
