@@ -45,6 +45,80 @@ function loadData(idList, url) {
     });
 }
 
+function loadDataDetail(edit, url, id) {
+
+
+    $.ajax({
+        type: 'GET',
+        url: '/api/' + url + id,
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+        dataType: 'json',
+        success: function (data) {
+            switch (url) {
+                case 'Quanly/LayTienIch?ID=':
+                    $(edit.mota).val(data.MoTa);
+                    $(edit.tenTienIch).val(data.TenTienIch);
+                    break;
+                case 'QuanLy/LayDichVu?ID=':
+                    $(edit.mota).val(data.MoTa);
+                    $(edit.tenDV).val(data.TenDichVu);
+                    $(edit.gia).val(data.Gia);
+                    break;
+                default:
+                // code block
+            }
+        }
+    });
+}
+
+function loadDSPhong(ids, url) {
+    $.ajax({
+        type: 'GET',
+        url: '/api/' + url,
+        dataType: 'json',
+        success: function (data) {
+            $.each(data, function (index, val) {
+                var color = "lightgreen";
+                var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
+                if (val.TrangThai) {
+                    color = "white";
+                }
+
+                if (val.SoPhong.charAt(0) == '1') {
+                    ids.row1.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                }
+                if (val.SoPhong.charAt(0) == '2') {
+                    ids.row2.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                }
+                if (val.SoPhong.charAt(0) == '3') {
+                    ids.row3.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                }
+                if (val.SoPhong.charAt(0) == '4') {
+                    ids.row4.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                }
+                if (val.SoPhong.charAt(0) == '5') {
+                    ids.row5.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                }
+                if (val.SoPhong.charAt(0) == '6') {
+                    ids.row6.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                }
+                if (val.SoPhong.charAt(0) == '7') {
+                    ids.row7.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                }
+
+
+
+
+
+
+
+            });
+
+        }
+    });
+
+}
+
 function addData(info, dataInput) {
     $.ajax({
         url: '/api/' + info.url,

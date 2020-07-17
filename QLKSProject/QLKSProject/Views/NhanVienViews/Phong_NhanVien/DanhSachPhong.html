@@ -30,61 +30,24 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="../../../Content/QuanLy/Jquery.js"></script>
-
+    <script src="../../../Content/QuanLy/libs_function.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var row1 = $('#row1');
-            var row2 = $('#row2');
-            var row3 = $('#row3');
-            var row4 = $('#row4');
-            var row5 = $('#row5');
-            var row6 = $('#row6');
-            var row7 = $('#row7');
-            
-            $.ajax({
-                type: 'GET',
-                url: '/api/Quanly/LayDanhSachPhong',
-                dataType: 'json',
-                success: function (data) {
-                    $.each(data, function (index, val) {
-                        var color = "lightgreen";
-                        var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
-                        if (val.TrangThai) {
-                            color = "white";
-                        }
 
-                        if (val.SoPhong.charAt(0) == '1') {
-                            row1.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                        }
-                        if (val.SoPhong.charAt(0) == '2') {
-                            row2.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                        }
-                        if (val.SoPhong.charAt(0) == '3') {
-                            row3.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                        }
-                        if (val.SoPhong.charAt(0) == '4') {
-                            row4.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                        }
-                        if (val.SoPhong.charAt(0) == '5') {
-                            row5.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                        }
-                        if (val.SoPhong.charAt(0) == '6') {
-                            row6.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                        }
-                        if (val.SoPhong.charAt(0) == '7') {
-                            row7.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                        }
-                       
+            var layDSPhong = 'Quanly/LayDanhSachPhong';
 
 
+            var ids = {
+                row1: $('#row1'),
+                row2: $('#row2'),
+                row3: $('#row3'),
+                row4: $('#row4'),
+                row5: $('#row5'),
+                row6: $('#row6'),
+                row7: $('#row7')
+            }
+            loadDSPhong(ids, layDSPhong);
 
-
-
-
-                    });
-
-                }
-            });
         });
     </script>
 </head>
@@ -317,8 +280,8 @@
                         <div class="row" id="row6" style="margin:0;padding:0;"></div>
                         <h3>Tầng 7</h3>
                         <div class="row" id="row7" style="margin:0;padding:0;"></div>
-                        
-                        
+
+
 
                     </div>
                 </div>
