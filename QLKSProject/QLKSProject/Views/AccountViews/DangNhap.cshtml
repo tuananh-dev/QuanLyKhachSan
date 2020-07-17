@@ -24,7 +24,9 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-
+    <script src="js/form-validation.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -32,7 +34,7 @@
     <div class="limiter">
         <div class="container-login100 page-background">
             <div class="wrap-login100">
-                <form class="login100-form validate-form" id="dangnhap">
+                <form class="login100-form validate-form" id="dangnhap" onclick="return false">
                     <span class="login100-form-logo">
                         <i class="zmdi zmdi-flower"></i>
                     </span>
@@ -53,47 +55,79 @@
                             Remember me
                         </label>
                     </div>
-                    <div class="container-login100-form-btn">
+                    @*<div class="container-login100-form-btn">
                         <button class="login100-form-btn" id="login">
                             Login
                         </button>
-                    </div>
+                    </div>*@
+                <div class="container-login100-form-btn">
+                    <button type="submit"  id="login" class="login100-form-btn">
+                    Login
+                    </button>
+                        </div>
                     <div class="text-center p-t-90">
                         <a class="txt1" href="#">
                             Forgot Password?
                         </a>
                     </div>
-                </form>
+</form>
             </div>
         </div>
+       
         <script type="text/javascript">
-            $(document).ready(function () {
 
-                $("#login").click(function() {
-                    
-                    $.ajax({
-                        url: '/api/Home/TestDuLieuTruyenXuong',
-                        type: "POST",
-                        dataType: 'json', 
-                        data: {
-                            UserName: $('#name').val(),
+            
+
+                $(document).ready(function () {
+
+                    $('#dangnhap').submit(function () {
+                        var person = {
+                            Name: $('#name').val(),
                             Pass: $('#pass').val(),
-                            
-                        },
 
 
-
-
-                        success: function (res) {
-
-                            alert(res);
                         }
-                       
-                    })
-                 });
-            });
 
+
+
+                        $.ajax({
+                            url: '/api/Home/TestDuLieuTruyenXuong',
+                            method: 'POST',
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            //data: JSON.stringify(person),
+                            data: JSON.stringify(person),
+
+                            success: function (data) {
+                                //console.log('Send success')
+                                alert(data);
+
+                               
+                            },
+                            error: function (data) {
+
+
+                            }
+
+
+                        });
+
+
+                    });
+
+
+                });
+           
         </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
     </div>
     <!-- start js include path -->
     <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
