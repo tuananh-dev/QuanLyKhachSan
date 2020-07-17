@@ -7,6 +7,7 @@ namespace QLKSProject.Business.NhanVien
 {
     public class NhanVienBusiness : BaseBusiness
     {
+        #region Public Methods
         public List<Doan> LayDanhSachDoan()
         {
             var lstDoan = models.Doans.Select(s => new Doan
@@ -46,6 +47,7 @@ namespace QLKSProject.Business.NhanVien
             });
             return datPhongThatBais.ToList();
         }
+        #endregion
 
         #region private methods
         private bool LuuDatPhongThanhCong(KhachHang khachHangs, int IDPhong)

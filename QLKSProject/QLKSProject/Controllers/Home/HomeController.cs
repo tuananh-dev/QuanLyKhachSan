@@ -20,44 +20,17 @@ namespace QLKSProject.Controllers.Home
             {
                 return respone = BadRequest();
             }
-            return respone;
-        }
-        //[HttpPost]
-        //public IHttpActionResult KiemTraTaiKhoan(username, password)
-        //{
-        //    IHttpActionResult respone = Ok(username, password);
-        //    using (HomeBusiness homeBusiness = new HomeBusiness())
-        //    {
-        //        respone = Ok(homeBusiness.KiemTraTaiKhoan(username, password));
-        //        return respone;
-        //    }
-
-
-
-
-
-        //}
-
-
-        public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
-        {
-            IHttpActionResult respon = Ok();
+            string tenDoan = dynamic.TenDoan.ToString();
+            string tenTruongDoan = dynamic.TenTruongDoan.ToString();
+            DateTime thoiGianNhan = dynamic.ThoiGianNhan;
+            DateTime thoiGianTra = dynamic.ThoiGianTra;
+            string fileDSKhachHang = dynamic.Files.ToString();
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
-                respon = Ok(homeBusiness.LayFileDanhSachKhachHang(dynamic));
-                return respon;
+                respone = Ok(homeBusiness.LayFileDanhSachKhachHang(tenDoan,tenTruongDoan,thoiGianNhan,thoiGianTra,fileDSKhachHang));
             }
+            return respone;
         }
-        /*        [HttpPost]
-                public IHttpActionResult LDuLieuTruyenXuong(dynamic dynamic)
-                {
-                    IHttpActionResult respon = Ok();
 
-                    using (HomeBusiness homeBusiness = new HomeBusiness())
-                    {
-                        respon = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
-                    }
-                    return respon;
-                }*/
     }
 }

@@ -8,6 +8,7 @@ namespace QLKSProject.Business
     public class KhoiTaoCSDL : BaseBusiness
     {
         private Random rd = new Random();
+
         #region Public Methods
         public bool TaoCSDL()
         {
@@ -73,13 +74,14 @@ namespace QLKSProject.Business
                     khachHang.SoDienThoai = "098" + rd.Next(222222, 999999);
                     khachHang.Email = khachHang.HoVaTen.ToLower().Replace(" ", "") + "@gmail.com";
                     khachHang.DiaChi = rd.Next(1, 1234) + " " + tenDuong[rd.Next(0, tenDuong.Length - 1)];
-                    //khachHang.Nhom = "n" + rd.Next(1, 10);
+                    khachHang.Nhom = rd.Next(1, 10);
                     khachHang.ThoiGianNhan = doan.ThoiGianNhan;
                     khachHang.ThoiGianTra = doan.ThoiGianTra;
                     khachHang.MaDoan = doan.MaDoan;
                     khachHang.GioiTinh = (rd.Next(0, 2) == 1) ? true : false;
                     khachHang.LoaiKhachHang = (rd.Next(0, 20) == 3) ? true : false;
                     khachHang.TruongDoan = (j == 0) ? true : false;
+                    khachHang.TrangThaiDatPhong = false;
                     khachHang.IsDelete = false;
 
                     models.KhachHangs.Add(khachHang);

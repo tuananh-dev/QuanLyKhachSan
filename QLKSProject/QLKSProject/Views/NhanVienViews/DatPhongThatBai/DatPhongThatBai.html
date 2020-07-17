@@ -26,29 +26,20 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="../../../Content/QuanLy/Jquery.js"></script>
-
+    <script src="../../../Content/QuanLy/libs_function.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
 
-            var dichvu = $('#dsdv');
-            $.ajax({
-                type: 'POST',
-                url: '/api/NhanVien/LayDanhSachDatPhongThatBai',
-                dataType: 'json',
-                success: function (data) {
-                    dichvu.empty();
+            var idList = $('#dsdatphong');
+            var layDS = 'NhanVien/LayDanhSachDatPhongThatBai';
+            loadData(idList, layDS);
 
-                    $.each(data, function (index, val) {
 
-                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDoan + '</td><td class="center">' + val.MaDoan + '</td><td class="center">'+val.GhiChu+'</td><td class="center">');
-                    });
-
-                }
-            });
 
         });
     </script>
+    
 </head>
 <!-- END HEAD -->
 
@@ -276,7 +267,7 @@
                                                     <th class="center"> Ghi Chú </th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="dsdv">
+                                            <tbody id="dsdatphong">
                                             </tbody>
                                         </table>
                                     </div>
