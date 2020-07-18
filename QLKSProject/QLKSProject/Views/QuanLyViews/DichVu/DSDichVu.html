@@ -44,6 +44,7 @@
             var themDichVu = 'Quanly/themDichVu';
             var suaDichVu = 'Quanly/CapNhatDichVu';
             var xoaDichVu = 'Quanly/XoaDichVu';
+            var layDV = 'QuanLy/LayDichVu?ID=';
 
 
             loadData(idList, layDSDichVu);
@@ -57,18 +58,26 @@
                 var data = {
                     ID: dataId
                 }
-                 var info = {
+                var info = {
                     id: idList,
                     url: xoaDichVu,
                     urlLoad: layDSDichVu,
                     modal: idModalDelete
                 };
-                deleteData(info,data);
-                
+                deleteData(info, data);
+
             })
             $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
                 $(idModalEdit).modal('show');
                 dataId = $(this).attr("data-id");
+                var edit = {
+                    tenDV: '#tenDV-edit',
+                    gia: '#gia-edit',
+                    moTa: '#mota-edit',
+
+                }
+
+                loadDataDetail(edit, layDV , dataId);
             })
 
             $('#btn-edit').click(function () {
@@ -86,7 +95,7 @@
                     modal: idModalEdit
                 };
                 editData(info, data);
-                
+
 
             });
             $("#addRow").click(function () {
@@ -107,7 +116,7 @@
                     urlLoad: layDSDichVu,
                     modal: idModalAdd
                 };
-                addData(info,data);
+                addData(info, data);
             });
         });
     </script>
@@ -390,7 +399,7 @@
 
                                             <div class="col-lg-12 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <textarea class="mdl-textfield__input" type="text" id="mota-add" rows="3" cols="50"></textarea>
+                                                    <textarea class="mdl-textfield__input" type="text" id="mota-add" rows="1" cols="30" style=""></textarea>
                                                     <label class="mdl-textfield__label">Mô Tả</label>
                                                 </div>
                                             </div>
@@ -445,7 +454,7 @@
 
                                             <div class="col-lg-12 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <textarea class="mdl-textfield__input" type="text" id="mota-edit" rows="3" cols="50"></textarea>
+                                                    <textarea class="mdl-textfield__input" type="text" id="mota-edit" rows="1" cols="50"></textarea>
                                                     <label class="mdl-textfield__label">Mô Tả</label>
                                                 </div>
                                             </div>

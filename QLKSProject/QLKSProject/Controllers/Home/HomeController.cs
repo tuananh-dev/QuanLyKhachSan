@@ -18,17 +18,25 @@ namespace QLKSProject.Controllers.Home
             IHttpActionResult respone = Ok();
             if(dynamic == null)
             {
-                return respone = BadRequest();
+                return respone = Ok(false);
             }
-            string tenDoan = dynamic.TenDoan.ToString();
-            string tenTruongDoan = dynamic.TenTruongDoan.ToString();
-            DateTime thoiGianNhan = dynamic.ThoiGianNhan;
-            DateTime thoiGianTra = dynamic.ThoiGianTra;
-            string fileDSKhachHang = dynamic.Files.ToString();
-            using (HomeBusiness homeBusiness = new HomeBusiness())
+            try
             {
-                respone = Ok(homeBusiness.LayFileDanhSachKhachHang(tenDoan,tenTruongDoan,thoiGianNhan,thoiGianTra,fileDSKhachHang));
+                string tenDoan = dynamic.TenDoan.ToString();
+                string tenTruongDoan = dynamic.TenTruongDoan.ToString();
+                DateTime thoiGianNhan = dynamic.ThoiGianNhan;
+                DateTime thoiGianTra = dynamic.ThoiGianTra;
+                string fileDSKhachHang = dynamic.Files.ToString();
+                using (HomeBusiness homeBusiness = new HomeBusiness())
+                {
+                    respone = Ok(homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang));
+                }
             }
+            catch (Exception)
+            {
+                respone = Ok(false);
+            }
+           
             return respone;
         }
 

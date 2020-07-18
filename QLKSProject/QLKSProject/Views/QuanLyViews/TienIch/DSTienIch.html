@@ -44,6 +44,7 @@
             var themTienIch = 'Quanly/ThemTienIch';
             var suaTienIch = 'Quanly/CapNhatTienIch';
             var xoaTienIch = 'Quanly/XoaTienIch';
+            var layTienIch = 'Quanly/LayTienIch?ID=';
 
 
             loadData(idList, layDSTienIch);
@@ -68,6 +69,12 @@
             $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
                 $(idModalEdit).modal('show');
                 dataId = $(this).attr("data-id");
+                 var edit = {
+                     tenTienIch: '#tenTI-edit',
+                     mota: '#mota-edit',
+                }
+
+                loadDataDetail(edit, layTienIch , dataId);
             })
 
             $('#btn-edit').click(function () {
@@ -411,15 +418,16 @@
 
                                         <div class="card-body row">
                                             <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                <div class="mdl-textfield mdl-js-textfield" style="">
                                                     <input class="mdl-textfield__input" type="text" id="tenTI-edit" required>
-                                                    <label class="mdl-textfield__label">Tên Tiện Ích</label>
+                                                    <label class="mdl-textfield__label" style="top:0;">Tên Tiện Ích</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                <!--mdl-textfield mdl-js-textfield-->
+                                                <div class="mdl-textfield mdl-js-textfield">
                                                     <input class="mdl-textfield__input" type="text" id="mota-edit" required>
-                                                    <label class="mdl-textfield__label" for="mota">Mô Tả</label>
+                                                    <label class="mdl-textfield__label" for="mota" style="top:0;">Mô Tả</label>
                                                 </div>
                                             </div>
                                         </div>

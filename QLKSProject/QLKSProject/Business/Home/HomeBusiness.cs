@@ -4,7 +4,10 @@ using System.IO;
 using QLKSProject.Models.DTO;
 namespace QLKSProject.Business.Home
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4f58971dca54c77c67d70c3a60ca96b3166f246a
 	public class HomeBusiness : BaseBusiness
 	{
 		#region Public methods
@@ -84,6 +87,11 @@ namespace QLKSProject.Business.Home
 				sw.WriteLine(lstThuocTinh[i]+i);
           }*/
 	}
+<<<<<<< HEAD
 
+    
+=======
+>>>>>>> 4f58971dca54c77c67d70c3a60ca96b3166f246a
 }
+
 

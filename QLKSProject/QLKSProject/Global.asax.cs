@@ -12,5 +12,6 @@ namespace QLKSProject
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
+
     }
 }
