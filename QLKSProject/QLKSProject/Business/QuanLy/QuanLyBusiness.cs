@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.UI.WebControls;
+using Microsoft.Ajax.Utilities;
 using QLKSProject.Models.DTO;
 
 namespace QLKSProject.Business.QuanLy
 {
     public class QuanLyBusiness : BaseBusiness
     {
+        DateTime ngayDauThang;
+        DateTime ngayCuoiThang;
         #region TaiKhoan
         public List<TaiKhoan> LayDanhSachTaiKhoan()
         {
@@ -322,23 +326,24 @@ namespace QLKSProject.Business.QuanLy
         #endregion
 
         #region Thong Ke
-        public bool XuatThongKeTheoTuan(int idtuan)
+     
+        public bool XuatThongKeTheoThang(int idkhachHang , int idPhong)
         {
-            //var tktuan = models.DatPhongThanhCongs.Where(e => e.ID == idtuan).Select(e => new DatPhongThanhCong { 
-            
-            
-            //} ).ToList
-        
+            List<DatPhongThanhCong> dsPhongDaDuocDatThanhCong = models.DatPhongThanhCongs.Select(s => new DatPhongThanhCong { 
+            ID = s.ID,
+            IDPhong = s.IDPhong,
+            IDKhachHang = s.IDKhachHang,
+            IsDelete = s.IsDelete,
+            TrangThaiDatPhong = s.TrangThaiDatPhong,
+            NgayTraPhongThucTe = s.NgayTraPhongThucTe
+            }).ToList();
+            foreach( var itemdatphong in dsPhongDaDuocDatThanhCong)
+            {
+                var khachhang = models.KhachHangs.Where(b => b.ID == itemdatphong.IDKhachHang).Select(b => b).FirstOrDefault();
+            }
             return false;
         }
-        public bool XuatThongKeTheoThang()
-        {
-            return false;
-        }
-        public bool XuatThongKeTheoNam()
-        {
-            return false;
-        }
+      
         public bool XuatThongKeTheoQuy()
         {
             return false;
@@ -346,6 +351,59 @@ namespace QLKSProject.Business.QuanLy
         #endregion
 
         #region Private Methods
+        private void LayNgayDauThangvaCuoiThang(int thang,int nam)
+        {
+            switch (thang)
+            {
+                case 1: ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 31);
+                    break;
+                case 2:ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 28);
+                    break;
+                case 3:
+                    ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 31);
+                    break;
+                case 4:
+                    ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 30);
+                    break;
+                case 5:
+                    ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 31);
+                    break;
+                case 6:
+                    ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 30);
+                    break;
+                case 7:
+                    ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 31);
+                    break;
+                case 8:
+                    ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 31);
+                    break;
+                case 9:
+                    ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 30);
+                    break;
+                case 10:
+                    ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 31);
+                    break;
+                case 11:
+                    ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 30);
+                    break;
+                case 12:
+                    ngayDauThang = new DateTime(nam, thang, 1);
+                    ngayCuoiThang = new DateTime(nam, thang, 31);
+                    break;
+            }
+            
+        }
         private bool CheckTaiKhoan(String tenTaiKhoan)
         {
             bool b = true;

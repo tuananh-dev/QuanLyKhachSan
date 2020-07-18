@@ -26,7 +26,7 @@ namespace QLKSProject.Controllers.QuanLy
                 }
                 else
                 {
-                    respon = Ok("Không có dữ liệu");
+                    respon = BadRequest();
                 }
                 return respon;
             }
@@ -88,7 +88,7 @@ namespace QLKSProject.Controllers.QuanLy
                 }
                 else
                 {
-                    respon = Ok("Không có dữ liệu");
+                    respon = BadRequest();
                 }
                 return respon;
             }
@@ -149,7 +149,7 @@ namespace QLKSProject.Controllers.QuanLy
                 }
                 else
                 {
-                    respon = Ok("Không có dữ liệu");
+                    respon = BadRequest();
                 }
                 return respon;
             }
@@ -211,7 +211,7 @@ namespace QLKSProject.Controllers.QuanLy
                 }
                 else
                 {
-                    respon = Ok("Không có dữ liệu");
+                    respon = BadRequest();
                 }
                 return respon;
             }
