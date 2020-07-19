@@ -13,7 +13,7 @@ namespace QLKSProject.Models.Entities
         public string TenTienIch { get; set; }
 
         [Required]
-        public string HinhAnh { get; set; }
+        public string MoTa { get; set; }
         [Required]
         public bool IsDelete { get; set; }
     }

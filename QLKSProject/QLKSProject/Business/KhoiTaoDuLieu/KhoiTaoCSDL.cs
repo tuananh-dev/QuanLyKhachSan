@@ -14,7 +14,7 @@ namespace QLKSProject.Business
             bool b = true;
             try
             {
-                TaoPhong(9, 22);
+                TaoPhong(7, 10);
                 TaoDichVu();
                 TaoTaiKhoan();
                 TaoTienIch();
@@ -152,7 +152,7 @@ namespace QLKSProject.Business
             {
                 TienIch tienIch = new TienIch();
                 tienIch.TenTienIch = lstTenTienIch[i];
-                tienIch.HinhAnh = lstTenTienIch[i] + " picture";
+                tienIch.MoTa = lstTenTienIch[i] + " picture";
                 if (rd.Next(0, 10) == 0)
                     tienIch.IsDelete = true;
                 else

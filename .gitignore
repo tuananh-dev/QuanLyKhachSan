@@ -352,6 +352,14 @@ QLKSProject/QLKSProject/Migrations/202007060833276_createdb.cs
 QLKSProject/QLKSProject/Migrations/202007060833276_createdb.Designer.cs
 QLKSProject/QLKSProject/Migrations/202007060833276_createdb.resx
 QLKSProject/QLKSProject/Migrations/Configuration.cs
+<<<<<<< HEAD
 QLKSProject/QLKSProject/Migrations/202007110347137_createDB.cs
 QLKSProject/QLKSProject/Migrations/202007110347137_createDB.Designer.cs
 QLKSProject/QLKSProject/Migrations/202007110347137_createDB.resx
+=======
+QLKSProject/QLKSProject/Migrations/202007110634268_createdb.cs
+QLKSProject/QLKSProject/Migrations/202007110634268_createdb.Designer.cs
+QLKSProject/QLKSProject/Migrations/202007110634268_createdb.resx
+>>>>>>> 3c7bf7249dc3742b570ddee51a4642f8b75ad4bc
+QLKSProject/QLKSProject/TokenAuthenticationInWebAPI/App_Start_Startup.cs
+QLKSProject/QLKSProject/bin/Owin.dll

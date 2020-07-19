@@ -114,9 +114,12 @@ namespace QLKSProject.Business.NhanVien
         {
             foreach (var item in lstKhachHang)
             {
-
+                if (item.LoaiKhachHang.Equals("tre"))
+                    return true;
             }
+            return false;
         }
+
         #endregion
 
     }
