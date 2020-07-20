@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Newtonsoft.Json;
 using QLKSProject.Business.QuanLy;
 using QLKSProject.Models.DTO;
 
@@ -11,7 +13,7 @@ namespace QLKSProject.Controllers.QuanLy
 {
     public class QuanLyController : ApiController
     {
-        //TAIKHOAN
+        #region API xu ly TaiKhoan
         [HttpGet]
         public IHttpActionResult LayDanhSachTaiKhoan()
         {
@@ -47,7 +49,8 @@ namespace QLKSProject.Controllers.QuanLy
             IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.ThemTaiKhoan(taiKhoan));
+                    
+                    respon = Ok(quanLy.ThemTaiKhoan(taiKhoan));
                 return respon;
             }
         }
@@ -72,7 +75,8 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
-        //PHONG
+        #endregion
+        #region API xu ly Phong
         [HttpGet]
         public IHttpActionResult LayDanhSachPhong()
         {
@@ -132,7 +136,8 @@ namespace QLKSProject.Controllers.QuanLy
                 return respon;
             }
         }
-        //DICHVU
+        #endregion
+        #region API xu ly DichVu
         [HttpGet]
         public IHttpActionResult LayDanhSachDichVu()
         {
@@ -163,12 +168,13 @@ namespace QLKSProject.Controllers.QuanLy
             }
         }
         [HttpPost]
-        public IHttpActionResult ThemDichVu(DichVu dichVu)
+        public IHttpActionResult ThemDichVu(dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
+            DichVu dv = JsonConvert.DeserializeObject<DichVu>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.ThemDichVu(dichVu));
+                respon = Ok(quanLy.ThemDichVu(dv));
                 return respon;
             }
         }
@@ -189,11 +195,12 @@ namespace QLKSProject.Controllers.QuanLy
             int idDichVu = int.Parse(dynamic.ID.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.XoaTaiKhoan(idDichVu));
+                respon = Ok(quanLy.XoaDichVu(idDichVu));
                 return respon;
             }
         }
-        //TIENICH
+        #endregion
+        #region API xu ly TienIch
         [HttpGet]
         public IHttpActionResult LayDanhSachTienIch()
         {
@@ -213,10 +220,10 @@ namespace QLKSProject.Controllers.QuanLy
         }
 
         [HttpGet]
-        public IHttpActionResult LayTienIch(dynamic dynamic)
+        public IHttpActionResult LayTienIch([FromUri]string ID)
         {
             IHttpActionResult respon = Ok();
-            int idTienIch = int.Parse(dynamic.ID.ToString());
+            int idTienIch = int.Parse(ID.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.LayTienIch(idTienIch));
@@ -252,10 +259,10 @@ namespace QLKSProject.Controllers.QuanLy
             int idTienIch = int.Parse(dynamic.ID.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.XoaTaiKhoan(idTienIch));
+                respon = Ok(quanLy.XoaTienIch(idTienIch));
                 return respon;
             }
         }
-
+        #endregion
     }
 }

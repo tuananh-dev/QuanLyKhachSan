@@ -29,9 +29,7 @@ namespace QLKSProject.Models.Entities
         [StringLength(200)]
         public string DiaChi { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Nhom { get; set; }
+        public int Nhom { get; set; }
 
         [StringLength(100)]
         public string NguoiDaiDienCuaTreEm { get; set; }
@@ -60,6 +58,10 @@ namespace QLKSProject.Models.Entities
 
         [Required]
         public bool IsDelete { get; set; }
+        
+        [Required]
+        public bool TrangThaiDatPhong { get; set; }
+
 
         [ForeignKey("MaDoan")]
         public virtual Doan Doan_MaDoan { get; set; }

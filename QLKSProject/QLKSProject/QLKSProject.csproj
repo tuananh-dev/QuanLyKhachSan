@@ -232,6 +232,7 @@
     <Content Include="Content\Home\images\img_6.jpg" />
     <Content Include="Content\Home\images\img_7.1.jpg" />
     <Content Include="Content\Home\images\img_7.jpg" />
+    <Content Include="Content\Home\images\logo1.png" />
     <Content Include="Content\Home\images\person_1.jpg" />
     <Content Include="Content\Home\images\person_2.jpg" />
     <Content Include="Content\Home\images\person_3.jpg" />
@@ -239,7 +240,6 @@
     <Content Include="Content\Home\js\aos.js" />
     <Content Include="Content\Home\js\bootstrap-datepicker.min.js" />
     <Content Include="Content\Home\js\bootstrap.min.js" />
-    <Content Include="Content\Home\js\excel.js" />
     <Content Include="Content\Home\js\fileupload.js" />
     <Content Include="Content\Home\js\jquery-3.3.1.min.js" />
     <Content Include="Content\Home\js\jquery-migrate-3.0.1.min.js" />
@@ -376,6 +376,7 @@
     <Content Include="Content\QuanLy\js\pages\ui\animations.js" />
     <Content Include="Content\QuanLy\js\pages\validation\form-validation.js" />
     <Content Include="Content\QuanLy\js\theme-color.js" />
+    <Content Include="Content\QuanLy\libs_function.js" />
     <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha-horizontal.png" />
     <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha.png" />
@@ -482,30 +483,30 @@
     <Content Include="Content\QuanLy\plugins\sweet-alert\sweetalert.min.css" />
     <Content Include="Content\QuanLy\plugins\sweet-alert\sweetalert.min.js" />
     <Content Include="Global.asax" />
+    <Content Include="Content\Home\FileDSKH\Mẫu File Danh Sách Đoàn.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="HtmlPage1.html" />
-    <Content Include="Views\HomeViews\data.php" />
-    <Content Include="Views\QuanLyViews\DichVu\ChinhSuaDichVu.html" />
+    <Content Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.html" />
+    <Content Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.html" />
+    <Content Include="Views\NhanVienViews\Doan\Doan.html" />
+    <Content Include="Views\NhanVienViews\Phong_NhanVien\DanhSachPhong.html" />
     <Content Include="Views\QuanLyViews\DichVu\DSDichVu.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Views\AccountViews\DangNhap.cshtml" />
     <Content Include="Views\HomeViews\GioiThieu.cshtml" />
-    <None Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
+    <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
     <Content Include="Views\HomeViews\TrangChu.cshtml" />
-    <Content Include="Views\QuanLyViews\DichVu\ThemMoiDichVu.html" />
-    <Content Include="Views\QuanLyViews\Phong\ChinhSuaPhong.html" />
     <Content Include="Views\QuanLyViews\Phong\DSPhong.html" />
-    <Content Include="Views\QuanLyViews\Phong\ThemMoiPhong.html" />
     <Content Include="Views\QuanLyViews\TaiKhoan\DangNhap.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\DKTaiKhoan.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\KhoaManHinh.cshtml" />
-    <Content Include="Views\QuanLyViews\TKNhanVien\ChinhSuaTKNhanVien.html" />
+    <Content Include="Views\QuanLyViews\TienIch\DSTienIch.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\DSTKNhanVien.html" />
-    <Content Include="Views\QuanLyViews\TKNhanVien\ThemMoiTKNhanVien.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\XemChiTietTKNhanVien.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\TaiKhoanViews\DangNhap.html" />
+    <Content Include="Views\TaiKhoanViews\KhoaManHinh.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -523,9 +524,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007110347137_createDB.cs" />
-    <Compile Include="Migrations\202007110347137_createDB.designer.cs">
-      <DependentUpon>202007110347137_createDB.cs</DependentUpon>
+    <Compile Include="Migrations\202007161705487_updatedb.cs" />
+    <Compile Include="Migrations\202007161705487_updatedb.designer.cs">
+      <DependentUpon>202007161705487_updatedb.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
     <Compile Include="Models\DTO\DatPhongThatBai.cs" />
@@ -685,8 +686,7 @@
     <Content Include="Content\Home\scss\_site-navbar.scss" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\HomeViews\Index.cshtml" />
-    <None Include="Views\HomeViews\test.cshtml" />
+    <Content Include="Views\TaiKhoanViews\DangNhap.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -699,8 +699,8 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007110347137_createDB.resx">
-      <DependentUpon>202007110347137_createDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007161705487_updatedb.resx">
+      <DependentUpon>202007161705487_updatedb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

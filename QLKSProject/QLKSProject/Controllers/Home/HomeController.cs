@@ -6,30 +6,39 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using System.Web.Http.Results;
 
 namespace QLKSProject.Controllers.Home
 {
     public class HomeController : ApiController
     {
         [HttpPost]
-        public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
+        public bool LayFileDanhSachKhachHang(dynamic dynamic)
         {
-            IHttpActionResult respon = Ok(dynamic);
-            return respon;
-        }
+            //IHttpActionResult respone = Ok();
+            //if (dynamic == null)
+            //{
+            //    return respone = Ok(false);
+            //}
+            //try
+            //{
+            //    string tenDoan = dynamic.TenDoan.ToString();
+            //    string tenTruongDoan = dynamic.TenTruongDoan.ToString();
+            //    DateTime thoiGianNhan = dynamic.ThoiGianNhan;
+            //    DateTime thoiGianTra = dynamic.ThoiGianTra;
+            //    string fileDSKhachHang = dynamic.Files.ToString();
+            //    using (HomeBusiness homeBusiness = new HomeBusiness())
+            //    {
+            //        respone = Ok(homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang));
+            //    }
 
-        [HttpPost]
-        public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
-        {
-            IHttpActionResult respon = Ok();
+            //}
 
-            using(HomeBusiness homeBusiness = new HomeBusiness())
-            {
-                respon = Ok(homeBusiness.TestDuLieuTruyenXuong(dynamic));
-            }
-            return respon;
-
+            //catch (Exception)
+            //{
+            //    respone = Ok(false);
+            //}
+            return true;
         }
 
     }

@@ -31,86 +31,15 @@
 
         $(document).ready(function () {
 
-            //var mota = $();
-            var dataId;
-            var idList = '#dsdichvu';
-            //Modal
-            var idModalAdd = '#addModal';
-            var idModalEdit = '#editModal';
-            var idModalDelete = '#deleteModal';
-
-            //API
-            var layDSDichVu = 'Quanly/LayDanhSachDichVu';
-            var themDichVu = 'Quanly/themDichVu';
-            var suaDichVu = 'Quanly/CapNhatDichVu';
-            var xoaDichVu = 'Quanly/XoaDichVu';
+            var idList = $('#dsdatphong');
+            var layDS = 'NhanVien/LayDanhSachDatPhongThanhCong';
+            loadData(idList, layDS);
 
 
-            loadData(idList, layDSDichVu);
 
-            $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
-                $(idModalDelete).modal('show');
-                dataId = $(this).attr("data-id");
-            })
-
-            $('#btn-del').click(function () {
-                var data = {
-                    ID: dataId
-                }
-                 var info = {
-                    id: idList,
-                    url: xoaDichVu,
-                    urlLoad: layDSDichVu,
-                    modal: idModalDelete
-                };
-                deleteData(info,data);
-                
-            })
-            $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
-                $(idModalEdit).modal('show');
-                dataId = $(this).attr("data-id");
-            })
-
-            $('#btn-edit').click(function () {
-                var data = {
-                    ID: dataId,
-                    TenDichVu: $('#tenDV-edit').val(),
-                    Gia: $('#gia-edit').val(),
-                    MoTa: $('#mota-edit').val(),
-                    IsDelete: false,
-                };
-                var info = {
-                    id: idList,
-                    url: suaDichVu,
-                    urlLoad: layDSDichVu,
-                    modal: idModalEdit
-                };
-                editData(info, data);
-                
-
-            });
-            $("#addRow").click(function () {
-                $(idModalAdd).modal('show');
-            })
-
-            $('#btn-add').click(function () {
-                var data = {
-                    ID: 0,
-                    TenDichVu: $('#tenDV-add').val(),
-                    Gia: $('#gia-add').val(),
-                    IsDelete: false,
-                    MoTa: $('#mota-add').val()
-                }
-                var info = {
-                    id: idList,
-                    url: themDichVu,
-                    urlLoad: layDSDichVu,
-                    modal: idModalAdd
-                };
-                addData(info,data);
-            });
         });
     </script>
+    
 </head>
 <!-- END HEAD -->
 
@@ -288,6 +217,7 @@
                                 </a>
 
                             </li>
+
                             <li class="nav-item active">
                                 <a href="/Views/NhanVienViews/Doan/Doan.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
@@ -296,6 +226,7 @@
                                 </a>
 
                             </li>
+
                         </ul>
                     </div>
                 </div>
@@ -306,17 +237,17 @@
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
-                                <div class="page-title">Danh Sách Dịch Vụ</div>
+                                <div class="page-title">Danh Sách Đặt Phòng Thành Công</div>
                             </div>
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="index.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                                       href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
                                 <li>
-                                    <a class="parent-item" href="#">Dịch Vụ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                    <a class="parent-item" href="#">Đặt Phòng Thành Công</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li class="active">Danh Sách Dịch Vụ</li>
+                                <li class="active">Danh Sách Đặt Phòng Thành Công</li>
                             </ol>
                         </div>
                     </div>
@@ -325,32 +256,18 @@
                             <div class="card card-box">
 
                                 <div class="card-body ">
-                                    <div class="row p-b-20">
-                                        <div class="col-md-6 col-sm-6 col-6">
-                                            <div class="btn-group">
-                                                <button href="" id="addRow" class="btn btn-info">
-
-                                                    Thêm Mới Dịch Vụ <i class="fa fa-plus"></i>
-                                                </button>
-
-
-
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                    
                                     <div class="table-scrollable">
                                         <table class="table table-hover table-checkable order-column full-width"
                                                id="example">
                                             <thead>
                                                 <tr>
-                                                    <th class="center"> Tên </th>
-                                                    <th class="center"> Giá </th>
-                                                    <th class="center"> Mô tả </th>
-                                                    <th class="center"> Chức Năng </th>
+                                                    <th class="center"> Khách Hàng </th>
+                                                    <th class="center"> Phòng </th>
+                                                    <th class="center"> Ngày Trả Phòng </th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="dsdichvu">
+                                            <tbody id="dsdatphong">
                                             </tbody>
                                         </table>
                                     </div>
@@ -361,145 +278,7 @@
                 </div>
             </div>
             <!-- Modal -->
-            <div class="modal fade" tabindex="-1" id="addModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
-
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Dịch Vụ</h4>
-                                    <div class="card-box">
-
-                                        <div class="card-body row">
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="tenDV-add">
-                                                    <label class="mdl-textfield__label">Tên Dịch Vụ</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="number"
-                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia-add">
-                                                    <label class="mdl-textfield__label" for="gia-add">Giá</label>
-                                                    <span class="mdl-textfield__error">Phải là số</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <textarea class="mdl-textfield__input" type="text" id="mota-add" rows="3" cols="50"></textarea>
-                                                    <label class="mdl-textfield__label">Mô Tả</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-add">
-                                            Thêm
-                                        </button>
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                            Hủy
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-- End Modal -->
-                <!-- end chat sidebar -->
-            </div>
-            <div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
-
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Dịch Vụ</h4>
-                                    <div class="card-box">
-
-                                        <div class="card-body row">
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="tenDV-edit">
-                                                    <label class="mdl-textfield__label">Tên Dịch Vụ</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="number"
-                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia-edit">
-                                                    <label class="mdl-textfield__label" for="gia-edit">Giá</label>
-                                                    <span class="mdl-textfield__error">Phải là số</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <textarea class="mdl-textfield__input" type="text" id="mota-edit" rows="3" cols="50"></textarea>
-                                                    <label class="mdl-textfield__label">Mô Tả</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-edit">
-                                            Thêm
-                                        </button>
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                            Hủy
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-- End Modal -->
-                <!-- end chat sidebar -->
-            </div>
-            <div class="modal fade" tabindex="-1" id="deleteModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
-
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Xác Nhận Xóa Dịch Vụ</h4>
-
-                                    <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-del">
-                                            Xóa
-                                        </button>
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                            Hủy
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-- End Modal -->
-                <!-- end chat sidebar -->
-            </div>
+            
             <!-- end page container -->
             <!-- start footer -->
             <div class="page-footer">

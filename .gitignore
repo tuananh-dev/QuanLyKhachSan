@@ -352,3 +352,9 @@ QLKSProject/QLKSProject/Migrations/202007060833276_createdb.cs
 QLKSProject/QLKSProject/Migrations/202007060833276_createdb.Designer.cs
 QLKSProject/QLKSProject/Migrations/202007060833276_createdb.resx
 QLKSProject/QLKSProject/Migrations/Configuration.cs
+QLKSProject/QLKSProject/Migrations/202007110634268_createdb.cs
+QLKSProject/QLKSProject/Migrations/202007110634268_createdb.Designer.cs
+QLKSProject/QLKSProject/Migrations/202007110634268_createdb.resx
+QLKSProject/QLKSProject/Migrations/202007130619370_createdb.cs
+QLKSProject/QLKSProject/Migrations/202007130619370_createdb.Designer.cs
+QLKSProject/QLKSProject/Migrations/202007130619370_createdb.resx

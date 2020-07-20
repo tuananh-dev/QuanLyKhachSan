@@ -6,7 +6,7 @@ namespace QLKSProject.Models.DTO
     {
         public int ID { get; set; }
         public string TenTienIch { get; set; }
-        public string HinhAnh { get; set; }
+        public string MoTa { get; set; }
         public bool IsDelete { get; set; }
     }
 }

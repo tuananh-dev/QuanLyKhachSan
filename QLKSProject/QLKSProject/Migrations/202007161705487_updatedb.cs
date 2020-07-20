@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class createDB : DbMigration
+    public partial class updatedb : DbMigration
     {
         public override void Up()
         {
@@ -33,7 +33,7 @@
                         SoDienThoai = c.String(nullable: false, maxLength: 10),
                         Email = c.String(nullable: false, maxLength: 50),
                         DiaChi = c.String(nullable: false, maxLength: 200),
-                        Nhom = c.String(nullable: false, maxLength: 50),
+                        Nhom = c.Int(nullable: false),
                         NguoiDaiDienCuaTreEm = c.String(maxLength: 100),
                         ThoiGianNhan = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         ThoiGianTra = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
@@ -42,6 +42,7 @@
                         LoaiKhachHang = c.Boolean(nullable: false),
                         TruongDoan = c.Boolean(nullable: false),
                         IsDelete = c.Boolean(nullable: false),
+                        TrangThaiDatPhong = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Doans", t => t.MaDoan, cascadeDelete: true)
@@ -142,7 +143,7 @@
                     {
                         ID = c.Int(nullable: false, identity: true),
                         TenTienIch = c.String(nullable: false, maxLength: 50),
-                        HinhAnh = c.String(nullable: false),
+                        MoTa = c.String(nullable: false),
                         IsDelete = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
