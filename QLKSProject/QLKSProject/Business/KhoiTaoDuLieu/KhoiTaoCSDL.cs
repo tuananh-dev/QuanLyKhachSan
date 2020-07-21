@@ -41,7 +41,7 @@ namespace QLKSProject.Business
                     Phong phong = new Phong();
                     phong.SoPhong = (i * 100 + j) + "";
                     phong.MaPhong = rd.Next(1, 4).ToString() + (i < 10 ? "0" + i : "" + i) + (j < 10 ? "0" + j : "" + j);
-                    phong.LoaiPhong = rd.Next(1, 4).ToString();
+                    phong.LoaiPhong = rd.Next(1, 5);
                     phong.Gia = rd.Next(1, 5) * 1000000;
                     if (rd.Next(0, 2) == 1)
                         phong.TrangThai = false;
@@ -86,6 +86,7 @@ namespace QLKSProject.Business
                     khachHang.TruongDoan = (j == 0) ? true : false;
                     khachHang.TrangThaiDatPhong = false;
                     khachHang.IsDelete = false;
+                    khachHang.IDPhong = -1;
                     models.KhachHangs.Add(khachHang);
                 }
                 models.Doans.Add(doan);

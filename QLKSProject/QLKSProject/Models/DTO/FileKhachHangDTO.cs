@@ -4,7 +4,7 @@ using QLKSProject.Models.DTO;
 
 namespace QLKSProject.Models.DTO
 {
-	public class FileKhachHang
+	public class FileKhachHangDTO
 
     {
         public string TenDoan { get; set; }
@@ -12,6 +12,6 @@ namespace QLKSProject.Models.DTO
         public string HoTenTruongDoan { get; set; }
         public DateTime ThoiGianNhan { get; set; }
         public DateTime ThoiGianTra { get; set; }
-        List<KhachHang> KhachHangs { get; set; }
+        List<KhachHangDTO> KhachHangs { get; set; }
     }
 }

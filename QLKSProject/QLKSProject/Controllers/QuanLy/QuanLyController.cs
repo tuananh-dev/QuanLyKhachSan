@@ -46,7 +46,7 @@ namespace QLKSProject.Controllers.QuanLy
         public IHttpActionResult ThemTaiKhoan([FromBody]dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            TaiKhoan tk = JsonConvert.DeserializeObject<TaiKhoan>(dynamic.ToString());
+            TaiKhoanDTO tk = JsonConvert.DeserializeObject<TaiKhoanDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             { 
                     respon = Ok(quanLy.ThemTaiKhoan(tk));
@@ -57,7 +57,7 @@ namespace QLKSProject.Controllers.QuanLy
         public IHttpActionResult CapNhatTaiKhoan([FromBody] dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            TaiKhoan tk = JsonConvert.DeserializeObject<TaiKhoan>(dynamic.ToString());
+            TaiKhoanDTO tk = JsonConvert.DeserializeObject<TaiKhoanDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.CapNhatTaiKhoan(tk));
@@ -107,7 +107,7 @@ namespace QLKSProject.Controllers.QuanLy
         public IHttpActionResult ThemPhong([FromBody]dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            Phong ph = JsonConvert.DeserializeObject<Phong>(dynamic.ToString());
+            PhongDTO ph = JsonConvert.DeserializeObject<PhongDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.ThemPhong(ph));
@@ -118,7 +118,7 @@ namespace QLKSProject.Controllers.QuanLy
         public IHttpActionResult CapNhatPhong([FromBody] dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            Phong ph = JsonConvert.DeserializeObject<Phong>(dynamic.ToString());
+            PhongDTO ph = JsonConvert.DeserializeObject<PhongDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.CapNhatPhong(ph));
@@ -169,7 +169,7 @@ namespace QLKSProject.Controllers.QuanLy
         public IHttpActionResult ThemDichVu([FromBody]dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            DichVu dv = JsonConvert.DeserializeObject<DichVu>(dynamic.ToString());
+            DichVuDTO dv = JsonConvert.DeserializeObject<DichVuDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.ThemDichVu(dv));
@@ -180,7 +180,7 @@ namespace QLKSProject.Controllers.QuanLy
         public IHttpActionResult CapNhatDichVu([FromBody]dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            DichVu dv = JsonConvert.DeserializeObject<DichVu>(dynamic.ToString());
+            DichVuDTO dv = JsonConvert.DeserializeObject<DichVuDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.CapNhatDichVu(dv));
@@ -233,7 +233,7 @@ namespace QLKSProject.Controllers.QuanLy
 
         {
             IHttpActionResult respon = Ok();
-            TienIch tienIch = JsonConvert.DeserializeObject<TienIch>(dynamic.ToString());
+            TienIchDTO tienIch = JsonConvert.DeserializeObject<TienIchDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                respon = Ok(quanLy.ThemTienIch(tienIch));
@@ -244,7 +244,7 @@ namespace QLKSProject.Controllers.QuanLy
         public IHttpActionResult CapNhatTienIch([FromBody]dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            TienIch tienIch = JsonConvert.DeserializeObject<TienIch>(dynamic.ToString());
+            TienIchDTO tienIch = JsonConvert.DeserializeObject<TienIchDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 respon = Ok(quanLy.CapNhatTienIch(tienIch));

@@ -10,9 +10,9 @@ namespace QLKSProject.Business.QuanLy
     public class QuanLyBusiness : BaseBusiness
     {
         #region TaiKhoan
-        public List<TaiKhoan> LayDanhSachTaiKhoan()
+        public List<TaiKhoanDTO> LayDanhSachTaiKhoan()
         {
-            var lstTaiKhoan = models.TaiKhoans.Where(e => e.IsDelete == false && e.LoaiTaiKhoan == "NV").Select(e => new TaiKhoan
+            var lstTaiKhoan = models.TaiKhoans.Where(e => e.IsDelete == false && e.LoaiTaiKhoan == "NV").Select(e => new TaiKhoanDTO
             {
                 ID = e.ID,
                 TenTaiKhoan = e.TenTaiKhoan,
@@ -25,10 +25,10 @@ namespace QLKSProject.Business.QuanLy
             });
             return lstTaiKhoan.ToList();
         }
-        public TaiKhoan LayTaiKhoan(int idTaiKhoan)
+        public TaiKhoanDTO LayTaiKhoan(int idTaiKhoan)
         {
 
-            var taiKhoan = models.TaiKhoans.Where(e => e.ID == idTaiKhoan).Select(e => new TaiKhoan
+            var taiKhoan = models.TaiKhoans.Where(e => e.ID == idTaiKhoan).Select(e => new TaiKhoanDTO
             {
                 ID = e.ID,
                 TenTaiKhoan = e.TenTaiKhoan,
@@ -41,7 +41,7 @@ namespace QLKSProject.Business.QuanLy
             }).FirstOrDefault();
             return taiKhoan;
         }
-        public bool ThemTaiKhoan(TaiKhoan taiKhoan)
+        public bool ThemTaiKhoan(TaiKhoanDTO taiKhoan)
         {
 
                 Models.Entities.TaiKhoan tk = new Models.Entities.TaiKhoan();
@@ -63,7 +63,7 @@ namespace QLKSProject.Business.QuanLy
                 return false;
             }    
         }
-        public bool CapNhatTaiKhoan(TaiKhoan taiKhoan) {
+        public bool CapNhatTaiKhoan(TaiKhoanDTO taiKhoan) {
 
             try
             {
@@ -95,9 +95,9 @@ namespace QLKSProject.Business.QuanLy
         #endregion
 
         #region Phong
-        public List<Phong> LayDanhSachPhong()
+        public List<PhongDTO> LayDanhSachPhong()
         {
-            var lstphong = models.Phongs.Where(e => e.IsDelete == false).Select(e => new Phong
+            var lstphong = models.Phongs.Where(e => e.IsDelete == false).Select(e => new PhongDTO
             {
                 ID = e.ID,
                 MaPhong = e.MaPhong,
@@ -109,9 +109,9 @@ namespace QLKSProject.Business.QuanLy
             });
             return lstphong.ToList();
         }
-        public Phong LayPhong(int idPhong)
+        public PhongDTO LayPhong(int idPhong)
         {
-            var phong = models.Phongs.Where(e => e.ID == idPhong).Select(e => new Phong
+            var phong = models.Phongs.Where(e => e.ID == idPhong).Select(e => new PhongDTO
             {
                 ID = e.ID,
                 MaPhong = e.MaPhong,
@@ -123,7 +123,7 @@ namespace QLKSProject.Business.QuanLy
             }).FirstOrDefault();
             return phong;
         }
-        public bool ThemPhong(Phong phong)
+        public bool ThemPhong(PhongDTO phong)
         {
 
             Models.Entities.Phong ph = new Models.Entities.Phong();
@@ -146,7 +146,7 @@ namespace QLKSProject.Business.QuanLy
             }
            
         }
-        public bool CapNhatPhong(Phong phong)
+        public bool CapNhatPhong(PhongDTO phong)
         {
             try
             {
@@ -178,9 +178,9 @@ namespace QLKSProject.Business.QuanLy
         #endregion
 
         #region DichVu
-        public List<DichVu> LayDanhSachDichVu()
+        public List<DichVuDTO> LayDanhSachDichVu()
         {
-            var lstdichvu = models.DichVus.Where(e => e.IsDelete == false).Select(e => new DichVu {
+            var lstdichvu = models.DichVus.Where(e => e.IsDelete == false).Select(e => new DichVuDTO {
                 ID = e.ID,
                 TenDichVu = e.TenDichVu,
                 Gia = e.Gia,
@@ -189,9 +189,9 @@ namespace QLKSProject.Business.QuanLy
             });
             return lstdichvu.ToList();
         }
-        public DichVu LayDichVu(int idDichVu)
+        public DichVuDTO LayDichVu(int idDichVu)
         {
-            var dichvu = models.DichVus.Where(e => e.ID == idDichVu).Select(e => new DichVu
+            var dichvu = models.DichVus.Where(e => e.ID == idDichVu).Select(e => new DichVuDTO
             {
                 ID = e.ID,
                 TenDichVu = e.TenDichVu,
@@ -201,7 +201,7 @@ namespace QLKSProject.Business.QuanLy
             }).FirstOrDefault();
             return dichvu;
         }
-        public bool ThemDichVu(DichVu dichVu)
+        public bool ThemDichVu(DichVuDTO dichVu)
         {
             Models.Entities.DichVu dv = new Models.Entities.DichVu();
             if (CheckDichVu(dichVu.TenDichVu)) {
@@ -222,7 +222,7 @@ namespace QLKSProject.Business.QuanLy
             
 
         }
-        public bool CapNhatDichVu(DichVu dichVu)
+        public bool CapNhatDichVu(DichVuDTO dichVu)
         {
             try
             {
@@ -252,9 +252,9 @@ namespace QLKSProject.Business.QuanLy
         #endregion
 
         #region TienIch
-        public List<TienIch> LayDanhSachTienIch()
+        public List<TienIchDTO> LayDanhSachTienIch()
         {
-            var tienich = models.TienIches.Where(e => e.IsDelete == false).Select(e => new TienIch {
+            var tienich = models.TienIches.Where(e => e.IsDelete == false).Select(e => new TienIchDTO {
                 ID = e.ID,
                 TenTienIch = e.TenTienIch,
                 MoTa = e.MoTa,
@@ -262,9 +262,9 @@ namespace QLKSProject.Business.QuanLy
             });
             return tienich.ToList();
         }
-        public TienIch LayTienIch(int idtienich)
+        public TienIchDTO LayTienIch(int idtienich)
         {
-            var tienich = models.TienIches.Where(e => e.ID == idtienich).Select(e => new TienIch
+            var tienich = models.TienIches.Where(e => e.ID == idtienich).Select(e => new TienIchDTO
             {
                 ID = e.ID,
                 TenTienIch = e.TenTienIch,
@@ -273,7 +273,7 @@ namespace QLKSProject.Business.QuanLy
             }).FirstOrDefault();
             return tienich;
         }
-        public bool ThemTienIch(TienIch tienIch)
+        public bool ThemTienIch(TienIchDTO tienIch)
         {
            
                 if (CheckTienIch(tienIch.TenTienIch))
@@ -291,7 +291,7 @@ namespace QLKSProject.Business.QuanLy
                 return false;
             }           
         }
-        public bool CapNhatTienIch(TienIch tienIch)
+        public bool CapNhatTienIch(TienIchDTO tienIch)
         {
             try
             {
@@ -349,7 +349,7 @@ namespace QLKSProject.Business.QuanLy
         private bool CheckTaiKhoan(String tenTaiKhoan)
         {
             bool b = true;
-            List<TaiKhoan> lstTaiKhoan = models.TaiKhoans.Select(s => new TaiKhoan
+            List<TaiKhoanDTO> lstTaiKhoan = models.TaiKhoans.Select(s => new TaiKhoanDTO
             {
                 TenTaiKhoan = s.TenTaiKhoan,
                 MatKhau = s.MatKhau,
@@ -370,7 +370,7 @@ namespace QLKSProject.Business.QuanLy
         private bool CheckPhong(String soPhong)
         {
             bool b = true;
-            List<Phong> lstPhong = models.Phongs.Select(s => new Phong {
+            List<PhongDTO> lstPhong = models.Phongs.Select(s => new PhongDTO {
                 MaPhong = s.MaPhong,
                 SoPhong = s.SoPhong,
                 LoaiPhong = s.LoaiPhong,
@@ -388,7 +388,7 @@ namespace QLKSProject.Business.QuanLy
         private bool CheckDichVu(String tenDichVu)
         {
             bool b = true;
-            List<DichVu> lstDichVu = models.DichVus.Select(s => new DichVu
+            List<DichVuDTO> lstDichVu = models.DichVus.Select(s => new DichVuDTO
             {
                 TenDichVu = s.TenDichVu,
                 Gia = s.Gia,
@@ -405,7 +405,7 @@ namespace QLKSProject.Business.QuanLy
         private bool CheckTienIch(String tenTienIch)
         {
             bool b = true;
-            List<TienIch> lstTienIch= models.TienIches.Select(s => new TienIch
+            List<TienIchDTO> lstTienIch= models.TienIches.Select(s => new TienIchDTO
             {
                 TenTienIch = s.TenTienIch,
                 MoTa = s.MoTa,

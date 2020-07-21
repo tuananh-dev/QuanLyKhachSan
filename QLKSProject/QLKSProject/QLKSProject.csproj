@@ -512,26 +512,28 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Business\BaseBusiness.cs" />
     <Compile Include="Business\Home\HomeBusiness.cs" />
+    <Compile Include="Business\KhachHangBusiness\KhachHangBusiness.cs" />
     <Compile Include="Business\KhoiTaoDuLieu\KhoiTaoCSDL.cs" />
     <Compile Include="Business\NhanVien\NhanVienBusiness.cs" />
     <Compile Include="Business\QuanLy\QuanLyBusiness.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
+    <Compile Include="Controllers\KhachHang\KhachHangController.cs" />
     <Compile Include="Controllers\KhoiTaoDuLieu\KhoiTaoDuLieuController.cs" />
     <Compile Include="Controllers\NhanVien\NhanVienController.cs" />
     <Compile Include="Controllers\QuanLy\QuanLyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
-    <Compile Include="Models\DTO\DatPhongThatBai.cs" />
-    <Compile Include="Models\DTO\DichVu.cs" />
-    <Compile Include="Models\DTO\Doan.cs" />
-    <Compile Include="Models\DTO\FileKhachHang.cs" />
-    <Compile Include="Models\DTO\KhachHang.cs" />
-    <Compile Include="Models\DTO\LichSuDichVu.cs" />
-    <Compile Include="Models\DTO\Phong.cs" />
-    <Compile Include="Models\DTO\TaiKhoan.cs" />
-    <Compile Include="Models\DTO\TienIch.cs" />
+    <Compile Include="Models\DTO\DatPhongThanhCongDTO.cs" />
+    <Compile Include="Models\DTO\DatPhongThatBaiDTO.cs" />
+    <Compile Include="Models\DTO\DichVuDTO.cs" />
+    <Compile Include="Models\DTO\DoanDTO.cs" />
+    <Compile Include="Models\DTO\FileKhachHangDTO.cs" />
+    <Compile Include="Models\DTO\KhachHangDTO.cs" />
+    <Compile Include="Models\DTO\LichSuDichVuDTO.cs" />
+    <Compile Include="Models\DTO\PhongDTO.cs" />
+    <Compile Include="Models\DTO\TaiKhoanDTO.cs" />
+    <Compile Include="Models\DTO\TienIchDTO.cs" />
     <Compile Include="Models\Entities\DatPhongThanhCong.cs" />
     <Compile Include="Models\Entities\DatPhongThatBai.cs" />
     <Compile Include="Models\Entities\DichVu.cs" />
@@ -694,7 +696,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
