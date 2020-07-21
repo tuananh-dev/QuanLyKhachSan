@@ -3,7 +3,7 @@ using System;
 
 namespace QLKSProject.Models.DTO
 {
-    public class LichSuDichVu
+    public class LichSuDichVuDTO
     {
         public int ID { get; set; }
         public int IDPhong { get; set; }

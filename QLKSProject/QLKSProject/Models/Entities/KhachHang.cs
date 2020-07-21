@@ -62,9 +62,10 @@ namespace QLKSProject.Models.Entities
         [Required]
         public bool TrangThaiDatPhong { get; set; }
 
+        public int IDPhong { get; set; }
 
         [ForeignKey("MaDoan")]
-        public virtual Doan Doan_MaDoan { get; set; }
+        public virtual Doan Doan_MaDoan { get; set; }   
 
         public virtual ICollection<DatPhongThanhCong> DatPhongThanhCong_IDKhachHangs { get; set; }
         public virtual ICollection<LichSuDichVu> LichSuDichVu_IDKhachHangs { get; set; }

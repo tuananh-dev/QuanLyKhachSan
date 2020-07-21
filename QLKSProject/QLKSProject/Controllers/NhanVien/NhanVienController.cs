@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Newtonsoft.Json;
 using QLKSProject.Business.NhanVien;
 using QLKSProject.Models.DTO;
 
@@ -54,5 +55,16 @@ namespace QLKSProject.Controllers.NhanVien
             return respon;
 
         }        
+        [HttpGet]
+        public IHttpActionResult DatPhong()
+        {
+            string maDoan = "1595291378732";
+            IHttpActionResult respon = Ok();
+            using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            {
+                respon = Ok(nhanVienBusiness.DatPhong(maDoan));
+            }
+            return respon;
+        }
     }
 }

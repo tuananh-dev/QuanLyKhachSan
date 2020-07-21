@@ -3,7 +3,7 @@
 
 namespace QLKSProject.Models.DTO
 {
-    public class DatPhongThanhCong
+    public class DatPhongThanhCongDTO
     {
         public int ID { get; set; }
         public int IDKhachHang { get; set; }

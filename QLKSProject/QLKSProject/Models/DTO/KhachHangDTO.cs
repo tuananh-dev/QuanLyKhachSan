@@ -3,7 +3,7 @@
 
 namespace QLKSProject.Models.DTO
 {
-    public class KhachHang
+    public class KhachHangDTO
     {
         public int ID { get; set; }
         public string HoVaTen { get; set; }
@@ -20,5 +20,6 @@ namespace QLKSProject.Models.DTO
         public bool TruongDoan { get; set; }
         public bool IsDelete { get; set; }
         public bool TrangThaiDatPhong { get; set; }
+        public int IDPhong { get; set; }
     }
 }

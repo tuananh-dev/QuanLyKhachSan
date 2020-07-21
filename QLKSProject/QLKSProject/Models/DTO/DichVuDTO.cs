@@ -2,7 +2,7 @@
 
 namespace QLKSProject.Models.DTO
 {
-    public class DichVu
+    public class DichVuDTO
     {
         public int ID { get; set; }
         public string TenDichVu { get; set; }

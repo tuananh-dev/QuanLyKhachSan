@@ -2,7 +2,7 @@
 
 namespace QLKSProject.Models.DTO
 {
-    public class DatPhongThatBai
+    public class DatPhongThatBaiDTO
     {
         public int ID { get; set; }
         public string TenDoan { get; set; }

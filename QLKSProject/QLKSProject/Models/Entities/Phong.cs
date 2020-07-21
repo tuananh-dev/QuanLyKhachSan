@@ -21,8 +21,7 @@ namespace QLKSProject.Models.Entities
         public string SoPhong { get; set; }
 
         [Required]
-        [StringLength(10)]
-        public string LoaiPhong { get; set; }    
+        public int LoaiPhong { get; set; }    
 
         [Required]
         public int Gia { get; set; }
@@ -35,6 +34,7 @@ namespace QLKSProject.Models.Entities
         
         public virtual ICollection<DatPhongThanhCong> DatPhongThanhCong_IDPhongs { get; set; }
         public virtual ICollection<LichSuDichVu> LichSuDichVu_IDPhongs { get; set; }
+
 
     }
 }
