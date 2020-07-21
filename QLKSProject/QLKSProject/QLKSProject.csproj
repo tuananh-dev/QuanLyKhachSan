@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -24,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -243,7 +245,6 @@
     <Content Include="Content\Home\js\aos.js" />
     <Content Include="Content\Home\js\bootstrap-datepicker.min.js" />
     <Content Include="Content\Home\js\bootstrap.min.js" />
-    <Content Include="Content\Home\js\excel.js" />
     <Content Include="Content\Home\js\fileupload.js" />
     <Content Include="Content\Home\js\jquery-3.3.1.min.js" />
     <Content Include="Content\Home\js\jquery-migrate-3.0.1.min.js" />
@@ -380,6 +381,7 @@
     <Content Include="Content\QuanLy\js\pages\ui\animations.js" />
     <Content Include="Content\QuanLy\js\pages\validation\form-validation.js" />
     <Content Include="Content\QuanLy\js\theme-color.js" />
+    <Content Include="Content\QuanLy\libs_function.js" />
     <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha-horizontal.png" />
     <Content Include="Content\QuanLy\plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha.png" />
@@ -487,25 +489,28 @@
     <Content Include="Content\QuanLy\plugins\sweet-alert\sweetalert.min.js" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="HtmlPage1.html" />
-    <Content Include="Views\QuanLyViews\DichVu\ChinhSuaDichVu.html" />
+    <Content Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.html" />
+    <Content Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.html" />
+    <Content Include="Views\NhanVienViews\Doan\Doan.html" />
+    <Content Include="Views\NhanVienViews\Phong_NhanVien\DanhSachPhong.html" />
     <Content Include="Views\QuanLyViews\DichVu\DSDichVu.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Views\AccountViews\DangNhap.cshtml" />
     <Content Include="Views\HomeViews\GioiThieu.cshtml" />
-    <None Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
+    <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
     <Content Include="Views\HomeViews\TrangChu.cshtml" />
-    <Content Include="Views\QuanLyViews\Phong\ChinhSuaPhong.html" />
     <Content Include="Views\QuanLyViews\Phong\DSPhong.html" />
     <Content Include="Views\QuanLyViews\TaiKhoan\DangNhap.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\DKTaiKhoan.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\KhoaManHinh.cshtml" />
     <Content Include="Views\QuanLyViews\TienIch\DSTienIch.html" />
-    <Content Include="Views\QuanLyViews\TKNhanVien\ChinhSuaTKNhanVien.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\DSTKNhanVien.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\XemChiTietTKNhanVien.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\TaiKhoanViews\DangNhap.html" />
+    <Content Include="Views\TaiKhoanViews\KhoaManHinh.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -522,14 +527,6 @@
     <Compile Include="Controllers\QuanLy\QuanLyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007130451167_createDB.cs" />
-    <Compile Include="Migrations\202007130451167_createDB.designer.cs">
-      <DependentUpon>202007130451167_createDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007130458576_update01.cs" />
-    <Compile Include="Migrations\202007130458576_update01.designer.cs">
-      <DependentUpon>202007130458576_update01.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
     <Compile Include="Models\DTO\DatPhongThatBai.cs" />
@@ -699,21 +696,22 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007130451167_createDB.resx">
-      <DependentUpon>202007130451167_createDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007130458576_update01.resx">
-      <DependentUpon>202007130458576_update01.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

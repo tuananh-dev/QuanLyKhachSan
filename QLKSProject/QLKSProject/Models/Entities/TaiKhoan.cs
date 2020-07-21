@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -38,5 +39,9 @@ namespace QLKSProject.Models.Entities
         [Required]
         public bool IsDelete { get; set; }
 
-    }
+		internal static bool Any(Func<object, object> p)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

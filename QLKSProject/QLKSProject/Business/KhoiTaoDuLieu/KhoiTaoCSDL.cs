@@ -8,6 +8,7 @@ namespace QLKSProject.Business
     public class KhoiTaoCSDL : BaseBusiness
     {
         private Random rd = new Random();
+
         #region Public Methods
         public bool TaoCSDL()
         {
@@ -31,7 +32,7 @@ namespace QLKSProject.Business
         #endregion
 
         #region Private Methods
-        private void TaoPhong(int soTang, int soPhong )
+        private void TaoPhong(int soTang, int soPhong)
         {
             for (int i = 1; i <= soTang; i++)
             {
@@ -57,11 +58,14 @@ namespace QLKSProject.Business
         }
         private void TaoDoanKhachHang(int soluong)
         {
-            string[] tenDuong = { "Nguyen Van Troi", "Ham Nghi", "Cach Mang Thang 8", "Le Huu Tho", "Le Trong Tan", "Pham Van Dong", "Mai Duong Vuong", "Vo Thi Sau", "Phan Dinh Phung", "Le Lai", "Le Loi" };
+
+            List<int> lstTre = new List<int>();
+            List<KhachHang> lstKhachHang = new List<KhachHang>();
+            string[] tenDuong = { "Nguyễn Văn Trỗi", "Hàm Nghi", "Cách Mạng Tháng 8", "Lê Hữu Thọ", "Lê Trọng Tấn", "Phạm Văn Đồng", "An Dương Vương", "Võ Thị Sáu", "Phan Đình Phùng", "Lê Lai", "Lê Lợi" };
             for (int i = 0; i <= soluong; i++)
             {
-                Doan doan = new Doan();
-                doan = TaoDoan();
+                Doan doan = TaoDoan();
+
                 for (int j = 0; j < rd.Next(5, 30); j++)
                 {
                     KhachHang khachHang = new KhachHang();
@@ -71,20 +75,20 @@ namespace QLKSProject.Business
                         khachHang.HoVaTen = TaoTenKhachHang();
 
                     khachHang.SoDienThoai = "098" + rd.Next(222222, 999999);
-                    khachHang.Email = khachHang.HoVaTen.ToLower().Replace(" ", "") + "@gmail.com";
+                    khachHang.Email =RemoveUnicode(khachHang.HoVaTen.ToLower().Replace(" ", "") + "@gmail.com");
                     khachHang.DiaChi = rd.Next(1, 1234) + " " + tenDuong[rd.Next(0, tenDuong.Length - 1)];
-                    //khachHang.Nhom = "n" + rd.Next(1, 10);
+                    khachHang.Nhom = rd.Next(1, 10);
                     khachHang.ThoiGianNhan = doan.ThoiGianNhan;
                     khachHang.ThoiGianTra = doan.ThoiGianTra;
                     khachHang.MaDoan = doan.MaDoan;
                     khachHang.GioiTinh = (rd.Next(0, 2) == 1) ? true : false;
                     khachHang.LoaiKhachHang = (rd.Next(0, 20) == 3) ? true : false;
                     khachHang.TruongDoan = (j == 0) ? true : false;
+                    khachHang.TrangThaiDatPhong = false;
                     khachHang.IsDelete = false;
-
                     models.KhachHangs.Add(khachHang);
-                    models.Doans.Add(doan);
                 }
+                models.Doans.Add(doan);
             }
         }
         private void TaoDichVu()
@@ -115,7 +119,7 @@ namespace QLKSProject.Business
         private void TaoTaiKhoan()
         {
             string[] lstTenTaiKhoan = { "anhnguyenduc", "ducpham", "nhatnam", "hanam", "huyphuc", "loinguyen" };
-            string[] lstHovaten = { "Nguyen Duc Tuan Anh", "Pham Quang Duc", "Nguyen Nhat Nam", "Nguyen Dinh Ha Nam", "Nguyen Huy Phuc", "Nguyen Van Loi" };
+            string[] lstHovaten = { "Nguyễn Đức Tuấn Anh", "Phạm Quang Đức", "Nguyễn Nhật Nam", "Nguyễn Đình Hà Nam", "Nguyễn Huy Phúc", "Nguyễn Văn Lợi" };
             for (int i = 0; i < lstTenTaiKhoan.Length; i++)
             {
                 TaiKhoan taiKhoan = new TaiKhoan();
@@ -147,7 +151,7 @@ namespace QLKSProject.Business
         }
         private void TaoTienIch()
         {
-            string[] lstTenTienIch = { "Wifi Free", "Ga trai giuong", "Tu quan ao", "Tu lanh", "Ti vi", "Bon tam" };
+            string[] lstTenTienIch = { "Wifi Free", "Ga Trải Giường", "Tủ Quần Áo", "Tủ Lạnh", "Ti Vi", "Bồn Tắm" };
             for (int i = 0; i < lstTenTienIch.Length; i++)
             {
                 TienIch tienIch = new TienIch();
@@ -197,19 +201,19 @@ namespace QLKSProject.Business
         }
         private string TaoTenDoan()
         {
-            string[] ten = { "12A4", "76", "ThienMinh", "Phuc Long", "99", "51", "Hai Long", "Phuong Nam", "8A9", "Thanh Nien", "Van Lang", "CNNT", "Co Ba", "Covid" };
-            string[] tenDem = { "Vung Tau", "Sai Gon", "Vinh Phuc", "Bac Giang", "Ha Noi", "Vinh", "Lang Son", "Lao Cai", "Tien Giang", "Ben Tre" };
+            string[] ten = { "12A4", "76", "Thiên Minh", "Phúc Long", "99", "51", "Hải Long", "Phương Nam", "8A9", "Thanh Niên", "Văn Lang", "CNNT", "Cô Ba", "Covid" };
+            string[] tenDem = { "Vũng Tàu", "Sài Gòn", "Vĩnh Phúc", "Bắc Giang", "Hà Nội", "Vinh", "Lạng Sơn", "Lào Cai", "Dân Trí", "Bến Tre" };
             return "Doan" + ten[rd.Next(0, ten.Length - 1)] + tenDem[rd.Next(0, tenDem.Length - 1)];
         }
         private string TaoTenKhachHang()
         {
-            string[] ten = { "Nam", "Bac", "Dong", "Tay", "Nam", "Sau", "Anh", "An", "Phuong", "Chuyen", "Thuy", "Son", "Lam", "Lan", "Huong", "Thao", "Trang", "Dan", "Vinh", "Trung", "Hoang", "Loi", "Duc", "Phuc", "My" };
-            string[] tenDem = { "Duc", "Van", "Phuong", "Nhu", "Ngoc", "Bao", "Thi", "Tuan", "Tan", "Thien", "Ngan", "Gia", "Binh", "Tuong" };
-            string[] ho = { "Nguyen", "Tran", "Le", "Ho", "Dinh", "Luu", "Huynh", "Trinh", "Ly", "Phan", "Vu" };
+            string[] ten = { "Nam", "Bắc", "Đông", "Tây", "Linh", "Sáu", "Anh", "An", "Phượng", "Phương", "Chuyên", "Thủy", "Sơn", "Lam", "Lan", "Hương", "Thảo", "Trang", "Dân", "Vinh", "Trung", "Hoàng", "Lợi", "Đức", "Phúc", "My", "Thọ" };
+            string[] tenDem = { "Đức", "Văn", "Phương", "Như", "Ngọc", "Bảo", "Thi", "Tuấn", "Tân", "Thiên", "Ngân", "Gia", "Bình", "Thương" };
+            string[] ho = { "Nguyễn", "Trần", "Lê", "Hồ", "Đinh", "Lưu", "Huỳnh", "Trịnh", "Lý", "Phan", "Vũ", "Võ", "Đoàn" };
             if (rd.Next(0, 2) == 1)
                 return ho[rd.Next(0, ho.Length - 1)] + " " + tenDem[rd.Next(0, tenDem.Length - 1)] + " " + ten[rd.Next(0, ten.Length - 1)];
             else
-                return ho[rd.Next(0, ho.Length - 1)]+" " + ten[rd.Next(0, ten.Length - 1)] + " " + tenDem[rd.Next(0, tenDem.Length - 1)] + " " + ten[rd.Next(0, ten.Length - 1)];
+                return ho[rd.Next(0, ho.Length - 1)] + " " + ten[rd.Next(0, ten.Length - 1)] + " " + tenDem[rd.Next(0, tenDem.Length - 1)] + " " + ten[rd.Next(0, ten.Length - 1)];
         }
         private DateTime TaoThoiGian()
         {
@@ -218,6 +222,28 @@ namespace QLKSProject.Business
             var range = to - from;
             var randTimeSpan = new TimeSpan((long)(rd.NextDouble() * range.Ticks));
             return from + randTimeSpan;
+        }
+        /*        private List<KhachHang> GanTreEmChoKhachHang(List<int> lstTre, List<KhachHang> lstKhachHang)
+                {
+
+                    return lstKhachHang;
+                }*/
+        private string RemoveUnicode(string text)
+        {
+            string[] arr1 = new string[] { "á", "à", "ả", "ã", "ạ", "â", "ấ", "ầ", "ẩ", "ẫ", "ậ", "ă", "ắ", "ằ", "ẳ", "ẵ", "ặ",
+                                            "đ","é","è","ẻ","ẽ","ẹ","ê","ế","ề","ể","ễ","ệ","í","ì","ỉ","ĩ","ị",
+                                            "ó","ò","ỏ","õ","ọ","ô","ố","ồ","ổ","ỗ","ộ","ơ","ớ","ờ","ở","ỡ","ợ",
+                                            "ú","ù","ủ","ũ","ụ","ư","ứ","ừ","ử","ữ","ự","ý","ỳ","ỷ","ỹ","ỵ",};
+            string[] arr2 = new string[] { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a",
+                                            "d","e","e","e","e","e","e","e","e","e","e","e","i","i","i","i","i",
+                                            "o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o",
+                                            "u","u","u","u","u","u","u","u","u","u","u","y","y","y","y","y",};
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                text = text.Replace(arr1[i], arr2[i]);
+                text = text.Replace(arr1[i].ToUpper(), arr2[i].ToUpper());
+            }
+            return text;
         }
         #endregion
 

@@ -26,26 +26,16 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="../../../Content/QuanLy/Jquery.js"></script>
-
+    <script src="../../../Content/QuanLy/libs_function.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
 
-            var dichvu = $('#dsdoan');
-            $.ajax({
-                type: 'POST',
-                url: '/api/NhanVien/LayDanhSachDoan',
-                dataType: 'json',
-                success: function (data) {
-                    dichvu.empty();
+            var idList = $('#dsdoan');
+            var layDSDoan = 'NhanVien/LayDanhSachDoan';
+            loadData(idList, layDSDoan);
 
-                    $.each(data, function (index, val) {
-                        dichvu.prepend('<tr class="odd gradeX"><td class="center">' + val.MaDoan + '</td><td class="center">' + val.TenDoan + '</td><td class="center">' + val.TenTruongDoan + '</td><td class="center">' + val.ThoiGianNhan + '</td><td class="center">' + val.ThoiGianTra + '</td><td class="center">' + val.NgayGui + '</td></tr>');
-                       
-                    });
-
-                }
-            });
+            
 
         });
     </script>
@@ -245,17 +235,17 @@
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
-                                <div class="page-title">Danh Sách Dịch Vụ</div>
+                                <div class="page-title">Danh Sách Đoàn</div>
                             </div>
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="index.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                                       href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
                                 <li>
-                                    <a class="parent-item" href="#">Dịch Vụ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                    <a class="parent-item" href="#">Đoàn</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li class="active">Danh Sách Dịch Vụ</li>
+                                <li class="active">Danh Sách Đoàn</li>
                             </ol>
                         </div>
                     </div>
@@ -270,16 +260,14 @@
                                                id="example">
                                             <thead>
                                                 <tr>
-                                                    <th class="center"> Mã Đoàn </th>
-                                                    <th class="center"> Tên Đoàn </th>
-                                                    <th class="center"> Tên Trưởng Đoàn </th>
+                                                    <th class="center" style="width:300px;"> Tên Đoàn </th>
+                                                    <th class="center" style="width:300px;"> Tên Trưởng Đoàn </th>
                                                     <th class="center"> Thời Gian Nhận </th>
                                                     <th class="center"> Thời Gian Trả </th>
                                                     <th class="center"> Ngày Gửi </th>
                                                 </tr>
                                             </thead>
                                             <tbody id="dsdoan">
-                                                
                                             </tbody>
                                         </table>
                                     </div>

@@ -12,5 +12,6 @@ namespace QLKSProject.Models.DTO
         public string Mail { get; set; }
         public string LoaiTaiKhoan { get; set; }
         public bool IsDelete { get; set; }
-    }
+		public object Resquest { get; internal set; }
+	}
 }

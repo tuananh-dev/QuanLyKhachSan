@@ -9,10 +9,10 @@ namespace QLKSProject.Business.QuanLy
 {
     public class QuanLyBusiness : BaseBusiness
     {
-        //TAIKHOAN
+        #region TaiKhoan
         public List<TaiKhoan> LayDanhSachTaiKhoan()
         {
-            var lstTaiKhoan = models.TaiKhoans.Where(e => e.IsDelete == false).Select(e => new TaiKhoan
+            var lstTaiKhoan = models.TaiKhoans.Where(e => e.IsDelete == false && e.LoaiTaiKhoan == "NV").Select(e => new TaiKhoan
             {
                 ID = e.ID,
                 TenTaiKhoan = e.TenTaiKhoan,
@@ -92,7 +92,9 @@ namespace QLKSProject.Business.QuanLy
             }else
                 return false;
         }
-        //PHONG
+        #endregion
+
+        #region Phong
         public List<Phong> LayDanhSachPhong()
         {
             var lstphong = models.Phongs.Where(e => e.IsDelete == false).Select(e => new Phong
@@ -173,7 +175,9 @@ namespace QLKSProject.Business.QuanLy
             }
             return false;
         }
-        //DICHVU
+        #endregion
+
+        #region DichVu
         public List<DichVu> LayDanhSachDichVu()
         {
             var lstdichvu = models.DichVus.Where(e => e.IsDelete == false).Select(e => new DichVu {
@@ -245,7 +249,9 @@ namespace QLKSProject.Business.QuanLy
             }
             return false;
         }
-        //TIENICH
+        #endregion
+
+        #region TienIch
         public List<TienIch> LayDanhSachTienIch()
         {
             var tienich = models.TienIches.Where(e => e.IsDelete == false).Select(e => new TienIch {
@@ -313,9 +319,15 @@ namespace QLKSProject.Business.QuanLy
             }
             return false;
         }
-        //THONG KE
+        #endregion
+
+        #region Thong Ke
         public bool XuatThongKeTheoTuan(int idtuan)
         {
+            //var tktuan = models.DatPhongThanhCongs.Where(e => e.ID == idtuan).Select(e => new DatPhongThanhCong { 
+            
+            
+            //} ).ToList
         
             return false;
         }
@@ -331,7 +343,9 @@ namespace QLKSProject.Business.QuanLy
         {
             return false;
         }
-        #region
+        #endregion
+
+        #region Private Methods
         private bool CheckTaiKhoan(String tenTaiKhoan)
         {
             bool b = true;
@@ -403,6 +417,11 @@ namespace QLKSProject.Business.QuanLy
                     b = false;
             }
             return b;
+        }
+        private bool ChonTuan(DateTime dateTime)
+        {
+            
+            return false;
         }
         #endregion
     }

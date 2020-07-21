@@ -5,30 +5,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
-using Microsoft.Owin;
+using System.Web.Http.Controllers;
 using System.Web.Http.Results;
-using Owin;
-
-[assembly: OwinStartup(typeof(TokenAuthenticationInWebAPI.App_Start_Startup))]
+using System.Web.UI;
+using System.Xml;
 
 namespace QLKSProject.Controllers.Home
 {
-    [Authorize]
     public class HomeController : ApiController
+
     {
 
-        [HttpPost]
-        public IHttpActionResult KiemTraTaiKhoan(TaiKhoan taiKhoan)
-        {
-            IHttpActionResult respone = Ok(taiKhoan);
-            using (HomeBusiness homeBusiness = new HomeBusiness())
-            {
-                respone = Ok(homeBusiness.KiemTraTaiKhoan(taiKhoan));
-            return respone;
-            }
-        }                
-        [HttpPost]
+        string TenTaiKhoan = Thread.CurrentPrincipal.Identity.Name;
+
+
+
+
+        [Authorize]
+
+
+        //[HttpPost]
+        //public IHttpActionResult KiemTraTaiKhoan(string TenTaiKhoan, string MatKhau)
+        //{
+        //	IHttpActionResult respone = Ok();
+        //	using (HomeBusiness homeBusiness = new HomeBusiness())
+        //	{
+        //		respone = Ok(homeBusiness.KiemTraTaiKhoan());
+        //              return respone;
+        //	}
+        //}
+  //      [HttpPost]
+  //      public IHttpActionResult KiemTraTaiKhoan(TaiKhoan taikhoan)
+		//{
+  //          IHttpActionResult respone = Ok(taikhoan);
+  //          using (HomeBusiness homeBusiness = new HomeBusiness())
+  //              respone = Ok(homeBusiness.KiemTraTaiKhoan(taikhoan));
+  //          return respone;
+		//}
+
         public IHttpActionResult TestDuLieuTruyenXuong(dynamic dynamic)
         {
             IHttpActionResult respone = Ok(dynamic);
@@ -39,10 +55,42 @@ namespace QLKSProject.Controllers.Home
                 return respone;
              }
         }
-        public void Configuration (IAppBuilder app)
-		{
 
-		}
-
+        public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
+        {
+            IHttpActionResult respone = Ok();
+            if(dynamic == null)
+            {
+                return respone = Ok(false);
+            }
+            try
+            {
+                string tenDoan = dynamic.TenDoan.ToString();
+                string tenTruongDoan = dynamic.TenTruongDoan.ToString();
+                DateTime thoiGianNhan = dynamic.ThoiGianNhan;
+                DateTime thoiGianTra = dynamic.ThoiGianTra;
+                string fileDSKhachHang = dynamic.Files.ToString();
+                using (HomeBusiness homeBusiness = new HomeBusiness())
+                {
+                    respone = Ok(homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang));
+                }
+            }
+            catch (Exception)
+            {
+                respone = Ok(false);
+            }
+           
+            return respone;
+        }
+        //[HttpPost]
+        //public static bool KiemTraTaiKhoan(string TenTaiKhoan, string MatKhau)
+        //{
+        //    using (HomeBusiness entities = new HomeBusiness())
+        //    {
+        //        Models.Entities.TaiKhoan tk = new Models.Entities.TaiKhoan();
+        //        return Models.Entities.TaiKhoans.Any(user => user.TenTaiKhoan.Equals(TenTaiKhoan, StringComparison.OrdinalIgnoreCase) && user.MatKhau == MatKhau);
+               
+        //    }
+        //}
     }
 }
