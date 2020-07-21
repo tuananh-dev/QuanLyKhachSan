@@ -43,10 +43,7 @@ namespace QLKSProject.Business
                     phong.MaPhong = rd.Next(1, 4).ToString() + (i < 10 ? "0" + i : "" + i) + (j < 10 ? "0" + j : "" + j);
                     phong.LoaiPhong = rd.Next(1, 5);
                     phong.Gia = rd.Next(1, 5) * 1000000;
-                    if (rd.Next(0, 2) == 1)
-                        phong.TrangThai = false;
-                    else
-                        phong.TrangThai = true;
+                    phong.TrangThai = true;
                     if (rd.Next(1, 10) == 2)
                         phong.IsDelete = true;
                     else
