@@ -4,10 +4,7 @@ using System.IO;
 using QLKSProject.Models.DTO;
 namespace QLKSProject.Business.Home
 {
-<<<<<<< HEAD
 
-=======
->>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
 	public class HomeBusiness : BaseBusiness
 	{
 		#region Public methods
