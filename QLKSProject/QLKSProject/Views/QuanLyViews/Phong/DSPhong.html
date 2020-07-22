@@ -47,7 +47,8 @@
             var layDSPhong = 'Quanly/LayDanhSachPhong';
             var themPhong = 'Quanly/ThemPhong';
             var suaPhong = 'Quanly/CapNhatPhong';
-            var xoaPhong = 'Quanly/XoaPhong';
+            var xoaPhong = 'Quanly/XoaPhong?ID=';
+            var layPhong = 'Quanly/LayPhong?ID=';
 
 
             loadData(idList, layDSPhong);
@@ -58,20 +59,25 @@
             })
 
             $('#btn-del').click(function () {
-                var data = {
-                    ID: dataId
-                }
                 var info = {
                     id: idList,
                     url: xoaPhong,
                     urlLoad: layDSPhong,
                     modal: idModalDelete
                 };
-                deleteData(info, data);
+                deleteData(info, dataId);
             })
             $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
                 $(idModalEdit).modal('show');
                 dataId = $(this).attr("data-id");
+                var edit = {
+                    loaiPhong: '#loaiphong-edit',
+                    gia: '#gia-edit',
+                    soLau: '#solau-edit',
+                    soPhong: '#sophong-edit'
+                }
+
+                loadDataDetail(edit, layPhong, dataId);
             })
 
             $('#btn-edit').click(function () {
@@ -491,14 +497,14 @@
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="number"
                                                            pattern="^[0-9]{1,2}[:.,-]?$" id="solau-edit">
-                                                    <label class="mdl-textfield__label">Số Lầu</label>
+                                                    <label class="mdl-textfield__label" style="top:0;">Số Lầu</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="number"
                                                            pattern="^[0-9]{1,2}[:.,-]?$" id="sophong-edit">
-                                                    <label class="mdl-textfield__label" for="sophong-edit">Số Phòng</label>
+                                                    <label class="mdl-textfield__label" for="sophong-edit" style="top:0;">Số Phòng</label>
                                                 </div>
                                             </div>
 
@@ -510,7 +516,7 @@
                                                     <label for="loaiphong-edit" class="pull-right margin-0">
                                                         <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
                                                     </label>
-                                                    <label for="loaiphong-edit" class="mdl-textfield__label">Loại Phòng</label>
+                                                    <label for="loaiphong-edit" class="mdl-textfield__label" style="top:0;">Loại Phòng</label>
                                                     <ul data-mdl-for="loaiphong-edit" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
                                                         <li class="mdl-menu__item">Phòng Loại 1</li>
                                                         <li class="mdl-menu__item">Phòng Loại 2</li>
@@ -527,7 +533,7 @@
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="number"
                                                            pattern="-?[0-9]*(\.[0-9]+)?" id="gia-edit">
-                                                    <label class="mdl-textfield__label" for="gia-edit">Giá</label>
+                                                    <label class="mdl-textfield__label" for="gia-edit" style="top:0;">Giá</label>
                                                     <span class="mdl-textfield__error">Phải Là Số</span>
                                                 </div>
                                             </div>
