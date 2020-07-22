@@ -4,7 +4,10 @@ using System.IO;
 using QLKSProject.Models.DTO;
 namespace QLKSProject.Business.Home
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
 	public class HomeBusiness : BaseBusiness
 	{
 		#region Public methods
@@ -71,6 +74,8 @@ namespace QLKSProject.Business.Home
 					khachHang.ThoiGianNhan = thoiGianNhan;
 					khachHang.ThoiGianTra = thoiGianTra;
 					khachHang.TruongDoan = khachHang.HoVaTen.Trim().Equals(tenTruongDoan.Trim()) ? true : false;
+					khachHang.TrangThaiDatPhong = false;
+					khachHang.IDPhong = -1;
 					models.KhachHangs.Add(khachHang);
 				}
 			}

@@ -13,7 +13,7 @@ namespace QLKSProject.Controllers.NhanVien
 {
     public class NhanVienController : ApiController
     {
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult LayDanhSachDoan()
         {
             IHttpActionResult respon = Ok();
@@ -27,7 +27,7 @@ namespace QLKSProject.Controllers.NhanVien
             }
             return respon;
         }
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult LayDanhSachDatPhongThanhCong()
         {
             IHttpActionResult respon = Ok();
@@ -41,7 +41,7 @@ namespace QLKSProject.Controllers.NhanVien
             return respon;
 
         }
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult LayDanhSachDatPhongThatBai()
         {
             IHttpActionResult respon = Ok();
@@ -58,7 +58,7 @@ namespace QLKSProject.Controllers.NhanVien
         [HttpGet]
         public IHttpActionResult DatPhong()
         {
-            string maDoan = "1595291378732";
+            string maDoan = "1595369950589";
             IHttpActionResult respon = Ok();
             using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {

@@ -1,10 +1,18 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutHome.cshtml";
-}
+﻿@*@{
+        Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    }*@
+
+@{
+        Layout = null;
+    }
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="~/Content/Home/images/logo1.png" />
+    <title>Color Hotel @*&mdash;*@ @*Colorlib Website Template*@</title>
+
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <<<<<<< HEAD
@@ -79,36 +87,43 @@
 
 
 
-
-
-
-
-        </script>*@
-
-
-
-
-
-
-
-    
-    @*<input type="file" id="file-upload" required>*@
-
 =======
+>>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
->>>>>>> e094c0ce5cf61a237d0afe055b285517535e0c10
-</head>
-<body>
-    
 
-    <link href="~/Content/Home/css/fileupload.css" rel="stylesheet">
-    <script src="~/Content/Home/js/fileupload.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Work+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Home/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/Content/Home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/Home/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/Home/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Content/Home/css/animate.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
+
+
+
+    <link rel="stylesheet" href="~/Content/Home/fonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="~/Content/Home/css/aos.css">
+
+    <link rel="stylesheet" href="~/Content/Home/css/style.css">
+
+
+
+</head>
+
+<body>
+
     <div class="site-wrap">
 
         <div class="site-mobile-menu">
@@ -121,315 +136,414 @@
         </div> <!-- .site-mobile-menu -->
 
 
+        <div class="site-navbar-wrap js-site-navbar bg-white   ">
 
-
-
-        <div class="site-blocks-cover overlay" style="background-image: url('https://pix6.agoda.net/hotelImages/520/52033/52033_17090518240056008229.jpg?s=1024x768'); " data-aos="fade" data-stellar-background-ratio="0.5">
             <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-md-7 text-center" data-aos="fade">
-                        @*<span class="caption mb-3">Chat With Us</span>*@
-                        <h1 class="mb-2">Gửi File Danh Sách </h1>
+                <div class="site-navbar bg-light">
+                    <div class="py-1">
+                        <div class="row align-items-center">
+                            <div class="col-2">
+                                <h2 class="mb-0 site-logo"><a style="color:black" href="TrangChu.cshtml">Color Hotel</a></h2>
+                            </div>
+                            <div class="col-10">
+                                <nav class="site-navigation text-right" role="navigation">
+                                    <div class="container">
+
+                                        <div class="d-inline-block d-lg-none  ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu h3"></span></a></div>
+                                        <ul class="site-menu js-clone-nav d-none d-lg-block">
+                                            <li>
+                                                <a style="color: dimgray" href="TrangChu.cshtml">Trang Chủ</a>
+
+                                            </li>
+                                            @*<li class="has-children">
+                                                <a href="rooms.html">Rooms</a>
+                                                <ul class="dropdown arrow-top">
+                                                    <li><a href="rooms.html">Standard Room</a></li>
+                                                    <li><a href="rooms.html">Family Room</a></li>
+                                                    <li><a href="rooms.html">Single Room</a></li>
+                                                    <li class="has-children">
+                                                        <a href="rooms.html">Rooms</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="rooms.html">America</a></li>
+                                                            <li><a href="rooms.html">Europe</a></li>
+                                                            <li><a href="rooms.html">Asia</a></li>
+                                                            <li><a href="rooms.html">Africa</a></li>
+
+                                                        </ul>
+                                                    </li>
+
+                                                </ul>
+                                            </li>*@
+                                            @*<li><a href="events.html">Events</a></li>*@
+                                            <li><a style="color:dimgray" href="GioiThieu.cshtml">Giới Thiệu</a></li>
+                                            @*<li><a href="contact.cshtml">Contact</a></li>*@
+                                            <li @*class="active"*@><a style="color:red" href="GuiFileDSDoan.cshtml">Gửi File</a></li>
+                                            <li> <a href="~/Views/TaiKhoanViews/DangNhap.cshtml" class="btn btn-primary pill text-white px-4">Đăng Nhập</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
 
-        <div class="site-section site-section-sm">
-            <div class="container">
-                <div class="row">
+        @*<div class="slide-one-item home-slider owl-carousel">
 
-                    <div class="col-md-12 col-lg-8 mb-5">
+            <div class="site-blocks-cover overlay" style="background-image: url(../Content/Home/images/hero_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-md-7 text-center" data-aos="fade">
 
+                            <h1 class="mb-2">Welcome To Suites</h1>
+                            <h2 class="caption">Hotel &amp; Resort</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="site-blocks-cover overlay" style="background-image: url(../Content/Home/images/hero_2.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-md-7 text-center" data-aos="fade">
+                            <h1 class="mb-2">Unique Experience</h1>
+                            <h2 class="caption">Enjoy With Us</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        <form action="#" class="p-10 bg-white" id="formguidsdoan" method="post" enctype="multipart/form-data" onsubmit="return false">
-                            <div>
-                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                                <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
-                                <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
-                                <script>
+            <div class="site-blocks-cover overlay" style="background-image: url(../Content/Home/images/hero_3.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-md-7 text-center" data-aos="fade">
+                            <h1 class="mb-2">Relaxing Room</h1>
+                            <h2 class="caption">Your Room, Your Stay</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                    var ExcelToJSON = function () {
+        </div>*@
+        <link href="~/Content/Home/css/fileupload.css" rel="stylesheet">
+        <script src="~/Content/Home/js/fileupload.js"></script>
 
-                                        this.parseExcel = function (file) {
-                                            var reader = new FileReader();
+        <div class="site-wrap">
 
-                                            reader.onload = function (e) {
-                                                var data = e.target.result;
-                                                var workbook = XLSX.read(data, {
-                                                    type: 'binary'
-                                                });
-                                                workbook.SheetNames.forEach(function (sheetName) {
-                                                    // Here is your object
-                                                    var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-                                                    var json_object = JSON.stringify(XL_row_object);
-                                                    console.log(JSON.parse(json_object));
-                                                    jQuery('#xlx_json').val(json_object);
-                                                })
-                                            };
-
-                                            reader.onerror = function (ex) {
-                                                console.log(ex);
-                                            };
-
-                                            reader.readAsBinaryString(file);
-                                        };
-                                    };
-
-                                    function handleFileSelect(evt) {
-
-                                        var files = evt.target.files; // FileList object
-                                        var xl2json = new ExcelToJSON();
-                                        xl2json.parseExcel(files[0]);
-                                    }
-
-
-
-                                </script>
-
-                                <script type="text/javascript">
-
-
-
-
-                                    $(document).ready(function () {
-
-                                        //$("#gui").click(function ()
-                                        $('#formguidsdoan').submit(function () {
-
-                                            var person = {
-                                                TenDoan: $('#tendoan').val(),
-                                                HovaTenTruongDoan: $('#Tentruongdoan').val(),
-                                                Dattungay: $('#datphongtungay').val(),
-                                                DenNgay: $('#denngay').val(),
-                                                Files: $('#xlx_json').val(),
-
-                                            }
+            <div class="site-mobile-menu">
+                <div class="site-mobile-menu-header">
+                    <div class="site-mobile-menu-close mt-3">
+                        <span class="icon-close2 js-menu-toggle"></span>
+                    </div>
+                </div>
+                <div class="site-mobile-menu-body"></div>
+            </div> <!-- .site-mobile-menu -->
+            @*<div class="site-blocks-cover overlay" style="background-image: url('https://pix6.agoda.net/hotelImages/520/52033/52033_17090518240056008229.jpg?s=1024x768'); " data-aos="fade" data-stellar-background-ratio="0.5">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-md-7 text-center" data-aos="fade">
+                            <span class="caption mb-3">Chat With Us</span>
+                            <h1 class="mb-2">Gửi File Danh Sách </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+            <br>
+            <br>
+            <br>
+            <br>
 
 
 
-                                            $.ajax({
-                                                url: '/api/Home/TestDuLieuTruyenXuong',
-                                                method: 'POST',
-                                                dataType: 'json',
-                                                contentType: 'application/json',
-                                                //data: JSON.stringify(person),
-                                                data: JSON.stringify(person),
+            <div class="site-section site-section-sm">
+                <div class="container">
+                    <div class="row">
 
-                                                success: function (data) {
-                                                    //console.log('Send success')
-                                                    //alert(data);
+                        <div class="col-md-12 col-lg-8 mb-5">
 
-                                                    swal({
-                                                        type: 'success',
-                                                        title: 'Tuyệt Vời!',
-                                                        text: 'Bạn Đã Gửi File Danh Sách Thành Công',
-                                                        confirmButtonColor: '#f23a2e',
-                                                    },
-                                                        function (isConfirm) {
-                                                            if (isConfirm) {
-                                                                window.location.href = "trangchu.cshtml";
-                                                            }
-                                                        });
+                            <form action="#" class="p-10 bg-white" id="formguidsdoan" method="post" enctype="multipart/form-data" onsubmit="return false">
+                                <div>
+                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+                                    <script>
 
+                                        var ExcelToJSON = function () {
 
+                                            this.parseExcel = function (file) {
+                                                var reader = new FileReader();
 
-
-                                                },
-                                                error: function (data) {
-                                                    swal({
-                                                        type: 'error',
-                                                        title: 'Rất Tiếc',
-                                                        text: 'Bạn Đã Gửi File Danh Sách Không Thành Công',
-                                                           
-
-
+                                                reader.onload = function (e) {
+                                                    var data = e.target.result;
+                                                    var workbook = XLSX.read(data, {
+                                                        type: 'binary'
                                                     });
+                                                    workbook.SheetNames.forEach(function (sheetName) {
+                                                        // Here is your object
+                                                        var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                                                        var json_object = JSON.stringify(XL_row_object);
+                                                        console.log(JSON.parse(json_object));
+                                                        jQuery('#xlx_json').val(json_object);
+                                                    })
+                                                };
 
+                                                reader.onerror = function (ex) {
+                                                    console.log(ex);
+                                                };
+
+                                                reader.readAsBinaryString(file);
+                                            };
+                                        };
+
+                                        function handleFileSelect(evt) {
+
+                                            var files = evt.target.files; // FileList object
+                                            var xl2json = new ExcelToJSON();
+                                            xl2json.parseExcel(files[0]);
+                                        }
+
+
+
+                                    </script>
+
+                                    <script type="text/javascript">
+
+
+
+
+                                        $(document).ready(function () {
+
+                                            //$("#gui").click(function ()
+                                            $('#formguidsdoan').submit(function () {
+
+                                                var person = {
+                                                    TenDoan: $('#tendoan').val(),
+                                                    TenTruongDoan: $('#Tentruongdoan').val(),
+                                                    ThoiGianNhan: $('#datphongtungay').val(),
+                                                    ThoiGianTra: $('#denngay').val(),
+                                                    Files: $('#xlx_json').val(),
 
                                                 }
 
 
 
+                                                $.ajax({
+                                                    url: '/api/Home/LayFileDanhSachKhachHang',
+                                                    method: 'POST',
+                                                    dataType: 'json',
+                                                    contentType: 'application/json',
+                                                    //data: JSON.stringify(person),
+                                                    data: JSON.stringify(person),
+
+                                                    success: function (data) {
+                                                        //console.log('Send success')
+
+
+                                                        swal({
+                                                            type: 'success',
+                                                            title: 'Gửi File Thành Công',
+                                                            //text: 'Bạn Đã Gửi File Danh Sách Thành Công',
+                                                            confirmButtonColor: '#f23a2e',
+                                                        },
+                                                            function (isConfirm) {
+                                                                if (isConfirm) {
+                                                                    window.location.href = "trangchu.cshtml";
+                                                                }
+                                                            });
+
+
+
+
+                                                    },
+                                                    error: function (data) {
+
+                                                        swal({
+                                                            type: 'error',
+                                                            title: 'Gửi File Thất Bại',
+                                                            //text: 'Bạn Đã Gửi File Danh Sách Không Thành Công',
+
+
+
+                                                        });
+
+
+                                                    }
+
+
+
+
+                                                });
 
                                             });
-
+                                            document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
                                         });
-                                        document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
-                                    });
 
-                                </script>
+                                    </script>
 
-                                <div @*class="wrapper"*@>
-                                    <div class="container">
-                                        <div class="a">
-                                            <h1>Tải Lên File Danh Sách Đoàn</h1>
+                                    <div @*class="wrapper"*@>
+                                        <div class="container">
+                                            <div class="a">
+                                                <h1>Tải Lên File Danh Sách Đoàn</h1>
 
 
-                                            @*<div class="upload-container">
-                            <div class="border-container">
-                                <div class="icons fa-4x">
-                                    <i class="fas fa-file-image" data-fa-transform="shrink-3 down-2 left-6 rotate--45"></i>
-                                    <i class="fas fa-file-alt" data-fa-transform="shrink-2 up-4"></i>
-                                    <i class="fas fa-file-pdf" data-fa-transform="shrink-3 down-2 right-6 rotate-45"></i>
-                                </div>
-                                <div class="a">
-                                    <input type="file" id="file-upload" required>
-                                </div>
-                                <p>
-                                    Bấm
-                                    <a id="file-browser">Choose File</a> để chọn file ds đoàn cần gửi lên
-                                </p>
-                            </div>
-                        </div>*@
+                                                @*<div class="upload-container">
+                                                    <div class="border-container">
+                                                        <div class="icons fa-4x">
+                                                            <i class="fas fa-file-image" data-fa-transform="shrink-3 down-2 left-6 rotate--45"></i>
+                                                            <i class="fas fa-file-alt" data-fa-transform="shrink-2 up-4"></i>
+                                                            <i class="fas fa-file-pdf" data-fa-transform="shrink-3 down-2 right-6 rotate-45"></i>
+                                                        </div>
+                                                        <div class="a">
+                                                            <input type="file" id="file-upload" required>
+                                                        </div>
+                                                        <p>
+                                                            Bấm
+                                                            <a id="file-browser">Choose File</a> để chọn file ds đoàn cần gửi lên
+                                                        </p>
+                                                    </div>
+                                                </div>*@
 
+                                            </div>
                                         </div>
+
                                     </div>
-
                                 </div>
 
 
 
-
-
-
-
-
-
-                            </div>
-
-
-
-                            <div class="row form-group">
-                                <div class="col-md-12 mb-3 mb-md-0">
-                                    <label class="font-weight-bold" for="fullname">Tên Đoàn</label>
-                                    <input type="text" id="tendoan" class="form-control" name="tendoan" required pattern="[a-zắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ,A-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴ, ]{5,30}" maxlength="30">
+                                <div class="row form-group">
+                                    <div class="col-md-12 mb-3 mb-md-0">
+                                        <label class="font-weight-bold" for="fullname">Tên Đoàn</label>
+                                        <input type="text" id="tendoan" class="form-control" name="tendoan" required pattern="[a-zắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ,A-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴ, ]{5,30}" maxlength="30">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col-md-12 mb-3 mb-md-0">
-                                    <label class="font-weight-bold" for="fullname">Họ Và Tên Trưởng Đoàn</label>
-                                    <input type="text" id="Tentruongdoan" class="form-control"  pattern="[a-zắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ,A-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴ, ]{5,30}" maxlength="30" name="Tentruongdoan" required @*placeholder="Ví dụ: Đoàn TP HCM"*@>
+                                <div class="row form-group">
+                                    <div class="col-md-12 mb-3 mb-md-0">
+                                        <label class="font-weight-bold" for="fullname">Họ Và Tên Trưởng Đoàn</label>
+                                        <input type="text" id="Tentruongdoan" class="form-control" pattern="[a-zắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ,A-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴ, ]{5,30}" maxlength="30" name="Tentruongdoan" required @*placeholder="Ví dụ: Đoàn TP HCM"*@>
+                                    </div>
                                 </div>
-                            </div>
 
 
-                            <div class="row form-group">
-                                <div class="col-md-12 mb-3 mb-md-0">
-                                    <label class="font-weight-bold" for="phone">Đặt Phòng Từ Ngày</label>
+                                <div class="row form-group">
+                                    <div class="col-md-12 mb-3 mb-md-0">
+                                        <label class="font-weight-bold" for="phone">Đặt Phòng Từ Ngày</label>
 
-                                    <input type="date" id="datphongtungay" class="form-control" name="datphongtungay"  required  >
+                                        <input type="date" id="datphongtungay" class="form-control" name="datphongtungay" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col-md-12 mb-3 mb-md-0">
-                                    <label class="font-weight-bold" for="phone">Đến Ngày</label>
-                                    <input type="date" id="denngay" class="form-control" name="denngay" required >
+                                <div class="row form-group">
+                                    <div class="col-md-12 mb-3 mb-md-0">
+                                        <label class="font-weight-bold" for="phone">Đến Ngày</label>
+                                        <input type="date" id="denngay" class="form-control" name="denngay" required>
 
-                                </div>
-                                <script>
-                                    $(function () {
-                                        var dtToday = new Date();
-
-                                        var month = dtToday.getMonth() + 1;
-                                        var day = dtToday.getDate();
-                                        var year = dtToday.getFullYear();
-                                        if (month < 10)
-                                            month = '0' + month.toString();
-                                        if (day < 10)
-                                            day = '0' + day.toString();
-
-                                        var minDate = year + '-' + month + '-' + day;
-
-                                        $('#datphongtungay').attr('min', minDate);
-                                    });
-                                    $(function () {
-                                        var dtToday = new Date();
-
-                                        var month = dtToday.getMonth() + 1;
-                                        var day = dtToday.getDate() + 1;
-                                        var year = dtToday.getFullYear();
-                                        if (month < 10)
-                                            month = '0' + month.toString();
-                                        if (day < 10)
-                                            day = '0' + day.toString();
-
-                                        var minDate = year + '-' + month + '-' + day;
-
-                                        $('#denngay').attr('min', minDate);
-                                    });
-                                </script>
-
-                            </div>
-                            <br>
-                            <div class="row form-group">
-                                <div class="col-md-12 mb-3 mb-md-0">
+                                    </div>
                                     <script>
-                                        var _validFileExtensions = [".xlsx"];
-                                        function ValidateSingleInput(oInput) {
-                                            if (oInput.type == "file") {
-                                                var sFileName = oInput.value;
-                                                if (sFileName.length > 0) {
-                                                    var blnValid = false;
-                                                    for (var j = 0; j < _validFileExtensions.length; j++) {
-                                                        var sCurExtension = _validFileExtensions[j];
-                                                        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-                                                            blnValid = true;
-                                                            break;
+                                        $(function () {
+                                            var dtToday = new Date();
+
+                                            var month = dtToday.getMonth() + 1;
+                                            var day = dtToday.getDate();
+                                            var year = dtToday.getFullYear();
+                                            if (month < 10)
+                                                month = '0' + month.toString();
+                                            if (day < 10)
+                                                day = '0' + day.toString();
+
+                                            var minDate = year + '-' + month + '-' + day;
+
+                                            $('#datphongtungay').attr('min', minDate);
+                                        });
+                                        $(function () {
+                                            var dtToday = new Date();
+
+                                            var month = dtToday.getMonth() + 1;
+                                            var day = dtToday.getDate() + 1;
+                                            var year = dtToday.getFullYear();
+                                            if (month < 10)
+                                                month = '0' + month.toString();
+                                            if (day < 10)
+                                                day = '0' + day.toString();
+
+                                            var minDate = year + '-' + month + '-' + day;
+
+                                            $('#denngay').attr('min', minDate);
+                                        });
+                                    </script>
+
+                                </div>
+                                <br>
+                                <div class="row form-group">
+                                    <div class="col-md-12 mb-3 mb-md-0">
+                                        <script>
+                                            var _validFileExtensions = [".xlsx"];
+                                            function ValidateSingleInput(oInput) {
+                                                if (oInput.type == "file") {
+                                                    var sFileName = oInput.value;
+                                                    if (sFileName.length > 0) {
+                                                        var blnValid = false;
+                                                        for (var j = 0; j < _validFileExtensions.length; j++) {
+                                                            var sCurExtension = _validFileExtensions[j];
+                                                            if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                                                                blnValid = true;
+                                                                break;
+                                                            }
+                                                        }
+
+                                                        if (!blnValid) {
+                                                            //alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                                                            //alert("File Tải Lên Không Đúng Định Dạng, vui lòng chọn file Excel")
+                                                            swal({
+                                                                title: "Chọn File Thất Bại",
+                                                                text: "File Không đúng định dạng vui lòng chọn lại",
+                                                                //type: "warning",
+                                                                confirmButtonColor: '#f23a2e',
+
+
+                                                            });
+
+
+                                                            oInput.value = "";
+                                                            return false;
                                                         }
                                                     }
-
-                                                    if (!blnValid) {
-                                                        //alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
-                                                        //alert("File Tải Lên Không Đúng Định Dạng, vui lòng chọn file Excel")
-                                                        swal({
-                                                            title: "Chọn File Thất Bại",
-                                                            text: "File Không đúng định dạng vui lòng chọn lại",
-                                                            //type: "warning",
-                                                            confirmButtonColor: '#f23a2e',
-
-
-                                                        });
-
-
-                                                        oInput.value = "";
-                                                        return false;
-                                                    }
                                                 }
+                                                return true;
                                             }
-                                            return true;
-                                        }
-                                    </script>
-                                    @*<script>
-                    var validator = $("#formguidsdoan").validate();
-                    validator.element("#gui");
-                </script>*@
+                                        </script>
+                                        @*<script>
+                                            var validator = $("#formguidsdoan").validate();
+                                            validator.element("#gui");
+                                        </script>*@
 
-                                    <input type="file" id="file-upload" name="upload" required onchange="ValidateSingleInput(this);" />
+                                        <input type="file" id="file-upload" name="upload" required onchange="ValidateSingleInput(this);" />
+
+                                    </div>
+
+
+
+
+
+
+
 
                                 </div>
-                                
-                                    
+                                @*<script src="jquery-1.7.1.js" type="text/javascript"></script>*@
+
+
+                                <div class="a">
+                                    <br>
 
 
 
+                                    <input type="submit" value="Gửi" id="gui" class="btn btn-primary pill px-4 py-2">
+
+                                </div>
 
 
-
-                            </div>
-                            @*<script src="jquery-1.7.1.js" type="text/javascript"></script>*@
-
-
-                            <div class="a">
-                                <br>
-                                <br>
-
-                                <input type="submit" value="Gửi" id="gui" class="btn btn-primary pill px-4 py-2">
-
-                            </div>
-
+<<<<<<< HEAD
 <<<<<<< HEAD
                             <style>
                                 div.a {
@@ -437,19 +551,31 @@
                                 }
                             </style>
                             <textarea class="form-control" rows=35 cols=120 id="xlx_json" style="display:none"></textarea>
+=======
+                                <style>
+                                    div.a {
+                                        text-align: center;
+                                    }
+                                </style>
+                                <textarea class="form-control" rows=35 cols=120 id="xlx_json" style="display:none"></textarea>
+
+>>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
+
+                            </form>
 
 
-                        </form>
-
+<<<<<<< HEAD
 =======
 >>>>>>> e094c0ce5cf61a237d0afe055b285517535e0c10
+=======
+>>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
 
 
                             <br>
                             <p class="mb-0"><a href="#">LƯU Ý:</a></p>
                             <p class="mb-4">
                                 Nhóm: là những người có nguyện vọng ở chung một phòng. Ví dụ: nhóm người thứ nhất muốn ở chung phòng ghi là n1, tương tự nhóm thứ 2 là n2, ...
-                                <br>Loại khách hàng : Nếu là người lớn thì ghi  nl, còn là trẻ em thì ghi  te 
+                                <br>Loại khách hàng : Nếu là người lớn thì ghi  nl, còn là trẻ em thì ghi  te
                                 <br>Giới tính: Nếu là nam thì ghi nam, còn là nữ thì ghi nu
                                 <br>Người đại diện của trẻ em: là những người đi cùng trẻ em dưới 10 tuổi, ghi số thứ tự trong danh sách của trẻ em đó, không có thì để trống
 
@@ -468,35 +594,129 @@
                             <textarea class="form-control" rows=35 cols=120 id="xlx_json" style="display:none"></textarea>
 
 
-                        </form>
+
+
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-lg-4">
+                            <div class="p-4 mb-3 bg-white">
+                                <h3 class="h5 text-black mb-3">Thông Tin Liên Hệ</h3>
+                                <p class="mb-0 font-weight-bold">Địa Chỉ</p>
+                                <p class="mb-4">12 Nguyễn Du, P. Cẩm Phô, Hội An, Quảng Nam, Việt Nam </p>
+
+                                <p class="mb-0 font-weight-bold">Số Điện Thoại</p>
+                                <p class="mb-4"><a href="#">+84 123456677</a></p>
+
+                                <p class="mb-0 font-weight-bold">Địa Chỉ Email</p>
+                                <p class="mb-0"><a href="#">ColorHotel@gmail.com</a></p>
+                                <br />
+                                <p class="mb-0 font-weight-bold">Mẫu File Danh Sách Đoàn</p>
+                                <a href="~/Content/Home/FileDSKH/Mẫu File Danh Sách Đoàn.xlsx" download="Mẫu File Danh Sách Đoàn">
+                                    <img src="~/Content/Home/FileDSKH/download.png" alt="Mẫu File DS" width="154" height="112">
+                                </a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <footer class="site-footer">
+
+            <div class="container">
+
+
+                <div class="row">
+
+                    <div class="col-3">
+                        @*<h2 class="mb-0 site-logo"><a style="color:white" href="TrangChu.cshtml">Color Hotel</a></h2>*@
+                        <br />
+                        <img src="~/Content/Home/images/logo1.png" alt="Mẫu File DS" width="200" height="200">
 
                     </div>
+                    @*<p><a href="about.cshtml" class="btn btn-primary pill text-white px-4">Xem Thêm</a></p>*@
 
                     <div class="col-lg-4">
-                        <div class="p-4 mb-3 bg-white">
-                            <h3 class="h5 text-black mb-3">Thông Tin Liên Hệ</h3>
-                            <p class="mb-0 font-weight-bold">Địa Chỉ</p>
-                            <p class="mb-4">12 Nguyễn Du, P. Cẩm Phô, Hội An, Quảng Nam, Việt Nam </p>
+                        <div>
+                            <h3 class="footer-heading mb-4 text-white">Về Chúng Tôi</h3>
+                            <p>
+                                Mang trong mình vẻ đẹp huyền bí và những nét văn hóa độc đáo của di sản phố cổ, Color Hotel là điểm đến lý tưởng để du khách có một kỳ nghỉ thư giãn, thoải mái cùng với dịch vụ đẳng cấp và những lựa chọn ăn uống tuyệt vời ngay tại trung tâm phố cổ Hội An
+                            </p>
 
-                            <p class="mb-0 font-weight-bold">Số Điện Thoại</p>
-                            <p class="mb-4"><a href="#">+84 123456677</a></p>
-
-                            <p class="mb-0 font-weight-bold">Địa Chỉ Email</p>
-                            <p class="mb-0"><a href="#">ColorHotel@gmail.com</a></p>
-                            <br />
-                            <p class="mb-0 font-weight-bold">Mẫu File Danh Sách</p>
-                            <a href="~/Content/Home/FileDSKH/TemplateDSKH.xlsx" download="Mẫu File DS ">
-                                <img src="~/Content/Home/FileDSKH/download.png" alt="Mẫu File DS" width="154" height="112">
-                            </a>
                         </div>
 
 
                     </div>
-                </div>
-            </div>
-        </div>
+                    <div class="col-lg-5">
+                        <h3 class="footer-heading mb-4 text-white">Thông Tin Liên Hệ</h3>
+                        <p class="mb-0 font-weight-bold">Địa Chỉ</p>
+                        <p class="mb-4">12 Nguyễn Du, P. Cẩm Phô, Hội An, Quảng Nam, Việt Nam </p>
+                        <p class="mb-0 font-weight-bold">Số Điện Thoại</p>
+                        <p class="mb-4"><a href="#">+84 123456677</a></p>
 
+                        <p class="mb-0 font-weight-bold">Địa Chỉ Email</p>
+                        <p class="mb-0"><a href="#">ColorHotel@gmail.com</a></p>
+                    </div>
+
+
+                    @*<div class="col-md-2">
+                        <div class="col-md-12"><h3 class="footer-heading mb-4 text-white">Social Icons</h3></div>
+                        <div class="col-md-12">
+                            <p>
+                                <a href="#" class="pb-2 pr-2 pl-0"><span class="icon-facebook"></span></a>
+                                <a href="#" class="p-2"><span class="icon-twitter"></span></a>
+                                <a href="#" class="p-2"><span class="icon-instagram"></span></a>
+                                <a href="#" class="p-2"><span class="icon-vimeo"></span></a>
+
+                            </p>
+                        </div>
+                    </div>*@
+                </div>
+
+            </div>
+        </footer>
     </div>
 
+    <script src="~/Content/Home/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/Home/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Content/Home/js/jquery-ui.js"></script>
+    <script src="~/Content/Home/js/popper.min.js"></script>
+    <script src="~/Content/Home/js/bootstrap.min.js"></script>
+    <script src="~/Content/Home/js/owl.carousel.min.js"></script>
+    <script src="~/Content/Home/js/jquery.stellar.min.js"></script>
+    <script src="~/Content/Home/js/jquery.countdown.min.js"></script>
+    <script src="~/Content/Home/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/Home/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/Home/js/aos.js"></script>
+
+
+    <script src="~/Content/Home/js/mediaelement-and-player.min.js"></script>
+
+    <script src="~/Content/Home/js/main.js"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var mediaElements = document.querySelectorAll('video, audio'), total = mediaElements.length;
+
+            for (var i = 0; i < total; i++) {
+                new MediaElementPlayer(mediaElements[i], {
+                    pluginPath: 'https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/',
+                    shimScriptAccess: 'always',
+                    success: function () {
+                        var target = document.body.querySelectorAll('.player'), targetTotal = target.length;
+                        for (var j = 0; j < targetTotal; j++) {
+                            target[j].style.visibility = 'visible';
+                        }
+                    }
+                });
+            }
+        });</script>
+
 </body>
+
 </html>

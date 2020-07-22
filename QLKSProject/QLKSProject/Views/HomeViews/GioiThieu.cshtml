@@ -1,11 +1,41 @@
-﻿@{
+﻿@*@{
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
-}
+}*@
 
+@{
+    Layout = null;
+}
 
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="~/Content/Home/images/logo1.png"/>
+    <title>Color Hotel @*&mdash; Colorlib Website Template*@</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Work+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Home/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/Content/Home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/Home/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/Home/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Content/Home/css/animate.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
+
+
+
+    <link rel="stylesheet" href="~/Content/Home/fonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="~/Content/Home/css/aos.css">
+
+    <link rel="stylesheet" href="~/Content/Home/css/style.css">
+
+</head>
 <body>
 
     <div class="site-wrap">
@@ -20,262 +50,459 @@
         </div> <!-- .site-mobile-menu -->
 
 
+        <div class="site-navbar-wrap js-site-navbar bg-white">
 
-
-
-        <div class="site-blocks-cover overlay" style=" background-image: url('https://pix6.agoda.net/hotelImages/520/52033/52033_16103112520048281192.jpg?s=1024x768');" data-aos="fade" data-stellar-background-ratio="0.5">
             <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-md-7 text-center" data-aos="fade">
-                        <span class="caption mb-3">Color Hotel &amp; Resort</span>
-                        <h1 class="mb-4">Về Chúng Tôi</h1>
+                <div class="site-navbar bg-light">
+                    <div class="py-1">
+                        <div class="row align-items-center">
+                            <div class="col-2">
+                                <h2 class="mb-0 site-logo"><a href="TrangChu.cshtml">Color Hotel</a></h2>
+                            </div>
+                            <div class="col-10">
+                                <nav class="site-navigation text-right" role="navigation">
+                                    <div class="container">
+
+                                        <div class="d-inline-block d-lg-none  ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu h3"></span></a></div>
+                                        <ul class="site-menu js-clone-nav d-none d-lg-block">
+                                            <li >
+                                                <a href="TrangChu.cshtml">Trang Chủ</a>
+
+                                            </li>
+                                            @*<li class="has-children">
+                                                    <a href="rooms.html">Rooms</a>
+                                                    <ul class="dropdown arrow-top">
+                                                        <li><a href="rooms.html">Standard Room</a></li>
+                                                        <li><a href="rooms.html">Family Room</a></li>
+                                                        <li><a href="rooms.html">Single Room</a></li>
+                                                        <li class="has-children">
+                                                            <a href="rooms.html">Rooms</a>
+                                                            <ul class="dropdown">
+                                                                <li><a href="rooms.html">America</a></li>
+                                                                <li><a href="rooms.html">Europe</a></li>
+                                                                <li><a href="rooms.html">Asia</a></li>
+                                                                <li><a href="rooms.html">Africa</a></li>
+
+                                                            </ul>
+                                                        </li>
+
+                                                    </ul>
+                                                </li>*@
+                                            @*<li><a href="events.html">Events</a></li>*@
+                                            <li class="active"><a href="GioiThieu.cshtml">Giới Thiệu</a></li>
+                                            @*<li><a href="contact.cshtml">Contact</a></li>*@
+                                            <li><a href="GuiFileDSDoan.cshtml">Gửi File DS</a></li>
+                                            <li> <a href="~/Views/TaiKhoanViews/DangNhap.cshtml" class="btn btn-primary pill text-white px-4">Đăng Nhập</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
 
-        <div class="site-section">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6 mb-5 mb-md-0">
+        @*<div class="slide-one-item home-slider owl-carousel">
 
-                        <div class="img-border">
-                            <a href="https://vimeo.com/28959265" class="popup-vimeo image-play">
-                                <span class="icon-wrap">
-                                    <span class="icon icon-play"></span>
-                                </span>
-                                <img src="~/Content/Home/images/img_2.jpg" alt="" class="img-fluid">
-                            </a>
+                <div class="site-blocks-cover overlay" style="background-image: url(../Content/Home/images/hero_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-7 text-center" data-aos="fade">
+
+                                <h1 class="mb-2">Welcome To Suites</h1>
+                                <h2 class="caption">Hotel &amp; Resort</h2>
+                            </div>
                         </div>
-
-                        <img src="~/Content/Home/images/img_1.jpg" alt="Image" class="img-fluid image-absolute">
-
                     </div>
-                    <div class="col-md-5 ml-auto">
+                </div>
 
-
-                        <div class="section-heading text-left">
-                            <h2 class="mb-5">Về Chúng Tối</h2>
+                <div class="site-blocks-cover overlay" style="background-image: url(../Content/Home/images/hero_2.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-7 text-center" data-aos="fade">
+                                <h1 class="mb-2">Unique Experience</h1>
+                                <h2 class="caption">Enjoy With Us</h2>
+                            </div>
                         </div>
-                        <p class="mb-4">
-                            Nằm bên bờ sông Hoài, Color Hotel mang đến cảm giác yên bình. Tọa lạc ngay trong phố cổ Hội An cổ kính, từ  Color Hotel bạn có thể dễ dàng khám khá những điểm đến hấp dẫn của phố cổ.
-                            Khách sạn cách chùa Cầu ở ngay trung tâm phố cổ chỉ 3 phút đi bộ. Lang thang trên những con phố, bạn sẽ có dịp đắm mình trong di sản văn hóa và những điểm tham quan hấp dẫn, chợ đêm, cửa hàng, quán bar, nhà hàng và các cửa hàng thời trang. Khách sạn cũng là điểm khởi đầu lý tưởng để bạn có thể khám phá vẻ đẹp của những điểm đến hấp dẫn lân cận. Chỉ cần đạp xe hoặc di chuyển bằng dịch vụ xe buýt miễn phí từ Color Hotel, bạn có thể đến với bãi biển An Bàng yên bình cách đó chừng 3.5 km. Là một địa điểm lý tưởng để khám phá vẻ đẹp của miền Trung Việt Nam, bạn còn có thể dễ dàng đến các điểm thăm quan của thành phố Đà Nẵng như núi Ngũ Hành Sơn, khu vui chơi giải trí Bà Nà và các di sản thế giới khác như thánh địa Mỹ Sơn và Cung đình Huế. Ngoài ra, khách sạn chỉ cách sân bay quốc tế Đà Nẵng tầm 35 phút di chuyển bằng xe buýt hoặc taxi.
+                    </div>
+                </div>
+
+                <div class="site-blocks-cover overlay" style="background-image: url(../Content/Home/images/hero_3.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-7 text-center" data-aos="fade">
+                                <h1 class="mb-2">Relaxing Room</h1>
+                                <h2 class="caption">Your Room, Your Stay</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>*@
+        <div class="site-wrap">
+
+            <div class="site-mobile-menu">
+                <div class="site-mobile-menu-header">
+                    <div class="site-mobile-menu-close mt-3">
+                        <span class="icon-close2 js-menu-toggle"></span>
+                    </div>
+                </div>
+                <div class="site-mobile-menu-body"></div>
+            </div> <!-- .site-mobile-menu -->
 
 
-                        </p>
-                        @*<p><a href="https://vimeo.com/28959265" class="popup-vimeo text-uppercase">Watch Video <span class="icon-arrow-right small"></span></a></p>*@
-                        @*<p><a href="GioiThieu.cshtml">Xem thêm <span class="icon-arrow-right small"></span></a></p>*@
 
+
+
+            <div class="site-blocks-cover overlay" style=" background-image: url('https://pix6.agoda.net/hotelImages/520/52033/52033_16103112520048281192.jpg?s=1024x768');" data-aos="fade" data-stellar-background-ratio="0.5">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-md-7 text-center" data-aos="fade">
+                            <span class="caption mb-3">Color Hotel &amp; Resort</span>
+                            <h1 class="mb-4">Về Chúng Tôi</h1>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-        @*<div class="site-section bg-light">
+            <div @*class="site-section"*@>
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-5 mb-md-0">
+
+                            <div class="img-border">
+                                <a href="https://vimeo.com/28959265" class="popup-vimeo image-play">
+                                    <span class="icon-wrap">
+                                        <span class="icon icon-play"></span>
+                                    </span>
+                                    <img src="~/Content/Home/images/img_2.jpg" alt="" class="img-fluid">
+                                </a>
+                            </div>
+
+                            <img src="~/Content/Home/images/img_1.jpg" alt="Image" class="img-fluid image-absolute">
+
+                        </div>
+                        <div class="col-md-5 ml-auto">
+
+                            <br ><br>
+                            <div class="section-heading text-left">
+                                <h2 class="mb-5">Về Chúng Tối</h2>
+                            </div>
+                            <p class="mb-4">
+                                Nằm bên bờ sông Hoài, Color Hotel mang đến cảm giác yên bình. Tọa lạc ngay trong phố cổ Hội An cổ kính, từ  Color Hotel bạn có thể dễ dàng khám khá những điểm đến hấp dẫn của phố cổ.
+                                Khách sạn cách chùa Cầu ở ngay trung tâm phố cổ chỉ 3 phút đi bộ. Lang thang trên những con phố, bạn sẽ có dịp đắm mình trong di sản văn hóa và những điểm tham quan hấp dẫn, chợ đêm, cửa hàng, quán bar, nhà hàng và các cửa hàng thời trang. Khách sạn cũng là điểm khởi đầu lý tưởng để bạn có thể khám phá vẻ đẹp của những điểm đến hấp dẫn lân cận. Chỉ cần đạp xe hoặc di chuyển bằng dịch vụ xe buýt miễn phí từ Color Hotel, bạn có thể đến với bãi biển An Bàng yên bình cách đó chừng 3.5 km. Là một địa điểm lý tưởng để khám phá vẻ đẹp của miền Trung Việt Nam, bạn còn có thể dễ dàng đến các điểm thăm quan của thành phố Đà Nẵng như núi Ngũ Hành Sơn, khu vui chơi giải trí Bà Nà và các di sản thế giới khác như thánh địa Mỹ Sơn và Cung đình Huế. Ngoài ra, khách sạn chỉ cách sân bay quốc tế Đà Nẵng tầm 35 phút di chuyển bằng xe buýt hoặc taxi.
+
+
+                            </p>
+                            @*<p><a href="https://vimeo.com/28959265" class="popup-vimeo text-uppercase">Watch Video <span class="icon-arrow-right small"></span></a></p>*@
+                            @*<p><a href="GioiThieu.cshtml">Xem thêm <span class="icon-arrow-right small"></span></a></p>*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @*<div class="site-section bg-light">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 mx-auto text-center mb-5 section-heading">
+                                <h2 class="mb-5">Hotel Staffs</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-5">
+                                <div class="hotel-room text-center">
+                                    <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_1.jpg" alt="Image" class="img-fluid"></a>
+                                    <div class="p-4">
+                                        <h3 class="heading mb-3"><a href="#">Nguyễn Huy Phúc</a></h3>
+                                        <p>Giám Đốc Nhân Sự</p>
+                                        <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-5">
+                                <div class="hotel-room text-center">
+                                    <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_2.jpg" alt="Image" class="img-fluid"></a>
+                                    <div class="p-4">
+                                        <h3 class="heading mb-3"><a href="#">Marina Stalks</a></h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta labore recusandae soluta quis.</p>
+                                        <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-5">
+                                <div class="hotel-room text-center">
+                                    <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_3.jpg" alt="Image" class="img-fluid"></a>
+                                    <div class="p-4">
+                                        <h3 class="heading mb-3"><a href="#">Ethan Hoover</a></h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta labore recusandae soluta quis.</p>
+                                        <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-5">
+                                <div class="hotel-room text-center">
+                                    <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_4.jpg" alt="Image" class="img-fluid"></a>
+                                    <div class="p-4">
+                                        <h3 class="heading mb-3"><a href="#">Megan Pearson</a></h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta labore recusandae soluta quis.</p>
+                                        <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-5">
+                                <div class="hotel-room text-center">
+                                    <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_1.jpg" alt="Image" class="img-fluid"></a>
+                                    <div class="p-4">
+                                        <h3 class="heading mb-3"><a href="#">Cristine Smith</a></h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta labore recusandae soluta quis.</p>
+                                        <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-5">
+                                <div class="hotel-room text-center">
+                                    <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_2.jpg" alt="Image" class="img-fluid"></a>
+                                    <div class="p-4">
+                                        <h3 class="heading mb-3"><a href="#">Marina Stalks</a></h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta labore recusandae soluta quis.</p>
+                                        <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+
+            @*<div class="py-5 upcoming-events" style="background-image: url('images/hero_1.jpg'); background-attachment: fixed;">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h2 class="text-white">Summer Promo 50% Off</h2>
+                                <a href="#" class="text-white btn btn-outline-warning rounded-0 text-uppercase">Avail Now</a>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="caption">The Promo will start in</span>
+                                <div id="date-countdown"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>*@
+
+            <div @*class="site-section"*@>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 mx-auto text-center mb-5 section-heading">
-                            <h2 class="mb-5">Hotel Staffs</h2>
+                            <h2 class="mb-5">Dịch Vụ</h2>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-lg-4 mb-5">
-                            <div class="hotel-room text-center">
-                                <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_1.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="p-4">
-                                    <h3 class="heading mb-3"><a href="#">Nguyễn Huy Phúc</a></h3>
-                                    <p>Giám Đốc Nhân Sự</p>
-                                    <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
-                                </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="text-center p-4 item">
+                                <span class="flaticon-pool display-3 mb-3 d-block text-primary"></span>
+                                <h2 class="h5">Hồ Bơi</h2>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-4 mb-5">
-                            <div class="hotel-room text-center">
-                                <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_2.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="p-4">
-                                    <h3 class="heading mb-3"><a href="#">Marina Stalks</a></h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta labore recusandae soluta quis.</p>
-                                    <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
+                        @*<div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="text-center p-4 item">
+                                    <span class="flaticon-desk display-3 mb-3 d-block text-primary"></span>
+                                    <h2 class="h5">Hotel Teller</h2>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb-5">
-                            <div class="hotel-room text-center">
-                                <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_3.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="p-4">
-                                    <h3 class="heading mb-3"><a href="#">Ethan Hoover</a></h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta labore recusandae soluta quis.</p>
-                                    <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="text-center p-4 item">
+                                    <span class="flaticon-exit display-3 mb-3 d-block text-primary"></span>
+                                    <h2 class="h5">Fire Exit</h2>
                                 </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="text-center p-4 item">
+                                    <span class="flaticon-parking display-3 mb-3 d-block text-primary"></span>
+                                    <h2 class="h5">Car Parking</h2>
+                                </div>
+                            </div>*@
+
+                        @*<div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="text-center p-4 item">
+                                    <span class="flaticon-hair-dryer display-3 mb-3 d-block text-primary"></span>
+                                    <h2 class="h5">Hair Dryer</h2>
+                                </div>
+                            </div>*@
+
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="text-center p-4 item">
+                                <span class="flaticon-minibar display-3 mb-3 d-block text-primary"></span>
+                                <h2 class="h5">Minibar</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="text-center p-4 item">
+                                <span class="flaticon-drink display-3 mb-3 d-block text-primary"></span>
+                                <h2 class="h5">Nhà Hàng</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="text-center p-4 item">
+                                <span class="flaticon-cab display-3 mb-3 d-block text-primary"></span>
+                                <h2 class="h5">Xe Đưa Đoán</h2>
                             </div>
                         </div>
 
-                        <div class="col-md-6 col-lg-4 mb-5">
-                            <div class="hotel-room text-center">
-                                <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_4.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="p-4">
-                                    <h3 class="heading mb-3"><a href="#">Megan Pearson</a></h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta labore recusandae soluta quis.</p>
-                                    <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb-5">
-                            <div class="hotel-room text-center">
-                                <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_1.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="p-4">
-                                    <h3 class="heading mb-3"><a href="#">Cristine Smith</a></h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta labore recusandae soluta quis.</p>
-                                    <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb-5">
-                            <div class="hotel-room text-center">
-                                <a href="#" class="d-block mb-4 thumbnail"><img src="~/Content/Home/images/person_2.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="p-4">
-                                    <h3 class="heading mb-3"><a href="#">Marina Stalks</a></h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta labore recusandae soluta quis.</p>
-                                    <p><a href="#" class="text-primary">Read More <span class="icon-arrow-right small"></span></a></p>
-                                </div>
-                            </div>
-                        </div>
+
+
+
+
+
+
                     </div>
                 </div>
-            </div>*@
+            </div>
 
 
-        @*<div class="py-5 upcoming-events" style="background-image: url('images/hero_1.jpg'); background-attachment: fixed;">
+            <div class="site-section border-top">
                 <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <h2 class="text-white">Summer Promo 50% Off</h2>
-                            <a href="#" class="text-white btn btn-outline-warning rounded-0 text-uppercase">Avail Now</a>
-                        </div>
-                        <div class="col-md-6">
-                            <span class="caption">The Promo will start in</span>
-                            <div id="date-countdown"></div>
+                    <div class="row">
+                        <div class="col-md-6 mx-auto text-center mb-5 section-heading">
+                            <h2 class="mb-5">Hình Ảnh Đặc Trưng</h2>
                         </div>
                     </div>
+                    <div class="row no-gutters">
+                        <div class="col-md-6 col-lg-3">
+                            <a href="~/Content/Home/images/img_4.jpeg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_4.jpeg" alt="Image" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="~/Content/Home/images/img_5.jpeg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_5.jpeg" alt="Image" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="~/Content/Home/images/img_6.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_6.jpg" alt="Image" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="~/Content/Home/images/img_7.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_7.jpg" alt="Image" class="img-fluid"></a>
+                        </div>
 
-                </div>
-            </div>*@
+                        <div class="col-md-6 col-lg-3">
+                            <a href="~/Content/Home/images/img_0.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_0.jpg" alt="Image" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="~/Content/Home/images/img_2.2.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_2.2.jpg" alt="Image" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="~/Content/Home/images/img_3.3.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_3.3.jpg" alt="Image" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="~/Content/Home/images/img_1.2.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_1.2.jpg" alt="Image" class="img-fluid"></a>
+                        </div>
 
-        <div @*class="site-section"*@>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 mx-auto text-center mb-5 section-heading">
-                        <h2 class="mb-5">Dịch Vụ</h2>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="text-center p-4 item">
-                            <span class="flaticon-pool display-3 mb-3 d-block text-primary"></span>
-                            <h2 class="h5">Hồ Bơi</h2>
-                        </div>
-                    </div>
-                    @*<div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="text-center p-4 item">
-                            <span class="flaticon-desk display-3 mb-3 d-block text-primary"></span>
-                            <h2 class="h5">Hotel Teller</h2>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="text-center p-4 item">
-                            <span class="flaticon-exit display-3 mb-3 d-block text-primary"></span>
-                            <h2 class="h5">Fire Exit</h2>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="text-center p-4 item">
-                            <span class="flaticon-parking display-3 mb-3 d-block text-primary"></span>
-                            <h2 class="h5">Car Parking</h2>
-                        </div>
-                    </div>*@
-
-                    @*<div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="text-center p-4 item">
-                            <span class="flaticon-hair-dryer display-3 mb-3 d-block text-primary"></span>
-                            <h2 class="h5">Hair Dryer</h2>
-                        </div>
-                    </div>*@
-
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="text-center p-4 item">
-                            <span class="flaticon-minibar display-3 mb-3 d-block text-primary"></span>
-                            <h2 class="h5">Minibar</h2>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="text-center p-4 item">
-                            <span class="flaticon-drink display-3 mb-3 d-block text-primary"></span>
-                            <h2 class="h5">Nhà Hàng</h2>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="text-center p-4 item">
-                            <span class="flaticon-cab display-3 mb-3 d-block text-primary"></span>
-                            <h2 class="h5">Xe Đưa Đoán</h2>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
                 </div>
             </div>
+
+
+
+
+
         </div>
 
-
-        <div class="site-section border-top">
+        <footer class="site-footer" c>
             <div class="container">
+
+
                 <div class="row">
-                    <div class="col-md-6 mx-auto text-center mb-5 section-heading">
-                        <h2 class="mb-5">Hình Ảnh Đặc Trưng</h2>
+
+                    <div class="col-3">
+                        @*<h2 class="mb-0 site-logo"><a href="TrangChu.cshtml">Color Hotel</a></h2>*@
+                        <br />
+                        <img src="~/Content/Home/images/logo1.png" alt="Mẫu File DS" width="200" height="200">
                     </div>
-                </div>
-                <div class="row no-gutters">
-                    <div class="col-md-6 col-lg-3">
-                        <a href="~/Content/Home/images/img_4.jpeg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_4.jpeg" alt="Image" class="img-fluid"></a>
+                    @*<p><a href="about.cshtml" class="btn btn-primary pill text-white px-4">Xem Thêm</a></p>*@
+
+                    <div class="col-lg-4">
+                        <div>
+                            <h3 class="footer-heading mb-4 text-white">Về Chúng Tôi</h3>
+                            <p>
+                                Mang trong mình vẻ đẹp huyền bí và những nét văn hóa độc đáo của di sản phố cổ, Color Hotel là điểm đến lý tưởng để du khách có một kỳ nghỉ thư giãn, thoải mái cùng với dịch vụ đẳng cấp và những lựa chọn ăn uống tuyệt vời ngay tại trung tâm phố cổ Hội An
+                            </p>
+
+                        </div>
+
+
                     </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a href="~/Content/Home/images/img_5.jpeg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_5.jpeg" alt="Image" class="img-fluid"></a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a href="~/Content/Home/images/img_6.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_6.jpg" alt="Image" class="img-fluid"></a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a href="~/Content/Home/images/img_7.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_7.jpg" alt="Image" class="img-fluid"></a>
+                    <div class="col-lg-5">
+                        <h3 class="footer-heading mb-4 text-white">Thông Tin Liên Hệ</h3>
+                        <p class="mb-0 font-weight-bold">Địa Chỉ</p>
+                        <p class="mb-4">12 Nguyễn Du, P. Cẩm Phô, Hội An, Quảng Nam, Việt Nam </p>
+                        <p class="mb-0 font-weight-bold">Số Điện Thoại</p>
+                        <p class="mb-4"><a href="#">+84 123456677</a></p>
+
+                        <p class="mb-0 font-weight-bold">Địa Chỉ Email</p>
+                        <p class="mb-0"><a href="#">ColorHotel@gmail.com</a></p>
                     </div>
 
-                    <div class="col-md-6 col-lg-3">
-                        <a href="~/Content/Home/images/img_0.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_0.jpg" alt="Image" class="img-fluid"></a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a href="~/Content/Home/images/img_2.2.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_2.2.jpg" alt="Image" class="img-fluid"></a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a href="~/Content/Home/images/img_3.3.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_3.3.jpg" alt="Image" class="img-fluid"></a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a href="~/Content/Home/images/img_1.2.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_1.2.jpg" alt="Image" class="img-fluid"></a>
-                    </div>
 
+                    @*<div class="col-md-2">
+                            <div class="col-md-12"><h3 class="footer-heading mb-4 text-white">Social Icons</h3></div>
+                            <div class="col-md-12">
+                                <p>
+                                    <a href="#" class="pb-2 pr-2 pl-0"><span class="icon-facebook"></span></a>
+                                    <a href="#" class="p-2"><span class="icon-twitter"></span></a>
+                                    <a href="#" class="p-2"><span class="icon-instagram"></span></a>
+                                    <a href="#" class="p-2"><span class="icon-vimeo"></span></a>
+
+                                </p>
+                            </div>
+                        </div>*@
                 </div>
+
             </div>
-        </div>
-
-
-
-
-
+        </footer>
     </div>
 
+    <script src="~/Content/Home/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/Home/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Content/Home/js/jquery-ui.js"></script>
+    <script src="~/Content/Home/js/popper.min.js"></script>
+    <script src="~/Content/Home/js/bootstrap.min.js"></script>
+    <script src="~/Content/Home/js/owl.carousel.min.js"></script>
+    <script src="~/Content/Home/js/jquery.stellar.min.js"></script>
+    <script src="~/Content/Home/js/jquery.countdown.min.js"></script>
+    <script src="~/Content/Home/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/Home/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/Home/js/aos.js"></script>
+
+
+    <script src="~/Content/Home/js/mediaelement-and-player.min.js"></script>
+
+    <script src="~/Content/Home/js/main.js"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var mediaElements = document.querySelectorAll('video, audio'), total = mediaElements.length;
+
+            for (var i = 0; i < total; i++) {
+                new MediaElementPlayer(mediaElements[i], {
+                    pluginPath: 'https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/',
+                    shimScriptAccess: 'always',
+                    success: function () {
+                        var target = document.body.querySelectorAll('.player'), targetTotal = target.length;
+                        for (var j = 0; j < targetTotal; j++) {
+                            target[j].style.visibility = 'visible';
+                        }
+                    }
+                });
+            }
+        });</script>
+
 </body>
+
+
+
+
 </html>
