@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:06 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description" content="Responsive Admin Template" />
+    <meta name="author" content="SmartUniversity" />
+    <title>Color Hotel | Đăng Nhập</title>
+    <!-- icons -->
+    <link href="~/Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/QuanLy/plugins/iconic/css/material-design-iconic-font.min.css">
+    <!-- bootstrap -->
+    <link href="~/Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- style -->
+    <link rel="stylesheet" href="~/Content/QuanLy/css/pages/extra_pages.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="limiter">
+        
+        <div class="container-login100 page-background">
+           
+            <div class="wrap-login100">
+                
+                <form class="login100-form validate-form" id="dangnhap" method="post" enctype="multipart/form-data" onsubmit="return false">
+
+                    @*<span onclick="goBack()" class="close">&times; </span>*@
+
+                    @*<button type="button" id="cancel"4 onclick="goBack()" onclick="javascript:window.location='http://stackoverflow.com';">
+                        X
+                    </button>
+                    <script>
+
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>*@
+                    @*<link rel="icon" type="image/png" href="~/Content/Home/images/logo1.png" />*@
+                    <span class="login100-form-title p-b-34 p-t-27"@*class="login100-form-logo"*@>
+                        @*<i class="zmdi zmdi-flower"></i>*@
+                        <img src="~/Content/Home/images/logo1.png" alt="Mẫu File DS" width="100" height="100" >
+                    </span>
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        Log in
+                    </span>
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                        <input class="input100" type="text" name="username" id="username" placeholder="Tên đăng nhập">
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" type="password" name="pass" id="pass" placeholder="Mật khẩu">
+                        <span class="focus-input100" data-placeholder="&#xf191;"></span>
+
+                    </div>
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" value="lsRememberMe" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+                            @*Remember me*@
+                            Ghi Nhớ Tài Khoản
+                        </label>
+                        <script>
+                            const rmCheck = document.getElementById("ckb1"),
+                                emailInput = document.getElementById("username");
+
+                            if (localStorage.checkbox && localStorage.checkbox !== "") {
+                                rmCheck.setAttribute("checked", "checked");
+                                emailInput.value = localStorage.username;
+                            } else {
+                                rmCheck.removeAttribute("checked");
+                                emailInput.value = "";
+                            }
+
+                            function lsRememberMe() {
+                                if (rmCheck.checked && emailInput.value !== "") {
+                                    localStorage.username = emailInput.value;
+                                    localStorage.checkbox = rmCheck.value;
+                                } else {
+                                    localStorage.username = "";
+                                    localStorage.checkbox = "";
+                                }
+                            }
+                        </script>
+                    </div>
+                    <br />
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit" onclick="lsRememberMe()"  >
+                            Đăng Nhập
+                        </button>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button style="color:red" type="button" id="cancel" class="login100-form-btn" onclick="goBack()" >
+                            Hủy
+                        </button>
+                        <script>
+
+                            function goBack() {
+                                window.history.back();
+                            }
+                        </script>
+
+                    </div>
+                    <div class="text-center p-t-90" onclick="quenmk">
+                        @*<a class="txt1" href="#">
+                            Forgot Password?
+                        </a>*@
+
+                    </div>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+
+                            //$("#gui").click(function ()
+                            $('#dangnhap').submit(function () {
+
+                                var person = {
+                                    tendangnhap: $('#username').val(),
+                                    matkhau: $('#pass').val(),
+                                }
+                                $.ajax({
+                                    url: '/api/Home/LayFileDanhSachKhachHang',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    contentType: 'application/json',
+                                    //data: JSON.stringify(person),
+                                    data: JSON.stringify(person),
+
+                                    //success: function (data) {
+                                    //    //console.log('Send success')
+                                    //    swal({
+                                    //        type: 'success',
+                                    //        title: 'Tuyệt Vời!',
+                                    //        text: 'Bạn Đã Gửi File Danh Sách Thành Công',
+                                    //        confirmButtonColor: '#f23a2e',
+                                    //    },
+                                    //        function (isConfirm) {
+                                    //            if (isConfirm) {
+                                    //                window.location.href = "trangchu.cshtml";
+                                    //            }
+                                    //        });
+                                    //},
+                                    error: function (data) {
+
+                                        swal({
+                                            type: 'error',
+                                            title: 'Đăng Nhập Thất Bại',
+                                            text: 'Vui Lòng Kiểm Tra Lại Tài Khoản Và Mật Khẩu',
+                                        });
+                                    }
+                                });
+
+                            });
+
+                        });
+
+                    </script>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- start js include path -->
+    <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/QuanLy/js/pages/extra_pages/login.js"></script>
+    <!-- end js include path -->
+</body>
+
+
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:06 GMT -->
+</html>
