@@ -51,7 +51,7 @@ namespace QLKSProject.Business.NhanVien
         public bool DatPhong(string maDoan)
         {
             bool b = true;
-            var lstKhachHangMaDoan = models.KhachHangs.Where(kh => kh.MaDoan == maDoan).Select(kh => new KhachHangDTO
+            var lstKhachHangMaDoan = models.KhachHangs.Where(kh => kh.MaDoan.Equals(maDoan)).Select(kh => new KhachHangDTO
             {
                 ID = kh.ID,
                 HoVaTen = kh.HoVaTen,
@@ -101,18 +101,18 @@ namespace QLKSProject.Business.NhanVien
             List<int> lstNhom = LayDSNhomTrongDSKhachHang(lstKhachHangMaDoan);
             foreach (var nhom in lstNhom)
             {
+                int loaiPhong = 0;
                 var lstNhomKhachHang = lstKhachHangMaDoan.Where(kh => kh.Nhom == nhom).ToList();
-                int loaiPhong = TinhSoThanhVienNhom(lstNhomKhachHang);
-                if (loaiPhong <= 4)
+                if (nhom == 0)
                 {
-                    int idPhong = LaySoPhongTrong(lstKhachHang, lstPhong, loaiPhong, lstKhachHangMaDoan[0].ThoiGianNhan, lstKhachHangMaDoan[0].ThoiGianTra);
-                    if (idPhong > 0)
+                    loaiPhong = 1;
+                    foreach (var khachHang in lstNhomKhachHang)
                     {
-                        foreach (var khachHang in lstNhomKhachHang)
+                        int idPhong = LaySoPhongTrong(lstKhachHang, lstPhong, loaiPhong, lstKhachHangMaDoan[0].ThoiGianNhan, lstKhachHangMaDoan[0].ThoiGianTra);
+                        if (idPhong > 0)
                         {
-                            var kh = models.KhachHangs.Where(k => k.ID == khachHang.ID).FirstOrDefault();
-                            kh.TrangThaiDatPhong = true;
-                            kh.IDPhong = idPhong;
+                            khachHang.TrangThaiDatPhong = true;
+                            khachHang.IDPhong = idPhong;
                             int index = lstKhachHangMaDoan.IndexOf(khachHang);
                             lstKhachHangMaDoan[index] = khachHang;
                             foreach (var phong in lstPhong)
@@ -121,19 +121,57 @@ namespace QLKSProject.Business.NhanVien
                                     phong.TrangThai = false;
                             }
                         }
+                        else
+                            b = false;                        
+                    }
+                }    
+                else
+                {
+                    loaiPhong = TinhSoThanhVienNhom(lstNhomKhachHang);
+                    if (loaiPhong <= 4)
+                    {
+                        int idPhong = LaySoPhongTrong(lstKhachHang, lstPhong, loaiPhong, lstKhachHangMaDoan[0].ThoiGianNhan, lstKhachHangMaDoan[0].ThoiGianTra);
+                        if (idPhong > 0)
+                        {
+                            foreach (var khachHang in lstNhomKhachHang)
+                            {
+                                khachHang.TrangThaiDatPhong = true;
+                                khachHang.IDPhong = idPhong;
+                                int index = lstKhachHangMaDoan.IndexOf(khachHang);
+                                lstKhachHangMaDoan[index] = khachHang;
+                                foreach (var phong in lstPhong)
+                                {
+                                    if (phong.ID == idPhong)
+                                        phong.TrangThai = false;
+                                }
+                            }
+                        }
+                        else
+                            b = false;
                     }
                     else
-                        b = false;                   
+                        b = false;
                 }
-                else
-                    b = false;
+                
             }
+            LuuKhachHangDaDuocDatPhong(lstKhachHangMaDoan);
             models.SaveChanges();
             return b;
         }
         #endregion
 
         #region private methods
+        private void LuuKhachHangDaDuocDatPhong(List<KhachHangDTO> khachHangDTOs)
+        {
+            string maDoan = khachHangDTOs[0].MaDoan;
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.IsDelete != true && kh.MaDoan.Equals(maDoan)).ToList();
+            for(int i = 0; i< lstKhachHang.Count; i++)
+            {
+                lstKhachHang[i].TrangThaiDatPhong = khachHangDTOs[i].TrangThaiDatPhong;
+                lstKhachHang[i].IDPhong = khachHangDTOs[i].IDPhong;
+            }
+           
+        }
         private List<int> LayDSNhomTrongDSKhachHang(List<KhachHangDTO> lstKhachHang)
         {
             var lstNhom = lstKhachHang.GroupBy(s => s.Nhom).Select(g => g.Key).ToList();
@@ -208,87 +246,6 @@ namespace QLKSProject.Business.NhanVien
             return soPhong;
 
         }
-        private List<KhachHangDTO> XepPhongChoNhom(List<KhachHangDTO> khachHangDTOs, List<PhongDTO> phongDTOs, int soPhong)
-        {
-            int soThanhVien = TinhSoThanhVienNhom(khachHangDTOs);
-
-
-            foreach (var item in khachHangDTOs)
-            {
-                item.IDPhong = soPhong;
-                item.TrangThaiDatPhong = true;
-            }
-
-            return khachHangDTOs;
-        }
-
-        /* private int LaySoPhongTrong(DateTime ngayNhan, DateTime ngayTra, int loaiPhong, List<PhongDTO> phongDTOs, List<DatPhongThanhCongDTO> datPhongThanhCongDTOs)
-        {
-            int b = 0;
-            if (KiemTraLoaiPhongTrong(ngayNhan, ngayTra, loaiPhong, phongDTOs, datPhongThanhCongDTOs))
-            {
-                var lstPhongLoaiPhong = phongDTOs.Where(p => p.IsDelete == false && p.LoaiPhong == loaiPhong).Select(p => p).ToList();
-                foreach (var phong in lstPhongLoaiPhong)
-                {
-                    if (KiemTraPhongTrong(ngayNhan, ngayTra, phong.ID, datPhongThanhCongDTOs))
-                        b = phong.ID;
-                    break;
-                }
-            }
-            return b;
-        }
-        private bool KiemTraPhongTrong(DateTime ngayNhan, DateTime ngayTra, int idPhong, List<DatPhongThanhCongDTO> lstDatPhongThanhCong)
-        {
-            bool b = true;
-            var lstPhong = lstDatPhongThanhCong.Where(s => s.IDPhong == idPhong).Select(s => s).ToList();
-            if (lstPhong != null)
-                foreach (var item in lstPhong)
-                {
-                    var khachHang = models.KhachHangs.Where(s => s.ID == item.IDKhachHang).FirstOrDefault();
-                    // kiem tra thoi gian nhan moi voi thoi gian nhan trong bang dang ky thanh cong
-                    int nhanNhan = ngayNhan.CompareTo(khachHang.ThoiGianNhan);
-                    // kiem tra thoi gian nhan moi voi thoi gian tra trong bang dang ky thanh cong
-                    int nhanTra = ngayTra.CompareTo(khachHang.ThoiGianTra);
-                    int traNhan = ngayTra.CompareTo(khachHang.ThoiGianNhan);
-                    if (nhanNhan == -1 || nhanNhan == 0)
-                        if (traNhan == 1 || traNhan == 0)
-                            b = false;
-                    if (nhanNhan == 1 || nhanNhan == 0)
-                        if (nhanTra == -1 || nhanTra == 0)
-                            b = false;
-                }
-            return b;
-        }
-        private bool KiemTraLoaiPhongTrong(DateTime ngayNhan, DateTime ngayTra, int loaiPhong, List<PhongDTO> phongDTOs, List<DatPhongThanhCongDTO> datPhongThanhCongDTOs)
-        {
-            bool b = false;
-            int count = 0;
-            var lstPhong = phongDTOs.Where(p => p.IsDelete == false && p.LoaiPhong == loaiPhong).Select(p => p).ToList();
-            if (datPhongThanhCongDTOs.Count == 0)
-                b = true;
-            else
-                foreach (var phong in lstPhong)
-                {
-                    foreach (var phongDatThanhCong in datPhongThanhCongDTOs)
-                    {
-                        if(phong.ID == phongDatThanhCong.ID)
-                        {
-                            if (KiemTraPhongTrong(ngayNhan, ngayTra, phong.ID, datPhongThanhCongDTOs))
-                            {
-                                b = true;
-                                break;
-                            } 
-                        }else
-                            count++;
-                    }
-                    if (b)
-                        break;
-                }
-            if (count >= lstPhong.Count)
-                b = true;
-            return b;
-        }
-        */
         #endregion
     }
 }

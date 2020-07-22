@@ -71,6 +71,8 @@ namespace QLKSProject.Business.Home
 					khachHang.ThoiGianNhan = thoiGianNhan;
 					khachHang.ThoiGianTra = thoiGianTra;
 					khachHang.TruongDoan = khachHang.HoVaTen.Trim().Equals(tenTruongDoan.Trim()) ? true : false;
+					khachHang.TrangThaiDatPhong = false;
+					khachHang.IDPhong = -1;
 					models.KhachHangs.Add(khachHang);
 				}
 			}

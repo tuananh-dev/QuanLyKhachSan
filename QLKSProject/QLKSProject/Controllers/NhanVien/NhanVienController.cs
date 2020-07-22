@@ -58,7 +58,7 @@ namespace QLKSProject.Controllers.NhanVien
         [HttpGet]
         public IHttpActionResult DatPhong()
         {
-            string maDoan = "1595348277333";
+            string maDoan = "1595369950589";
             IHttpActionResult respon = Ok();
             using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
