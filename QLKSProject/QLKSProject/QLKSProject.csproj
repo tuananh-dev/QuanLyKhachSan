@@ -485,6 +485,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Home\FileDSKH\Mẫu File Danh Sách Đoàn.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Views\KhachHangViews\DSThanhVien.html" />
     <Content Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.html" />
     <Content Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.html" />
     <Content Include="Views\NhanVienViews\Doan\Doan.html" />

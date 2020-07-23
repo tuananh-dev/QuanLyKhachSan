@@ -31,24 +31,15 @@
 
         $(document).ready(function () {
 
-            var idList = $('#dsdoan');
-            var layDSDoan = 'NhanVien/LayDanhSachDoan';
-            var xepPhong = "NhanVien/DatPhong/";
-            loadData(idList, layDSDoan);
+            var idList = $('#dsthanhvien');
+            var layDS = 'KhachHang/LayDanhSachKhachHangTheoMaDoan/';
+            loadData(idList, layDS + "1595555103849");
 
-
-            $('body').on('click', 'a.btn.btn-info.btn-xs', function () {
-                dataId = $(this).attr("data-id");
-                var info = {
-                    id: '#dsdoan',
-                    urlLoad: 'NhanVien/LayDanhSachDoan'
-                }
-                datPhong(info, xepPhong + dataId);
-            })
 
 
         });
     </script>
+
 </head>
 <!-- END HEAD -->
 
@@ -125,127 +116,14 @@
         <!-- start page container -->
         <div class="page-container">
             <!-- start sidebar menu -->
-            <div class="sidebar-container">
-                <div class="sidemenu-container navbar-collapse collapse fixed-menu">
-                    <div id="remove-scroll">
-                        <ul class="sidemenu page-header-fixed p-t-20" data-keep-expanded="false" data-auto-scroll="true"
-                            data-slide-speed="200">
-                            <li class="sidebar-toggler-wrapper hide">
-                                <div class="sidebar-toggler">
-                                    <span></span>
-                                </div>
-                            </li>
-                            <li class="sidebar-user-panel">
-                                <div class="user-panel">
-                                    <div class="row">
-                                        <div class="sidebar-userpic">
-                                            <img src="../../../Content/QuanLy/img/dp.jpg" class="img-responsive" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="profile-usertitle">
-                                        <div class="sidebar-userpic-name"> John Deo </div>
-                                        <div class="profile-usertitle-job"> Manager </div>
-                                    </div>
-                                    <div class="sidebar-userpic-btn">
-                                        <a class="tooltips" href="#" data-placement="top"
-                                           data-original-title="Profile">
-                                            <i class="material-icons">person_outline</i>
-                                        </a>
-                                        <a class="tooltips" href="#" data-placement="top"
-                                           data-original-title="Mail">
-                                            <i class="material-icons">mail_outline</i>
-                                        </a>
-                                        <a class="tooltips" href="#" data-placement="top"
-                                           data-original-title="Chat">
-                                            <i class="material-icons">chat</i>
-                                        </a>
-                                        <a class="tooltips" href="#" data-placement="top"
-                                           data-original-title="Logout">
-                                            <i class="material-icons">input</i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-
-
-
-                            <li class="nav-item active">
-                                <a href="/Views/QuanLyViews/DichVu/DSDichVu.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">business_center</i>
-                                    <span class="title">Dịch Vụ</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active">
-                                <a href="/Views/QuanLyViews/TienIch/DSTienIch.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Tiện Ích</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active">
-                                <a href="/Views/QuanLyViews/Phong/DSPhong.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">vpn_key</i>
-                                    <span class="title">Phòng</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active">
-                                <a href="/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Tài Khoản Nhân Viên</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-
-                            <li class="nav-item active">
-                                <a href="/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Phòng Nhân Viên</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active">
-                                <a href="/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thành Công</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active">
-                                <a href="/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thất Bại</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active">
-                                <a href="/Views/NhanVienViews/Doan/Doan.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đoàn</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
+ 
             <!-- end sidebar menu -->
-            <div class="page-content-wrapper">
+            
                 <div class="page-content">
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
-                                <div class="page-title">Danh Sách Đoàn</div>
+                                <div class="page-title">Danh Sách Thành Viên</div>
                             </div>
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
@@ -253,9 +131,9 @@
                                                                        href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
                                 <li>
-                                    <a class="parent-item" href="#">Đoàn</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                    <a class="parent-item" href="#">Thành Viên</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li class="active">Danh Sách Đoàn</li>
+                                <li class="active">Danh Sách Thành Viên</li>
                             </ol>
                         </div>
                     </div>
@@ -264,21 +142,31 @@
                             <div class="card card-box">
 
                                 <div class="card-body ">
+                                    <div class="row p-b-20">
+                                        <div class="col-md-6 col-sm-6 col-6">
+                                            <div class="btn-group">
+                                                <button href="" id="addRow" class="btn btn-info" style="margin-right: 5px">
+                                                    Xác Nhận Danh Sách Đã Xếp<i class="fa fa-plus"></i>
+                                                </button>
+                                                <button href="" id="addRow" class="btn btn-default">
+                                                    Hủy Xếp Phòng<i class="fa fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
 
+                                    </div>
                                     <div class="table-scrollable">
                                         <table class="table table-hover table-checkable order-column full-width"
                                                id="example">
                                             <thead>
                                                 <tr>
-                                                    <th class="center" style="width:300px;"> Tên Đoàn </th>
-                                                    <th class="center" style="width:300px;"> Tên Trưởng Đoàn </th>
-                                                    <th class="center"> Thời Gian Nhận </th>
-                                                    <th class="center"> Thời Gian Trả </th>
-                                                    <th class="center"> Ngày Gửi </th>
-                                                    <th class="center"> Chức Năng </th>
+                                                    <th class="center"> Họ và Tên </th>
+                                                    <th class="center"> SĐT</th>
+                                                    <th class="center"> Nguời Đại Diện</th>
+                                                    <th class="center"> Phòng </th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="dsdoan">
+                                            <tbody id="dsthanhvien">
                                             </tbody>
                                         </table>
                                     </div>
@@ -287,7 +175,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
             <!-- Modal -->
             <!-- end page container -->
             <!-- start footer -->
