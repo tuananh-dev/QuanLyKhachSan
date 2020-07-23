@@ -16,15 +16,10 @@ namespace QLKSProject.Controllers.NhanVien
         [HttpGet]
         public IHttpActionResult LayDanhSachDoan()
         {
-            IHttpActionResult respon = Ok();
             using (NhanVienBusiness nhanvien = new NhanVienBusiness())
             {
-                if (nhanvien.LayDanhSachDoan() == null)
-                    respon = Ok("Không có dữ liệu");
-                else
-                    respon = Ok(nhanvien.LayDanhSachDoan());     
+                return Ok(nhanvien.LayDanhSachDoan());
             }
-            return respon;
         }    
 
         [HttpGet]
@@ -40,5 +35,6 @@ namespace QLKSProject.Controllers.NhanVien
             else
                 return BadRequest(result);
         }
+   
     }
 }

@@ -526,9 +526,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007230653507_db.cs" />
-    <Compile Include="Migrations\202007230653507_db.designer.cs">
-      <DependentUpon>202007230653507_db.cs</DependentUpon>
+    <Compile Include="Migrations\202007231521381_v001.cs" />
+    <Compile Include="Migrations\202007231521381_v001.designer.cs">
+      <DependentUpon>202007231521381_v001.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DichVuDTO.cs" />
@@ -703,8 +703,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007230653507_db.resx">
-      <DependentUpon>202007230653507_db.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007231521381_v001.resx">
+      <DependentUpon>202007231521381_v001.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

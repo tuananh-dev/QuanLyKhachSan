@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class db : DbMigration
+    public partial class v001 : DbMigration
     {
         public override void Up()
         {
@@ -102,7 +102,7 @@
                         MatKhau = c.String(nullable: false, maxLength: 8),
                         HoVaTen = c.String(nullable: false, maxLength: 50),
                         SoDienThoai = c.String(nullable: false, maxLength: 50),
-                        Mail = c.String(nullable: false, maxLength: 50),
+                        Email = c.String(nullable: false, maxLength: 50),
                         LoaiTaiKhoan = c.String(nullable: false, maxLength: 6),
                         IsDelete = c.Boolean(nullable: false),
                     })
@@ -119,8 +119,7 @@
                     })
                 .PrimaryKey(t => t.ID);
             
-        }
-        
+        }    
         public override void Down()
         {
             DropForeignKey("dbo.LichSuDichVus", "IDPhong", "dbo.Phongs");
