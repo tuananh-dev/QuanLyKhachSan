@@ -70,7 +70,8 @@ namespace QLKSProject.Business.NhanVien
                 TrangThaiDatPhong = kh.TrangThaiDatPhong,
                 IDPhong = kh.IDPhong
             }).ToList();
-            var lstKhachHang = models.KhachHangs.Select(kh => new KhachHangDTO {
+            var lstKhachHang = models.KhachHangs.Select(kh => new KhachHangDTO
+            {
                 ID = kh.ID,
                 HoVaTen = kh.HoVaTen,
                 SoDienThoai = kh.SoDienThoai,
@@ -122,9 +123,9 @@ namespace QLKSProject.Business.NhanVien
                             }
                         }
                         else
-                            b = false;                        
+                            b = false;
                     }
-                }    
+                }
                 else
                 {
                     loaiPhong = TinhSoThanhVienNhom(lstNhomKhachHang);
@@ -152,7 +153,7 @@ namespace QLKSProject.Business.NhanVien
                     else
                         b = false;
                 }
-                
+
             }
             LuuKhachHangDaDuocDatPhong(lstKhachHangMaDoan);
             models.SaveChanges();
@@ -165,12 +166,12 @@ namespace QLKSProject.Business.NhanVien
         {
             string maDoan = khachHangDTOs[0].MaDoan;
             var lstKhachHang = models.KhachHangs.Where(kh => kh.IsDelete != true && kh.MaDoan.Equals(maDoan)).ToList();
-            for(int i = 0; i< lstKhachHang.Count; i++)
+            for (int i = 0; i < lstKhachHang.Count; i++)
             {
                 lstKhachHang[i].TrangThaiDatPhong = khachHangDTOs[i].TrangThaiDatPhong;
                 lstKhachHang[i].IDPhong = khachHangDTOs[i].IDPhong;
             }
-           
+
         }
         private List<int> LayDSNhomTrongDSKhachHang(List<KhachHangDTO> lstKhachHang)
         {
@@ -180,10 +181,15 @@ namespace QLKSProject.Business.NhanVien
         private int KiemTraTreEmCoTrongDanhSach(List<KhachHangDTO> lstKhachHang)
         {
             int count = 0;
-            foreach (var item in lstKhachHang)
+            using (StreamWriter sw = new StreamWriter("C:\\Users\\TuA\\Documents\\1. VLU\\textfile.txt",true))
             {
-                if (item.LoaiKhachHang.Equals("tre"))
-                    count++;
+                foreach (var item in lstKhachHang)
+                {
+                    if (item.LoaiKhachHang)
+                        count++;
+
+                    sw.WriteLine(count+"");
+                }
             }
             return count;
         }
@@ -198,7 +204,7 @@ namespace QLKSProject.Business.NhanVien
             }
             else
             {
-                if (soTreEm == 2 || soTreEm == 1)
+                if (soTreEm == 2)
                 {
                     count = khachHangDTOs.Count - 2;
                 }
@@ -212,7 +218,7 @@ namespace QLKSProject.Business.NhanVien
             var lstPhong = phongDTOs.Where(p => p.LoaiPhong == loaiPhong).ToList();
             foreach (var phong in lstPhong)
             {
-                if(phong.TrangThai != false)
+                if (phong.TrangThai != false)
                 {
                     var lstKhachHang = khachHangDTOs.Where(kh => kh.IDPhong == phong.ID).ToList();
                     if (lstKhachHang.Count == 0)
@@ -241,11 +247,17 @@ namespace QLKSProject.Business.NhanVien
                     if (soPhong > 0)
                         break;
                 }
-               
+
             }
             return soPhong;
 
         }
         #endregion
+
+        /*using (StreamWriter sw = new StreamWriter("C:\\Users\\TuA\\Documents\\1. VLU\\textfile.txt"))
+		  {
+		    for(int i = 0; i<lstThuocTinh.Length;i++)
+				sw.WriteLine(lstThuocTinh[i]+i);
+          }*/
     }
 }

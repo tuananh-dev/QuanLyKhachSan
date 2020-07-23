@@ -55,14 +55,14 @@ namespace QLKSProject.Controllers.NhanVien
             return respon;
 
         }        
+
         [HttpGet]
-        public IHttpActionResult DatPhong()
+        public IHttpActionResult DatPhong([FromUri] string id)
         {
-            string maDoan = "1595369950589";
-            IHttpActionResult respon = Ok();
+            IHttpActionResult respon = Ok("Khong co gi!");
             using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
-                respon = Ok(nhanVienBusiness.DatPhong(maDoan));
+                respon = Ok(nhanVienBusiness.DatPhong(id));
             }
             return respon;
         }
