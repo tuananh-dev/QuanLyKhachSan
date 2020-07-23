@@ -9,7 +9,7 @@ namespace QLKSProject.Models.DTO
         public string MatKhau { get; set; }
         public string HoVaTen { get; set; }
         public string SoDienThoai { get; set; }
-        public string Mail { get; set; }
+        public string Email { get; set; }
         public string LoaiTaiKhoan { get; set; }
         public bool IsDelete { get; set; }
     }

@@ -45,6 +45,7 @@ namespace QLKSProject.Business.Home
 			doan.ThoiGianNhan = thoiGianNhan;
 			doan.ThoiGianTra = thoiGianTra;
 			doan.IsDelete = false;
+			doan.TrangThaiDatPhong = 0;
 			models.Doans.Add(doan);
 		}
 		private void TaoDoiTuongKhachHang(string fileKhachHang, string maDoan, DateTime thoiGianNhan, DateTime thoiGianTra, string tenTruongDoan)
@@ -75,11 +76,8 @@ namespace QLKSProject.Business.Home
 					khachHang.TrangThaiDatPhong = false;
 					khachHang.IDPhong = -1;
 					models.KhachHangs.Add(khachHang);
-
 				}
 			}
-
-
 		}
 		#endregion
 

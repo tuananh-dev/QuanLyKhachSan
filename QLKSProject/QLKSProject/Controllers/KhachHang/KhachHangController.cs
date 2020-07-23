@@ -11,12 +11,12 @@ namespace QLKSProject.Controllers.KhachHang
     public class KhachHangController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult LayDanhSachKhachHangTheoMaDoan([FromUri] string maDoan)
+        public IHttpActionResult LayDanhSachKhachHangTheoMaDoan([FromUri] string id)
         {
             IHttpActionResult respone = Ok();
             using(KhachHangBusiness khachHangBusiness = new KhachHangBusiness())
             {
-                respone = Ok(khachHangBusiness.LayDanhSachKhachHangTheoMaDoan(maDoan));
+                respone = Ok(khachHangBusiness.LayDanhSachKhachHangTheoMaDoan(id));
             }
             return respone;
         }

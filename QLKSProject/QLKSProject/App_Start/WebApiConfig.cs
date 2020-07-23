@@ -14,11 +14,14 @@ namespace QLKSProject
             
             // Web API routes
             config.MapHttpAttributeRoutes();
-
-            /*      config.Routes.MapHttpRoute(
-                      name: "DefaultApi",
-                      routeTemplate: "api/{controller}/{action}/"
-                  );*/
+/*            #region Multi routers
+            config.Routes.MapHttpRoute(
+                name: "School",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { controller = "school", id = RouteParameter.Optional },
+                constraints: new { id = "/d+" }
+            );
+            #endregion*/
             config.Routes.MapHttpRoute(
                     name: "ActionApi",
                     routeTemplate: "api/{controller}/{action}/{id}",

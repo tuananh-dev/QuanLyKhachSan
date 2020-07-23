@@ -22,49 +22,23 @@ namespace QLKSProject.Controllers.NhanVien
                 if (nhanvien.LayDanhSachDoan() == null)
                     respon = Ok("Không có dữ liệu");
                 else
-                    respon = Ok(nhanvien.LayDanhSachDoan());
-                
+                    respon = Ok(nhanvien.LayDanhSachDoan());     
             }
             return respon;
-        }
-        [HttpGet]
-        public IHttpActionResult LayDanhSachDatPhongThanhCong()
-        {
-            IHttpActionResult respon = Ok();
-            using (NhanVienBusiness datphongthanhcong = new NhanVienBusiness())
-            {
-                if (datphongthanhcong.LayDanhSachDatPhongThanhCong() != null)
-                    respon = Ok(datphongthanhcong.LayDanhSachDatPhongThanhCong());
-                else
-                    respon = Ok("Không có dữ liệu");
-            }
-            return respon;
-
-        }
-        [HttpGet]
-        public IHttpActionResult LayDanhSachDatPhongThatBai()
-        {
-            IHttpActionResult respon = Ok();
-            using (NhanVienBusiness datPhongThatBai = new NhanVienBusiness())
-            {
-                if (datPhongThatBai.LayDanhSachDatPhongThatBai() != null)
-                    respon = Ok(datPhongThatBai.LayDanhSachDatPhongThatBai());
-                else
-                    respon = Ok("Không có dữ liệu");
-            }
-            return respon;
-
-        }        
+        }    
 
         [HttpGet]
         public IHttpActionResult DatPhong([FromUri] string id)
         {
-            IHttpActionResult respon = Ok("Khong co gi!");
+            string result = "";
             using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
-                respon = Ok(nhanVienBusiness.DatPhong(id));
+                result = nhanVienBusiness.DatPhong(id);
             }
-            return respon;
+            if (result.Equals("ok"))
+                return Ok();
+            else
+                return BadRequest(result);
         }
     }
 }

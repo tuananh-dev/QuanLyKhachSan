@@ -122,7 +122,7 @@ namespace QLKSProject.Business
                 taiKhoan.HoVaTen = lstHovaten[i];
                 taiKhoan.MatKhau = rd.Next(111, 333).ToString();
                 taiKhoan.SoDienThoai = "0" + rd.Next(23456789, 88765432).ToString();
-                taiKhoan.Mail = lstTenTaiKhoan[i] + "@gmail.com";
+                taiKhoan.Email = lstTenTaiKhoan[i] + "@gmail.com";
                 switch (rd.Next(1, 5))
                 {
                     case 1: taiKhoan.LoaiTaiKhoan = "NV"; break;

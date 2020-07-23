@@ -32,7 +32,6 @@ namespace QLKSProject.Models.Entities
         [Required]
         public bool IsDelete { get; set; }
         
-        public virtual ICollection<DatPhongThanhCong> DatPhongThanhCong_IDPhongs { get; set; }
         public virtual ICollection<LichSuDichVu> LichSuDichVu_IDPhongs { get; set; }
 
 

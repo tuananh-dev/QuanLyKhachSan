@@ -15,12 +15,11 @@ namespace QLKSProject.Controllers.Home
         [HttpPost]
         public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
         {
-            IHttpActionResult respone = Ok();
             if (dynamic == null)
             {
-                return respone = BadRequest();
+                return BadRequest("Không láy được file khách hàng !!!");
             }
-
+            bool trangThaiLayDanhSach = false;
             string tenDoan = dynamic.TenDoan.ToString();
             string tenTruongDoan = dynamic.TenTruongDoan.ToString();
             DateTime thoiGianNhan = dynamic.ThoiGianNhan;
@@ -29,12 +28,12 @@ namespace QLKSProject.Controllers.Home
 
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
-                if (!homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang))
-                    respone = BadRequest();
-                else
-                    respone = Ok(true);
+                trangThaiLayDanhSach = homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang);
             }
-            return respone;
+            if (trangThaiLayDanhSach)
+                return Ok("Lưu danh sách thành công !!!");
+            else
+                return BadRequest("Lưu danh sách lỗi !!!");
         }
 
     }

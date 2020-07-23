@@ -40,8 +40,10 @@ namespace QLKSProject.Models.Entities
         [Required]
         public bool IsDelete { get; set; }
 
+        [Required]
+        public int TrangThaiDatPhong { get; set; }
+
         public virtual ICollection<KhachHang> KhachHang_MaDoans { get; set; }
-        public virtual ICollection<DatPhongThatBai> DatPhongThatBai_MaDoans { get; set; }
 
     }
 }

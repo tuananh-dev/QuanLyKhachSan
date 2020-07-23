@@ -253,8 +253,6 @@
 
                                                 }
 
-
-
                                                 $.ajax({
                                                     url: '/api/Home/LayFileDanhSachKhachHang',
                                                     method: 'POST',
@@ -264,12 +262,9 @@
                                                     data: JSON.stringify(person),
 
                                                     success: function (data) {
-                                                        //console.log('Send success')
-
-
                                                         swal({
                                                             type: 'success',
-                                                            title: 'Gửi File Thành Công',
+                                                            title: data,
                                                             //text: 'Bạn Đã Gửi File Danh Sách Thành Công',
                                                             confirmButtonColor: '#f23a2e',
                                                         },
@@ -278,26 +273,15 @@
                                                                     window.location.href = "trangchu.cshtml";
                                                                 }
                                                             });
-
-
-
-
                                                     },
                                                     error: function (data) {
-
                                                         swal({
                                                             type: 'error',
-                                                            title: 'Gửi File Thất Bại',
+                                                            title: data.responseJSON.Message,
                                                             //text: 'Bạn Đã Gửi File Danh Sách Không Thành Công',
 
                                                         });
-
-
                                                     }
-
-
-
-
                                                 });
 
                                             });

@@ -69,7 +69,6 @@ namespace QLKSProject.Models.Entities
         [ForeignKey("MaDoan")]
         public virtual Doan Doan_MaDoan { get; set; }   
 
-        public virtual ICollection<DatPhongThanhCong> DatPhongThanhCong_IDKhachHangs { get; set; }
         public virtual ICollection<LichSuDichVu> LichSuDichVu_IDKhachHangs { get; set; }
 
     }
