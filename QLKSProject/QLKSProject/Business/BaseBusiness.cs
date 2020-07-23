@@ -19,7 +19,6 @@ namespace QLKSProject.Business
         {
             return new QLKSDbContext();
         }
-     
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 

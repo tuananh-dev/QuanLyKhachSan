@@ -18,7 +18,7 @@ namespace QLKSProject.Models.Entities
         public string MaDoan { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(200)]
         public string TenDoan { get; set; }
 
         [Required]
@@ -26,7 +26,7 @@ namespace QLKSProject.Models.Entities
         public DateTime NgayGui { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string TenTruongDoan { get; set; }
 
         [Required]

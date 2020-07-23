@@ -15,26 +15,24 @@ namespace QLKSProject.Controllers.Home
         [HttpPost]
         public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
         {
-            IHttpActionResult respone = Ok(true);
+            IHttpActionResult respone = Ok();
             if (dynamic == null)
             {
-                return respone = Ok(false);
+                return respone = BadRequest();
             }
-            try
+
+            string tenDoan = dynamic.TenDoan.ToString();
+            string tenTruongDoan = dynamic.TenTruongDoan.ToString();
+            DateTime thoiGianNhan = dynamic.ThoiGianNhan;
+            DateTime thoiGianTra = dynamic.ThoiGianTra;
+            string fileDSKhachHang = dynamic.Files.ToString();
+
+            using (HomeBusiness homeBusiness = new HomeBusiness())
             {
-                string tenDoan = dynamic.TenDoan.ToString();
-                string tenTruongDoan = dynamic.TenTruongDoan.ToString();
-                DateTime thoiGianNhan = dynamic.ThoiGianNhan;
-                DateTime thoiGianTra = dynamic.ThoiGianTra;
-                string fileDSKhachHang = dynamic.Files.ToString();
-                using (HomeBusiness homeBusiness = new HomeBusiness())
-                {
-                    respone = Ok(homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang));
-                }
-            }
-            catch (Exception)
-            {
-                respone = Ok(false);
+                if (!homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang))
+                    respone = BadRequest();
+                else
+                    respone = Ok(true);
             }
             return respone;
         }

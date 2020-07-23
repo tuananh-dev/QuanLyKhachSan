@@ -55,9 +55,6 @@ namespace QLKSProject.Business
         }
         private void TaoDoanKhachHang(int soluong)
         {
-
-            List<int> lstTre = new List<int>();
-            List<KhachHang> lstKhachHang = new List<KhachHang>();
             string[] tenDuong = { "Nguyễn Văn Trỗi", "Hàm Nghi", "Cách Mạng Tháng 8", "Lê Hữu Thọ", "Lê Trọng Tấn", "Phạm Văn Đồng", "An Dương Vương", "Võ Thị Sáu", "Phan Đình Phùng", "Lê Lai", "Lê Lợi" };
             for (int i = 0; i <= soluong; i++)
             {

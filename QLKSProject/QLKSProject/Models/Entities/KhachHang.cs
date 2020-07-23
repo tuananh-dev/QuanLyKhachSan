@@ -13,22 +13,24 @@ namespace QLKSProject.Models.Entities
     {
         [Key]
         public int ID { get; set; }
+
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string HoVaTen { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(20)]
         public string SoDienThoai { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(200)]
         public string Email { get; set; }
 
         [Required]
         [StringLength(200)]
         public string DiaChi { get; set; }
 
+        [Required]
         public int Nhom { get; set; }
 
         [StringLength(100)]
