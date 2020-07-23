@@ -43,7 +43,7 @@
             var layDSTienIch = 'Quanly/LayDanhSachTienIch';
             var themTienIch = 'Quanly/ThemTienIch';
             var suaTienIch = 'Quanly/CapNhatTienIch';
-            var xoaTienIch = 'Quanly/XoaTienIch';
+            var xoaTienIch = 'Quanly/XoaTienIch?ID=';
             var layTienIch = 'Quanly/LayTienIch?ID=';
 
 
@@ -55,26 +55,24 @@
             })
 
             $('#btn-del').click(function () {
-                var data = {
-                    ID: dataId
-                }
+                
                 var info = {
                     id: idList,
                     url: xoaTienIch,
                     urlLoad: layDSTienIch,
                     modal: idModalDelete
                 };
-                deleteData(info,data );
+                deleteData(info, dataId);
             })
             $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
                 $(idModalEdit).modal('show');
                 dataId = $(this).attr("data-id");
-                 var edit = {
-                     tenTienIch: '#tenTI-edit',
-                     mota: '#mota-edit',
+                var edit = {
+                    tenTienIch: '#tenTI-edit',
+                    mota: '#mota-edit',
                 }
 
-                loadDataDetail(edit, layTienIch , dataId);
+                loadDataDetail(edit, layTienIch, dataId);
             })
 
             $('#btn-edit').click(function () {
@@ -103,7 +101,7 @@
                     Mota: $('#mota').val(),
                     IsDelete: false,
                 }
-                 var info = {
+                var info = {
                     id: idList,
                     url: themTienIch,
                     urlLoad: layDSTienIch,

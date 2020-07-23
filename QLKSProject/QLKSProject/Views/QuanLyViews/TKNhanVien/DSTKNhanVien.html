@@ -46,8 +46,8 @@
             var layDSTaiKhoan = 'Quanly/LayDanhSachTaiKhoan';
             var themTaiKhoan = 'Quanly/ThemTaiKhoan';
             var suaTaiKhoan = 'Quanly/CapNhatTaiKhoan';
-            var xoaTaiKhoan = 'Quanly/XoaTaiKhoan';
-
+            var xoaTaiKhoan = 'Quanly/XoaTaiKhoan?ID=';
+            var layTaiKhoan = 'Quanly/LayTaiKhoan?ID=';
 
             loadData(idList, layDSTaiKhoan);
 
@@ -57,20 +57,27 @@
             })
 
             $('#btn-del').click(function () {
-                var data = {
-                    ID: dataId
-                }
+
                 var info = {
                     id: idList,
                     url: xoaTaiKhoan,
                     urlLoad: layDSTaiKhoan,
                     modal: idModalDelete
                 };
-                deleteData(info, data);
+                deleteData(info, dataId);
             })
             $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
                 $(idModalEdit).modal('show');
                 dataId = $(this).attr("data-id");
+                var edit = {
+                    TenTaiKhoan: '#tentk-edit',
+                    MatKhau: '#matkhau-edit',
+                    HoVaTen: '#hoten-edit',
+                    SoDienThoai: '#sdt-edit',
+                    Mail: '#mail-edit'
+                }
+
+                loadDataDetail(edit, layTaiKhoan, dataId);
             })
 
             $('#btn-edit').click(function () {
@@ -459,32 +466,32 @@
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="text" id="tentk-edit" required>
-                                                    <label class="mdl-textfield__label">Tên Tài Khoản</label>
+                                                    <label class="mdl-textfield__label" style="top:0;">Tên Tài Khoản</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="text" id="matkhau-edit" required>
-                                                    <label class="mdl-textfield__label">Mật Khẩu</label>
+                                                    <label class="mdl-textfield__label" style="top:0;">Mật Khẩu</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="text" id="hoten-edit" required>
-                                                    <label class="mdl-textfield__label">Họ Và Tên</label>
+                                                    <label class="mdl-textfield__label" style="top:0;">Họ Và Tên</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="text"
                                                            pattern="" id="sdt-edit">
-                                                    <label class="mdl-textfield__label" for="sdt-edit">SDT</label>
+                                                    <label class="mdl-textfield__label" for="sdt-edit" style="top:0;">SDT</label>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 p-t-20">
+                                            <div class="col-lg-8 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="email" id="mail-edit" requireds>
-                                                    <label class="mdl-textfield__label">Mail</label>
+                                                    <label class="mdl-textfield__label" style="top:0;">Mail</label>
                                                 </div>
                                             </div>
 

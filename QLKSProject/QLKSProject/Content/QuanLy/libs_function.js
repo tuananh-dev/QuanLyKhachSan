@@ -60,9 +60,39 @@ function loadDataDetail(edit, url, id) {
                     $(edit.tenTienIch).val(data.TenTienIch);
                     break;
                 case 'QuanLy/LayDichVu?ID=':
-                    $(edit.mota).val(data.MoTa);
+                    $("textarea" + edit.moTa).val(data.MoTa);
                     $(edit.tenDV).val(data.TenDichVu);
                     $(edit.gia).val(data.Gia);
+                    break;
+                case 'Quanly/LayPhong?ID=':
+                    var loaiPhong ;
+                    if (data.LoaiPhong == "1") {
+                        loaiPhong = "Phòng Loại 1";
+                    }
+                    if (data.LoaiPhong == "2") {
+                        loaiPhong = "Phòng Loại 2";
+                    }
+                    if (data.LoaiPhong == "3") {
+                        loaiPhong = "Phòng Loại 3";
+                    }
+                    if (data.LoaiPhong == "4") {
+                        loaiPhong = "Phòng Loại 4";
+                    }
+                    var soLau = data.SoPhong.slice(0, 1);
+                    var soPhong = data.SoPhong.slice(1);
+
+                    $(edit.loaiPhong).val(loaiPhong);
+                    $(edit.gia).val(data.Gia);
+                    $(edit.soLau).val(soLau);
+                    $(edit.soPhong).val(soPhong);
+                    break;
+                case 'Quanly/LayTaiKhoan?ID=':
+                    console.log(data.TenTaiKhoan + '' + data.MatKhau + '' + data.HoVaTen + '' + data.SoDienThoai + '' + data.Mail);
+                    $(edit.TenTaiKhoan).val(data.TenTaiKhoan);
+                    $(edit.MatKhau).val(data.MatKhau);
+                    $(edit.HoVaTen).val(data.HoVaTen);
+                    $(edit.SoDienThoai).val(data.SoDienThoai);
+                    $(edit.Mail).val(data.Mail);
                     break;
                 default:
                 // code block
@@ -151,10 +181,9 @@ function editData(info, dataInput) {
 
 function deleteData(info, dataInput) {
     $.ajax({
-        url: '/api/' + info.url,
+        url: '/api/' + info.url + dataInput,
         method: 'DELETE',
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        data: JSON.stringify(dataInput),
         success: function (data, textStatus, xhr) {
             $(info.modal).modal('hide');
             loadData(info.id, info.urlLoad);
