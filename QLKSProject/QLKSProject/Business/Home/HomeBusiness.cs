@@ -1,12 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using QLKSProject.Models.DTO;
 namespace QLKSProject.Business.Home
 {
 
 	public class HomeBusiness : BaseBusiness
 	{
+		public TaiKhoanDTO login (LoginRQ login )
+		{
+			
+			try
+			{
+				var result = models.TaiKhoans.Where(r => r.TenTaiKhoan == login.TenTaiKhoan && r.MatKhau == login.MatKhau);
+				return (TaiKhoanDTO)result;
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+			
+
+		}
 		#region Public methods
 		public bool LayFileDanhSachKhachHang(string tenDoan, string tenTruongDoan, DateTime thoiGianNhan, DateTime thoiGianTra, string fileDSKhachHang)
 		{

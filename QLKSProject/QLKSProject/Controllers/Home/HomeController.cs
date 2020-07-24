@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
 using System.Web.Http.Results;
 
@@ -35,6 +36,24 @@ namespace QLKSProject.Controllers.Home
             else
                 return BadRequest("Lưu danh sách lỗi !!!");
         }
+            [HttpPost]
+            public IHttpActionResult KiemTraTaiKhoan (LoginRQ loginForm)
+		{
+            using (HomeBusiness homeBusiness = new HomeBusiness())
+            {
+				try
+				{
+                    return Ok(homeBusiness.login(loginForm)); 
+                }
+				catch (Exception e )
+				{
+
+                    return BadRequest(e.Message);
+				}
+            
+            }
+		}
+           
 
     }
 }
