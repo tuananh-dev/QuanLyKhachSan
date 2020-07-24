@@ -220,3 +220,41 @@ function datPhong(info, url) {
     })
 
 }
+//function thongKe() {
+    
+//    var ctx = document.getElementById('myChart').getContext('2d');
+//    var myChart = new Chart(ctx, {
+//        type: 'line',
+//        data: {
+//            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+//            datasets: [{
+//                label: 'Cost',
+//                data: [
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor()
+//                ],
+//                backgroundColor: "rgba(255,61,103,0.3)"
+//            }, {
+//                label: 'Earning',
+//                data: [
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor()
+//                ],
+//                backgroundColor: "rgba(34,206,206,0.3)"
+//            }]
+//        }
+//    });
+//}
+
+
+

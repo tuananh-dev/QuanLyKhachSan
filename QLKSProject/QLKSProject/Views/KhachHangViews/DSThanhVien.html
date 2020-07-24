@@ -27,6 +27,7 @@
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="../../../Content/QuanLy/Jquery.js"></script>
     <script src="../../../Content/QuanLy/libs_function.js"></script>
+
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -116,68 +117,70 @@
         <!-- start page container -->
         <div class="page-container">
             <!-- start sidebar menu -->
- 
             <!-- end sidebar menu -->
-            
-                <div class="page-content">
-                    <div class="page-bar">
-                        <div class="page-title-breadcrumb">
-                            <div class=" pull-left">
-                                <div class="page-title">Danh Sách Thành Viên</div>
-                            </div>
-                            <ol class="breadcrumb page-breadcrumb pull-right">
-                                <li>
-                                    <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
-                                </li>
-                                <li>
-                                    <a class="parent-item" href="#">Thành Viên</a>&nbsp;<i class="fa fa-angle-right"></i>
-                                </li>
-                                <li class="active">Danh Sách Thành Viên</li>
-                            </ol>
+
+            <div class="page-content">
+                <div class="page-bar">
+                    <div class="page-title-breadcrumb">
+                        <div class=" pull-left">
+                            <div class="page-title">Danh Sách Thành Viên</div>
                         </div>
+                        <ol class="breadcrumb page-breadcrumb pull-right">
+                            <li>
+                                <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+                                                                   href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                            </li>
+                            <li>
+                                <a class="parent-item" href="#">Thành Viên</a>&nbsp;<i class="fa fa-angle-right"></i>
+                            </li>
+                            <li class="active">Danh Sách Thành Viên</li>
+                        </ol>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-box">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-box">
 
-                                <div class="card-body ">
-                                    <div class="row p-b-20">
-                                        <div class="col-md-6 col-sm-6 col-6">
-                                            <div class="btn-group">
-                                                <button href="" id="addRow" class="btn btn-info" style="margin-right: 5px">
-                                                    Xác Nhận Danh Sách Đã Xếp<i class="fa fa-plus"></i>
-                                                </button>
-                                                <button href="" id="addRow" class="btn btn-default">
-                                                    Hủy Xếp Phòng<i class="fa fa-trash"></i>
-                                                </button>
-                                            </div>
+                            <div class="card-body ">
+
+                                <div class="table-scrollable">
+                                    <table class="table table-hover table-checkable order-column full-width"
+                                           id="example">
+                                        <thead>
+                                            <tr>
+                                                <th class="center"> Họ và Tên </th>
+                                                <th class="center"> SĐT</th>
+                                                <th class="center"> Nguời Đại Diện</th>
+                                                <th class="center"> Phòng </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="dsthanhvien">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row p-b-20" style="float:right">
+                                    <div class="col-md-6 col-sm-6 col-6">
+                                        <div class="btn-group">
+                                            <button href="" id="confirm" class="btn btn-info" style="margin-right: 10px">
+                                                Xác Nhận Danh Sách Đã Xếp
+                                            </button>
+                                            <a href="" id="cancel" class="btn" style="background-color: lightgray">
+                                                Hủy Xếp Phòng<i class="fa fa-trash"></i>
+                                            </a>
                                         </div>
+                                    </div>
 
-                                    </div>
-                                    <div class="table-scrollable">
-                                        <table class="table table-hover table-checkable order-column full-width"
-                                               id="example">
-                                            <thead>
-                                                <tr>
-                                                    <th class="center"> Họ và Tên </th>
-                                                    <th class="center"> SĐT</th>
-                                                    <th class="center"> Nguời Đại Diện</th>
-                                                    <th class="center"> Phòng </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="dsthanhvien">
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <!-- Modal -->
-            <!-- end page container -->
-            <!-- start footer -->
+
+
+                <!-- Modal -->
+                <!-- start footer -->
+                <!-- end footer -->
+            </div>
             <div class="page-footer">
                 <div class="page-footer-inner">
                     2020 &copy; Hotel Spice
@@ -187,9 +190,9 @@
                     <i class="icon-arrow-up"></i>
                 </div>
             </div>
-            <!-- end footer -->
         </div>
     </div>
+
     <!-- start js include path -->
     <script src="../../../Content/QuanLy/plugins/jquery/jquery.min.js"></script>
     <script src="../../../Content/QuanLy/plugins/popper/popper.min.js"></script>

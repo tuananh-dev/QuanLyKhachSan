@@ -266,6 +266,7 @@
     <Content Include="Content\QuanLy\css\responsive.css" />
     <Content Include="Content\QuanLy\css\style.css" />
     <Content Include="Content\QuanLy\css\theme-color.css" />
+    <Content Include="Content\QuanLy\DashBoard.js" />
     <Content Include="Content\QuanLy\img\bg-01.jpg" />
     <Content Include="Content\QuanLy\img\blog\blog1.jpg" />
     <Content Include="Content\QuanLy\img\blog\blog2.jpg" />
@@ -501,6 +502,7 @@
     <Content Include="Views\QuanLyViews\TaiKhoan\DangNhap.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\DKTaiKhoan.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\KhoaManHinh.cshtml" />
+    <Content Include="Views\QuanLyViews\ThongKe\ThongKe.html" />
     <Content Include="Views\QuanLyViews\TienIch\DSTienIch.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\DSTKNhanVien.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\XemChiTietTKNhanVien.cshtml" />
