@@ -21,9 +21,8 @@ namespace QLKSProject.Controllers.NhanVien
                 return Ok(nhanvien.LayDanhSachDoan());
             }
         }    
-
         [HttpGet]
-        public IHttpActionResult DatPhong([FromUri] string id)
+        public IHttpActionResult DatPhongChoTungDoan([FromUri] string id)
         {
             string result = "";
             using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
@@ -34,6 +33,11 @@ namespace QLKSProject.Controllers.NhanVien
                 return Ok(result);
             else
                 return BadRequest(result);
+        }
+        [HttpPost]
+        public IHttpActionResult DatPhongChoNhieuDoan()
+        {
+            return Ok();
         }
    
     }

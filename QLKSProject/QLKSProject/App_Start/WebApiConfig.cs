@@ -14,20 +14,20 @@ namespace QLKSProject
             
             // Web API routes
             config.MapHttpAttributeRoutes();
-/*            #region Multi routers
-            config.Routes.MapHttpRoute(
-                name: "School",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { controller = "school", id = RouteParameter.Optional },
-                constraints: new { id = "/d+" }
-            );
-            #endregion*/
+
             config.Routes.MapHttpRoute(
                     name: "ActionApi",
                     routeTemplate: "api/{controller}/{action}/{id}",
                     defaults: new { id = RouteParameter.Optional }
                 );
-
+            /*            #region Multi routers
+                        config.Routes.MapHttpRoute(
+                            name: "ActionApiMulti",
+                            routeTemplate: "api/{controller}/{action}/{id}",
+                            defaults: new { id = RouteParameter.Optional },
+                            constraints: new { id = "/d+" }
+                        );
+                        #endregion*/
             config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
             /*var json = config.Formatters.JsonFormatter;
             json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;

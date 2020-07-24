@@ -171,6 +171,14 @@ namespace QLKSProject.Business.NhanVien
             return trangThaiDatPhong;
         }
 
+        public void DatPhongChoNhieuDoan()
+        {
+            var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == 0).ToList();
+            foreach (var doan in lstDoan)
+            {
+                string datPhong = DatPhong(doan.MaDoan);
+            }
+        }
         #endregion
 
         #region private methods

@@ -13,5 +13,6 @@ namespace QLKSProject.Models.DTO
         public DateTime ThoiGianTra { get; set; }
         public int TrangThaiDatPhong { get; set; }
         public bool IsDelete { get; set; }
+        public bool TrangThaiXacNhan { get; set; }
     }
 }

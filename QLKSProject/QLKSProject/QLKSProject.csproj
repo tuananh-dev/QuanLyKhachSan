@@ -485,6 +485,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Home\FileDSKH\Mẫu File Danh Sách Đoàn.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Views\KhachHangViews\DSThanhVien.html" />
     <Content Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.html" />
     <Content Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.html" />
     <Content Include="Views\NhanVienViews\Doan\Doan.html" />
@@ -526,15 +527,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007231521381_v001.cs" />
-    <Compile Include="Migrations\202007231521381_v001.designer.cs">
-      <DependentUpon>202007231521381_v001.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007231947442_v2.cs" />
-    <Compile Include="Migrations\202007231947442_v2.designer.cs">
-      <DependentUpon>202007231947442_v2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DTO\BaoCaoThongKeDTO.cs" />
     <Compile Include="Models\DTO\DichVuDTO.cs" />
     <Compile Include="Models\DTO\DoanDTO.cs" />
     <Compile Include="Models\DTO\FileKhachHangDTO.cs" />
@@ -698,6 +691,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
@@ -705,14 +699,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007231521381_v001.resx">
-      <DependentUpon>202007231521381_v001.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007231947442_v2.resx">
-      <DependentUpon>202007231947442_v2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

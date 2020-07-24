@@ -13,12 +13,10 @@ namespace QLKSProject.Controllers.KhachHang
         [HttpGet]
         public IHttpActionResult LayDanhSachKhachHangTheoMaDoan([FromUri] string id)
         {
-            IHttpActionResult respone = Ok();
             using(KhachHangBusiness khachHangBusiness = new KhachHangBusiness())
             {
-                respone = Ok(khachHangBusiness.LayDanhSachKhachHangTheoMaDoan(id));
+                return Ok(khachHangBusiness.LayDanhSachKhachHangTheoMaDoan(id));
             }
-            return respone;
         }
     }
 }
