@@ -17,18 +17,9 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpGet]
         public IHttpActionResult LayDanhSachTaiKhoan()
         {
-            IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                if (quanLy.LayDanhSachTaiKhoan() != null)
-                {
-                    respon = Ok(quanLy.LayDanhSachTaiKhoan());
-                }
-                else
-                {
-                    respon = BadRequest();
-                }
-                return respon;
+                return Ok(quanLy.LayDanhSachTaiKhoan());
             }
         }
         [HttpGet]
@@ -37,8 +28,7 @@ namespace QLKSProject.Controllers.QuanLy
             IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.LayTaiKhoan(id));
-                return respon;
+                return Ok(quanLy.LayTaiKhoan(id));
             }
 
         }
@@ -48,9 +38,11 @@ namespace QLKSProject.Controllers.QuanLy
             IHttpActionResult respon = Ok();
             TaiKhoanDTO tk = JsonConvert.DeserializeObject<TaiKhoanDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
-            { 
-                    respon = Ok(quanLy.ThemTaiKhoan(tk));
-                return respon;
+            {
+                if (quanLy.ThemTaiKhoan(tk))
+                    return Ok("Thêm tài khoản thành công!");
+                else
+                    return BadRequest("Thêm tài khoản thất bại!");
             }
         }
         [HttpPut]
@@ -60,8 +52,10 @@ namespace QLKSProject.Controllers.QuanLy
             TaiKhoanDTO tk = JsonConvert.DeserializeObject<TaiKhoanDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.CapNhatTaiKhoan(tk));
-                return respon;
+                if (quanLy.CapNhatTaiKhoan(tk))
+                    return Ok("Cập nhật tài khoản thành công!");
+                else
+                    return BadRequest("Cập nhật tài khoản thất bại!");
             }
         }
         [HttpDelete]
@@ -70,8 +64,10 @@ namespace QLKSProject.Controllers.QuanLy
             IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.XoaTaiKhoan(id));
-                return respon;
+                if (quanLy.XoaTaiKhoan(id))
+                    return Ok("Xóa tài khoản thành công!");
+                else
+                    return BadRequest("Xóa tài khoản thát bại!");
             }
         }
         #endregion
@@ -79,9 +75,9 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpGet]
         public IHttpActionResult LayDanhSachPhong()
         {
-            IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
+<<<<<<< HEAD
                 if (quanLy.LayDanhSachPhong() != null)
                 {
                     respon = Ok(quanLy.LayDanhSachPhong());
@@ -91,48 +87,52 @@ namespace QLKSProject.Controllers.QuanLy
                     respon = BadRequest();
                 }
                 return respon;
+=======
+                return Ok(quanLy.LayDanhSachPhong());
+>>>>>>> a0e3e01cb9f21927d4e38b6c8437ec57795af7fd
             }
         }
         [HttpGet]
         public IHttpActionResult LayPhong([FromUri]int id)
         {
-            IHttpActionResult respon;
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.LayPhong(id));
-                return respon;
+                return Ok(quanLy.LayPhong(id));
             }
         }
         [HttpPost]
         public IHttpActionResult ThemPhong([FromBody]dynamic dynamic)
         {
-            IHttpActionResult respon = Ok();
-            PhongDTO ph = JsonConvert.DeserializeObject<PhongDTO>(dynamic.ToString());
+            PhongDTO phong = JsonConvert.DeserializeObject<PhongDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.ThemPhong(ph));
-                return respon;
+                if (quanLy.ThemPhong(phong))
+                    return Ok("Thêm phòng thành công!");
+                else
+                    return BadRequest("Thêm phòng thất bại!");
             }
         }
         [HttpPut]
         public IHttpActionResult CapNhatPhong([FromBody] dynamic dynamic)
         {
-            IHttpActionResult respon = Ok();
-            PhongDTO ph = JsonConvert.DeserializeObject<PhongDTO>(dynamic.ToString());
+            PhongDTO phong = JsonConvert.DeserializeObject<PhongDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.CapNhatPhong(ph));
-                return respon;
+                if (quanLy.CapNhatPhong(phong))
+                    return Ok("Cập nhật phòng thành công!");
+                else
+                    return BadRequest("Cập nhật phòng thất bại!");
             }
         }
         [HttpDelete]
         public IHttpActionResult XoaPhong([FromUri]int id)
-        {
-            IHttpActionResult respon = Ok();            
+        {         
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.XoaPhong(id));
-                return respon;
+                if (quanLy.XoaPhong(id))
+                    return Ok("Xóa phòng thành công!");
+                else
+                    return BadRequest("Xóa phòng thất bại!");
             }
         }
         #endregion
@@ -143,6 +143,7 @@ namespace QLKSProject.Controllers.QuanLy
             IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
+<<<<<<< HEAD
                 if (quanLy.LayDanhSachDichVu() != null)
                 {
                     respon = Ok(quanLy.LayDanhSachDichVu());
@@ -152,28 +153,30 @@ namespace QLKSProject.Controllers.QuanLy
                     respon = BadRequest();
                 }
                 return respon;
+=======
+                return Ok(quanLy.LayDanhSachDichVu());
+>>>>>>> a0e3e01cb9f21927d4e38b6c8437ec57795af7fd
             }
         }
 
         [HttpGet]
         public IHttpActionResult LayDichVu([FromUri] int id)
         {
-            IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.LayDichVu(id));
-                return respon;
+                return Ok(quanLy.LayDichVu(id));   
             }
         }
         [HttpPost]
         public IHttpActionResult ThemDichVu([FromBody]dynamic dynamic)
         {
-            IHttpActionResult respon = Ok();
             DichVuDTO dv = JsonConvert.DeserializeObject<DichVuDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.ThemDichVu(dv));
-                return respon;
+                if (quanLy.ThemDichVu(dv))
+                    return Ok("Thêm dịch vụ thành công!");
+                else
+                    return BadRequest("Thêm dịch vụ thất bại!");
             }
         }
         [HttpPut]
@@ -183,18 +186,21 @@ namespace QLKSProject.Controllers.QuanLy
             DichVuDTO dv = JsonConvert.DeserializeObject<DichVuDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.CapNhatDichVu(dv));
-                return respon;
+                if (quanLy.CapNhatDichVu(dv))
+                    return Ok("Cập nhật dịch vụ thành công!");
+                else
+                    return BadRequest("Cập nhật dịch vụ thất bại!");
             }
         }
         [HttpDelete]
         public IHttpActionResult XoaDichVu([FromUri]int id)
         {
-            IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.XoaDichVu(id));
-                return respon;
+                if (quanLy.XoaDichVu(id))
+                    return Ok("Xóa dịch vụ thành công!");
+                else
+                    return BadRequest("Xóa dịch vụ thất bại!");
             }
         }
         #endregion
@@ -205,6 +211,7 @@ namespace QLKSProject.Controllers.QuanLy
             IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
+<<<<<<< HEAD
                 if (quanLy.LayDanhSachTienIch() != null)
                 {
                     respon = Ok(quanLy.LayDanhSachTienIch());
@@ -214,17 +221,17 @@ namespace QLKSProject.Controllers.QuanLy
                     respon = BadRequest();
                 }
                 return respon;
+=======
+                return Ok(quanLy.LayDanhSachTienIch());
+>>>>>>> a0e3e01cb9f21927d4e38b6c8437ec57795af7fd
             }
         }
-
         [HttpGet]
         public IHttpActionResult LayTienIch([FromUri]int id)
         {
-            IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.LayTienIch(id));
-                return respon;
+                return Ok(quanLy.LayTienIch(id));
             }
         }
 
@@ -232,33 +239,36 @@ namespace QLKSProject.Controllers.QuanLy
         public IHttpActionResult ThemTienIch([FromBody]dynamic dynamic)
 
         {
-            IHttpActionResult respon = Ok();
             TienIchDTO tienIch = JsonConvert.DeserializeObject<TienIchDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-               respon = Ok(quanLy.ThemTienIch(tienIch));
-                return respon;
+                if (quanLy.ThemTienIch(tienIch))
+                    return Ok("Thêm tiện ích thành công!");
+                else
+                    return BadRequest("Thêm tiện ích thất bại!");
             }
         }
         [HttpPut]
         public IHttpActionResult CapNhatTienIch([FromBody]dynamic dynamic)
         {
-            IHttpActionResult respon = Ok();
             TienIchDTO tienIch = JsonConvert.DeserializeObject<TienIchDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.CapNhatTienIch(tienIch));
-                return respon;
+                if (quanLy.CapNhatTienIch(tienIch))
+                    return Ok("Cập nhật tiện ích thành công!");
+                else
+                    return BadRequest("Cập nhật tiện ích thất bại!");
             }
         }
         [HttpDelete]
         public IHttpActionResult XoaTienIch([FromUri]int id)
         {
-            IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                respon = Ok(quanLy.XoaTienIch(id));
-                return respon;
+                if (quanLy.XoaTienIch(id))
+                    return Ok("Xóa tiện ích thành công!");
+                else
+                    return BadRequest("Xóa tiện ích thất bại");
             }
         }
         #endregion

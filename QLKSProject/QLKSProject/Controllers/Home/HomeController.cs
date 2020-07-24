@@ -13,58 +13,27 @@ namespace QLKSProject.Controllers.Home
     public class HomeController : ApiController
     {
         [HttpPost]
-        public bool LayFileDanhSachKhachHang(dynamic dynamic)
+        public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
         {
-<<<<<<< HEAD
-            IHttpActionResult respone = Ok();
-            if(dynamic == null)
+            if (dynamic == null)
             {
-                return respone = Ok(false);
+                return BadRequest("Không láy được file khách hàng !!!");
             }
-            try
-            {
-                string tenDoan = dynamic.TenDoan.ToString();
-                string tenTruongDoan = dynamic.TenTruongDoan.ToString();
-                DateTime thoiGianNhan = dynamic.ThoiGianNhan;
-                DateTime thoiGianTra = dynamic.ThoiGianTra;
-                string fileDSKhachHang = dynamic.Files.ToString();
-                using (HomeBusiness homeBusiness = new HomeBusiness())
-                {
-                    respone = Ok(homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang));
-                }
-            }
-            catch (Exception)
-            {
-                respone = Ok(false);
-            }
-           
-            return respone;
-=======
-            //IHttpActionResult respone = Ok();
-            //if (dynamic == null)
-            //{
-            //    return respone = Ok(false);
-            //}
-            //try
-            //{
-            //    string tenDoan = dynamic.TenDoan.ToString();
-            //    string tenTruongDoan = dynamic.TenTruongDoan.ToString();
-            //    DateTime thoiGianNhan = dynamic.ThoiGianNhan;
-            //    DateTime thoiGianTra = dynamic.ThoiGianTra;
-            //    string fileDSKhachHang = dynamic.Files.ToString();
-            //    using (HomeBusiness homeBusiness = new HomeBusiness())
-            //    {
-            //        respone = Ok(homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang));
-            //    }
+            bool trangThaiLayDanhSach = false;
+            string tenDoan = dynamic.TenDoan.ToString();
+            string tenTruongDoan = dynamic.TenTruongDoan.ToString();
+            DateTime thoiGianNhan = dynamic.ThoiGianNhan;
+            DateTime thoiGianTra = dynamic.ThoiGianTra;
+            string fileDSKhachHang = dynamic.Files.ToString();
 
-            //}
-
-            //catch (Exception)
-            //{
-            //    respone = Ok(false);
-            //}
-            return true;
->>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
+            using (HomeBusiness homeBusiness = new HomeBusiness())
+            {
+                trangThaiLayDanhSach = homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang);
+            }
+            if (trangThaiLayDanhSach)
+                return Ok("Lưu danh sách thành công !!!");
+            else
+                return BadRequest("Lưu danh sách lỗi !!!");
         }
 
     }

@@ -4,27 +4,25 @@ using System.IO;
 using QLKSProject.Models.DTO;
 namespace QLKSProject.Business.Home
 {
-<<<<<<< HEAD
 
-=======
->>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
 	public class HomeBusiness : BaseBusiness
 	{
 		#region Public methods
 		public bool LayFileDanhSachKhachHang(string tenDoan, string tenTruongDoan, DateTime thoiGianNhan, DateTime thoiGianTra, string fileDSKhachHang)
 		{
 			string maDoan = TaoMaDoan().ToString();
-			TaoDoiTuongDoan(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, maDoan);
-			TaoDoiTuongKhachHang(fileDSKhachHang, maDoan, thoiGianNhan, thoiGianTra, tenTruongDoan);
+			
 			try
 			{
+				TaoDoiTuongDoan(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, maDoan);
+				TaoDoiTuongKhachHang(fileDSKhachHang, maDoan, thoiGianNhan, thoiGianTra, tenTruongDoan);
 				models.SaveChanges();
-				return true;
 			}
 			catch (Exception)
 			{
 				return false;
 			}
+			return true;
 		}
 		#endregion
 
@@ -40,13 +38,14 @@ namespace QLKSProject.Business.Home
 		{
 			DateTime today = DateTime.Now;
 			Models.Entities.Doan doan = new Models.Entities.Doan();
-			doan.TenDoan = tenDoan;
 			doan.MaDoan = maDoan;
+			doan.TenDoan = tenDoan;
+			doan.NgayGui = today;
 			doan.TenTruongDoan = tenTruongDoan;
 			doan.ThoiGianNhan = thoiGianNhan;
 			doan.ThoiGianTra = thoiGianTra;
 			doan.IsDelete = false;
-			doan.NgayGui = today;
+			doan.TrangThaiDatPhong = 0;
 			models.Doans.Add(doan);
 		}
 		private void TaoDoiTuongKhachHang(string fileKhachHang, string maDoan, DateTime thoiGianNhan, DateTime thoiGianTra, string tenTruongDoan)
@@ -66,28 +65,23 @@ namespace QLKSProject.Business.Home
 					khachHang.Email = lstThuocTinh[15];
 					khachHang.DiaChi = lstThuocTinh[19];
 					khachHang.Nhom = int.Parse(lstThuocTinh[23]);
-					khachHang.LoaiKhachHang = lstThuocTinh[27].Trim().Equals("nl") ? false : true;
 					khachHang.NguoiDaiDienCuaTreEm = lstThuocTinh[31];
-					khachHang.GioiTinh = lstThuocTinh[35].Trim().Equals("nu") ? false : true;
-					khachHang.IsDelete = false;
-					khachHang.MaDoan = maDoan;
 					khachHang.ThoiGianNhan = thoiGianNhan;
 					khachHang.ThoiGianTra = thoiGianTra;
+					khachHang.MaDoan = maDoan;
+					khachHang.GioiTinh = lstThuocTinh[35].Trim().Equals("nu") ? false : true;
+					khachHang.LoaiKhachHang = lstThuocTinh[27].Trim().Equals("nl") ? false : true;
 					khachHang.TruongDoan = khachHang.HoVaTen.Trim().Equals(tenTruongDoan.Trim()) ? true : false;
+					khachHang.IsDelete = false;
 					khachHang.TrangThaiDatPhong = false;
 					khachHang.IDPhong = -1;
 					models.KhachHangs.Add(khachHang);
 				}
 			}
-
 		}
 		#endregion
 
-		/*using (StreamWriter sw = new StreamWriter("C:\\Users\\TuA\\Documents\\1. VLU\\textfile.txt"))
-		  {
-		    for(int i = 0; i<lstThuocTinh.Length;i++)
-				sw.WriteLine(lstThuocTinh[i]+i);
-          }*/
+
 	}
 
 }

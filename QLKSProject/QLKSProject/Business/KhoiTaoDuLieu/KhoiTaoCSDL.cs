@@ -19,7 +19,7 @@ namespace QLKSProject.Business
                 TaoDichVu();
                 TaoTaiKhoan();
                 TaoTienIch();
-                TaoDoanKhachHang(12);
+/*                TaoDoanKhachHang(12);*/
             }
             catch (Exception)
             {
@@ -55,9 +55,6 @@ namespace QLKSProject.Business
         }
         private void TaoDoanKhachHang(int soluong)
         {
-
-            List<int> lstTre = new List<int>();
-            List<KhachHang> lstKhachHang = new List<KhachHang>();
             string[] tenDuong = { "Nguyễn Văn Trỗi", "Hàm Nghi", "Cách Mạng Tháng 8", "Lê Hữu Thọ", "Lê Trọng Tấn", "Phạm Văn Đồng", "An Dương Vương", "Võ Thị Sáu", "Phan Đình Phùng", "Lê Lai", "Lê Lợi" };
             for (int i = 0; i <= soluong; i++)
             {
@@ -125,7 +122,7 @@ namespace QLKSProject.Business
                 taiKhoan.HoVaTen = lstHovaten[i];
                 taiKhoan.MatKhau = rd.Next(111, 333).ToString();
                 taiKhoan.SoDienThoai = "0" + rd.Next(23456789, 88765432).ToString();
-                taiKhoan.Mail = lstTenTaiKhoan[i] + "@gmail.com";
+                taiKhoan.Email = lstTenTaiKhoan[i] + "@gmail.com";
                 switch (rd.Next(1, 5))
                 {
                     case 1: taiKhoan.LoaiTaiKhoan = "NV"; break;

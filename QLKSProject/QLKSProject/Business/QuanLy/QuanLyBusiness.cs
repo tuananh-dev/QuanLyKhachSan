@@ -23,7 +23,7 @@ namespace QLKSProject.Business.QuanLy
                 MatKhau = e.MatKhau,
                 HoVaTen = e.HoVaTen,
                 SoDienThoai = e.SoDienThoai,
-                Mail = e.Mail,
+                Email = e.Email,
                 LoaiTaiKhoan = e.LoaiTaiKhoan,
                 IsDelete = e.IsDelete
             });
@@ -39,7 +39,7 @@ namespace QLKSProject.Business.QuanLy
                 MatKhau = e.MatKhau,
                 HoVaTen = e.HoVaTen,
                 SoDienThoai = e.SoDienThoai,
-                Mail = e.Mail,
+                Email = e.Email,
                 LoaiTaiKhoan = e.LoaiTaiKhoan,
                 IsDelete = e.IsDelete
             }).FirstOrDefault();
@@ -55,7 +55,7 @@ namespace QLKSProject.Business.QuanLy
                 tk.MatKhau = taiKhoan.MatKhau;
                 tk.HoVaTen = taiKhoan.HoVaTen;
                 tk.SoDienThoai = taiKhoan.SoDienThoai;
-                tk.Mail = taiKhoan.Mail;
+                tk.Email = taiKhoan.Email;
                 tk.LoaiTaiKhoan = taiKhoan.LoaiTaiKhoan;
                 tk.IsDelete = taiKhoan.IsDelete;
                 models.TaiKhoans.Add(tk);
@@ -75,7 +75,7 @@ namespace QLKSProject.Business.QuanLy
                 tk.TenTaiKhoan = taiKhoan.TenTaiKhoan;
                 tk.HoVaTen = taiKhoan.HoVaTen;
                 tk.SoDienThoai = taiKhoan.SoDienThoai;
-                tk.Mail = taiKhoan.Mail;
+                tk.Email = taiKhoan.Email;
                 tk.LoaiTaiKhoan = taiKhoan.LoaiTaiKhoan;
                 models.SaveChanges();
                 return true;
@@ -413,7 +413,7 @@ namespace QLKSProject.Business.QuanLy
                 MatKhau = s.MatKhau,
                 HoVaTen = s.HoVaTen,
                 SoDienThoai = s.SoDienThoai,
-                Mail = s.Mail,
+                Email = s.Email,
                 LoaiTaiKhoan = s.LoaiTaiKhoan,
                 IsDelete = s.IsDelete
             }).ToList();

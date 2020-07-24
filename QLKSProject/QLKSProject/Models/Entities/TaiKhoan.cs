@@ -27,7 +27,7 @@ namespace QLKSProject.Models.Entities
 
         [Required]
         [StringLength(50)]
-        public string Mail { get; set; }
+        public string Email { get; set; }
 
         [Required]
         [StringLength(6)]

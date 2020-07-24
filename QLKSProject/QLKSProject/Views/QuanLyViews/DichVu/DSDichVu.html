@@ -43,7 +43,7 @@
             var layDSDichVu = 'Quanly/LayDanhSachDichVu';
             var themDichVu = 'Quanly/themDichVu';
             var suaDichVu = 'Quanly/CapNhatDichVu';
-            var xoaDichVu = 'Quanly/XoaDichVu';
+            var xoaDichVu = 'Quanly/XoaDichVu?ID=';
             var layDV = 'QuanLy/LayDichVu?ID=';
 
 
@@ -55,16 +55,14 @@
             })
 
             $('#btn-del').click(function () {
-                var data = {
-                    ID: dataId
-                }
+
                 var info = {
                     id: idList,
                     url: xoaDichVu,
                     urlLoad: layDSDichVu,
                     modal: idModalDelete
                 };
-                deleteData(info, data);
+                deleteData(info, dataId);
 
             })
             $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
@@ -438,24 +436,24 @@
                                         <div class="card-body row">
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="tenDV-edit">
-                                                    <label class="mdl-textfield__label">Tên Dịch Vụ</label>
+                                                    <input class="mdl-textfield__input" type="text" id="tenDV-edit" >
+                                                    <label class="mdl-textfield__label" style="top:0;">Tên Dịch Vụ</label>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="number"
-                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia-edit">
-                                                    <label class="mdl-textfield__label" for="gia-edit">Giá</label>
+                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia-edit" >
+                                                    <label class="mdl-textfield__label" for="gia-edit" style="top:0;">Giá</label>
                                                     <span class="mdl-textfield__error">Phải là số</span>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-12 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <textarea class="mdl-textfield__input" type="text" id="mota-edit" rows="1" cols="50"></textarea>
-                                                    <label class="mdl-textfield__label">Mô Tả</label>
+                                                    <textarea class="mdl-textfield__input" type="text" id="mota-edit" rows="1" cols="50" "></textarea>
+                                                    <label class="mdl-textfield__label" style="top:0;">Mô Tả</label>
                                                 </div>
                                             </div>
                                         </div>

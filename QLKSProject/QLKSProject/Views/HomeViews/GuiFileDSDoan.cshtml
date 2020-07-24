@@ -15,80 +15,6 @@
 
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-<<<<<<< HEAD
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            //                               $("form").submit(function(evt){
-            //evt.preventDefault();
-            //var formData = new FormData($(this)[0]);
-
-           
-            $("#gui").click(function () {
-                var person = {
-                    TenDoan: $ ('#tendoan').val(),
-                    TenTruongDoan: $('#Tentruongdoan').val(),
-                    ThoiGianNhan: $('#datphongtungay').val(),
-                    ThoiGianTra: $('#denngay').val(),
-                    Files: $('#xlx_json').val(),
-
-                }
-
-                $.ajax({
-                    url: '/api/Home/LayFileDanhSachKhachHang',
-                    method: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    //data: JSON.stringify(person),
-                    data: JSON.stringify(person),
-
-                    success: function (data) {
-                        console.log('Send success')
-                        alert(data);
-
-                        //    console.log(res);
-                        //},
-
-                        //error: function (xhr, textStatus, errorThrown)
-                        //    console.log("eror
-                    }
-
-                });
-
-            });
-            document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
-        });
-        
-    </script>
-
-
-    @*<script type="text/javascript">
-            $(document).ready(function () {
-                $('#gui').click(function () {
-                    $.ajax({
-                        url: '/api/Home/TestDuLieuTruyenXuong',
-                        method: 'post',
-                        data: {
-                            TenDoan: $('#tendoan').val(),
-                            HovaTenTruongDoan: $('#Tentruongdoan').val(),
-                            Dattungay: $('#datphongtungay').val(),
-                            DenNgay: $('#denngay').val(),
-                            Fileds: $('#xlx_json').val(),
-                        },
-                        success: function (res) {
-
-                            alert(res);
-                        }
-                    })
-                });
-
-            });
-
-
-
-=======
->>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
@@ -327,8 +253,6 @@
 
                                                 }
 
-
-
                                                 $.ajax({
                                                     url: '/api/Home/LayFileDanhSachKhachHang',
                                                     method: 'POST',
@@ -338,12 +262,9 @@
                                                     data: JSON.stringify(person),
 
                                                     success: function (data) {
-                                                        //console.log('Send success')
-
-
                                                         swal({
                                                             type: 'success',
-                                                            title: 'Gửi File Thành Công',
+                                                            title: data,
                                                             //text: 'Bạn Đã Gửi File Danh Sách Thành Công',
                                                             confirmButtonColor: '#f23a2e',
                                                         },
@@ -352,28 +273,15 @@
                                                                     window.location.href = "trangchu.cshtml";
                                                                 }
                                                             });
-
-
-
-
                                                     },
                                                     error: function (data) {
-
                                                         swal({
                                                             type: 'error',
-                                                            title: 'Gửi File Thất Bại',
+                                                            title: data.responseJSON.Message,
                                                             //text: 'Bạn Đã Gửi File Danh Sách Không Thành Công',
 
-
-
                                                         });
-
-
                                                     }
-
-
-
-
                                                 });
 
                                             });
@@ -543,15 +451,6 @@
                                 </div>
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            <style>
-                                div.a {
-                                    text-align: center;
-                                }
-                            </style>
-                            <textarea class="form-control" rows=35 cols=120 id="xlx_json" style="display:none"></textarea>
-=======
                                 <style>
                                     div.a {
                                         text-align: center;
@@ -559,16 +458,10 @@
                                 </style>
                                 <textarea class="form-control" rows=35 cols=120 id="xlx_json" style="display:none"></textarea>
 
->>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
 
                             </form>
 
 
-<<<<<<< HEAD
-=======
->>>>>>> e094c0ce5cf61a237d0afe055b285517535e0c10
-=======
->>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
 
 
                             <br>

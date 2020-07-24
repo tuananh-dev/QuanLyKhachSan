@@ -526,9 +526,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Models\DTO\DatPhongThanhCongDTO.cs" />
-    <Compile Include="Models\DTO\DatPhongThatBaiDTO.cs" />
+    <Compile Include="Migrations\202007231521381_v001.cs" />
+    <Compile Include="Migrations\202007231521381_v001.designer.cs">
+      <DependentUpon>202007231521381_v001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DichVuDTO.cs" />
     <Compile Include="Models\DTO\DoanDTO.cs" />
     <Compile Include="Models\DTO\FileKhachHangDTO.cs" />
@@ -537,24 +539,6 @@
     <Compile Include="Models\DTO\PhongDTO.cs" />
     <Compile Include="Models\DTO\TaiKhoanDTO.cs" />
     <Compile Include="Models\DTO\TienIchDTO.cs" />
-=======
-    <Compile Include="Migrations\202007161705487_updatedb.cs" />
-    <Compile Include="Migrations\202007161705487_updatedb.designer.cs">
-      <DependentUpon>202007161705487_updatedb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DTO\DatPhongThanhCong.cs" />
-    <Compile Include="Models\DTO\DatPhongThatBai.cs" />
-    <Compile Include="Models\DTO\DichVu.cs" />
-    <Compile Include="Models\DTO\Doan.cs" />
-    <Compile Include="Models\DTO\FileKhachHang.cs" />
-    <Compile Include="Models\DTO\KhachHang.cs" />
-    <Compile Include="Models\DTO\LichSuDichVu.cs" />
-    <Compile Include="Models\DTO\Phong.cs" />
-    <Compile Include="Models\DTO\TaiKhoan.cs" />
-    <Compile Include="Models\DTO\TienIch.cs" />
->>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
-    <Compile Include="Models\Entities\DatPhongThanhCong.cs" />
-    <Compile Include="Models\Entities\DatPhongThatBai.cs" />
     <Compile Include="Models\Entities\DichVu.cs" />
     <Compile Include="Models\Entities\Doan.cs" />
     <Compile Include="Models\Entities\KhachHang.cs" />
@@ -701,10 +685,6 @@
     <Content Include="Content\Home\scss\_site-navbar.scss" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-<<<<<<< HEAD
-=======
-    <Content Include="Views\TaiKhoanViews\DangNhap.cshtml" />
->>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -714,7 +694,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Migrations\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
@@ -722,6 +701,11 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007231521381_v001.resx">
+      <DependentUpon>202007231521381_v001.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -18,7 +18,7 @@ namespace QLKSProject.Models.Entities
         public string MaDoan { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(200)]
         public string TenDoan { get; set; }
 
         [Required]
@@ -26,7 +26,7 @@ namespace QLKSProject.Models.Entities
         public DateTime NgayGui { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string TenTruongDoan { get; set; }
 
         [Required]
@@ -40,8 +40,10 @@ namespace QLKSProject.Models.Entities
         [Required]
         public bool IsDelete { get; set; }
 
+        [Required]
+        public int TrangThaiDatPhong { get; set; }
+
         public virtual ICollection<KhachHang> KhachHang_MaDoans { get; set; }
-        public virtual ICollection<DatPhongThatBai> DatPhongThatBai_MaDoans { get; set; }
 
     }
 }
