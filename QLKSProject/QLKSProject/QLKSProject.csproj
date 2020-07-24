@@ -530,6 +530,10 @@
     <Compile Include="Migrations\202007231521381_v001.designer.cs">
       <DependentUpon>202007231521381_v001.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007231947442_v2.cs" />
+    <Compile Include="Migrations\202007231947442_v2.designer.cs">
+      <DependentUpon>202007231947442_v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\DichVuDTO.cs" />
     <Compile Include="Models\DTO\DoanDTO.cs" />
@@ -705,6 +709,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202007231521381_v001.resx">
       <DependentUpon>202007231521381_v001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007231947442_v2.resx">
+      <DependentUpon>202007231947442_v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

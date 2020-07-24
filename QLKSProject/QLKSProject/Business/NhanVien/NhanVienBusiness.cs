@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using QLKSProject.Models.Entities;
+using System.Net;
+using System.Net.Mail;
+
 
 namespace QLKSProject.Business.NhanVien
 {
@@ -145,8 +148,15 @@ namespace QLKSProject.Business.NhanVien
                     // Luu trang thai dat phong thanh cong cho Doan
                     doan.TrangThaiDatPhong = 1;
                     var khachHangDTO = lstKhachHang.Where(kh => kh.TruongDoan == true).FirstOrDefault();
-                    if (!TaoTaiKhoanChoKhachHang(khachHangDTO))
+                    string account = RemoveUnicode(khachHangDTO.HoVaTen.ToLower().Replace(" ", ""));
+                    string password = khachHangDTO.MaDoan.Substring(6);
+                    if (!TaoTaiKhoanChoKhachHang(khachHangDTO, account, password))
                         trangThaiDatPhong = "Lỗi tạo tài khoản cho khách hàng !!!";
+                    else
+                    {
+                        string trangThaiGuiMail = GuiMailTuDong(khachHangDTO.HoVaTen, khachHangDTO.Email, account, password);
+                    }
+                        
                 }
                 else
                 {
@@ -156,13 +166,41 @@ namespace QLKSProject.Business.NhanVien
             }
             else
                 trangThaiDatPhong = "Đoàn đặt phòng thành công đã tồn tại !!!";
-            
+
             models.SaveChanges();
             return trangThaiDatPhong;
         }
+
         #endregion
 
         #region private methods
+        private string GuiMailTuDong(string tenKhachHang, string email, string account, string password)
+        {
+            string senderID = "nguyenductuananh0110@gmail.com";
+            string senderPassword = "Anhanh01";
+            string result = "Email Sent Successfully";
+            string body = "Dear " + tenKhachHang + ",\r\n" + "Chúng tôi rất vui mừng vì bạn đã chọn khách sạn của chúng tôi. Danh sách khách hàng của quý khách đã được đặt phòng thành công!\r\n" + "Xin quý khách vui lòng đăng nhập bằng tài khoản và mật khẩu bên đưới để xác nhận.\r\n" + "Account: " + account + "\r\n" + "Password: " + password + "\r\n" + "Trân trọng,";
+            try
+            {
+                MailMessage mail = new MailMessage();
+                mail.To.Add("tuangd01@gmail.com");
+                mail.From = new MailAddress(senderID);
+                mail.Subject = "My Test Email!";
+                mail.Body = body;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
+                smtp.Credentials = new System.Net.NetworkCredential(senderID, senderPassword);
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                result = "problem occurred";
+            }
+            return result;
+        }
         private void LuuDanhSachKhachHangDaDuocDatPhong(List<KhachHangDTO> khachHangDTOs)
         {
             string maDoan = khachHangDTOs[0].MaDoan;
@@ -173,12 +211,10 @@ namespace QLKSProject.Business.NhanVien
                 lstKhachHang[i].IDPhong = khachHangDTOs[i].IDPhong;
             }
         }
-        private bool TaoTaiKhoanChoKhachHang(KhachHangDTO khachHangDTO)
+        private bool TaoTaiKhoanChoKhachHang(KhachHangDTO khachHangDTO, string account, string password)
         {
             try
             {
-                string account = RemoveUnicode(khachHangDTO.HoVaTen.ToLower().Replace(" ", ""));
-                string password = khachHangDTO.MaDoan.Substring(6);
                 TaiKhoan taiKhoan = new TaiKhoan();
                 taiKhoan.TenTaiKhoan = account;
                 taiKhoan.MatKhau = password;
@@ -187,6 +223,7 @@ namespace QLKSProject.Business.NhanVien
                 taiKhoan.Email = khachHangDTO.Email;
                 taiKhoan.LoaiTaiKhoan = "nv";
                 taiKhoan.IsDelete = false;
+                taiKhoan.idKhachHang = khachHangDTO.ID;
                 models.TaiKhoans.Add(taiKhoan);
                 return true;
             }
@@ -194,7 +231,7 @@ namespace QLKSProject.Business.NhanVien
             {
                 return false;
             }
-            
+
         }
         private List<int> LayDSNhomTrongDSKhachHang(List<KhachHangDTO> lstKhachHang)
         {

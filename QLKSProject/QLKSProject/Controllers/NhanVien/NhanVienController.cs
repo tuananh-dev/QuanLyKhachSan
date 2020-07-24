@@ -31,7 +31,7 @@ namespace QLKSProject.Controllers.NhanVien
                 result = nhanVienBusiness.DatPhong(id);
             }
             if (result.Equals("ok"))
-                return Ok();
+                return Ok(result);
             else
                 return BadRequest(result);
         }
