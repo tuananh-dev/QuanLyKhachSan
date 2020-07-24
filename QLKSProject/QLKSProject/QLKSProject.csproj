@@ -527,6 +527,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007241819145_InitialCreate.cs" />
+    <Compile Include="Migrations\202007241819145_InitialCreate.designer.cs">
+      <DependentUpon>202007241819145_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\BaoCaoThongKeDTO.cs" />
     <Compile Include="Models\DTO\DichVuDTO.cs" />
     <Compile Include="Models\DTO\DoanDTO.cs" />
@@ -691,7 +696,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Migrations\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
@@ -699,6 +703,11 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007241819145_InitialCreate.resx">
+      <DependentUpon>202007241819145_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

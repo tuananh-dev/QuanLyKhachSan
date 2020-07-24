@@ -147,7 +147,7 @@ namespace QLKSProject.Business.NhanVien
                     LuuDanhSachKhachHangDaDuocDatPhong(lstKhachHangMaDoan);
                     // Luu trang thai dat phong thanh cong cho Doan
                     doan.TrangThaiDatPhong = 1;
-                    var khachHangDTO = lstKhachHang.Where(kh => kh.TruongDoan == true).FirstOrDefault();
+                    var khachHangDTO = lstKhachHangMaDoan.Where(kh => kh.TruongDoan == true).FirstOrDefault();
                     string account = RemoveUnicode(khachHangDTO.HoVaTen.ToLower().Replace(" ", ""));
                     string password = khachHangDTO.MaDoan.Substring(6);
                     if (!TaoTaiKhoanChoKhachHang(khachHangDTO, account, password))
@@ -171,39 +171,43 @@ namespace QLKSProject.Business.NhanVien
             return trangThaiDatPhong;
         }
 
-        public void DatPhongChoNhieuDoan()
+        public bool DatPhongChoNhieuDoan()
         {
             var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == 0).ToList();
             foreach (var doan in lstDoan)
             {
                 string datPhong = DatPhong(doan.MaDoan);
             }
+            return true;
         }
         #endregion
 
         #region private methods
         private string GuiMailTuDong(string tenKhachHang, string email, string account, string password)
         {
-            string senderID = "nguyenductuananh0110@gmail.com";
+            string senderID = "nguyenductuananh110@gmail.com";
             string senderPassword = "Anhanh01";
+            string subject = "Xác nhận đặt phòng tại Color Hotel";
             string result = "Email Sent Successfully";
-            string body = "Dear " + tenKhachHang + ",\r\n" + "Chúng tôi rất vui mừng vì bạn đã chọn khách sạn của chúng tôi. Danh sách khách hàng của quý khách đã được đặt phòng thành công!\r\n" + "Xin quý khách vui lòng đăng nhập bằng tài khoản và mật khẩu bên đưới để xác nhận.\r\n" + "Account: " + account + "\r\n" + "Password: " + password + "\r\n" + "Trân trọng,";
+            string body = "Dear " + tenKhachHang + ",<BR>" + "Chúng tôi rất vui mừng vì bạn đã chọn khách sạn của chúng tôi. Danh sách khách hàng của quý khách đã được đặt phòng thành công!" + "<BR>Xin quý khách vui lòng đăng nhập bằng tài khoản và mật khẩu bên đưới để xác nhận.<BR>" + "Account: " + account + "<BR>" + "Password: " + password + "<BR>" + "<BR>Trân trọng,<BR>" + "Hotel Color";
             try
             {
                 MailMessage mail = new MailMessage();
-                mail.To.Add("tuangd01@gmail.com");
+                mail.To.Add(email);
                 mail.From = new MailAddress(senderID);
                 mail.Subject = "My Test Email!";
                 mail.Body = body;
+                mail.Subject = subject;
                 mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();
+                smtp.UseDefaultCredentials = false;
                 smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
                 smtp.Credentials = new System.Net.NetworkCredential(senderID, senderPassword);
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 result = "problem occurred";
             }

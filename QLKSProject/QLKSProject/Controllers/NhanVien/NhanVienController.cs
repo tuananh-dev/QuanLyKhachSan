@@ -34,11 +34,13 @@ namespace QLKSProject.Controllers.NhanVien
             else
                 return BadRequest(result);
         }
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult DatPhongChoNhieuDoan()
         {
-            return Ok();
+            using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            {
+                return Ok(nhanVienBusiness.DatPhongChoNhieuDoan());
+            }           
         }
-   
     }
 }

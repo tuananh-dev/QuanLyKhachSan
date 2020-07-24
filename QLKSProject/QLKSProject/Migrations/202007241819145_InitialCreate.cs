@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class v001 : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -76,6 +76,7 @@
                         ThoiGianTra = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         IsDelete = c.Boolean(nullable: false),
                         TrangThaiDatPhong = c.Int(nullable: false),
+                        TrangThaiXacNhan = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.MaDoan);
             
@@ -105,6 +106,7 @@
                         Email = c.String(nullable: false, maxLength: 50),
                         LoaiTaiKhoan = c.String(nullable: false, maxLength: 6),
                         IsDelete = c.Boolean(nullable: false),
+                        idKhachHang = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -119,7 +121,8 @@
                     })
                 .PrimaryKey(t => t.ID);
             
-        }    
+        }
+        
         public override void Down()
         {
             DropForeignKey("dbo.LichSuDichVus", "IDPhong", "dbo.Phongs");
