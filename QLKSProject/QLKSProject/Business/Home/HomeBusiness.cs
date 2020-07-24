@@ -8,27 +8,29 @@ namespace QLKSProject.Business.Home
 
 	public class HomeBusiness : BaseBusiness
 	{
-		public TaiKhoanDTO login (LoginRQ login )
+		public TaiKhoanDTO login(LoginRQ login)
 		{
-			
-			try
-			{
-				var result = models.TaiKhoans.Where(r => r.TenTaiKhoan == login.TenTaiKhoan && r.MatKhau == login.MatKhau);
-				return (TaiKhoanDTO)result;
-			}
-			catch (Exception)
-			{
 
-				throw;
-			}
-			
+			var result = models.TaiKhoans.Where(r => r.TenTaiKhoan == login.TenTaiKhoan && r.MatKhau == login.MatKhau).Select(r => new TaiKhoanDTO
+			{
+				ID = r.ID,
+				TenTaiKhoan = r.TenTaiKhoan,
+				MatKhau = r.MatKhau,
+				HoVaTen = r.HoVaTen,
+				SoDienThoai = r.SoDienThoai,
+				Email = r.Email,
+				LoaiTaiKhoan = r.LoaiTaiKhoan,
+				IsDelete = r.IsDelete
+			}).FirstOrDefault();
+
+			return result;
 
 		}
 		#region Public methods
 		public bool LayFileDanhSachKhachHang(string tenDoan, string tenTruongDoan, DateTime thoiGianNhan, DateTime thoiGianTra, string fileDSKhachHang)
 		{
 			string maDoan = TaoMaDoan().ToString();
-			
+
 			try
 			{
 				TaoDoiTuongDoan(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, maDoan);
