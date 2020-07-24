@@ -51,7 +51,21 @@
             var layPhong = 'Quanly/LayPhong?ID=';
 
 
+
             loadData(idList, layDSPhong);
+
+            $('#example4').DataTable({
+
+                //ajax: '/api/Quanly/LayDanhSachPhong',
+
+                //columns: [
+                //    { data: "MaPhong" },
+                //    { data: "SoPhong" },
+
+                //]
+
+
+            });
 
             $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
                 $(idModalDelete).modal('show');
@@ -170,7 +184,7 @@
                 </ul>
                 <form class="search-form-opened" action="#" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search..." name="query">
+                        <input type="text" class="form-control" id="myInput" placeholder="Search..." name="query">
                         <span class="input-group-btn search-btn">
                             <a href="javascript:;" class="btn submit">
                                 <i class="icon-magnifier"></i>
@@ -607,6 +621,7 @@
         <script src="../../../Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
         <script src="../../../Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
         <!-- bootstrap -->
+        <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
         <script src="../../../Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
         <!-- Material -->
         <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>
