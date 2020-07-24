@@ -329,18 +329,6 @@ namespace QLKSProject.Business.QuanLy
      
         public bool XuatThongKeTheoThang(int idkhachHang , int idPhong)
         {
-            List<DatPhongThanhCong> dsPhongDaDuocDatThanhCong = models.DatPhongThanhCongs.Select(s => new DatPhongThanhCong { 
-            ID = s.ID,
-            IDPhong = s.IDPhong,
-            IDKhachHang = s.IDKhachHang,
-            IsDelete = s.IsDelete,
-            TrangThaiDatPhong = s.TrangThaiDatPhong,
-            NgayTraPhongThucTe = s.NgayTraPhongThucTe
-            }).ToList();
-            foreach( var itemdatphong in dsPhongDaDuocDatThanhCong)
-            {
-                var khachhang = models.KhachHangs.Where(b => b.ID == itemdatphong.IDKhachHang).Select(b => b).FirstOrDefault();
-            }
             return false;
         }
       

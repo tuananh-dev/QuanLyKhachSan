@@ -4,10 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Web.Http;
+using System.Web.Http.Results;
 using Newtonsoft.Json;
 using QLKSProject.Business.QuanLy;
 using QLKSProject.Models.DTO;
+using QLKSProject.Models.Entities;
 
 namespace QLKSProject.Controllers.QuanLy
 {
@@ -45,6 +48,12 @@ namespace QLKSProject.Controllers.QuanLy
                     return BadRequest("Thêm tài khoản thất bại!");
             }
         }
+
+        public object Post(TaiKhoanDTO testItem)
+        {
+            throw new NotImplementedException();
+        }
+
         [HttpPut]
         public IHttpActionResult CapNhatTaiKhoan([FromBody] dynamic dynamic)
         {
@@ -77,7 +86,7 @@ namespace QLKSProject.Controllers.QuanLy
         {
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-<<<<<<< HEAD
+                IHttpActionResult respon = Ok();
                 if (quanLy.LayDanhSachPhong() != null)
                 {
                     respon = Ok(quanLy.LayDanhSachPhong());
@@ -87,9 +96,9 @@ namespace QLKSProject.Controllers.QuanLy
                     respon = BadRequest();
                 }
                 return respon;
-=======
-                return Ok(quanLy.LayDanhSachPhong());
->>>>>>> a0e3e01cb9f21927d4e38b6c8437ec57795af7fd
+
+            
+
             }
         }
         [HttpGet]
@@ -143,7 +152,7 @@ namespace QLKSProject.Controllers.QuanLy
             IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-<<<<<<< HEAD
+
                 if (quanLy.LayDanhSachDichVu() != null)
                 {
                     respon = Ok(quanLy.LayDanhSachDichVu());
@@ -153,9 +162,9 @@ namespace QLKSProject.Controllers.QuanLy
                     respon = BadRequest();
                 }
                 return respon;
-=======
-                return Ok(quanLy.LayDanhSachDichVu());
->>>>>>> a0e3e01cb9f21927d4e38b6c8437ec57795af7fd
+
+                
+
             }
         }
 
@@ -211,7 +220,7 @@ namespace QLKSProject.Controllers.QuanLy
             IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-<<<<<<< HEAD
+
                 if (quanLy.LayDanhSachTienIch() != null)
                 {
                     respon = Ok(quanLy.LayDanhSachTienIch());
@@ -221,9 +230,9 @@ namespace QLKSProject.Controllers.QuanLy
                     respon = BadRequest();
                 }
                 return respon;
-=======
-                return Ok(quanLy.LayDanhSachTienIch());
->>>>>>> a0e3e01cb9f21927d4e38b6c8437ec57795af7fd
+
+                
+
             }
         }
         [HttpGet]
@@ -271,6 +280,8 @@ namespace QLKSProject.Controllers.QuanLy
                     return BadRequest("Xóa tiện ích thất bại");
             }
         }
+
+        
         #endregion
     }
 }

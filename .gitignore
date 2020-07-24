@@ -367,3 +367,11 @@ QLKSProject/QLKSProject/Migrations/202007170410570_createdb.resx
 QLKSProject/QLKSProject/Migrations/202007170437096_createdb.cs
 QLKSProject/QLKSProject/Migrations/202007170437096_createdb.Designer.cs
 QLKSProject/QLKSProject/Migrations/202007170437096_createdb.resx
+QLKSProject/UnitTests/UnitTests.csproj
+QLKSProject/UnitTests/QuanLyControllerTests.cs
+QLKSProject/QuanLyTests/UnitTests.csproj
+QLKSProject/QuanLyTests/UnitTest1.cs
+QLKSProject/QLKSProject/bin/UnitTests.dll
+QLKSProject/QLKSProject/Migrations/202007240558558_createdb.cs
+QLKSProject/QLKSProject/Migrations/202007240558558_createdb.Designer.cs
+QLKSProject/QLKSProject/Migrations/202007240558558_createdb.resx
