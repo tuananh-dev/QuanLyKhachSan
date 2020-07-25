@@ -246,6 +246,16 @@ namespace QLKSProject.Controllers.QuanLy
                 return Ok(quanLyBusiness.BaoCaoThongKeTheoThang(thang, nam));
             }   
         }
+        [HttpPost]
+        public IHttpActionResult XuatBaoCaoThongKeTheoQuy(dynamic dynamic)
+        {
+            int quy = int.Parse(dynamic.quy.ToString());
+            int nam = int.Parse(dynamic.nam.ToString());
+            using (QuanLyBusiness quanLyBusiness = new QuanLyBusiness())
+            {
+                return Ok(quanLyBusiness.BaoCaoThongKeTheoQuy(quy, nam));
+            }
+        }
         #endregion
     }
 }

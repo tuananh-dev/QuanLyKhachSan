@@ -529,7 +529,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DTO\BaoCaoThongKeDTO.cs" />
+    <Compile Include="Models\DTO\ThongKeTheoThangDTO.cs" />
     <Compile Include="Models\DTO\DichVuDTO.cs" />
     <Compile Include="Models\DTO\DoanDTO.cs" />
     <Compile Include="Models\DTO\FileKhachHangDTO.cs" />
@@ -537,6 +537,7 @@
     <Compile Include="Models\DTO\LichSuDichVuDTO.cs" />
     <Compile Include="Models\DTO\PhongDTO.cs" />
     <Compile Include="Models\DTO\TaiKhoanDTO.cs" />
+    <Compile Include="Models\DTO\ThongKeTheoQuyDTO.cs" />
     <Compile Include="Models\DTO\TienIchDTO.cs" />
     <Compile Include="Models\Entities\DichVu.cs" />
     <Compile Include="Models\Entities\Doan.cs" />
