@@ -18,5 +18,17 @@ namespace QLKSProject.Controllers.KhachHang
                 return Ok(khachHangBusiness.LayDanhSachKhachHangTheoMaDoan(id));
             }
         }
+        [HttpGet]
+        public IHttpActionResult XacNhanDatPhong([FromUri]string id)
+        {
+            using (KhachHangBusiness khachHangBusiness = new KhachHangBusiness())
+            {
+                bool result = khachHangBusiness.XacNhanDatPhong(id);
+                if (result)
+                    return Ok("Xác nhận đặt phòng thành công!");
+                else
+                    return BadRequest("Xác nhận đặt phòng thất bại!");
+            }
+        }
     }
 }
