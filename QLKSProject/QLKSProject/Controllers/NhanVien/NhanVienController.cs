@@ -16,19 +16,13 @@ namespace QLKSProject.Controllers.NhanVien
         [HttpGet]
         public IHttpActionResult LayDanhSachDoan()
         {
-            IHttpActionResult respon = Ok();
             using (NhanVienBusiness nhanvien = new NhanVienBusiness())
             {
-                if (nhanvien.LayDanhSachDoan() == null)
-                    respon = Ok("Không có dữ liệu");
-                else
-                    respon = Ok(nhanvien.LayDanhSachDoan());     
+                return Ok(nhanvien.LayDanhSachDoan());
             }
-            return respon;
         }    
-
         [HttpGet]
-        public IHttpActionResult DatPhong([FromUri] string id)
+        public IHttpActionResult DatPhongChoTungDoan([FromUri] string id)
         {
             string result = "";
             using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
@@ -36,9 +30,15 @@ namespace QLKSProject.Controllers.NhanVien
                 result = nhanVienBusiness.DatPhong(id);
             }
             if (result.Equals("ok"))
-                return Ok();
+                return Ok(result);
             else
                 return BadRequest(result);
         }
+        [HttpPost]
+        public IHttpActionResult DatPhongChoNhieuDoan()
+        {
+            return Ok();
+        }
+   
     }
 }
