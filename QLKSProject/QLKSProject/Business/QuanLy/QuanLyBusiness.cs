@@ -97,7 +97,6 @@ namespace QLKSProject.Business.QuanLy
                 return false;
         }
         #endregion
-
         #region Phong
         public List<PhongDTO> LayDanhSachPhong()
         {
@@ -180,7 +179,6 @@ namespace QLKSProject.Business.QuanLy
             return false;
         }
         #endregion
-
         #region DichVu
         public List<DichVuDTO> LayDanhSachDichVu()
         {
@@ -254,7 +252,6 @@ namespace QLKSProject.Business.QuanLy
             return false;
         }
         #endregion
-
         #region TienIch
         public List<TienIchDTO> LayDanhSachTienIch()
         {
@@ -324,8 +321,8 @@ namespace QLKSProject.Business.QuanLy
             return false;
         }
         #endregion
-
         #region Thong Ke
+<<<<<<< HEAD
      
         public bool XuatThongKeTheoThang(int idkhachHang , int idPhong)
         {
@@ -336,8 +333,49 @@ namespace QLKSProject.Business.QuanLy
         {
             return false;
         }
+=======
+        public List<BaoCaoThongKeDTO> BaoCaoThongKeTheoThang(int thang, int nam)
+        {
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong != false).Select(kh => new KhachHangDTO
+            {
+                ID = kh.ID,
+                HoVaTen = kh.HoVaTen,
+                SoDienThoai = kh.SoDienThoai,
+                Email = kh.Email,
+                DiaChi = kh.DiaChi,
+                Nhom = kh.Nhom,
+                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = kh.ThoiGianNhan,
+                ThoiGianTra = kh.ThoiGianTra,
+                MaDoan = kh.MaDoan,
+                GioiTinh = kh.GioiTinh,
+                LoaiKhachHang = kh.LoaiKhachHang,
+                TruongDoan = kh.TruongDoan,
+                IsDelete = kh.IsDelete,
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                IDPhong = kh.IDPhong
+            }).ToList();
+            var lstPhong = models.Phongs.Where(p => p.IsDelete != true).Select(p => new PhongDTO
+            {
+                ID = p.ID,
+                MaPhong = p.MaPhong,
+                SoPhong = p.SoPhong,
+                LoaiPhong = p.LoaiPhong,
+                Gia = p.Gia,
+                TrangThai = p.TrangThai,
+                IsDelete = p.IsDelete
+            }).ToList();
+            List<BaoCaoThongKeDTO> lstBaoCaoThongKeDTO = new List<BaoCaoThongKeDTO>();
+            lstBaoCaoThongKeDTO.Add(DoanhThuChoThuePhong(thang, nam, lstPhong, lstKhachHang));
+            lstBaoCaoThongKeDTO.Add(DoanhThuAnUong());
+            lstBaoCaoThongKeDTO.Add(DoanhThuGiatUi());
+            lstBaoCaoThongKeDTO.Add(DoanhThuThueXe());
+            lstBaoCaoThongKeDTO.Add(DoanhThuMassage());
+            
+            return lstBaoCaoThongKeDTO;
+        } 
+>>>>>>> 47f4ea5197af2e8f2cefae5b48647763838e5057
         #endregion
-
         #region Private Methods
         private void LayNgayDauThangvaCuoiThang(int thang,int nam)
         {
@@ -464,10 +502,96 @@ namespace QLKSProject.Business.QuanLy
             }
             return b;
         }
-        private bool ChonTuan(DateTime dateTime)
+        private int TinhNgayCuoiThang(int thang, int nam)
         {
-            
-            return false;
+            int soNgay = 0;
+            bool testNamNhuan = false;
+            //Kiem tra nam nhuan
+            if ((nam % 400) == 0)
+                testNamNhuan = true;
+            else if ((nam % 100) == 0)
+                testNamNhuan = false;
+            else if ((nam % 4) == 0)
+                testNamNhuan = true;
+            else
+                testNamNhuan = false;
+            //Kiem tra thang
+            switch (thang)
+            {
+                case 1: soNgay = 31; break;
+                case 2: soNgay = testNamNhuan ? 29:28; break;
+                case 3: soNgay = 31; break;
+                case 4: soNgay = 30; break;
+                case 5: soNgay = 31; break;
+                case 6: soNgay = 30; break;
+                case 7: soNgay = 31; break;
+                case 8: soNgay = 31; break;
+                case 9: soNgay = 30; break;
+                case 10: soNgay = 31; break;
+                case 11: soNgay = 30; break;
+                case 12: soNgay = 31; break;
+            }
+            return soNgay; 
+        }
+        private BaoCaoThongKeDTO DoanhThuChoThuePhong(int thang, int nam, List<PhongDTO> phongDTOs, List<KhachHangDTO> khachHangDTOs)
+        {
+            int cuoiThang = TinhNgayCuoiThang(thang, nam);
+            double doanhThu = 0;
+            foreach (var phong in phongDTOs)
+            {
+                var lstKhachHangTheoPhong = khachHangDTOs.Where(kh => kh.IDPhong == phong.ID).GroupBy(kh => kh.ThoiGianNhan).ToList();
+
+                foreach (var key in lstKhachHangTheoPhong)
+                {
+                    var khachHang = key.FirstOrDefault();
+                    if (KiemTraThoiGianDatPhong(khachHang.ThoiGianTra, cuoiThang))
+                    {
+                        TimeSpan timeSpan = khachHang.ThoiGianTra - khachHang.ThoiGianNhan;
+                        int soNgay = timeSpan.Days;
+                        doanhThu += phong.Gia * soNgay;
+                    }
+                }
+            }
+            BaoCaoThongKeDTO baoCaoThongKe = new BaoCaoThongKeDTO();
+            baoCaoThongKe.TenDichVu = "Cho thuê phòng";
+            baoCaoThongKe.DoanThu = doanhThu;
+            return baoCaoThongKe;
+        }
+        private bool KiemTraThoiGianDatPhong(DateTime ngayTra, int cuoiThang)
+        {
+            int ngayTraPhong = ngayTra.Day;
+            if (ngayTraPhong >= 1 && ngayTraPhong <= cuoiThang)
+                return true;
+            else
+                return false;
+        }
+        private BaoCaoThongKeDTO DoanhThuAnUong()
+        {
+            BaoCaoThongKeDTO baoCaoThongKe = new BaoCaoThongKeDTO();
+            baoCaoThongKe.TenDichVu = "Ăn uống";
+            baoCaoThongKe.DoanThu = 0;
+            return baoCaoThongKe;
+        }
+        private BaoCaoThongKeDTO DoanhThuMassage()
+        {
+            BaoCaoThongKeDTO baoCaoThongKe = new BaoCaoThongKeDTO();
+            baoCaoThongKe.TenDichVu = "Massage";
+            baoCaoThongKe.DoanThu = 0;
+            return baoCaoThongKe;
+        }
+        private BaoCaoThongKeDTO DoanhThuThueXe()
+        {
+            BaoCaoThongKeDTO baoCaoThongKe = new BaoCaoThongKeDTO();
+            baoCaoThongKe.TenDichVu = "Thuê Xe";
+            baoCaoThongKe.DoanThu = 0;
+            return baoCaoThongKe;
+        }
+        private BaoCaoThongKeDTO DoanhThuGiatUi()
+        {
+            BaoCaoThongKeDTO baoCaoThongKe = new BaoCaoThongKeDTO();
+            baoCaoThongKe.TenDichVu = "Giặt ủi";
+            baoCaoThongKe.DoanThu = 0;
+            return baoCaoThongKe;
         }
         #endregion
     }

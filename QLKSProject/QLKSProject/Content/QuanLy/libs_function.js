@@ -3,7 +3,10 @@
 //var themTienIch = 'Quanly/ThemTienIch';
 //var suaTienIch = 'Quanly/CapNhatTienIch';
 //var xoaTienIch = 'Quanly/XoaTienIch';
-
+//<th class="center"> Họ và Tên </th>
+//    <th class="center"> SĐT</th>
+//    <th class="center"> Nguời Đại Diện</th>
+//    <th class="center"> Phòng </th>
 
 
 function loadData(idList, url) {
@@ -37,7 +40,15 @@ function loadData(idList, url) {
                     var tgNhan = new Date(val.ThoiGianNhan);
                     var tgTra = new Date(val.ThoiGianTra);
                     var ngayGui = new Date(val.NgayGui);
-                    position.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDoan + '</td><td class="center">' + val.TenTruongDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td></tr>');
+                    position.prepend('<tr class="odd gradeX"><td class="center">' + val.TenDoan + '</td><td class="center">' + val.TenTruongDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td class="center"><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '" style="border-radius: 40%" ><i class="fa fa-pencil"></i></a></td></tr>');
+                }
+
+                if (url == 'KhachHang/LayDanhSachKhachHangTheoMaDoan/1595555103849') {
+                    var daidien = '';
+                    if (val.NguoiDaiDienCuaTreEm != '0') {
+                        daidien = val.NguoiDaiDienCuaTreEm;
+                    }
+                    position.prepend('<tr class="odd gradeX"><td class="center">' + val.HoVaTen + '</td><td class="center">' + val.SoDienThoai + '</td><td class="center">' + daidien + '</td><td class="center">' + val.IDPhong + '</td></tr>');
                 }
             });
 
@@ -65,7 +76,7 @@ function loadDataDetail(edit, url, id) {
                     $(edit.gia).val(data.Gia);
                     break;
                 case 'Quanly/LayPhong?ID=':
-                    var loaiPhong ;
+                    var loaiPhong;
                     if (data.LoaiPhong == "1") {
                         loaiPhong = "Phòng Loại 1";
                     }
@@ -190,3 +201,60 @@ function deleteData(info, dataInput) {
         }
     })
 }
+
+
+function DatPhongChoTungDoan(info, url) {
+    $.ajax({
+        type: 'GET',
+        url: '/api/' + url,
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+        dataType: 'json',
+        success: function (data) {
+            alert(data);
+            loadData(info.id, info.urlLoad);
+        },
+        error: function (data) {
+            alert(data.responseJSON.Message)
+
+        }
+    })
+
+}
+//function thongKe() {
+    
+//    var ctx = document.getElementById('myChart').getContext('2d');
+//    var myChart = new Chart(ctx, {
+//        type: 'line',
+//        data: {
+//            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+//            datasets: [{
+//                label: 'Cost',
+//                data: [
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor()
+//                ],
+//                backgroundColor: "rgba(255,61,103,0.3)"
+//            }, {
+//                label: 'Earning',
+//                data: [
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor(),
+//                    randomScalingFactor()
+//                ],
+//                backgroundColor: "rgba(34,206,206,0.3)"
+//            }]
+//        }
+//    });
+//}
+
+
+

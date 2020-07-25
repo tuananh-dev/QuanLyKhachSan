@@ -266,6 +266,7 @@
     <Content Include="Content\QuanLy\css\responsive.css" />
     <Content Include="Content\QuanLy\css\style.css" />
     <Content Include="Content\QuanLy\css\theme-color.css" />
+    <Content Include="Content\QuanLy\DashBoard.js" />
     <Content Include="Content\QuanLy\img\bg-01.jpg" />
     <Content Include="Content\QuanLy\img\blog\blog1.jpg" />
     <Content Include="Content\QuanLy\img\blog\blog2.jpg" />
@@ -485,6 +486,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Home\FileDSKH\Mẫu File Danh Sách Đoàn.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Views\KhachHangViews\DSThanhVien.html" />
     <Content Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.html" />
     <Content Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.html" />
     <Content Include="Views\NhanVienViews\Doan\Doan.html" />
@@ -500,6 +502,7 @@
     <Content Include="Views\QuanLyViews\TaiKhoan\DangNhap.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\DKTaiKhoan.cshtml" />
     <Content Include="Views\QuanLyViews\TaiKhoan\KhoaManHinh.cshtml" />
+    <Content Include="Views\QuanLyViews\ThongKe\ThongKe.html" />
     <Content Include="Views\QuanLyViews\TienIch\DSTienIch.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\DSTKNhanVien.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\XemChiTietTKNhanVien.cshtml" />
@@ -526,11 +529,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Migrations\202007240558558_createdb.cs" />
     <Compile Include="Migrations\202007240558558_createdb.designer.cs">
       <DependentUpon>202007240558558_createdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+=======
+    <Compile Include="Models\DTO\BaoCaoThongKeDTO.cs" />
+>>>>>>> 47f4ea5197af2e8f2cefae5b48647763838e5057
     <Compile Include="Models\DTO\DichVuDTO.cs" />
     <Compile Include="Models\DTO\DoanDTO.cs" />
     <Compile Include="Models\DTO\FileKhachHangDTO.cs" />
@@ -694,6 +701,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
@@ -702,11 +710,14 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202007240558558_createdb.resx">
       <DependentUpon>202007240558558_createdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+=======
+>>>>>>> 47f4ea5197af2e8f2cefae5b48647763838e5057
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

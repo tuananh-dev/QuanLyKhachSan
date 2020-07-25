@@ -43,6 +43,9 @@ namespace QLKSProject.Models.Entities
         [Required]
         public int TrangThaiDatPhong { get; set; }
 
+        [Required]
+        public bool TrangThaiXacNhan { get; set; }
+
         public virtual ICollection<KhachHang> KhachHang_MaDoans { get; set; }
 
     }
