@@ -357,7 +357,7 @@ namespace QLKSProject.Business.QuanLy
             lstBaoCaoThongKeDTO.Add(DoanhThuMassage());
             
             return lstBaoCaoThongKeDTO;
-        }
+        } 
         #endregion
         #region Private Methods
         private bool CheckTaiKhoan(String tenTaiKhoan)
