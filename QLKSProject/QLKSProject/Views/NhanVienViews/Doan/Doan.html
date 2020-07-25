@@ -33,7 +33,7 @@
 
             var idList = $('#dsdoan');
             var layDSDoan = 'NhanVien/LayDanhSachDoan';
-            var xepPhong = "NhanVien/DatPhong/";
+            var xepPhong = "NhanVien/DatPhongChoTungDoan/";
             loadData(idList, layDSDoan);
 
 
@@ -43,7 +43,7 @@
                     id: '#dsdoan',
                     urlLoad: 'NhanVien/LayDanhSachDoan'
                 }
-                datPhong(info, xepPhong + dataId);
+                DatPhongChoTungDoan(info, xepPhong + dataId);
             })
 
 

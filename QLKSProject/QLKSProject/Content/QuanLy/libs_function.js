@@ -203,7 +203,7 @@ function deleteData(info, dataInput) {
 }
 
 
-function datPhong(info, url) {
+function DatPhongChoTungDoan(info, url) {
     $.ajax({
         type: 'GET',
         url: '/api/' + url,
@@ -211,7 +211,7 @@ function datPhong(info, url) {
         dataType: 'json',
         success: function (data) {
             alert(data);
-
+            loadData(info.id, info.urlLoad);
         },
         error: function (data) {
             alert(data.responseJSON.Message)

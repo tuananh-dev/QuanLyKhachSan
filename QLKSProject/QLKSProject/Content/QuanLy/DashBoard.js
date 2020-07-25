@@ -70,66 +70,115 @@
 //        }
 //    });
 //});
-function dashboard_Circle() {
+function dashboard_Circle(url) {
     $(document).ready(function () {
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/api/' + url,
-            dataType: 'json',
+            headers: { 'content-type': 'application/json', 'data-type': 'json' },
+            data: JSON.stringify({
+                "thang": 7,
+                "nam": 2020
+            }),
             success: function (data) {
-                console.log(data);
+                Highcharts.chart('circle', {
+                    chart: {
+                        type: 'variablepie'
+                    },
+                    title: {
+                        text: 'Thống Kê Doanh Thu Tổng Quát'
+                    },
+                    tooltip: {
+                        headerFormat: '',
+                        pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+                            'Doanh Thu (VND): <b>{point.y}</b><br/>'
+                    },
+                    series: [{
+                        minPointSize: 10,
+                        innerSize: '20%',
+                        zMin: 0,
+                        name: 'countries',
+                        data: [
+                            { name: data[0].TenDichVu, y: data[0].DoanThu, z: 92.9 },
+                            { name: data[1].TenDichVu, y: data[1].DoanThu, z: 118.7 },
+                            { name: data[2].TenDichVu, y: data[2].DoanThu, z: 124.6 },
+                            { name: data[3].TenDichVu, y: data[3].DoanThu, z: 137.5 }
+                        ]
+                    }]
+                });
             }
         })
     })
 }
-Highcharts.chart('container', {
-    chart: {
-        type: 'variablepie'
-    },
-    title: {
-        text: 'Countries compared by population density and total area.'
-    },
-    tooltip: {
-        headerFormat: '',
-        pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
-            'Area (square km): <b>{point.y}</b><br/>' +
-            'Population density (people per square km): <b>{point.z}</b><br/>'
-    },
-    series: [{
-        minPointSize: 10,
-        innerSize: '20%',
-        zMin: 0,
-        name: 'countries',
-        data: [{
-            name: 'Spain',
-            y: 505370,
-            z: 92.9
+
+function dashboard_ThreeBar(url) {
+    Highcharts.chart('three-bar', {
+        title: {
+            text: 'Combination chart'
+        },
+        xAxis: {
+            categories: ['Thuê Phòng', 'Massage', 'Pears', 'Bananas', 'Plums']
+        },
+        labels: {
+            items: [{
+                html: 'Total fruit consumption',
+                style: {
+                    left: '50px',
+                    top: '18px',
+                    color: ( // theme
+                        Highcharts.defaultOptions.title.style &&
+                        Highcharts.defaultOptions.title.style.color
+                    ) || 'black'
+                }
+            }]
+        },
+        series: [{
+            type: 'column',
+            name: 'Jane',
+            data: [3, 2, 1, 3, 4]
         }, {
-            name: 'France',
-            y: 551500,
-            z: 118.7
+            type: 'column',
+            name: 'John',
+            data: [2, 3, 5, 7, 6]
         }, {
-            name: 'Poland',
-            y: 312685,
-            z: 124.6
+            type: 'column',
+            name: 'Joe',
+            data: [4, 3, 3, 9, 0]
         }, {
-            name: 'Czech Republic',
-            y: 78867,
-            z: 137.5
+            type: 'spline',
+            name: 'Average',
+            data: [3, 2.67, 3, 6.33, 3.33],
+            marker: {
+                lineWidth: 2,
+                lineColor: Highcharts.getOptions().colors[3],
+                fillColor: 'white'
+            }
         }, {
-            name: 'Italy',
-            y: 301340,
-            z: 201.8
-        }, {
-            name: 'Switzerland',
-            y: 41277,
-            z: 214.5
-        }, {
-            name: 'Germany',
-            y: 357022,
-            z: 235.6
+            type: 'pie',
+            name: 'Total consumption',
+            data: [{
+                name: 'Jane',
+                y: 13,
+                color: Highcharts.getOptions().colors[0] // Jane's color
+            }, {
+                name: 'John',
+                y: 23,
+                color: Highcharts.getOptions().colors[1] // John's color
+            }, {
+                name: 'Joe',
+                y: 19,
+                color: Highcharts.getOptions().colors[2] // Joe's color
+            }],
+            center: [100, 80],
+            size: 100,
+            showInLegend: false,
+            dataLabels: {
+                enabled: false
+            }
         }]
-    }]
-});
+    });
+
+}
+
 
 
