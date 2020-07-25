@@ -48,7 +48,6 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpPut]
         public IHttpActionResult CapNhatTaiKhoan([FromBody] dynamic dynamic)
         {
-            IHttpActionResult respon = Ok();
             TaiKhoanDTO tk = JsonConvert.DeserializeObject<TaiKhoanDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
