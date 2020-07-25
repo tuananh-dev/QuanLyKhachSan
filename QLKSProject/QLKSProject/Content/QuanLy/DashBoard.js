@@ -70,16 +70,13 @@
 //        }
 //    });
 //});
-function dashboard_Circle(url) {
+function dashboard_Circle(data, url) {
     $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: '/api/' + url,
             headers: { 'content-type': 'application/json', 'data-type': 'json' },
-            data: JSON.stringify({
-                "thang": 7,
-                "nam": 2020
-            }),
+            data: JSON.stringify(data),
             success: function (data) {
 
                 var obj = [];
@@ -89,7 +86,7 @@ function dashboard_Circle(url) {
 
                 });
 
-                Highcharts.chart('circle', {
+                Highcharts.chart('chart', {
                     chart: {
                         type: 'variablepie'
                     },
@@ -114,54 +111,49 @@ function dashboard_Circle(url) {
     })
 }
 
-//function dashboard_ThreeBar(url) {
-//    $(document).ready(function () {
-//        $.ajax({
-//            type: 'POST',
-//            url: '/api/' + url,
-//            headers: { 'content-type': 'application/json', 'data-type': 'json' },
-//            data: JSON.stringify({
-               
-//            }),
-//            success: function (data) {
+function dashboard_ThreeBar(data, url) {
+    $(document).ready(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/api/' + url,
+            headers: { 'content-type': 'application/json', 'data-type': 'json' },
+            data: JSON.stringify(data),
+            success: function (data) {
+                var ten = [];
+                var t1 = [];
+                var t2 = [];
+                var t3 = [];
+                var tb = [];
+                $.each(data, function (index, val) {
+                    ten.push(val.TenDichVu);
+                    t1.push(val.DoanhThu1);
+                    t2.push(val.DoanhThu2);
+                    t3.push(val.DoanhThu3);
+                    tb.push(val.TrungBinh);
+                })
+                Highcharts.chart('chart', {
+                    title: {
+                        text: 'Thống Kê Doanh Thu Theo Quý'
+                    },
+                    xAxis: {
+                        categories: ten
+                    },
+                    series: [
+                        { type: 'column', name: 'Tháng 1', data: t1 },
+                        { type: 'column', name: 'Tháng 2', data: t2 },
+                        { type: 'column', name: 'Tháng 3', data: t3 },
+                        {
+                            type: 'spline', name: 'Trung Bình', data: tb,
+                            marker: { lineWidth: 2, lineColor: Highcharts.getOptions().colors[3], fillColor: 'white' }
+                        }
+                    ]
+                });
 
-//                var obj = [];
-//                $.each(data, function (index, val) { })
-                
+            }
+        })
+        
+    })
 
-//            }
-//        })
-//    })
-//}
 
-Highcharts.chart('three-bar', {
-    title: {
-        text: 'Thống Kê Doanh Thu Theo Quý'
-    },
-    xAxis: {
-        categories: ['Thuê Phòng', 'Massage', 'Thuê Xe', 'Giặt Ủi', 'Ăn Uống']
-    },
-    series: [{
-        type: 'column',
-        name: 'Tháng 1',
-        data: [3, 2, 1, 3, 4]
-    }, {
-        type: 'column',
-        name: 'Tháng 2',
-        data: [2, 3, 5, 7, 6]
-    }, {
-        type: 'column',
-        name: 'Tháng 3',
-        data: [4, 3, 3, 9, 1]
+}
 
-    }, {
-        type: 'spline',
-        name: 'Trung Bình',
-        data: [3, 2.67, 3, 6.33, 3.33],
-        marker: {
-            lineWidth: 2,
-            lineColor: Highcharts.getOptions().colors[3],
-            fillColor: 'white'
-        }
-    }]
-});

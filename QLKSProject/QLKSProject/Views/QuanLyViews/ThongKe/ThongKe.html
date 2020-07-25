@@ -73,23 +73,59 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            //var thang = $('#thang').val();
-            //var quy = $('#quy').val();
-            //var nam = $('#nam').val();
-            $('#dropdown').click(function () {
-                if ($('#thang').val() != '----Chọn Tháng----') {
+            var txtThang = $('#thang').val();
+            var txtQuy = $('#quy').val();
+            var txtNam = $('#nam').val();
+            var tkThang = 'QuanLy/XuatBaoCaoThongKeTheoThang';
+            var tkQuy = 'QuanLy/XuatBaoCaoThongKeTheoQuy';
+            var thang_quy = 'thang';
+            $("#wrap-quy *").attr("disabled", "disabled").off('click');
+            $('input[type=radio][name=thongke]').change(function () {
+                if (this.value == 'thang') {
+                    thang_quy = 'thang';
                     $("#wrap-quy *").attr("disabled", "disabled").off('click');
                     $("#wrap-thang *").attr("disabled", false);
                 }
-                if ($('#quy').val() != '----Chọn Quý----') {
+                else if (this.value == 'quy') {
+                    thang_quy = 'quy';
                     $("#wrap-thang *").attr("disabled", "disabled").off('click');
                     $("#wrap-quy *").attr("disabled", false);
                 }
             });
+            $('#btnThongKe').click(function () {
+                txtThang = $('#thang').val();
+                txtQuy = $('#quy').val();
+                txtNam = $('#nam').val();
+
+                if (((thang_quy == 'thang' && txtThang != '') ||
+                    (thang_quy == 'quy' && txtQuy != '')) &&
+                    (txtNam != "")) {
+                    if (thang_quy == 'thang') {
+                        var data = {
+                            thang: txtThang,
+                            nam: txtNam
+                        }
+                        dashboard_Circle(data, tkThang);
+                    } else if (thang_quy == 'quy') {
+                        var data = {
+                            quy: txtQuy,
+                            nam: txtNam
+                        }
+
+                        dashboard_ThreeBar(data, tkQuy);
+                    }
+                } else {
+                    alert("Nhập Đầy Đủ Thông Tin!!!")
+                }
+
+            });
 
 
-            dashboard_Circle("QuanLy/XuatBaoCaoThongKeTheoThang");
-            dashboard_ThreeBar("QuanLy/XuatBaoCaoThongKeTheoQuy");
+
+
+
+
+
 
 
 
@@ -308,18 +344,23 @@
                         </div>
                     </div>
                     <div class="row" style="display: flex;justify-content:center;">
+                        <div class="col-lg-1 p-t-20" style="margin: 0;display:flex;justify-content:flex-end;align-items:center">
+                            <input type="radio" id="rnd_thang" name="thongke"
+                                   class="mdl-radio__button" value="thang" checked>
+                        </div>
                         <div class="col-lg-2 p-t-20" style="margin-top: 0;">
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height select-width">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height select-width" id="wrap-thang">
+
                                 <input class="mdl-textfield__input" type="text" id="thang" value=""
-                                       readonly tabIndex="-1">
+                                       readonly tabIndex="-1" required>
                                 <label for="thang" class="pull-right margin-0">
                                     <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
                                 </label>
                                 <label for="thang" class="mdl-textfield__label">Tháng</label>
+
                                 <ul data-mdl-for="thang"
-                                    class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="dropdown">
-                                    <li class="mdl-menu__item">----Chọn Tháng----</li>
+                                    class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="dropdown_thang">
                                     <li class="mdl-menu__item">1</li>
                                     <li class="mdl-menu__item">2</li>
                                     <li class="mdl-menu__item">3</li>
@@ -335,19 +376,22 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="col-lg-1 p-t-20" style="margin: 0;display:flex;justify-content:flex-end;align-items:center">
+                            <input type="radio" id="rnd_quy" name="thongke"
+                                   class="mdl-radio__button" value="quy">
+                        </div>
+                        <div class="col-lg-2 p-t-20" style="margin-top: 0;">
 
-                        <div class="col-lg-2 p-t-20" style="margin-top: 0;" disabled>
                             <!-- Select with arrow-->
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height select-width" id="wrap-quy">
-                                <input class="mdl-textfield__input" type="text" id="quy" value="----Chọn Quý----"
-                                       readonly tabIndex="-1">
+                                <input class="mdl-textfield__input" type="text" id="quy" value=""
+                                       readonly tabIndex="-1" required>
                                 <label for="quy" class="pull-right margin-0">
                                     <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
                                 </label>
                                 <label for="quy" class="mdl-textfield__label">Quý</label>
                                 <ul data-mdl-for="quy"
-                                    class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                    <li class="mdl-menu__item">----Chọn Quý----</li>
+                                    class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="dropdown_quy">
                                     <li class="mdl-menu__item">1</li>
                                     <li class="mdl-menu__item">2</li>
                                     <li class="mdl-menu__item">3</li>
@@ -358,38 +402,25 @@
                         </div>
                         <div class="col-lg-2 p-t-20" style="margin-top: 0;">
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="number" id="nam" value="">
+                                <input class="mdl-textfield__input" type="number" id="nam" value="" required>
                                 <label class="mdl-textfield__label" for="nam">Năm</label>
                             </div>
                         </div>
                         <div class="col-lg-2 p-t-20" style="display:flex;justify-content:center;align-items: center; margin-top:0;">
                             <button type="button"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-success" style="width:100px;margin-top: 8px">
-                                Xem
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-success" style="margin-top: 8px" id="btnThongKe">
+                                Xem Thống Kê
                             </button>
                         </div>
 
 
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" >
 
 
-                            <figure class="highcharts-figure">
-                                <div id="circle"></div>
-
-                            </figure>
-
-
-
-
-
-                        </div>
-                        <div class="col-md-12">
-
-
-                            <figure class="highcharts-figure">
-                                <div id="three-bar"></div>
+                            <figure class="highcharts-figure" style="border: 1px solid black;height:402px; width:875px;border-radius: 5px">
+                                <div id="chart"></div>
 
                             </figure>
 
@@ -398,6 +429,7 @@
 
 
                         </div>
+
 
 
                     </div>
