@@ -327,24 +327,16 @@ namespace QLKSProject.Business.QuanLy
             return false;
         }
         #endregion
-        #region Thong Ke
-<<<<<<< HEAD
-<<<<<<< HEAD
-     
+        #region Thong Ke  
         public bool XuatThongKeTheoThang(int idkhachHang , int idPhong)
         {
             return false;
-        }
-      
+        }    
         public bool XuatThongKeTheoQuy()
         {
             return false;
         }
-=======
-        public List<BaoCaoThongKeDTO> BaoCaoThongKeTheoThang(int thang, int nam)
-=======
         public List<ThongKeTheoThangDTO> BaoCaoThongKeTheoThang(int thang, int nam)
->>>>>>> 8315f5cc68f0f90dceeeaa9d6af8f1dd724ced0d
         {
             var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong != false).Select(kh => new KhachHangDTO
             {
@@ -383,11 +375,8 @@ namespace QLKSProject.Business.QuanLy
             lstBaoCaoThongKeDTO.Add(DoanhThuMassage());
 
             return lstBaoCaoThongKeDTO;
-<<<<<<< HEAD
+
         } 
->>>>>>> 47f4ea5197af2e8f2cefae5b48647763838e5057
-=======
-        }
         public List<ThongKeTheoQuyDTO> BaoCaoThongKeTheoQuy(int quy, int nam)
         {
             var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong != false).Select(kh => new KhachHangDTO
@@ -450,7 +439,7 @@ namespace QLKSProject.Business.QuanLy
 
             return thongKeTheoQuyDTOs;
         }
->>>>>>> 8315f5cc68f0f90dceeeaa9d6af8f1dd724ced0d
+
         #endregion
         #region Private Methods
         private void LayNgayDauThangvaCuoiThang(int thang,int nam)
