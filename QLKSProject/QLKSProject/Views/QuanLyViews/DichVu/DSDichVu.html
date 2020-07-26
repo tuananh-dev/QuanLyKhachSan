@@ -75,7 +75,7 @@
 
                 }
 
-                loadDataDetail(edit, layDV , dataId);
+                loadDataDetail(edit, layDV, dataId);
             })
 
             $('#btn-edit').click(function () {
@@ -318,19 +318,21 @@
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="index.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                                       href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li>
-                                    <a class="parent-item" href="#">Dịch Vụ</a>&nbsp;<i class="fa fa-angle-right"></i>
-                                </li>
+                               
                                 <li class="active">Danh Sách Dịch Vụ</li>
                             </ol>
                         </div>
                     </div>
+
+
+
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-box">
-
+                                
                                 <div class="card-body ">
                                     <div class="row p-b-20">
                                         <div class="col-md-6 col-sm-6 col-6">
@@ -341,19 +343,18 @@
                                                 </button>
 
 
-
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="table-scrollable">
-                                        <table class="table table-hover table-checkable order-column full-width"
+                                        <table class="table display product-overview mb-30"
                                                id="example">
                                             <thead>
                                                 <tr>
-                                                    <th class="center"> Tên </th>
-                                                    <th class="center"> Giá </th>
-                                                    <th class="center"> Mô tả </th>
+                                                    <th> Tên </th>
+                                                    <th> Giá </th>
+                                                    <th> Mô tả </th>
                                                     <th class="center"> Chức Năng </th>
                                                 </tr>
                                             </thead>
@@ -361,6 +362,8 @@
                                             </tbody>
                                         </table>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -436,7 +439,7 @@
                                         <div class="card-body row">
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="tenDV-edit" >
+                                                    <input class="mdl-textfield__input" type="text" id="tenDV-edit">
                                                     <label class="mdl-textfield__label" style="top:0;">Tên Dịch Vụ</label>
                                                 </div>
                                             </div>
@@ -444,7 +447,7 @@
                                             <div class="col-lg-6 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                     <input class="mdl-textfield__input" type="number"
-                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia-edit" >
+                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia-edit">
                                                     <label class="mdl-textfield__label" for="gia-edit" style="top:0;">Giá</label>
                                                     <span class="mdl-textfield__error">Phải là số</span>
                                                 </div>
