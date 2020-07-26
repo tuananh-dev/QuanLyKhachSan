@@ -38,7 +38,7 @@ namespace QLKSProject.Controllers.Home
         }
             [HttpPost]
             public IHttpActionResult KiemTraTaiKhoan (LoginRQ loginForm)
-		{
+		    {
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
 				try
