@@ -28,7 +28,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
+    <script type="text/javascript">
 
+    </script>
 </head>
 
 <body>
@@ -36,24 +38,24 @@
     <div class="limiter">
         <div class="container-login100 page-background">
             <div class="wrap-login100">
-                       
-                
-    @*<button onclick="history.go(-1);" type="button" class="close" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>*@
-                @*<script>
-                    var closebtns = document.getElementsByClassName("close");
-                    var i;
 
-                    for (i = 0; i < closebtns.length; i++) {
-                        closebtns[i].addEventListener("click", function () {
-                            this.parentElement.style.display = 'none';
-                        });
-                    }
-                </script>*@
+
+                @*<button onclick="history.go(-1);" type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>*@
+                @*<script>
+                        var closebtns = document.getElementsByClassName("close");
+                        var i;
+
+                        for (i = 0; i < closebtns.length; i++) {
+                            closebtns[i].addEventListener("click", function () {
+                                this.parentElement.style.display = 'none';
+                            });
+                        }
+                    </script>*@
                 <form class="login100-form validate-form" id="dangnhap" onclick="return false">
 
-                   
+
                     <span class="login100-form-logo">
                         <i class="zmdi zmdi-flower"></i>
                     </span>
@@ -71,7 +73,7 @@
                     <div class="contact100-form-checkbox">
                         <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                         <label class="label-checkbox100" for="ckb1">
-                                Remember me
+                            Remember me
                             <script>
                                 const rmCheck = document.getElementById("ckb1"),
                                     emailInput = document.getElementById("name");
@@ -97,57 +99,108 @@
                         </label>
                     </div>
                     @*<div class="container-login100-form-btn">
-            <button class="login100-form-btn" id="login">
-                Login
-            </button>
-        </div>*@
-                   
-                         <div class="container-login100-form-btn">
-                             <button type="submit" id="login" class="login100-form-btn">
-                                 Login
-                             </button>
-                             @*<button type="cannel" onclick="javascript:window.location='http://stackoverflow.com';">Cancel</button>*@
-                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                             <button style="color:red" type="button" id="cancel" class="login100-form-btn" onclick="goBack()" @*onclick="javascript:window.location='http://stackoverflow.com';"*@>
-                                 Cancel
-                             </button>
-                             <script>
+                            <button class="login100-form-btn" id="login">
+                                Login
+                            </button>
+                        </div>*@
 
-                                 function goBack() {
-                                     window.history.back();
-                                 }
-                             </script>
+                    <div class="container-login100-form-btn">
+                        <button type="submit" id="login" class="login100-form-btn">
+                            Login
+                        </button>
+                        @*<button type="cannel" onclick="javascript:window.location='http://stackoverflow.com';">Cancel</button>*@
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button style="color:red" type="button" id="cancel" class="login100-form-btn" onclick="goBack()" @*onclick="javascript:window.location='http://stackoverflow.com';"*@>
+                            Cancel
+                        </button>
+                        <script>
 
-                         </div>
+                            function goBack() {
+                                window.history.back();
+                            }
+                        </script>
+
+                    </div>
 
 
                     <div class="text-center p-t-90">
                         <a class="txt1" href="#">
-                Forgot Password?
-            </a>
+                            Forgot Password?
+                        </a>
                     </div>
                 </form>
             </div>
         </div>
-       
-        @*<script type="text/javascript">
 
-            
+        <script type="text/javascript">
 
-                $(document).ready(function () {
 
-                    $('#dangnhap').submit(function () {
-                        var person = {
-                            Name: $('#name').val(),
-                            Pass: $('#pass').val(),
+
+            $(document).ready(function () {
+
+                $('#login').click(function () {
+                    var person = {
+                        Name: $('#name').val(),
+                        Pass: $('#pass').val(),
+                    }
+                    $.ajax({
+                        url: '/api/token',
+                        method: 'POST',
+                        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+                        data: JSON.stringify(person),
+
+                        success: function (data) {
+                            sessionStorage.setItem("token", data.access_token);
+                            $.ajax({
+                                url: '/api/',//lay thong tin tu token
+                                method: 'GET',
+                                headers: {
+                                    'content-type': 'application/json',
+                                    'data-type': 'json',
+                                    'Authorization': 'Bearer ' + sessionStorage.getItem('data_access')
+                                },
+                                success: function (data) {
+                                    sessionStorage.setItem("loaiTK", data.loaiTK);
+                                    sessionStorage.setItem("fullTen", data.fullTen);
+                                }
+                                
+                            })
+
+
+
+                        },
+                        error: function (data) {
 
 
                         }
 
 
+                    });
+
+
+                });
+
+
+            });
+
+        </script>
+
+        @*<script type="text/javascript">
+
+
+
+
+                $(document).ready(function () {
+                    $('#dangnhap').submit(function () {
+                        var person = {
+                            TenDoan: $('#name').val(),
+                            TenTruongDoan: $('#pass').val()
+                        }
+
+
 
                         $.ajax({
-                            url: '/api/Home/TestDuLieuTruyenXuong',
+                            url: '/api/Home/LayFileDanhSachKhachHang',
                             method: 'POST',
                             dataType: 'json',
                             contentType: 'application/json',
@@ -156,104 +209,55 @@
 
                             success: function (data) {
                                 //console.log('Send success')
-                                alert(data);
 
-                               
+
+                                swal({
+                                    type: 'success',
+                                    title: 'Tuyệt Vời!',
+                                    text: 'Bạn Đã Gửi File Danh Sách Thành Công',
+                                    confirmButtonColor: '#f23a2e',
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            window.location.href = "trangchu.cshtml";
+                                        }
+                                    });
+
+
+
+
                             },
                             error: function (data) {
+
+                                swal({
+                                    type: 'error',
+                                    title: 'Rất Tiếc',
+                                    text: 'Bạn Đã Gửi File Danh Sách Không Thành Công',
+
+
+
+                                });
 
 
                             }
 
 
-                        });
 
+
+                        });
 
                     });
 
-
-                });
-           
-        </script>*@
-    
-    <script type="text/javascript">
-
-
-
-
-        $(document).ready(function () {
-
-            //$("#gui").click(function ()
-            $('#dangnhap').submit(function () {
-
-                var person = {
-                    TenDoan: $('#name').val(),
-                    TenTruongDoan: $('#pass').val(),
-                    
-
-                }
-
-
-
-                $.ajax({
-                    url: '/api/Home/LayFileDanhSachKhachHang',
-                    method: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    //data: JSON.stringify(person),
-                    data: JSON.stringify(person),
-
-                    success: function (data) {
-                        //console.log('Send success')
-
-
-                        swal({
-                            type: 'success',
-                            title: 'Tuyệt Vời!',
-                            text: 'Bạn Đã Gửi File Danh Sách Thành Công',
-                            confirmButtonColor: '#f23a2e',
-                        },
-                            function (isConfirm) {
-                                if (isConfirm) {
-                                    window.location.href = "trangchu.cshtml";
-                                }
-                            });
-
-
-
-
-                    },
-                    error: function (data) {
-
-                        swal({
-                            type: 'error',
-                            title: 'Rất Tiếc',
-                            text: 'Bạn Đã Gửi File Danh Sách Không Thành Công',
-
-
-
-                        });
-
-
-                    }
-
-
-
-
                 });
 
-            });
-            
-        });
+            </script>*@
 
-    </script>
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
     </div>
     <!-- start js include path -->
     <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
