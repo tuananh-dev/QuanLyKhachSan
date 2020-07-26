@@ -36,5 +36,6 @@ namespace QLKSProject.Models.Entities
         [Required]
         public bool IsDelete { get; set; }
 
+        public int idKhachHang { get; set; }
     }
 }

@@ -16,11 +16,12 @@ namespace QLKSProject.Controllers.Home
         [HttpPost]
         public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
         {
+            IHttpActionResult respone = Ok();
             if (dynamic == null)
             {
-                return BadRequest("Không láy được file khách hàng !!!");
+                return respone = BadRequest();
             }
-            bool trangThaiLayDanhSach = false;
+
             string tenDoan = dynamic.TenDoan.ToString();
             string tenTruongDoan = dynamic.TenTruongDoan.ToString();
             DateTime thoiGianNhan = dynamic.ThoiGianNhan;
@@ -29,12 +30,11 @@ namespace QLKSProject.Controllers.Home
 
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
-                trangThaiLayDanhSach = homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang);
+                if (!homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang))
+                    return BadRequest("Lỗi Lưu file !!!");
+                else
+                    return Ok("Lưu file thành công !");
             }
-            if (trangThaiLayDanhSach)
-                return Ok("Lưu danh sách thành công !!!");
-            else
-                return BadRequest("Lưu danh sách lỗi !!!");
         }
             [HttpPost]
             public IHttpActionResult KiemTraTaiKhoan (LoginRQ loginForm)

@@ -12,5 +12,6 @@ namespace QLKSProject.Models.DTO
         public string Email { get; set; }
         public string LoaiTaiKhoan { get; set; }
         public bool IsDelete { get; set; }
+        public int idKhachHang { get; set; }
     }
 }

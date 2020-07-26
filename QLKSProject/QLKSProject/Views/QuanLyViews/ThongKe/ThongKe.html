@@ -26,29 +26,61 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="../../../Content/QuanLy/Jquery.js"></script>
-    <script src="../../../Content/QuanLy/libs_function.js"></script>
+    <style>
+        #container {
+            height: 500px;
+        }
+
+        .highcharts-figure, .highcharts-data-table table {
+            min-width: 320px;
+            max-width: 700px;
+            margin: 1em auto;
+        }
+
+        .highcharts-data-table table {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #EBEBEB;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .highcharts-data-table caption {
+            padding: 1em 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .highcharts-data-table th {
+            font-weight: 600;
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        .highcharts-data-table tr:hover {
+            background: #f1f7ff;
+        }
+    </style>
     <script type="text/javascript">
 
         $(document).ready(function () {
+            dashboard_Circle("QuanLy/XuatBaoCaoThongKeTheoThang");
+            dashboard_ThreeBar();
 
-            var idList = $('#dsdoan');
-            var layDSDoan = 'NhanVien/LayDanhSachDoan';
-            var xepPhong = "NhanVien/DatPhongChoTungDoan/";
-            loadData(idList, layDSDoan);
-
-
-            $('body').on('click', 'a.btn.btn-info.btn-xs', function () {
-                dataId = $(this).attr("data-id");
-                var info = {
-                    id: '#dsdoan',
-                    urlLoad: 'NhanVien/LayDanhSachDoan'
-                }
-                DatPhongChoTungDoan(info, xepPhong + dataId);
-            })
 
 
         });
     </script>
+
 </head>
 <!-- END HEAD -->
 
@@ -124,6 +156,8 @@
         <!-- end header -->
         <!-- start page container -->
         <div class="page-container">
+            <!-- start sidebar menu -->
+            <!-- end sidebar menu -->
             <!-- start sidebar menu -->
             <div class="sidebar-container">
                 <div class="sidemenu-container navbar-collapse collapse fixed-menu">
@@ -226,6 +260,7 @@
                                 </a>
 
                             </li>
+
                             <li class="nav-item active">
                                 <a href="/Views/NhanVienViews/Doan/Doan.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
@@ -245,7 +280,7 @@
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
-                                <div class="page-title">Danh Sách Đoàn</div>
+                                <div class="page-title">Danh Sách Thành Viên</div>
                             </div>
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
@@ -253,44 +288,40 @@
                                                                        href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
                                 <li>
-                                    <a class="parent-item" href="#">Đoàn</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                    <a class="parent-item" href="#">Thành Viên</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li class="active">Danh Sách Đoàn</li>
+                                <li class="active">Danh Sách Thành Viên</li>
                             </ol>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-box">
+                        <div class="col-md-6">
 
-                                <div class="card-body ">
 
-                                    <div class="table-scrollable">
-                                        <table class="table table-hover table-checkable order-column full-width"
-                                               id="example">
-                                            <thead>
-                                                <tr>
-                                                    <th class="center" style="width:300px;"> Tên Đoàn </th>
-                                                    <th class="center" style="width:300px;"> Tên Trưởng Đoàn </th>
-                                                    <th class="center"> Thời Gian Nhận </th>
-                                                    <th class="center"> Thời Gian Trả </th>
-                                                    <th class="center"> Ngày Gửi </th>
-                                                    <th class="center"> Xếp Phòng </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="dsdoan">
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                            <figure class="highcharts-figure">
+                                <div id="circle"></div>
+
+                            </figure>
+
+
+
+
+
                         </div>
+                        <div class="col-md-6">
+                            <figure class="highcharts-figure">
+                                <div id="three-bar"></div>
+
+                            </figure>
+                        </div>
+                        
                     </div>
                 </div>
+
+                <!-- Modal -->
+                <!-- start footer -->
+                <!-- end footer -->
             </div>
-            <!-- Modal -->
-            <!-- end page container -->
-            <!-- start footer -->
             <div class="page-footer">
                 <div class="page-footer-inner">
                     2020 &copy; Hotel Spice
@@ -300,11 +331,11 @@
                     <i class="icon-arrow-up"></i>
                 </div>
             </div>
-            <!-- end footer -->
         </div>
     </div>
+
     <!-- start js include path -->
-    <script src="../../../Content/QuanLy/plugins/jquery/jquery.min.js"></script>
+    <script src="../../../Content/QuanLy/Jquery.js"></script>
     <script src="../../../Content/QuanLy/plugins/popper/popper.min.js"></script>
     <script src="../../../Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
     <script src="../../../Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
@@ -322,6 +353,18 @@
     <!-- animation -->
     <script src="../../../Content/QuanLy/js/pages/ui/animations.js"></script>
     <!-- end js include path -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+
+
+    <script src="../../../Content/QuanLy/libs_function.js"></script>
+    <!--<script src="../../../Content/QuanLy/js/pages/chart/chartjs/home-data2.js"></script>-->
+    <script src="../../../Content/QuanLy/DashBoard.js"></script>
 </body>
 
 

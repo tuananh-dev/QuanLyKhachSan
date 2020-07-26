@@ -30,5 +30,18 @@ namespace QLKSProject.Business.KhachHangBusiness
 
             return lstKhachHang;
         }
+        public bool XacNhanDatPhong(string maDoan)
+        {
+            var doan = models.Doans.Where(d => d.MaDoan == maDoan).FirstOrDefault();
+            if(doan != null)
+            {
+                doan.TrangThaiXacNhan = true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }    
+        }
     }
 }

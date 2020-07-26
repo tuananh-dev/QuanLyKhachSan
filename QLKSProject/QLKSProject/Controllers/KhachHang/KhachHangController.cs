@@ -13,12 +13,22 @@ namespace QLKSProject.Controllers.KhachHang
         [HttpGet]
         public IHttpActionResult LayDanhSachKhachHangTheoMaDoan([FromUri] string id)
         {
-            IHttpActionResult respone = Ok();
             using(KhachHangBusiness khachHangBusiness = new KhachHangBusiness())
             {
-                respone = Ok(khachHangBusiness.LayDanhSachKhachHangTheoMaDoan(id));
+                return Ok(khachHangBusiness.LayDanhSachKhachHangTheoMaDoan(id));
             }
-            return respone;
+        }
+        [HttpGet]
+        public IHttpActionResult XacNhanDatPhong([FromUri]string id)
+        {
+            using (KhachHangBusiness khachHangBusiness = new KhachHangBusiness())
+            {
+                bool result = khachHangBusiness.XacNhanDatPhong(id);
+                if (result)
+                    return Ok("Xác nhận đặt phòng thành công!");
+                else
+                    return BadRequest("Xác nhận đặt phòng thất bại!");
+            }
         }
     }
 }
