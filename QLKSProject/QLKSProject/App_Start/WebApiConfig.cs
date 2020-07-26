@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace QLKSProject
 {
@@ -10,9 +12,9 @@ namespace QLKSProject
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
-            
-            // Web API routes
+
+            config.EnableCors();
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -20,15 +22,8 @@ namespace QLKSProject
                     routeTemplate: "api/{controller}/{action}/{id}",
                     defaults: new { id = RouteParameter.Optional }
                 );
-            /*            #region Multi routers
-                        config.Routes.MapHttpRoute(
-                            name: "ActionApiMulti",
-                            routeTemplate: "api/{controller}/{action}/{id}",
-                            defaults: new { id = RouteParameter.Optional },
-                            constraints: new { id = "/d+" }
-                        );
-                        #endregion*/
             config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+
             /*var json = config.Formatters.JsonFormatter;
             json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
             config.Formatters.Remove(config.Formatters.XmlFormatter);*/

@@ -11,6 +11,7 @@ using QLKSProject.Models.DTO;
 
 namespace QLKSProject.Controllers.NhanVien
 {
+    [Authorize(Roles = "nv")]
     public class NhanVienController : ApiController
     {
         [HttpGet]

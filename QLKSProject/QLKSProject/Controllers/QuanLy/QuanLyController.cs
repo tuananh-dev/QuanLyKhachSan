@@ -11,6 +11,7 @@ using QLKSProject.Models.DTO;
 
 namespace QLKSProject.Controllers.QuanLy
 {
+    [Authorize(Roles = "ql")]
     public class QuanLyController : ApiController
     {
         #region API xu ly TaiKhoan
@@ -36,7 +37,7 @@ namespace QLKSProject.Controllers.QuanLy
         public IHttpActionResult ThemTaiKhoan([FromBody]dynamic dynamic)
         {
             IHttpActionResult respon = Ok();
-            TaiKhoanDTO tk = JsonConvert.DeserializeObject<TaiKhoanDTO>(dynamic.ToString());
+            UserMasterDTO tk = JsonConvert.DeserializeObject<UserMasterDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 if (quanLy.ThemTaiKhoan(tk))
@@ -48,7 +49,7 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpPut]
         public IHttpActionResult CapNhatTaiKhoan([FromBody] dynamic dynamic)
         {
-            TaiKhoanDTO tk = JsonConvert.DeserializeObject<TaiKhoanDTO>(dynamic.ToString());
+            UserMasterDTO tk = JsonConvert.DeserializeObject<UserMasterDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 if (quanLy.CapNhatTaiKhoan(tk))

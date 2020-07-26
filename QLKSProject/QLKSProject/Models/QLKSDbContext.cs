@@ -21,9 +21,7 @@ namespace QLKSProject.Models
         public DbSet<KhachHang> KhachHangs { get; set; }
         public DbSet<LichSuDichVu> LichSuDichVus { get; set; }
         public DbSet<Phong> Phongs { get; set; }
-        public DbSet<TaiKhoan> TaiKhoans { get; set; }
         public DbSet<TienIch> TienIches { get; set; }
-
-
+        public DbSet<UserMaster> UserMasters { get; set; }
     }
 }

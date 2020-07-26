@@ -123,38 +123,22 @@
                     </div>
                     <script type="text/javascript">
                         $(document).ready(function () {
-
-                            //$("#gui").click(function ()
                             $('#dangnhap').submit(function () {
-
-                                var person = {
-                                    tendangnhap: $('#username').val(),
-                                    matkhau: $('#pass').val(),
-                                }
                                 $.ajax({
-                                    url: '/api/Home/LayFileDanhSachKhachHang',
+                                    url: '/token',
                                     method: 'POST',
                                     dataType: 'json',
                                     contentType: 'application/json',
                                     //data: JSON.stringify(person),
-                                    data: JSON.stringify(person),
-
-                                    //success: function (data) {
-                                    //    //console.log('Send success')
-                                    //    swal({
-                                    //        type: 'success',
-                                    //        title: 'Tuyệt Vời!',
-                                    //        text: 'Bạn Đã Gửi File Danh Sách Thành Công',
-                                    //        confirmButtonColor: '#f23a2e',
-                                    //    },
-                                    //        function (isConfirm) {
-                                    //            if (isConfirm) {
-                                    //                window.location.href = "trangchu.cshtml";
-                                    //            }
-                                    //        });
-                                    //},
+                                    data: {
+                                        username: $('#username').val(),
+                                        password: $('#pass').val(),
+                                        grant_type:'password'
+                                    },
+                                    success: function (response) {
+                                        sessionStorage.setItem('accessToken', response.access_token);                                       
+                                    },
                                     error: function (data) {
-
                                         swal({
                                             type: 'error',
                                             title: 'Đăng Nhập Thất Bại',

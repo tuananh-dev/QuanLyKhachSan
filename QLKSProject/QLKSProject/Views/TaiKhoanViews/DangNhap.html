@@ -20,28 +20,7 @@
     <!-- favicon -->
 <!--<<<<<<< HEAD:QLKSProject/QLKSProject/Views/TaiKhoanViews/DangNhap.html-->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
-=======
-    <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-<<<<<<< HEAD
-<<<<<<< HEAD:QLKSProject/QLKSProject/Views/TaiKhoanViews/DangNhap.html
 
->>>>>>> da25927b547fbbb3235c2bd98ccac248bad4056b:QLKSProject/QLKSProject/Views/AccountViews/DangNhap.cshtml
-=======
-    <script src="js/form-validation.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
->>>>>>> e094c0ce5cf61a237d0afe055b285517535e0c10:QLKSProject/QLKSProject/Views/AccountViews/DangNhap.cshtml
-=======
-<!--<<<<<<< HEAD:QLKSProject/QLKSProject/Views/AccountViews/DangNhap.cshtml-->
-    <script src="js/form-validation.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-=======
-
-<!-->>>>>>> da25927b547fbbb3235c2bd98ccac248bad4056b:QLKSProject/QLKSProject/Views/AccountViews/DangNhap.cshtml
->>>>>>> d2408ad0c1c67a67921780ded409f9ed7f4f5bf8:QLKSProject/QLKSProject/Views/TaiKhoanViews/DangNhap.html-->
->>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
 </head>
 
 <body>
@@ -74,56 +53,21 @@
                         <button class="login100-form-btn" id="login">
                             Login
                         </button>
-<<<<<<< HEAD
-<<<<<<< HEAD:QLKSProject/QLKSProject/Views/TaiKhoanViews/DangNhap.html
-                    </div>
-                    
+
                 </form>
-=======
-=======
-                        <!--<<<<<<< HEAD:QLKSProject/QLKSProject/Views/AccountViews/DangNhap.cshtml-->
->>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
-                    </div>*@
-                    <div class="container-login100-form-btn">
-                        <button type="submit" id="login" class="login100-form-btn">
-                            Login
-                        </button>
-                    </div>
-                    <div class="text-center p-t-90">
-                        <a class="txt1" href="#">
-                            Forgot Password?
-                        </a>
-                    </div>
-<<<<<<< HEAD
-</form>
->>>>>>> e094c0ce5cf61a237d0afe055b285517535e0c10:QLKSProject/QLKSProject/Views/AccountViews/DangNhap.cshtml
-=======
-                </form>
-                <!--=======-->
->>>>>>> 0f476819cdcc92c0f9f689116f1f48660f7255d9
             </div>
 
-
-            <!-->>>>>>> d2408ad0c1c67a67921780ded409f9ed7f4f5bf8:QLKSProject/QLKSProject/Views/TaiKhoanViews/DangNhap.html-->
         </div>
     </div>
 
     <script type="text/javascript">
-
-
-
         $(document).ready(function () {
 
             $('#dangnhap').submit(function () {
                 var person = {
                     Name: $('#name').val(),
                     Pass: $('#pass').val(),
-
-
                 }
-
-
-
                 $.ajax({
                     url: '/api/Home/TestDuLieuTruyenXuong',
                     method: 'POST',

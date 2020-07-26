@@ -9,52 +9,52 @@ namespace QLKSProject.Business.QuanLy
 {
     public class QuanLyBusiness : BaseBusiness
     {
-        #region TaiKhoan
-        public List<TaiKhoanDTO> LayDanhSachTaiKhoan()
+        #region UserMaster
+        public List<UserMasterDTO> LayDanhSachTaiKhoan()
         {
-            var lstTaiKhoan = models.TaiKhoans.Where(e => e.IsDelete == false && e.LoaiTaiKhoan == "NV").Select(e => new TaiKhoanDTO
+            var lstUserMaster = models.UserMasters.Where(e => e.IsDelete == false && e.UserRoles == "NV").Select(e => new UserMasterDTO
             {
                 ID = e.ID,
-                TenTaiKhoan = e.TenTaiKhoan,
-                MatKhau = e.MatKhau,
-                HoVaTen = e.HoVaTen,
-                SoDienThoai = e.SoDienThoai,
-                Email = e.Email,
-                LoaiTaiKhoan = e.LoaiTaiKhoan,
+                UserName = e.UserName,
+                UserPassword = e.UserPassword,
+                FullName = e.FullName,
+                PhoneNumber = e.PhoneNumber,
+                UserEmailID = e.UserEmailID,
+                UserRoles = e.UserRoles,
                 IsDelete = e.IsDelete
             });
-            return lstTaiKhoan.ToList();
+            return lstUserMaster.ToList();
         }
-        public TaiKhoanDTO LayTaiKhoan(int idTaiKhoan)
+        public UserMasterDTO LayTaiKhoan(int idUserMaster)
         {
 
-            var taiKhoan = models.TaiKhoans.Where(e => e.ID == idTaiKhoan).Select(e => new TaiKhoanDTO
+            var UserMaster = models.UserMasters.Where(e => e.ID == idUserMaster).Select(e => new UserMasterDTO
             {
                 ID = e.ID,
-                TenTaiKhoan = e.TenTaiKhoan,
-                MatKhau = e.MatKhau,
-                HoVaTen = e.HoVaTen,
-                SoDienThoai = e.SoDienThoai,
-                Email = e.Email,
-                LoaiTaiKhoan = e.LoaiTaiKhoan,
+                UserName = e.UserName,
+                UserPassword = e.UserPassword,
+                FullName = e.FullName,
+                PhoneNumber = e.PhoneNumber,
+                UserEmailID = e.UserEmailID,
+                UserRoles = e.UserRoles,
                 IsDelete = e.IsDelete
             }).FirstOrDefault();
-            return taiKhoan;
+            return UserMaster;
         }
-        public bool ThemTaiKhoan(TaiKhoanDTO taiKhoan)
+        public bool ThemTaiKhoan(UserMasterDTO UserMaster)
         {
 
-            Models.Entities.TaiKhoan tk = new Models.Entities.TaiKhoan();
-            if (CheckTaiKhoan(taiKhoan.TenTaiKhoan))
+            Models.Entities.UserMaster tk = new Models.Entities.UserMaster();
+            if (CheckUserMaster(UserMaster.UserName))
             {
-                tk.TenTaiKhoan = taiKhoan.TenTaiKhoan;
-                tk.MatKhau = taiKhoan.MatKhau;
-                tk.HoVaTen = taiKhoan.HoVaTen;
-                tk.SoDienThoai = taiKhoan.SoDienThoai;
-                tk.Email = taiKhoan.Email;
-                tk.LoaiTaiKhoan = taiKhoan.LoaiTaiKhoan;
-                tk.IsDelete = taiKhoan.IsDelete;
-                models.TaiKhoans.Add(tk);
+                tk.UserName = UserMaster.UserName;
+                tk.UserPassword = UserMaster.UserPassword;
+                tk.FullName = UserMaster.FullName;
+                tk.PhoneNumber = UserMaster.PhoneNumber;
+                tk.UserEmailID = UserMaster.UserEmailID;
+                tk.UserRoles = UserMaster.UserRoles;
+                tk.IsDelete = UserMaster.IsDelete;
+                models.UserMasters.Add(tk);
                 models.SaveChanges();
                 return true;
             }
@@ -63,17 +63,17 @@ namespace QLKSProject.Business.QuanLy
                 return false;
             }
         }
-        public bool CapNhatTaiKhoan(TaiKhoanDTO taiKhoan)
+        public bool CapNhatTaiKhoan(UserMasterDTO UserMaster)
         {
 
             try
             {
-                var tk = models.TaiKhoans.Where(s => s.ID == taiKhoan.ID).FirstOrDefault();
-                tk.TenTaiKhoan = taiKhoan.TenTaiKhoan;
-                tk.HoVaTen = taiKhoan.HoVaTen;
-                tk.SoDienThoai = taiKhoan.SoDienThoai;
-                tk.Email = taiKhoan.Email;
-                tk.LoaiTaiKhoan = taiKhoan.LoaiTaiKhoan;
+                var tk = models.UserMasters.Where(s => s.ID == UserMaster.ID).FirstOrDefault();
+                tk.UserName = UserMaster.UserName;
+                tk.FullName = UserMaster.FullName;
+                tk.PhoneNumber = UserMaster.PhoneNumber;
+                tk.UserEmailID = UserMaster.UserEmailID;
+                tk.UserRoles = UserMaster.UserRoles;
                 models.SaveChanges();
                 return true;
             }
@@ -82,12 +82,12 @@ namespace QLKSProject.Business.QuanLy
                 return false;
             }
         }
-        public bool XoaTaiKhoan(int idTaiKhoan)
+        public bool XoaTaiKhoan(int idUserMaster)
         {
-            var taikhoan = models.TaiKhoans.Where(e => e.ID == idTaiKhoan).FirstOrDefault();
-            if (taikhoan != null)
+            var UserMaster = models.UserMasters.Where(e => e.ID == idUserMaster).FirstOrDefault();
+            if (UserMaster != null)
             {
-                taikhoan.IsDelete = true;
+                UserMaster.IsDelete = true;
                 models.SaveChanges();
                 return true;
             }
@@ -428,22 +428,22 @@ namespace QLKSProject.Business.QuanLy
         }
         #endregion
         #region Private Methods
-        private bool CheckTaiKhoan(String tenTaiKhoan)
+        private bool CheckUserMaster(String userName)
         {
             bool b = true;
-            List<TaiKhoanDTO> lstTaiKhoan = models.TaiKhoans.Select(s => new TaiKhoanDTO
+            List<UserMasterDTO> lstUserMaster = models.UserMasters.Select(s => new UserMasterDTO
             {
-                TenTaiKhoan = s.TenTaiKhoan,
-                MatKhau = s.MatKhau,
-                HoVaTen = s.HoVaTen,
-                SoDienThoai = s.SoDienThoai,
-                Email = s.Email,
-                LoaiTaiKhoan = s.LoaiTaiKhoan,
+                UserName = s.UserName,
+                UserPassword = s.UserPassword,
+                FullName = s.FullName,
+                PhoneNumber = s.PhoneNumber,
+                UserEmailID = s.UserEmailID,
+                UserRoles = s.UserRoles,
                 IsDelete = s.IsDelete
             }).ToList();
-            foreach (var item in lstTaiKhoan)
+            foreach (var item in lstUserMaster)
             {
-                if (tenTaiKhoan.Equals(item.TenTaiKhoan))
+                if (userName.Equals(item.UserName))
                     b = false;
 
             }

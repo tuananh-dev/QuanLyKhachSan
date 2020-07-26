@@ -8,6 +8,7 @@ using QLKSProject.Business.KhachHangBusiness;
 
 namespace QLKSProject.Controllers.KhachHang
 {
+    [Authorize(Roles = "kh")]
     public class KhachHangController : ApiController
     {
         [HttpGet]
