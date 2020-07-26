@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLKSProject", "QLKSProject\QLKSProject.csproj", "{38C488A7-3D68-44D6-A0E6-9F4BA7D4869C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{A01F6EBB-C4F3-485C-BB8C-C84911123078}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{38C488A7-3D68-44D6-A0E6-9F4BA7D4869C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38C488A7-3D68-44D6-A0E6-9F4BA7D4869C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38C488A7-3D68-44D6-A0E6-9F4BA7D4869C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A01F6EBB-C4F3-485C-BB8C-C84911123078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A01F6EBB-C4F3-485C-BB8C-C84911123078}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A01F6EBB-C4F3-485C-BB8C-C84911123078}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A01F6EBB-C4F3-485C-BB8C-C84911123078}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

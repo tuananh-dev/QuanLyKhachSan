@@ -327,24 +327,22 @@ namespace QLKSProject.Business.QuanLy
             return false;
         }
         #endregion
-        #region Thong Ke
-<<<<<<< HEAD
-<<<<<<< HEAD
-     
-        public bool XuatThongKeTheoThang(int idkhachHang , int idPhong)
+      #region Thong Ke
+
+
+        public bool XuatThongKeTheoThang(int idkhachHang, int idPhong)
         {
             return false;
         }
-      
+
         public bool XuatThongKeTheoQuy()
         {
             return false;
         }
-=======
-        public List<BaoCaoThongKeDTO> BaoCaoThongKeTheoThang(int thang, int nam)
-=======
+
+
         public List<ThongKeTheoThangDTO> BaoCaoThongKeTheoThang(int thang, int nam)
->>>>>>> 8315f5cc68f0f90dceeeaa9d6af8f1dd724ced0d
+
         {
             var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong != false).Select(kh => new KhachHangDTO
             {
@@ -383,346 +381,349 @@ namespace QLKSProject.Business.QuanLy
             lstBaoCaoThongKeDTO.Add(DoanhThuMassage());
 
             return lstBaoCaoThongKeDTO;
-<<<<<<< HEAD
-        } 
->>>>>>> 47f4ea5197af2e8f2cefae5b48647763838e5057
-=======
-        }
-        public List<ThongKeTheoQuyDTO> BaoCaoThongKeTheoQuy(int quy, int nam)
-        {
-            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong != false).Select(kh => new KhachHangDTO
-            {
-                ID = kh.ID,
-                HoVaTen = kh.HoVaTen,
-                SoDienThoai = kh.SoDienThoai,
-                Email = kh.Email,
-                DiaChi = kh.DiaChi,
-                Nhom = kh.Nhom,
-                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
-                ThoiGianNhan = kh.ThoiGianNhan,
-                ThoiGianTra = kh.ThoiGianTra,
-                MaDoan = kh.MaDoan,
-                GioiTinh = kh.GioiTinh,
-                LoaiKhachHang = kh.LoaiKhachHang,
-                TruongDoan = kh.TruongDoan,
-                IsDelete = kh.IsDelete,
-                TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                IDPhong = kh.IDPhong
-            }).ToList();
-            var lstPhong = models.Phongs.Where(p => p.IsDelete != true).Select(p => new PhongDTO
-            {
-                ID = p.ID,
-                MaPhong = p.MaPhong,
-                SoPhong = p.SoPhong,
-                LoaiPhong = p.LoaiPhong,
-                Gia = p.Gia,
-                TrangThai = p.TrangThai,
-                IsDelete = p.IsDelete
-            }).ToList();
-            int thang1 = 1;
-            int thang2 = 2;
-            int thang3 = 3;
-            switch (quy)
-            {
-                case 1: break;
-                case 2:
-                    thang1 = 4;
-                    thang2 = 5;
-                    thang3 = 6;
-                    break;
-                case 3:
-                    thang1 = 7;
-                    thang2 = 8;
-                    thang3 = 9;
-                    break;
-                case 4:
-                    thang1 = 10;
-                    thang2 = 11;
-                    thang3 = 12;
-                    break;
-            }
-            List<ThongKeTheoQuyDTO> thongKeTheoQuyDTOs = new List<ThongKeTheoQuyDTO>();
-            thongKeTheoQuyDTOs.Add(DoanhThuChoThuePhongTheoQuy(thang1, thang2, thang3, nam, lstPhong, lstKhachHang));
-            thongKeTheoQuyDTOs.Add(DoanhThuAnUongTheoQuy());
-            thongKeTheoQuyDTOs.Add(DoanhThuMassageTheoQuy());
-            thongKeTheoQuyDTOs.Add(DoanhThuThueXeTheoQuy());
-            thongKeTheoQuyDTOs.Add(DoanhThuGiatUiTheoQuy());
 
-            return thongKeTheoQuyDTOs;
         }
->>>>>>> 8315f5cc68f0f90dceeeaa9d6af8f1dd724ced0d
+
+    }
+    public List<ThongKeTheoQuyDTO> BaoCaoThongKeTheoQuy(int quy, int nam)
+    {
+        var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong != false).Select(kh => new KhachHangDTO
+        {
+            ID = kh.ID,
+            HoVaTen = kh.HoVaTen,
+            SoDienThoai = kh.SoDienThoai,
+            Email = kh.Email,
+            DiaChi = kh.DiaChi,
+            Nhom = kh.Nhom,
+            NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+            ThoiGianNhan = kh.ThoiGianNhan,
+            ThoiGianTra = kh.ThoiGianTra,
+            MaDoan = kh.MaDoan,
+            GioiTinh = kh.GioiTinh,
+            LoaiKhachHang = kh.LoaiKhachHang,
+            TruongDoan = kh.TruongDoan,
+            IsDelete = kh.IsDelete,
+            TrangThaiDatPhong = kh.TrangThaiDatPhong,
+            IDPhong = kh.IDPhong
+        }).ToList();
+        var lstPhong = models.Phongs.Where(p => p.IsDelete != true).Select(p => new PhongDTO
+        {
+            ID = p.ID,
+            MaPhong = p.MaPhong,
+            SoPhong = p.SoPhong,
+            LoaiPhong = p.LoaiPhong,
+            Gia = p.Gia,
+            TrangThai = p.TrangThai,
+            IsDelete = p.IsDelete
+        }).ToList();
+        int thang1 = 1;
+        int thang2 = 2;
+        int thang3 = 3;
+        switch (quy)
+        {
+            case 1: break;
+            case 2:
+                thang1 = 4;
+                thang2 = 5;
+                thang3 = 6;
+                break;
+            case 3:
+                thang1 = 7;
+                thang2 = 8;
+                thang3 = 9;
+                break;
+            case 4:
+                thang1 = 10;
+                thang2 = 11;
+                thang3 = 12;
+                break;
+        }
+        List<ThongKeTheoQuyDTO> thongKeTheoQuyDTOs = new List<ThongKeTheoQuyDTO>();
+        thongKeTheoQuyDTOs.Add(DoanhThuChoThuePhongTheoQuy(thang1, thang2, thang3, nam, lstPhong, lstKhachHang));
+        thongKeTheoQuyDTOs.Add(DoanhThuAnUongTheoQuy());
+        thongKeTheoQuyDTOs.Add(DoanhThuMassageTheoQuy());
+        thongKeTheoQuyDTOs.Add(DoanhThuThueXeTheoQuy());
+        thongKeTheoQuyDTOs.Add(DoanhThuGiatUiTheoQuy());
+
+        return thongKeTheoQuyDTOs;
+
         #endregion
-        #region Private Methods
-        private void LayNgayDauThangvaCuoiThang(int thang,int nam)
+        
+    }
+    #region Private Methods
+    private void LayNgayDauThangvaCuoiThang(int thang, int nam)
+    {
+        switch (thang)
         {
-            switch (thang)
-            {
-                case 1: ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 31);
-                    break;
-                case 2:ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 28);
-                    break;
-                case 3:
-                    ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 31);
-                    break;
-                case 4:
-                    ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 30);
-                    break;
-                case 5:
-                    ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 31);
-                    break;
-                case 6:
-                    ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 30);
-                    break;
-                case 7:
-                    ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 31);
-                    break;
-                case 8:
-                    ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 31);
-                    break;
-                case 9:
-                    ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 30);
-                    break;
-                case 10:
-                    ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 31);
-                    break;
-                case 11:
-                    ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 30);
-                    break;
-                case 12:
-                    ngayDauThang = new DateTime(nam, thang, 1);
-                    ngayCuoiThang = new DateTime(nam, thang, 31);
-                    break;
-            }
-            
+            case 1:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 31);
+                break;
+            case 2:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 28);
+                break;
+            case 3:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 31);
+                break;
+            case 4:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 30);
+                break;
+            case 5:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 31);
+                break;
+            case 6:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 30);
+                break;
+            case 7:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 31);
+                break;
+            case 8:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 31);
+                break;
+            case 9:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 30);
+                break;
+            case 10:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 31);
+                break;
+            case 11:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 30);
+                break;
+            case 12:
+                ngayDauThang = new DateTime(nam, thang, 1);
+                ngayCuoiThang = new DateTime(nam, thang, 31);
+                break;
         }
-        private bool CheckTaiKhoan(String tenTaiKhoan)
-        {
-            bool b = true;
-            List<TaiKhoanDTO> lstTaiKhoan = models.TaiKhoans.Select(s => new TaiKhoanDTO
-            {
-                TenTaiKhoan = s.TenTaiKhoan,
-                MatKhau = s.MatKhau,
-                HoVaTen = s.HoVaTen,
-                SoDienThoai = s.SoDienThoai,
-                Email = s.Email,
-                LoaiTaiKhoan = s.LoaiTaiKhoan,
-                IsDelete = s.IsDelete
-            }).ToList();
-            foreach (var item in lstTaiKhoan)
-            {
-                if (tenTaiKhoan.Equals(item.TenTaiKhoan))
-                    b = false;
 
-            }
-            return b;
-        }
-        private bool CheckPhong(String soPhong)
+    }
+    private bool CheckTaiKhoan(String tenTaiKhoan)
+    {
+        bool b = true;
+        List<TaiKhoanDTO> lstTaiKhoan = models.TaiKhoans.Select(s => new TaiKhoanDTO
         {
-            bool b = true;
-            List<PhongDTO> lstPhong = models.Phongs.Select(s => new PhongDTO
-            {
-                MaPhong = s.MaPhong,
-                SoPhong = s.SoPhong,
-                LoaiPhong = s.LoaiPhong,
-                Gia = s.Gia,
-                TrangThai = s.TrangThai,
-                IsDelete = s.IsDelete
-            }).ToList();
-            foreach (var item in lstPhong)
-            {
-                if (soPhong.Equals(item.SoPhong))
-                    b = false;
-            }
-            return b;
-        }
-        private bool CheckDichVu(String tenDichVu)
+            TenTaiKhoan = s.TenTaiKhoan,
+            MatKhau = s.MatKhau,
+            HoVaTen = s.HoVaTen,
+            SoDienThoai = s.SoDienThoai,
+            Email = s.Email,
+            LoaiTaiKhoan = s.LoaiTaiKhoan,
+            IsDelete = s.IsDelete
+        }).ToList();
+        foreach (var item in lstTaiKhoan)
         {
-            bool b = true;
-            List<DichVuDTO> lstDichVu = models.DichVus.Select(s => new DichVuDTO
-            {
-                TenDichVu = s.TenDichVu,
-                Gia = s.Gia,
-                MoTa = s.MoTa,
-                IsDelete = s.IsDelete
-            }).ToList();
-            foreach (var item in lstDichVu)
-            {
-                if (tenDichVu.Equals(item.TenDichVu))
-                    b = false;
-            }
-            return b;
-        }
-        private bool CheckTienIch(String tenTienIch)
-        {
-            bool b = true;
-            List<TienIchDTO> lstTienIch = models.TienIches.Select(s => new TienIchDTO
-            {
-                TenTienIch = s.TenTienIch,
-                MoTa = s.MoTa,
-                IsDelete = s.IsDelete
-            }).ToList();
-            foreach (var item in lstTienIch)
-            {
-                if (tenTienIch.Equals(item.TenTienIch))
-                    b = false;
-            }
-            return b;
-        }
-        private int TinhNgayCuoiThang(int thang, int nam)
-        {
-            int soNgay = 0;
-            bool testNamNhuan = false;
-            //Kiem tra nam nhuan
-            if ((nam % 400) == 0)
-                testNamNhuan = true;
-            else if ((nam % 100) == 0)
-                testNamNhuan = false;
-            else if ((nam % 4) == 0)
-                testNamNhuan = true;
-            else
-                testNamNhuan = false;
-            //Kiem tra thang
-            switch (thang)
-            {
-                case 1: soNgay = 31; break;
-                case 2: soNgay = testNamNhuan ? 29 : 28; break;
-                case 3: soNgay = 31; break;
-                case 4: soNgay = 30; break;
-                case 5: soNgay = 31; break;
-                case 6: soNgay = 30; break;
-                case 7: soNgay = 31; break;
-                case 8: soNgay = 31; break;
-                case 9: soNgay = 30; break;
-                case 10: soNgay = 31; break;
-                case 11: soNgay = 30; break;
-                case 12: soNgay = 31; break;
-            }
-            return soNgay;
-        }
-        private ThongKeTheoThangDTO DoanhThuChoThuePhong(int thang, int nam, List<PhongDTO> phongDTOs, List<KhachHangDTO> khachHangDTOs)
-        {
-            int cuoiThang = TinhNgayCuoiThang(thang, nam);
-            double doanhThu = 0;
-            foreach (var phong in phongDTOs)
-            {
-                var lstKhachHangTheoPhong = khachHangDTOs.Where(kh => kh.IDPhong == phong.ID && kh.ThoiGianTra.Year == nam && kh.ThoiGianTra.Month == thang).GroupBy(kh => kh.ThoiGianNhan).ToList();
+            if (tenTaiKhoan.Equals(item.TenTaiKhoan))
+                b = false;
 
-                foreach (var key in lstKhachHangTheoPhong)
+        }
+        return b;
+    }
+    private bool CheckPhong(String soPhong)
+    {
+        bool b = true;
+        List<PhongDTO> lstPhong = models.Phongs.Select(s => new PhongDTO
+        {
+            MaPhong = s.MaPhong,
+            SoPhong = s.SoPhong,
+            LoaiPhong = s.LoaiPhong,
+            Gia = s.Gia,
+            TrangThai = s.TrangThai,
+            IsDelete = s.IsDelete
+        }).ToList();
+        foreach (var item in lstPhong)
+        {
+            if (soPhong.Equals(item.SoPhong))
+                b = false;
+        }
+        return b;
+    }
+    private bool CheckDichVu(String tenDichVu)
+    {
+        bool b = true;
+        List<DichVuDTO> lstDichVu = models.DichVus.Select(s => new DichVuDTO
+        {
+            TenDichVu = s.TenDichVu,
+            Gia = s.Gia,
+            MoTa = s.MoTa,
+            IsDelete = s.IsDelete
+        }).ToList();
+        foreach (var item in lstDichVu)
+        {
+            if (tenDichVu.Equals(item.TenDichVu))
+                b = false;
+        }
+        return b;
+    }
+    private bool CheckTienIch(String tenTienIch)
+    {
+        bool b = true;
+        List<TienIchDTO> lstTienIch = models.TienIches.Select(s => new TienIchDTO
+        {
+            TenTienIch = s.TenTienIch,
+            MoTa = s.MoTa,
+            IsDelete = s.IsDelete
+        }).ToList();
+        foreach (var item in lstTienIch)
+        {
+            if (tenTienIch.Equals(item.TenTienIch))
+                b = false;
+        }
+        return b;
+    }
+    private int TinhNgayCuoiThang(int thang, int nam)
+    {
+        int soNgay = 0;
+        bool testNamNhuan = false;
+        //Kiem tra nam nhuan
+        if ((nam % 400) == 0)
+            testNamNhuan = true;
+        else if ((nam % 100) == 0)
+            testNamNhuan = false;
+        else if ((nam % 4) == 0)
+            testNamNhuan = true;
+        else
+            testNamNhuan = false;
+        //Kiem tra thang
+        switch (thang)
+        {
+            case 1: soNgay = 31; break;
+            case 2: soNgay = testNamNhuan ? 29 : 28; break;
+            case 3: soNgay = 31; break;
+            case 4: soNgay = 30; break;
+            case 5: soNgay = 31; break;
+            case 6: soNgay = 30; break;
+            case 7: soNgay = 31; break;
+            case 8: soNgay = 31; break;
+            case 9: soNgay = 30; break;
+            case 10: soNgay = 31; break;
+            case 11: soNgay = 30; break;
+            case 12: soNgay = 31; break;
+        }
+        return soNgay;
+    }
+    private ThongKeTheoThangDTO DoanhThuChoThuePhong(int thang, int nam, List<PhongDTO> phongDTOs, List<KhachHangDTO> khachHangDTOs)
+    {
+        int cuoiThang = TinhNgayCuoiThang(thang, nam);
+        double doanhThu = 0;
+        foreach (var phong in phongDTOs)
+        {
+            var lstKhachHangTheoPhong = khachHangDTOs.Where(kh => kh.IDPhong == phong.ID && kh.ThoiGianTra.Year == nam && kh.ThoiGianTra.Month == thang).GroupBy(kh => kh.ThoiGianNhan).ToList();
+
+            foreach (var key in lstKhachHangTheoPhong)
+            {
+                var khachHang = key.FirstOrDefault();
+                if (KiemTraThoiGianDatPhong(khachHang.ThoiGianTra, cuoiThang))
                 {
-                    var khachHang = key.FirstOrDefault();
-                    if (KiemTraThoiGianDatPhong(khachHang.ThoiGianTra, cuoiThang))
-                    {
-                        TimeSpan timeSpan = khachHang.ThoiGianTra - khachHang.ThoiGianNhan;
-                        int soNgay = timeSpan.Days;
-                        doanhThu += phong.Gia * soNgay;
-                    }
+                    TimeSpan timeSpan = khachHang.ThoiGianTra - khachHang.ThoiGianNhan;
+                    int soNgay = timeSpan.Days;
+                    doanhThu += phong.Gia * soNgay;
                 }
             }
-            ThongKeTheoThangDTO baoCaoThongKe = new ThongKeTheoThangDTO();
-            baoCaoThongKe.TenDichVu = "Cho thuê phòng";
-            baoCaoThongKe.DoanThu = doanhThu;
-            return baoCaoThongKe;
         }
-        private bool KiemTraThoiGianDatPhong(DateTime ngayTra, int cuoiThang)
-        {
-            int ngayTraPhong = ngayTra.Day;
-            if (ngayTraPhong >= 1 && ngayTraPhong <= cuoiThang)
-                return true;
-            else
-                return false;
-        }
-        private ThongKeTheoThangDTO DoanhThuAnUong()
-        {
-            ThongKeTheoThangDTO baoCaoThongKe = new ThongKeTheoThangDTO();
-            baoCaoThongKe.TenDichVu = "Ăn uống";
-            baoCaoThongKe.DoanThu = 10000000;
-            return baoCaoThongKe;
-        }
-        private ThongKeTheoThangDTO DoanhThuMassage()
-        {
-            ThongKeTheoThangDTO baoCaoThongKe = new ThongKeTheoThangDTO();
-            baoCaoThongKe.TenDichVu = "Massage";
-            baoCaoThongKe.DoanThu = 10000000;
-            return baoCaoThongKe;
-        }
-        private ThongKeTheoThangDTO DoanhThuThueXe()
-        {
-            ThongKeTheoThangDTO baoCaoThongKe = new ThongKeTheoThangDTO();
-            baoCaoThongKe.TenDichVu = "Thuê Xe";
-            baoCaoThongKe.DoanThu = 10000000;
-            return baoCaoThongKe;
-        }
-        private ThongKeTheoThangDTO DoanhThuGiatUi()
-        {
-            ThongKeTheoThangDTO baoCaoThongKe = new ThongKeTheoThangDTO();
-            baoCaoThongKe.TenDichVu = "Giặt ủi";
-            baoCaoThongKe.DoanThu = 10000000;
-            return baoCaoThongKe;
-        }
-        private ThongKeTheoQuyDTO DoanhThuChoThuePhongTheoQuy(int thang1,int thang2,int thang3, int nam, List<PhongDTO> phongDTOs, List<KhachHangDTO> khachHangDTOs)
-        {    
-            var doanhThuChoThuePhongThang1 = DoanhThuChoThuePhong(thang1, nam, phongDTOs, khachHangDTOs);
-            var doanhThuChoThuePhongThang2 = DoanhThuChoThuePhong(thang2, nam, phongDTOs, khachHangDTOs);
-            var doanhThuChoThuePhongThang3 = DoanhThuChoThuePhong(thang3, nam, phongDTOs, khachHangDTOs);
-            ThongKeTheoQuyDTO thongKeTheoQuyDTO = new ThongKeTheoQuyDTO();
-            thongKeTheoQuyDTO.TenDichVu = doanhThuChoThuePhongThang1.TenDichVu;
-            thongKeTheoQuyDTO.DoanhThu1 = doanhThuChoThuePhongThang1.DoanThu;
-            thongKeTheoQuyDTO.DoanhThu2 = doanhThuChoThuePhongThang2.DoanThu;
-            thongKeTheoQuyDTO.DoanhThu3 = doanhThuChoThuePhongThang3.DoanThu;
-            thongKeTheoQuyDTO.TrungBinh = (doanhThuChoThuePhongThang1.DoanThu + doanhThuChoThuePhongThang2.DoanThu + doanhThuChoThuePhongThang3.DoanThu) / 3;
-            return thongKeTheoQuyDTO;
-        }
-        private ThongKeTheoQuyDTO DoanhThuAnUongTheoQuy()
-        {
-            ThongKeTheoQuyDTO thongKeTheoQuy = new ThongKeTheoQuyDTO();
-            thongKeTheoQuy.TenDichVu = "Ăn uống";
-            thongKeTheoQuy.DoanhThu1 = 10000000;
-            thongKeTheoQuy.DoanhThu2 = 10000000;
-            thongKeTheoQuy.DoanhThu3 = 10000000;
-            thongKeTheoQuy.TrungBinh = 10000000;
-            return thongKeTheoQuy;
-        }
-        private ThongKeTheoQuyDTO DoanhThuMassageTheoQuy()
-        {
-            ThongKeTheoQuyDTO thongKeTheoQuy = new ThongKeTheoQuyDTO();
-            thongKeTheoQuy.TenDichVu = "Massage";
-            thongKeTheoQuy.DoanhThu1 = 10000000;
-            thongKeTheoQuy.DoanhThu2 = 10000000;
-            thongKeTheoQuy.DoanhThu3 = 10000000;
-            thongKeTheoQuy.TrungBinh = 10000000;
-            return thongKeTheoQuy;
-        }
-        private ThongKeTheoQuyDTO DoanhThuThueXeTheoQuy()
-        {
-            ThongKeTheoQuyDTO thongKeTheoQuy = new ThongKeTheoQuyDTO();
-            thongKeTheoQuy.TenDichVu = "Thuê Xe";
-            thongKeTheoQuy.DoanhThu1 = 10000000;
-            thongKeTheoQuy.DoanhThu2 = 10000000;
-            thongKeTheoQuy.DoanhThu3 = 10000000;
-            thongKeTheoQuy.TrungBinh = 10000000;
-            return thongKeTheoQuy;
-        }
-        private ThongKeTheoQuyDTO DoanhThuGiatUiTheoQuy()
-        {
-            ThongKeTheoQuyDTO thongKeTheoQuy = new ThongKeTheoQuyDTO();
-            thongKeTheoQuy.TenDichVu = "Giặt ủi";
-            thongKeTheoQuy.DoanhThu1 = 10000000;
-            thongKeTheoQuy.DoanhThu2 = 10000000;
-            thongKeTheoQuy.DoanhThu3 = 10000000;
-            thongKeTheoQuy.TrungBinh = 10000000;
-            return thongKeTheoQuy;
-        }
-        #endregion
+        ThongKeTheoThangDTO baoCaoThongKe = new ThongKeTheoThangDTO();
+        baoCaoThongKe.TenDichVu = "Cho thuê phòng";
+        baoCaoThongKe.DoanThu = doanhThu;
+        return baoCaoThongKe;
     }
+    private bool KiemTraThoiGianDatPhong(DateTime ngayTra, int cuoiThang)
+    {
+        int ngayTraPhong = ngayTra.Day;
+        if (ngayTraPhong >= 1 && ngayTraPhong <= cuoiThang)
+            return true;
+        else
+            return false;
+    }
+    private ThongKeTheoThangDTO DoanhThuAnUong()
+    {
+        ThongKeTheoThangDTO baoCaoThongKe = new ThongKeTheoThangDTO();
+        baoCaoThongKe.TenDichVu = "Ăn uống";
+        baoCaoThongKe.DoanThu = 10000000;
+        return baoCaoThongKe;
+    }
+    private ThongKeTheoThangDTO DoanhThuMassage()
+    {
+        ThongKeTheoThangDTO baoCaoThongKe = new ThongKeTheoThangDTO();
+        baoCaoThongKe.TenDichVu = "Massage";
+        baoCaoThongKe.DoanThu = 10000000;
+        return baoCaoThongKe;
+    }
+    private ThongKeTheoThangDTO DoanhThuThueXe()
+    {
+        ThongKeTheoThangDTO baoCaoThongKe = new ThongKeTheoThangDTO();
+        baoCaoThongKe.TenDichVu = "Thuê Xe";
+        baoCaoThongKe.DoanThu = 10000000;
+        return baoCaoThongKe;
+    }
+    private ThongKeTheoThangDTO DoanhThuGiatUi()
+    {
+        ThongKeTheoThangDTO baoCaoThongKe = new ThongKeTheoThangDTO();
+        baoCaoThongKe.TenDichVu = "Giặt ủi";
+        baoCaoThongKe.DoanThu = 10000000;
+        return baoCaoThongKe;
+    }
+    private ThongKeTheoQuyDTO DoanhThuChoThuePhongTheoQuy(int thang1, int thang2, int thang3, int nam, List<PhongDTO> phongDTOs, List<KhachHangDTO> khachHangDTOs)
+    {
+        var doanhThuChoThuePhongThang1 = DoanhThuChoThuePhong(thang1, nam, phongDTOs, khachHangDTOs);
+        var doanhThuChoThuePhongThang2 = DoanhThuChoThuePhong(thang2, nam, phongDTOs, khachHangDTOs);
+        var doanhThuChoThuePhongThang3 = DoanhThuChoThuePhong(thang3, nam, phongDTOs, khachHangDTOs);
+        ThongKeTheoQuyDTO thongKeTheoQuyDTO = new ThongKeTheoQuyDTO();
+        thongKeTheoQuyDTO.TenDichVu = doanhThuChoThuePhongThang1.TenDichVu;
+        thongKeTheoQuyDTO.DoanhThu1 = doanhThuChoThuePhongThang1.DoanThu;
+        thongKeTheoQuyDTO.DoanhThu2 = doanhThuChoThuePhongThang2.DoanThu;
+        thongKeTheoQuyDTO.DoanhThu3 = doanhThuChoThuePhongThang3.DoanThu;
+        thongKeTheoQuyDTO.TrungBinh = (doanhThuChoThuePhongThang1.DoanThu + doanhThuChoThuePhongThang2.DoanThu + doanhThuChoThuePhongThang3.DoanThu) / 3;
+        return thongKeTheoQuyDTO;
+    }
+    private ThongKeTheoQuyDTO DoanhThuAnUongTheoQuy()
+    {
+        ThongKeTheoQuyDTO thongKeTheoQuy = new ThongKeTheoQuyDTO();
+        thongKeTheoQuy.TenDichVu = "Ăn uống";
+        thongKeTheoQuy.DoanhThu1 = 10000000;
+        thongKeTheoQuy.DoanhThu2 = 10000000;
+        thongKeTheoQuy.DoanhThu3 = 10000000;
+        thongKeTheoQuy.TrungBinh = 10000000;
+        return thongKeTheoQuy;
+    }
+    private ThongKeTheoQuyDTO DoanhThuMassageTheoQuy()
+    {
+        ThongKeTheoQuyDTO thongKeTheoQuy = new ThongKeTheoQuyDTO();
+        thongKeTheoQuy.TenDichVu = "Massage";
+        thongKeTheoQuy.DoanhThu1 = 10000000;
+        thongKeTheoQuy.DoanhThu2 = 10000000;
+        thongKeTheoQuy.DoanhThu3 = 10000000;
+        thongKeTheoQuy.TrungBinh = 10000000;
+        return thongKeTheoQuy;
+    }
+    private ThongKeTheoQuyDTO DoanhThuThueXeTheoQuy()
+    {
+        ThongKeTheoQuyDTO thongKeTheoQuy = new ThongKeTheoQuyDTO();
+        thongKeTheoQuy.TenDichVu = "Thuê Xe";
+        thongKeTheoQuy.DoanhThu1 = 10000000;
+        thongKeTheoQuy.DoanhThu2 = 10000000;
+        thongKeTheoQuy.DoanhThu3 = 10000000;
+        thongKeTheoQuy.TrungBinh = 10000000;
+        return thongKeTheoQuy;
+    }
+    private ThongKeTheoQuyDTO DoanhThuGiatUiTheoQuy()
+    {
+        ThongKeTheoQuyDTO thongKeTheoQuy = new ThongKeTheoQuyDTO();
+        thongKeTheoQuy.TenDichVu = "Giặt ủi";
+        thongKeTheoQuy.DoanhThu1 = 10000000;
+        thongKeTheoQuy.DoanhThu2 = 10000000;
+        thongKeTheoQuy.DoanhThu3 = 10000000;
+        thongKeTheoQuy.TrungBinh = 10000000;
+        return thongKeTheoQuy;
+    }
+    #endregion
 }
+
+
