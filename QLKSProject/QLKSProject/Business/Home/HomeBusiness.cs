@@ -82,7 +82,6 @@ namespace QLKSProject.Business.Home
 		}
 		#endregion
 
-
 	}
 
 }

@@ -4,8 +4,19 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    
 
+    <link href="~/Content/Home/ChiTietPhong/css/style.css" rel="stylesheet" />
+    <script src="~/Content/Home/ChiTietPhong/js/modernizr.js"></script> 
+        <link href="~/Content/Home/ChiTietPhong/css/reset.css" rel="stylesheet" />
+</head>
 <body>
+    <script src="~/Content/Home/ChiTietPhong/js/jquery-2.1.1.js"></script>
+    <script src="~/Content/Home/ChiTietPhong/js/velocity.min.js"></script>
+
+    <script src="~/Content/Home/ChiTietPhong/js/main.js"></script>
+
 
     <div class="site-wrap">
 
@@ -68,131 +79,334 @@
                         <h2 class="mb-5">Các Loại Phòng</h2>
                     </div>
                 </div>
+
+
                 <div class="row">
-                    <div @*class="col-md-6 col-lg-2 mb-5"*@>
+
+                    <div class="col-md-6 col-lg-3 mb-5">
                         <div class="hotel-room text-center">
-                            @*<a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_1.jpg" alt="Image" class="img-fluid"></a>*@
-                            <div @*class="hotel-room-body"*@>
-                                @*<h3 class="heading mb-0"><a href="#">Standard Room</a></h3>*@
-                                @*<strong class="price">$350.00 / per night</strong>*@
+                            <ul class="cd-items cd-container" style="padding:0;width: 100%;">
+                                <li class="cd-item" style="width:100%; margin: 0;">
+                                    <img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Item Preview" class="img-responsive">
+                                    <button class="cd-trigger" data-target="#product_view">Xem Chi Tiết</button>
+                                </li>
+                            </ul>
+                            <div class="hotel-room text-center">
+                                @*<a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>*@
+                                <div class="hotel-room-body">
+                                    <h3 class="heading mb-0"><a>Phòng Đơn</a></h3>
+                                    <strong class="price">1.000.000 vnđ  / Ngày</strong>
+                                </div>
+                                <div class="cd-quick-view" style="margin-top: 30px">
+                                    <div class="cd-slider-wrapper">
+                                        <ul class="cd-slider">
+                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Product 4"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/Laluna-Suite-view.jpg" alt="Product 5"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/Superb-Deluxe-Twin-303-bathroom.jpg" alt="Product 6"></li>
+                                        </ul> <!-- cd-slider -->
+
+                                        <ul class="cd-slider-navigation">
+                                            <li><a class="cd-next">Prev</a></li>
+                                            <li><a class="cd-prev">Next</a></li>
+                                        </ul> <!-- cd-slider-navigation -->
+                                    </div> <!-- cd-slider-wrapper -->
+
+                                    <div class="cd-item-info" id="product_view">
+                                        <h2>PHÒNG ĐƠN</h2>
+                                        <p align="left">
+                                            Số Khách: Tối Đa
+                                            <br>
+                                            Số Khách: 4 người
+                                            <br>
+                                            Số Khách: 4 người
+                                            <br>
+                                        </p>
+
+
+                                        @*<ul class="cd-item-action">
+                                <li><button class="add-to-cart">Add to cart</button></li>
+                                <li><a href="#0">Learn more</a></li>
+                            </ul>  cd-item-action*@
+                                    </div> <!-- cd-item-info -->
+                                    <a href="#" class="cd-close">Close</a>
+                                </div> <!-- cd-quick-view -->
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3 mb-5">
-                            <div class="hotel-room text-center">
-                                <a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.2.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="hotel-room-body">
-                                    <h3 class="heading mb-0"><a href="#">Phòng Đơn</a></h3>
-                                    <strong class="price">$20.00 / Ngày</strong>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-md-6 col-lg-3 mb-5">
-                            <div class="hotel-room text-center">
-                                <a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_2.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="hotel-room-body">
-                                    <h3 class="heading mb-0"><a href="#">Phòng Đôi</a></h3>
-                                    <strong class="price">$35.00 / Ngày</strong>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-md-6 col-lg-3 mb-5">
-                            <div class="hotel-room text-center">
-                                <a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="hotel-room-body">
-                                    <h3 class="heading mb-0"><a href="#">Phòng 3 Người</a></h3>
-                                    <strong class="price">$45.00 / Ngày</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-3 mb-5">
-                            <div class="hotel-room text-center">
-                                <a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_1.jpg" alt="Image" class="img-fluid"></a>
-                                <div class="hotel-room-body">
-                                    <h3 class="heading mb-0"><a href="#">Phòng 4 Người </a></h3>
-                                    <strong class="price">$55.00 / Ngày</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb-5">
-                            <div class="hotel-room text-center">
-                                @*<a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_2.jpg" alt="Image" class="img-fluid"></a>*@
-                                <div @*class="hotel-room-body"*@>
-                                    @*<h3 class="heading mb-0"><a href="#">Luxury Room</a></h3>
-                                <strong class="price">$200.00 / per night</strong>*@
-                                </div>
-                            </div>
-                        </div>
-                        @*<div class="col-md-6 col-lg-3 mb-5">
+                    <div class="col-md-6 col-lg-3 mb-5">
                         <div class="hotel-room text-center">
-                            <a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>
-                            <div class="hotel-room-body">
-                                <h3 class="heading mb-0"><a href="#">Single Room</a></h3>
-                                <strong class="price">$155.00 / per night</strong>
+                            <ul class="cd-items cd-container" style="padding:0;width: 100%;">
+                                <li class="cd-item" style="width:100%; margin: 0;">
+                                    <img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Item Preview" class="img-responsive">
+                                    <button class="cd-trigger" data-target="#product_view2">Xem Chi Tiết</button>
+                                </li>
+                            </ul>
+                            <div class="hotel-room text-center">
+                                @*<a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>*@
+                                <div class="hotel-room-body">
+                                    <h3 class="heading mb-0"><a>Phòng Đôi</a></h3>
+                                    <strong class="price">2.000.000 vnđ  / Ngày</strong>
+                                </div>
+                                <div class="cd-quick-view" style="margin-top: 30px" id="product_view2">
+                                    <div class="cd-slider-wrapper">
+                                        <ul class="cd-slider">
+                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Product 4"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/Laluna-Suite-view.jpg" alt="Product 5"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/Superb-Deluxe-Twin-303-bathroom.jpg" alt="Product 6"></li>
+                                        </ul> <!-- cd-slider -->
+
+                                        <ul class="cd-slider-navigation">
+                                            <li><a class="cd-next">Prev</a></li>
+                                            <li><a class="cd-prev">Next</a></li>
+                                        </ul> <!-- cd-slider-navigation -->
+                                    </div> <!-- cd-slider-wrapper -->
+
+                                    <div class="cd-item-info">
+                                        <h2>PHÒNG ĐÔI</h2>
+                                        <p align="left">
+                                            Số Khách: Tối Đa
+                                            <br>
+                                            Số Khách: 4 người
+                                            <br>
+                                            Số Khách: 4 người
+                                            <br>
+                                        </p>
+
+
+                                        @*<ul class="cd-item-action">
+                                <li><button class="add-to-cart">Add to cart</button></li>
+                                <li><a href="#0">Learn more</a></li>
+                            </ul>  cd-item-action*@
+                                    </div> <!-- cd-item-info -->
+                                    <a href="#" class="cd-close">Close</a>
+                                </div> <!-- cd-quick-view -->
                             </div>
                         </div>
-                    </div>*@
                     </div>
+
+
+
+                    <div class="col-md-6 col-lg-3 mb-5">
+                        <div class="hotel-room text-center">
+                            <ul class="cd-items cd-container" style="padding:0;width: 100%;">
+                                <li class="cd-item" style="width:100%; margin: 0;">
+                                    <img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Item Preview" class="img-responsive">
+                                    <button class="cd-trigger" data-target="#product_view2">Xem Chi Tiết</button>
+                                </li>
+                            </ul>
+                            <div class="hotel-room text-center">
+                                @*<a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>*@
+                                <div class="hotel-room-body">
+                                    <h3 class="heading mb-0"><a>Phòng Đôi</a></h3>
+                                    <strong class="price">2.000.000 vnđ  / Ngày</strong>
+                                </div>
+                                <div class="cd-quick-view" style="margin-top: 30px" id="product_view2">
+                                    <div class="cd-slider-wrapper">
+                                        <ul class="cd-slider">
+                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Product 4"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/Laluna-Suite-view.jpg" alt="Product 5"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/Superb-Deluxe-Twin-303-bathroom.jpg" alt="Product 6"></li>
+                                        </ul> <!-- cd-slider -->
+
+                                        <ul class="cd-slider-navigation">
+                                            <li><a class="cd-next">Prev</a></li>
+                                            <li><a class="cd-prev">Next</a></li>
+                                        </ul> <!-- cd-slider-navigation -->
+                                    </div> <!-- cd-slider-wrapper -->
+
+                                    <div class="cd-item-info">
+                                        <h2>PHÒNG ĐÔI</h2>
+                                        <p align="left">
+                                            Số Khách: Tối Đa
+                                            <br>
+                                            Số Khách: 4 người
+                                            <br>
+                                            Số Khách: 4 người
+                                            <br>
+                                        </p>
+
+
+                                        @*<ul class="cd-item-action">
+                                <li><button class="add-to-cart">Add to cart</button></li>
+                                <li><a href="#0">Learn more</a></li>
+                            </ul>  cd-item-action*@
+                                    </div> <!-- cd-item-info -->
+                                    <a href="#" class="cd-close">Close</a>
+                                </div> <!-- cd-quick-view -->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 col-lg-3 mb-5">
+                        <div class="hotel-room text-center">
+                            <ul class="cd-items cd-container" style="padding:0;width: 100%;">
+                                <li class="cd-item" style="width:100%; margin: 0;">
+                                    <img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Item Preview" class="img-responsive">
+                                    <button class="cd-trigger" data-target="#product_view2">Xem Chi Tiết</button>
+                                </li>
+                            </ul>
+                            <div class="hotel-room text-center">
+                                @*<a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>*@
+                                <div class="hotel-room-body">
+                                    <h3 class="heading mb-0"><a>Phòng Đôi</a></h3>
+                                    <strong class="price">2.000.000 vnđ  / Ngày</strong>
+                                </div>
+                                <div class="cd-quick-view" style="margin-top: 30px" id="product_view2">
+                                    <div class="cd-slider-wrapper">
+                                        <ul class="cd-slider">
+                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Product 4"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/Laluna-Suite-view.jpg" alt="Product 5"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/Superb-Deluxe-Twin-303-bathroom.jpg" alt="Product 6"></li>
+                                        </ul> <!-- cd-slider -->
+
+                                        <ul class="cd-slider-navigation">
+                                            <li><a class="cd-next">Prev</a></li>
+                                            <li><a class="cd-prev">Next</a></li>
+                                        </ul> <!-- cd-slider-navigation -->
+                                    </div> <!-- cd-slider-wrapper -->
+
+                                    <div class="cd-item-info">
+                                        <h2>PHÒNG ĐÔI</h2>
+                                        <p align="left">
+                                            Số Khách: Tối Đa
+                                            <br>
+                                            Số Khách: 4 người
+                                            <br>
+                                            Số Khách: 4 người
+                                            <br>
+                                        </p>
+
+
+                                        @*<ul class="cd-item-action">
+                                <li><button class="add-to-cart">Add to cart</button></li>
+                                <li><a href="#0">Learn more</a></li>
+                            </ul>  cd-item-action*@
+                                    </div> <!-- cd-item-info -->
+                                    <a href="#" class="cd-close">Close</a>
+                                </div> <!-- cd-quick-view -->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @*<div class="col-md-6 col-lg-3 mb-5">
+            <div class="hotel-room text-center">
+                <ul class="cd-items cd-container" style="padding:0;width: 100%;">
+                    <li class="cd-item" style="width:100%; margin: 0;">
+                        <img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Item Preview" class="img-responsive">
+                        <button1 class="cd-trigger">Xem Chi Tiết</button1>
+                    </li>
+                </ul>
+                <div class="hotel-room text-center">
+                    <a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>
+                    <div class="hotel-room-body">
+                        <h3 class="heading mb-0"><a>Phòng 3 Người</a></h3>
+                        <strong class="price">3.000.000 vnđ  / Ngày</strong>
+                    </div>
+                    <div class="cd-quick-view" style="margin-top: 30px">
+                        <div class="cd-slider-wrapper">
+                            <ul class="cd-slider">
+                                <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Product 4"></li>
+                                <li><img src="~/Content/Home/ChiTietPhong/img/Laluna-Suite-view.jpg" alt="Product 5"></li>
+                                <li><img src="~/Content/Home/ChiTietPhong/img/Superb-Deluxe-Twin-303-bathroom.jpg" alt="Product 6"></li>
+                            </ul>  cd-slider
+
+                            <ul class="cd-slider-navigation">
+                                <li><a class="cd-next">Prev</a></li>
+                                <li><a class="cd-prev">Next</a></li>
+                            </ul>  cd-slider-navigation
+                        </div>  cd-slider-wrapper
+
+                        <div class="cd-item-info">
+                            <h2>PHÒNG 3 NGƯỜI</h2>
+                            <p align="left">
+                                Số Khách: Tối Đa
+                                <br>
+                                Số Khách: 4 người
+                                <br>
+                                Số Khách: 4 người
+                                <br>
+                            </p>
+
+
+                            <ul class="cd-item-action">
+                    <li><button class="add-to-cart">Add to cart</button></li>
+                    <li><a href="#0">Learn more</a></li>
+                </ul>  cd-item-action
+                        </div>  cd-item-info
+                        <a href="#" class="cd-close">Close</a>
+                    </div>  cd-quick-view
                 </div>
             </div>
+        </div>*@
 
 
-            <div @*class="site-section"*@>
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-6 mb-5 mb-md-0">
 
-                            <div class="img-border">
-                                @*<a href="https://vimeo.com/28959265" class="popup-vimeo image-play">
+
+
+
+
+                </div>
+            </div>
+        </div>>
+
+
+
+        <div @*class="site-section"*@>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-5 mb-md-0" style="z-index:-1">
+
+                        <div class="img-border">
+                            @*<a href="https://www.youtube.com/watch?v=-mGCvoNleok" class="popup-vimeo image-play">
                             <span class="icon-wrap">
                                 <span class="icon icon-play"></span>
                             </span>*@
-                                <img src="~/Content/Home/images/img_2.jpg" alt="" class="img-fluid">
-                            </div>
-
-                            <img src="~/Content/Home/images/img_1.jpg" alt="Image" class="img-fluid image-absolute">
-
+                            <img src="~/Content/Home/images/img_2.jpg" alt="" class="img-fluid">
                         </div>
-                        <div class="col-md-5 ml-auto">
+
+                        <img src="~/Content/Home/images/img_1.jpg" alt="Image" class="img-fluid image-absolute">
+
+                    </div>
+                    <div class="col-md-5 ml-auto">
 
 
-                            <div class="section-heading text-left">
-                                <h2 class="mb-5">Về Chúng Tôi</h2>
-                            </div>
-                            <p class="mb-4">
-                                Nằm bên bờ sông Hoài, Color Hotel mang đến cảm giác yên bình. Tọa lạc ngay trong phố cổ Hội An cổ kính, từ  Color Hotel bạn có thể dễ dàng khám khá những điểm đến hấp dẫn của phố cổ.
-                                Khách sạn cách chùa Cầu ở ngay trung tâm phố cổ chỉ 3 phút đi bộ. Lang thang trên những con phố, bạn sẽ có dịp đắm mình trong di sản văn hóa và những điểm tham quan hấp dẫn, chợ đêm, cửa hàng, quán bar, nhà hàng và các cửa hàng thời trang...
-                            </p>
-                            @*<p><a href="https://vimeo.com/28959265" class="popup-vimeo text-uppercase">Watch Video <span class="icon-arrow-right small"></span></a></p>*@
-                            <p><a href="GioiThieu.cshtml">Xem thêm <span class="icon-arrow-right small"></span></a></p>
-
+                        <div class="section-heading text-left">
+                            <h2 class="mb-5">Giới Thiệu</h2>
                         </div>
+                        <p class="mb-4">
+                            Nằm bên bờ sông Hoài, Color Hotel mang đến cảm giác yên bình. Tọa lạc ngay trong phố cổ Hội An cổ kính, từ  Color Hotel bạn có thể dễ dàng khám khá những điểm đến hấp dẫn của phố cổ.
+                            Khách sạn cách chùa Cầu ở ngay trung tâm phố cổ chỉ 3 phút đi bộ. Lang thang trên những con phố, bạn sẽ có dịp đắm mình trong di sản văn hóa và những điểm tham quan hấp dẫn, chợ đêm, cửa hàng, quán bar, nhà hàng và các cửa hàng thời trang...
+                        </p>
+                        @*<p><a href="https://www.youtube.com/watch?v=-mGCvoNleok" class="popup-vimeo text-uppercase">Watch Video <span class="icon-arrow-right small"></span></a></p>*@
+                        <p><a href="GioiThieu.cshtml">Xem thêm <span class="icon-arrow-right small"></span></a></p>
+
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
+        </div>
+        <br>
+        <br>
+        <br>
 
-            <div @*class="site-section"*@>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 mx-auto text-center mb-5 section-heading">
-                            <h2 class="mb-5">Dịch Vụ</h2>
+        <div @*class="site-section"*@>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mx-auto text-center mb-5 section-heading">
+                        <h2 class="mb-5">Dịch Vụ</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="text-center p-4 item">
+                            <span class="flaticon-pool display-3 mb-3 d-block text-primary"></span>
+                            <h2 class="h5">Hồ Bơi</h2>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <div class="text-center p-4 item">
-                                <span class="flaticon-pool display-3 mb-3 d-block text-primary"></span>
-                                <h2 class="h5">Hồ Bơi</h2>
-                            </div>
-                        </div>
-                        @*<div class="col-sm-6 col-md-4 col-lg-3">
+                    @*<div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="text-center p-4 item">
                             <span class="flaticon-desk display-3 mb-3 d-block text-primary"></span>
                             <h2 class="h5">Hotel Teller</h2>
@@ -211,82 +425,82 @@
                         </div>
                     </div>*@
 
-                        @*<div class="col-sm-6 col-md-4 col-lg-3">
+                    @*<div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="text-center p-4 item">
                             <span class="flaticon-hair-dryer display-3 mb-3 d-block text-primary"></span>
                             <h2 class="h5">Hair Dryer</h2>
                         </div>
                     </div>*@
 
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <div class="text-center p-4 item">
-                                <span class="flaticon-minibar display-3 mb-3 d-block text-primary"></span>
-                                <h2 class="h5">Minibar</h2>
-                            </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="text-center p-4 item">
+                            <span class="flaticon-minibar display-3 mb-3 d-block text-primary"></span>
+                            <h2 class="h5">Minibar</h2>
                         </div>
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <div class="text-center p-4 item">
-                                <span class="flaticon-drink display-3 mb-3 d-block text-primary"></span>
-                                <h2 class="h5">Nhà Hàng</h2>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <div class="text-center p-4 item">
-                                <span class="flaticon-cab display-3 mb-3 d-block text-primary"></span>
-                                <h2 class="h5">Xe Đưa Đoán</h2>
-                            </div>
-                        </div>
-
-
-
-
-
-
-
                     </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="text-center p-4 item">
+                            <span class="flaticon-drink display-3 mb-3 d-block text-primary"></span>
+                            <h2 class="h5">Nhà Hàng</h2>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="text-center p-4 item">
+                            <span class="flaticon-cab display-3 mb-3 d-block text-primary"></span>
+                            <h2 class="h5">Xe Đưa Đoán</h2>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
                 </div>
             </div>
+        </div>
 
 
-            <div class="site-section border-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 mx-auto text-center mb-5 section-heading">
-                            <h2 class="mb-5">Hình Ảnh Đặc Trưng</h2>
-                        </div>
-                    </div>
-                    <div class="row no-gutters">
-                        <div class="col-md-6 col-lg-3">
-                            <a href="~/Content/Home/images/img_4.jpeg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_4.jpeg" alt="Image" class="img-fluid"></a>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <a href="~/Content/Home/images/img_5.jpeg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_5.jpeg" alt="Image" class="img-fluid"></a>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <a href="~/Content/Home/images/img_6.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_6.jpg" alt="Image" class="img-fluid"></a>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <a href="~/Content/Home/images/img_7.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_7.jpg" alt="Image" class="img-fluid"></a>
-                        </div>
-
-                        <div class="col-md-6 col-lg-3">
-                            <a href="~/Content/Home/images/img_0.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_0.jpg" alt="Image" class="img-fluid"></a>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <a href="~/Content/Home/images/img_2.2.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_2.2.jpg" alt="Image" class="img-fluid"></a>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <a href="~/Content/Home/images/img_3.3.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_3.3.jpg" alt="Image" class="img-fluid"></a>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <a href="~/Content/Home/images/img_1.2.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_1.2.jpg" alt="Image" class="img-fluid"></a>
-                        </div>
-
+        <div class="site-section border-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mx-auto text-center mb-5 section-heading">
+                        <h2 class="mb-5">Hình Ảnh Đặc Trưng</h2>
                     </div>
                 </div>
-            </div>
+                <div class="row no-gutters">
+                    <div class="col-md-6 col-lg-3">
+                        <a href="~/Content/Home/images/img_4.jpeg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_4.jpeg" alt="Image" class="img-fluid"></a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <a href="~/Content/Home/images/img_5.jpeg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_5.jpeg" alt="Image" class="img-fluid"></a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <a href="~/Content/Home/images/img_6.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_6.jpg" alt="Image" class="img-fluid"></a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <a href="~/Content/Home/images/img_7.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_7.jpg" alt="Image" class="img-fluid"></a>
+                    </div>
 
-            @*<div class="py-5 upcoming-events" style="background-image: url(../Content/Home/images/hero_1.jpg); background-attachment: fixed;">
+                    <div class="col-md-6 col-lg-3">
+                        <a href="~/Content/Home/images/img_0.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_0.jpg" alt="Image" class="img-fluid"></a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <a href="~/Content/Home/images/img_2.2.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_2.2.jpg" alt="Image" class="img-fluid"></a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <a href="~/Content/Home/images/img_3.3.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_3.3.jpg" alt="Image" class="img-fluid"></a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <a href="~/Content/Home/images/img_1.2.jpg" class="image-popup img-opacity"><img src="~/Content/Home/images/img_1.2.jpg" alt="Image" class="img-fluid"></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        @*<div class="py-5 upcoming-events" style="background-image: url(../Content/Home/images/hero_1.jpg); background-attachment: fixed;">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6">
@@ -306,7 +520,7 @@
 
 
 
-            @*<div class="site-section block-15">
+        @*<div class="site-section block-15">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 mx-auto text-center mb-5 section-heading">
@@ -425,7 +639,7 @@
         </div>*@
 
 
-            @*<div class="site-section block-14 bg-light">
+        @*<div class="site-section block-14 bg-light">
 
             <div class="container">
 
@@ -488,6 +702,6 @@
 
         </div>*@
         </div>
-        </div>
+
 </body>
 </html>
