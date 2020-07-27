@@ -88,7 +88,7 @@ namespace QLKSProject.Business
         }
         private void TaoDichVu()
         {
-            string[] lstTenDichVu = { "An Uong", "Thue Xe", "Giat Ui", "Massage" };
+            string[] lstTenDichVu = { "Ăn Uống", "Thuê Xe", "Giặt ỦI", "Massage" };
             for (int i = 0; i < lstTenDichVu.Length; i++)
             {
                 DichVu dichVu = new DichVu();

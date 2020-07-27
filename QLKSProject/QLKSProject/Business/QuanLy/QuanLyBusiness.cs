@@ -98,6 +98,7 @@ namespace QLKSProject.Business.QuanLy
         #region Phong
         public List<PhongDTO> LayDanhSachPhong()
         {
+            DateTime today = DateTime.Now;
             var lstphong = models.Phongs.Where(e => e.IsDelete == false).Select(e => new PhongDTO
             {
                 ID = e.ID,
@@ -108,6 +109,34 @@ namespace QLKSProject.Business.QuanLy
                 TrangThai = e.TrangThai,
                 IsDelete = e.IsDelete
             });
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiXacNhan != false).Select(kh => new KhachHangDTO
+            {
+                ID = kh.ID,
+                HoVaTen = kh.HoVaTen,
+                SoDienThoai = kh.SoDienThoai,
+                Email = kh.Email,
+                DiaChi = kh.DiaChi,
+                Nhom = kh.Nhom,
+                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = kh.ThoiGianNhan,
+                ThoiGianTra = kh.ThoiGianTra,
+                MaDoan = kh.MaDoan,
+                GioiTinh = kh.GioiTinh,
+                LoaiKhachHang = kh.LoaiKhachHang,
+                TruongDoan = kh.TruongDoan,
+                IsDelete = kh.IsDelete,
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
+            }).ToList();
+            foreach (var phong in lstphong)
+            {
+                var lstKhachHangPhong = lstKhachHang.Where(kh => kh.IDPhong == phong.ID).ToList();
+                foreach (var kh in lstKhachHangPhong)
+                {
+                    if (kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 1)
+                        phong.TrangThai = false;
+                }
+            }
             return lstphong.ToList();
         }
         public PhongDTO LayPhong(int idPhong)
@@ -343,7 +372,8 @@ namespace QLKSProject.Business.QuanLy
                 TruongDoan = kh.TruongDoan,
                 IsDelete = kh.IsDelete,
                 TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                IDPhong = kh.IDPhong
+                IDPhong = kh.IDPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
             }).ToList();
             var lstPhong = models.Phongs.Where(p => p.IsDelete != true).Select(p => new PhongDTO
             {
@@ -383,7 +413,8 @@ namespace QLKSProject.Business.QuanLy
                 TruongDoan = kh.TruongDoan,
                 IsDelete = kh.IsDelete,
                 TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                IDPhong = kh.IDPhong
+                IDPhong = kh.IDPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
             }).ToList();
             var lstPhong = models.Phongs.Where(p => p.IsDelete != true).Select(p => new PhongDTO
             {

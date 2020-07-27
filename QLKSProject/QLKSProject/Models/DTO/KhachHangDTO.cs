@@ -21,5 +21,7 @@ namespace QLKSProject.Models.DTO
         public bool IsDelete { get; set; }
         public bool TrangThaiDatPhong { get; set; }
         public int IDPhong { get; set; }
+        public string GhiChu { get; set; }
+        public bool TrangThaiXacNhan { get; set; }
     }
 }

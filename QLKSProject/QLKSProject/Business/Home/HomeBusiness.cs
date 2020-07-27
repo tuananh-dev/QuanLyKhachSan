@@ -75,6 +75,7 @@ namespace QLKSProject.Business.Home
 					khachHang.IsDelete = false;
 					khachHang.TrangThaiDatPhong = false;
 					khachHang.IDPhong = -1;
+					khachHang.TrangThaiXacNhan = false;
 					models.KhachHangs.Add(khachHang);
 				}
 			}

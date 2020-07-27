@@ -44,6 +44,7 @@ namespace QLKSProject.Models.Entities
         [Column(TypeName = "datetime2")]
         public DateTime ThoiGianTra { get; set; }
 
+        public string GhiChu { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -65,6 +66,9 @@ namespace QLKSProject.Models.Entities
         public bool TrangThaiDatPhong { get; set; }
 
         public int IDPhong { get; set; }
+
+        [Required]
+        public bool TrangThaiXacNhan { get; set; }
 
         [ForeignKey("MaDoan")]
         public virtual Doan Doan_MaDoan { get; set; }   
