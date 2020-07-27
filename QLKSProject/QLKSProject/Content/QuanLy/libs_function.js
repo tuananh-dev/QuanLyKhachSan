@@ -15,7 +15,14 @@ function loadData(idList, url) {
     $.ajax({
         type: 'GET',
         url: '/api/' + url,
-        dataType: 'json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+        },
+        headers: {
+            'content-type': 'application/json',
+            'data-type': 'json',
+        },
         success: function (data) {
             position.empty();
 
@@ -59,6 +66,12 @@ function loadData(idList, url) {
                 }
             });
 
+        },
+        error: function (data) {
+            console.log(data.responseJSON.Message);
+            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
+                window.location.href = "../../../404.html";
+            }
         }
     });
 }
@@ -69,6 +82,10 @@ function loadDataDetail(edit, url, id) {
     $.ajax({
         type: 'GET',
         url: '/api/' + url + id,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+        },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         dataType: 'json',
         success: function (data) {
@@ -124,6 +141,10 @@ function loadDSPhong(ids, url) {
         type: 'GET',
         url: '/api/' + url,
         dataType: 'json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+        },
         success: function (data) {
             $.each(data, function (index, val) {
                 var color = "lightgreen";
@@ -153,13 +174,6 @@ function loadDSPhong(ids, url) {
                 if (val.SoPhong.charAt(0) == '7') {
                     ids.row7.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
                 }
-
-
-
-
-
-
-
             });
 
         }
@@ -171,6 +185,10 @@ function addData(info, dataInput) {
     $.ajax({
         url: '/api/' + info.url,
         method: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+        },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         data: JSON.stringify(dataInput),
         success: function () {
@@ -186,6 +204,10 @@ function editData(info, dataInput) {
     $.ajax({
         url: '/api/' + info.url,
         method: 'PUT',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+        },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         data: JSON.stringify(dataInput),
         success: function () {
@@ -201,6 +223,10 @@ function deleteData(info, dataInput) {
     $.ajax({
         url: '/api/' + info.url + dataInput,
         method: 'DELETE',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+        },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         success: function (data, textStatus, xhr) {
             $(info.modal).modal('hide');
@@ -214,6 +240,10 @@ function DatPhongChoTungDoan(info, url) {
     $.ajax({
         type: 'GET',
         url: '/api/' + url,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+        },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         dataType: 'json',
         success: function (data) {
@@ -227,6 +257,19 @@ function DatPhongChoTungDoan(info, url) {
     })
 
 }
+//function checkSession() {
+//    switch (sessionStorage.getItem('role')) {
+//        case 'ql':
+//            document.getElementsByClassName("ql").outerHTML = "";
+//            break;
+//        case 'nv':
+//            document.getElementsByClassName("nv").outerHTML = "";
+//            break;
+
+
+
+//    }
+//}
 //function thongKe() {
 
 //    var ctx = document.getElementById('myChart').getContext('2d');

@@ -402,16 +402,16 @@ namespace QLKSProject.Business.NhanVien
         {
             try
             {
-                TaiKhoan taiKhoan = new TaiKhoan();
-                taiKhoan.TenTaiKhoan = account;
-                taiKhoan.MatKhau = password;
-                taiKhoan.HoVaTen = khachHangDTO.HoVaTen;
-                taiKhoan.SoDienThoai = khachHangDTO.SoDienThoai;
-                taiKhoan.Email = khachHangDTO.Email;
-                taiKhoan.LoaiTaiKhoan = "nv";
+                UserMaster taiKhoan = new UserMaster();
+                taiKhoan.UserName = account;
+                taiKhoan.UserPassword = password;
+                taiKhoan.FullName = khachHangDTO.HoVaTen;
+                taiKhoan.PhoneNumber = khachHangDTO.SoDienThoai;
+                taiKhoan.UserEmailID = khachHangDTO.Email;
+                taiKhoan.UserRoles = "nv";
                 taiKhoan.IsDelete = false;
-                taiKhoan.idKhachHang = khachHangDTO.ID;
-                models.TaiKhoans.Add(taiKhoan);
+                taiKhoan.UserID = khachHangDTO.ID;
+                models.UserMasters.Add(taiKhoan);
                 return true;
             }
             catch (Exception)

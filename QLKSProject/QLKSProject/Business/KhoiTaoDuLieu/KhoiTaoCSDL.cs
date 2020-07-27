@@ -117,26 +117,26 @@ namespace QLKSProject.Business
             string[] lstHovaten = { "Nguyễn Đức Tuấn Anh", "Phạm Quang Đức", "Nguyễn Nhật Nam", "Nguyễn Đình Hà Nam", "Nguyễn Huy Phúc", "Nguyễn Văn Lợi" };
             for (int i = 0; i < lstTenTaiKhoan.Length; i++)
             {
-                TaiKhoan taiKhoan = new TaiKhoan();
-                taiKhoan.TenTaiKhoan = lstTenTaiKhoan[i];
-                taiKhoan.HoVaTen = lstHovaten[i];
-                taiKhoan.MatKhau = rd.Next(111, 333).ToString();
-                taiKhoan.SoDienThoai = "0" + rd.Next(23456789, 88765432).ToString();
-                taiKhoan.Email = lstTenTaiKhoan[i] + "@gmail.com";
+                UserMaster userMaster = new UserMaster();
+                userMaster.UserName = lstTenTaiKhoan[i];
+                userMaster.FullName = lstHovaten[i];
+                userMaster.UserPassword = rd.Next(111, 333).ToString();
+                userMaster.PhoneNumber = "0" + rd.Next(23456789, 88765432).ToString();
+                userMaster.UserEmailID = lstTenTaiKhoan[i] + "@gmail.com";
                 switch (rd.Next(1, 5))
                 {
-                    case 1: taiKhoan.LoaiTaiKhoan = "NV"; break;
-                    case 2: taiKhoan.LoaiTaiKhoan = "QL"; break;
-                    case 3: taiKhoan.LoaiTaiKhoan = "KH"; break;
-                    case 4: taiKhoan.LoaiTaiKhoan = "AM"; break;
+                    case 1: userMaster.UserRoles = "nv"; break;
+                    case 2: userMaster.UserRoles = "ql"; break;
+                    case 3: userMaster.UserRoles = "kh"; break;
+                    case 4: userMaster.UserRoles = "ad"; break;
                 }
                 if (rd.Next(0, 10) == 0)
-                    taiKhoan.IsDelete = true;
+                    userMaster.IsDelete = true;
                 else
-                    taiKhoan.IsDelete = false;
+                    userMaster.IsDelete = false;
                 try
                 {
-                    models.TaiKhoans.Add(taiKhoan);
+                    models.UserMasters.Add(userMaster);
                 }
                 catch (Exception)
                 {

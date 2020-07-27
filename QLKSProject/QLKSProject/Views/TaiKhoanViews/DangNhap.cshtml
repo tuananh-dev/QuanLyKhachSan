@@ -31,52 +31,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $('#login').click(function () {
-                window.location.replace('DSThanhVien.html');
-                //var person = {
-                //    Name: $('#name').val(),
-                //    Pass: $('#pass').val(),
-                //}
-                //$.ajax({
-                //    url: '/api/token',
-                //    method: 'POST',
-                //    headers: { 'content-type': 'application/json', 'data-type': 'json' },
-                //    data: JSON.stringify(person),
-
-                //    success: function (data) {
-                //        sessionStorage.setItem("token", data.access_token);
-                //        $.ajax({
-                //            url: '/api/',//lay thong tin tu token
-                //            method: 'GET',
-                //            headers: {
-                //                'content-type': 'application/json',
-                //                'data-type': 'json',
-                //                'Authorization': 'Bearer ' + sessionStorage.getItem('data_access')
-                //            },
-                //            success: function (data) {
-                //                sessionStorage.setItem("loaiTK", data.loaiTK);
-                //                sessionStorage.setItem("fullTen", data.fullTen);
-                //                if (sessionStorage.getItem('loaiTK') == 'kh') {
-                //                    window.location.replace('DSThanhVien.html');
-                //                }
-
-                //            }
-
-                //        })
-
-
-
-                //    },
-                //    error: function (data) {
-
-
-                //    }
-
-
-                //});
-
-
-            });
+            sessionStorage.removeItem('role');
+            sessionStorage.removeItem('accessToken');
+            sessionStorage.removeItem('fullname');
 
 
         });
@@ -95,14 +52,14 @@
                     @*<span onclick="goBack()" class="close">&times; </span>*@
 
                     @*<button type="button" id="cancel" 4 onclick="goBack()" onclick="javascript:window.location='http://stackoverflow.com';">
-                        X
-                    </button>
-                    <script>
+                            X
+                        </button>
+                        <script>
 
-                        function goBack() {
-                            window.history.back();
-                        }
-                    </script>*@
+                            function goBack() {
+                                window.history.back();
+                            }
+                        </script>*@
                     @*<link rel="icon" type="image/png" href="~/Content/Home/images/logo1.png" />*@
                     <span class="login100-form-title p-b-34 p-t-27" @*class="login100-form-logo" *@>
                         @*<i class="zmdi zmdi-flower"></i>*@
@@ -111,13 +68,11 @@
                     <span class="login100-form-title p-b-34 p-t-27">
                         Log in
                     </span>
-                    //validate-input" data-validate="Enter username"
                     <div class="wrap-input100">
                         <input class="input100" type="text" name="username" id="username" placeholder="Tên đăng nhập">
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
 
-                    //validate-input" data-validate="Enter password"
                     <div class="wrap-input100">
                         <input class="input100" type="password" name="pass" id="pass" placeholder="Mật khẩu">
                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
@@ -172,57 +127,71 @@
                     </div>
                     <div class="text-center p-t-90" onclick="quenmk">
                         @*<a class="txt1" href="#">
-                            Forgot Password?
-                        </a>*@
+                                Forgot Password?
+                            </a>*@
 
                     </div>
                     <script type="text/javascript">
                         $(document).ready(function () {
-
-                            //$("#gui").click(function ()
                             $('#dangnhap').submit(function () {
 
-                                window.location.href = "../KhachHangViews/DSThanhVien.html";
+                                $.ajax({
+                                    url: '/token',
+                                    method: 'POST',
+                                    headers: { 'content-type': 'application/json', 'data-type': 'json' },
+                                    //data: JSON.stringify(person),
+                                    data: {
+                                        username: $('#username').val(),
+                                        password: $('#pass').val(),
+                                        grant_type: 'password'
+                                    },
+                                    success: function (response) {
+                                        sessionStorage.setItem('accessToken', response.access_token);
+                                        $.ajax({
+                                            url: '/api/Home/LayUserRoles',
+                                            method: 'GET',
+                                            headers: {
+                                                'content-type': 'application/json',
+                                                'data-type': 'json',
+                                                'Authorization': 'bearer ' + sessionStorage.getItem('accessToken')
+                                            },
+                                            success: function (response) {
 
-                                //    var person = {
-                                //        tendangnhap: $('#username').val(),
-                                //        matkhau: $('#pass').val(),
-                                //    }
-                                //$.ajax({
-                                //    url: '/api/Home/LayFileDanhSachKhachHang',
-                                //    method: 'POST',
-                                //    dataType: 'json',
-                                //    contentType: 'application/json',
+                                                var role = response.slice(0, 2);
+                                                var fullname = response.slice(3);
+                                                sessionStorage.setItem('role', role);
+                                                sessionStorage.setItem('fullname', fullname);
+                                                switch (sessionStorage.getItem('role')) {
+                                                    case 'ad':
 
-                                //    data: JSON.stringify(person),
-
-
-                                //    error: function (data) {
-
-                                //        swal({
-                                //            type: 'error',
-                                //            title: 'Đăng Nhập Thất Bại',
-                                //            text: 'Vui Lòng Kiểm Tra Lại Tài Khoản Và Mật Khẩu',
-                                //        });
-                                //    }
-                                //});
-                                //data: JSON.stringify(person),
+                                                        break;
+                                                    case 'ql':
+                                                        window.location.href = "../QuanLyViews/ThongKe/thongke.html";
+                                                        break;
+                                                    case 'nv':
+                                                        window.location.href = "../NhanVienViews/Phong_NhanVien/DanhSachPhong.html";
+                                                        break;
+                                                    case 'kh':
+                                                        window.location.href = "../KhachHangViews/DSThanhVien.html";
+                                                        break;
+                                                }
 
 
-                                //success: function (data) {
-                                //    //console.log('Send success')
-                                //    swal({
-                                //        type: 'success',
-                                //        title: 'Tuyệt Vời!',
-                                //        text: 'Bạn Đã Gửi File Danh Sách Thành Công',
-                                //        confirmButtonColor: '#f23a2e',
-                                //    },
-                                //        function (isConfirm) {
-                                //            if (isConfirm) {
-                                //                window.location.href = "trangchu.cshtml";
-                                //            }
-                                //        });
-                                //},
+                                            },
+                                            error: function () {
+
+                                            }
+
+                                        })
+                                    },
+                                    error: function (data) {
+                                        swal({
+                                            type: 'error',
+                                            title: 'Đăng Nhập Thất Bại',
+                                            text: 'Vui Lòng Kiểm Tra Lại Tài Khoản Và Mật Khẩu',
+                                        });
+                                    }
+                                });
 
 
                             });
