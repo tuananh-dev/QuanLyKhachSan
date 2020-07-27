@@ -33,7 +33,20 @@
     <script src="../../../Content/QuanLy/libs_function.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            checkSession();
+            $('#nameuser').html(sessionStorage.getItem('fullname'));
+            var role = '';
+            switch (sessionStorage.getItem('role')) {
+                case 'nv':
+                    role = 'Nhân Viên'
+                    break;
+                case 'ql':
+                    role = 'Quản Lý'
+                    break;
 
+            }
+
+            $('#roleuser').html(role);
             //var mota = $();
             var dataId;
             var idList = '#dstk';
@@ -124,6 +137,7 @@
                 };
                 addData(info, data);
             });
+
         });
     </script>
 
@@ -139,7 +153,7 @@
             <div class="page-header-inner ">
                 <!-- logo start -->
                 <div class="page-logo">
-                    <a href="https://localhost:44339/Views/QuanLyViews/Phong/DSPhong.html">
+                    <a href="#">
                         <img alt="" src="../../../Content/QuanLy/img/logo.png">
                         <span class="logo-default">Spice</span>
                     </a>
@@ -183,13 +197,10 @@
                                 </li>
 
                                 <li class="divider"> </li>
+
                                 <li>
-                                    <a href="/Views/TaiKhoanViews/KhoaManHinh.html">
-                                        <i class="icon-lock"></i> Lock
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/Views/TaiKhoanViews/DangNhap.html">
+                                    <a href="../../../DangNhap.html">
+                                       
                                         <i class="icon-logout"></i> Log Out
                                     </a>
                                 </li>
@@ -223,33 +234,24 @@
                                         </div>
                                     </div>
                                     <div class="profile-usertitle">
-                                        <div class="sidebar-userpic-name"> John Deo </div>
-                                        <div class="profile-usertitle-job"> Manager </div>
-                                    </div>
-                                    <div class="sidebar-userpic-btn">
-                                        <a class="tooltips" href="#" data-placement="top"
-                                           data-original-title="Profile">
-                                            <i class="material-icons">person_outline</i>
-                                        </a>
-                                        <a class="tooltips" href="#" data-placement="top"
-                                           data-original-title="Mail">
-                                            <i class="material-icons">mail_outline</i>
-                                        </a>
-                                        <a class="tooltips" href="#" data-placement="top"
-                                           data-original-title="Chat">
-                                            <i class="material-icons">chat</i>
-                                        </a>
-                                        <a class="tooltips" href="#" data-placement="top"
-                                           data-original-title="Logout">
-                                            <i class="material-icons">input</i>
-                                        </a>
+                                        <div class="sidebar-userpic-name" id="nameuser"></div>
+                                        <div class="profile-usertitle-job" id="roleuser"></div>
                                     </div>
                                 </div>
                             </li>
 
 
 
-                            <li class="nav-item active">
+                            <li class="nav-item active ql">
+                                <a href="/Views/QuanLyViews/ThongKe/ThongKe.html" class="nav-link nav-toggle">
+                                    <i class="material-icons">business_center</i>
+                                    <span class="title">Thống Kê</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+
+                            <li class="nav-item active ql">
                                 <a href="/Views/QuanLyViews/DichVu/DSDichVu.html" class="nav-link nav-toggle">
                                     <i class="material-icons">business_center</i>
                                     <span class="title">Dịch Vụ</span>
@@ -257,7 +259,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active ql">
                                 <a href="/Views/QuanLyViews/TienIch/DSTienIch.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Tiện Ích</span>
@@ -265,7 +267,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active ql">
                                 <a href="/Views/QuanLyViews/Phong/DSPhong.html" class="nav-link nav-toggle">
                                     <i class="material-icons">vpn_key</i>
                                     <span class="title">Phòng</span>
@@ -273,7 +275,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active ql">
                                 <a href="/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Tài Khoản Nhân Viên</span>
@@ -282,7 +284,7 @@
 
                             </li>
 
-                            <li class="nav-item active">
+                            <li class="nav-item active nv">
                                 <a href="/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Phòng Nhân Viên</span>
@@ -290,7 +292,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active nv">
                                 <a href="/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đặt Phòng Thành Công</span>
@@ -298,7 +300,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active nv">
                                 <a href="/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đặt Phòng Thất Bại</span>
@@ -306,7 +308,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active nv">
                                 <a href="/Views/NhanVienViews/Doan/Doan.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đoàn</span>
@@ -330,11 +332,9 @@
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="index.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                                       href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li>
-                                    <a class="parent-item" href="#">Nhân Viên</a>&nbsp;<i class="fa fa-angle-right"></i>
-                                </li>
+                                
                                 <li class="active">Danh Sách Tài Khoản Nhân Viên</li>
                             </ol>
                         </div>
@@ -429,7 +429,7 @@
                                                 </div>
                                             </div>
 
-                                            
+
                                         </div>
                                     </div>
                                     <div class="col-lg-12 p-t-20 text-center">
@@ -579,7 +579,7 @@
     <!-- animation -->
     <script src="../../../Content/QuanLy/js/pages/ui/animations.js"></script>
     <!-- end js include path -->
-    
+
 
 </body>
 <!-- Mirrored from radixtouch.in/templates/admin/hotel/source/all_staffs.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:54 GMT -->

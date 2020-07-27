@@ -30,7 +30,20 @@
     <script type="text/javascript">
        
         $(document).ready(function () {
+            checkSession();
+            $('#nameuser').html(sessionStorage.getItem('fullname'));
+            var role = '';
+            switch (sessionStorage.getItem('role')) {
+                case 'nv':
+                    role = 'Nhân Viên'
+                    break;
+                case 'ql':
+                    role = 'Quản Lý'
+                    break;
 
+            }
+
+            $('#roleuser').html(role);
             //var mota = $();
             var dataId;
             var idList = '#dsdichvu';
@@ -48,7 +61,7 @@
 
 
             loadData(idList, layDSDichVu);
-
+            
             $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
                 $(idModalDelete).modal('show');
                 dataId = $(this).attr("data-id");
@@ -131,7 +144,7 @@
             <div class="page-header-inner ">
                 <!-- logo start -->
                 <div class="page-logo">
-                    <a href="index.html">
+                    <a href="#">
                         <img alt="" src="../../../Content/QuanLy/img/logo.png">
                         <span class="logo-default">Spice</span>
                     </a>
@@ -177,7 +190,7 @@
                                 <li class="divider"> </li>
 
                                 <li>
-                                    <a href="/Views/TaiKhoanViews/DangNhap.html">
+                                    <a href="../../../DangNhap.html">
                                         <i class="icon-logout"></i> Log Out
                                     </a>
                                 </li>
@@ -211,8 +224,8 @@
                                         </div>
                                     </div>
                                     <div class="profile-usertitle">
-                                        <div class="sidebar-userpic-name"> John Deo </div>
-                                        <div class="profile-usertitle-job"> Manager </div>
+                                        <div class="sidebar-userpic-name" id="nameuser"> </div>
+                                        <div class="profile-usertitle-job" id="roleuser"> </div>
                                     </div>
 
                                 </div>
@@ -220,7 +233,16 @@
 
 
 
-                            <li class="nav-item active">
+                            <li class="nav-item active ql">
+                                <a href="/Views/QuanLyViews/ThongKe/ThongKe.html" class="nav-link nav-toggle">
+                                    <i class="material-icons">business_center</i>
+                                    <span class="title">Thống Kê</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+
+                            <li class="nav-item active ql">
                                 <a href="/Views/QuanLyViews/DichVu/DSDichVu.html" class="nav-link nav-toggle">
                                     <i class="material-icons">business_center</i>
                                     <span class="title">Dịch Vụ</span>
@@ -228,7 +250,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active ql">
                                 <a href="/Views/QuanLyViews/TienIch/DSTienIch.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Tiện Ích</span>
@@ -236,7 +258,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active ql">
                                 <a href="/Views/QuanLyViews/Phong/DSPhong.html" class="nav-link nav-toggle">
                                     <i class="material-icons">vpn_key</i>
                                     <span class="title">Phòng</span>
@@ -244,7 +266,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active ql">
                                 <a href="/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Tài Khoản Nhân Viên</span>
@@ -253,9 +275,7 @@
 
                             </li>
 
-
-
-                            <li class="nav-item active">
+                            <li class="nav-item active nv">
                                 <a href="/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Phòng Nhân Viên</span>
@@ -263,7 +283,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active nv">
                                 <a href="/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đặt Phòng Thành Công</span>
@@ -271,7 +291,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active nv">
                                 <a href="/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đặt Phòng Thất Bại</span>
@@ -279,7 +299,7 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item active nv">
                                 <a href="/Views/NhanVienViews/Doan/Doan.html" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đoàn</span>

@@ -7,7 +7,25 @@
 //    <th > SĐT</th>
 //    <th > Nguời Đại Diện</th>
 //    <th > Phòng </th>
+function role_name() {
+    
+}
 
+function checkSession() {
+    switch (sessionStorage.getItem('role')) {
+        case 'nv':
+            $(".ql").css("display", "none");
+            break;
+        case 'ql':
+            $(".nv").css("display", "none");
+            break;
+
+
+    }
+    console.log();
+
+    //console.log("hello")
+}
 
 function loadData(idList, url) {
     var position = $(idList);
@@ -70,7 +88,7 @@ function loadData(idList, url) {
         error: function (data) {
             console.log(data.responseJSON.Message);
             if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.href = "../../../404.html";
+                window.location.replace("../../../404.html");
             }
         }
     });
