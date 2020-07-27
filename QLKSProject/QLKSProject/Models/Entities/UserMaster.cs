@@ -31,6 +31,7 @@ namespace QLKSProject.Models.Entities
         public int UserID { get; set; }
         [Required]
         public bool IsDelete { get; set; }
+        [Required]
         public string MaDoan { get; set; }
     }
 }
