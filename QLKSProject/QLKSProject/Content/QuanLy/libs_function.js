@@ -8,7 +8,7 @@
 //    <th > Nguời Đại Diện</th>
 //    <th > Phòng </th>
 function role_name() {
-    
+
 }
 
 function checkSession() {
@@ -75,18 +75,24 @@ function loadData(idList, url) {
                     position.prepend('<tr class="odd gradeX"><td >' + val.TenDoan + '</td><td >' + val.TenTruongDoan + '</td><td >' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td >' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td >' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td ><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '" style="color: lightgray" >Xếp Phòng</a><div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none" id="loading"></div></td></tr>');
                 }
 
-                if (url == 'KhachHang/LayDanhSachKhachHangTheoMaDoan/1595555103849') {
-                    var daidien = '';
+                if (url == 'KhachHang/LayDanhSachKhachHangTheoMaDoan/' + sessionStorage.getItem('madoan')) {
+                    var daidien = 'Trống';
                     if (val.NguoiDaiDienCuaTreEm != '0') {
                         daidien = val.NguoiDaiDienCuaTreEm;
                     }
-                    position.prepend('<tr class="odd gradeX"><td >' + val.HoVaTen + '</td><td >' + val.SoDienThoai + '</td><td >' + daidien + '</td><td >' + val.IDPhong + '</td></tr>');
+                    var tgNhan = new Date(val.ThoiGianNhan); 
+                    var tgTra = new Date(val.ThoiGianTra); 
+                    position.prepend('<tr class="odd gradeX"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="center">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.IDPhong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
+                    if (val.TrangThaiXacNhan) {
+                        $('#confirm').css('display', 'none');
+                        $('#cancel').css('display', 'none');
+                    }
                 }
             });
 
         },
         error: function (data) {
-            
+
             if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
                 window.location.replace("../../../404.html");
             }
@@ -282,58 +288,38 @@ function DatPhongChoTungDoan(info, url) {
     })
 
 }
-//function checkSession() {
-//    switch (sessionStorage.getItem('role')) {
-//        case 'ql':
-//            document.getElementsByClassName("ql").outerHTML = "";
-//            break;
-//        case 'nv':
-//            document.getElementsByClassName("nv").outerHTML = "";
-//            break;
-
-
-
-//    }
-//}
-//function thongKe() {
-
-//    var ctx = document.getElementById('myChart').getContext('2d');
-//    var myChart = new Chart(ctx, {
-//        type: 'line',
-//        data: {
-//            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-//            datasets: [{
-//                label: 'Cost',
-//                data: [
-//                    randomScalingFactor(),
-//                    randomScalingFactor(),
-//                    randomScalingFactor(),
-//                    randomScalingFactor(),
-//                    randomScalingFactor(),
-//                    randomScalingFactor(),
-//                    randomScalingFactor()
-//                ],
-//                backgroundColor: "rgba(255,61,103,0.3)"
-//            }, {
-//                label: 'Earning',
-//                data: [
-//                    randomScalingFactor(),
-//                    randomScalingFactor(),
-//                    randomScalingFactor(),
-//                    randomScalingFactor(),
-//                    randomScalingFactor(),
-//                    randomScalingFactor(),
-//                    randomScalingFactor()
-//                ],
-//                backgroundColor: "rgba(34,206,206,0.3)"
-//            }]
-//        }
-//    });
-//}
 
 function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + " VND";
 }
 
+function XacNhanDatPhong(info) {
+    $.ajax({
+        type: 'GET',
+        url: '/api/KhachHang/XacNhanDatPhong/' + sessionStorage.getItem('madoan'),
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+        },
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            Swal.fire({
+                icon: 'success',
+                text: 'Thao Tác Thành Công!'
+            })
+            loadData(info.id, info.urlLoad);
+        },
+        error: function (data) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: data.responseJSON.Message
+            })
+
+        }
+    })
+}
 
 

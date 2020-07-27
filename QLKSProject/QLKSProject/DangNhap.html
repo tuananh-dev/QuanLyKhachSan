@@ -143,9 +143,14 @@
 
                                                 var role = data[0];
                                                 var fullname = data[1];
-                                                var madoan= data[2];
+                                                var madoan = data[2];
+                                                console.log(response);
+                                                console.log(data[0]);
+                                                console.log(data[1]);
+                                                console.log(data[2]);
                                                 sessionStorage.setItem('role', role);
                                                 sessionStorage.setItem('fullname', fullname);
+                                                sessionStorage.setItem('madoan', madoan);
                                                 switch (sessionStorage.getItem('role')) {
                                                     case 'ad':
 
