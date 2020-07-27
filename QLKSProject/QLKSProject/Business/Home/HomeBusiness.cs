@@ -92,13 +92,7 @@ namespace QLKSProject.Business.Home
 					khachHang.TrangThaiXacNhan = false;
 					lstKhachHangDTO.Add(khachHang);
 				}
-				else
-				{
-					error = "Lỗi thiếu thông tin!";
-					lstKhachHangDTO = new List<KhachHangDTO>();
-				}
 			}
-
 			return lstKhachHangDTO;
 		}
 		private bool KiemTraNguoiDaiDien(List<KhachHangDTO> khachHangDTOs)

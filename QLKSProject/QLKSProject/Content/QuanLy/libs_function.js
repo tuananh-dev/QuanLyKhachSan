@@ -267,9 +267,9 @@ function DatPhongChoTungDoan(info, url) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
             xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
         },
-        headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        dataType: 'json',
+        headers: {'data-type': 'json' },
         success: function (data) {
+            console.log(data);
             Swal.fire({
                 icon: 'success',
                 text: 'Thao Tác Thành Công!'
