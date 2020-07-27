@@ -29,7 +29,7 @@ namespace QLKSProject.Business.Home
 						error = "Lỗi trưởng đoàn không có trong danh sách khách hàng!";
 				}
 				else
-					error = "Lỗi không có người đại diện trong danh sách";
+					error = "Lỗi không có người đại diện trẻ em trong danh sách";
 			}
 			catch (Exception)
 			{	
@@ -98,8 +98,11 @@ namespace QLKSProject.Business.Home
 		private bool KiemTraNguoiDaiDien(List<KhachHangDTO> khachHangDTOs)
 		{
 			var lstKhachHang = khachHangDTOs.Where(kh => kh.LoaiKhachHang != false).Select(s => s.NguoiDaiDienCuaTreEm).ToList();
-			if (lstKhachHang.Count == 0)
-				return false;
+			foreach (var kh in lstKhachHang)
+			{
+				if (kh.Equals("0"))
+					return false;
+			}
 			List<string> lstNguoiDaiDien = new List<string>();
 			foreach (var khachHang in lstKhachHang)
 			{
