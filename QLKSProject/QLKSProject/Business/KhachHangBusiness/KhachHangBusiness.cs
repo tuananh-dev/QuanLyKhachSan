@@ -61,13 +61,19 @@ namespace QLKSProject.Business.KhachHangBusiness
             try
             {
                 var doan = models.Doans.Where(d => d.MaDoan == maDoan).FirstOrDefault();
-                doan.IsDelete = true;
-                var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == maDoan).ToList();
-                foreach (var kh in lstKhachHang)
+                var taiKhoan = models.UserMasters.Where(tk => tk.MaDoan == maDoan).FirstOrDefault();
+                taiKhoan.IsDelete = true;
+                if(doan.TrangThaiXacNhan != true)
                 {
-                    kh.IsDelete = true;
-                }
-                models.SaveChanges();
+                    doan.IsDelete = true;
+                    var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == maDoan).ToList();
+                    foreach (var kh in lstKhachHang)
+                    {
+                        kh.IsDelete = true;
+                    }
+                    models.SaveChanges();
+                }else
+                    error = "Hủy danh sách khách hàng lỗi!";
             }
             catch (Exception)
             {
