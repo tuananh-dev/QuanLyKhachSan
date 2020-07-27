@@ -503,6 +503,7 @@ namespace QLKSProject.Business.NhanVien
                 taiKhoan.UserRoles = "nv";
                 taiKhoan.IsDelete = false;
                 taiKhoan.UserID = khachHangDTO.ID;
+                taiKhoan.MaDoan = khachHangDTO.MaDoan;
                 models.UserMasters.Add(taiKhoan);
                 return true;
             }

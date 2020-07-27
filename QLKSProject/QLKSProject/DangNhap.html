@@ -50,7 +50,7 @@
                 <form class="login100-form validate-form" id="dangnhap" method="post" enctype="multipart/form-data" onsubmit="return false">
 
                     <span class="login100-form-title p-b-34 p-t-27">
-                        
+
                         <img src="../../../Content/Home/images/logo1.png" alt="Mẫu File DS" width="100" height="100">
                     </span>
                     <span class="login100-form-title p-b-34 p-t-27">
@@ -113,7 +113,7 @@
 
                     </div>
                     <div class="text-center p-t-90" onclick="quenmk">
-                       
+
                     </div>
                     <script type="text/javascript">
                         $(document).ready(function () {
@@ -139,9 +139,11 @@
                                                 'Authorization': 'bearer ' + sessionStorage.getItem('accessToken')
                                             },
                                             success: function (response) {
+                                                var data = response.split("-");
 
-                                                var role = response.slice(0, 2);
-                                                var fullname = response.slice(3);
+                                                var role = data[0];
+                                                var fullname = data[1];
+                                                var madoan= data[2];
                                                 sessionStorage.setItem('role', role);
                                                 sessionStorage.setItem('fullname', fullname);
                                                 switch (sessionStorage.getItem('role')) {
