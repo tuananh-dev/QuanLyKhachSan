@@ -25,6 +25,7 @@
     <link href="../../../Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="../../../Content/QuanLy/Jquery.js"></script>
     <script src="../../../Content/QuanLy/libs_function.js"></script>
     <script type="text/javascript">
@@ -51,6 +52,9 @@
 
 
             $('body').on('click', 'a.btn.btn-info.btn-xs', function () {
+                $(this).css("display", "none");
+                $('#loading').css("display", "block");
+
                 dataId = $(this).attr("data-id");
                 var info = {
                     id: '#dsdoan',
@@ -58,7 +62,7 @@
                 }
                 DatPhongChoTungDoan(info, xepPhong + dataId);
             })
-            
+
 
 
         });
@@ -73,14 +77,14 @@
             <div class="page-header-inner ">
                 <!-- logo start -->
                 <div class="page-logo">
-                    <a href="index.html">
+                    <a href="../Phong_NhanVien/DanhSachPhong.html">
                         <img alt="" src="../../../Content/QuanLy/img/logo.png">
                         <span class="logo-default">Spice</span>
                     </a>
                 </div>
                 <!-- logo end -->
                 <ul class="nav navbar-nav navbar-left in">
-                    <li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
+                    <li><a href="../Phong_NhanVien/DanhSachPhong.html" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
                 </ul>
                 <form class="search-form-opened" action="#" method="GET">
                     <div class="input-group">
@@ -117,7 +121,7 @@
                                 </li>
 
                                 <li class="divider"> </li>
-                                
+
                                 <li>
                                     <a href="../../../DangNhap.html">
                                         <i class="icon-logout"></i> Log Out
@@ -156,7 +160,7 @@
                                         <div class="sidebar-userpic-name" id="nameuser"></div>
                                         <div class="profile-usertitle-job" id="roleuser"></div>
                                     </div>
-                                    
+
                                 </div>
                             </li>
 
@@ -252,9 +256,9 @@
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                                       href="../Phong_NhanVien/DanhSachPhong.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                               
+
                                 <li class="active">Danh Sách Đoàn</li>
                             </ol>
                         </div>
@@ -270,12 +274,12 @@
                                                id="example">
                                             <thead>
                                                 <tr>
-                                                    <th  style="width:300px;"> Tên Đoàn </th>
-                                                    <th  style="width:300px;"> Tên Trưởng Đoàn </th>
-                                                    <th > Thời Gian Nhận </th>
-                                                    <th > Thời Gian Trả </th>
-                                                    <th > Ngày Gửi </th>
-                                                    <th > Xếp Phòng </th>
+                                                    <th style="width:300px;"> Tên Đoàn </th>
+                                                    <th style="width:300px;"> Tên Trưởng Đoàn </th>
+                                                    <th> Thời Gian Nhận </th>
+                                                    <th> Thời Gian Trả </th>
+                                                    <th> Ngày Gửi </th>
+                                                    <th> Xếp Phòng </th>
                                                 </tr>
                                             </thead>
                                             <tbody id="dsdoan">

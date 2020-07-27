@@ -655,19 +655,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007261741241_updatedb1.cs" />
-    <Compile Include="Migrations\202007261741241_updatedb1.designer.cs">
-      <DependentUpon>202007261741241_updatedb1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007270712364_db-v002.cs" />
-    <Compile Include="Migrations\202007270712364_db-v002.designer.cs">
-      <DependentUpon>202007270712364_db-v002.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007271030089_db-v003.cs" />
-    <Compile Include="Migrations\202007271030089_db-v003.designer.cs">
-      <DependentUpon>202007271030089_db-v003.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\SoSanhThongKeDTO.cs" />
     <Compile Include="Models\DTO\ThongKeTheoThangDTO.cs" />
     <Compile Include="Models\DTO\DichVuDTO.cs" />
@@ -838,6 +825,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
@@ -845,17 +833,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007261741241_updatedb1.resx">
-      <DependentUpon>202007261741241_updatedb1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007270712364_db-v002.resx">
-      <DependentUpon>202007270712364_db-v002.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007271030089_db-v003.resx">
-      <DependentUpon>202007271030089_db-v003.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

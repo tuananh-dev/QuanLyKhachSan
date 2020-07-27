@@ -66,13 +66,13 @@ function loadData(idList, url) {
                     position.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + tien + '</td><td class="center"><span class="label label-sm ' + label + '">' + tt + '</span></td><td class="center"><a class="btn btn-tbl-edit btn-xs btn-edit" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></><a class="btn btn-tbl-delete btn-xs btn-delete" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
                 }
                 if (url == 'Quanly/LayDanhSachTaiKhoan') {
-                    position.prepend('<tr class="odd gradeX"><td >' + val.TenTaiKhoan + '</td><td >' + val.MatKhau + '</td><td >' + val.HoVaTen + '</td><td >' + val.SoDienThoai + '</td><td >' + val.Mail + '</td><td >' + val.LoaiTaiKhoan + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+                    position.prepend('<tr class="odd gradeX"><td style="text-align: left;max-width: 150px">' + val.UserName + '</td><td >' + val.UserPassword + '</td><td >' + val.FullName + '</td><td >' + val.PhoneNumber + '</td><td >' + val.UserEmailID + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
                 }
                 if (url == 'NhanVien/LayDanhSachDoan') {
                     var tgNhan = new Date(val.ThoiGianNhan);
                     var tgTra = new Date(val.ThoiGianTra);
                     var ngayGui = new Date(val.NgayGui);
-                    position.prepend('<tr class="odd gradeX"><td >' + val.TenDoan + '</td><td >' + val.TenTruongDoan + '</td><td >' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td >' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td >' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td ><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '" style="border-radius: 40%" ><i class="fa fa-pencil" style="color: lightgray"></i></a></td></tr>');
+                    position.prepend('<tr class="odd gradeX"><td >' + val.TenDoan + '</td><td >' + val.TenTruongDoan + '</td><td >' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td >' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td >' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td ><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '" style="color: lightgray" >Xếp Phòng</a><div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none" id="loading"></div></td></tr>');
                 }
 
                 if (url == 'KhachHang/LayDanhSachKhachHangTheoMaDoan/1595555103849') {
@@ -86,7 +86,7 @@ function loadData(idList, url) {
 
         },
         error: function (data) {
-            console.log(data.responseJSON.Message);
+            
             if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
                 window.location.replace("../../../404.html");
             }
@@ -265,11 +265,18 @@ function DatPhongChoTungDoan(info, url) {
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         dataType: 'json',
         success: function (data) {
-            alert(data);
+            Swal.fire({
+                icon: 'success',
+                text: 'Thao Tác Thành Công!'
+            })
             loadData(info.id, info.urlLoad);
         },
         error: function (data) {
-            alert(data.responseJSON.Message)
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: data.responseJSON.Message
+            })
 
         }
     })
