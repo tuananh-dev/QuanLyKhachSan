@@ -614,6 +614,7 @@
     <Content Include="Content\Home\FileDSKH\Mẫu File Danh Sách Đoàn.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
+    <Content Include="Views\HomeViews\ChiTietPhong.html" />
     <Content Include="Views\KhachHangViews\DSThanhVien.html" />
     <Content Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.html" />
     <Content Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.html" />
@@ -674,6 +675,10 @@
     <Compile Include="Migrations\202007271637464_db-v005.cs" />
     <Compile Include="Migrations\202007271637464_db-v005.designer.cs">
       <DependentUpon>202007271637464_db-v005.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007271733554_db-v006.cs" />
+    <Compile Include="Migrations\202007271733554_db-v006.designer.cs">
+      <DependentUpon>202007271733554_db-v006.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\SoSanhThongKeDTO.cs" />
@@ -869,6 +874,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007271637464_db-v005.resx">
       <DependentUpon>202007271637464_db-v005.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007271733554_db-v006.resx">
+      <DependentUpon>202007271733554_db-v006.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

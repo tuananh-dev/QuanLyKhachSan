@@ -33,7 +33,7 @@ namespace QLKSProject.Models.Entities
         [Required]
         public int Nhom { get; set; }
 
-        [StringLength(100)]
+        [StringLength(200)]
         public string NguoiDaiDienCuaTreEm { get; set; }
 
         [Required]

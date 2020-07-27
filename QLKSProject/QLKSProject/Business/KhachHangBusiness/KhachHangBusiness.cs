@@ -49,10 +49,31 @@ namespace QLKSProject.Business.KhachHangBusiness
                     khachHang.TrangThaiXacNhan = true;
                 }
                 b = true;
+                models.SaveChanges();
             }
             else
                 b = false;
             return b;
+        }
+        public string HuyDatPhong(string maDoan)
+        {
+            string error = "ok";
+            try
+            {
+                var doan = models.Doans.Where(d => d.MaDoan == maDoan).FirstOrDefault();
+                doan.IsDelete = true;
+                var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == maDoan).ToList();
+                foreach (var kh in lstKhachHang)
+                {
+                    kh.IsDelete = true;
+                }
+                models.SaveChanges();
+            }
+            catch (Exception)
+            {
+                error = "Hủy danh sách khách hàng lỗi!";
+            }
+            return error;
         }
     }
 }
