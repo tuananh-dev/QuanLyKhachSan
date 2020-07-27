@@ -16,10 +16,9 @@ namespace QLKSProject.Controllers.Home
         [HttpPost]
         public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
         {
-            IHttpActionResult respone = Ok();
             if (dynamic == null)
             {
-                return respone = BadRequest();
+                return BadRequest();
             }
 
             string tenDoan = dynamic.TenDoan.ToString();
@@ -30,10 +29,12 @@ namespace QLKSProject.Controllers.Home
 
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
-                if (!homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang))
-                    return BadRequest("Lỗi Lưu file !!!");
+                string result = homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang);
+                if (result.Equals("ok"))
+                    return Ok("Lưu file thành công !"); 
                 else
-                    return Ok("Lưu file thành công !");
+                    return BadRequest(result);
+
             }
         }
         [Authorize(Roles = "ad,ql,nv,kh")]

@@ -32,6 +32,17 @@ namespace QLKSProject.Controllers.KhachHang
                     return BadRequest("Xác nhận đặt phòng thất bại!");
             }
         }
-
+        [HttpGet]
+        public IHttpActionResult HuyDatPhong([FromUri]string id)
+        {
+            using (KhachHangBusiness khachHangBusiness = new KhachHangBusiness())
+            {
+                string result = khachHangBusiness.HuyDatPhong(id);
+                if (result.Equals("ok"))
+                    return Ok("Hủy đặt phòng thành công!");
+                else
+                    return BadRequest(result);
+            }
+        }
     }
 }

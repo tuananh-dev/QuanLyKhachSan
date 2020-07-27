@@ -115,7 +115,6 @@
 
             $('#btn-add').click(function () {
                 var data = {
-                    ID: 0,
                     TenDichVu: $('#tenDV-add').val(),
                     Gia: $('#gia-add').val(),
                     IsDelete: false,
@@ -127,6 +126,7 @@
                     urlLoad: layDSDichVu,
                     modal: idModalAdd
                 };
+                
                 addData(info, data);
             });
 

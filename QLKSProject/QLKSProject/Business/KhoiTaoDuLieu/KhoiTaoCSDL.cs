@@ -15,10 +15,10 @@ namespace QLKSProject.Business
             bool b = true;
             try
             {
-                TaoPhong(7, 10);
-                TaoDichVu();
+/*                TaoPhong(7, 10);
+                TaoDichVu();*/
                 TaoTaiKhoan();
-                TaoTienIch();
+/*                TaoTienIch();*/
 /*                TaoDoanKhachHang(12);*/
             }
             catch (Exception)
@@ -120,9 +120,10 @@ namespace QLKSProject.Business
                 UserMaster userMaster = new UserMaster();
                 userMaster.UserName = lstTenTaiKhoan[i];
                 userMaster.FullName = lstHovaten[i];
-                userMaster.UserPassword = rd.Next(111, 333).ToString();
+                userMaster.UserPassword = rd.Next(111111, 999999).ToString();
                 userMaster.PhoneNumber = "0" + rd.Next(23456789, 88765432).ToString();
                 userMaster.UserEmailID = lstTenTaiKhoan[i] + "@gmail.com";
+                userMaster.MaDoan = "0";
                 switch (rd.Next(1, 5))
                 {
                     case 1: userMaster.UserRoles = "nv"; break;

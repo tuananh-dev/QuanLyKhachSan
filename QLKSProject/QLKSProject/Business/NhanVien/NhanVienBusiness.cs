@@ -500,7 +500,7 @@ namespace QLKSProject.Business.NhanVien
                 taiKhoan.FullName = khachHangDTO.HoVaTen;
                 taiKhoan.PhoneNumber = khachHangDTO.SoDienThoai;
                 taiKhoan.UserEmailID = khachHangDTO.Email;
-                taiKhoan.UserRoles = "nv";
+                taiKhoan.UserRoles = "kh";
                 taiKhoan.IsDelete = false;
                 taiKhoan.UserID = khachHangDTO.ID;
                 taiKhoan.MaDoan = khachHangDTO.MaDoan;
