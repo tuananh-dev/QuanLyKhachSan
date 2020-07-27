@@ -15,6 +15,7 @@ namespace QLKSProject.Models.DTO
         public string FullName { get; set; }
         public string PhoneNumber { get; set; }
         public int UserID { get; set; }
+        public string MaDoan { get; set; }
         public bool IsDelete { get; set; }
     }
 }

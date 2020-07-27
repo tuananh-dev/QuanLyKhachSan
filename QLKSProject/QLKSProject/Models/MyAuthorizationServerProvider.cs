@@ -30,6 +30,7 @@ namespace QLKSProject.Models
                 identity.AddClaim(new Claim("Email", user.UserEmailID));
                 identity.AddClaim(new Claim("FullName", user.FullName));
                 identity.AddClaim(new Claim("UserRoles", user.UserRoles));
+                identity.AddClaim(new Claim("MaDoan", user.MaDoan));
                 context.Validated(identity);
             }
         }

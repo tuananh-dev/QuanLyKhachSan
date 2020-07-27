@@ -43,7 +43,8 @@ namespace QLKSProject.Controllers.Home
             var identity = (ClaimsIdentity)User.Identity;
             var userRoles = identity.Claims.FirstOrDefault(c => c.Type == "UserRoles").Value;
             var fullName = identity.Claims.FirstOrDefault(c => c.Type == "FullName").Value;
-            return Ok(userRoles+" "+fullName);
+            var maDoan = identity.Claims.FirstOrDefault(c => c.Type == "MaDoan").Value;
+            return Ok(userRoles+" "+fullName+" "+maDoan);
         }
     }
 }

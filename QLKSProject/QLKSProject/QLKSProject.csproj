@@ -667,6 +667,10 @@
     <Compile Include="Migrations\202007271030089_db-v003.designer.cs">
       <DependentUpon>202007271030089_db-v003.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007271613437_db-v004.cs" />
+    <Compile Include="Migrations\202007271613437_db-v004.designer.cs">
+      <DependentUpon>202007271613437_db-v004.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\SoSanhThongKeDTO.cs" />
     <Compile Include="Models\DTO\ThongKeTheoThangDTO.cs" />
@@ -855,6 +859,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007271030089_db-v003.resx">
       <DependentUpon>202007271030089_db-v003.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007271613437_db-v004.resx">
+      <DependentUpon>202007271613437_db-v004.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
