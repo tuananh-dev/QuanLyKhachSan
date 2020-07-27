@@ -404,6 +404,50 @@ namespace QLKSProject.Business.NhanVien
             }).ToList();
             return lstDoan;
         }
+        public List<PhongDTO> LayDanhSachPhongTheoDieuKien(DateTime ngayNhan, DateTime ngayTra)
+        {
+            var lstphong = models.Phongs.Where(e => e.IsDelete == false).Select(e => new PhongDTO
+            {
+                ID = e.ID,
+                MaPhong = e.MaPhong,
+                SoPhong = e.SoPhong,
+                LoaiPhong = e.LoaiPhong,
+                Gia = e.Gia,
+                TrangThai = e.TrangThai,
+                IsDelete = e.IsDelete
+            });
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiXacNhan != false).Select(kh => new KhachHangDTO
+            {
+                ID = kh.ID,
+                HoVaTen = kh.HoVaTen,
+                SoDienThoai = kh.SoDienThoai,
+                Email = kh.Email,
+                DiaChi = kh.DiaChi,
+                Nhom = kh.Nhom,
+                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = kh.ThoiGianNhan,
+                ThoiGianTra = kh.ThoiGianTra,
+                MaDoan = kh.MaDoan,
+                GioiTinh = kh.GioiTinh,
+                LoaiKhachHang = kh.LoaiKhachHang,
+                TruongDoan = kh.TruongDoan,
+                IsDelete = kh.IsDelete,
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
+            }).ToList();
+            foreach (var phong in lstphong)
+            {
+                var lstKhachHangPhong = lstKhachHang.Where(kh => kh.IDPhong == phong.ID).ToList();
+                foreach (var kh in lstKhachHangPhong)
+                {
+                    if (kh.ThoiGianNhan.CompareTo(ngayNhan) <= 0 && kh.ThoiGianTra.CompareTo(ngayNhan) >= 1)
+                        phong.TrangThai = false;
+                    if (kh.ThoiGianNhan.CompareTo(ngayTra) <= 0 && kh.ThoiGianTra.CompareTo(ngayTra) >= 1)
+                        phong.TrangThai = false;
+                }
+            }
+            return lstphong.ToList();
+        }
         #endregion
         #region private methods
         private string GuiMailTuDong(string tenKhachHang, string email, string account, string password)

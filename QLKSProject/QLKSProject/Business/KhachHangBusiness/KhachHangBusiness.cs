@@ -32,16 +32,27 @@ namespace QLKSProject.Business.KhachHangBusiness
         }
         public bool XacNhanDatPhong(string maDoan)
         {
+            bool b = false;
             var doan = models.Doans.Where(d => d.MaDoan == maDoan).FirstOrDefault();
             if(doan != null)
             {
                 doan.TrangThaiXacNhan = true;
-                return true;
+                b = true;
             }
             else
+                b = false;
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == maDoan).ToList();
+            if (lstKhachHang.Count != 0)
             {
-                return false;
-            }    
+                foreach (var khachHang in lstKhachHang)
+                {
+                    khachHang.TrangThaiXacNhan = true;
+                }
+                b = true;
+            }
+            else
+                b = false;
+            return b;
         }
     }
 }

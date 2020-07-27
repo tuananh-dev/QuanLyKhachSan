@@ -92,5 +92,17 @@ namespace QLKSProject.Controllers.NhanVien
                 return Ok(nhanVienBusiness.LayDanhSachDoanTheoTrangThaiDatPhong(-1));
             }
         }
+        [HttpPost]
+        public IHttpActionResult LayDanhSachPhongTheoDieuKien(dynamic dynamic)
+        {
+            if (dynamic == null)
+                return BadRequest();
+            DateTime ngayNhan = JsonConvert.DeserializeObject<DateTime>(dynamic.NgayNhan.ToString());
+            DateTime ngayTra = JsonConvert.DeserializeObject<DateTime>(dynamic.NgayTra.ToString());
+            using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            {
+                return Ok(nhanVienBusiness.LayDanhSachPhongTheoDieuKien(ngayNhan, ngayTra));
+            }
+        }
     }
 }

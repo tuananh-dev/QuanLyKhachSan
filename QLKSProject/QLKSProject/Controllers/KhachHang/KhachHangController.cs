@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Newtonsoft.Json;
 using QLKSProject.Business.KhachHangBusiness;
 
 namespace QLKSProject.Controllers.KhachHang
@@ -31,5 +32,6 @@ namespace QLKSProject.Controllers.KhachHang
                     return BadRequest("Xác nhận đặt phòng thất bại!");
             }
         }
+
     }
 }

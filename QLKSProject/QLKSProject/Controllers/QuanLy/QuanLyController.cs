@@ -26,7 +26,6 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpGet]
         public IHttpActionResult LayTaiKhoan([FromUri] int id)
         {
-            IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 return Ok(quanLy.LayTaiKhoan(id));
@@ -36,7 +35,8 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpPost]
         public IHttpActionResult ThemTaiKhoan([FromBody]dynamic dynamic)
         {
-            IHttpActionResult respon = Ok();
+            if (dynamic == null)
+                return BadRequest();
             UserMasterDTO tk = JsonConvert.DeserializeObject<UserMasterDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
@@ -255,6 +255,26 @@ namespace QLKSProject.Controllers.QuanLy
             using (QuanLyBusiness quanLyBusiness = new QuanLyBusiness())
             {
                 return Ok(quanLyBusiness.BaoCaoThongKeTheoQuy(quy, nam));
+            }
+        }
+        [HttpPost]
+        public IHttpActionResult SoSanhSoSanhThongKeTheoThang(dynamic dynamic)
+        {
+            int thang = int.Parse(dynamic.thang.ToString());
+            int nam = int.Parse(dynamic.nam.ToString());
+            using (QuanLyBusiness quanLyBusiness = new QuanLyBusiness())
+            {
+                return Ok(quanLyBusiness.SoSanhThongKeTheoThang(thang, nam));
+            }
+        }
+        [HttpPost]
+        public IHttpActionResult SoSanhSoSanhThongKeTheoQuy(dynamic dynamic)
+        {
+            int quy = int.Parse(dynamic.quy.ToString());
+            int nam = int.Parse(dynamic.nam.ToString());
+            using (QuanLyBusiness quanLyBusiness = new QuanLyBusiness())
+            {
+                return Ok(quanLyBusiness.SoSanhThongKeTheoQuy(quy, nam));
             }
         }
         #endregion

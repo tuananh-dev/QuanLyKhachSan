@@ -457,6 +457,71 @@ namespace QLKSProject.Business.QuanLy
 
             return thongKeTheoQuyDTOs;
         }
+        public SoSanhThongKeDTO SoSanhThongKeTheoThang(int thang, int nam)
+        {
+            double doanhThuThuePhongHT = 0;
+            double doanhThuDichVuHT = 0;
+            double doanhThuThuePhongQK = 0;
+            double doanhThuDichVuQK = 0;
+            List<ThongKeTheoThangDTO> lstThongKeTheoThangHienTai;
+            List<ThongKeTheoThangDTO> lstThongKeTheoThangTruoc;
+            lstThongKeTheoThangHienTai = BaoCaoThongKeTheoThang(thang, nam);
+            if(thang != 1)
+                lstThongKeTheoThangTruoc = BaoCaoThongKeTheoThang(thang - 1, nam);
+            else
+                lstThongKeTheoThangTruoc = BaoCaoThongKeTheoThang(12, nam-1);
+            foreach (var thongKe in lstThongKeTheoThangHienTai)
+            {
+                if (thongKe.TenDichVu.Equals("Cho thuê phòng"))
+                    doanhThuThuePhongHT += thongKe.DoanThu;
+                else
+                    doanhThuDichVuHT += thongKe.DoanThu;
+            }
+            foreach (var thongKe in lstThongKeTheoThangTruoc)
+            {
+                if (thongKe.TenDichVu.Equals("Cho thuê phòng"))
+                    doanhThuThuePhongQK += thongKe.DoanThu;
+                else
+                    doanhThuDichVuQK += thongKe.DoanThu;
+            }
+            SoSanhThongKeDTO soSanhThongKeDTO = new SoSanhThongKeDTO();
+            soSanhThongKeDTO.TienThuePhong = (doanhThuThuePhongHT / doanhThuThuePhongQK) * 100;
+            soSanhThongKeDTO.TienDichVu = (doanhThuDichVuHT / doanhThuDichVuQK) * 100;
+            return soSanhThongKeDTO;
+        }
+        public SoSanhThongKeDTO SoSanhThongKeTheoQuy(int quy, int nam)
+        {
+            double doanhThuThuePhongHT = 0;
+            double doanhThuDichVuHT = 0;
+            double doanhThuThuePhongQK = 0;
+            double doanhThuDichVuQK = 0;
+            List<ThongKeTheoQuyDTO> lstThongKeTheoQuyHienTai;
+            List<ThongKeTheoQuyDTO> lstThongKeTheoQuyTruoc;
+            lstThongKeTheoQuyHienTai = BaoCaoThongKeTheoQuy(quy, nam);
+            if (quy != 1)
+                lstThongKeTheoQuyTruoc = BaoCaoThongKeTheoQuy(quy - 1, nam);
+            else
+                lstThongKeTheoQuyTruoc = BaoCaoThongKeTheoQuy(4, nam - 1);
+            foreach (var thongKe in lstThongKeTheoQuyHienTai)
+            {
+                if (thongKe.TenDichVu.Equals("Cho thuê phòng"))
+                    doanhThuThuePhongHT += thongKe.TrungBinh;
+                else
+                    doanhThuDichVuHT += thongKe.TrungBinh;
+            }
+            foreach (var thongKe in lstThongKeTheoQuyTruoc)
+            {
+                if (thongKe.TenDichVu.Equals("Cho thuê phòng"))
+                    doanhThuThuePhongQK += thongKe.TrungBinh;
+                else
+                    doanhThuDichVuQK += thongKe.TrungBinh;
+            }
+            SoSanhThongKeDTO soSanhThongKeDTO = new SoSanhThongKeDTO();
+            soSanhThongKeDTO.TienThuePhong = (doanhThuThuePhongHT / doanhThuThuePhongQK) * 100;
+            soSanhThongKeDTO.TienDichVu = (doanhThuDichVuHT / doanhThuDichVuQK) * 100;
+            return soSanhThongKeDTO;
+        }
+
         #endregion
         #region Private Methods
         private bool CheckUserMaster(String userName)
