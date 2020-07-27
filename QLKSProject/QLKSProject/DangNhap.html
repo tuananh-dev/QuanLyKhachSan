@@ -11,14 +11,14 @@
     <meta name="author" content="SmartUniversity" />
     <title>Color Hotel | Đăng Nhập</title>
     <!-- icons -->
-    <link href="~/Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="~/Content/QuanLy/plugins/iconic/css/material-design-iconic-font.min.css">
+    <link href="../../../Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../../Content/QuanLy/plugins/iconic/css/material-design-iconic-font.min.css">
     <!-- bootstrap -->
-    <link href="~/Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- style -->
-    <link rel="stylesheet" href="~/Content/QuanLy/css/pages/extra_pages.css">
+    <link rel="stylesheet" href="../../../Content/QuanLy/css/pages/extra_pages.css">
     <!-- favicon -->
-    <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
+    <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 
@@ -31,9 +31,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            sessionStorage.removeItem('role');
-            sessionStorage.removeItem('accessToken');
-            sessionStorage.removeItem('fullname');
+            //sessionStorage.removeItem('role');
+            //sessionStorage.removeItem('accessToken');
+            //sessionStorage.removeItem('fullname');
 
 
         });
@@ -49,21 +49,9 @@
 
                 <form class="login100-form validate-form" id="dangnhap" method="post" enctype="multipart/form-data" onsubmit="return false">
 
-                    @*<span onclick="goBack()" class="close">&times; </span>*@
-
-                    @*<button type="button" id="cancel" 4 onclick="goBack()" onclick="javascript:window.location='http://stackoverflow.com';">
-                            X
-                        </button>
-                        <script>
-
-                            function goBack() {
-                                window.history.back();
-                            }
-                        </script>*@
-                    @*<link rel="icon" type="image/png" href="~/Content/Home/images/logo1.png" />*@
-                    <span class="login100-form-title p-b-34 p-t-27" @*class="login100-form-logo" *@>
-                        @*<i class="zmdi zmdi-flower"></i>*@
-                        <img src="~/Content/Home/images/logo1.png" alt="Mẫu File DS" width="100" height="100">
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        
+                        <img src="../../../Content/Home/images/logo1.png" alt="Mẫu File DS" width="100" height="100">
                     </span>
                     <span class="login100-form-title p-b-34 p-t-27">
                         Log in
@@ -81,7 +69,6 @@
                     <div class="contact100-form-checkbox">
                         <input class="input-checkbox100" value="lsRememberMe" id="ckb1" type="checkbox" name="remember-me">
                         <label class="label-checkbox100" for="ckb1">
-                            @*Remember me*@
                             Ghi Nhớ Tài Khoản
                         </label>
                         <script>
@@ -126,10 +113,7 @@
 
                     </div>
                     <div class="text-center p-t-90" onclick="quenmk">
-                        @*<a class="txt1" href="#">
-                                Forgot Password?
-                            </a>*@
-
+                       
                     </div>
                     <script type="text/javascript">
                         $(document).ready(function () {
@@ -139,7 +123,6 @@
                                     url: '/token',
                                     method: 'POST',
                                     headers: { 'content-type': 'application/json', 'data-type': 'json' },
-                                    //data: JSON.stringify(person),
                                     data: {
                                         username: $('#username').val(),
                                         password: $('#pass').val(),
@@ -166,13 +149,13 @@
 
                                                         break;
                                                     case 'ql':
-                                                        window.location.href = "../QuanLyViews/ThongKe/thongke.html";
+                                                        window.location.href = "views/QuanLyViews/ThongKe/thongke.html";
                                                         break;
                                                     case 'nv':
-                                                        window.location.href = "../NhanVienViews/Phong_NhanVien/DanhSachPhong.html";
+                                                        window.location.href = "views/NhanVienViews/Phong_NhanVien/DanhSachPhong.html";
                                                         break;
                                                     case 'kh':
-                                                        window.location.href = "../KhachHangViews/DSThanhVien.html";
+                                                        window.location.href = "views/KhachHangViews/DSThanhVien.html";
                                                         break;
                                                 }
 
@@ -204,13 +187,11 @@
         </div>
     </div>
     <!-- start js include path -->
-    <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
+    <script src="../../../Content/QuanLy/plugins/jquery/jquery.min.js"></script>
     <!-- bootstrap -->
-    <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/Content/QuanLy/js/pages/extra_pages/login.js"></script>
+    <script src="../../../Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../Content/QuanLy/js/pages/extra_pages/login.js"></script>
     <!-- end js include path -->
 </body>
 
-
-<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:06 GMT -->
 </html>

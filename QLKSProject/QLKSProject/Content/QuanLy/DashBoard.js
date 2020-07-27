@@ -75,6 +75,10 @@ function dashboard_Circle(data, url) {
         $.ajax({
             type: 'POST',
             url: '/api/' + url,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+                xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+            },
             headers: { 'content-type': 'application/json', 'data-type': 'json' },
             data: JSON.stringify(data),
             success: function (data) {
@@ -116,6 +120,10 @@ function dashboard_ThreeBar(data, url) {
         $.ajax({
             type: 'POST',
             url: '/api/' + url,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+                xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+            },
             headers: { 'content-type': 'application/json', 'data-type': 'json' },
             data: JSON.stringify(data),
             success: function (data) {

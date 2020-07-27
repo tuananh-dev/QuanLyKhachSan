@@ -246,6 +246,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
@@ -621,14 +622,10 @@
     <Content Include="Views\QuanLyViews\DichVu\DSDichVu.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Views\AccountViews\DangNhap.cshtml" />
     <Content Include="Views\HomeViews\GioiThieu.cshtml" />
     <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
     <Content Include="Views\HomeViews\TrangChu.cshtml" />
     <Content Include="Views\QuanLyViews\Phong\DSPhong.html" />
-    <Content Include="Views\QuanLyViews\TaiKhoan\DangNhap.cshtml" />
-    <Content Include="Views\QuanLyViews\TaiKhoan\DKTaiKhoan.cshtml" />
-    <Content Include="Views\QuanLyViews\TaiKhoan\KhoaManHinh.cshtml" />
     <Content Include="Views\QuanLyViews\ThongKe\ThongKe.html" />
     <Content Include="Views\QuanLyViews\TienIch\DSTienIch.html" />
     <Content Include="Views\QuanLyViews\TKNhanVien\DSTKNhanVien.html" />
@@ -827,6 +824,7 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\TaiKhoanViews\DangNhap.cshtml" />
+    <Content Include="DangNhap.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
