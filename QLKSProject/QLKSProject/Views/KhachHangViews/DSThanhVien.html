@@ -37,12 +37,20 @@
             var layDS = 'KhachHang/LayDanhSachKhachHangTheoMaDoan/';
             console.log(sessionStorage.getItem('madoan'));
             loadData(idList, layDS + sessionStorage.getItem('madoan'));
+            if (sessionStorage.getItem('xacnhan') == "true") {
+                $('#confirm').css("display", "none");
+                $('#cancel').css("display", "none");
+            } else {
+                console.log("dtrang thai dang false")
+            }
+
             $('#confirm').click(function () {
                  var info = {
                     id: idList,
                     urlLoad: layDS + sessionStorage.getItem('madoan')
                 }
                 XacNhanDatPhong(info);
+                window.location.href = "DSThanhVien.html";
             })
 
             $('#cancel').click(function () {

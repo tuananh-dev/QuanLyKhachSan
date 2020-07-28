@@ -25,7 +25,8 @@ namespace QLKSProject.Business.KhachHangBusiness
                 LoaiKhachHang = kh.LoaiKhachHang,
                 TruongDoan = kh.TruongDoan,
                 IsDelete = kh.IsDelete,
-                TrangThaiDatPhong = kh.TrangThaiDatPhong
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
             }).ToList();
 
             return lstKhachHang;
