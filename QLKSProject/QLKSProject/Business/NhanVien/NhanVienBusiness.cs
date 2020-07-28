@@ -237,7 +237,7 @@ namespace QLKSProject.Business.NhanVien
                             }
                             else
                             {
-                                trangThaiDatPhong = "Khong lay duoc phong cho khach (Het Phong) !!!";
+                                trangThaiDatPhong = "Không lấy được phòng cho khách hàng (Hết phòng) !!!";
                                 khachHang.GhiChu = "Hết phòng/ Không có phòng phù hợp";
                             }
                                 
@@ -358,7 +358,7 @@ namespace QLKSProject.Business.NhanVien
                 Gia = e.Gia,
                 TrangThai = e.TrangThai,
                 IsDelete = e.IsDelete
-            });
+            }).ToList();
             var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiXacNhan != false).Select(kh => new KhachHangDTO {
                 ID = kh.ID,
                 HoVaTen = kh.HoVaTen,
@@ -375,7 +375,9 @@ namespace QLKSProject.Business.NhanVien
                 TruongDoan = kh.TruongDoan,
                 IsDelete = kh.IsDelete,
                 TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                TrangThaiXacNhan = kh.TrangThaiXacNhan
+                TrangThaiXacNhan = kh.TrangThaiXacNhan,
+                IDPhong = kh.IDPhong,
+                GhiChu = kh.GhiChu
             }).ToList();
             foreach (var phong in lstphong)
             {
@@ -386,7 +388,7 @@ namespace QLKSProject.Business.NhanVien
                         phong.TrangThai = false;
                 }
             }
-            return lstphong.ToList();
+            return lstphong;
         }
         public List<DoanDTO> LayDanhSachDoanTheoTrangThaiDatPhong(int trangThaiDatPhong)
         {

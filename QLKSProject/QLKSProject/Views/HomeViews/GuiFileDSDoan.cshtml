@@ -328,7 +328,8 @@
                                                     error: function (data) {
                                                         swal({
                                                             type: 'error',
-                                                            title: data.responseJSON.Message,
+                                                            title: '',
+                                                            text: data.responseJSON.Message,
                                                             //text: 'Bạn Đã Gửi File Danh Sách Không Thành Công',
 
                                                         });
@@ -348,28 +349,41 @@
 
 
                                                 @*<div class="upload-container">
-                                                        <div class="border-container">
-                                                            <div class="icons fa-4x">
-                                                                <i class="fas fa-file-image" data-fa-transform="shrink-3 down-2 left-6 rotate--45"></i>
-                                                                <i class="fas fa-file-alt" data-fa-transform="shrink-2 up-4"></i>
-                                                                <i class="fas fa-file-pdf" data-fa-transform="shrink-3 down-2 right-6 rotate-45"></i>
-                                                            </div>
-                                                            <div class="a">
-                                                                <input type="file" id="file-upload" required>
-                                                            </div>
-                                                            <p>
-                                                                Bấm
-                                                                <a id="file-browser">Choose File</a> để chọn file ds đoàn cần gửi lên
-                                                            </p>
-                                                        </div>
-                                                    </div>*@
+                            <div class="border-container">
+                                <div class="icons fa-4x">
+                                    <i class="fas fa-file-image" data-fa-transform="shrink-3 down-2 left-6 rotate--45"></i>
+                                    <i class="fas fa-file-alt" data-fa-transform="shrink-2 up-4"></i>
+                                    <i class="fas fa-file-pdf" data-fa-transform="shrink-3 down-2 right-6 rotate-45"></i>
+                                </div>
+                                <div class="a">
+                                    <input type="file" id="file-upload" required>
+                                </div>
+                                <p>
+                                    Bấm
+                                    <a id="file-browser">Choose File</a> để chọn file ds đoàn cần gửi lên
+                                </p>
+                            </div>
+                        </div>*@
 
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
+                                <script>
+                                    var uploadField = document.getElementById("file-upload");
+                                    uploadField.onchange = function () {
+                                        if (this.files[0].size > 3145728) {
+                                            //alert("File is too big!");
+                                            swal("Kích thước file vượt quá 3MB");
 
+
+
+
+                                            this.value = "";
+                                        };
+                                    };
+                                </script>
 
 
                                 <div class="row form-group">
@@ -473,9 +487,9 @@
                                             }
                                         </script>
                                         @*<script>
-                                                var validator = $("#formguidsdoan").validate();
-                                                validator.element("#gui");
-                                            </script>*@
+                    var validator = $("#formguidsdoan").validate();
+                    validator.element("#gui");
+                </script>*@
 
                                         <input type="file" id="file-upload" name="upload" required onchange="ValidateSingleInput(this);" />
 

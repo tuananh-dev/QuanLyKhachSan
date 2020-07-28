@@ -41,19 +41,20 @@ namespace QLKSProject.Business.QuanLy
             }).FirstOrDefault();
             return UserMaster;
         }
-        public bool ThemTaiKhoan(UserMasterDTO UserMaster)
+        public bool ThemTaiKhoan(UserMasterDTO userMaster)
         {
-
             Models.Entities.UserMaster tk = new Models.Entities.UserMaster();
-            if (CheckUserMaster(UserMaster.UserName))
+            if (CheckUserMaster(userMaster.UserName))
             {
-                tk.UserName = UserMaster.UserName;
-                tk.UserPassword = UserMaster.UserPassword;
-                tk.FullName = UserMaster.FullName;
-                tk.PhoneNumber = UserMaster.PhoneNumber;
-                tk.UserEmailID = UserMaster.UserEmailID;
-                tk.UserRoles = UserMaster.UserRoles;
-                tk.IsDelete = UserMaster.IsDelete;
+                tk.UserName = userMaster.UserName;
+                tk.UserPassword = userMaster.UserPassword;
+                tk.UserRoles = userMaster.UserRoles;
+                tk.FullName = userMaster.FullName;
+                tk.PhoneNumber = userMaster.PhoneNumber;
+                tk.UserEmailID = userMaster.UserEmailID;            
+                tk.IsDelete = userMaster.IsDelete;
+                tk.MaDoan = userMaster.MaDoan;
+                tk.UserID = userMaster.UserID;
                 models.UserMasters.Add(tk);
                 models.SaveChanges();
                 return true;
@@ -63,17 +64,20 @@ namespace QLKSProject.Business.QuanLy
                 return false;
             }
         }
-        public bool CapNhatTaiKhoan(UserMasterDTO UserMaster)
+        public bool CapNhatTaiKhoan(UserMasterDTO userMaster)
         {
-
             try
             {
-                var tk = models.UserMasters.Where(s => s.ID == UserMaster.ID).FirstOrDefault();
-                tk.UserName = UserMaster.UserName;
-                tk.FullName = UserMaster.FullName;
-                tk.PhoneNumber = UserMaster.PhoneNumber;
-                tk.UserEmailID = UserMaster.UserEmailID;
-                tk.UserRoles = UserMaster.UserRoles;
+                var tk = models.UserMasters.Where(s => s.ID == userMaster.ID).FirstOrDefault();
+                tk.UserName = userMaster.UserName;
+                tk.UserPassword = userMaster.UserPassword;
+                tk.UserRoles = userMaster.UserRoles;
+                tk.FullName = userMaster.FullName;
+                tk.PhoneNumber = userMaster.PhoneNumber;
+                tk.UserEmailID = userMaster.UserEmailID;
+                tk.IsDelete = userMaster.IsDelete;
+                tk.MaDoan = userMaster.MaDoan;
+                tk.UserID = userMaster.UserID;
                 models.SaveChanges();
                 return true;
             }
@@ -84,10 +88,10 @@ namespace QLKSProject.Business.QuanLy
         }
         public bool XoaTaiKhoan(int idUserMaster)
         {
-            var UserMaster = models.UserMasters.Where(e => e.ID == idUserMaster).FirstOrDefault();
-            if (UserMaster != null)
+            var userMaster = models.UserMasters.Where(e => e.ID == idUserMaster).FirstOrDefault();
+            if (userMaster != null)
             {
-                UserMaster.IsDelete = true;
+                userMaster.IsDelete = true;
                 models.SaveChanges();
                 return true;
             }
@@ -108,7 +112,7 @@ namespace QLKSProject.Business.QuanLy
                 Gia = e.Gia,
                 TrangThai = e.TrangThai,
                 IsDelete = e.IsDelete
-            });
+            }).ToList();
             var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiXacNhan != false).Select(kh => new KhachHangDTO
             {
                 ID = kh.ID,
@@ -126,7 +130,9 @@ namespace QLKSProject.Business.QuanLy
                 TruongDoan = kh.TruongDoan,
                 IsDelete = kh.IsDelete,
                 TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                TrangThaiXacNhan = kh.TrangThaiXacNhan
+                TrangThaiXacNhan = kh.TrangThaiXacNhan,
+                IDPhong = kh.IDPhong,
+                GhiChu = kh.GhiChu
             }).ToList();
             foreach (var phong in lstphong)
             {
