@@ -77,6 +77,7 @@ function loadData(idList, url) {
                         if (val.NguoiDaiDienCuaTreEm != '0') {
                             daidien = val.NguoiDaiDienCuaTreEm;
                         }
+                        sessionStorage.setItem('xacnhan', val.TrangThaiXacNhan);
                         var tgNhan = new Date(val.ThoiGianNhan);
                         var tgTra = new Date(val.ThoiGianTra);
                         position.prepend('<tr class="odd gradeX"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="center">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.IDPhong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
@@ -302,7 +303,6 @@ function DatPhongChoTungDoan(info, url) {
         url: '/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-            xhr.setRequestHeader();
         },
         headers: { 'data-type': 'json' },
         success: function (data) {
@@ -312,7 +312,7 @@ function DatPhongChoTungDoan(info, url) {
                 'You clicked the button!',
                 'success'
             )
-            loadData(info.id, info.urlLoad);
+            
         },
         error: function (data) {
             Swal.fire({
