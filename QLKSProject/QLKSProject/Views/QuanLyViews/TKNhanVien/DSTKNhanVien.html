@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="description" content="Responsive Admin Template" />
     <meta name="author" content="SmartUniversity" />
-    <title>Spice Hotel | Bootstrap 4 Admin Dashboard Template + UI Kit</title>
+    <title>Color Hotel</title>
     <!-- icons -->
     <link href="../../../Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="../../../Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -31,6 +31,7 @@
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="../../../Content/QuanLy/Jquery.js"></script>
     <script src="../../../Content/QuanLy/libs_function.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             checkSession();
@@ -47,13 +48,13 @@
             }
 
             $('#roleuser').html(role);
+            console.log(sessionStorage.getItem('accessToken'))
             //var mota = $();
             var dataId;
             var idList = '#dstk';
             //Modal
             var idModalAdd = '#addModal';
             var idModalEdit = '#editModal';
-            var idModalDelete = '#deleteModal';
 
             //API
             var layDSTaiKhoan = 'Quanly/LayDanhSachTaiKhoan';
@@ -65,20 +66,17 @@
             loadData(idList, layDSTaiKhoan);
 
             $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
-                $(idModalDelete).modal('show');
+
                 dataId = $(this).attr("data-id");
-            })
-
-            $('#btn-del').click(function () {
-
                 var info = {
                     id: idList,
                     url: xoaTaiKhoan,
-                    urlLoad: layDSTaiKhoan,
-                    modal: idModalDelete
+                    urlLoad: layDSTaiKhoan
                 };
                 deleteData(info, dataId);
             })
+
+
             $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
                 $(idModalEdit).modal('show');
                 dataId = $(this).attr("data-id");
@@ -119,14 +117,16 @@
             })
 
             $('#btn-add').click(function () {
-
+                console.log($('#tentk-add').val() + "-" + $('#matkhau-add').val() + "-" + $('#hoten-add').val() + "-" + $('#sdt-add').val() + "-" + $('#mail-add').val())
                 var data = {
-                    TenTaiKhoan: $('#tentk-add').val(),
-                    MatKhau: $('#matkhau-add').val(),
-                    HoVaTen: $('#hoten-add').val(),
-                    SoDienThoai: $('#sdt-add').val(),
-                    Mail: $('#mail-add').val(),
-                    LoaiTaiKhoan: "NV",
+                    UserName: $('#tentk-add').val(),
+                    UserPassword: $('#matkhau-add').val(),
+                    FullName: $('#hoten-add').val(),
+                    PhoneNumber: $('#sdt-add').val(),
+                    UserEmailID: $('#mail-add').val(),
+                    UserRoles: "nv",
+                    UserID: "0",
+                    MaDoan: 0,
                     IsDelete: false,
                 }
                 var info = {
@@ -153,10 +153,10 @@
             <div class="page-header-inner ">
                 <!-- logo start -->
                 <div class="page-logo">
-                    
-                    <a href="../../NhanVienViews/Phong_NhanVien/DanhSachPhong.html">
+
+                    <a href="../../HomeViews/TrangChu.cshtml">
                         <img alt="" src="../../../Content/QuanLy/img/logo.png">
-                        <span class="logo-default">Spice</span>
+                        <span class="logo-default">Hotel</span>
                     </a>
                 </div>
                 <!-- logo end -->
@@ -201,7 +201,7 @@
 
                                 <li>
                                     <a href="../../../DangNhap.html">
-                                       
+
                                         <i class="icon-logout"></i> Log Out
                                     </a>
                                 </li>
@@ -285,38 +285,7 @@
 
                             </li>
 
-                            <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Phòng Nhân Viên</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thành Công</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thất Bại</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/Doan/Doan.html" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đoàn</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
+                            
 
                         </ul>
                     </div>
@@ -335,7 +304,7 @@
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
                                                                        href="../../NhanVienViews/Phong_NhanVien/DanhSachPhong.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                
+
                                 <li class="active">Danh Sách Tài Khoản Nhân Viên</li>
                             </ol>
                         </div>
@@ -365,10 +334,10 @@
                                                     <thead>
                                                         <tr>
                                                             <th style="text-align: left"> Tên Tài Khoản </th>
-                                                            <th > Mật Khẩu </th>
-                                                            <th > Họ và Tên </th>
-                                                            <th > Số Điện Thoại </th>
-                                                            <th > Mail</th>
+                                                            <th> Mật Khẩu </th>
+                                                            <th> Họ và Tên </th>
+                                                            <th> Số Điện Thoại </th>
+                                                            <th> Mail</th>
                                                             <th class="center"> Chức Năng </th>
                                                         </tr>
                                                     </thead>
@@ -518,42 +487,14 @@
                 <!-----end modal-->
                 <!-- end page content -->
             </div>
-            <div class="modal fade" tabindex="-1" id="deleteModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
 
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Xác Nhận Xóa Tài Khoản</h4>
-
-                                    <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-del">
-                                            Xóa
-                                        </button>
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                            Hủy
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-- End Modal -->
-                <!-- end chat sidebar -->
-            </div>
             <!-- end page content -->
         </div>
         <!-- end page container -->
         <!-- start footer -->
         <div class="page-footer">
             <div class="page-footer-inner">
-                2020 &copy; Hotel Spice
+                2020 &copy; Hotel Color
 
             </div>
             <div class="scroll-to-top">

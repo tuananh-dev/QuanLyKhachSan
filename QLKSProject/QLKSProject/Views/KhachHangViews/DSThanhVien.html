@@ -4,7 +4,7 @@
 <!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:35:49 GMT -->
 <head>
     <meta charset="utf-8" />
-    <title>Spice Hotel</title>
+    <title>Color Hotel</title>
     <!-- icons -->
     <link href="../../../Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="../../../Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -52,7 +52,7 @@
                     text: "Bạn sẽ không thể quay lại!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
+                    confirmButtonColor: '#F08080',
                     cancelButtonColor: '#d3d3d3',
                     confirmButtonText: 'Có, Tôi muốn hủy!',
                     cancelButtonText: 'Bỏ Qua'
@@ -67,6 +67,7 @@
                     }
                 })
             })
+            $('.fullname').html(sessionStorage.getItem('fullname'));
         });
     </script>
 
@@ -80,10 +81,10 @@
             <div class="page-header-inner ">
                 <!-- logo start -->
                 <div class="page-logo">
-                    <a href="DSThanhVien.html">
-                        
+                    <a href="../HomeViews/TrangChu.cshtml">
+
                         <img alt="" src="../../../Content/QuanLy/img/logo.png">
-                        <span class="logo-default">Spice</span>
+                        <span class="logo-default">Hotel</span>
                     </a>
                 </div>
                 <!-- logo end -->
@@ -114,7 +115,7 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                data-close-others="true">
                                 <img alt="" class="img-circle " src="../../../Content/QuanLy/img/dp.jpg" />
-                                <span class="username username-hide-on-mobile"> John </span>
+                                <span class="username username-hide-on-mobile fullname"> </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
@@ -149,23 +150,14 @@
             <div class="page-content">
                 <div class="page-bar">
                     <div class="page-title-breadcrumb">
-                        <div class=" pull-left">
-                            <div class="page-title">Danh Sách Thành Viên</div>
+                        <div class="pull-center" style="text-align: center">
+                            <h1 class="page-title">Danh Sách Thành Viên</h1>
                         </div>
-                        <ol class="breadcrumb page-breadcrumb pull-right">
-                            <li>
-                                <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                   href="#">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
-                            </li>
-                            <li>
-                                <a class="parent-item" href="#">Thành Viên</a>&nbsp;<i class="fa fa-angle-right"></i>
-                            </li>
-                            <li class="active">Danh Sách Thành Viên</li>
-                        </ol>
+                        
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
+                <div class="row" style="display: flex; justify-content:center;">
+                    <div class="col-md-10">
                         <div class="card card-box">
 
                             <div class="card-body ">
@@ -175,14 +167,14 @@
                                            id="example">
                                         <thead>
                                             <tr>
-                                                <th class="" style="text-align:left;width:195px"> Họ và Tên </th>
-                                                <th class=""> SĐT</th>
-                                                <th class="" style="width: 50px"> Email</th>
-                                                <th class="" style="width: 50px"> Nguời Đại Diện</th>
-                                                <th class="center"> Nhóm</th>
-                                                <th class="center"> Phòng </th>
-                                                <th class="center"> Thời Gian Nhận Phòng</th>
-                                                <th class="center"> Thời Gian Trả Phòng</th>
+                                                <th class="" style="text-align:left;width:200px"> Họ và Tên </th>
+                                                <th class="center" style="width:125px"> SĐT</th>
+                                                <th class="center" style="width: 50px"> Email</th>
+                                                <th class="" style="width: 200px"> Nguời Đại Diện</th>
+                                                <th class="center" style="width: 10px"> Nhóm</th>
+                                                <th class="center" style="width: 10px"> Phòng </th>
+                                                <th class="center" style="width: 50px"> Thời Gian Nhận Phòng</th>
+                                                <th class="center" style="width: 50px"> Thời Gian Trả Phòng</th>
 
                                             </tr>
                                         </thead>
@@ -215,7 +207,7 @@
             </div>
             <div class="page-footer">
                 <div class="page-footer-inner">
-                    2020 &copy; Hotel Spice
+                    2020 &copy; Hotel Color
 
                 </div>
                 <div class="scroll-to-top">

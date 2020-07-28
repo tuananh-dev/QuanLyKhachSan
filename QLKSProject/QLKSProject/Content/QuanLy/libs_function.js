@@ -45,49 +45,51 @@ function loadData(idList, url) {
             position.empty();
 
             $.each(data, function (index, val) {
+                switch (url) {
+                    case 'Quanly/LayDanhSachTienIch':
+                        position.prepend('<tr class="odd gradeX"><td>' + val.TenTienIch + '</td><td >' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+                        break;
+                    case 'Quanly/LayDanhSachDichVu':
+                        var tien = formatNumber(val.Gia);
+                        position.prepend('<tr class="odd gradeX"><td >' + val.TenDichVu + '</td><td >' + tien + '</td><td >' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+                        break;
+                    case 'Quanly/LayDanhSachPhong':
+                        var tien = formatNumber(val.Gia);
+                        var tt = "Trống";
+                        var label = "label-warning";
+                        if (val.TrangThai) {
+                            tt = "Đang sử dụng"
+                            label = "label-success"
+                        }
+                        position.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + tien + '</td><td class="center"><span class="label label-sm ' + label + '">' + tt + '</span></td><td class="center"><a class="btn btn-tbl-edit btn-xs btn-edit" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></><a class="btn btn-tbl-delete btn-xs btn-delete" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+                        break;
+                    case 'Quanly/LayDanhSachTaiKhoan':
+                        position.prepend('<tr class="odd gradeX"><td style="text-align: left;max-width: 150px">' + val.UserName + '</td><td >' + val.UserPassword + '</td><td >' + val.FullName + '</td><td >' + val.PhoneNumber + '</td><td >' + val.UserEmailID + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+                        break;
+                    case 'NhanVien/LayDanhSachDoan':
+                        var tgNhan = new Date(val.ThoiGianNhan);
+                        var tgTra = new Date(val.ThoiGianTra);
+                        var ngayGui = new Date(val.NgayGui);
+                        position.prepend('<tr class="odd gradeX"><td >' + val.TenDoan + '</td><td >' + val.TenTruongDoan + '</td><td >' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td >' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td >' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td ><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '" style="color: lightgray" >Xếp Phòng</a><div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none" id="loading"></div></td></tr>');
+                        break;
+                    case 'KhachHang/LayDanhSachKhachHangTheoMaDoan/' + sessionStorage.getItem('madoan'):
+                        var daidien = 'Trống';
+                        if (val.NguoiDaiDienCuaTreEm != '0') {
+                            daidien = val.NguoiDaiDienCuaTreEm;
+                        }
+                        var tgNhan = new Date(val.ThoiGianNhan);
+                        var tgTra = new Date(val.ThoiGianTra);
+                        position.prepend('<tr class="odd gradeX"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="center">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.IDPhong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
+                        break;
+                    case 'NhanVien/LayDanhSachDoanDatPhongThanhCong':
+                        var tgNhan = new Date(val.ThoiGianNhan);
+                        var tgTra = new Date(val.ThoiGianTra);
+                        var ngayGui = new Date(val.NgayGui);
+                        position.prepend('<tr class="odd gradeX"><td style="text-align:left" > ' + val.TenTruongDoan + '</td ><td >' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td></tr > ');
+                        break;
 
-                if (url == 'Quanly/LayDanhSachTienIch') {
-
-                    position.prepend('<tr class="odd gradeX"><td>' + val.TenTienIch + '</td><td >' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                }
-                if (url == 'Quanly/LayDanhSachDichVu') {
-                    var tien = formatNumber(val.Gia);
-
-                    position.prepend('<tr class="odd gradeX"><td >' + val.TenDichVu + '</td><td >' + tien + '</td><td >' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                }
-                if (url == 'Quanly/LayDanhSachPhong') {
-                    var tien = formatNumber(val.Gia);
-                    var tt = "Trống";
-                    var label = "label-warning";
-                    if (val.TrangThai) {
-                        tt = "Đang sử dụng"
-                        label = "label-success"
-                    }
-                    position.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + tien + '</td><td class="center"><span class="label label-sm ' + label + '">' + tt + '</span></td><td class="center"><a class="btn btn-tbl-edit btn-xs btn-edit" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></><a class="btn btn-tbl-delete btn-xs btn-delete" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                }
-                if (url == 'Quanly/LayDanhSachTaiKhoan') {
-                    position.prepend('<tr class="odd gradeX"><td style="text-align: left;max-width: 150px">' + val.UserName + '</td><td >' + val.UserPassword + '</td><td >' + val.FullName + '</td><td >' + val.PhoneNumber + '</td><td >' + val.UserEmailID + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                }
-                if (url == 'NhanVien/LayDanhSachDoan') {
-                    var tgNhan = new Date(val.ThoiGianNhan);
-                    var tgTra = new Date(val.ThoiGianTra);
-                    var ngayGui = new Date(val.NgayGui);
-                    position.prepend('<tr class="odd gradeX"><td >' + val.TenDoan + '</td><td >' + val.TenTruongDoan + '</td><td >' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td >' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td >' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td ><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '" style="color: lightgray" >Xếp Phòng</a><div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none" id="loading"></div></td></tr>');
                 }
 
-                if (url == 'KhachHang/LayDanhSachKhachHangTheoMaDoan/' + sessionStorage.getItem('madoan')) {
-                    var daidien = 'Trống';
-                    if (val.NguoiDaiDienCuaTreEm != '0') {
-                        daidien = val.NguoiDaiDienCuaTreEm;
-                    }
-                    var tgNhan = new Date(val.ThoiGianNhan); 
-                    var tgTra = new Date(val.ThoiGianTra); 
-                    position.prepend('<tr class="odd gradeX"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="center">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.IDPhong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
-                    if (val.TrangThaiXacNhan) {
-                        $('#confirm').css('display', 'none');
-                        $('#cancel').css('display', 'none');
-                    }
-                }
             });
 
         },
@@ -207,15 +209,24 @@ function loadDSPhong(ids, url) {
 
 function addData(info, dataInput) {
     $.ajax({
+        type: 'POST',
         url: '/api/' + info.url,
-        method: 'POST',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
             xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
         },
+        headers: {
+            'content-type': 'application/json',
+            'data-type': 'json',
+        },
         data: JSON.stringify(dataInput),
-        success: function () {
+        success: function (data) {
             $(info.modal).modal('hide');
+            Swal.fire(
+                'Thêm Thành Công!',
+                '',
+                'success'
+            )
             loadData(info.id, info.urlLoad);
 
         }
@@ -235,6 +246,11 @@ function editData(info, dataInput) {
         data: JSON.stringify(dataInput),
         success: function () {
             $(info.modal).modal('hide');
+            Swal.fire(
+                'Thêm Thành Công!',
+                '',
+                'success'
+            )
             loadData(info.id, info.urlLoad);
 
         }
@@ -243,19 +259,40 @@ function editData(info, dataInput) {
 }
 
 function deleteData(info, dataInput) {
-    $.ajax({
-        url: '/api/' + info.url + dataInput,
-        method: 'DELETE',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
-        },
-        headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        success: function (data, textStatus, xhr) {
-            $(info.modal).modal('hide');
-            loadData(info.id, info.urlLoad);
+
+    Swal.fire({
+        title: 'Bạn có chắc muốn Xóa?',
+        text: "Bạn sẽ không thể quay lại!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#F08080',
+        cancelButtonColor: '#d3d3d3',
+        confirmButtonText: 'Có, Tôi muốn Xóa!',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.value) {
+            
+            $.ajax({
+                url: '/api/' + info.url + dataInput,
+                method: 'DELETE',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+                    xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+                },
+                headers: { 'content-type': 'application/json', 'data-type': 'json' },
+                success: function (data, textStatus, xhr) {
+
+                    loadData(info.id, info.urlLoad);
+                }
+            })
+            Swal.fire(
+                'Đã Xóa!',
+                '',
+                'success'
+            )
         }
     })
+
 }
 
 
@@ -265,15 +302,16 @@ function DatPhongChoTungDoan(info, url) {
         url: '/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+            xhr.setRequestHeader();
         },
-        headers: {'data-type': 'json' },
+        headers: { 'data-type': 'json' },
         success: function (data) {
             console.log(data);
-            Swal.fire({
-                icon: 'success',
-                text: 'Thao Tác Thành Công!'
-            })
+            Swal.fire(
+                'Good job!',
+                'You clicked the button!',
+                'success'
+            )
             loadData(info.id, info.urlLoad);
         },
         error: function (data) {
@@ -304,10 +342,11 @@ function XacNhanDatPhong(info) {
         dataType: 'json',
         success: function (data) {
             console.log(data);
-            Swal.fire({
-                icon: 'success',
-                text: 'Thao Tác Thành Công!'
-            })
+            Swal.fire(
+                'Good job!',
+                'You clicked the button!',
+                'success'
+            )
             loadData(info.id, info.urlLoad);
         },
         error: function (data) {
