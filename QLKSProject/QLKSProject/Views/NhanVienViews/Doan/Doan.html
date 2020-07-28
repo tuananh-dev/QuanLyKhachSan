@@ -52,6 +52,7 @@
 
 
             $('body').on('click', 'a.btn.btn-info.btn-xs', function () {
+                console.log("click");
                 $(this).css("display", "none");
                 $('#loading').css("display", "block");
 
@@ -60,7 +61,7 @@
                     id: '#dsdoan',
                     urlLoad: 'NhanVien/LayDanhSachDoan'
                 }
-                //DatPhongChoTungDoan(info, xepPhong + dataId);
+                DatPhongChoTungDoan(info, xepPhong + dataId);
             })
 
 
