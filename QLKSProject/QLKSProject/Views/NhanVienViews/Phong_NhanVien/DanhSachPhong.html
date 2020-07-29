@@ -36,19 +36,9 @@
 
         $(document).ready(function () {
             checkSession();
-            $('#nameuser').html(sessionStorage.getItem('fullname'));
-            var role = '';
-            switch (sessionStorage.getItem('role')) {
-                case 'nv':
-                    role = 'Nhân Viên'
-                    break;
-                case 'ql':
-                    role = 'Quản Lý'
-                    break;
 
-            }
 
-            $('#roleuser').html(role);
+
 
             var layDSPhong = 'NhanVien/LayDanhSachPhong';
 
@@ -113,7 +103,7 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                data-close-others="true">
                                 <img alt="" class="img-circle " src="../../../Content/QuanLy/img/dp.jpg" />
-                                <span class="username username-hide-on-mobile"> John </span>
+                                <span class="username username-hide-on-mobile nameuser"> John </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
@@ -124,7 +114,7 @@
                                 </li>
 
                                 <li class="divider"> </li>
-                               
+
                                 <li>
                                     <a href="../../../DangNhap.html">
                                         <i class="icon-logout"></i> Log Out
@@ -160,14 +150,14 @@
                                         </div>
                                     </div>
                                     <div class="profile-usertitle">
-                                        <div class="sidebar-userpic-name" id="nameuser"> </div>
+                                        <div class="sidebar-userpic-name nameuser"> </div>
                                         <div class="profile-usertitle-job" id="roleuser"> </div>
                                     </div>
-                                   
+
                                 </div>
                             </li>
 
-                            
+
 
                             <li class="nav-item active nv">
                                 <a href="/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.html" class="nav-link nav-toggle">
@@ -220,12 +210,53 @@
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
                                                                        href="DanhSachPhong.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                               
+
                                 <li class="active">Danh Sách Phòng</li>
                             </ol>
                         </div>
                     </div>
-                    <div class="content" style="margin:0;padding:0;" id="dsphong">
+                    <!--<div class="row" style="border: 1px solid red;width: 100%">
+                        <div class="col-md-1 col-md-1 col-12" style="border: 1px solid black; ">
+                            <span class="info-box bg-success" style="font-weight: 700;font-size: 28px;padding: 20px 20px;">101</span>
+
+                        </div>
+                    </div>-->
+                    <div class="dstang">
+                        <h3>Tầng 1</h3><hr>
+                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row1">
+                            <!--<span class="info-box bg-success" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">101</span>-->
+                        </div>
+                        <h3>Tầng 2</h3><hr>
+                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row2">
+                            
+                        </div>
+                        <h3>Tầng 3</h3><hr>
+                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row3">
+
+                        </div>
+                        <h3>Tầng 4</h3><hr>
+                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row4">
+
+                        </div>
+                        <h3>Tầng 5</h3><hr>
+                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row5">
+
+                        </div>
+                        <h3>Tầng 6</h3><hr>
+                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row6">
+
+                        </div>
+                        <h3>Tầng 7</h3><hr>
+                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row7">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!--<div class="content" style="margin:0;padding:0;" id="dsphong">
+
                         <h3>Tầng 1</h3>
                         <div class="row" id="row1" style="margin:0;padding:0;"></div>
                         <h3>Tầng 2</h3>
@@ -243,7 +274,7 @@
 
 
 
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <!-- end page content -->
@@ -274,7 +305,7 @@
     <script src="../../../Content/QuanLy/js/theme-color.js"></script>
     <!-- data tables -->
     <!--<script src="../../../Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
-    <script src="../../../Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
+    <!--<script src="../../../Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>-->
     <script src="../../../Content/QuanLy/js/pages/table/table_data.js"></script>
     <!-- Material -->
     <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>

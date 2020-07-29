@@ -32,21 +32,9 @@
 
         $(document).ready(function () {
             checkSession();
-            $('#nameuser').html(sessionStorage.getItem('fullname'));
-            var role = '';
-            switch (sessionStorage.getItem('role')) {
-                case 'nv':
-                    role = 'Nhân Viên'
-                    break;
-                case 'ql':
-                    role = 'Quản Lý'
-                    break;
-
-            }
-
-            $('#roleuser').html(role);
+            
             var idList = $('#dsdatphong');
-            var layDS = 'NhanVien/LayDanhSachDatPhongThatBai';
+            var layDS = 'NhanVien/LayDanhSachDoanDatPhongThatBai';
             loadData(idList, layDS);
 
 
@@ -97,7 +85,7 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                data-close-others="true">
                                 <img alt="" class="img-circle " src="../../../Content/QuanLy/img/dp.jpg" />
-                                <span class="username username-hide-on-mobile"> John </span>
+                                <span class="username username-hide-on-mobile nameuser"> John </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
@@ -144,7 +132,7 @@
                                         </div>
                                     </div>
                                     <div class="profile-usertitle">
-                                        <div class="sidebar-userpic-name" id="nameuser"></div>
+                                        <div class="sidebar-userpic-name nameuser"></div>
                                         <div class="profile-usertitle-job" id="roleuser"> </div>
                                     </div>
 
@@ -218,9 +206,11 @@
                                                id="example">
                                             <thead>
                                                 <tr>
-                                                    <th class="center"> Tên Đoàn </th>
-                                                    <th class="center"> Mã Đoàn </th>
-                                                    <th class="center"> Ghi Chú </th>
+                                                    <th class="" style="width: 250px;text-align: left;"> Tên Trưởng Đoàn</th>
+                                                    <th class="" style="width: 250px;"> Tên Đoàn</th>
+                                                    <th class="center"> Thời Gian Nhận </th>
+                                                    <th class="center"> Thời Gian Trả </th>
+                                                    <th class="center"> Thời Gian Gửi </th>
                                                 </tr>
                                             </thead>
                                             <tbody id="dsdatphong">

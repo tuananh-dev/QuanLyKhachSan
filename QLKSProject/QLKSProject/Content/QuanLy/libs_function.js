@@ -1,28 +1,19 @@
-﻿//API/TienIch
-//var layDSTienIch = 'Quanly/LayDanhSachTienIch';
-//var themTienIch = 'Quanly/ThemTienIch';
-//var suaTienIch = 'Quanly/CapNhatTienIch';
-//var xoaTienIch = 'Quanly/XoaTienIch';
-//<th > Họ và Tên </th>
-//    <th > SĐT</th>
-//    <th > Nguời Đại Diện</th>
-//    <th > Phòng </th>
-function role_name() {
-
-}
+﻿
 
 function checkSession() {
+    $('.nameuser').html(sessionStorage.getItem('fullname'));
+    var role = '';
     switch (sessionStorage.getItem('role')) {
         case 'nv':
-            $(".ql").css("display", "none");
+            role = 'Nhân Viên'
             break;
         case 'ql':
-            $(".nv").css("display", "none");
+            role = 'Quản Lý'
             break;
 
-
     }
-    console.log();
+
+    $('#roleuser').html(role);
 
     //console.log("hello")
 }
@@ -87,6 +78,13 @@ function loadData(idList, url) {
                         var tgTra = new Date(val.ThoiGianTra);
                         var ngayGui = new Date(val.NgayGui);
                         position.prepend('<tr class="odd gradeX"><td style="text-align:left" > ' + val.TenTruongDoan + '</td ><td >' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td></tr > ');
+                        break;
+                    case 'NhanVien/LayDanhSachDoanDatPhongThatBai':
+                        console.log("in case")
+                        var tgNhan = new Date(val.ThoiGianNhan);
+                        var tgTra = new Date(val.ThoiGianTra);
+                        var ngayGui = new Date(val.NgayGui);
+                        position.prepend('<tr class="odd gradeX"><td style="text-align:left"> ' + val.TenTruongDoan + '</td><td>' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td></tr > ');
                         break;
 
                 }
@@ -174,33 +172,53 @@ function loadDSPhong(ids, url) {
         },
         success: function (data) {
             $.each(data, function (index, val) {
-                var color = "lightgreen";
+                var color = "bg-success";
                 var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
                 if (val.TrangThai) {
-                    color = "white";
+                    color = "bg-default";
+                }
+                switch (val.SoPhong.charAt(0)) {
+                    case '1':
+                        ids.row1.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        break;
+                    case '2':
+                        ids.row2.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        break;
+                    case '3':
+                        ids.row3.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        break;
+                    case '4':
+                        ids.row4.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        break;
+                    case '5':
+                        ids.row5.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        break;
+                    case '6':
+                        ids.row6.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        break;
+                    case '7':
+                        ids.row7.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        break;
                 }
 
-                if (val.SoPhong.charAt(0) == '1') {
-                    ids.row1.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                }
-                if (val.SoPhong.charAt(0) == '2') {
-                    ids.row2.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                }
-                if (val.SoPhong.charAt(0) == '3') {
-                    ids.row3.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                }
-                if (val.SoPhong.charAt(0) == '4') {
-                    ids.row4.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                }
-                if (val.SoPhong.charAt(0) == '5') {
-                    ids.row5.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                }
-                if (val.SoPhong.charAt(0) == '6') {
-                    ids.row6.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                }
-                if (val.SoPhong.charAt(0) == '7') {
-                    ids.row7.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                }
+                //if (val.SoPhong.charAt(0) == '2') {
+                //    ids.row2.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                //}
+                //if (val.SoPhong.charAt(0) == '3') {
+                //    ids.row3.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                //}
+                //if (val.SoPhong.charAt(0) == '4') {
+                //    ids.row4.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                //}
+                //if (val.SoPhong.charAt(0) == '5') {
+                //    ids.row5.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                //}
+                //if (val.SoPhong.charAt(0) == '6') {
+                //    ids.row6.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                //}
+                //if (val.SoPhong.charAt(0) == '7') {
+                //    ids.row7.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
+                //}
             });
 
         }
@@ -272,7 +290,7 @@ function deleteData(info, dataInput) {
         cancelButtonText: 'Hủy'
     }).then((result) => {
         if (result.value) {
-            
+
             $.ajax({
                 url: '/api/' + info.url + dataInput,
                 method: 'DELETE',
@@ -297,7 +315,7 @@ function deleteData(info, dataInput) {
 }
 
 
-function DatPhongChoTungDoan(info, url) {
+function XepPhong(info, url) {
     $.ajax({
         type: 'GET',
         url: '/api/' + url,
@@ -308,11 +326,11 @@ function DatPhongChoTungDoan(info, url) {
         success: function (data) {
             console.log(data);
             Swal.fire(
-                'Good job!',
-                'You clicked the button!',
+                'Xếp Phòng Thành Công!',
+                '',
                 'success'
             )
-            
+            loadData(info.id, info.urlLoad);
         },
         error: function (data) {
             Swal.fire({
