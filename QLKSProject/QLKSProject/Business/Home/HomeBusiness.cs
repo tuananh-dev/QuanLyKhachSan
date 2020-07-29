@@ -187,6 +187,12 @@ namespace QLKSProject.Business.Home
 					error = "";
 				error += "\r\n" + "Lỗi <trưởng đoàn> không có trong danh sách khách hàng!";
 			}
+			if (truongDoan.LoaiKhachHang != false)
+			{
+				if (error.Equals("ok"))
+					error = "";
+				error += "\r\n" + "Lỗi <trưởng đoàn> là trẻ em!";
+			}
 				
 		}
 		private void LuuDanhSachKhachHang(List<KhachHangDTO> khachHangDTOs)

@@ -11,6 +11,7 @@ namespace QLKSProject.Business
     public class BaseBusiness : IDisposable
     {
         protected QLKSDbContext models;
+        protected int soPhong;
 
         public BaseBusiness()
         {

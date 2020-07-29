@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using QLKSProject.Models.DTO;
+using QLKSProject.Models.Entities;
 
 namespace QLKSProject.Business.QuanLy
 {
@@ -227,6 +228,35 @@ namespace QLKSProject.Business.QuanLy
                 return false;
             }
             
+        }
+        public string TaoDanhSachPhong(ThemPhongTheoLauDTO themPhongTheoLauDTO)
+        {
+            soPhong = 1;
+            string status = "ok";
+            var lstPhong = models.Phongs.Select(p => p.MaPhong).ToList();
+            foreach (var phong in lstPhong)
+            {
+                int lau = int.Parse(phong.Substring(0, 1));
+                if(themPhongTheoLauDTO.Lau == lau)
+                {
+                    if (status.Equals("ok"))
+                        status = "";
+                    status = "Lỗi lầu đã tồn tại!";
+                }
+            }
+            if (status.Equals("ok"))
+            {
+                if (TaoDanhSachPhongTheoLoaiPhong(1, themPhongTheoLauDTO.Lau, themPhongTheoLauDTO.SoPhongDon, themPhongTheoLauDTO.GiaPhongDon))
+                    status = "Lỗi tạo phòng Đơn!";
+                if (TaoDanhSachPhongTheoLoaiPhong(2, themPhongTheoLauDTO.Lau, themPhongTheoLauDTO.SoPhongDoi, themPhongTheoLauDTO.SoPhongDoi))
+                    status = "Lỗi tạo phòng Đôi!";
+                if (TaoDanhSachPhongTheoLoaiPhong(3, themPhongTheoLauDTO.Lau, themPhongTheoLauDTO.SoPhongLoai3, themPhongTheoLauDTO.SoPhongLoai3))
+                    status = "Lỗi tạo phòng Loại 3!";
+                if (TaoDanhSachPhongTheoLoaiPhong(4, themPhongTheoLauDTO.Lau, themPhongTheoLauDTO.SoPhongLoai4, themPhongTheoLauDTO.SoPhongLoai4))
+                    status = "Lỗi tạo phòng Loại 4!";
+
+            }
+            return status;
         }
 
         #endregion
@@ -764,6 +794,31 @@ namespace QLKSProject.Business.QuanLy
             thongKeTheoQuy.DoanhThu3 = 10000000;
             thongKeTheoQuy.TrungBinh = 10000000;
             return thongKeTheoQuy;
+        }
+        private bool TaoDanhSachPhongTheoLoaiPhong(int loaiPhong, int lau, int soLuong, int gia)
+        {
+            try
+            {
+                for (int i = 0; i < soLuong; i++)
+                {
+                    Phong phong = new Phong();
+                    string maLau = lau < 10 ? "0" + lau : lau.ToString();
+                    string maPhong = soPhong < 10 ? "0" + lau : lau.ToString();
+                    phong.MaPhong = loaiPhong.ToString() + maLau + maPhong;
+                    phong.SoPhong = maPhong;
+                    phong.LoaiPhong = loaiPhong;
+                    phong.IsDelete = false;
+                    phong.TrangThai = true;
+                    phong.Gia = gia;
+                    models.Phongs.Add(phong);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }         
+            
         }
         #endregion
     }

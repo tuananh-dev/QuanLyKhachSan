@@ -124,6 +124,19 @@ namespace QLKSProject.Controllers.QuanLy
                     return BadRequest("Xóa phòng thất bại!");
             }
         }
+        [HttpPost]
+        public IHttpActionResult TaoDanhSachPhong([FromBody] dynamic dynamic)
+        {
+            ThemPhongTheoLauDTO themPhongTheoLauDTO = JsonConvert.DeserializeObject<ThemPhongTheoLauDTO>(dynamic.ToString());
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                string result = quanLy.TaoDanhSachPhong(themPhongTheoLauDTO);
+                if (result.Equals("ok"))
+                    return Ok("Thêm danh sách phòng thành công!");
+                else
+                    return BadRequest(result);
+            }
+        }
         #endregion
         #region API xu ly DichVu
         [HttpGet]
