@@ -142,6 +142,8 @@ namespace QLKSProject.Business.Home
 				var lstKhachHangNhom = khachHangDTOs.Where(kh => kh.Nhom == nhom).ToList();
 				if (TinhSoThanhVienNhom(lstKhachHangNhom) > 4)
 				{
+					if (error.Equals("ok"))
+						error = "";
 					error += "\r\n" + "Số thành viên nhóm <"+nhom+"> lớn hơn 4!";
 					break;
 				}					

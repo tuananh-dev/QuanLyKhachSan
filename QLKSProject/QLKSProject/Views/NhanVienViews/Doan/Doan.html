@@ -40,12 +40,16 @@
 
 
             $('body').on('click', 'a.btn.btn-info.btn-xs', function () {
+                console.log("click");
                 $(this).css("display", "none");
                 $('#loading').css("display", "block");
 
                 dataId = $(this).attr("data-id");
-               
-                XepPhong(xepPhong + dataId);
+                var info = {
+                    id: idList,
+                    urlLoad: layDSDoan
+                }
+                XepPhong(info, xepPhong + dataId);
             })
 
 

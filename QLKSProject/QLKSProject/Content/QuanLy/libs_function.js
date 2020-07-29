@@ -79,6 +79,13 @@ function loadData(idList, url) {
                         var ngayGui = new Date(val.NgayGui);
                         position.prepend('<tr class="odd gradeX"><td style="text-align:left" > ' + val.TenTruongDoan + '</td ><td >' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td></tr > ');
                         break;
+                    case 'NhanVien/LayDanhSachDoanDatPhongThatBai':
+                        console.log("in case")
+                        var tgNhan = new Date(val.ThoiGianNhan);
+                        var tgTra = new Date(val.ThoiGianTra);
+                        var ngayGui = new Date(val.NgayGui);
+                        position.prepend('<tr class="odd gradeX"><td style="text-align:left"> ' + val.TenTruongDoan + '</td><td>' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td></tr > ');
+                        break;
 
                 }
 
@@ -193,7 +200,7 @@ function loadDSPhong(ids, url) {
                         ids.row7.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
                         break;
                 }
-               
+
                 //if (val.SoPhong.charAt(0) == '2') {
                 //    ids.row2.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
                 //}
@@ -308,7 +315,7 @@ function deleteData(info, dataInput) {
 }
 
 
-function XepPhong(url) {
+function XepPhong(info, url) {
     $.ajax({
         type: 'GET',
         url: '/api/' + url,
@@ -323,7 +330,7 @@ function XepPhong(url) {
                 '',
                 'success'
             )
-
+            loadData(info.id, info.urlLoad);
         },
         error: function (data) {
             Swal.fire({
