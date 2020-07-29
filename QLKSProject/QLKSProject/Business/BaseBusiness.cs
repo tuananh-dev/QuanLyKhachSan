@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using QLKSProject.Models;
 
@@ -52,6 +53,38 @@ namespace QLKSProject.Business
             Dispose(true);
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
+        }
+        #endregion
+
+        #region Ham Tai Su Dung
+        protected string GuiMailTuDong(string toEmail,string subject, string body)
+        {
+            string senderID = "nguyenductuananh110@gmail.com";
+            string senderPassword = "Anhanh01";
+            string result = "Email Sent Successfully";
+            
+            try
+            {
+                MailMessage mail = new MailMessage();
+                mail.To.Add(toEmail);
+                mail.From = new MailAddress(senderID);
+                mail.Subject = "My Test Email!";
+                mail.Body = body;
+                mail.Subject = subject;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.UseDefaultCredentials = false;
+                smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
+                smtp.Credentials = new System.Net.NetworkCredential(senderID, senderPassword);
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+            }
+            catch (Exception)
+            {
+                result = "problem occurred";
+            }
+            return result;
         }
         #endregion
     }
