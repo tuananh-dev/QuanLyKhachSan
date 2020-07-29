@@ -39,7 +39,7 @@
             if (sessionStorage.getItem('xacnhan') != "") {
                 sessionStorage.removeItem('xacnhan')
             }
-            
+
             loadData(idList, layDS + sessionStorage.getItem('madoan'));
             //if (sessionStorage.getItem('xacnhan') == "true") {
             //    $('#confirm').css("display", "none");
@@ -47,8 +47,10 @@
             //}
 
             $('#confirm').click(function () {
+                $(this).css("display", "none");
+                $('#loading').css("display", "block");
                 XacNhanDatPhong();
-                window.location.href = "DSThanhVien.html";
+
             })
 
             $('#cancel').click(function () {
@@ -191,9 +193,11 @@
                                 <div class="row p-b-20" style="float:right">
                                     <div class="col-md-6 col-sm-6 col-6">
                                         <div class="btn-group">
+                                            <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-right: 10px" id="loading"></div>
                                             <button id="confirm" class="btn btn-info" style="margin-right: 10px">
                                                 Xác Nhận Danh Sách Đã Xếp
                                             </button>
+
                                             <button id="cancel" class="btn" style="background-color: lightgray">
                                                 Hủy Xếp Phòng<i class="fa fa-trash"></i>
                                             </button>

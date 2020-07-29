@@ -363,7 +363,10 @@ function XacNhanDatPhong() {
                 'Good job!',
                 'You clicked the button!',
                 'success'
-            )
+            ).then(val => {
+                window.location.href = "DSThanhVien.html";
+            })
+            
         },
         error: function (data) {
             Swal.fire({
