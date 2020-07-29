@@ -36,18 +36,18 @@
             var idList = $('#dsthanhvien');
             var layDS = 'KhachHang/LayDanhSachKhachHangTheoMaDoan/';
             checkSession();
-            loadData(idList, layDS + sessionStorage.getItem('madoan'));
-            if (sessionStorage.getItem('xacnhan') == "true") {
-                $('#confirm').css("display", "none");
-                $('#cancel').css("display", "none");
+            if (sessionStorage.getItem('xacnhan') != "") {
+                sessionStorage.removeItem('xacnhan')
             }
+            
+            loadData(idList, layDS + sessionStorage.getItem('madoan'));
+            //if (sessionStorage.getItem('xacnhan') == "true") {
+            //    $('#confirm').css("display", "none");
+            //    $('#cancel').css("display", "none");
+            //}
 
             $('#confirm').click(function () {
-                var info = {
-                    id: idList,
-                    urlLoad: layDS + sessionStorage.getItem('madoan')
-                }
-                XacNhanDatPhong(info);
+                XacNhanDatPhong();
                 window.location.href = "DSThanhVien.html";
             })
 
@@ -174,8 +174,8 @@
                                         <thead>
                                             <tr>
                                                 <th class="" style="text-align:left;width:200px"> Họ và Tên </th>
-                                                <th class="center" style="width:125px"> SĐT</th>
-                                                <th class="center" style="width: 50px"> Email</th>
+                                                <th class="" style="width:125px"> SĐT</th>
+                                                <th class="" style="width: 50px"> Email</th>
                                                 <th class="" style="width: 200px"> Nguời Đại Diện</th>
                                                 <th class="center" style="width: 10px"> Nhóm</th>
                                                 <th class="center" style="width: 10px"> Phòng </th>

@@ -68,10 +68,14 @@ function loadData(idList, url) {
                         if (val.NguoiDaiDienCuaTreEm != '0') {
                             daidien = val.NguoiDaiDienCuaTreEm;
                         }
-                        sessionStorage.setItem('xacnhan', val.TrangThaiXacNhan);
+                        if (val.TrangThaiXacNhan) {
+                            $('#confirm').css("display", "none");
+                            $('#cancel').css("display", "none");
+                        }
+
                         var tgNhan = new Date(val.ThoiGianNhan);
                         var tgTra = new Date(val.ThoiGianTra);
-                        position.prepend('<tr class="odd gradeX"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="center">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.IDPhong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
+                        position.prepend('<tr class="odd gradeX"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.IDPhong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
                         break;
                     case 'NhanVien/LayDanhSachDoanDatPhongThanhCong':
                         var tgNhan = new Date(val.ThoiGianNhan);
@@ -179,26 +183,21 @@ function loadDSPhong(ids, url) {
                 }
                 switch (val.SoPhong.charAt(0)) {
                     case '1':
-                        ids.row1.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        ids.row1.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
                         break;
                     case '2':
-                        ids.row2.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        ids.row2.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
                         break;
                     case '3':
-                        ids.row3.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        ids.row3.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
                         break;
                     case '4':
-                        ids.row4.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        ids.row4.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
                         break;
                     case '5':
-                        ids.row5.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
+                        ids.row5.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
                         break;
-                    case '6':
-                        ids.row6.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
-                        break;
-                    case '7':
-                        ids.row7.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 30px;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
-                        break;
+
                 }
 
                 //if (val.SoPhong.charAt(0) == '2') {
@@ -348,7 +347,7 @@ function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + " VND";
 }
 
-function XacNhanDatPhong(info) {
+function XacNhanDatPhong() {
     $.ajax({
         type: 'GET',
         url: '/api/KhachHang/XacNhanDatPhong/' + sessionStorage.getItem('madoan'),
@@ -356,7 +355,7 @@ function XacNhanDatPhong(info) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
             xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
         },
-        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+        headers: { 'data-type': 'json' },
         dataType: 'json',
         success: function (data) {
             console.log(data);
