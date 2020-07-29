@@ -40,21 +40,27 @@ namespace QLKSProject.Business.KhachHangBusiness
             {
                 doan.TrangThaiXacNhan = true;
                 b = true;
-            }
-            else
-                b = false;
-            var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == maDoan).ToList();
-            if (lstKhachHang.Count != 0)
-            {
-                foreach (var khachHang in lstKhachHang)
+                var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == maDoan).ToList();
+                if (lstKhachHang.Count != 0)
                 {
-                    khachHang.TrangThaiXacNhan = true;
+                    foreach (var khachHang in lstKhachHang)
+                    {
+                        khachHang.TrangThaiXacNhan = true;
+                    }
+                    b = true;
+                    models.SaveChanges();
+                    var khachHangDTO = lstKhachHang.Where(kh => kh.TruongDoan == true).FirstOrDefault();
+                    string account = khachHangDTO.Email;
+                    string subject = "Cám ơn quý khách đã xác nhận đặt phòng tại khách sạn Color Hotel";
+                    string body = "Dear " + khachHangDTO.HoVaTen + ",<BR><BR>" + "Quý khách đã xác nhận đặt phòng thành công.<BR>Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi!" + "<BR><BR>Trân trọng,<BR>" + "Hotel Color";
+                    string trangThaiGuiMail = GuiMailTuDong(account, subject, body);
                 }
-                b = true;
-                models.SaveChanges();
+                else
+                    b = false;
+                
             }
             else
-                b = false;
+                b = false;         
             return b;
         }
         public string HuyDatPhong(string maDoan)
@@ -74,7 +80,13 @@ namespace QLKSProject.Business.KhachHangBusiness
                         kh.IsDelete = true;
                     }
                     models.SaveChanges();
-                }else
+                    var khachHangDTO = lstKhachHang.Where(kh => kh.TruongDoan == true).FirstOrDefault();
+                    string account = khachHangDTO.Email;
+                    string subject = "Quý khách đã hủy đặt phòng tại khách sạn Color Hotel";
+                    string body = "Dear " + khachHangDTO.HoVaTen + ",<BR><BR>" + "Quý khách đã hủy đặt phòng thành công.<BR>Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi!" + "<BR><BR>Trân trọng,<BR>" + "Hotel Color";
+                    string trangThaiGuiMail = GuiMailTuDong(account, subject, body);
+                }
+                else
                     error = "Hủy danh sách khách hàng lỗi!";
             }
             catch (Exception)
@@ -83,5 +95,7 @@ namespace QLKSProject.Business.KhachHangBusiness
             }
             return error;
         }
+        #region
+        #endregion
     }
 }

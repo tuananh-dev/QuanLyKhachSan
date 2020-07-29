@@ -15,10 +15,10 @@ namespace QLKSProject.Business
             bool b = true;
             try
             {
-                TaoPhong(7, 10);
-                TaoDichVu();
+                TaoPhong(5, 5);
+/*                TaoDichVu();
                 TaoTaiKhoan();
-                TaoTienIch();
+                TaoTienIch();*/
                 /*                TaoDoanKhachHang(12);*/
             }
             catch (Exception)

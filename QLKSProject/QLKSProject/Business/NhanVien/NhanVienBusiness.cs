@@ -137,7 +137,9 @@ namespace QLKSProject.Business.NhanVien
                         trangThaiDatPhong = "Lỗi tạo tài khoản cho khách hàng !!!";
                     else
                     {
-                        string trangThaiGuiMail = GuiMailTuDong(khachHangDTO.HoVaTen, khachHangDTO.Email, account, password);
+                        string subject = "Xác nhận đặt phòng tại Color Hotel";
+                        string body = "Dear " + khachHangDTO.HoVaTen + ",<BR>" + "Chúng tôi rất vui mừng vì bạn đã chọn khách sạn của chúng tôi. Danh sách khách hàng của quý khách đã được đặt phòng thành công!" + "<BR>Xin quý khách vui lòng đăng nhập bằng tài khoản và mật khẩu bên đưới để xác nhận.<BR>" + "Account: " + account + "<BR>" + "Password: " + password + "<BR>" + "<BR>Trân trọng,<BR>" + "Hotel Color";
+                        string trangThaiGuiMail = GuiMailTuDong(account,subject,body);
                     }
 
                 }
@@ -297,7 +299,9 @@ namespace QLKSProject.Business.NhanVien
                         trangThaiDatPhong = "Lỗi tạo tài khoản cho khách hàng !!!";
                     else
                     {
-                        string trangThaiGuiMail = GuiMailTuDong(khachHangDTO.HoVaTen, khachHangDTO.Email, account, password);
+                        string subject = "Xác nhận đặt phòng tại Color Hotel";
+                        string body = "Dear " + khachHangDTO.HoVaTen + ",<BR><BR>" + "Chúng tôi rất vui mừng vì bạn đã chọn khách sạn của chúng tôi. Danh sách khách hàng của quý khách đã được đặt phòng thành công!" + "<BR>Xin quý khách vui lòng đăng nhập bằng tài khoản và mật khẩu bên đưới để xác nhận.<BR>" + "Account: " + account + "<BR>" + "Password: " + password + "<BR>" + "<BR>Trân trọng,<BR>" + "Hotel Color";
+                        string trangThaiGuiMail = GuiMailTuDong(account, subject, body);
                     }
 
                 }
@@ -452,7 +456,7 @@ namespace QLKSProject.Business.NhanVien
         }
         #endregion
         #region private methods
-        private string GuiMailTuDong(string tenKhachHang, string email, string account, string password)
+        /*private string GuiMailTuDong(string tenKhachHang, string email, string account, string password)
         {
             string senderID = "nguyenductuananh110@gmail.com";
             string senderPassword = "Anhanh01";
@@ -481,7 +485,7 @@ namespace QLKSProject.Business.NhanVien
                 result = "problem occurred";
             }
             return result;
-        }
+        }*/
         private void LuuDanhSachKhachHangDaDuocDatPhong(List<KhachHangDTO> khachHangDTOs)
         {
             string maDoan = khachHangDTOs[0].MaDoan;
