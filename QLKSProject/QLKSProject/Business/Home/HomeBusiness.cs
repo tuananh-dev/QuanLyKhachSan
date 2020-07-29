@@ -18,22 +18,19 @@ namespace QLKSProject.Business.Home
 			{
 				TaoDoiTuongDoan(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, maDoan);
 				List<KhachHangDTO> lstKhachHang = TaoDoiTuongKhachHang(fileDSKhachHang, maDoan, thoiGianNhan, thoiGianTra, tenTruongDoan);
-				if (KiemTraNguoiDaiDien(lstKhachHang))
+
+				KiemTraNguoiDaiDien(lstKhachHang);
+				KiemTraTruongDoan(lstKhachHang);
+				KiemTraSoLuongThanhVienNhom(lstKhachHang);
+				if (error.Equals("ok"))
 				{
-					if (KiemTraTruongDoan(lstKhachHang))
-					{
-						LuuDanhSachKhachHang(lstKhachHang);
-						models.SaveChanges();
-					}
-					else
-						error = "Lỗi trưởng đoàn không có trong danh sách khách hàng!";
+					LuuDanhSachKhachHang(lstKhachHang);
+					models.SaveChanges();
 				}
-				else
-					error = "Lỗi không có người đại diện trẻ em trong danh sách";
 			}
 			catch (Exception)
 			{	
-				error = "Lưu file khách hàng không thành công!";
+				error += "\r\n" + "Lưu file khách hàng không thành công!";
 			}
 			return error;
 		}
@@ -74,7 +71,7 @@ namespace QLKSProject.Business.Home
 				if (lstThuocTinh.Length >= 8)
 				{
 					KhachHangDTO khachHang = new KhachHangDTO();
-					khachHang.HoVaTen = lstThuocTinh[7];
+					khachHang.HoVaTen = lstThuocTinh[7].Trim();
 					khachHang.SoDienThoai = lstThuocTinh[11];
 					khachHang.Email = lstThuocTinh[15];
 					khachHang.DiaChi = lstThuocTinh[19];
@@ -95,39 +92,98 @@ namespace QLKSProject.Business.Home
 			}
 			return lstKhachHangDTO;
 		}
-		private bool KiemTraNguoiDaiDien(List<KhachHangDTO> khachHangDTOs)
+		private void KiemTraNguoiDaiDien(List<KhachHangDTO> khachHangDTOs)
 		{
 			var lstKhachHang = khachHangDTOs.Where(kh => kh.LoaiKhachHang != false).Select(s => s.NguoiDaiDienCuaTreEm).ToList();
+			//Kiem tra khong co nguoi dai dien
 			foreach (var kh in lstKhachHang)
 			{
 				if (kh.Equals("0"))
-					return false;
-			}
-			List<string> lstNguoiDaiDien = new List<string>();
-			foreach (var khachHang in lstKhachHang)
-			{
-				string[] nguoiDaiDien = khachHang.Split(',');
-				foreach (var item in nguoiDaiDien)
 				{
-					if (item != null)
-						lstNguoiDaiDien.Add(item);
+					if (error.Equals("ok"))
+						error = "";
+					error += "\r\n" + "Lỗi không có người đại diện của trẻ em!";
+					break;
+				}					
+			}
+			if (error.Equals("ok"))
+			{
+				foreach (var nguoiDaiDien in lstKhachHang)
+				{
+					var checkNull = khachHangDTOs.Where(kh => kh.HoVaTen.Equals(nguoiDaiDien.Trim())).FirstOrDefault();
+					if (checkNull == null)
+					{
+						if (error.Equals("ok"))
+							error = "";
+						error += "\r\n" + "Lỗi không có người đại diện của trẻ em!";
+						break;
+					}
+					if (error.Equals("ok"))
+					{
+
+						//Kiem tra nguoi dai dien tre em la tre em
+						var checkNguoiDaiDienLaTreEm = khachHangDTOs.Where(kh => kh.HoVaTen.Equals(nguoiDaiDien) && kh.LoaiKhachHang != false).Select(kh => kh.HoVaTen).FirstOrDefault();
+						if (checkNguoiDaiDienLaTreEm != null)
+						{
+							if (error.Equals("ok"))
+								error = "";
+							error += "\r\n" + "Lỗi người đại diện của trẻ em là trẻ em! (" + checkNguoiDaiDienLaTreEm + ")";
+						}
+					}
 				}
 			}
-			foreach (var nguoiDaiDien in lstNguoiDaiDien)
-			{
-				var checkNull = khachHangDTOs.Where(kh => kh.HoVaTen.Equals(nguoiDaiDien)).FirstOrDefault();
-				if (checkNull != null)
-					return false;
-			}
-			return true;
+			
 		}
-		private bool KiemTraTruongDoan(List<KhachHangDTO> khachHangDTOs)
+		private void KiemTraSoLuongThanhVienNhom(List<KhachHangDTO> khachHangDTOs)
+		{
+			var lstNhom = khachHangDTOs.GroupBy(s => s.Nhom).Select(g => g.Key).ToList();
+			foreach (var nhom in lstNhom)
+			{
+				var lstKhachHangNhom = khachHangDTOs.Where(kh => kh.Nhom == nhom).ToList();
+				if (TinhSoThanhVienNhom(lstKhachHangNhom) > 4)
+				{
+					error += "\r\n" + "Số thành viên nhóm <"+nhom+"> lớn hơn 4!";
+					break;
+				}					
+			}
+		}
+		private int TinhSoThanhVienNhom(List<KhachHangDTO> khachHangDTOs)
+		{
+			int count = khachHangDTOs.Count;
+			int soTreEm = KiemTraTreEmCoTrongDanhSach(khachHangDTOs);
+			if (soTreEm == 3)
+			{
+				count = khachHangDTOs.Count - 1;
+			}
+			else
+			{
+				if (soTreEm == 2)
+				{
+					count = khachHangDTOs.Count - 2;
+				}
+			}
+			return count;
+		}
+		private int KiemTraTreEmCoTrongDanhSach(List<KhachHangDTO> lstKhachHang)
+		{
+			int count = 0;
+			foreach (var item in lstKhachHang)
+			{
+				if (item.LoaiKhachHang)
+					count++;
+			}
+			return count;
+		}
+		private void KiemTraTruongDoan(List<KhachHangDTO> khachHangDTOs)
 		{
 			var truongDoan = khachHangDTOs.Where(kh => kh.TruongDoan != false).FirstOrDefault();
-			if (truongDoan != null)
-				return true;
-			else
-				return false;
+			if (truongDoan == null)
+			{
+				if (error.Equals("ok"))
+					error = "";
+				error += "\r\n" + "Lỗi <trưởng đoàn> không có trong danh sách khách hàng!";
+			}
+				
 		}
 		private void LuuDanhSachKhachHang(List<KhachHangDTO> khachHangDTOs)
 		{			

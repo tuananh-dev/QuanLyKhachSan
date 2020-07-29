@@ -35,17 +35,15 @@
 
             var idList = $('#dsthanhvien');
             var layDS = 'KhachHang/LayDanhSachKhachHangTheoMaDoan/';
-            console.log(sessionStorage.getItem('madoan'));
+            checkSession();
             loadData(idList, layDS + sessionStorage.getItem('madoan'));
             if (sessionStorage.getItem('xacnhan') == "true") {
                 $('#confirm').css("display", "none");
                 $('#cancel').css("display", "none");
-            } else {
-                console.log("dtrang thai dang false")
             }
 
             $('#confirm').click(function () {
-                 var info = {
+                var info = {
                     id: idList,
                     urlLoad: layDS + sessionStorage.getItem('madoan')
                 }
@@ -134,10 +132,10 @@
                                 </li>
 
                                 <li class="divider"> </li>
-                                
+
                                 <li>
                                     <a href="../../DangNhap.html">
-                                        
+
                                         <i class="icon-logout"></i> Log Out
                                     </a>
                                 </li>
@@ -161,7 +159,7 @@
                         <div class="pull-center" style="text-align: center">
                             <h1 class="page-title">Danh Sách Thành Viên</h1>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="row" style="display: flex; justify-content:center;">

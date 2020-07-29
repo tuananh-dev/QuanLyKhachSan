@@ -10,7 +10,7 @@ namespace QLKSProject.Business.KhachHangBusiness
     {
         public List<KhachHangDTO> LayDanhSachKhachHangTheoMaDoan(string maDoan)
         {
-            var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == maDoan).Select(kh => new KhachHangDTO {
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == maDoan && kh.IsDelete != true).Select(kh => new KhachHangDTO {
                 ID = kh.ID,
                 HoVaTen = kh.HoVaTen,
                 SoDienThoai = kh.SoDienThoai,
