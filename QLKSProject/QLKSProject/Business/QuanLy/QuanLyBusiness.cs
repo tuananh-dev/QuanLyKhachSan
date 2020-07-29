@@ -254,7 +254,6 @@ namespace QLKSProject.Business.QuanLy
                     status = "Lỗi tạo phòng Loại 3!";
                 if (TaoDanhSachPhongTheoLoaiPhong(4, themPhongTheoLauDTO.Lau, themPhongTheoLauDTO.SoPhongLoai4, themPhongTheoLauDTO.SoPhongLoai4))
                     status = "Lỗi tạo phòng Loại 4!";
-
             }
             return status;
         }
