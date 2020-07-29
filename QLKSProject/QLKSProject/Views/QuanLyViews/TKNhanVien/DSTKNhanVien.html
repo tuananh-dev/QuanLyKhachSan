@@ -35,20 +35,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             checkSession();
-            $('#nameuser').html(sessionStorage.getItem('fullname'));
-            var role = '';
-            switch (sessionStorage.getItem('role')) {
-                case 'nv':
-                    role = 'Nhân Viên'
-                    break;
-                case 'ql':
-                    role = 'Quản Lý'
-                    break;
-
-            }
-
-            $('#roleuser').html(role);
-            console.log(sessionStorage.getItem('accessToken'))
+            
+            
             //var mota = $();
             var dataId;
             var idList = '#dstk';
@@ -187,7 +175,7 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                data-close-others="true">
                                 <img alt="" class="img-circle " src="../../../Content/QuanLy/img/dp.jpg" />
-                                <span class="username username-hide-on-mobile"> John </span>
+                                <span class="username username-hide-on-mobile nameuser"> John </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
@@ -235,7 +223,7 @@
                                         </div>
                                     </div>
                                     <div class="profile-usertitle">
-                                        <div class="sidebar-userpic-name" id="nameuser"></div>
+                                        <div class="sidebar-userpic-name nameuser"></div>
                                         <div class="profile-usertitle-job" id="roleuser"></div>
                                     </div>
                                 </div>
@@ -285,7 +273,7 @@
 
                             </li>
 
-                            
+
 
                         </ul>
                     </div>
@@ -355,153 +343,153 @@
                 </div>
             </div>
             <!----Modal-->
-            <div class="modal fade" tabindex="-1" id="addModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
-
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Tài Khoản</h4>
-                                    <div class="card-box">
-
-                                        <div class="card-body row">
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="tentk-add" required>
-                                                    <label class="mdl-textfield__label">Tên Tài Khoản</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="matkhau-add" required>
-                                                    <label class="mdl-textfield__label">Mật Khẩu</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="hoten-add" required>
-                                                    <label class="mdl-textfield__label">Họ Và Tên</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text"
-                                                           pattern="" id="sdt-add">
-                                                    <label class="mdl-textfield__label" for="sdt-add">SDT</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="email" id="mail-add" requireds>
-                                                    <label class="mdl-textfield__label">Mail</label>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-add">
-                                            Thêm
-                                        </button>
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                            Hủy
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-----end modal-->
-                <!-- end page content -->
-            </div>
-            <div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
-
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Chỉnh Sửa Tài Khoản</h4>
-                                    <div class="card-box">
-
-                                        <div class="card-body row">
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="tentk-edit" required>
-                                                    <label class="mdl-textfield__label" style="top:0;">Tên Tài Khoản</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="matkhau-edit" required>
-                                                    <label class="mdl-textfield__label" style="top:0;">Mật Khẩu</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="hoten-edit" required>
-                                                    <label class="mdl-textfield__label" style="top:0;">Họ Và Tên</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text"
-                                                           pattern="" id="sdt-edit">
-                                                    <label class="mdl-textfield__label" for="sdt-edit" style="top:0;">SDT</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-8 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="email" id="mail-edit" requireds>
-                                                    <label class="mdl-textfield__label" style="top:0;">Mail</label>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-edit">
-                                            Sửa
-                                        </button>
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                            Hủy
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-----end modal-->
-                <!-- end page content -->
-            </div>
-
             <!-- end page content -->
         </div>
         <!-- end page container -->
         <!-- start footer -->
         <div class="page-footer">
             <div class="page-footer-inner">
-                2020 &copy; Hotel Color
-
+                2018 &copy; Spice Hotel Template By
+                <a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">RedStar Theme</a>
             </div>
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>
             </div>
         </div>
         <!-- end footer -->
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" style="width:400px">
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Chỉnh Sửa Tài Khoản</h4>
+                            <div class="card-box">
+
+                                <div class="card-body row">
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text" id="tentk-edit" required>
+                                            <label class="mdl-textfield__label" style="top:0;">Tên Tài Khoản</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text" id="matkhau-edit" required>
+                                            <label class="mdl-textfield__label" style="top:0;">Mật Khẩu</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text" id="hoten-edit" required>
+                                            <label class="mdl-textfield__label" style="top:0;">Họ Và Tên</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text"
+                                                   pattern="" id="sdt-edit">
+                                            <label class="mdl-textfield__label" for="sdt-edit" style="top:0;">SDT</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="email" id="mail-edit" requireds>
+                                            <label class="mdl-textfield__label" style="top:0;">Mail</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12 p-t-20 text-center">
+                                <button type="button"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-edit">
+                                    Sửa
+                                </button>
+                                <button type="button"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                    Hủy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-----end modal-->
+        <!-- end page content -->
+    </div>
+    <div class="modal fade" tabindex="-1" id="addModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" style="width:400px">
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Tài Khoản</h4>
+                            <div class="card-box">
+
+                                <div class="card-body row">
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text" id="tentk-add" required>
+                                            <label class="mdl-textfield__label">Tên Tài Khoản</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text" id="matkhau-add" required>
+                                            <label class="mdl-textfield__label">Mật Khẩu</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text" id="hoten-add" required>
+                                            <label class="mdl-textfield__label">Họ Và Tên</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text"
+                                                   pattern="" id="sdt-add">
+                                            <label class="mdl-textfield__label" for="sdt-add">SDT</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="email" id="mail-add" requireds>
+                                            <label class="mdl-textfield__label">Mail</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12 p-t-20 text-center">
+                                <button type="button"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-add">
+                                    Thêm
+                                </button>
+                                <button type="button"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                    Hủy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-----end modal-->
+        <!-- end page content -->
     </div>
     <!-- start js include path -->
     <script src="../../../Content/QuanLy/plugins/jquery/jquery.min.js"></script>
