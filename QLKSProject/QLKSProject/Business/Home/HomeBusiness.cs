@@ -29,7 +29,9 @@ namespace QLKSProject.Business.Home
 				}
 			}
 			catch (Exception)
-			{	
+			{
+				if (error.Equals("ok"))
+					error = "";
 				error += "\r\n" + "Lưu file khách hàng không thành công!";
 			}
 			return error;

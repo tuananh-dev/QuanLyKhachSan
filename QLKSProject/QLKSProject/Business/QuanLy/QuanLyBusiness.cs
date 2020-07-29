@@ -159,13 +159,12 @@ namespace QLKSProject.Business.QuanLy
             }).FirstOrDefault();
             return phong;
         }
-        public bool ThemPhong(PhongDTO phong)
+        public string ThemPhong(PhongDTO phong)
         {
-
+            string status = "ok";
             Models.Entities.Phong ph = new Models.Entities.Phong();
             if (CheckPhong(phong.SoPhong))
             {
-
                 ph.MaPhong = phong.MaPhong;
                 ph.SoPhong = phong.SoPhong;
                 ph.LoaiPhong = phong.LoaiPhong;
@@ -174,11 +173,11 @@ namespace QLKSProject.Business.QuanLy
                 ph.IsDelete = phong.IsDelete;
                 models.Phongs.Add(ph);
                 models.SaveChanges();
-                return true;
+                return status;
             }
             else
             {
-                return false;
+                return status = "Lỗi phòng đã tồn tại!";
             }
 
         }
@@ -211,6 +210,25 @@ namespace QLKSProject.Business.QuanLy
             }
             return false;
         }
+        public bool XoaDanhSachPhong()
+        {
+            try
+            {
+                var lstPhong = models.Phongs.Select(p => p).ToList();
+                foreach (var phong in lstPhong)
+                {
+                    models.Phongs.Remove(phong);
+                }
+                models.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
+        }
+
         #endregion
         #region DichVu
         public List<DichVuDTO> LayDanhSachDichVu()

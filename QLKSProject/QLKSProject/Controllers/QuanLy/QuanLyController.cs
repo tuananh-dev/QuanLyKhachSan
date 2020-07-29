@@ -94,10 +94,11 @@ namespace QLKSProject.Controllers.QuanLy
             PhongDTO phong = JsonConvert.DeserializeObject<PhongDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                if (quanLy.ThemPhong(phong))
+                string result = quanLy.ThemPhong(phong);
+                if (result.Equals("ok"))
                     return Ok("Thêm phòng thành công!");
                 else
-                    return BadRequest("Thêm phòng thất bại!");
+                    return BadRequest(result);
             }
         }
         [HttpPut]
