@@ -367,20 +367,20 @@ namespace QLKSProject.Business.NhanVien
         }
         public bool XoaDoan(string maDoan)
         {
+            bool b = true;
             try
             {
                 var doan = models.Doans.Where(d => d.MaDoan == maDoan).FirstOrDefault();
                 doan.IsDelete = true;
                 doan.TrangThaiDatPhong = 0;
                 doan.TrangThaiXacNhan = false;
-                return true;
-                models.SaveChanges();
             }
             catch (Exception)
             {
                 return false;
             }
-            
+            models.SaveChanges();
+            return b;
         }
         #endregion
         #region private methods
