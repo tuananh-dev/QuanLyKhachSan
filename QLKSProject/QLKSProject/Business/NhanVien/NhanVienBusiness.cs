@@ -1,11 +1,8 @@
 ﻿using QLKSProject.Models.DTO;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using QLKSProject.Models.Entities;
-using System.Net;
-using System.Net.Mail;
 
 
 namespace QLKSProject.Business.NhanVien
@@ -31,129 +28,35 @@ namespace QLKSProject.Business.NhanVien
         }
         public string DatPhongThuNghiem(List<KhachHangDTO> khachHangDTOs)
         {
-            string trangThaiDatPhong = "ok";
+            string status = "ok";
             string maDoan = khachHangDTOs[0].MaDoan;
-            var doan = models.Doans.Where(d => d.MaDoan.Equals(maDoan)).FirstOrDefault();
-            if (doan.TrangThaiDatPhong != 1)
+
+            try
             {
-                var lstKhachHangMaDoan = khachHangDTOs.Where(kh => kh.MaDoan.Equals(maDoan)).ToList();
-                var lstKhachHang = models.KhachHangs.Select(kh => new KhachHangDTO
+                var doan = models.Doans.Where(d => d.MaDoan == maDoan).FirstOrDefault();
+                doan.TrangThaiDatPhong = 0;
+                var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == maDoan).ToList();
+                foreach (var khachHang in lstKhachHang)
                 {
-                    ID = kh.ID,
-                    HoVaTen = kh.HoVaTen,
-                    SoDienThoai = kh.SoDienThoai,
-                    Email = kh.Email,
-                    DiaChi = kh.DiaChi,
-                    Nhom = kh.Nhom,
-                    NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
-                    ThoiGianNhan = kh.ThoiGianNhan,
-                    ThoiGianTra = kh.ThoiGianTra,
-                    MaDoan = kh.MaDoan,
-                    GioiTinh = kh.GioiTinh,
-                    LoaiKhachHang = kh.LoaiKhachHang,
-                    TruongDoan = kh.TruongDoan,
-                    IsDelete = kh.IsDelete,
-                    TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                    IDPhong = kh.IDPhong,
-                    TrangThaiXacNhan = kh.TrangThaiXacNhan
-                }).ToList();
-                var lstPhong = models.Phongs.Where(p => p.IsDelete != true).Select(p => new PhongDTO
-                {
-                    ID = p.ID,
-                    MaPhong = p.MaPhong,
-                    SoPhong = p.SoPhong,
-                    LoaiPhong = p.LoaiPhong,
-                    Gia = p.Gia,
-                    TrangThai = p.TrangThai,
-                    IsDelete = p.IsDelete
-                }).ToList();
-                if (lstPhong.Count == 0)
-                    return trangThaiDatPhong = "Lỗi chưa tạo phòng!!!";
-                List<int> lstNhom = LayDSNhomTrongDSKhachHang(lstKhachHangMaDoan);
-                foreach (var nhom in lstNhom)
-                {
-                    int loaiPhong = 0;
-                    var lstNhomKhachHang = lstKhachHangMaDoan.Where(kh => kh.Nhom == nhom).ToList();
-                    if (nhom == 0)
-                    {
-                        loaiPhong = 1;
-                        foreach (var khachHang in lstNhomKhachHang)
-                        {
-                            int idPhong = LaySoPhongTrong(lstKhachHang, lstPhong, loaiPhong, lstKhachHangMaDoan[0].ThoiGianNhan, lstKhachHangMaDoan[0].ThoiGianTra);
-                            if (idPhong > 0)
-                            {
-                                khachHang.TrangThaiDatPhong = true;
-                                khachHang.IDPhong = idPhong;
-                                int index = lstKhachHangMaDoan.IndexOf(khachHang);
-                                lstKhachHangMaDoan[index] = khachHang;
-                                foreach (var phong in lstPhong)
-                                {
-                                    if (phong.ID == idPhong)
-                                        phong.TrangThai = false;
-                                }
-                            }
-                            else
-                                trangThaiDatPhong = "Khong lay duoc phong cho khach (Het Phong) !!!";
-                        }
-                    }
-                    else
-                    {
-                        loaiPhong = TinhSoThanhVienNhom(lstNhomKhachHang);
-                        if (loaiPhong <= 4)
-                        {
-                            int idPhong = LaySoPhongTrong(lstKhachHang, lstPhong, loaiPhong, lstKhachHangMaDoan[0].ThoiGianNhan, lstKhachHangMaDoan[0].ThoiGianTra);
-                            if (idPhong > 0)
-                            {
-                                foreach (var khachHang in lstNhomKhachHang)
-                                {
-                                    khachHang.TrangThaiDatPhong = true;
-                                    khachHang.IDPhong = idPhong;
-                                    int index = lstKhachHangMaDoan.IndexOf(khachHang);
-                                    lstKhachHangMaDoan[index] = khachHang;
-                                    foreach (var phong in lstPhong)
-                                    {
-                                        if (phong.ID == idPhong)
-                                            phong.TrangThai = false;
-                                    }
-                                }
-                            }
-                            else
-                                trangThaiDatPhong = "Không lấy được số phòng cho khách !!!";
-                        }
-                        else
-                            trangThaiDatPhong = "Số lượng thành viên trong nhóm quá 4 người !!!";
-                    }
-
+                    var kh = khachHangDTOs.Where(k => k.ID == khachHang.ID).FirstOrDefault();
+                    khachHang.HoVaTen = kh.HoVaTen;
+                    khachHang.SoDienThoai = kh.SoDienThoai;
+                    khachHang.Email = kh.Email;
+                    khachHang.DiaChi = kh.DiaChi;
+                    khachHang.Nhom = kh.Nhom;
+                    khachHang.LoaiKhachHang = kh.LoaiKhachHang;
+                    khachHang.NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm;
+                    khachHang.GioiTinh = kh.GioiTinh;
+                    khachHang.IDPhong = 0;
                 }
-                if (trangThaiDatPhong.Equals("ok"))
-                {
-                    LuuDanhSachKhachHangDaDuocDatPhong(lstKhachHangMaDoan);
-                    // Luu trang thai dat phong thanh cong cho Doan
-                    doan.TrangThaiDatPhong = 1;
-                    var khachHangDTO = lstKhachHangMaDoan.Where(kh => kh.TruongDoan == true).FirstOrDefault();
-                    string account = RemoveUnicode(khachHangDTO.HoVaTen.ToLower().Replace(" ", ""));
-                    string password = khachHangDTO.MaDoan.Substring(6);
-                    if (!TaoTaiKhoanChoKhachHang(khachHangDTO, account, password))
-                        trangThaiDatPhong = "Lỗi tạo tài khoản cho khách hàng !!!";
-                    else
-                    {
-                        string subject = "Xác nhận đặt phòng tại Color Hotel";
-                        string body = "Dear " + khachHangDTO.HoVaTen + ",<BR>" + "Chúng tôi rất vui mừng vì bạn đã chọn khách sạn của chúng tôi. Danh sách khách hàng của quý khách đã được đặt phòng thành công!" + "<BR>Xin quý khách vui lòng đăng nhập bằng tài khoản và mật khẩu bên đưới để xác nhận.<BR>" + "Account: " + account + "<BR>" + "Password: " + password + "<BR>" + "<BR>Trân trọng,<BR>" + "Hotel Color";
-                        string trangThaiGuiMail = GuiMailTuDong(account,subject,body);
-                    }
-
-                }
-                else
-                {
-                    // Luu trang thai dat phong that bai cho Doan
-                    doan.TrangThaiDatPhong = -1;
-                }
+                models.SaveChanges();
+                status = DatPhong(maDoan);
             }
-            else
-                trangThaiDatPhong = "Đoàn đặt phòng thành công đã tồn tại !!!";
-
-            models.SaveChanges();
-            return trangThaiDatPhong;
+            catch (Exception)
+            {
+                status = "Lỗi đặt phòng!";
+            }          
+            return status;
         }
         public string DatPhong(string maDoan)
         {
@@ -454,38 +357,24 @@ namespace QLKSProject.Business.NhanVien
             }
             return lstphong.ToList();
         }
-        #endregion
-        #region private methods
-        /*private string GuiMailTuDong(string tenKhachHang, string email, string account, string password)
+        public bool XoaDoan(string maDoan)
         {
-            string senderID = "nguyenductuananh110@gmail.com";
-            string senderPassword = "Anhanh01";
-            string subject = "Xác nhận đặt phòng tại Color Hotel";
-            string result = "Email Sent Successfully";
-            string body = "Dear " + tenKhachHang + ",<BR>" + "Chúng tôi rất vui mừng vì bạn đã chọn khách sạn của chúng tôi. Danh sách khách hàng của quý khách đã được đặt phòng thành công!" + "<BR>Xin quý khách vui lòng đăng nhập bằng tài khoản và mật khẩu bên đưới để xác nhận.<BR>" + "Account: " + account + "<BR>" + "Password: " + password + "<BR>" + "<BR>Trân trọng,<BR>" + "Hotel Color";
             try
             {
-                MailMessage mail = new MailMessage();
-                mail.To.Add(email);
-                mail.From = new MailAddress(senderID);
-                mail.Subject = "My Test Email!";
-                mail.Body = body;
-                mail.Subject = subject;
-                mail.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient();
-                smtp.UseDefaultCredentials = false;
-                smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
-                smtp.Credentials = new System.Net.NetworkCredential(senderID, senderPassword);
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-                smtp.Send(mail);
+                var doan = models.Doans.Where(d => d.MaDoan == maDoan).FirstOrDefault();
+                doan.IsDelete = true;
+                doan.TrangThaiDatPhong = 0;
+                doan.TrangThaiXacNhan = false;
+                return true;
             }
             catch (Exception)
             {
-                result = "problem occurred";
+                return false;
             }
-            return result;
-        }*/
+            
+        }
+        #endregion
+        #region private methods
         private void LuuDanhSachKhachHangDaDuocDatPhong(List<KhachHangDTO> khachHangDTOs)
         {
             string maDoan = khachHangDTOs[0].MaDoan;

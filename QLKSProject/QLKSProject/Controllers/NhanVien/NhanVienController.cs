@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
 using QLKSProject.Business.NhanVien;
@@ -102,6 +99,14 @@ namespace QLKSProject.Controllers.NhanVien
             using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
                 return Ok(nhanVienBusiness.LayDanhSachPhongTheoDieuKien(ngayNhan, ngayTra));
+            }
+        }
+        [HttpDelete]
+        public IHttpActionResult XoaDoan([FromUri]string id)
+        {
+            using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            {
+                return Ok(nhanVienBusiness.XoaDoan(id));
             }
         }
     }
