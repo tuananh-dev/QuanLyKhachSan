@@ -24,6 +24,7 @@
     <link href="../../../Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="../../../Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
+
     <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="../../../Content/QuanLy/Jquery.js"></script>
@@ -42,14 +43,14 @@
             $('body').on('click', 'a.btn.btn-info.btn-xs', function () {
                 console.log("click");
                 $(this).css("display", "none");
-                $('#loading').css("display", "block");
+                $('#loading').css("display", "clock");
 
                 dataId = $(this).attr("data-id");
                 var info = {
                     id: idList,
                     urlLoad: layDSDoan
                 }
-                XepPhong(info, xepPhong + dataId);
+                //XepPhong(info, xepPhong + dataId);
             })
 
 
@@ -194,7 +195,7 @@
             </div>
             <!-- end sidebar menu -->
             <div class="page-content-wrapper">
-                <div class="page-content">
+                <div class="page-content" style="min-height: 700px">
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
@@ -226,7 +227,7 @@
                                                     <th> Thời Gian Nhận </th>
                                                     <th> Thời Gian Trả </th>
                                                     <th> Ngày Gửi </th>
-                                                    <th> Xếp Phòng </th>
+                                                    <th class="center"> Chức Năng </th>
                                                 </tr>
                                             </thead>
                                             <tbody id="dsdoan">
@@ -276,6 +277,9 @@
 
 
     <script src="../../../Content/QuanLy/js/pages/material-loading/material-loading.js"></script>
+    
+
+
 </body>
 
 
