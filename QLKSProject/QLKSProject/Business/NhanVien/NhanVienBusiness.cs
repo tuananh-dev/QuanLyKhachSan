@@ -220,14 +220,21 @@ namespace QLKSProject.Business.NhanVien
             models.SaveChanges();
             return trangThaiDatPhong;
         }
-        public bool DatPhongChoNhieuDoan()
+        public string DatPhongChoNhieuDoan()
         {
+            int soPhongThanhCong = 0;
+            int soPhongThatBai = 0;
             var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == 0).ToList();
             foreach (var doan in lstDoan)
             {
                 string datPhong = DatPhong(doan.MaDoan);
+                if (datPhong.Equals("ok"))
+                    soPhongThanhCong++;
+                else
+                    soPhongThatBai++;                
             }
-            return true;
+            string result = soPhongThanhCong + "-" + soPhongThatBai;
+            return result;
         }
         public List<KhachHangDTO> LayDanhSachKhachHangTheoMaDoan(string maDoan)
         {
