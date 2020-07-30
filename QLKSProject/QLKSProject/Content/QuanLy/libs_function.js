@@ -90,7 +90,7 @@ function loadData(idList, url) {
                         position.append('<tr class="odd gradeX"><td style="text-align:left" > ' + val.TenTruongDoan + '</td ><td >' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td><label class="label ' + color + '">' + ttxn + '</label></td></tr > ');
                         break;
                     case 'NhanVien/LayDanhSachDoanDatPhongThatBai':
-                        
+
                         var tgNhan = new Date(val.ThoiGianNhan);
                         var tgTra = new Date(val.ThoiGianTra);
                         var ngayGui = new Date(val.NgayGui);
@@ -329,10 +329,12 @@ function XepPhong(info, url) {
         },
         headers: { 'data-type': 'json' },
         success: function (data) {
-            console.log(data);
+            var str = data.split('-');
+            var tc = str[0];
+            var tb = str[1];
             Swal.fire(
-                'Xếp Phòng Thành Công!',
-                '',
+                'Success!',
+                'Thành Công: ' + tc + '   Thất Bại: ' + tb,
                 'success'
             )
             loadData(info.id, info.urlLoad);
@@ -373,7 +375,7 @@ function XacNhanDatPhong() {
             ).then(val => {
                 window.location.href = "DSThanhVien.html";
             })
-            
+
         },
         error: function (data) {
             Swal.fire({
