@@ -309,7 +309,8 @@ namespace QLKSProject.Business.NhanVien
                 ThoiGianNhan = d.ThoiGianNhan,
                 ThoiGianTra = d.ThoiGianTra,
                 IsDelete = d.IsDelete,
-                TrangThaiDatPhong = d.TrangThaiDatPhong
+                TrangThaiDatPhong = d.TrangThaiDatPhong,
+                TrangThaiXacNhan = d.TrangThaiXacNhan
             }).ToList();
             return lstDoan;
         }

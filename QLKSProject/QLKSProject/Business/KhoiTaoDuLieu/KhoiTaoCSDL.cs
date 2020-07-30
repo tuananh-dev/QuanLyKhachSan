@@ -16,9 +16,9 @@ namespace QLKSProject.Business
             try
             {
                 TaoPhong(5, 5);
-/*                TaoDichVu();
+/*                TaoDichVu();*/
                 TaoTaiKhoan();
-                TaoTienIch();*/
+/*                TaoTienIch();*/
                 /*                TaoDoanKhachHang(12);*/
             }
             catch (Exception)
