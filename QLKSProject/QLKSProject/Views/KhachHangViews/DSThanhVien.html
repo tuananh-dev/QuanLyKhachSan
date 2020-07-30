@@ -49,7 +49,11 @@
             $('#confirm').click(function () {
                 $(this).css("display", "none");
                 $('#loading').css("display", "block");
-                XacNhanDatPhong();
+                var info = {
+                    id: idList,
+                    urlLoad: layDS + sessionStorage.getItem('madoan')
+                }
+                XacNhanDatPhong(info);
 
             })
 
