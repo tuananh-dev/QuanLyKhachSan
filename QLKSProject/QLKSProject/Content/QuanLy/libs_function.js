@@ -94,7 +94,7 @@ function loadData(idList, url) {
                         var tgNhan = new Date(val.ThoiGianNhan);
                         var tgTra = new Date(val.ThoiGianTra);
                         var ngayGui = new Date(val.NgayGui);
-                        position.append('<tr class="odd gradeX"><td style="text-align:left"> ' + val.TenTruongDoan + '</td><td>' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td class="center"><a class="btn btn-tbl-delete btn-xs" data-id="' + val.MaDoan + '"><i class="fa fa-trash-o "></i></a></td></tr > ');
+                        position.append('<tr class="odd gradeX btnshow" data-id="' + val.MaDoan + '"><td style="text-align:left"> ' + val.TenTruongDoan + '</td><td>' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td class="center"><a class="btn btn-tbl-delete btn-xs" data-id="' + val.MaDoan + '"><i class="fa fa-trash-o "></i></a></td></tr > ');
                         break;
 
                 }
@@ -206,24 +206,7 @@ function loadDSPhong(ids, url) {
 
                 }
 
-                //if (val.SoPhong.charAt(0) == '2') {
-                //    ids.row2.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                //}
-                //if (val.SoPhong.charAt(0) == '3') {
-                //    ids.row3.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                //}
-                //if (val.SoPhong.charAt(0) == '4') {
-                //    ids.row4.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                //}
-                //if (val.SoPhong.charAt(0) == '5') {
-                //    ids.row5.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                //}
-                //if (val.SoPhong.charAt(0) == '6') {
-                //    ids.row6.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                //}
-                //if (val.SoPhong.charAt(0) == '7') {
-                //    ids.row7.append('<button style="margin: 0 5px 5px 0;border: 1px solid;border-radius: 2px;width:65px;height:65px;background-color:' + color + ';display:flex;justify-content:center;align-items:center;" title="' + info + '">' + val.SoPhong + ' </button>');
-                //}
+                
             });
 
         }
@@ -245,7 +228,7 @@ function addData(info, dataInput) {
         },
         data: JSON.stringify(dataInput),
         success: function (data) {
-            $(info.modal).modal('hide');
+            //$(info.modal).modal('hide');
             Swal.fire(
                 'Thêm Thành Công!',
                 '',
@@ -269,7 +252,7 @@ function editData(info, dataInput) {
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         data: JSON.stringify(dataInput),
         success: function () {
-            $(info.modal).modal('hide');
+            //$(info.modal).modal('hide');
             Swal.fire(
                 'Thêm Thành Công!',
                 '',
@@ -319,6 +302,40 @@ function deleteData(info, dataInput) {
 
 }
 
+//function deleteDoan(info) {
+//    Swal.fire({
+//        title: 'Bạn có chắc muốn Xóa?',
+//        text: "Bạn sẽ không thể quay lại!",
+//        icon: 'warning',
+//        showCancelButton: true,
+//        confirmButtonColor: '#F08080',
+//        cancelButtonColor: '#d3d3d3',
+//        confirmButtonText: 'Có, Tôi muốn Xóa!',
+//        cancelButtonText: 'Hủy'
+//    }).then((result) => {
+//        if (result.value) {
+
+//            $.ajax({
+//                url: '/api/' + info.url,
+//                method: 'DELETE',
+//                beforeSend: function (xhr) {
+//                    xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+//                    xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+//                },
+//                headers: { 'content-type': 'application/json', 'data-type': 'json' },
+//                success: function (data, textStatus, xhr) {
+
+//                    loadData(info.id, info.urlLoad);
+//                }
+//            })
+//            Swal.fire(
+//                'Đã Xóa!',
+//                '',
+//                'success'
+//            )
+//        }
+//    })
+//}
 
 function XepPhong(info, url) {
     $.ajax({
