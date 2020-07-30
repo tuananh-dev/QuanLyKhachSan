@@ -306,7 +306,7 @@ namespace QLKSProject.Business.NhanVien
         }
         public List<DoanDTO> LayDanhSachDoanTheoTrangThaiDatPhong(int trangThaiDatPhong)
         {
-            var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == trangThaiDatPhong).Select(d => new DoanDTO
+            var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == trangThaiDatPhong && d.IsDelete != true).Select(d => new DoanDTO
             {
                 ID = d.ID,
                 MaDoan = d.MaDoan,
@@ -374,6 +374,7 @@ namespace QLKSProject.Business.NhanVien
                 doan.TrangThaiDatPhong = 0;
                 doan.TrangThaiXacNhan = false;
                 return true;
+                models.SaveChanges();
             }
             catch (Exception)
             {
