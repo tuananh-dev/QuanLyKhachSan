@@ -35,6 +35,7 @@
 
             var idList = $('#dsthanhvien');
             var layDS = 'KhachHang/LayDanhSachKhachHangTheoMaDoan/';
+            var huyXepPhong = 'KhachHang/HuyDatPhong/';
             checkSession();
             if (sessionStorage.getItem('xacnhan') != "") {
                 sessionStorage.removeItem('xacnhan')
@@ -48,7 +49,7 @@
 
             $('#confirm').click(function () {
                 $(this).css("display", "none");
-                $('#loading').css("display", "block");
+                $('#loadingconfirm').css("display", "block");
                 var info = {
                     id: idList,
                     urlLoad: layDS + sessionStorage.getItem('madoan')
@@ -58,27 +59,13 @@
             })
 
             $('#cancel').click(function () {
+                $(this).css("display", "none");
+                $('#loadingcancel').css("display", "block");
+                HuyXacNhanXepPhong(huyXepPhong, sessionStorage.getItem('madoan'));
+                
 
-                Swal.fire({
-                    title: 'Bạn có chắc muốn hủy xếp phòng?',
-                    text: "Bạn sẽ không thể quay lại!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#F08080',
-                    cancelButtonColor: '#d3d3d3',
-                    confirmButtonText: 'Có, Tôi muốn hủy!',
-                    cancelButtonText: 'Bỏ Qua'
-                }).then((result) => {
-                    if (result.value) {
-                        alert("Huy xep phong")
-                        Swal.fire(
-                            'Đã Hủy!',
-                            'File xếp phòng của bạn đã được hủy.',
-                            'success'
-                        )
-                    }
-                })
             })
+
             $('.fullname').html(sessionStorage.getItem('fullname'));
         });
     </script>
@@ -195,11 +182,11 @@
                             <div class="row p-b-20" style="float:right">
                                 <div class="col-md-6 col-sm-6 col-6">
                                     <div class="btn-group">
-                                        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-right: 10px" id="loading"></div>
+                                        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-right: 20px" id="loadingconfirm"></div>
                                         <button id="confirm" class="btn btn-info" style="margin-right: 10px">
                                             Xác Nhận Danh Sách Đã Xếp
                                         </button>
-
+                                        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-left: 20px" id="loadingcancel"></div>
                                         <button id="cancel" class="btn" style="background-color: lightgray">
                                             Hủy Xếp Phòng<i class="fa fa-trash"></i>
                                         </button>
@@ -229,7 +216,7 @@
     </div>
 
 
-    
+
     <!--<div class="page-wrapper" style="">
 
 

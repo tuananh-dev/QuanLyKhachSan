@@ -75,7 +75,7 @@
 
         $(document).ready(function () {
             checkSession();
-            
+
             var txtThang = $('#thang').val();
             var txtQuy = $('#quy').val();
             var txtNam = $('#nam').val();
@@ -189,7 +189,7 @@
                                 </li>
 
                                 <li class="divider"> </li>
-                               
+
                                 <li>
                                     <a href="../../../DangNhap.html">
                                         <i class="icon-logout"></i> Log Out
@@ -230,7 +230,7 @@
                                         <div class="sidebar-userpic-name nameuser">  </div>
                                         <div class="profile-usertitle-job" id="roleuser">  </div>
                                     </div>
-                                   
+
                                 </div>
                             </li>
 
@@ -278,7 +278,7 @@
 
                             </li>
 
-                            
+
 
                         </ul>
                     </div>
@@ -286,125 +286,103 @@
             </div>
             <!-- end sidebar menu -->
             <div class="page-content-wrapper">
-                <div class="page-content" style="min-height: 700px">
-                    <div class="page-bar" style="margin: 0;">
+                <div class="page-content">
+                    <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
-                                <div class="page-title">Thống Kê</div>
+                                <div class="page-title">Dashboard</div>
                             </div>
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="../../NhanVienViews/Phong_NhanVien/DanhSachPhong.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                                       href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-
-                                <li class="active">Thống Kê</li>
+                                <li class="active">Dashboard</li>
                             </ol>
                         </div>
                     </div>
-                    <div class="row" style="display: flex;justify-content:center;">
-                        <div class="col-lg-1 p-t-20" style="margin: 0;display:flex;justify-content:flex-end;align-items:center">
-                            <input type="radio" id="rnd_thang" name="thongke"
-                                   class="mdl-radio__button" value="thang" checked>
-                        </div>
-                        <div class="col-lg-2 p-t-20" style="margin-top: 0;">
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height select-width" id="wrap-thang">
-
-                                <input class="mdl-textfield__input" type="text" id="thang" value=""
-                                       readonly tabIndex="-1" required>
-                                <label for="thang" class="pull-right margin-0">
-                                    <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                </label>
-                                <label for="thang" class="mdl-textfield__label">Tháng</label>
-
-                                <ul data-mdl-for="thang"
-                                    class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="dropdown_thang">
-                                    <li class="mdl-menu__item">1</li>
-                                    <li class="mdl-menu__item">2</li>
-                                    <li class="mdl-menu__item">3</li>
-                                    <li class="mdl-menu__item">4</li>
-                                    <li class="mdl-menu__item">5</li>
-                                    <li class="mdl-menu__item">6</li>
-                                    <li class="mdl-menu__item">7</li>
-                                    <li class="mdl-menu__item">8</li>
-                                    <li class="mdl-menu__item">9</li>
-                                    <li class="mdl-menu__item">10</li>
-                                    <li class="mdl-menu__item">11</li>
-                                    <li class="mdl-menu__item">12</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-1 p-t-20" style="margin: 0;display:flex;justify-content:flex-end;align-items:center">
-                            <input type="radio" id="rnd_quy" name="thongke"
-                                   class="mdl-radio__button" value="quy">
-                        </div>
-                        <div class="col-lg-2 p-t-20" style="margin-top: 0;">
-
-                            <!-- Select with arrow-->
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height select-width" id="wrap-quy">
-                                <input class="mdl-textfield__input" type="text" id="quy" value=""
-                                       readonly tabIndex="-1" required>
-                                <label for="quy" class="pull-right margin-0">
-                                    <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                </label>
-                                <label for="quy" class="mdl-textfield__label">Quý</label>
-                                <ul data-mdl-for="quy"
-                                    class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="dropdown_quy">
-                                    <li class="mdl-menu__item">1</li>
-                                    <li class="mdl-menu__item">2</li>
-                                    <li class="mdl-menu__item">3</li>
-                                    <li class="mdl-menu__item">4</li>
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 p-t-20" style="margin-top: 0;">
-                            <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="number" id="nam" value="" required>
-                                <label class="mdl-textfield__label" for="nam">Năm</label>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 p-t-20" style="display:flex;justify-content:center;align-items: center; margin-top:0;">
-                            <button type="button"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-success" style="margin-top: 8px" id="btnThongKe">
-                                Xem Thống Kê
-                            </button>
-                        </div>
-
-
-                    </div>
+                    <!-- start widget -->
                     <div class="row">
-                        <div class="col-md-12" >
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="panel-body">
+                                    <h3>Orders</h3>
+                                    <div class="progressbar-xs progress-rounded progress-striped progress ng-isolate-scope active">
+                                        <div class="progress-bar progress-bar-green width-60" role="progressbar"
+                                             aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="text-small margin-top-10 full-width">14% higher than last month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="panel-body">
+                                    <h3>Monthly Sales</h3>
+                                    <div class="progressbar-xs progress-rounded progress-striped progress ng-isolate-scope active">
+                                        <div class="progress-bar progress-bar-orange width-75" role="progressbar"
+                                             aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="text-small margin-top-10 full-width">7% higher than last month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="panel-body">
+                                    <h3>New Users</h3>
+                                    <div class="progressbar-xs progress-rounded progress-striped progress ng-isolate-scope active">
+                                        <div class="progress-bar progress-bar-purple width-40" role="progressbar"
+                                             aria-valuenow="52" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="text-small margin-top-10 full-width">34% higher than last month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="panel-body">
+                                    <h3>Collection</h3>
+                                    <div class="progressbar-xs progress-rounded progress-striped progress ng-isolate-scope active">
+                                        <div class="progress-bar progress-bar-cyan width-60" role="progressbar"
+                                             aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="text-small margin-top-10 full-width">20% higher than last month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end widget -->
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="card card-box">
+
+                                <div class="card-body no-padding height-9">
+                                    <div class="row">
+
+                                        <div id="chart"></div>
 
 
-                            <figure class="highcharts-figure" style="border: 1px solid black;height:402px; width:875px;border-radius: 5px">
-                                <div id="chart"></div>
-
-                            </figure>
-
-
-
-
-
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="card card-box">
+                                <div class="card-body no-padding height-9">
+                                    <div class="row">
+
+                                        <!--<div id="chart"></div>-->
 
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Modal -->
-                    <!-- start footer -->
-                    <!-- end footer -->
-                </div>
-                <div class="page-footer">
-                    <div class="page-footer-inner">
-                        2020 &copy; Hotel Color
 
-                    </div>
-                    <div class="scroll-to-top">
-                        <i class="icon-arrow-up"></i>
-                    </div>
                 </div>
             </div>
         </div>
