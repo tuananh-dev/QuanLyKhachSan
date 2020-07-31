@@ -40,7 +40,7 @@
             loadData(idList, layDS);
 
             console.log(sessionStorage.getItem('accessToken'));
-            $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
+            $('body').on('click', 'a.btn.btn-danger.btn-xs', function () {
 
                 dataId = $(this).attr("data-id");
                 var info = {
@@ -53,11 +53,11 @@
             })
 
 
-            $('body').on('click', 'tr.odd.gradeX.btnshow', function () {
+            $('body').on('click', 'a.btn.btn-info.btn-xs', function () {
 
                 sessionStorage.setItem('madoan', $(this).attr("data-id"));
                 console.log(sessionStorage.getItem('madoan'));
-                window.location.href = ""
+                window.location.href = "XemchiTiet.html";
             })
 
 
@@ -210,7 +210,7 @@
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="../../HomeViews/TrangChu.cshtml">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                                       href="../Phong_NhanVien/DanhSachPhong.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
 
                                 <li class="active">Danh Sách Đặt Phòng Thất Bại</li>

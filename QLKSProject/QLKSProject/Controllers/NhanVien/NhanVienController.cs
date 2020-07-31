@@ -59,12 +59,12 @@ namespace QLKSProject.Controllers.NhanVien
         [HttpPost]
         public IHttpActionResult DatPhongThuNghiem([FromBody]dynamic dynamic)
         {
-            if(dynamic == null)
+            if (dynamic == null)
             {
                 return BadRequest();
             }
             List<KhachHangDTO> lstKhachHang = JsonConvert.DeserializeObject<List<KhachHangDTO>>(dynamic.ToString());
-            using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
                 string result = nhanVienBusiness.DatPhongThuNghiem(lstKhachHang);
                 if (result.Equals("ok"))
