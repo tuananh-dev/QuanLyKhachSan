@@ -35,33 +35,52 @@
             checkSession();
 
             var idList = $('#dsdatphong');
-            var layDS = 'NhanVien/LayDanhSachDoanDatPhongThatBai';
-            var xoaDoan = 'NhanVien/XoaDoan/';
-            loadData(idList, layDS);
+            var layDS = 'NhanVien/LayDanhSachKhachHangTheoMaDoan/';
+            var XepPhongThu = 'NhanVien/DatPhongThuNghiem';
+            var info = {
+                id: idList,
+                url: layDS
+            }
 
-            console.log(sessionStorage.getItem('accessToken'));
-            $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
 
-                dataId = $(this).attr("data-id");
-                var info = {
-                    id: idList,
-                    url: xoaDoan,
-                    urlLoad: layDS,
-                };
-                //alert("Đã Xóa Đoàn " + dataId);
-                deleteData(info, dataId);
+            loadDSKHTheoMaDoan(info, sessionStorage.getItem('madoan'));
+
+
+            $('#luu').click(function () {
+                var list = [];
+                   
+
+                var length = parseInt(sessionStorage.getItem('length'));
+                for (i = 0; i < length; i++) {
+                    var obj = {
+                        HoVaTen: $('#hovaten' + i).val(),
+                        SoDienThoai: $('#sdt' + i).val(),
+                        Email: $('#email' + i).val(),
+                        DiaChi: $('#diachi' + i).val(),
+                        Nhom: $('#nhom' + i).val(),
+                        LoaiKhachHang: $('#loaikh' + i).val(),
+                        NguoiDaiDienCuaTreEm: $('#nguoiDD' + i).val(),
+                        GioiTinh: $('#gioitinh' + i).val(),
+                        MaDoan: $('#madoan' + i).val(),
+                        ID: $('#id' + i).val(),
+                        ThoiGianNhan: $('#tgnhan' + i).val(),
+                        ThoiGianTra: $('#tgtra' + i).val(),
+                        TruongDoan: $('#truongdoan' + i).val(),
+                        IsDelete: $('#isdelete' + i).val(),
+                        TrangThaiDatPhong: $('#trangthaidatphong' + i).val(),
+                        IDPhong: $('#idphong' + i).val(),
+                        GhiChu: $('#ghichu' + i).val(),
+                        TrangThaiXacNhan: $('#trangthaixacnhan' + i).val(),
+                    }
+                    list.push(obj);
+                }
+                console.log(list);
+                XepPhongThuNghiem(XepPhongThu, list);
+
+
+
             })
-
-
-            $('body').on('click', 'tr.odd.gradeX.btnshow', function () {
-
-                sessionStorage.setItem('madoan', $(this).attr("data-id"));
-                console.log(sessionStorage.getItem('madoan'));
-                window.location.href = ""
-            })
-
-
-        });
+        })
     </script>
 
 </head>
@@ -228,19 +247,68 @@
                                                id="example">
                                             <thead>
                                                 <tr>
-                                                    <th class="" style="width: 250px;text-align: left;"> Họ và Tên</th>
-                                                    <th class="" style="width: 250px;"> Số Điện Thoại</th>
+                                                    <th class="center" style=""> Họ và Tên</th>
+                                                    <th class="center" style=""> Số Điện Thoại</th>
                                                     <th class="center"> Email </th>
                                                     <th class="center"> Địa Chỉ </th>
                                                     <th class="center"> Nhóm </th>
                                                     <th class="center"> Loại Khách Hàng </th>
                                                     <th class="center"> Người Đại Diện </th>
                                                     <th class="center"> Giới Tính </th>
+                                                    <th class="center"> Ghi Chú </th>
                                                 </tr>
                                             </thead>
                                             <tbody id="dsdatphong">
+                                                <!--<tr class="odd gradeX btnshow" data-id="' + val.MaDoan + '">
+                                                    <td style="text-align:left">
+                                                        <input type="text" id="" name="hovaten" value="'+val.HoVaTen+'">
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="" name="sdt" value="'+val.SoDienThoai+'">
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="email" id="" name="email" value="'+val.Email+'">
+
+                                                    </td>
+                                                    <td class="center">
+                                                        <input type="text" id="" name="diachi" value="'+val.DiaChi+'">
+
+                                                    </td>
+                                                    <td class="center">
+                                                        <input type="text" id="" name="nhom" value="'+val.Nhom+'">
+
+                                                    </td>
+                                                    <td class="center">
+                                                        <input type="text" id="" name="loaiKH" value="'+val.LoaiKhachHang+'">
+
+                                                    </td>
+                                                    <td class="center">
+                                                        <input type="text" id="" name="nguoiDD" value="'+val.NguoiDaiDienCuaTreEm+'">
+
+                                                    </td>
+                                                    <td class="center">
+                                                        <input type="text" id="" name="ghichu" value="'+val.GhiChu+'">
+
+                                                    </td>
+
+                                                    <td class="center">
+                                                        <a class="btn btn-tbl-delete btn-xs" data-id="' + val.MaDoan + '"><i class="fa fa-trash-o "></i></a>
+                                                    </td>
+                                                </tr>-->
                                             </tbody>
                                         </table>
+                                    </div>
+                                    <div class="row p-b-20">
+                                        <div class="col-md-6 col-sm-6 col-6">
+                                            <div class="btn-group">
+                                                <button id="luu" class="btn btn-info">
+                                                    Lưu
+                                                </button>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

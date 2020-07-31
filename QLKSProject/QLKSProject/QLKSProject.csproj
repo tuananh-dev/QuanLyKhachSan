@@ -647,6 +647,7 @@
     <Content Include="Views\KhachHangViews\DSThanhVien.html" />
     <Content Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.html" />
     <Content Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.html" />
+    <Content Include="Views\NhanVienViews\DatPhongThatBai\XemchiTiet.html" />
     <Content Include="Views\NhanVienViews\Doan\Doan.html" />
     <Content Include="Views\NhanVienViews\Phong_NhanVien\DanhSachPhong.html" />
     <Content Include="Views\QuanLyViews\DichVu\DSDichVu.html" />

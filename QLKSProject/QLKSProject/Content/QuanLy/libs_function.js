@@ -94,8 +94,9 @@ function loadData(idList, url) {
                         var tgNhan = new Date(val.ThoiGianNhan);
                         var tgTra = new Date(val.ThoiGianTra);
                         var ngayGui = new Date(val.NgayGui);
-                        position.append('<tr class="odd gradeX btnshow" data-id="' + val.MaDoan + '"><td style="text-align:left"> ' + val.TenTruongDoan + '</td><td>' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td class="center"><a class="btn btn-tbl-delete btn-xs" data-id="' + val.MaDoan + '"><i class="fa fa-trash-o "></i></a></td></tr > ');
+                        position.append('<tr class="odd gradeX" data-id="' + val.MaDoan + '"><td style="text-align:left"> ' + val.TenTruongDoan + '</td><td>' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td class="center"><a class="btn btn-danger btn-xs" data-id="' + val.MaDoan + '"><i class="fa fa-trash-o "></i></a><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '"><i class="fa fa-arrow-circle-o-right "></i></a></td></tr > ');
                         break;
+
 
                 }
 
@@ -171,6 +172,28 @@ function loadDataDetail(edit, url, id) {
     });
 }
 
+function loadDSKHTheoMaDoan(info, id) {
+    console.log(info.url + "-" + id);
+    $.ajax({
+        type: 'GET',
+        url: '/api/' + info.url + id,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+        },
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+        dataType: 'json',
+        success: function (data) {
+            var i = 0;
+            //sessionStorage.setItem('id', val.ID);
+            $.each(data, function (index, val) {
+                info.id.append('<tr class="odd gradeX"><td style="text-align:left" > <input type="text" id="hovaten' + i + '" name="hovaten" value="' + val.HoVaTen + '"></td><td><input type="text" id="sdt' + i + '" style="width:100px" name="sdt" value="' + val.SoDienThoai + '"></td><td><input type="email" id="email' + i + '" name="email" value="' + val.Email + '"></td><td class="center"><input type="text" id="diachi' + i + '" name="diachi" value="' + val.DiaChi + '"></td><td class="center"><input type="text" style="width:20px" id="nhom' + i + '" name="nhom" value="' + val.Nhom + '"></td><td class="center"><input type="text" style="width:30px" id="loaikh' + i + '" name="loaiKH" value="' + val.LoaiKhachHang + '"></td><td class="center"><input type="text" id="nguoiDD' + i + '" name="nguoiDD" value="' + val.NguoiDaiDienCuaTreEm + '"></td><td class="center"><input type="text" style="width:30px" id="gioitinh' + i + '" name="gioitinh" value="' + val.GioiTinh + '"></td><td class="center"><input type="text" style="width:100px" id="ghichu' + i +'" name="ghichu" value="' + val.GhiChu + '"></td><td class="center"><input type="text" style="width:100px;display:none;" id="id' + i +'" name="id" value="' + val.ID + '"></td><td class="center"><input type="text" style="width:100px;display:none;" id="tgnhan' + i +'" name="tgnhan" value="' + val.ThoiGianNhan + '"></td><td class="center"><input type="text" style="width:100px;display:none;" id="tgtra' + i +'" name="tgtra" value="' + val.ThoiGianTra + '"></td><td class="center"><input type="text" style="width:100px;display:none;" id="madoan' + i +'" name="madoan" value="' + val.MaDoan + '"></td><td class="center"><input type="text" style="width:100px;display:none;" id="truongdoan' + i +'" name="truongdoan" value="' + val.TruongDoan + '"></td><td class="center"><input type="text" style="width:100px;display:none;" id="isdelete' + i +'" name="isdelete" value="' + val.IsDelete + '"></td><td class="center"><input type="text" style="width:100px;display:none;" id="trangthaidatphong' + i +'" name="trangthaidatphong" value="' + val.TrangThaiDatPhong + '"></td><td class="center"><input type="text" style="width:100px;display:none;" id="idphong' + i +'" name="idphong" value="' + val.IDPhong + '"></td><td class="center"><input type="text" style="width:100px;display:none;" id="trangthaixacnhan' + i +'" name="trangthaixacnhan" value="' + val.TrangThaiXacNhan + '"></td></tr>');
+            i++
+        })
+        sessionStorage.setItem('length', i);
+    }
+})
+}
 function loadDSPhong(ids, url) {
     $.ajax({
         type: 'GET',
@@ -206,7 +229,7 @@ function loadDSPhong(ids, url) {
 
                 }
 
-                
+
             });
 
         }
@@ -379,7 +402,7 @@ function XacNhanDatPhong() {
         url: '/api/KhachHang/XacNhanDatPhong/' + sessionStorage.getItem('madoan'),
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+           
         },
         headers: { 'data-type': 'json' },
         dataType: 'json',
@@ -405,4 +428,37 @@ function XacNhanDatPhong() {
     })
 }
 
+function XepPhongThuNghiem(url, dataInput) {
+    $.ajax({
+        url: '/api/' + url,
+        method: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+        },
+        headers: { 'Content-Type': 'application/json'},
+        data: JSON.stringify(dataInput),
+        success: function (data) {
+            //$(info.modal).modal('hide');
+            Swal.fire(
+                'Success!',
+                '',
+                'success'
+            ).then(val => {
+                window.location.href = "DatPhongThatBai.html";
+            })
+            
+
+        }, error: function (data) {
+            console.log(data);
+            swal.fire(
+                'Oop...!',
+                'Thông tin chưa đúng!',
+                'error'
+                
+
+            );
+        }
+
+    })
+}
 
