@@ -110,22 +110,15 @@
                 dsThang.push("Tháng 11");
                 dsThang.push("Tháng 12");
             }
-
-            //Get DATA
+            //create Object Data
             var dataMonth = {
                 thang: month,
                 nam: year
             }
-            dashboard_Circle(dataMonth, tkThang);
-
             var dataQuater = {
                 quy: quarter,
                 nam: year
             }
-
-            dashboard_ThreeBar(dataQuater, tkQuy, dsThang);
-
-            //Get Compare
             var posThang = {
                 tptt: $('#tptthang'),
                 dvtt: $('#dvtthang'),
@@ -138,12 +131,17 @@
                 progr_tptq: $('#progr-tptquy'),
                 progr_dvtq: $('#progr-dvtquy'),
             }
+            //Get DATA
+            dashboard_Circle(dataMonth, tkThang);
+            dashboard_ThreeBar(dataQuater, tkQuy, dsThang);
+
+            //Get Four Box
             dashboard_FourBox(dataMonth, tkSSThang, posThang);
             dashboard_FourBox(dataQuater, tkSSQuy, posQuy);
 
 
-            //Get Four Box
-            
+
+
 
             //var txtThang = $('#thang').val();
             //var txtQuy = $('#quy').val();
@@ -208,7 +206,7 @@
                     </a>
                 </div>
                 <!-- logo end -->
-                <ul class="nav navbar-nav navbar-left in">
+                <!--<ul class="nav navbar-nav navbar-left in">
                     <li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
                 </ul>
                 <form class="search-form-opened" action="#" method="GET">
@@ -216,7 +214,7 @@
                         <input type="text" class="form-control" placeholder="Search..." name="query">
 
                     </div>
-                </form>
+                </form>-->
                 <!-- start mobile menu -->
                 <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
                    data-target=".navbar-collapse">
@@ -413,34 +411,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                             <div class="card card-box">
-                                <div class="card-head">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height select-width" 
-                                         style="margin: 0 24px;padding: 18px 0;" id="wrap-thang">
-
-                                        <input class="mdl-textfield__input" type="text" id="thang" value=""
-                                               readonly tabIndex="-1" required>
-                                        <label for="thang" class="pull-right margin-0">
-                                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                        </label>
-                                        <label for="thang" class="mdl-textfield__label">Tháng</label>
-
-                                        <ul data-mdl-for="thang"
-                                            class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="dropdown_thang">
-                                            <li class="mdl-menu__item">1</li>
-                                            <li class="mdl-menu__item">2</li>
-                                            <li class="mdl-menu__item">3</li>
-                                            <li class="mdl-menu__item">4</li>
-                                            <li class="mdl-menu__item">5</li>
-                                            <li class="mdl-menu__item">6</li>
-                                            <li class="mdl-menu__item">7</li>
-                                            <li class="mdl-menu__item">8</li>
-                                            <li class="mdl-menu__item">9</li>
-                                            <li class="mdl-menu__item">10</li>
-                                            <li class="mdl-menu__item">11</li>
-                                            <li class="mdl-menu__item">12</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                
                                 <div class="card-body no-padding height-9">
                                     <div class="row">
 
@@ -450,28 +421,11 @@
                                     </div>
                                 </div>
                             </div>
-                            </div>
+                        </div>
 
                         <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                             <div class="card card-box">
-                                <div class="card-head">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height select-width" id="wrap-quy">
-                                        <input class="mdl-textfield__input" type="text" id="quy" value=""
-                                               readonly tabIndex="-1" required>
-                                        <label for="quy" class="pull-right margin-0">
-                                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                        </label>
-                                        <label for="quy" class="mdl-textfield__label">Quý</label>
-                                        <ul data-mdl-for="quy"
-                                            class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="dropdown_quy">
-                                            <li class="mdl-menu__item">1</li>
-                                            <li class="mdl-menu__item">2</li>
-                                            <li class="mdl-menu__item">3</li>
-                                            <li class="mdl-menu__item">4</li>
-
-                                        </ul>
-                                    </div>
-                                </div>
+                                
                                 <div class="card-body no-padding height-9">
                                     <div class="row">
 

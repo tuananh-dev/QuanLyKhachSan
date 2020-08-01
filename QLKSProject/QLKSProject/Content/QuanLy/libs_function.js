@@ -158,12 +158,12 @@ function loadDataDetail(edit, url, id) {
                     $(edit.soPhong).val(soPhong);
                     break;
                 case 'Quanly/LayTaiKhoan?ID=':
-                    console.log(data.TenTaiKhoan + '' + data.MatKhau + '' + data.HoVaTen + '' + data.SoDienThoai + '' + data.Mail);
-                    $(edit.TenTaiKhoan).val(data.TenTaiKhoan);
-                    $(edit.MatKhau).val(data.MatKhau);
-                    $(edit.HoVaTen).val(data.HoVaTen);
-                    $(edit.SoDienThoai).val(data.SoDienThoai);
-                    $(edit.Mail).val(data.Mail);
+                    //console.log(data.FullName + '' + data.MatKhau + '' + data.HoVaTen + '' + data.SoDienThoai + '' + data.Mail);
+                    $(edit.TenTaiKhoan).val(data.UserName);
+                    $(edit.MatKhau).val(data.UserPassword);
+                    $(edit.HoVaTen).val(data.FullName);
+                    $(edit.SoDienThoai).val(data.PhoneNumber);
+                    $(edit.Mail).val(data.UserEmailID);
                     break;
                 default:
                 // code block
@@ -203,7 +203,7 @@ function loadDSPhong(url) {
             xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
         },
         success: function (data) {
-            
+
             for (i = 1; i < 10; i++) {
                 $('#dstang').append('<h3> Tầng ' + i + '</h3>')
                 $.each(data, function (index, val) {
@@ -253,7 +253,6 @@ function addData(info, dataInput) {
         url: '/api/' + info.url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
         },
         headers: {
             'content-type': 'application/json',
@@ -261,7 +260,7 @@ function addData(info, dataInput) {
         },
         data: JSON.stringify(dataInput),
         success: function (data) {
-            //$(info.modal).modal('hide');
+            $(info.modal).modal('hide');
             Swal.fire(
                 'Thêm Thành Công!',
                 '',
@@ -269,6 +268,13 @@ function addData(info, dataInput) {
             )
             loadData(info.id, info.urlLoad);
 
+        }, error: function (data) {
+            $(info.modal).modal('hide');
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: data.responseJSON.Message
+            })
         }
 
     })
@@ -285,7 +291,7 @@ function editData(info, dataInput) {
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         data: JSON.stringify(dataInput),
         success: function () {
-            //$(info.modal).modal('hide');
+            $(info.modal).modal('hide');
             Swal.fire(
                 'Thêm Thành Công!',
                 '',
@@ -293,6 +299,14 @@ function editData(info, dataInput) {
             )
             loadData(info.id, info.urlLoad);
 
+        },
+        error: function (data) {
+            $(info.modal).modal('hide');
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: data.responseJSON.Message
+            })
         }
 
     })
