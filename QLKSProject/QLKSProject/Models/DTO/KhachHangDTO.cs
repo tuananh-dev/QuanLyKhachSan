@@ -23,5 +23,6 @@ namespace QLKSProject.Models.DTO
         public int IDPhong { get; set; }
         public string GhiChu { get; set; }
         public bool TrangThaiXacNhan { get; set; }
+        public string Sophong { get; set; }
     }
 }

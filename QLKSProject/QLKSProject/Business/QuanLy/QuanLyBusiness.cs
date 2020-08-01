@@ -65,8 +65,10 @@ namespace QLKSProject.Business.QuanLy
                 return false;
             }
         }
-        public bool CapNhatTaiKhoan(UserMasterDTO userMaster)
+        public string CapNhatTaiKhoan(UserMasterDTO userMaster)
         {
+            string status = "ok";
+            if(CheckUserMaster(userMaster.UserName))
             try
             {
                 var tk = models.UserMasters.Where(s => s.ID == userMaster.ID).FirstOrDefault();
@@ -80,12 +82,16 @@ namespace QLKSProject.Business.QuanLy
                 tk.MaDoan = userMaster.MaDoan;
                 tk.UserID = userMaster.UserID;
                 models.SaveChanges();
-                return true;
             }
             catch (Exception)
             {
-                return false;
+                return status = "Lỗi không thể lưu tài khoản!";
             }
+            else
+            {
+                return status = "Lỗi tài khoản đã tồn tại!";
+            }
+            return status;
         }
         public bool XoaTaiKhoan(int idUserMaster)
         {
@@ -570,6 +576,10 @@ namespace QLKSProject.Business.QuanLy
                     doanhThuDichVuQK += thongKe.TrungBinh;
             }
             SoSanhThongKeDTO soSanhThongKeDTO = new SoSanhThongKeDTO();
+            if(doanhThuDichVuQK ==0)
+                doanhThuDichVuQK = doanhThuDichVuHT;
+            if (doanhThuThuePhongQK == 0)
+                doanhThuThuePhongQK = doanhThuThuePhongHT;
             soSanhThongKeDTO.TienThuePhong = (doanhThuThuePhongHT / doanhThuThuePhongQK) * 100;
             soSanhThongKeDTO.TienDichVu = (doanhThuDichVuHT / doanhThuDichVuQK) * 100;
             return soSanhThongKeDTO;

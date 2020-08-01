@@ -52,10 +52,11 @@ namespace QLKSProject.Controllers.QuanLy
             UserMasterDTO tk = JsonConvert.DeserializeObject<UserMasterDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
-                if (quanLy.CapNhatTaiKhoan(tk))
+                string result = quanLy.CapNhatTaiKhoan(tk);
+                if (result.Equals("ok"))
                     return Ok("Cập nhật tài khoản thành công!");
                 else
-                    return BadRequest("Cập nhật tài khoản thất bại!");
+                    return BadRequest(result);
             }
         }
         [HttpDelete]
@@ -264,6 +265,10 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpPost]
         public IHttpActionResult XuatBaoCaoThongKeTheoQuy(dynamic dynamic)
         {
+            if(dynamic.quy == null)
+            {
+                return BadRequest("Không có dữ liệu truyền vào!");
+            }
             int quy = int.Parse(dynamic.quy.ToString());
             int nam = int.Parse(dynamic.nam.ToString());
             using (QuanLyBusiness quanLyBusiness = new QuanLyBusiness())

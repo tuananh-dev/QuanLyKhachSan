@@ -641,6 +641,7 @@
     <Content Include="Content\Home\ChiTietPhong\partials\_variables.scss" />
     <Content Include="Content\Home\ChiTietPhong\README.md" />
     <Content Include="Content\Home\ChiTietPhong\scss\style.scss" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
     <Content Include="Views\HomeViews\ChiTietPhong.html" />

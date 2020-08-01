@@ -6,7 +6,7 @@ using QLKSProject.Models.DTO;
 
 namespace QLKSProject.Business.KhachHangBusiness
 {
-    public class KhachHangBusiness: BaseBusiness
+    public class KhachHangBusiness : BaseBusiness
     {
         public List<KhachHangDTO> LayDanhSachKhachHangTheoMaDoan(string maDoan)
         {
@@ -27,7 +27,8 @@ namespace QLKSProject.Business.KhachHangBusiness
                 IsDelete = kh.IsDelete,
                 TrangThaiDatPhong = kh.TrangThaiDatPhong,
                 IDPhong = kh.IDPhong,
-                TrangThaiXacNhan = kh.TrangThaiXacNhan
+                TrangThaiXacNhan = kh.TrangThaiXacNhan,
+                Sophong = models.Phongs.Where(p => p.ID == kh.IDPhong).Select(p => p.SoPhong).FirstOrDefault()
             }).ToList();
 
             return lstKhachHang;
