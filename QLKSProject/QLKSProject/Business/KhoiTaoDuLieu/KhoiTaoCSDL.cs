@@ -15,7 +15,7 @@ namespace QLKSProject.Business
             bool b = true;
             try
             {
-                TaoPhong(9, 9);
+/*                TaoPhong(9, 9);*/
 /*                TaoDichVu();*/
                 TaoTaiKhoan();
 /*                TaoTienIch();*/

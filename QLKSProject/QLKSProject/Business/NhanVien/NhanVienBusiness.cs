@@ -396,7 +396,7 @@ namespace QLKSProject.Business.NhanVien
             var lstKhachHang = models.KhachHangs.Where(kh => kh.IsDelete != true && kh.MaDoan.Equals(maDoan)).ToList();
             for (int i = 0; i < lstKhachHang.Count; i++)
             {
-                if(lstKhachHang[i].IDPhong != -1)
+                if(khachHangDTOs[i].IDPhong != -1)
                 {
                     lstKhachHang[i].TrangThaiDatPhong = khachHangDTOs[i].TrangThaiDatPhong;
                     lstKhachHang[i].IDPhong = khachHangDTOs[i].IDPhong;

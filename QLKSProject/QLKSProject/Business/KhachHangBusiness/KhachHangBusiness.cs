@@ -53,7 +53,7 @@ namespace QLKSProject.Business.KhachHangBusiness
                     var khachHangDTO = lstKhachHang.Where(kh => kh.TruongDoan == true).FirstOrDefault();
                     string account = khachHangDTO.Email;
                     string subject = "Cám ơn quý khách đã xác nhận đặt phòng tại khách sạn Color Hotel";
-                    string body = "Dear " + khachHangDTO.HoVaTen + ",<BR><BR>" + "Quý khách đã xác nhận đặt phòng thành công.<BR>Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi!" + "<BR><BR>Trân trọng,<BR>" + "Hotel Color";
+                    string body = "Dear " + khachHangDTO.HoVaTen + ",<BR><BR>" + "Quý khách đã xác nhận đặt phòng thành công. Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi!" + "<BR><BR>Trân trọng,<BR>" + "Hotel Color";
                     string trangThaiGuiMail = GuiMailTuDong(account, subject, body);
                 }
                 else
