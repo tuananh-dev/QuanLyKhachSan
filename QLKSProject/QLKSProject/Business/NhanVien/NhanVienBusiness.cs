@@ -137,7 +137,11 @@ namespace QLKSProject.Business.NhanVien
                                 foreach (var phong in lstPhong)
                                 {
                                     if (phong.ID == idPhong)
+                                    {
                                         phong.TrangThai = false;
+                                        break;
+                                    }
+                                        
                                 }
                             }
                             else
@@ -469,18 +473,20 @@ namespace QLKSProject.Business.NhanVien
                     {
                         foreach (var khachHang in lstKhachHang)
                         {
-                            int ngayNhanTTVoiNgaytra = ngayNhan.CompareTo(khachHang.ThoiGianTra);
-                            int ngayTraTTVoiNgayNhan = ngayTra.CompareTo(khachHang.ThoiGianNhan);
-                            if (ngayNhanTTVoiNgaytra > 0)
+                            if (phong.TrangThai != false)
                             {
-                                soPhong = phong.ID;
-                                break;
-                            }
-                            if (ngayTraTTVoiNgayNhan < 0)
-                            {
-                                soPhong = phong.ID;
-                                break;
-                            }
+                                int ngayNhanTTVoiNgaytra = ngayNhan.CompareTo(khachHang.ThoiGianTra);
+                                int ngayTraTTVoiNgayNhan = ngayTra.CompareTo(khachHang.ThoiGianNhan);
+                                if (ngayNhanTTVoiNgaytra > 0 || ngayTraTTVoiNgayNhan < 0)
+                                {
+                                    soPhong = phong.ID;
+                                    break;
+                                }
+                                else
+                                {
+                                    phong.TrangThai = false;
+                                }
+                            }               
                         }
                     }
                     if (soPhong > 0)
