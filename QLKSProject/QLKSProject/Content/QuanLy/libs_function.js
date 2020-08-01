@@ -193,7 +193,7 @@ function loadDSKHTheoMaDoan(info, id) {
         }
     })
 }
-function loadDSPhong(ids, url) {
+function loadDSPhong(url) {
     $.ajax({
         type: 'GET',
         url: '/api/' + url,
@@ -203,37 +203,48 @@ function loadDSPhong(ids, url) {
             xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
         },
         success: function (data) {
-            $.each(data, function (index, val) {
-                var color = "bg-success";
-                var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
-                if (val.TrangThai) {
-                    color = "bg-default";
-                }
-                switch (val.SoPhong.charAt(0)) {
-                    case '1':
-                        ids.row1.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
-                        break;
-                    case '2':
-                        ids.row2.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
-                        break;
-                    case '3':
-                        ids.row3.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
-                        break;
-                    case '4':
-                        ids.row4.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
-                        break;
-                    case '5':
-                        ids.row5.append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
-                        break;
+            
+            for (i = 1; i < 10; i++) {
+                $('#dstang').append('<h3> Tầng ' + i + '</h3>')
+                $.each(data, function (index, val) {
+                    var color = "bg-success";
+                    var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
+                    if (val.TrangThai) {
+                        color = "bg-default";
+                    }
+                    if (val.SoPhong.charAt(0) == '' + i) {
+                        $('#dstang').append('<div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row1"><span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span></div>');
+                    }
+                })
 
-                }
+            }
+
+            //$.each(data, function (index, val) {
+
+            //    var color = "bg-success";
+            //    var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
+            //    if (val.TrangThai) {
+            //        color = "bg-default";
+            //    }
+            //    $('#dstang').append('<h3> Tang ' + val.SoPhong.charAt(0) + '</h3>')
+            //$('#dstang').append('<div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row1"><span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span></div>');
+            //switch (val.SoPhong.charAt(0)) {
+
+            //    case "" + i:
+            //        $('#dstang').append('<h3> Tầng ' + val.SoPhong.charAt(0) + '</h3>');
+            //        for (i = 1; i < 10; i++) {
 
 
-            });
+
+            //        }
+            //        break;
+            //}
+
+
+            //});
 
         }
-    });
-
+    })
 }
 
 function addData(info, dataInput) {
