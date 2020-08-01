@@ -186,7 +186,29 @@ function loadDSKHTheoMaDoan(info, id) {
             var i = 0;
             //sessionStorage.setItem('id', val.ID);
             $.each(data, function (index, val) {
-                info.id.append('<tr class="odd gradeX"><td style="text-align:left"><input type="text" style="width:100%" id="hovaten' + i + '" name="hovaten" value="' + val.HoVaTen + '"></td><td class="center"><input type="text" style="text-align:center;width: 30px" id="nhom' + i + '" name="nhom" value="' + val.Nhom + '"></td><td class="center"><input type="text" style="width: 100px;" id="loaikh' + i + '" name="loaiKH" value="' + val.LoaiKhachHang + '"></td><td class="center"><input type="text" style="width: 100%" id="nguoiDD' + i + '" name="nguoiDD" value="' + val.NguoiDaiDienCuaTreEm + '"></td><td class="center"><input type="text" style="width: 100px" id="gioitinh' + i + '" name="gioitinh" value="' + val.GioiTinh + '"></td><td class="center"><input type="text" style="" id="ghichu' + i + '" name="ghichu" value="' + val.GhiChu + '"></td><td style="display: none"><input type="text" id="sdt' + i + '"  name="sdt" value="' + val.SoDienThoai + '"></td><td style="display: none"><input type="email"  id="email' + i + '" name="email" value="' + val.Email + '"></td><td class="center" style="display: none"><input type="text"  id="diachi' + i + '" name="diachi" value="' + val.DiaChi + '"></td><td class="center" style="display: none"><input type="text"  id="id' + i + '" name="id" value="' + val.ID + '"></td><td class="center" style="display: none"><input type="text"  id="tgnhan' + i + '" name="tgnhan" value="' + val.ThoiGianNhan + '"></td><td style="display: none" class="center"><input type="text"  id="tgtra' + i + '" name="tgtra" value="' + val.ThoiGianTra + '"></td><td class="center" style="display: none"><input type="text"  id="madoan' + i + '" name="madoan" value="' + val.MaDoan + '"></td><td style="display: none" class="center"><input type="text"  id="truongdoan' + i + '" name="truongdoan" value="' + val.TruongDoan + '"></td><td style="display: none" class="center"><input type="text"  id="isdelete' + i + '" name="isdelete" value="' + val.IsDelete + '"></td><td class="center" style="display: none"><input type="text"  id="trangthaidatphong' + i + '" name="trangthaidatphong" value="' + val.TrangThaiDatPhong + '"></td><td style="display: none" class="center"><input type="text"  id="idphong' + i + '" name="idphong" value="' + val.IDPhong + '"></td><td style="display: none" class="center"><input type="text"  id="trangthaixacnhan' + i + '" name="trangthaixacnhan" value="' + val.TrangThaiXacNhan + '"></td></tr>');
+                info.id.append($(`<tr class="odd gradeX">
+                    < td style = "text-align:left" > <input type="text" style="width:100%" id="hovaten' + i + '" name="hovaten" value="' + val.HoVaTen + '"></td>
+                    <td class="center"><input type="text" style="text-align:center;width: 30px" id="nhom' + i + '" name="nhom" value="' + val.Nhom + '"></td>
+                        
+                        <td class="center"><input type="text" style="width: 100px" id="truongdoan' + i + '" name="truongdoan" value="' + val.TruongDoan + '"></td>
+                            <td class="center"><input type="text" style="width: 100%" id="nguoiDD' + i + '" name="nguoiDD" value="' + val.NguoiDaiDienCuaTreEm + '"></td>
+                                <td class="center"><input type="text" style="width: 100px" id="gioitinh' + i + '" name="gioitinh" value="' + val.GioiTinh + '"></td>
+                                    <td class="center"><input type="text" style="" id="ghichu' + i + '" name="ghichu" value="' + val.GhiChu + '"></td>
+                                        <td style="display: none"><input type="text" id="sdt' + i + '" name="sdt" value="' + val.SoDienThoai + '"></td>
+                                            <td style="display: none"><input type="email" id="email' + i + '" name="email" value="' + val.Email + '"></td>
+
+                                                <td class="center" style="display:none;"><input type="text" id="loaikh' + i + '" name="loaiKH" value="' + val.LoaiKhachHang + '"></td>
+                                                <td class="center" style="display: none"><input type="text" id="diachi' + i + '" name="diachi" value="' + val.DiaChi + '"></td>
+                                                    <td class="center" style="display: none"><input type="text" id="id' + i + '" name="id" value="' + val.ID + '"></td>
+                                                        <td class="center" style="display: none"><input type="text" id="tgnhan' + i + '" name="tgnhan" value="' + val.ThoiGianNhan + '"></td>
+                                                            <td style="display: none" class="center"><input type="text" id="tgtra' + i + '" name="tgtra" value="' + val.ThoiGianTra + '"></td>
+                                                                <td class="center" style="display: none"><input type="text" id="madoan' + i + '" name="madoan" value="' + val.MaDoan + '"></td>
+                                                                    
+                                                                        <td style="display: none" class="center"><input type="text" id="isdelete' + i + '" name="isdelete" value="' + val.IsDelete + '"></td>
+                                                                            <td class="center" style="display: none"><input type="text" id="trangthaidatphong' + i + '" name="trangthaidatphong" value="' + val.TrangThaiDatPhong + '"></td>
+                                                                                <td style="display: none" class="center"><input type="text" id="idphong' + i + '" name="idphong" value="' + val.IDPhong + '"></td>
+                                                                                    <td style="display: none" class="center"><input type="text" id="trangthaixacnhan' + i + '" name="trangthaixacnhan" value="' + val.TrangThaiXacNhan + '"></td>
+                                                                                        </tr>`));
                 i++
             })
             sessionStorage.setItem('length', i);
@@ -205,7 +227,6 @@ function loadDSPhong(url) {
         success: function (data) {
 
             for (i = 1; i < 10; i++) {
-                $('#dstang').append('<h3> Tầng ' + i + '</h3>')
                 $.each(data, function (index, val) {
                     var color = "bg-success";
                     var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
@@ -213,7 +234,7 @@ function loadDSPhong(url) {
                         color = "bg-default";
                     }
                     if (val.SoPhong.charAt(0) == '' + i) {
-                        $('#dstang').append('<div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row1"><span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span></div>');
+                        $('#row' + i).append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
                     }
                 })
 
@@ -384,7 +405,36 @@ function deleteData(info, dataInput) {
 //    })
 //}
 
-function XepPhong(info, url) {
+function XepPhong(info, url, dataId) {
+    $.ajax({
+        type: 'GET',
+        url: '/api/' + url + dataId,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+        },
+        headers: { 'data-type': 'json' },
+        success: function (data) {
+            Swal.fire(
+                'Success!',
+                '',
+                'success'
+            )
+            loadData(info.id, info.urlLoad);
+        },
+        error: function (data) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: data.responseJSON.Message
+            })
+            loadData(info.id, info.urlLoad);
+
+        }
+    })
+
+}
+
+function XepPhongTatCa(info, url) {
     $.ajax({
         type: 'GET',
         url: '/api/' + url,
