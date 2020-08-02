@@ -18,7 +18,7 @@
     <!-- style -->
     <link rel="stylesheet" href="../../../Content/QuanLy/css/pages/extra_pages.css">
     <!-- favicon -->
-    <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
+    <link rel="shortcut icon" href="../../../Content/Home/images/logo1.png"/>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 
@@ -38,6 +38,13 @@
 
         });
     </script>
+    <style>
+        #btn-close:hover {
+            color: red;
+            /*Background:red;*/
+
+        }
+    </style>
 </head>
 
 <body>
@@ -45,16 +52,25 @@
 
         <div class="container-login100 page-background">
 
-            <div class="wrap-login100">
+            <div class="wrap-login100" style="padding-top:0px;position:relative">
+                <button id="btn-close" style=" width: 40px; height: 40px; position: absolute; top: 5px; right: 5px; padding: 3px 2px 8px 3px; border-radius: 50%; transition: .4s; font-size: 30px; text-align: center;" type="button" class="close" aria-label="Close" onclick="window.location.href='Views/HomeViews/TrangChu.cshtml'">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+               
+                
+                <!--width: 40px;height: 40px;position: absolute;top: 5px;right: 5px;padding: 3px 2px 8px 3px;border-radius: 50%;transition: .4s;font-size: 30px;
+        text-align: center;-->
+
+
 
                 <form class="login100-form validate-form" id="dangnhap" method="post" enctype="multipart/form-data" onsubmit="return false">
 
-                    <span class="login100-form-title p-b-34 p-t-27">
+                    <span class="login100-form-title p-b-34 p-t-27" style="padding-bottom:10px">
 
-                        <img src="../../../Content/Home/images/logo1.png" alt="Mẫu File DS" width="100" height="100">
+                        <img src="../../../Content/Home/images/logo1.png" alt="Mẫu File DS" width="200" height="200">
                     </span>
-                    <span class="login100-form-title p-b-34 p-t-27">
-                        Log in
+                    <span class="login100-form-title p-b-34 p-t-27" style="padding-top:0px">
+                        Đăng Nhập
                     </span>
                     <div class="wrap-input100">
                         <input class="input100" type="text" name="username" id="username" placeholder="Tên đăng nhập">
@@ -100,16 +116,16 @@
                             Đăng Nhập
                         </button>
 
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button style="color:red" type="button" id="cancel" class="login100-form-btn" onclick="goBack()">
-                            Hủy
-                        </button>
-                        <script>
+                        <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                        <!--<button style="color:red" type="button" id="cancel" class="login100-form-btn" onclick="goBack()">
+                Hủy
+            </button>
+            <script>
 
-                            function goBack() {
-                                window.history.back();
-                            }
-                        </script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>-->
 
                     </div>
                     <div class="text-center p-t-90" onclick="quenmk">

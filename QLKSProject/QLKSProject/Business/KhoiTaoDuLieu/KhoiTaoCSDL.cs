@@ -15,7 +15,7 @@ namespace QLKSProject.Business
             bool b = true;
             try
             {
-                TaoPhong(9, 9);
+/*                TaoPhong(9, 9);*/
 /*                TaoDichVu();*/
                 TaoTaiKhoan();
 /*                TaoTienIch();*/
@@ -34,6 +34,8 @@ namespace QLKSProject.Business
         #region Private Methods
         private void TaoPhong(int soTang, int soPhong)
         {
+            int sum = soTang * soPhong;
+            int x = 1;
             for (int i = 1; i <= soTang; i++)
             {
                 for (int j = 1; j <= soPhong; j++)
@@ -41,14 +43,14 @@ namespace QLKSProject.Business
                     Phong phong = new Phong();
                     phong.SoPhong = (i * 100 + j) + "";
                     phong.MaPhong = rd.Next(1, 4).ToString() + (i < 10 ? "0" + i : "" + i) + (j < 10 ? "0" + j : "" + j);
-                    phong.LoaiPhong = rd.Next(1, 5);
+                    phong.LoaiPhong = x<(sum/3)?1:rd.Next(1, 5);
                     phong.Gia = rd.Next(1, 5) * 1000000;
                     phong.TrangThai = true;
                     if (rd.Next(1, 10) == 2)
                         phong.IsDelete = true;
                     else
                         phong.IsDelete = false;
-
+                    x++;
                     models.Phongs.Add(phong);
                 }
             }
