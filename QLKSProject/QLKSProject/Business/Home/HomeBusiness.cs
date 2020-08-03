@@ -36,6 +36,11 @@ namespace QLKSProject.Business.Home
 			}
 			return error;
 		}
+		public bool CheckTaiKhoan(string maDoan)
+		{
+			var taiKhoan = models.UserMasters.Where(u => u.MaDoan == maDoan).FirstOrDefault();
+			return taiKhoan.IsDelete;
+		}
 		#endregion
 
 		#region Private methods

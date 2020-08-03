@@ -13,9 +13,10 @@ namespace QLKSProject.Models
         //This method is used to check and validate the user credentials
         public UserMaster ValidateUser(string username, string password)
         {
-            return context.UserMasters.FirstOrDefault(user =>
+            var account = context.UserMasters.FirstOrDefault(user =>
             user.UserName.Equals(username, StringComparison.OrdinalIgnoreCase)
             && user.UserPassword == password);
+            return account;
         }
 
         public void Dispose()

@@ -32,6 +32,7 @@ namespace QLKSProject.Models
                 identity.AddClaim(new Claim("UserRoles", user.UserRoles));
                 identity.AddClaim(new Claim("MaDoan", user.MaDoan));
                 context.Validated(identity);
+
             }
         }
     }

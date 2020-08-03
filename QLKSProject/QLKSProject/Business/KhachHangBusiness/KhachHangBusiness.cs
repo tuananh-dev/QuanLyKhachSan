@@ -79,6 +79,8 @@ namespace QLKSProject.Business.KhachHangBusiness
                     foreach (var kh in lstKhachHang)
                     {
                         kh.IsDelete = true;
+                        kh.IDPhong = -2;
+                        kh.GhiChu = "Khách hàng đã hủy đặt phòng";
                     }
                     models.SaveChanges();
                     var khachHangDTO = lstKhachHang.Where(kh => kh.TruongDoan == true).FirstOrDefault();
