@@ -59,8 +59,7 @@
             })
 
             $('#cancel').click(function () {
-                $(this).css("display", "none");
-                $('#loadingcancel').css("display", "block");
+                
                 HuyXacNhanXepPhong(huyXepPhong, sessionStorage.getItem('madoan'));
                 
 
@@ -179,14 +178,14 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="row p-b-20" style="float:right">
+                            <div class="row p-b-20" style="float:right;margin-bottom: 20px">
                                 <div class="col-md-6 col-sm-6 col-6">
                                     <div class="btn-group">
-                                        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-right: 20px" id="loadingconfirm"></div>
+                                        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-right: 40px" id="loadingconfirm"></div>
                                         <button id="confirm" class="btn btn-info" style="margin-right: 10px">
-                                            Xác Nhận Danh Sách Đã Xếp
+                                            Xác Nhận Xếp Phòng
                                         </button>
-                                        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-left: 20px" id="loadingcancel"></div>
+                                        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-left: 40px" id="loadingcancel"></div>
                                         <button id="cancel" class="btn" style="background-color: lightgray">
                                             Hủy Xếp Phòng<i class="fa fa-trash"></i>
                                         </button>
