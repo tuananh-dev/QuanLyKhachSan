@@ -1,88 +1,69 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <!-- BEGIN HEAD -->
-<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:35:49 GMT -->
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.cshtml by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:35:49 GMT -->
 <head>
     <meta charset="utf-8" />
     <title>Color Hotel</title>
     <!-- icons -->
-    <link href="../../../Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="../../../Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!--bootstrap -->
-    <link href="../../../Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../../../Content/QuanLy/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="~/Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/plugins/summernote/summernote.css" rel="stylesheet" />
     <!-- morris chart -->
-    <link href="../../../Content/QuanLy/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
     <!-- Material Design Lite CSS -->
-    <link rel="stylesheet" href="../../../Content/QuanLy/plugins/material/material.min.css">
-    <link rel="stylesheet" href="../../../Content/QuanLy/css/material_style.css">
+    <link href="~/Content/QuanLy/plugins/material/material.min.css" rel="stylesheet" />
+    <link href="~/Content/QuanLy/css/material_style.css" rel="stylesheet" />
     <!-- animation -->
-    <link href="../../../Content/QuanLy/css/pages/animate_page.css" rel="stylesheet">
+    <link href="~/Content/QuanLy/css/pages/animate_page.css" rel="stylesheet" />
     <!-- Template Styles -->
-    <link href="../../../Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
-    <link href="../../../Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="../../../Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
-    <link href="../../../Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
 
-    <link rel="shortcut icon" href="../../../Content/QuanLy/img/favicon.ico" />
+    <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="../../../Content/QuanLy/Jquery.js"></script>
-    <script src="../../../Content/QuanLy/libs_function.js"></script>
+    <script src="~/Content/QuanLy/Jquery.js"></script>
+    <script src="~/Content/QuanLy/libs_function.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
             checkSession();
 
-            var idList = $('#dsdatphong');
-            var layDS = 'NhanVien/LayDanhSachKhachHangTheoMaDoan/';
-            var XepPhongThu = 'NhanVien/DatPhongThuNghiem';
-            var info = {
-                id: idList,
-                url: layDS
-            }
+            var idList = $('#dsdoan');
+            var layDSDoan = 'NhanVien/LayDanhSachDoan';
+            var xepPhong = "NhanVien/DatPhongChoTungDoan/";
+            var xepPhongAll = "NhanVien/DatPhongChoNhieuDoan";
+            loadData(idList, layDSDoan);
 
 
-            loadDSKHTheoMaDoan(info, sessionStorage.getItem('madoan'));
+            $('body').on('click', 'a.btn.btn-info.btn-xs', function () {
+                console.log("click");
+                $(this).css("display", "none");
+                $('#loading').css("display", "clock");
 
-
-            $('#luu').click(function () {
-                var list = [];
-                   
-
-                var length = parseInt(sessionStorage.getItem('length'));
-                for (i = 0; i < length; i++) {
-                    var obj = {
-                        HoVaTen: $('#hovaten' + i).val(),
-                        SoDienThoai: $('#sdt' + i).val(),
-                        Email: $('#email' + i).val(),
-                        DiaChi: $('#diachi' + i).val(),
-                        Nhom: $('#nhom' + i).val(),
-                        LoaiKhachHang: $('#loaikh' + i).val(),
-                        NguoiDaiDienCuaTreEm: $('#nguoiDD' + i).val(),
-                        GioiTinh: $('#gioitinh' + i).val(),
-                        MaDoan: $('#madoan' + i).val(),
-                        ID: $('#id' + i).val(),
-                        ThoiGianNhan: $('#tgnhan' + i).val(),
-                        ThoiGianTra: $('#tgtra' + i).val(),
-                        TruongDoan: $('#truongdoan' + i).val(),
-                        IsDelete: $('#isdelete' + i).val(),
-                        TrangThaiDatPhong: $('#trangthaidatphong' + i).val(),
-                        IDPhong: $('#idphong' + i).val(),
-                        GhiChu: $('#ghichu' + i).val(),
-                        TrangThaiXacNhan: $('#trangthaixacnhan' + i).val(),
-                    }
-                    list.push(obj);
+                dataId = $(this).attr("data-id");
+                var info = {
+                    id: idList,
+                    urlLoad: layDSDoan
                 }
-                console.log(list);
-                XepPhongThuNghiem(XepPhongThu, list);
-
-
-
+                XepPhong(info, xepPhong , dataId);
             })
-        })
-    </script>
+            $('#xepall').click(function () {
+                var info = {
+                    id: idList,
+                    urlLoad: layDSDoan
+                }
+                XepPhongTatCa(info, xepPhongAll);
+            })
 
+
+        });
+    </script>
 </head>
 <!-- END HEAD -->
 
@@ -93,14 +74,14 @@
             <div class="page-header-inner ">
                 <!-- logo start -->
                 <div class="page-logo">
-                    <a href="../../HomeViews/TrangChu.cshtml">
-                        <img alt="" src="../../../Content/QuanLy/img/logo.png">
-                        <span class="logo-default">Color</span>
+                    <a href="~/Views/HomeViews/TrangChu.cshtml">
+                        @*<img alt="" src="~/Content/QuanLy/img/logo.png">*@
+                        <span class="logo-default">Color Hotel</span>
                     </a>
                 </div>
                 <!-- logo end -->
                 <!--<ul class="nav navbar-nav navbar-left in">
-                    <li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
+                    <li><a href="../Phong_NhanVien/DanhSachPhong.cshtml" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
                 </ul>
                 <form class="search-form-opened" action="#" method="GET">
                     <div class="input-group">
@@ -125,8 +106,8 @@
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                data-close-others="true">
-                                <img alt="" class="img-circle " src="../../../Content/QuanLy/img/dp.jpg" />
-                                <span class="username username-hide-on-mobile nameuser"> John </span>
+                                <img alt="" class="img-circle " src="~/Content/QuanLy/img/dp.jpg" />
+                                <span class="username username-hide-on-mobile nameuser">  </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
@@ -139,7 +120,7 @@
                                 <li class="divider"> </li>
 
                                 <li>
-                                    <a href="../../../DangNhap.html">
+                                    <a href="~/DangNhap.cshtml">
                                         <i class="icon-logout"></i> Log Out
                                     </a>
                                 </li>
@@ -169,20 +150,21 @@
                                 <div class="user-panel">
                                     <div class="row">
                                         <div class="sidebar-userpic">
-                                            <img src="../../../Content/QuanLy/img/dp.jpg" class="img-responsive" alt="">
+                                            <img src="~/Content/QuanLy/img/dp.jpg" class="img-responsive" alt="">
                                         </div>
                                     </div>
                                     <div class="profile-usertitle">
                                         <div class="sidebar-userpic-name nameuser"></div>
-                                        <div class="profile-usertitle-job" id="roleuser"> </div>
+                                        <div class="profile-usertitle-job" id="roleuser"></div>
                                     </div>
 
                                 </div>
                             </li>
 
 
+
                             <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.html" class="nav-link nav-toggle">
+                                <a href="/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Phòng</span>
                                     <span class="arrow"></span>
@@ -190,7 +172,7 @@
 
                             </li>
                             <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.html" class="nav-link nav-toggle">
+                                <a href="/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đặt Phòng Thành Công</span>
                                     <span class="arrow"></span>
@@ -198,7 +180,7 @@
 
                             </li>
                             <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.html" class="nav-link nav-toggle">
+                                <a href="/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đặt Phòng Thất Bại</span>
                                     <span class="arrow"></span>
@@ -206,7 +188,7 @@
 
                             </li>
                             <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/Doan/Doan.html" class="nav-link nav-toggle">
+                                <a href="/Views/NhanVienViews/Doan/Doan.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đoàn</span>
                                     <span class="arrow"></span>
@@ -229,7 +211,7 @@
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="../Phong_NhanVien/DanhSachPhong.html">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                                                       href="../Phong_NhanVien/DanhSachPhong.cshtml">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
 
                                 <li class="active">Danh Sách Đoàn</li>
@@ -241,33 +223,32 @@
                             <div class="card card-box">
 
                                 <div class="card-body ">
-
-                                    <div class="table-scrollable">
-                                        <table class="table table-hover table-checkable order-column full-width"
-                                               id="example">
-                                            <thead>
-                                                <tr style="">
-                                                    <th class="" style="min-width: 270px;text-align:left;"> Họ và Tên</th>
-                                                    <th class="center" style="min-width: 90px"> Nhóm </th>
-                                                    <th class="center" style="min-width: 170px"> Loại Khách Hàng </th>
-                                                    <th class="center" style="min-width: 240px;text-align:left;"> Người Đại Diện </th>
-                                                    <th class="center" style="min-width: 170px"> Giới Tính </th>
-                                                    <th class=""> Ghi Chú </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="dsdatphong">
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="row p-b-20" style="float: right;margin: 0">
+                                    <div class="row p-b-20">
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="btn-group">
-                                                <button id="luu" class="btn btn-info">
-                                                    Xếp Phòng
+                                                <button id="xepall" class="btn btn-info">
+                                                    Xếp Phòng Tất Cả
                                                 </button>
                                             </div>
                                         </div>
 
+                                    </div>
+                                    <div class="table-scrollable">
+                                        <table class="table table-hover table-checkable order-column full-width"
+                                               id="example">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:300px;"> Tên Đoàn </th>
+                                                    <th style="width:300px;"> Tên Trưởng Đoàn </th>
+                                                    <th> Thời Gian Nhận </th>
+                                                    <th> Thời Gian Trả </th>
+                                                    <th> Ngày Gửi </th>
+                                                    <th class="center"> Chức Năng </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="dsdoan">
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -291,26 +272,32 @@
         </div>
     </div>
     <!-- start js include path -->
-    <script src="../../../Content/QuanLy/plugins/jquery/jquery.min.js"></script>
-    <script src="../../../Content/QuanLy/plugins/popper/popper.min.js"></script>
-    <script src="../../../Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
-    <script src="../../../Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/popper/popper.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- bootstrap -->
-    <script src="../../../Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../../Content/QuanLy/plugins/sparkline/jquery.sparkline.min.js"></script>
-    <script src="../../../Content/QuanLy/js/pages/sparkline/sparkline-data.js"></script>
+    <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/Content/QuanLy/js/pages/sparkline/sparkline-data.js"></script>
     <!-- Common js-->
-    <script src="../../../Content/QuanLy/js/app.js"></script>
-    <script src="../../../Content/QuanLy/js/layout.js"></script>
-    <script src="../../../Content/QuanLy/js/theme-color.js"></script>
+    <script src="~/Content/QuanLy/js/app.js"></script>
+    <script src="~/Content/QuanLy/js/layout.js"></script>
+    <script src="~/Content/QuanLy/js/theme-color.js"></script>
     <!-- material -->
-    <script src="../../../Content/QuanLy/plugins/material/material.min.js"></script>
-
+    <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
     <!-- animation -->
-    <script src="../../../Content/QuanLy/js/pages/ui/animations.js"></script>
+    <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
     <!-- end js include path -->
+
+
+
+    <script src="~/Content/QuanLy/js/pages/material-loading/material-loading.js"></script>
+
+
+
 </body>
 
 
-<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:36:48 GMT -->
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.cshtml by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:36:48 GMT -->
 </html>

@@ -246,7 +246,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="404.html" />
+    <None Include="404.cshtml" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
@@ -566,21 +566,21 @@
     <Content Include="Global.asax" />
     <Content Include="Views\HomeViews\ChiTietPhong.html" />
     <Content Include="Views\KhachHangViews\DSThanhVien.html" />
-    <Content Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.html" />
-    <Content Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.html" />
-    <Content Include="Views\NhanVienViews\DatPhongThatBai\XemchiTiet.html" />
-    <Content Include="Views\NhanVienViews\Doan\Doan.html" />
-    <Content Include="Views\NhanVienViews\Phong_NhanVien\DanhSachPhong.html" />
+    <None Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.cshtml" />
+    <None Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.cshtml" />
+    <None Include="Views\NhanVienViews\DatPhongThatBai\XemchiTiet.cshtml" />
+    <None Include="Views\NhanVienViews\Doan\Doan.cshtml" />
+    <None Include="Views\NhanVienViews\Phong_NhanVien\DanhSachPhong.cshtml" />
     <None Include="Views\QuanLyViews\DichVu\DSDichVu.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Views\HomeViews\GioiThieu.cshtml" />
     <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
     <Content Include="Views\HomeViews\TrangChu.cshtml" />
-    <Content Include="Views\QuanLyViews\Phong\DSPhong.html" />
-    <Content Include="Views\QuanLyViews\ThongKe\ThongKe.html" />
-    <Content Include="Views\QuanLyViews\TienIch\DSTienIch.html" />
-    <Content Include="Views\QuanLyViews\TKNhanVien\DSTKNhanVien.html" />
+    <None Include="Views\QuanLyViews\Phong\DSPhong.cshtml" />
+    <None Include="Views\QuanLyViews\ThongKe\ThongKe.cshtml" />
+    <None Include="Views\QuanLyViews\TienIch\DSTienIch.cshtml" />
+    <None Include="Views\QuanLyViews\TKNhanVien\DSTKNhanVien.cshtml" />
     <Content Include="Views\QuanLyViews\TKNhanVien\XemChiTietTKNhanVien.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Web.config" />
@@ -763,7 +763,7 @@
     <Content Include="Content\Home\scss\_site-navbar.scss" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="DangNhap.html" />
+    <None Include="DangNhap.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

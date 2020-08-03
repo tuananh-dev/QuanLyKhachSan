@@ -105,7 +105,7 @@ function loadData(idList, url) {
         error: function (data) {
 
             if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.replace("../../../404.html");
+                window.location.replace("../../../404.cshtml");
             }
         }
     });
@@ -528,7 +528,7 @@ function XacNhanDatPhong() {
                 '!',
                 'success'
             ).then(val => {
-                window.location.href = "DSThanhVien.html";
+                window.location.href = "DSThanhVien.cshtml";
             })
 
         },
@@ -559,7 +559,7 @@ function XepPhongThuNghiem(url, dataInput) {
                 '',
                 'success'
             ).then(val => {
-                window.location.href = "DatPhongThatBai.html";
+                window.location.href = "DatPhongThatBai.cshtml";
             })
 
 
