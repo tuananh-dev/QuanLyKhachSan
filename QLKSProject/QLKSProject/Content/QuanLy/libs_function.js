@@ -26,7 +26,6 @@ function loadData(idList, url) {
         url: '/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
         },
         headers: {
             'content-type': 'application/json',
@@ -75,7 +74,7 @@ function loadData(idList, url) {
 
                         var tgNhan = new Date(val.ThoiGianNhan);
                         var tgTra = new Date(val.ThoiGianTra);
-                        position.prepend('<tr class="odd gradeX"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.IDPhong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
+                        position.prepend('<tr class="odd gradeX"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.Sophong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
                         break;
                     case 'NhanVien/LayDanhSachDoanDatPhongThanhCong':
                         var tgNhan = new Date(val.ThoiGianNhan);
@@ -478,7 +477,8 @@ function HuyXacNhanXepPhong(url, dataInput) {
         cancelButtonText: 'Hủy'
     }).then((result) => {
         if (result.value) {
-
+            $('#cancel').css("display", "none");
+            $('#loadingcancel').css("display", "block");
             $.ajax({
                 url: '/api/' + url + dataInput,
                 method: 'GET',
