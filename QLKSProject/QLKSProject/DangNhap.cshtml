@@ -146,7 +146,7 @@
                                     success: function (response) {
                                         sessionStorage.setItem('accessToken', response.access_token);
                                         $.ajax({
-                                            url: '/api/Home/LayUserRoles',
+                                            url: '/SEP23Team2/api/Home/LayUserRoles',
                                             method: 'GET',
                                             headers: {
                                                 'content-type': 'application/json',

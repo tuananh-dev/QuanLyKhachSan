@@ -348,6 +348,7 @@
     <Content Include="Content\QuanLy\DashBoard.js" />
     <Content Include="Content\QuanLy\img\dp.jpg" />
     <Content Include="Content\QuanLy\img\favicon.ico" />
+    <Content Include="Content\QuanLy\img\logo.png" />
     <Content Include="Content\QuanLy\Jquery.js" />
     <Content Include="Content\QuanLy\js\app.js" />
     <Content Include="Content\QuanLy\js\layout.js" />
@@ -494,7 +495,6 @@
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
-    <Content Include="Views\HomeViews\ChiTietPhong.html" />
     <Content Include="Views\KhachHangViews\DSThanhVien.html" />
     <None Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.cshtml" />
     <None Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.cshtml" />
@@ -504,9 +504,9 @@
     <None Include="Views\QuanLyViews\DichVu\DSDichVu.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Views\HomeViews\GioiThieu.cshtml" />
-    <Content Include="Views\HomeViews\GuiFileDSDoan.cshtml" />
-    <Content Include="Views\HomeViews\TrangChu.cshtml" />
+    <Content Include="GioiThieu.cshtml" />
+    <Content Include="GuiFileDSDoan.cshtml" />
+    <Content Include="TrangChu.cshtml" />
     <None Include="Views\QuanLyViews\Phong\DSPhong.cshtml" />
     <None Include="Views\QuanLyViews\ThongKe\ThongKe.cshtml" />
     <None Include="Views\QuanLyViews\TienIch\DSTienIch.cshtml" />
