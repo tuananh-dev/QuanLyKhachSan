@@ -105,7 +105,7 @@ function loadData(idList, url) {
         error: function (data) {
 
             if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.replace("~/404.cshtml");
+                window.location.replace("404.cshtml");
             }
         }
     });
@@ -239,7 +239,7 @@ function loadDSPhong(url) {
 
             }
 
-            
+
 
         }
     })
@@ -472,7 +472,7 @@ function HuyXacNhanXepPhong(url, dataInput) {
                         sessionStorage.removeItem('role');
                         sessionStorage.removeItem('accessToken');
                         sessionStorage.removeItem('fullname');
-                        window.location.href = "~/TrangChu.cshtml";
+                        window.location.href = "TrangChu.cshtml";
                     })
 
 
