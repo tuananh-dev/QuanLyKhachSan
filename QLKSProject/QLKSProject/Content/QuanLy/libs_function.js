@@ -105,7 +105,7 @@ function loadData(idList, url) {
         error: function (data) {
 
             if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.replace("../../../404.cshtml");
+                window.location.replace("~/404.cshtml");
             }
         }
     });
@@ -221,7 +221,7 @@ function loadDSPhong(url) {
         dataType: 'json',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
+            xhr.setRequestHeader("content-Type", "application/json;charset=UTF-8");
         },
         success: function (data) {
 
@@ -239,29 +239,7 @@ function loadDSPhong(url) {
 
             }
 
-            //$.each(data, function (index, val) {
-
-            //    var color = "bg-success";
-            //    var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
-            //    if (val.TrangThai) {
-            //        color = "bg-default";
-            //    }
-            //    $('#dstang').append('<h3> Tang ' + val.SoPhong.charAt(0) + '</h3>')
-            //$('#dstang').append('<div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row1"><span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span></div>');
-            //switch (val.SoPhong.charAt(0)) {
-
-            //    case "" + i:
-            //        $('#dstang').append('<h3> Tầng ' + val.SoPhong.charAt(0) + '</h3>');
-            //        for (i = 1; i < 10; i++) {
-
-
-
-            //        }
-            //        break;
-            //}
-
-
-            //});
+            
 
         }
     })
@@ -306,7 +284,6 @@ function editData(info, dataInput) {
         method: 'PUT',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
         },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         data: JSON.stringify(dataInput),
@@ -495,7 +472,7 @@ function HuyXacNhanXepPhong(url, dataInput) {
                         sessionStorage.removeItem('role');
                         sessionStorage.removeItem('accessToken');
                         sessionStorage.removeItem('fullname');
-                        window.location.href = "../HomeViews/TrangChu.cshtml";
+                        window.location.href = "~/TrangChu.cshtml";
                     })
 
 
@@ -528,7 +505,7 @@ function XacNhanDatPhong() {
                 '!',
                 'success'
             ).then(val => {
-                window.location.href = "DSThanhVien.cshtml";
+                location.reload();
             })
 
         },
