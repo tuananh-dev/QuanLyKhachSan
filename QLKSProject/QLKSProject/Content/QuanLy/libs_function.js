@@ -23,7 +23,7 @@ function loadData(idList, url) {
 
     $.ajax({
         type: 'GET',
-        url: '/api/' + url,
+        url: '/SEP23Team2/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
@@ -116,7 +116,7 @@ function loadDataDetail(edit, url, id) {
 
     $.ajax({
         type: 'GET',
-        url: '/api/' + url + id,
+        url: '/SEP23Team2/api/' + url + id,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
             xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
@@ -175,7 +175,7 @@ function loadDSKHTheoMaDoan(info, id) {
     console.log(info.url + "-" + id);
     $.ajax({
         type: 'GET',
-        url: '/api/' + info.url + id,
+        url: '/SEP23Team2/api/' + info.url + id,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
@@ -217,7 +217,7 @@ function loadDSKHTheoMaDoan(info, id) {
 function loadDSPhong(url) {
     $.ajax({
         type: 'GET',
-        url: '/api/' + url,
+        url: '/SEP23Team2/api/' + url,
         dataType: 'json',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
@@ -270,7 +270,7 @@ function loadDSPhong(url) {
 function addData(info, dataInput) {
     $.ajax({
         type: 'POST',
-        url: '/api/' + info.url,
+        url: '/SEP23Team2/api/' + info.url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
@@ -302,7 +302,7 @@ function addData(info, dataInput) {
 
 function editData(info, dataInput) {
     $.ajax({
-        url: '/api/' + info.url,
+        url: '/SEP23Team2/api/' + info.url,
         method: 'PUT',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
@@ -347,7 +347,7 @@ function deleteData(info, dataInput) {
         if (result.value) {
 
             $.ajax({
-                url: '/api/' + info.url + dataInput,
+                url: '/SEP23Team2/api/' + info.url + dataInput,
                 method: 'DELETE',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
@@ -407,7 +407,7 @@ function deleteData(info, dataInput) {
 function XepPhong(info, url, dataId) {
     $.ajax({
         type: 'GET',
-        url: '/api/' + url + dataId,
+        url: '/SEP23Team2/api/' + url + dataId,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
@@ -436,7 +436,7 @@ function XepPhong(info, url, dataId) {
 function XepPhongTatCa(info, url) {
     $.ajax({
         type: 'GET',
-        url: '/api/' + url,
+        url: '/SEP23Team2/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
@@ -480,7 +480,7 @@ function HuyXacNhanXepPhong(url, dataInput) {
             $('#cancel').css("display", "none");
             $('#loadingcancel').css("display", "block");
             $.ajax({
-                url: '/api/' + url + dataInput,
+                url: '/SEP23Team2/api/' + url + dataInput,
                 method: 'GET',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
@@ -514,7 +514,7 @@ function formatNumber(num) {
 function XacNhanDatPhong() {
     $.ajax({
         type: 'GET',
-        url: '/api/KhachHang/XacNhanDatPhong/' + sessionStorage.getItem('madoan'),
+        url: '/SEP23Team2/api/KhachHang/XacNhanDatPhong/' + sessionStorage.getItem('madoan'),
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
 
@@ -545,7 +545,7 @@ function XacNhanDatPhong() {
 
 function XepPhongThuNghiem(url, dataInput) {
     $.ajax({
-        url: '/api/' + url,
+        url: '/SEP23Team2/api/' + url,
         method: 'POST',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));

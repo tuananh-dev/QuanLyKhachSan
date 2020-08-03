@@ -28,23 +28,23 @@
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script src="~/Content/QuanLy/libs_function.js"></script>
     <script type="text/javascript">
-        
+
         $(document).ready(function () {
             checkSession();
-            
+
 
             var idList = $('#dsdatphong');
             var layDS = 'NhanVien/LayDanhSachDoanDatPhongThanhCong';
             loadData(idList, layDS);
 
-            
 
-            
-            
+
+
+
 
         });
     </script>
-    
+
 </head>
 <!-- END HEAD -->
 
@@ -55,8 +55,8 @@
             <div class="page-header-inner ">
                 <!-- logo start -->
                 <div class="page-logo">
-                    <a href="~/Views/HomeViews/TrangChu.cshtml">
-                        
+                    <a href="~/TrangChu.cshtml">
+
                         @*<img alt="" src="~/Content/QuanLy/img/logo.png" class="img-fluid">*@
                         <span class="logo-default">Color Hotel</span>
                     </a>
@@ -100,7 +100,7 @@
                                 </li>
 
                                 <li class="divider"> </li>
-                               
+
                                 <li>
                                     <a href="~/DangNhap.cshtml">
                                         <i class="icon-logout"></i> Log Out
@@ -145,9 +145,9 @@
 
 
 
-                            
-                            
-                            
+
+
+
 
                             <li class="nav-item active nv">
                                 <a href="/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
@@ -199,7 +199,7 @@
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
                                                                        href="../Phong_NhanVien/DanhSachPhong.cshtml">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                
+
                                 <li class="active">Danh Sách Đặt Phòng Thành Công</li>
                             </ol>
                         </div>
@@ -209,7 +209,7 @@
                             <div class="card card-box">
 
                                 <div class="card-body ">
-                                    
+
                                     <div class="table-scrollable">
                                         <table class="table table-hover table-checkable order-column full-width"
                                                id="example">
@@ -235,7 +235,6 @@
                 </div>
             </div>
             <!-- Modal -->
-            
             <!-- end page container -->
             <!-- start footer -->
             <div class="page-footer">

@@ -1,554 +1,554 @@
 ﻿<!DOCTYPE html>
 <cshtml lang="en">
-<!-- BEGIN HEAD -->
-<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/all_rooms.cshtml by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:32 GMT -->
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta name="description" content="Responsive Admin Template" />
-    <meta name="author" content="SmartUniversity" />
-    <title>Color Hotel</title>
-    <!-- icons -->
-    <link href="~/Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!--bootstrap -->
-    <link href="~/Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- Material Design Lite CSS -->
-    <link rel="stylesheet" href="~/Content/QuanLy/plugins/material/material.min.css">
-    <link rel="stylesheet" href="~/Content/QuanLy/css/material_style.css">
-    <!-- data tables -->
-    <link href="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet"
-          type="text/css" />
-    <!-- animation -->
-    <link href="~/Content/QuanLy/css/pages/animate_page.css" rel="stylesheet">
-    <!-- Template Styles -->
-    <link href="~/Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
-    <!-- favicon -->
-    <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
-    <script src="~/Content/QuanLy/Jquery.js"></script>
-    <script src="~/Content/QuanLy/libs_function.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script type="text/javascript">
+    <!-- BEGIN HEAD -->
+    <!-- Mirrored from radixtouch.in/templates/admin/hotel/source/all_rooms.cshtml by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:32 GMT -->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta name="description" content="Responsive Admin Template" />
+        <meta name="author" content="SmartUniversity" />
+        <title>Color Hotel</title>
+        <!-- icons -->
+        <link href="~/Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!--bootstrap -->
+        <link href="~/Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- Material Design Lite CSS -->
+        <link rel="stylesheet" href="~/Content/QuanLy/plugins/material/material.min.css">
+        <link rel="stylesheet" href="~/Content/QuanLy/css/material_style.css">
+        <!-- data tables -->
+        <link href="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet"
+              type="text/css" />
+        <!-- animation -->
+        <link href="~/Content/QuanLy/css/pages/animate_page.css" rel="stylesheet">
+        <!-- Template Styles -->
+        <link href="~/Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
+        <!-- favicon -->
+        <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
+        <script src="~/Content/QuanLy/Jquery.js"></script>
+        <script src="~/Content/QuanLy/libs_function.js"></script>
 
-        $(document).ready(function () {
-            checkSession();
-           
-            //var mota = $();
-            var dataId;
-            var idList = '#dsphong';
-            //Modal
-            var idModalAdd = '#addModal';
-            var idModalEdit = '#editModal';
+        <script type="text/javascript">
 
-            //API
-            var layDSPhong = 'Quanly/LayDanhSachPhong';
-            var themPhong = 'Quanly/ThemPhong';
-            var suaPhong = 'Quanly/CapNhatPhong';
-            var xoaPhong = 'Quanly/XoaPhong?ID=';
-            var layPhong = 'Quanly/LayPhong?ID=';
+            $(document).ready(function () {
+                checkSession();
 
+                //var mota = $();
+                var dataId;
+                var idList = '#dsphong';
+                //Modal
+                var idModalAdd = '#addModal';
+                var idModalEdit = '#editModal';
 
-
-            loadData(idList, layDSPhong);
-
-            $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
-
-                dataId = $(this).attr("data-id");
-                var info = {
-                    id: idList,
-                    url: xoaPhong,
-                    urlLoad: layDSPhong,
-                };
-                deleteData(info, dataId);
-            })
+                //API
+                var layDSPhong = 'Quanly/LayDanhSachPhong';
+                var themPhong = 'Quanly/ThemPhong';
+                var suaPhong = 'Quanly/CapNhatPhong';
+                var xoaPhong = 'Quanly/XoaPhong?ID=';
+                var layPhong = 'Quanly/LayPhong?ID=';
 
 
-            $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
-                $(idModalEdit).modal('show');
-                dataId = $(this).attr("data-id");
-                var edit = {
-                    loaiPhong: '#loaiphong-edit',
-                    gia: '#gia-edit',
-                    soLau: '#solau-edit',
-                    soPhong: '#sophong-edit'
-                }
 
-                loadDataDetail(edit, layPhong, dataId);
-            })
+                loadData(idList, layDSPhong);
 
-            $('#btn-edit').click(function () {
-                var loaiPhong = "0";
-                if ($('#loaiphong-edit').val() == "Phòng Loại 1") {
-                    loaiPhong = "1";
-                }
-                if ($('#loaiphong-edit').val() == "Phòng Loại 2") {
-                    loaiPhong = "2";
-                }
-                if ($('#loaiphong-edit').val() == "Phòng Loại 3") {
-                    loaiPhong = "3";
-                }
-                if ($('#loaiphong-edit').val() == "Phòng Loại 4") {
-                    loaiPhong = "4";
-                }
+                $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
 
-                var data = {
-                    ID: dataId,
-                    MaPhong: loaiPhong + "0" + $('#solau-edit').val() + $('#sophong-edit').val(),
-                    LoaiPhong: loaiPhong,
-                    Gia: $('#gia-edit').val(),
-                    SoPhong: $('#solau-edit').val() + $('#sophong-edit').val()
-                };
-                var info = {
-                    id: idList,
-                    url: suaPhong,
-                    urlLoad: layDSPhong,
-                    modal: idModalEdit
-                };
-                editData(info, data);
+                    dataId = $(this).attr("data-id");
+                    var info = {
+                        id: idList,
+                        url: xoaPhong,
+                        urlLoad: layDSPhong,
+                    };
+                    deleteData(info, dataId);
+                })
 
+
+                $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
+                    $(idModalEdit).modal('show');
+                    dataId = $(this).attr("data-id");
+                    var edit = {
+                        loaiPhong: '#loaiphong-edit',
+                        gia: '#gia-edit',
+                        soLau: '#solau-edit',
+                        soPhong: '#sophong-edit'
+                    }
+
+                    loadDataDetail(edit, layPhong, dataId);
+                })
+
+                $('#btn-edit').click(function () {
+                    var loaiPhong = "0";
+                    if ($('#loaiphong-edit').val() == "Phòng Loại 1") {
+                        loaiPhong = "1";
+                    }
+                    if ($('#loaiphong-edit').val() == "Phòng Loại 2") {
+                        loaiPhong = "2";
+                    }
+                    if ($('#loaiphong-edit').val() == "Phòng Loại 3") {
+                        loaiPhong = "3";
+                    }
+                    if ($('#loaiphong-edit').val() == "Phòng Loại 4") {
+                        loaiPhong = "4";
+                    }
+
+                    var data = {
+                        ID: dataId,
+                        MaPhong: loaiPhong + "0" + $('#solau-edit').val() + $('#sophong-edit').val(),
+                        LoaiPhong: loaiPhong,
+                        Gia: $('#gia-edit').val(),
+                        SoPhong: $('#solau-edit').val() + $('#sophong-edit').val()
+                    };
+                    var info = {
+                        id: idList,
+                        url: suaPhong,
+                        urlLoad: layDSPhong,
+                        modal: idModalEdit
+                    };
+                    editData(info, data);
+
+                });
+                $("#addRow").click(function () {
+                    $(idModalAdd).modal('show');
+                })
+
+                $('#btn-add').click(function () {
+                    var loaiPhong = "0";
+                    if ($('#loaiphong-add').val() == "Phòng Loại 1") {
+                        loaiPhong = "1";
+                    }
+                    if ($('#loaiphong-add').val() == "Phòng Loại 2") {
+                        loaiPhong = "2";
+                    }
+                    if ($('#loaiphong-add').val() == "Phòng Loại 3") {
+                        loaiPhong = "3";
+                    }
+                    if ($('#loaiphong-add').val() == "Phòng Loại 4") {
+                        loaiPhong = "4";
+                    }
+
+                    var data = {
+                        MaPhong: loaiPhong + "0" + $('#solau-add').val() + $('#sophong-add').val(),
+                        LoaiPhong: loaiPhong,
+                        Gia: $('#gia-add').val(),
+                        SoPhong: $('#solau-add').val() + $('#sophong-add').val(),
+                        TrangThai: false,
+                        IsDelete: false,
+                    }
+                    var info = {
+                        id: idList,
+                        url: themPhong,
+                        urlLoad: layDSPhong,
+                        modal: idModalAdd
+                    };
+                    addData(info, data);
+                });
             });
-            $("#addRow").click(function () {
-                $(idModalAdd).modal('show');
-            })
 
-            $('#btn-add').click(function () {
-                var loaiPhong = "0";
-                if ($('#loaiphong-add').val() == "Phòng Loại 1") {
-                    loaiPhong = "1";
-                }
-                if ($('#loaiphong-add').val() == "Phòng Loại 2") {
-                    loaiPhong = "2";
-                }
-                if ($('#loaiphong-add').val() == "Phòng Loại 3") {
-                    loaiPhong = "3";
-                }
-                if ($('#loaiphong-add').val() == "Phòng Loại 4") {
-                    loaiPhong = "4";
-                }
+        </script>
+    </head>
+    <!-- END HEAD -->
 
-                var data = {
-                    MaPhong: loaiPhong + "0" + $('#solau-add').val() + $('#sophong-add').val(),
-                    LoaiPhong: loaiPhong,
-                    Gia: $('#gia-add').val(),
-                    SoPhong: $('#solau-add').val() + $('#sophong-add').val(),
-                    TrangThai: false,
-                    IsDelete: false,
-                }
-                var info = {
-                    id: idList,
-                    url: themPhong,
-                    urlLoad: layDSPhong,
-                    modal: idModalAdd
-                };
-                addData(info, data);
-            });
-        });
-
-    </script>
-</head>
-<!-- END HEAD -->
-
-<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white dark-sidebar-color logo-dark">
-    <div class="page-wrapper">
-        <!-- start header -->
-        <div class="page-header navbar navbar-fixed-top">
-            <div class="page-header-inner ">
-                <!-- logo start -->
-                <div class="page-logo">
-                    <a href="~/Views/HomeViews/TrangChu.cshtml">
-                        @*<img alt="avatar" src="~/Content/QuanLy/img/logo.png">*@
-                        <span class="logo-default">Color Hotel</span>
-                    </a>
-                </div>
-                <!-- logo end -->
-                <!--<ul class="nav navbar-nav navbar-left in">
-                    <li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
-                </ul>
-                <form class="search-form-opened" action="#" method="GET">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="myInput" placeholder="Search..." name="query">
-                        <span class="input-group-btn search-btn">
-                            <a href="javascript:;" class="btn submit">
-                                <i class="icon-magnifier"></i>
-                            </a>
-                        </span>
+    <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white dark-sidebar-color logo-dark">
+        <div class="page-wrapper">
+            <!-- start header -->
+            <div class="page-header navbar navbar-fixed-top">
+                <div class="page-header-inner ">
+                    <!-- logo start -->
+                    <div class="page-logo">
+                        <a href="~/TrangChu.cshtml">
+                            @*<img alt="avatar" src="~/Content/QuanLy/img/logo.png">*@
+                            <span class="logo-default">Color Hotel</span>
+                        </a>
                     </div>
-                </form>-->
-                <!-- start mobile menu -->
-                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
-                   data-target=".navbar-collapse">
-                    <span></span>
-                </a>
-                <!-- end mobile menu -->
-                <!-- start header menu -->
-                <div class="top-menu">
-                    <ul class="nav navbar-nav pull-right">
-                        <!-- start notification dropdown -->
-                        <!-- end notification dropdown -->
-                        <!-- start message dropdown -->
-                        <!-- end message dropdown -->
-                        <!-- start manage user dropdown -->
-                        <li class="dropdown dropdown-user">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
-                               data-close-others="true">
-                                <img alt="" class="img-circle " src="~/Content/QuanLy/img/dp.jpg" />
-                                <span class="username username-hide-on-mobile nameuser"> John </span>
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-default animated jello">
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-user"></i> Profile
-                                    </a>
-                                </li>
-
-                                <li class="divider"> </li>
-
-                                <li>
-                                    <a href="~/DangNhap.cshtml">
-                                        <i class="icon-logout"></i> Log Out
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- end manage user dropdown -->
-
+                    <!-- logo end -->
+                    <!--<ul class="nav navbar-nav navbar-left in">
+                        <li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
                     </ul>
-                </div>
-            </div>
-        </div>
-        <!-- end header -->
-        <!-- start page container -->
-        <div class="page-container">
-            <!-- start sidebar menu -->
-            <div class="sidebar-container">
-                <div class="sidemenu-container navbar-collapse collapse fixed-menu">
-                    <div id="remove-scroll">
-                        <ul class="sidemenu page-header-fixed p-t-20" data-keep-expanded="false" data-auto-scroll="true"
-                            data-slide-speed="200">
-                            <li class="sidebar-toggler-wrapper hide">
-                                <div class="sidebar-toggler">
-                                    <span></span>
-                                </div>
-                            </li>
-                            <li class="sidebar-user-panel">
-                                <div class="user-panel">
-                                    <div class="row">
-                                        <div class="sidebar-userpic">
-                                            <img src="~/Content/QuanLy/img/dp.jpg" class="img-responsive" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="profile-usertitle">
-                                        <div class="sidebar-userpic-name nameuser"></div>
-                                        <div class="profile-usertitle-job" id="roleuser"></div>
-                                    </div>
-
-                                </div>
-                            </li>
-
-
-
-                            <li class="nav-item active ql">
-                                <a href="/Views/QuanLyViews/ThongKe/ThongKe.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">business_center</i>
-                                    <span class="title">Thống Kê</span>
-                                    <span class="arrow"></span>
+                    <form class="search-form-opened" action="#" method="GET">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="myInput" placeholder="Search..." name="query">
+                            <span class="input-group-btn search-btn">
+                                <a href="javascript:;" class="btn submit">
+                                    <i class="icon-magnifier"></i>
                                 </a>
-
-                            </li>
-
-                            <li class="nav-item active ql">
-                                <a href="/Views/QuanLyViews/DichVu/DSDichVu.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">business_center</i>
-                                    <span class="title">Dịch Vụ</span>
-                                    <span class="arrow"></span>
+                            </span>
+                        </div>
+                    </form>-->
+                    <!-- start mobile menu -->
+                    <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+                       data-target=".navbar-collapse">
+                        <span></span>
+                    </a>
+                    <!-- end mobile menu -->
+                    <!-- start header menu -->
+                    <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+                            <!-- start notification dropdown -->
+                            <!-- end notification dropdown -->
+                            <!-- start message dropdown -->
+                            <!-- end message dropdown -->
+                            <!-- start manage user dropdown -->
+                            <li class="dropdown dropdown-user">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                                   data-close-others="true">
+                                    <img alt="" class="img-circle " src="~/Content/QuanLy/img/dp.jpg" />
+                                    <span class="username username-hide-on-mobile nameuser"> John </span>
+                                    <i class="fa fa-angle-down"></i>
                                 </a>
+                                <ul class="dropdown-menu dropdown-menu-default animated jello">
+                                    <li>
+                                        <a href="#">
+                                            <i class="icon-user"></i> Profile
+                                        </a>
+                                    </li>
 
+                                    <li class="divider"> </li>
+
+                                    <li>
+                                        <a href="~/DangNhap.cshtml">
+                                            <i class="icon-logout"></i> Log Out
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="nav-item active ql">
-                                <a href="/Views/QuanLyViews/TienIch/DSTienIch.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Tiện Ích</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active ql">
-                                <a href="/Views/QuanLyViews/Phong/DSPhong.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">vpn_key</i>
-                                    <span class="title">Phòng</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active ql">
-                                <a href="/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Tài Khoản Nhân Viên</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-
-                            
-
-
+                            <!-- end manage user dropdown -->
 
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- end sidebar menu -->
-            <!-- start page content -->
-            <div class="page-content-wrapper">
-                <div class="page-content" style="min-height: 700px">
-                    <div class="page-bar">
-                        <div class="page-title-breadcrumb">
-                            <div class=" pull-left">
-                                <div class="page-title">Danh Sách Phòng</div>
-                            </div>
-                            <ol class="breadcrumb page-breadcrumb pull-right">
-                                <li>
-                                    <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="../../NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+            <!-- end header -->
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <div class="sidebar-container">
+                    <div class="sidemenu-container navbar-collapse collapse fixed-menu">
+                        <div id="remove-scroll">
+                            <ul class="sidemenu page-header-fixed p-t-20" data-keep-expanded="false" data-auto-scroll="true"
+                                data-slide-speed="200">
+                                <li class="sidebar-toggler-wrapper hide">
+                                    <div class="sidebar-toggler">
+                                        <span></span>
+                                    </div>
+                                </li>
+                                <li class="sidebar-user-panel">
+                                    <div class="user-panel">
+                                        <div class="row">
+                                            <div class="sidebar-userpic">
+                                                <img src="~/Content/QuanLy/img/dp.jpg" class="img-responsive" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="profile-usertitle">
+                                            <div class="sidebar-userpic-name nameuser"></div>
+                                            <div class="profile-usertitle-job" id="roleuser"></div>
+                                        </div>
+
+                                    </div>
                                 </li>
 
-                                <li class="active">Danh Sách Phòng</li>
-                            </ol>
+
+
+                                <li class="nav-item active ql">
+                                    <a href="/Views/QuanLyViews/ThongKe/ThongKe.cshtml" class="nav-link nav-toggle">
+                                        <i class="material-icons">business_center</i>
+                                        <span class="title">Thống Kê</span>
+                                        <span class="arrow"></span>
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item active ql">
+                                    <a href="/Views/QuanLyViews/DichVu/DSDichVu.cshtml" class="nav-link nav-toggle">
+                                        <i class="material-icons">business_center</i>
+                                        <span class="title">Dịch Vụ</span>
+                                        <span class="arrow"></span>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item active ql">
+                                    <a href="/Views/QuanLyViews/TienIch/DSTienIch.cshtml" class="nav-link nav-toggle">
+                                        <i class="material-icons">group</i>
+                                        <span class="title">Tiện Ích</span>
+                                        <span class="arrow"></span>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item active ql">
+                                    <a href="/Views/QuanLyViews/Phong/DSPhong.cshtml" class="nav-link nav-toggle">
+                                        <i class="material-icons">vpn_key</i>
+                                        <span class="title">Phòng</span>
+                                        <span class="arrow"></span>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item active ql">
+                                    <a href="/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.cshtml" class="nav-link nav-toggle">
+                                        <i class="material-icons">group</i>
+                                        <span class="title">Tài Khoản Nhân Viên</span>
+                                        <span class="arrow"></span>
+                                    </a>
+
+                                </li>
+
+
+
+
+
+                            </ul>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-box">
+                </div>
+                <!-- end sidebar menu -->
+                <!-- start page content -->
+                <div class="page-content-wrapper">
+                    <div class="page-content" style="min-height: 700px">
+                        <div class="page-bar">
+                            <div class="page-title-breadcrumb">
+                                <div class=" pull-left">
+                                    <div class="page-title">Danh Sách Phòng</div>
+                                </div>
+                                <ol class="breadcrumb page-breadcrumb pull-right">
+                                    <li>
+                                        <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+                                                                           href="../../NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                    </li>
 
-                                <div class="card-body ">
-                                    <div class="row p-b-20">
-                                        <div class="col-md-6 col-sm-6 col-6">
-                                            <div class="btn-group">
-                                                <button href="" id="addRow" class="btn btn-info">
-                                                    Thêm Mới Phòng <i class="fa fa-plus"></i>
-                                                </button>
+                                    <li class="active">Danh Sách Phòng</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-box">
+
+                                    <div class="card-body ">
+                                        <div class="row p-b-20">
+                                            <div class="col-md-6 col-sm-6 col-6">
+                                                <div class="btn-group">
+                                                    <button href="" id="addRow" class="btn btn-info">
+                                                        Thêm Mới Phòng <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </div>
-                                    <div class="table-scrollable">
-                                        <table class="table display product-overview mb-30"
-                                               id="example4">
-                                            <thead>
-                                                <tr>
-                                                    <th class="center" style="width: 130px"> Mã Phòng </th>
-                                                    <th class="center" style="width: 130px"> Số Phòng </th>
-                                                    <th class="center" style="width: 130px"> Phòng Loại </th>
-                                                    <th class="center" style="width: 180px"> Giá </th>
-                                                    <th class="center" style="width: 180px"> Tình Trạng </th>
-                                                    <th class="center"> Chức Năng </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="dsphong">
-                                            </tbody>
-                                        </table>
+                                        </div>
+                                        <div class="table-scrollable">
+                                            <table class="table display product-overview mb-30"
+                                                   id="example4">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="center" style="width: 130px"> Mã Phòng </th>
+                                                        <th class="center" style="width: 130px"> Số Phòng </th>
+                                                        <th class="center" style="width: 130px"> Phòng Loại </th>
+                                                        <th class="center" style="width: 180px"> Giá </th>
+                                                        <th class="center" style="width: 180px"> Tình Trạng </th>
+                                                        <th class="center"> Chức Năng </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="dsphong">
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!----Modal-->
-            <div class="modal fade" tabindex="-1" id="addModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
+                <!----Modal-->
+                <div class="modal fade" tabindex="-1" id="addModal" data-keyboard="false" data-backdrop="static">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content" style="width:400px">
 
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Phòng</h4>
-                                    <div class="card-box">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Phòng</h4>
+                                        <div class="card-box">
 
-                                        <div class="card-body row">
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="number"
-                                                           pattern="^[0-9]{1,2}[:.,-]?$" id="solau-add">
-                                                    <label class="mdl-textfield__label">Số Lầu</label>
+                                            <div class="card-body row">
+                                                <div class="col-lg-6 p-t-20">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                        <input class="mdl-textfield__input" type="number"
+                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="solau-add">
+                                                        <label class="mdl-textfield__label">Số Lầu</label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="number"
-                                                           pattern="^[0-9]{1,2}[:.,-]?$" id="sophong-add">
-                                                    <label class="mdl-textfield__label" for="sophong-add">Số Phòng</label>
+                                                <div class="col-lg-6 p-t-20">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                        <input class="mdl-textfield__input" type="number"
+                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="sophong-add">
+                                                        <label class="mdl-textfield__label" for="sophong-add">Số Phòng</label>
+                                                    </div>
                                                 </div>
-                                            </div>
 
 
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="loaiphong-add" value="" readonly
-                                                           tabIndex="-1">
-                                                    <label for="loaiphong-add" class="pull-right margin-0">
-                                                        <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                                    </label>
-                                                    <label for="loaiphong-add" class="mdl-textfield__label">Loại Phòng</label>
-                                                    <ul data-mdl-for="loaiphong-add" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                                        <li class="mdl-menu__item">Phòng Loại 1</li>
-                                                        <li class="mdl-menu__item">Phòng Loại 2</li>
-                                                        <li class="mdl-menu__item">Phòng Loại 3</li>
-                                                        <li class="mdl-menu__item">Phòng Loại 4</li>
+                                                <div class="col-lg-6 p-t-20">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                                        <input class="mdl-textfield__input" type="text" id="loaiphong-add" value="" readonly
+                                                               tabIndex="-1">
+                                                        <label for="loaiphong-add" class="pull-right margin-0">
+                                                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                                        </label>
+                                                        <label for="loaiphong-add" class="mdl-textfield__label">Loại Phòng</label>
+                                                        <ul data-mdl-for="loaiphong-add" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                                            <li class="mdl-menu__item">Phòng Loại 1</li>
+                                                            <li class="mdl-menu__item">Phòng Loại 2</li>
+                                                            <li class="mdl-menu__item">Phòng Loại 3</li>
+                                                            <li class="mdl-menu__item">Phòng Loại 4</li>
 
 
-                                                    </ul>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>
 
 
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="number"
-                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia-add">
-                                                    <label class="mdl-textfield__label" for="gia-add">Giá</label>
-                                                    <span class="mdl-textfield__error">Phải Là Số</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-add">
-                                            Thêm
-                                        </button>
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                            Hủy
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-----end modal-->
-                <!-- end page content -->
-            </div>
-            <div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
-
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Chỉnh Sửa Phòng</h4>
-                                    <div class="card-box">
-
-                                        <div class="card-body row">
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="number"
-                                                           pattern="^[0-9]{1,2}[:.,-]?$" id="solau-edit">
-                                                    <label class="mdl-textfield__label" style="top:0;">Số Lầu</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="number"
-                                                           pattern="^[0-9]{1,2}[:.,-]?$" id="sophong-edit">
-                                                    <label class="mdl-textfield__label" for="sophong-edit" style="top:0;">Số Phòng</label>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="loaiphong-edit" value="" readonly data-id=""
-                                                           tabIndex="-1">
-                                                    <label for="loaiphong-edit" class="pull-right margin-0">
-                                                        <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                                    </label>
-                                                    <label for="loaiphong-edit" class="mdl-textfield__label" style="top:0;">Loại Phòng</label>
-                                                    <ul data-mdl-for="loaiphong-edit" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                                        <li class="mdl-menu__item">Trưởng Đoàn</li>
-                                                        <li class="mdl-menu__item">Thành Viên</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-lg-6 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="number"
-                                                           pattern="-?[0-9]*(\.[0-9]+)?" id="gia-edit">
-                                                    <label class="mdl-textfield__label" for="gia-edit" style="top:0;">Giá</label>
-                                                    <span class="mdl-textfield__error">Phải Là Số</span>
+                                                <div class="col-lg-6 p-t-20">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                        <input class="mdl-textfield__input" type="number"
+                                                               pattern="-?[0-9]*(\.[0-9]+)?" id="gia-add">
+                                                        <label class="mdl-textfield__label" for="gia-add">Giá</label>
+                                                        <span class="mdl-textfield__error">Phải Là Số</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-edit">
-                                            Sửa
-                                        </button>
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                            Hủy
-                                        </button>
+                                        <div class="col-lg-12 p-t-20 text-center">
+                                            <button type="button"
+                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-add">
+                                                Thêm
+                                            </button>
+                                            <button type="button"
+                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                                Hủy
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>
+                    </div>
+                    <!-----end modal-->
+                    <!-- end page content -->
+                </div>
+                <div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content" style="width:400px">
+
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Chỉnh Sửa Phòng</h4>
+                                        <div class="card-box">
+
+                                            <div class="card-body row">
+                                                <div class="col-lg-6 p-t-20">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                        <input class="mdl-textfield__input" type="number"
+                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="solau-edit">
+                                                        <label class="mdl-textfield__label" style="top:0;">Số Lầu</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 p-t-20">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                        <input class="mdl-textfield__input" type="number"
+                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="sophong-edit">
+                                                        <label class="mdl-textfield__label" for="sophong-edit" style="top:0;">Số Phòng</label>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-6 p-t-20">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                                        <input class="mdl-textfield__input" type="text" id="loaiphong-edit" value="" readonly data-id=""
+                                                               tabIndex="-1">
+                                                        <label for="loaiphong-edit" class="pull-right margin-0">
+                                                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                                        </label>
+                                                        <label for="loaiphong-edit" class="mdl-textfield__label" style="top:0;">Loại Phòng</label>
+                                                        <ul data-mdl-for="loaiphong-edit" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                                            <li class="mdl-menu__item">Trưởng Đoàn</li>
+                                                            <li class="mdl-menu__item">Thành Viên</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-6 p-t-20">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                        <input class="mdl-textfield__input" type="number"
+                                                               pattern="-?[0-9]*(\.[0-9]+)?" id="gia-edit">
+                                                        <label class="mdl-textfield__label" for="gia-edit" style="top:0;">Giá</label>
+                                                        <span class="mdl-textfield__error">Phải Là Số</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 p-t-20 text-center">
+                                            <button type="button"
+                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-edit">
+                                                Sửa
+                                            </button>
+                                            <button type="button"
+                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                                Hủy
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-----end modal-->
+                    <!-- end page content -->
+                </div>
+
+                <!-- end page container -->
+                <!-- start footer -->
+                <div class="page-footer">
+                    <div class="page-footer-inner">
+                        2020 &copy; Hotel Color
 
                     </div>
+                    <div class="scroll-to-top">
+                        <i class="icon-arrow-up"></i>
+                    </div>
                 </div>
-                <!-----end modal-->
-                <!-- end page content -->
+                <!-- end footer -->
             </div>
-
-            <!-- end page container -->
-            <!-- start footer -->
-            <div class="page-footer">
-                <div class="page-footer-inner">
-                    2020 &copy; Hotel Color
-
-                </div>
-                <div class="scroll-to-top">
-                    <i class="icon-arrow-up"></i>
-                </div>
-            </div>
-            <!-- end footer -->
-        </div>
-        <!-- start js include path -->
-        <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
-        <!--<script src="~/Content/QuanLy/plugins/popper/popper.min.js"></script>-->
-        <script src="~/Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
-        <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-        <!-- bootstrap -->
-        <!--<script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
-        <!--<script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>-->
-        <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Material -->
-        <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
-        <script src="~/Content/QuanLy/js/pages/material_select/getmdl-select.js"></script>
-        <!-- Common js-->
-        <script src="~/Content/QuanLy/js/app.js"></script>
-        <script src="~/Content/QuanLy/js/layout.js"></script>
-        <script src="~/Content/QuanLy/js/theme-color.js"></script>
-        <!--<script src="~//plugins/dropzone/dropzone.js"></script>-->
-        <!--<script src="~//plugins/dropzone/dropzone-call.js"></script>-->
-        <!-- Material -->
-        <!--<script src="~/Content/QuanLy/plugins/material/material.min.js"></script>-->
-        <!-- animation -->
-        <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
-        <!-- end js include path -->
-</body>
+            <!-- start js include path -->
+            <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
+            <!--<script src="~/Content/QuanLy/plugins/popper/popper.min.js"></script>-->
+            <script src="~/Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
+            <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+            <!-- bootstrap -->
+            <!--<script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
+            <!--<script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>-->
+            <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
+            <!-- Material -->
+            <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
+            <script src="~/Content/QuanLy/js/pages/material_select/getmdl-select.js"></script>
+            <!-- Common js-->
+            <script src="~/Content/QuanLy/js/app.js"></script>
+            <script src="~/Content/QuanLy/js/layout.js"></script>
+            <script src="~/Content/QuanLy/js/theme-color.js"></script>
+            <!--<script src="~//plugins/dropzone/dropzone.js"></script>-->
+            <!--<script src="~//plugins/dropzone/dropzone-call.js"></script>-->
+            <!-- Material -->
+            <!--<script src="~/Content/QuanLy/plugins/material/material.min.js"></script>-->
+            <!-- animation -->
+            <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
+            <!-- end js include path -->
+    </body>
 
 
-<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/all_rooms.cshtml by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:33 GMT -->
+    <!-- Mirrored from radixtouch.in/templates/admin/hotel/source/all_rooms.cshtml by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:33 GMT -->
 </cshtml>

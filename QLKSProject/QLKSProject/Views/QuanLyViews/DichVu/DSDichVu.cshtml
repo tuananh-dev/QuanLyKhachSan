@@ -54,69 +54,69 @@
 
             $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
 
-            dataId = $(this).attr("data-id");
-            var info = {
-                id: idList,
-                url: xoaDichVu,
-                urlLoad: layDSDichVu,
-            };
-            deleteData(info, dataId);
-        })
+                dataId = $(this).attr("data-id");
+                var info = {
+                    id: idList,
+                    url: xoaDichVu,
+                    urlLoad: layDSDichVu,
+                };
+                deleteData(info, dataId);
+            })
 
 
-        $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
-            $(idModalEdit).modal('show');
-            dataId = $(this).attr("data-id");
-            var edit = {
-                tenDV: '#tenDV-edit',
-                gia: '#gia-edit',
-                moTa: '#mota-edit',
-            }
+            $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
+                $(idModalEdit).modal('show');
+                dataId = $(this).attr("data-id");
+                var edit = {
+                    tenDV: '#tenDV-edit',
+                    gia: '#gia-edit',
+                    moTa: '#mota-edit',
+                }
 
-            loadDataDetail(edit, layDV, dataId);
-        })
+                loadDataDetail(edit, layDV, dataId);
+            })
 
-        $('#btn-edit').click(function () {
-            var data = {
-                ID: dataId,
-                TenDichVu: $('#tenDV-edit').val(),
-                Gia: $('#gia-edit').val(),
-                MoTa: $('#mota-edit').val(),
-                IsDelete: false,
-            };
-            var info = {
-                id: idList,
-                url: suaDichVu,
-                urlLoad: layDSDichVu,
-                modal: idModalEdit
-            };
-            editData(info, data);
+            $('#btn-edit').click(function () {
+                var data = {
+                    ID: dataId,
+                    TenDichVu: $('#tenDV-edit').val(),
+                    Gia: $('#gia-edit').val(),
+                    MoTa: $('#mota-edit').val(),
+                    IsDelete: false,
+                };
+                var info = {
+                    id: idList,
+                    url: suaDichVu,
+                    urlLoad: layDSDichVu,
+                    modal: idModalEdit
+                };
+                editData(info, data);
 
 
+            });
+            $('#addRow1').click(function () {
+                $(idModalAdd).modal('show');
+
+            })
+
+            $('#btn-add').click(function () {
+                var data = {
+                    TenDichVu: $('#tenDV-add').val(),
+                    Gia: $('#gia-add').val(),
+                    IsDelete: false,
+                    MoTa: $('#mota-add').val()
+                }
+                var info = {
+                    id: idList,
+                    url: themDichVu,
+                    urlLoad: layDSDichVu,
+                    modal: idModalAdd
+                };
+
+                addData(info, data);
+            });
         });
-        $('#addRow1').click(function () {
-            $(idModalAdd).modal('show');
-           
-        })
 
-        $('#btn-add').click(function () {
-            var data = {
-                TenDichVu: $('#tenDV-add').val(),
-                Gia: $('#gia-add').val(),
-                IsDelete: false,
-                MoTa: $('#mota-add').val()
-            }
-            var info = {
-                id: idList,
-                url: themDichVu,
-                urlLoad: layDSDichVu,
-                modal: idModalAdd
-            };
-
-            addData(info, data);
-        });
-        });
-        
     </script>
 </head>
 <!-- END HEAD -->
@@ -128,7 +128,7 @@
             <div class="page-header-inner ">
                 <!-- logo start -->
                 <div class="page-logo">
-                    <a href="~/Views/HomeViews/TrangChu.cshtml">
+                    <a href="~/TrangChu.cshtml">
                         @*<img alt="" src="~/Content/QuanLy/img/logo.png">*@
                         <span class="logo-default">Color Hotel</span>
                     </a>
