@@ -196,7 +196,7 @@ namespace QLKSProject.Business.NhanVien
                 }
                 if (trangThaiDatPhong.Equals("ok"))
                 {
-                    LuuDanhSachKhachHang(lstKhachHangMaDoan);
+                    LuuDanhSachKhachHangDatPhongThanhCong(lstKhachHangMaDoan);
                     // Luu trang thai dat phong thanh cong cho Doan
                     doan.TrangThaiDatPhong = 1;
                     var khachHangDTO = lstKhachHangMaDoan.Where(kh => kh.TruongDoan == true).FirstOrDefault();
@@ -217,7 +217,7 @@ namespace QLKSProject.Business.NhanVien
                     // Luu trang thai dat phong that bai cho Doan
                     doan.TrangThaiDatPhong = -1;
                     //Luu ghi chu cho khach hang
-                    LuuDanhSachKhachHang(lstKhachHangMaDoan);
+                    LuuDanhSachKhachHangDatPhongThatBai(lstKhachHangMaDoan);
                 }
             }
             else
@@ -390,24 +390,27 @@ namespace QLKSProject.Business.NhanVien
         }
         #endregion
         #region private methods
-        private void LuuDanhSachKhachHang(List<KhachHangDTO> khachHangDTOs)
+        private void LuuDanhSachKhachHangDatPhongThanhCong(List<KhachHangDTO> khachHangDTOs)
         {
             string maDoan = khachHangDTOs[0].MaDoan;
             var lstKhachHang = models.KhachHangs.Where(kh => kh.IsDelete != true && kh.MaDoan.Equals(maDoan)).ToList();
             for (int i = 0; i < lstKhachHang.Count; i++)
             {
-                if(khachHangDTOs[i].IDPhong != -1)
-                {
-                    lstKhachHang[i].TrangThaiDatPhong = khachHangDTOs[i].TrangThaiDatPhong;
-                    lstKhachHang[i].IDPhong = khachHangDTOs[i].IDPhong;
-                }
-                else
-                {
-                    lstKhachHang[i].GhiChu = khachHangDTOs[i].GhiChu;
-                }
-                
+                lstKhachHang[i].TrangThaiDatPhong = khachHangDTOs[i].TrangThaiDatPhong;
+                lstKhachHang[i].IDPhong = khachHangDTOs[i].IDPhong;              
             }
         }
+        private void LuuDanhSachKhachHangDatPhongThatBai(List<KhachHangDTO> khachHangDTOs)
+        {
+            string maDoan = khachHangDTOs[0].MaDoan;
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.IsDelete != true && kh.MaDoan.Equals(maDoan)).ToList();
+            for (int i = 0; i < lstKhachHang.Count; i++)
+            {
+                lstKhachHang[i].GhiChu = khachHangDTOs[i].GhiChu;
+                lstKhachHang[i].IDPhong = -1;
+            }
+        }
+
         private bool TaoTaiKhoanChoKhachHang(KhachHangDTO khachHangDTO, string account, string password)
         {
             try
