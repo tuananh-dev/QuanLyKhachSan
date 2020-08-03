@@ -533,11 +533,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008021949598_uddb.cs" />
-    <Compile Include="Migrations\202008021949598_uddb.designer.cs">
-      <DependentUpon>202008021949598_uddb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\SoSanhThongKeDTO.cs" />
     <Compile Include="Models\DTO\ThemPhongTheoLauDTO.cs" />
     <Compile Include="Models\DTO\ThongKeTheoThangDTO.cs" />
@@ -700,17 +695,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202008021949598_uddb.resx">
-      <DependentUpon>202008021949598_uddb.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

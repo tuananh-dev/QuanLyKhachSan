@@ -53,13 +53,17 @@
         <div class="container-login100 page-background">
 
             <div class="wrap-login100" style="padding-top:0px;position:relative">
-                <button id="btn-close" style=" width: 40px; height: 40px; position: absolute; top: 5px; right: 5px; padding: 3px 2px 8px 3px; border-radius: 50%; transition: .4s; font-size: 30px; text-align: center;" type="button" class="close" aria-label="Close" onclick="window.location.href='Views/HomeViews/TrangChu.cshtml'">
+                <button id="btn-close" style=" width: 40px; height: 40px; position: absolute; top: 5px; right: 5px; padding: 3px 2px 8px 3px; border-radius: 50%; transition: .4s; font-size: 30px; text-align: center;" type="button" class="close" aria-label="Close" onclick="window.location.href='TrangChu.cshtml'">
                     <span aria-hidden="true">&times;</span>
                 </button>
                
                 
                 <!--width: 40px;height: 40px;position: absolute;top: 5px;right: 5px;padding: 3px 2px 8px 3px;border-radius: 50%;transition: .4s;font-size: 30px;
+<<<<<<< HEAD
         text-align: center;-->
+=======
+                text-align: center;-->
+>>>>>>> c8db724e25478cd43499958f7c49912d06f33e1d
 
 
 
@@ -118,6 +122,7 @@
 
                         <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                         <!--<button style="color:red" type="button" id="cancel" class="login100-form-btn" onclick="goBack()">
+<<<<<<< HEAD
                 Hủy
             </button>
             <script>
@@ -126,6 +131,16 @@
                     window.history.back();
                 }
             </script>-->
+=======
+                            Hủy
+                        </button>
+                        <script>
+
+                            function goBack() {
+                                window.history.back();
+                            }
+                        </script>-->
+>>>>>>> c8db724e25478cd43499958f7c49912d06f33e1d
 
                     </div>
                     <div class="text-center p-t-90" onclick="quenmk">
@@ -160,10 +175,7 @@
                                                 var role = data[0];
                                                 var fullname = data[1];
                                                 var madoan = data[2];
-                                                console.log(response);
-                                                console.log(data[0]);
-                                                console.log(data[1]);
-                                                console.log(data[2]);
+
                                                 sessionStorage.setItem('role', role);
                                                 sessionStorage.setItem('fullname', fullname);
                                                 sessionStorage.setItem('madoan', madoan);
@@ -183,9 +195,15 @@
                                                 }
 
 
-                                            },
-                                            error: function () {
 
+
+                                            },
+                                            error: function (data) {
+                                                swal({
+                                                    type: 'error',
+                                                    title: 'Đăng Nhập Thất Bại',
+                                                    text: 'Vui Lòng Kiểm Tra Lại Tài Khoản Và Mật Khẩu',
+                                                });
                                             }
 
                                         })
