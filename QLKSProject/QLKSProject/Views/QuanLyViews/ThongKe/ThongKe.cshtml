@@ -27,6 +27,9 @@
     <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="~/Content/QuanLy/libs_function.js"></script>
+    <script src="~/Content/QuanLy/DashBoard.js"></script>
+
     <style>
         #container {
             height: 500px;
@@ -71,6 +74,7 @@
             background: #f1f7ff;
         }
     </style>
+
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -110,7 +114,17 @@
                 dsThang.push("Tháng 11");
                 dsThang.push("Tháng 12");
             }
-            //create Object Data
+
+            //$('#thang').val(month)
+            //$('#quy').val(quarter)
+            //$('#nam').val(year)
+
+            //txtThang = $('#thang').val();
+            //txtQuy = $('#quy').val();
+            //txtNam = $('#nam').val();
+
+
+            //Get DATA
             var dataMonth = {
                 thang: month,
                 nam: year
@@ -119,6 +133,10 @@
                 quy: quarter,
                 nam: year
             }
+            dashboard_Circle(dataMonth, tkThang);
+            dashboard_ThreeBar(dataQuater, tkQuy, dsThang);
+
+            //Get Four Box
             var posThang = {
                 tptt: $('#tptthang'),
                 dvtt: $('#dvtthang'),
@@ -131,63 +149,13 @@
                 progr_tptq: $('#progr-tptquy'),
                 progr_dvtq: $('#progr-dvtquy'),
             }
-            //Get DATA
-            dashboard_Circle(dataMonth, tkThang);
-            dashboard_ThreeBar(dataQuater, tkQuy, dsThang);
-
-            //Get Four Box
             dashboard_FourBox(dataMonth, tkSSThang, posThang);
             dashboard_FourBox(dataQuater, tkSSQuy, posQuy);
 
 
 
-
-
-            //var txtThang = $('#thang').val();
-            //var txtQuy = $('#quy').val();
-            //var txtNam = $('#nam').val();
-            //var thang_quy = 'thang';
-            //$("#wrap-quy *").attr("disabled", "disabled").off('click');
-            //$('input[type=radio][name=thongke]').change(function () {
-            //    if (this.value == 'thang') {
-            //        thang_quy = 'thang';
-            //        $("#wrap-quy *").attr("disabled", "disabled").off('click');
-            //        $("#wrap-thang *").attr("disabled", false);
-            //    }
-            //    else if (this.value == 'quy') {
-            //        thang_quy = 'quy';
-            //        $("#wrap-thang *").attr("disabled", "disabled").off('click');
-            //        $("#wrap-quy *").attr("disabled", false);
-            //    }
-            //});
-            //$('#btnThongKe').click(function () {
-            //    txtThang = $('#thang').val();
-            //    txtQuy = $('#quy').val();
-            //    txtNam = $('#nam').val();
-
-            //    if (((thang_quy == 'thang' && txtThang != '') ||
-            //        (thang_quy == 'quy' && txtQuy != '')) &&
-            //        (txtNam != "")) {
-            //        if (thang_quy == 'thang') {
-            //            var data = {
-            //                thang: txtThang,
-            //                nam: txtNam
-            //            }
-            //            dashboard_Circle(data, tkThang);
-            //        } else if (thang_quy == 'quy') {
-            //            var data = {
-            //                quy: txtQuy,
-            //                nam: txtNam
-            //            }
-
-            //            dashboard_ThreeBar(data, tkQuy);
-            //        }
-            //    } else {
-            //        alert("Nhập Đầy Đủ Thông Tin!!!")
-            //    }
-
-            //});
-        });
+                            //$('#btnThongKe').click(function () {
+                            //});
     </script>
 
 </head>
@@ -282,7 +250,7 @@
                                         </div>
                                     </div>
                                     <div class="profile-usertitle">
-                                        <div class="sidebar-userpic-name nameuser">  </div>
+                                        <div class="sidebar-userpic-name nameuser"></div>
                                         <div class="profile-usertitle-job" id="roleuser">  </div>
                                     </div>
 
@@ -292,7 +260,7 @@
 
 
                             <li class="nav-item active ql">
-                                <a href="/SEP23Team2/Views/QuanLyViews/ThongKe/ThongKe.cshtml" class="nav-link nav-toggle">
+                                <a href="/Views/QuanLyViews/ThongKe/ThongKe.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">business_center</i>
                                     <span class="title">Thống Kê</span>
                                     <span class="arrow"></span>
@@ -301,7 +269,7 @@
                             </li>
 
                             <li class="nav-item active ql">
-                                <a href="/SEP23Team2/Views/QuanLyViews/DichVu/DSDichVu.cshtml" class="nav-link nav-toggle">
+                                <a href="/Views/QuanLyViews/DichVu/DSDichVu.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">business_center</i>
                                     <span class="title">Dịch Vụ</span>
                                     <span class="arrow"></span>
@@ -309,7 +277,7 @@
 
                             </li>
                             <li class="nav-item active ql">
-                                <a href="/SEP23Team2/Views/QuanLyViews/TienIch/DSTienIch.cshtml" class="nav-link nav-toggle">
+                                <a href="/Views/QuanLyViews/TienIch/DSTienIch.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Tiện Ích</span>
                                     <span class="arrow"></span>
@@ -317,7 +285,7 @@
 
                             </li>
                             <li class="nav-item active ql">
-                                <a href="/SEP23Team2/Views/QuanLyViews/Phong/DSPhong.cshtml" class="nav-link nav-toggle">
+                                <a href="/Views/QuanLyViews/Phong/DSPhong.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">vpn_key</i>
                                     <span class="title">Phòng</span>
                                     <span class="arrow"></span>
@@ -325,7 +293,7 @@
 
                             </li>
                             <li class="nav-item active ql">
-                                <a href="/SEP23Team2/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.cshtml" class="nav-link nav-toggle">
+                                <a href="/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Tài Khoản Nhân Viên</span>
                                     <span class="arrow"></span>
