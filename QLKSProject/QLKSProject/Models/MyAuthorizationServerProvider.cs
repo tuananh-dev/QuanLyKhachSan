@@ -19,7 +19,7 @@ namespace QLKSProject.Models
             using (UserMasterRepository _repo = new UserMasterRepository())
             {
                 var user = _repo.ValidateUser(context.UserName, context.Password);
-                if (user == null)
+                if (user == null || user.IsDelete)
                 {
                     context.SetError("invalid_grant", "Provided username and password is incorrect");
                     return;

@@ -83,11 +83,13 @@ namespace QLKSProject.Business.KhachHangBusiness
                         kh.GhiChu = "Khách hàng đã hủy đặt phòng";
                     }
                     models.SaveChanges();
+                    #region Gui Mail cho khach hang
                     var khachHangDTO = lstKhachHang.Where(kh => kh.TruongDoan == true).FirstOrDefault();
                     string account = khachHangDTO.Email;
                     string subject = "Quý khách đã hủy đặt phòng tại khách sạn Color Hotel";
                     string body = "Dear " + khachHangDTO.HoVaTen + ",<BR><BR>" + "Quý khách đã hủy đặt phòng thành công.<BR>Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi!" + "<BR><BR>Trân trọng,<BR>" + "Hotel Color";
                     string trangThaiGuiMail = GuiMailTuDong(account, subject, body);
+                    #endregion
                 }
                 else
                     error = "Hủy danh sách khách hàng lỗi!";

@@ -495,7 +495,7 @@
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
-    <None Include="Views\KhachHangViews\DSThanhVien.cshtml" />
+    <Content Include="Views\KhachHangViews\DSThanhVien.cshtml" />
     <None Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.cshtml" />
     <None Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.cshtml" />
     <None Include="Views\NhanVienViews\DatPhongThatBai\XemchiTiet.cshtml" />

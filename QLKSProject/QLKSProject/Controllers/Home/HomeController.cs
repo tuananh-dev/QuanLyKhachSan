@@ -45,14 +45,8 @@ namespace QLKSProject.Controllers.Home
             var userRoles = identity.Claims.FirstOrDefault(c => c.Type == "UserRoles").Value;
             var fullName = identity.Claims.FirstOrDefault(c => c.Type == "FullName").Value;
             var maDoan = identity.Claims.FirstOrDefault(c => c.Type == "MaDoan").Value;
-            using (HomeBusiness homeBusiness = new HomeBusiness())
-            {    
-                if (homeBusiness.CheckTaiKhoan(maDoan))
-                    return BadRequest();
-                else
-                    return Ok(userRoles + "-" + fullName + "-" + maDoan);
-            }
-            
+            return Ok(userRoles + "-" + fullName + "-" + maDoan);
+
         }
     }
 }

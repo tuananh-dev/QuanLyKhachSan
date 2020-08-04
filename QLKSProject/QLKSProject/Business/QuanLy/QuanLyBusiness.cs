@@ -544,6 +544,10 @@ namespace QLKSProject.Business.QuanLy
                     doanhThuDichVuQK += thongKe.DoanThu;
             }
             SoSanhThongKeDTO soSanhThongKeDTO = new SoSanhThongKeDTO();
+            if (doanhThuDichVuQK == 0)
+                doanhThuDichVuQK = doanhThuDichVuHT;
+            if (doanhThuThuePhongQK == 0)
+                doanhThuThuePhongQK = doanhThuThuePhongHT;
             soSanhThongKeDTO.TienThuePhong = (doanhThuThuePhongHT / doanhThuThuePhongQK) * 100;
             soSanhThongKeDTO.TienDichVu = (doanhThuDichVuHT / doanhThuDichVuQK) * 100;
             return soSanhThongKeDTO;

@@ -16,6 +16,7 @@ namespace QLKSProject.Models
             var account = context.UserMasters.FirstOrDefault(user =>
             user.UserName.Equals(username, StringComparison.OrdinalIgnoreCase)
             && user.UserPassword == password);
+
             return account;
         }
 

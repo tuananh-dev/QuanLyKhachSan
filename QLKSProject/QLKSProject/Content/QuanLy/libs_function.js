@@ -105,7 +105,7 @@ function loadData(idList, url) {
         error: function (data) {
 
             if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.replace("404.cshtml");
+                window.location.pathname("/SEP23Team2/404.cshtml");
             }
         }
     });
@@ -472,7 +472,7 @@ function HuyXacNhanXepPhong(url, dataInput) {
                         sessionStorage.removeItem('role');
                         sessionStorage.removeItem('accessToken');
                         sessionStorage.removeItem('fullname');
-                        window.location.href = "TrangChu.cshtml";
+                        window.location.pathname = "/SEP23Team2/TrangChu.cshtml";
                     })
 
 
@@ -536,7 +536,7 @@ function XepPhongThuNghiem(url, dataInput) {
                 '',
                 'success'
             ).then(val => {
-                window.location.href = "DatPhongThatBai.cshtml";
+                window.location.pathname = "/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml";
             })
 
 
