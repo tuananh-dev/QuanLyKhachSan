@@ -175,10 +175,10 @@ namespace QLKSProject.Business.NhanVien
                             }
                             else
                             {
-                                trangThaiDatPhong = "Không lấy được số phòng cho khách !!!";
+                                trangThaiDatPhong = "Không lấy được số phòng của loại phòng <"+nhom+"> cho khách !!!";
                                 foreach (var khachHang in lstNhomKhachHang)
                                 {
-                                    khachHang.GhiChu = "Hết phòng/ Không có phòng phù hợp";
+                                    khachHang.GhiChu = "Hết phòng loại <"+nhom+" Không có phòng phù hợp";
                                 }
                             }                               
                         }
@@ -203,12 +203,13 @@ namespace QLKSProject.Business.NhanVien
                     string account = RemoveUnicode(khachHangDTO.HoVaTen.ToLower().Replace(" ", ""));
                     string password = khachHangDTO.MaDoan.Substring(6);
                     if (!TaoTaiKhoanChoKhachHang(khachHangDTO, account, password))
-                        trangThaiDatPhong = "Lỗi tạo tài khoản cho khách hàng !!!";
+                        trangThaiDatPhong = "Đặt phòng thành công nhưng không tạo được tài khoản cho khách hàng!!!";
                     else
                     {
                         string subject = "Xác nhận đặt phòng tại Color Hotel";
                         string body = "Dear " + khachHangDTO.HoVaTen + ",<BR><BR>" + "Chúng tôi rất vui mừng vì bạn đã chọn khách sạn của chúng tôi. Danh sách khách hàng của quý khách đã được đặt phòng thành công!" + "<BR>Xin quý khách vui lòng đăng nhập bằng tài khoản và mật khẩu bên đưới để xác nhận.<BR>" + "Account: " + account + "<BR>" + "Password: " + password + "<BR>" + "<BR>Trân trọng,<BR>" + "Hotel Color";
-                        string trangThaiGuiMail = GuiMailTuDong(account, subject, body);
+                        string trangThaiGuiMail = GuiMailTuDong(khachHangDTO.Email, subject, body);
+                        khachHangDTO.GhiChu = trangThaiGuiMail;
                     }
 
                 }

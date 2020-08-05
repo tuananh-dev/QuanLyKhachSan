@@ -89,6 +89,9 @@
             var quarter = 0;
             var dsThang = [];
 
+
+
+
             if (month >= 1 && month <= 3) {
                 quarter = 1;
                 dsThang.push("Tháng 1");
@@ -110,15 +113,54 @@
                 dsThang.push("Tháng 11");
                 dsThang.push("Tháng 12");
             }
+
+
+
+            $('#thang').val(month)
+            $('#quy').val(quarter)
+            $('#namthang').val(year)
+            $('#namquy').val(year)
+
+            var txtThang = $('#thang').val();
+            var txtQuy = $('#quy').val();
+            var txtNamThang = $('#namthang').val();
+            var txtNamQuy = $('#namquy').val();
+
             //create Object Data
             var dataMonth = {
-                thang: month,
-                nam: year
+                thang: parseInt(txtThang),
+                nam: txtNamThang
             }
             var dataQuater = {
-                quy: quarter,
-                nam: year
+                quy: parseInt(txtQuy),
+                nam: txtNamQuy
             }
+
+            $('#btnXemThang').click(function () {
+
+                txtThang = $('#thang').val();
+                txtNamThang = $('#namthang').val();
+                var dataMonth = {
+                    thang: parseInt(txtThang),
+                    nam: txtNamThang
+                }
+
+                dashboard_Circle(dataMonth, tkThang);
+
+            })
+
+            $('#btnXemQuy').click(function () {
+
+                txtQuy = $('#quy').val();
+                txtNamQuy = $('#namquy').val();
+                var dataQuater = {
+                    quy: parseInt(txtQuy),
+                    nam: txtNamQuy
+                }
+
+                dashboard_ThreeBar(dataQuater, tkQuy, dsThang);
+
+            })
             var posThang = {
                 tptt: $('#tptthang'),
                 dvtt: $('#dvtthang'),
@@ -341,7 +383,7 @@
             </div>
             <!-- end sidebar menu -->
             <div class="page-content-wrapper">
-                <div class="page-content">
+                <div class="page-content" style="min-height: 887px">
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
@@ -361,7 +403,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                             <div class="card">
                                 <div class="panel-body">
-                                    <h3>Thuê Phòng Theo Tháng</h3>
+                                    <h3>Thuê Phòng Theo </h3>
                                     <div class="progressbar-xs progress-rounded progress-striped progress ng-isolate-scope active">
                                         <div class="progress-bar" role="progressbar"
                                              aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" id="progr-tptthang"></div>
@@ -373,7 +415,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                             <div class="card">
                                 <div class="panel-body">
-                                    <h3>Dịch Vụ Theo Tháng</h3>
+                                    <h3>Dịch Vụ Theo </h3>
                                     <div class="progressbar-xs progress-rounded progress-striped progress ng-isolate-scope active">
                                         <div class="progress-bar" role="progressbar"
                                              aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" id="progr-dvtthang"></div>
@@ -411,7 +453,63 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                             <div class="card card-box">
+                                <div class="card-head" style="padding:0;text-align:center">
+                                    <div class="col-lg-3 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
 
+                                            <input class="mdl-textfield__input" type="text" id="thang" value="" readonly data-id=""
+                                                   tabIndex="-1" style="padding:0">
+                                            <label for="thang" class="pull-right margin-0">
+                                                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                            </label>
+                                            <label for="thang" class="mdl-textfield__label" style="top:0;">Tháng</label>
+                                            <ul data-mdl-for="thang" class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="thangul">
+                                                <li class="mdl-menu__item">1</li>
+                                                <li class="mdl-menu__item">2</li>
+                                                <li class="mdl-menu__item">3</li>
+                                                <li class="mdl-menu__item">4</li>
+                                                <li class="mdl-menu__item">5</li>
+                                                <li class="mdl-menu__item">6</li>
+                                                <li class="mdl-menu__item">7</li>
+                                                <li class="mdl-menu__item">8</li>
+                                                <li class="mdl-menu__item">9</li>
+                                                <li class="mdl-menu__item">10</li>
+                                                <li class="mdl-menu__item">11</li>
+                                                <li class="mdl-menu__item">12</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+
+                                            <input class="mdl-textfield__input" type="text" id="namthang" value="" readonly data-id=""
+                                                   tabIndex="-1">
+                                            <label for="namthang" class="pull-right margin-0">
+                                                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                            </label>
+                                            <label for="namthang" class="mdl-textfield__label" style="top:0;">Năm</label>
+                                            <ul data-mdl-for="namthang" class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="nam-thangul">
+                                                <li class="mdl-menu__item">2010</li>
+                                                <li class="mdl-menu__item">2011</li>
+                                                <li class="mdl-menu__item">2012</li>
+                                                <li class="mdl-menu__item">2013</li>
+                                                <li class="mdl-menu__item">2014</li>
+                                                <li class="mdl-menu__item">2015</li>
+                                                <li class="mdl-menu__item">2016</li>
+                                                <li class="mdl-menu__item">2017</li>
+                                                <li class="mdl-menu__item">2018</li>
+                                                <li class="mdl-menu__item">2019</li>
+                                                <li class="mdl-menu__item">2020</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 p-t-20">
+                                        <button type="button" class="btn btn-success btn-sm m-b-10" id="btnXemThang" style="font-size: 15px;margin-top: 20px">Xem</button>
+                                    </div>
+
+
+                                </div>
                                 <div class="card-body no-padding height-9">
                                     <div class="row">
 
@@ -425,7 +523,51 @@
 
                         <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                             <div class="card card-box">
+                                <div class="card-head" style="padding:0;text-align:center">
+                                    <div class="col-lg-3 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                            <input class="mdl-textfield__input" type="text" id="quy" value="" readonly data-id=""
+                                                   tabIndex="-1" style="padding: 0;">
+                                            <label for="quy" class="pull-right margin-0">
+                                                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                            </label>
+                                            <label for="quy" class="mdl-textfield__label" style="top:0;">Quý</label>
+                                            <ul data-mdl-for="quy" class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="quyul">
+                                                <li class="mdl-menu__item">1</li>
+                                                <li class="mdl-menu__item">2</li>
+                                                <li class="mdl-menu__item">3</li>
+                                                <li class="mdl-menu__item">4</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
 
+                                            <input class="mdl-textfield__input" type="text" id="namquy" value="" readonly data-id=""
+                                                   tabIndex="-1">
+                                            <label for="namquy" class="pull-right margin-0">
+                                                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                            </label>
+                                            <label for="namquy" class="mdl-textfield__label" style="top:0;">Năm</label>
+                                            <ul data-mdl-for="namquy" class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="nam-quyul">
+                                                <li class="mdl-menu__item">2010</li>
+                                                <li class="mdl-menu__item">2011</li>
+                                                <li class="mdl-menu__item">2012</li>
+                                                <li class="mdl-menu__item">2013</li>
+                                                <li class="mdl-menu__item">2014</li>
+                                                <li class="mdl-menu__item">2015</li>
+                                                <li class="mdl-menu__item">2016</li>
+                                                <li class="mdl-menu__item">2017</li>
+                                                <li class="mdl-menu__item">2018</li>
+                                                <li class="mdl-menu__item">2019</li>
+                                                <li class="mdl-menu__item">2020</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 p-t-20">
+                                        <button type="button" class="btn btn-success btn-sm m-b-10" id="btnXemQuy" style="font-size: 15px;margin-top: 20px">Xem</button>
+                                    </div>
+                                </div>
                                 <div class="card-body no-padding height-9">
                                     <div class="row">
 
@@ -440,16 +582,16 @@
 
 
                 </div>
-            </div>
-            <div class="page-footer">
-                <div class="page-footer-inner">
-                    2018 &copy; Spice Hotel Template By
-                    <a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">RedStar Theme</a>
+                <div class="page-footer">
+                    <div class="page-footer-inner">
+                        2020 &copy; Color Hotel
+                    </div>
+                    <div class="scroll-to-top">
+                        <i class="icon-arrow-up"></i>
+                    </div>
                 </div>
-                <div class="scroll-to-top">
-                    <i class="icon-arrow-up"></i>
-                </div>
             </div>
+            
         </div>
 
         <!-- start js include path -->
