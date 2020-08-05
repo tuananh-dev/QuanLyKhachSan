@@ -11,19 +11,20 @@ namespace QLKSProject.Controllers.NhanVien
     [Authorize(Roles = "nv")]
     public class NhanVienController : ApiController
     {
+        #region Danh Sach Doan Dat Phong
         [HttpGet]
         public IHttpActionResult LayDanhSachDoan()
         {
             using (NhanVienBusiness nhanvien = new NhanVienBusiness())
             {
-                return Ok(nhanvien.LayDanhSachDoan());
+                return Ok(nhanvien.LayDanhSachDoanTheoTrangThaiDatPhong(0));
             }
-        }    
+        }
         [HttpGet]
         public IHttpActionResult DatPhongChoTungDoan([FromUri] string id)
         {
             string result = "";
-            using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
                 result = nhanVienBusiness.DatPhong(id);
             }
@@ -35,11 +36,14 @@ namespace QLKSProject.Controllers.NhanVien
         [HttpGet]
         public IHttpActionResult DatPhongChoNhieuDoan()
         {
-            using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
                 return Ok(nhanVienBusiness.DatPhongChoNhieuDoan());
-            }           
+            }
         }
+        #endregion
+
+        #region Danh Sach Doan Dat Phong That Bai
         [HttpGet]
         public IHttpActionResult LayDanhSachKhachHangTheoMaDoan([FromUri] string id)
         {
@@ -49,11 +53,11 @@ namespace QLKSProject.Controllers.NhanVien
             }
         }
         [HttpGet]
-        public IHttpActionResult LayDanhSachPhong()
+        public IHttpActionResult LayDanhSachDoanDatPhongThatBai()
         {
-            using (NhanVienBusiness quanLy = new NhanVienBusiness())
+            using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
-                return Ok(quanLy.LayDanhSachPhong());
+                return Ok(nhanVienBusiness.LayDanhSachDoanTheoTrangThaiDatPhong(-1));
             }
         }
         [HttpPost]
@@ -73,20 +77,34 @@ namespace QLKSProject.Controllers.NhanVien
                     return BadRequest(result);
             }
         }
+        [HttpDelete]
+        public IHttpActionResult XoaDoan([FromUri]string id)
+        {
+            using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            {
+                return Ok(nhanVienBusiness.XoaDoan(id));
+            }
+        }
+        #endregion
+
+        #region Danh Sach Dat Phong Thanh Cong
         [HttpGet]
         public IHttpActionResult LayDanhSachDoanDatPhongThanhCong()
         {
-            using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
                 return Ok(nhanVienBusiness.LayDanhSachDoanTheoTrangThaiDatPhong(1));
             }
         }
+        #endregion
+
+        #region Quan Ly Phong, nhan phong, tra phong
         [HttpGet]
-        public IHttpActionResult LayDanhSachDoanDatPhongThatBai()
+        public IHttpActionResult LayDanhSachPhong()
         {
-            using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
-                return Ok(nhanVienBusiness.LayDanhSachDoanTheoTrangThaiDatPhong(-1));
+                return Ok(nhanVien.LayDanhSachPhong());
             }
         }
         [HttpPost]
@@ -96,18 +114,72 @@ namespace QLKSProject.Controllers.NhanVien
                 return BadRequest();
             DateTime ngayNhan = JsonConvert.DeserializeObject<DateTime>(dynamic.NgayNhan.ToString());
             DateTime ngayTra = JsonConvert.DeserializeObject<DateTime>(dynamic.NgayTra.ToString());
-            using(NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
                 return Ok(nhanVienBusiness.LayDanhSachPhongTheoDieuKien(ngayNhan, ngayTra));
             }
         }
-        [HttpDelete]
-        public IHttpActionResult XoaDoan([FromUri]string id)
+        [HttpPost] 
+        public IHttpActionResult KhachHangNhanPhong(dynamic dynamic)
         {
-            using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
+            KhachHangNhanPhongDTO khachHang = JsonConvert.DeserializeObject<KhachHangNhanPhongDTO>(dynamic.ToString());
+            using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
-                return Ok(nhanVienBusiness.XoaDoan(id));
+                string status = nhanVien.KhachHangNhanPhong(khachHang.SoPhong, khachHang.HoVaTen, khachHang.CMND);
+                if (status.Equals("ok"))
+                    return Ok("Nhận phòng thành công!");
+                else
+                    return BadRequest(status);
             }
         }
+        [HttpPost]
+        public IHttpActionResult KhachHangTraPhong(dynamic dynamic)
+        {
+            KhachHangTraPhongDTO khachHang = JsonConvert.DeserializeObject<KhachHangTraPhongDTO>(dynamic.ToString());
+            using (NhanVienBusiness nhanVien = new NhanVienBusiness())
+            {
+                string status = nhanVien.KhachHangTraPhong(khachHang.SoPhong, khachHang.CMND);
+                if (status.Equals("ok"))
+                    return Ok("Trả phòng thành công!");
+                else
+                    return BadRequest(status);
+            }
+        }
+        #endregion
+
+        #region Dich Vu Phong
+        [HttpGet]
+        public IHttpActionResult LayDSLichSuDichVu()
+        {
+            using (NhanVienBusiness nhanVien = new NhanVienBusiness())
+            {
+                return Ok(nhanVien.LayDSLichSuDichVu());
+            }
+        }
+        [HttpPost]
+        public IHttpActionResult ThemMoiDichVuPhong([FromBody]dynamic dynamic)
+        {
+            LichSuDichVuDTO lichSuDichVuDTO = JsonConvert.DeserializeObject<LichSuDichVuDTO>(dynamic.ToString());
+            using (NhanVienBusiness nhanVien = new NhanVienBusiness())
+            {
+                if (nhanVien.ThemMoiDichVuPhong(lichSuDichVuDTO))
+                    return Ok("Thêm mới thành công!!!");
+                else
+                    return BadRequest("Thêm mới thất bại!!!");
+            }
+        }
+        [HttpDelete]
+        public IHttpActionResult XoaDichVuPhong([FromUri]int id)
+        {
+            using (NhanVienBusiness nhanVien = new NhanVienBusiness())
+            {
+                string status = nhanVien.XoaDichVuPhong(id);
+                if (status.Equals("ok"))
+                    return Ok("Xóa thành công!");
+                else
+                    return BadRequest("Xóa thất bại!");
+            }
+        }
+        #endregion
     }
 }

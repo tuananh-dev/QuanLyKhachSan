@@ -91,7 +91,7 @@ namespace QLKSProject.Business.Home
 					khachHang.LoaiKhachHang = lstThuocTinh[27].Trim().Equals("nl") ? false : true;
 					khachHang.TruongDoan = khachHang.HoVaTen.Trim().Equals(tenTruongDoan.Trim()) ? true : false;
 					khachHang.IsDelete = false;
-					khachHang.TrangThaiDatPhong = false;
+					khachHang.TrangThaiDatPhong = -1;
 					khachHang.IDPhong = -1;
 					khachHang.TrangThaiXacNhan = false;
 					lstKhachHangDTO.Add(khachHang);

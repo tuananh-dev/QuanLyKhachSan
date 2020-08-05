@@ -414,7 +414,7 @@ namespace QLKSProject.Business.QuanLy
         #region Thong Ke
         public List<ThongKeTheoThangDTO> BaoCaoThongKeTheoThang(int thang, int nam)
         {
-            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong != false).Select(kh => new KhachHangDTO
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong != -1).Select(kh => new KhachHangDTO
             {
                 ID = kh.ID,
                 HoVaTen = kh.HoVaTen,
@@ -455,7 +455,7 @@ namespace QLKSProject.Business.QuanLy
         }
         public List<ThongKeTheoQuyDTO> BaoCaoThongKeTheoQuy(int quy, int nam)
         {
-            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong != false).Select(kh => new KhachHangDTO
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong != -1).Select(kh => new KhachHangDTO
             {
                 ID = kh.ID,
                 HoVaTen = kh.HoVaTen,
