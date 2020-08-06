@@ -167,6 +167,12 @@ function loadDataDetail(edit, url, id) {
                 default:
                 // code block
             }
+        },
+        error: function (data) {
+
+            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
+                window.location.pathname("/404.cshtml");
+            }
         }
     });
 }
@@ -184,11 +190,40 @@ function loadDSKHTheoMaDoan(info, id) {
             var i = 0;
             //sessionStorage.setItem('id', val.ID);
             $.each(data, function (index, val) {
-                info.id.append('<tr class="odd gradeX"><td style="text-align:left"><input type="text" style="width:100%" id="hovaten' + i + '" name="hovaten" value="' + val.HoVaTen + '"></td><td class="center"><input type="text" style="text-align:center;width: 30px" id="nhom' + i + '" name="nhom" value="' + val.Nhom + '"></td><td class="center"><select id="truongdoan' + i + '" name="truongdoan" value="' + val.TruongDoan + '" style="width: 150px"><option value="true">Nữ</option><option value="false">Name</option></select></td ><td class="center"><input type="text" style="width: 100%" id="nguoiDD' + i + '" name="nguoiDD" value="' + val.NguoiDaiDienCuaTreEm + '"></td><td class="center"><select value="' + val.GioiTinh + '" style="width: 100px"><option value="true">Nam</option><option value="false">Nữ</option></select></td><td class="center"><input type="text" style="" id="ghichu' + i + '" name="ghichu" value="' + val.GhiChu + '"></td><td style="display: none"><input type="text" id="sdt' + i + '" name="sdt" value="' + val.SoDienThoai + '"></td><td style="display: none"><input type="email" id="email' + i + '" name="email" value="' + val.Email + '"></td><td class="center" style="display:none;"><input type="text" id="loaikh' + i + '" name="loaiKH" value="' + val.LoaiKhachHang + '"></td><td class="center" style="display: none"><input type="text" id="diachi' + i + '" name="diachi" value="' + val.DiaChi + '"></td><td class="center" style="display: none"><input type="text" id="id' + i + '" name="id" value="' + val.ID + '"></td><td class="center" style="display: none"><input type="text" id="tgnhan' + i + '" name="tgnhan" value="' + val.ThoiGianNhan + '"></td><td style="display: none" class="center"><input type="text" id="tgtra' + i + '" name="tgtra" value="' + val.ThoiGianTra + '"></td><td class="center" style="display: none"><input type="text" id="madoan' + i + '" name="madoan" value="' + val.MaDoan + '"></td><td style="display: none" class="center"><input type="text" id="isdelete' + i + '" name="isdelete" value="' + val.IsDelete + '"></td><td class="center" style="display: none"><input type="text" id="trangthaidatphong' + i + '" name="trangthaidatphong" value="' + val.TrangThaiDatPhong + '"></td><td style="display: none" class="center"><input type="text" id="idphong' + i + '" name="idphong" value="' + val.IDPhong + '"></td><td style="display: none" class="center"><input type="text" id="trangthaixacnhan' + i + '" name="trangthaixacnhan" value="' + val.TrangThaiXacNhan + '"></td></tr>');
+                var tvien = '';
+                var tdoan = '';
+                var gtNam = '';
+                var gtNu = '';
+                if (val.TruongDoan) {
+                    tdoan = 'selected';
+                    tvien = '';
+                } else {
+                    tvien = 'selected';
+                    tdoan = '';
+                }
+
+                if (val.GioiTinh) {
+                    gtNam = 'selected';
+                    gtNu = '';
+                } else {
+                    gtNu = 'selected';
+                    gtNam = '';
+                }
+                //if (val.GhiChu == null) {
+                //    val.GhiChu = '';
+                //}
+                info.id.append('<tr><td id="hovaten' + i + '" >' + val.HoVaTen + '</td>< td id="nhom' + i + '" > ' + val.Nhom + '</td ><td><select id="truongdoan' + i + '" name="truongdoan" value="' + val.TruongDoan + '"><option value="true" ' + tdoan + '>Trưởng Đoàn</option><option value="false" ' + tvien + '>Thành Viên</option></select ></td ><td id="nguoiDD' + i + '" >' + val.NguoiDaiDienCuaTreEm + '</td><td><select id="gioitinh' + i + '" name="gioitinh" value="' + val.GioiTinh + '"><option value="true" ' + gtNam + '>Nam</option><option value="false" ' + gtNu + ' >Nữ</option ></select ></td ><td><label>' + val.GhiChu + '</label></td><td style="display: none"><input type="text" id="sdt' + i + '" name="sdt" value="' + val.SoDienThoai + '"></td><td style="display: none"><input type="email" id="email' + i + '" name="email" value="' + val.Email + '"></td><td class="center" style="display:none;"><input type="text" id="loaikh' + i + '" name="loaiKH" value="' + val.LoaiKhachHang + '"></td><td class="center" style="display: none"><input type="text" id="diachi' + i + '" name="diachi" value="' + val.DiaChi + '"></td><td class="center" style="display: none"><input type="text" id="id' + i + '" name="id" value="' + val.ID + '"></td><td class="center" style="display: none"><input type="text" id="tgnhan' + i + '" name="tgnhan" value="' + val.ThoiGianNhan + '"></td><td style="display: none" class="center"><input type="text" id="tgtra' + i + '" name="tgtra" value="' + val.ThoiGianTra + '"></td><td class="center" style="display: none"><input type="text" id="madoan' + i + '" name="madoan" value="' + val.MaDoan + '"></td><td style="display: none" class="center"><input type="text" id="isdelete' + i + '" name="isdelete" value="' + val.IsDelete + '"></td><td class="center" style="display: none"><input type="text" id="trangthaidatphong' + i + '" name="trangthaidatphong" value="' + val.TrangThaiDatPhong + '"></td><td style="display: none" class="center"><input type="text" id="idphong' + i + '" name="idphong" value="' + val.IDPhong + '"></td><td style="display: none" class="center"><input type="text" id="trangthaixacnhan' + i + '" name="trangthaixacnhan" value="' + val.TrangThaiXacNhan + '"></td></tr>');
+
                 i++
             })
-            //<input type="text" style="width: 100px" id="gioitinh' + i + '" name="gioitinh" value="' + val.GioiTinh + '">
+            //'<tr class="odd gradeX"><td style="text-align:left"><input type="text" style="width:100%" id="hovaten' + i + '" name="hovaten" value="' + val.HoVaTen + '"></td><td class="center"><input type="text" style="text-align:center;width: 30px" id="nhom' + i + '" name="nhom" value="' + val.Nhom + '"></td><td class="center" ><select id="truongdoan' + i + '" name="truongdoan" value="' + val.TruongDoan + '"><option value="true" ' + tdoan + '>Trưởng Đoàn</option><option value="false" ' + tvien + '>Thành Viên</option></select></td><td class="center"><input type="text" style="width: 100%" id="nguoiDD' + i + '" name="nguoiDD" value="' + val.NguoiDaiDienCuaTreEm + '"></td><td class="center"><select id="gioitinh' + i + '" name="gioitinh" value="' + val.GioiTinh + '"><option value="true" ' + gtNam + '>Nam</option><option value="false" ' + gtNu + ' >Nữ</option ></select></td><td class="center"><label>' + val.GhiChu + '</label></td><td style="display: none"><input type="text" id="sdt' + i + '" name="sdt" value="' + val.SoDienThoai + '"></td><td style="display: none"><input type="email" id="email' + i + '" name="email" value="' + val.Email + '"></td><td class="center" style="display:none;"><input type="text" id="loaikh' + i + '" name="loaiKH" value="' + val.LoaiKhachHang + '"></td><td class="center" style="display: none"><input type="text" id="diachi' + i + '" name="diachi" value="' + val.DiaChi + '"></td><td class="center" style="display: none"><input type="text" id="id' + i + '" name="id" value="' + val.ID + '"></td><td class="center" style="display: none"><input type="text" id="tgnhan' + i + '" name="tgnhan" value="' + val.ThoiGianNhan + '"></td><td style="display: none" class="center"><input type="text" id="tgtra' + i + '" name="tgtra" value="' + val.ThoiGianTra + '"></td><td class="center" style="display: none"><input type="text" id="madoan' + i + '" name="madoan" value="' + val.MaDoan + '"></td><td style="display: none" class="center"><input type="text" id="isdelete' + i + '" name="isdelete" value="' + val.IsDelete + '"></td><td class="center" style="display: none"><input type="text" id="trangthaidatphong' + i + '" name="trangthaidatphong" value="' + val.TrangThaiDatPhong + '"></td><td style="display: none" class="center"><input type="text" id="idphong' + i + '" name="idphong" value="' + val.IDPhong + '"></td><td style="display: none" class="center"><input type="text" id="trangthaixacnhan' + i + '" name="trangthaixacnhan" value="' + val.TrangThaiXacNhan + '"></td></tr>
             sessionStorage.setItem('length', i);
+        },
+        error: function (data) {
+
+            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
+                window.location.pathname("/404.cshtml");
+            }
         }
     })
 }
@@ -199,26 +234,34 @@ function loadDSPhong(url) {
         dataType: 'json',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-            xhr.setRequestHeader("content-Type", "application/json;charset=UTF-8");
+        },
+        headers: {
+            'content-type': 'application/json',
+            'data-type': 'json',
         },
         success: function (data) {
+            console.log(data)
+            //for (i = 1; i < 7; i++) {
+            //    $.each(data, function (index, val) {
+            //        var color = "bg-success";
+            //        var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
+            //        if (val.TrangThai == -1) {
+            //            color = "bg-default";
+            //        } else if (val.TrangThai == 0) {
+            //            color = "bg-warning";
+            //        }
+            //        if (val.SoPhong.charAt(0) == '' + i) {
+            //            $('#row' + i).append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" > ' + val.SoPhong + '</span > ');
+            //        }
+            //    })
 
-            for (i = 1; i < 10; i++) {
-                $.each(data, function (index, val) {
-                    var color = "bg-success";
-                    var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
-                    if (val.TrangThai) {
-                        color = "bg-default";
-                    }
-                    if (val.SoPhong.charAt(0) == '' + i) {
-                        $('#row' + i).append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;">' + val.SoPhong + '</span>');
-                    }
-                })
+            //}
+        },
+        error: function (data) {
 
+            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
+                window.location.pathname("/404.cshtml");
             }
-
-
-
         }
     })
 }
@@ -312,6 +355,12 @@ function deleteData(info, dataInput) {
                 success: function (data, textStatus, xhr) {
 
                     loadData(info.id, info.urlLoad);
+                },
+                error: function (data) {
+
+                    if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
+                        window.location.pathname("/404.cshtml");
+                    }
                 }
             })
             Swal.fire(
@@ -522,7 +571,7 @@ function XepPhongThuNghiem(url, dataInput) {
             console.log(data);
             swal.fire(
                 'Oop...!',
-                'Thông tin chưa đúng!',
+                data.responseJSON.Message,
                 'error'
 
 

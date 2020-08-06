@@ -483,7 +483,6 @@
     <Content Include="Content\QuanLy\plugins\summernote\summernote.min.js" />
     <Content Include="Content\QuanLy\plugins\sweet-alert\sweetalert.min.css" />
     <Content Include="Content\QuanLy\plugins\sweet-alert\sweetalert.min.js" />
-    <Content Include="Content\Home\FileDSKH\Mẫu File Danh Sách Đoàn.xlsx" />
     <Content Include="Content\Home\ChiTietPhong\.gitignore" />
     <Content Include="Content\Home\ChiTietPhong\js\velocity-LICENSE.md" />
     <Content Include="Content\Home\ChiTietPhong\partials\_layout.scss" />
@@ -492,6 +491,7 @@
     <Content Include="Content\Home\ChiTietPhong\README.md" />
     <Content Include="Content\Home\ChiTietPhong\scss\style.scss" />
     <Content Include="404.cshtml" />
+    <Content Include="Content\Home\FileDSKH\mau-file-excel.zip" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
@@ -582,7 +582,6 @@
     <Content Include="Content\QuanLy\plugins\summernote\font\summernote291f.ttf" />
     <Content Include="Content\QuanLy\plugins\summernote\font\summernote291f.woff" />
     <Content Include="Content\QuanLy\plugins\summernote\font\summernoted41d.eot" />
-    <Content Include="Content\Home\FileDSKH\TemplateDSKH.xlsx" />
     <Content Include="Content\Home\fonts\.DS_Store" />
     <Content Include="Content\Home\fonts\flaticon\font\Flaticon.eot" />
     <Content Include="Content\Home\fonts\flaticon\font\Flaticon.ttf" />
