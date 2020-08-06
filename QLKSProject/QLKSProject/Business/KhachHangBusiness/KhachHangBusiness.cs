@@ -31,7 +31,7 @@ namespace QLKSProject.Business.KhachHangBusiness
                 Sophong = models.Phongs.Where(p => p.ID == kh.IDPhong).Select(p => p.SoPhong).FirstOrDefault()
             }).ToList();
             //Xap xep khach hang theo nhom
-            lstKhachHang = lstKhachHang.OrderBy(kh => kh.Nhom).ToList();
+            lstKhachHang = lstKhachHang.OrderBy(kh => kh.IDPhong).ToList();
             return lstKhachHang;
         }
         public bool XacNhanDatPhong(string maDoan)
