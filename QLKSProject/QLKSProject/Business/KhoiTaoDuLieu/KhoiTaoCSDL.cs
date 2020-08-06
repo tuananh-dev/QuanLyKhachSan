@@ -80,7 +80,7 @@ namespace QLKSProject.Business
                     khachHang.GioiTinh = (rd.Next(0, 2) == 1) ? true : false;
                     khachHang.LoaiKhachHang = (rd.Next(0, 20) == 3) ? true : false;
                     khachHang.TruongDoan = (j == 0) ? true : false;
-                    khachHang.TrangThaiDatPhong = false;
+                    khachHang.TrangThaiDatPhong = -1;
                     khachHang.IsDelete = false;
                     khachHang.IDPhong = -1;
                     models.KhachHangs.Add(khachHang);

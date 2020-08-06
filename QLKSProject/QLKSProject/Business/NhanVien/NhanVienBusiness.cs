@@ -9,23 +9,159 @@ namespace QLKSProject.Business.NhanVien
 {
     public class NhanVienBusiness : BaseBusiness
     {
-        #region Public Methods
-        public List<DoanDTO> LayDanhSachDoan()
+        #region Lay danh sach Doan, KhachHang, Phong, Xoa Doan    
+        public List<KhachHangDTO> LayDanhSachKhachHangTheoMaDoan(string maDoan)
         {
-            var lstDoan = models.Doans.Where(s => s.TrangThaiDatPhong == 0).Select(s => new DoanDTO
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == maDoan).Select(kh => new KhachHangDTO
             {
-                ID = s.ID,
-                MaDoan = s.MaDoan,
-                TenDoan = s.TenDoan,
-                NgayGui = s.NgayGui,
-                TenTruongDoan = s.TenTruongDoan,
-                ThoiGianNhan = s.ThoiGianNhan,
-                ThoiGianTra = s.ThoiGianTra,
-                IsDelete = s.IsDelete,
-                TrangThaiDatPhong = s.TrangThaiDatPhong
-            });
-            return lstDoan.ToList();
+                ID = kh.ID,
+                HoVaTen = kh.HoVaTen,
+                SoDienThoai = kh.SoDienThoai,
+                Email = kh.Email,
+                DiaChi = kh.DiaChi,
+                Nhom = kh.Nhom,
+                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = kh.ThoiGianNhan,
+                ThoiGianTra = kh.ThoiGianTra,
+                MaDoan = kh.MaDoan,
+                GioiTinh = kh.GioiTinh,
+                LoaiKhachHang = kh.LoaiKhachHang,
+                TruongDoan = kh.TruongDoan,
+                IsDelete = kh.IsDelete,
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
+            }).ToList();
+            //Xap xep khach hang theo nhom
+            lstKhachHang = lstKhachHang.OrderBy(kh => kh.Nhom).ToList();
+            return lstKhachHang;
         }
+        public List<PhongDTO> LayDanhSachPhong()
+        {
+            DateTime today = DateTime.Now;
+            var lstphong = models.Phongs.Where(e => e.IsDelete == false).Select(e => new PhongDTO
+            {
+                ID = e.ID,
+                MaPhong = e.MaPhong,
+                SoPhong = e.SoPhong,
+                LoaiPhong = e.LoaiPhong,
+                Gia = e.Gia,
+                TrangThai = e.TrangThai,
+                IsDelete = e.IsDelete
+            }).ToList();
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiXacNhan != false).Select(kh => new KhachHangDTO {
+                ID = kh.ID,
+                HoVaTen = kh.HoVaTen,
+                SoDienThoai = kh.SoDienThoai,
+                Email = kh.Email,
+                DiaChi = kh.DiaChi,
+                Nhom = kh.Nhom,
+                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = kh.ThoiGianNhan,
+                ThoiGianTra = kh.ThoiGianTra,
+                MaDoan = kh.MaDoan,
+                GioiTinh = kh.GioiTinh,
+                LoaiKhachHang = kh.LoaiKhachHang,
+                TruongDoan = kh.TruongDoan,
+                IsDelete = kh.IsDelete,
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan,
+                IDPhong = kh.IDPhong,
+                GhiChu = kh.GhiChu
+            }).ToList();
+            foreach (var phong in lstphong)
+            {
+                var lstKhachHangPhong = lstKhachHang.Where(kh => kh.IDPhong == phong.ID).ToList();
+                foreach (var kh in lstKhachHangPhong)
+                {
+                    if (kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 1)
+                        phong.TrangThai = false;
+                }
+            }
+            return lstphong;
+        }
+        public List<DoanDTO> LayDanhSachDoanTheoTrangThaiDatPhong(int trangThaiDatPhong)
+        {
+            var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == trangThaiDatPhong && d.IsDelete != true).Select(d => new DoanDTO
+            {
+                ID = d.ID,
+                MaDoan = d.MaDoan,
+                TenDoan = d.TenDoan,
+                NgayGui = d.NgayGui,
+                TenTruongDoan = d.TenTruongDoan,
+                ThoiGianNhan = d.ThoiGianNhan,
+                ThoiGianTra = d.ThoiGianTra,
+                IsDelete = d.IsDelete,
+                TrangThaiDatPhong = d.TrangThaiDatPhong,
+                TrangThaiXacNhan = d.TrangThaiXacNhan
+            }).ToList();
+            //Xap xep danh sach doan theo ngay gui
+            lstDoan = lstDoan.OrderByDescending(d => d.NgayGui).ToList();
+            return lstDoan;
+        }
+        public List<PhongDTO> LayDanhSachPhongTheoDieuKien(DateTime ngayNhan, DateTime ngayTra)
+        {
+            var lstphong = models.Phongs.Where(e => e.IsDelete == false).Select(e => new PhongDTO
+            {
+                ID = e.ID,
+                MaPhong = e.MaPhong,
+                SoPhong = e.SoPhong,
+                LoaiPhong = e.LoaiPhong,
+                Gia = e.Gia,
+                TrangThai = e.TrangThai,
+                IsDelete = e.IsDelete
+            });
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiXacNhan != false).Select(kh => new KhachHangDTO
+            {
+                ID = kh.ID,
+                HoVaTen = kh.HoVaTen,
+                SoDienThoai = kh.SoDienThoai,
+                Email = kh.Email,
+                DiaChi = kh.DiaChi,
+                Nhom = kh.Nhom,
+                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = kh.ThoiGianNhan,
+                ThoiGianTra = kh.ThoiGianTra,
+                MaDoan = kh.MaDoan,
+                GioiTinh = kh.GioiTinh,
+                LoaiKhachHang = kh.LoaiKhachHang,
+                TruongDoan = kh.TruongDoan,
+                IsDelete = kh.IsDelete,
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
+            }).ToList();
+            foreach (var phong in lstphong)
+            {
+                var lstKhachHangPhong = lstKhachHang.Where(kh => kh.IDPhong == phong.ID).ToList();
+                foreach (var kh in lstKhachHangPhong)
+                {
+                    if (kh.ThoiGianNhan.CompareTo(ngayNhan) <= 0 && kh.ThoiGianTra.CompareTo(ngayNhan) >= 1)
+                        phong.TrangThai = false;
+                    if (kh.ThoiGianNhan.CompareTo(ngayTra) <= 0 && kh.ThoiGianTra.CompareTo(ngayTra) >= 1)
+                        phong.TrangThai = false;
+                }
+            }
+            return lstphong.ToList();
+        }
+        public bool XoaDoan(string maDoan)
+        {
+            bool b = true;
+            try
+            {
+                var doan = models.Doans.Where(d => d.MaDoan == maDoan).FirstOrDefault();
+                doan.IsDelete = true;
+                doan.TrangThaiDatPhong = 0;
+                doan.TrangThaiXacNhan = false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            models.SaveChanges();
+            return b;
+        }
+        #endregion
+
+        #region Dat Phong, Tra Phong, Nhan Phong
         public string DatPhongThuNghiem(List<KhachHangDTO> khachHangDTOs)
         {
             string status = "ok";
@@ -55,7 +191,7 @@ namespace QLKSProject.Business.NhanVien
             catch (Exception)
             {
                 status = "Lỗi đặt phòng!";
-            }          
+            }
             return status;
         }
         public string DatPhong(string maDoan)
@@ -130,7 +266,7 @@ namespace QLKSProject.Business.NhanVien
                             int idPhong = LaySoPhongTrong(lstKhachHang, lstPhong, loaiPhong, lstKhachHangMaDoan[0].ThoiGianNhan, lstKhachHangMaDoan[0].ThoiGianTra);
                             if (idPhong > 0)
                             {
-                                khachHang.TrangThaiDatPhong = true;
+                                khachHang.TrangThaiDatPhong = 0;
                                 khachHang.IDPhong = idPhong;
                                 int index = lstKhachHangMaDoan.IndexOf(khachHang);
                                 lstKhachHangMaDoan[index] = khachHang;
@@ -141,7 +277,7 @@ namespace QLKSProject.Business.NhanVien
                                         phong.TrangThai = false;
                                         break;
                                     }
-                                        
+
                                 }
                             }
                             else
@@ -149,7 +285,7 @@ namespace QLKSProject.Business.NhanVien
                                 trangThaiDatPhong = "Không lấy được phòng cho khách hàng (Hết phòng) !!!";
                                 khachHang.GhiChu = "Hết phòng/ Không có phòng phù hợp";
                             }
-                                
+
                         }
                     }
                     else
@@ -162,7 +298,7 @@ namespace QLKSProject.Business.NhanVien
                             {
                                 foreach (var khachHang in lstNhomKhachHang)
                                 {
-                                    khachHang.TrangThaiDatPhong = true;
+                                    khachHang.TrangThaiDatPhong = 0;
                                     khachHang.IDPhong = idPhong;
                                     int index = lstKhachHangMaDoan.IndexOf(khachHang);
                                     lstKhachHangMaDoan[index] = khachHang;
@@ -175,12 +311,12 @@ namespace QLKSProject.Business.NhanVien
                             }
                             else
                             {
-                                trangThaiDatPhong = "Không lấy được số phòng cho khách !!!";
+                                trangThaiDatPhong = "Không lấy được số phòng của loại phòng <" + nhom + "> cho khách !!!";
                                 foreach (var khachHang in lstNhomKhachHang)
                                 {
-                                    khachHang.GhiChu = "Hết phòng/ Không có phòng phù hợp";
+                                    khachHang.GhiChu = "Hết phòng loại <" + nhom + " Không có phòng phù hợp";
                                 }
-                            }                               
+                            }
                         }
                         else
                         {
@@ -190,7 +326,7 @@ namespace QLKSProject.Business.NhanVien
                                 khachHang.GhiChu = "Số lượng thành viên trong nhóm quá 4 người !!!";
                             }
                         }
-                            
+
                     }
 
                 }
@@ -203,12 +339,13 @@ namespace QLKSProject.Business.NhanVien
                     string account = RemoveUnicode(khachHangDTO.HoVaTen.ToLower().Replace(" ", ""));
                     string password = khachHangDTO.MaDoan.Substring(6);
                     if (!TaoTaiKhoanChoKhachHang(khachHangDTO, account, password))
-                        trangThaiDatPhong = "Lỗi tạo tài khoản cho khách hàng !!!";
+                        trangThaiDatPhong = "Đặt phòng thành công nhưng không tạo được tài khoản cho khách hàng!!!";
                     else
                     {
                         string subject = "Xác nhận đặt phòng tại Color Hotel";
                         string body = "Dear " + khachHangDTO.HoVaTen + ",<BR><BR>" + "Chúng tôi rất vui mừng vì bạn đã chọn khách sạn của chúng tôi. Danh sách khách hàng của quý khách đã được đặt phòng thành công!" + "<BR>Xin quý khách vui lòng đăng nhập bằng tài khoản và mật khẩu bên đưới để xác nhận.<BR>" + "Account: " + account + "<BR>" + "Password: " + password + "<BR>" + "<BR>Trân trọng,<BR>" + "Hotel Color";
-                        string trangThaiGuiMail = GuiMailTuDong(account, subject, body);
+                        string trangThaiGuiMail = GuiMailTuDong(khachHangDTO.Email, subject, body);
+                        khachHangDTO.GhiChu = trangThaiGuiMail;
                     }
 
                 }
@@ -237,49 +374,77 @@ namespace QLKSProject.Business.NhanVien
                 if (datPhong.Equals("ok"))
                     soPhongThanhCong++;
                 else
-                    soPhongThatBai++;                
+                    soPhongThatBai++;
             }
             string result = soPhongThanhCong + "-" + soPhongThatBai;
             return result;
         }
-        public List<KhachHangDTO> LayDanhSachKhachHangTheoMaDoan(string maDoan)
+        public string KhachHangTraPhong(string soPhong, string cmnd)
         {
-            var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == maDoan).Select(kh => new KhachHangDTO
+            string status = "ok";
+            try
             {
-                ID = kh.ID,
-                HoVaTen = kh.HoVaTen,
-                SoDienThoai = kh.SoDienThoai,
-                Email = kh.Email,
-                DiaChi = kh.DiaChi,
-                Nhom = kh.Nhom,
-                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
-                ThoiGianNhan = kh.ThoiGianNhan,
-                ThoiGianTra = kh.ThoiGianTra,
-                MaDoan = kh.MaDoan,
-                GioiTinh = kh.GioiTinh,
-                LoaiKhachHang = kh.LoaiKhachHang,
-                TruongDoan = kh.TruongDoan,
-                IsDelete = kh.IsDelete,
-                TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                TrangThaiXacNhan = kh.TrangThaiXacNhan
-            }).ToList();
-
-            return lstKhachHang;
+                DateTime today = DateTime.Now;
+                var phong = models.Phongs.Where(p => p.SoPhong == soPhong).FirstOrDefault();
+                var khachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong == 1 && kh.GhiChu.Equals(cmnd)).FirstOrDefault();
+                var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == khachHang.MaDoan && kh.Nhom == khachHang.Nhom).ToList();
+                foreach (var kh in lstKhachHang)
+                {
+                    kh.ThoiGianTra = today;
+                    kh.TrangThaiDatPhong = 2;
+                    if (kh.GhiChu != null)
+                        kh.GhiChu = "Da tra phong";
+                }
+                models.SaveChanges();
+            }
+            catch (Exception)
+            {
+                status = "Trả phòng thất bại!";
+            }
+            
+            return status;
         }
-        public List<PhongDTO> LayDanhSachPhong()
+        public string KhachHangNhanPhong(string soPhong,string hovaten, string cmnd)
+        {
+            string status = "ok";
+            try
+            {
+                bool b = true;
+                DateTime today = DateTime.Now;
+                var phong = models.Phongs.Where(p => p.SoPhong.Equals(soPhong)).FirstOrDefault();
+                var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == phong.ID && kh.TrangThaiDatPhong == 0).ToList();
+                lstKhachHang = lstKhachHang.Where(kh => kh.ThoiGianNhan.CompareTo(today) >= 0 && kh.ThoiGianTra.CompareTo(today) <= 0).ToList();
+                var nguoiDaiDien = lstKhachHang.Where(kh => kh.HoVaTen.Equals(hovaten)).FirstOrDefault();
+                if (nguoiDaiDien != null)
+                {
+                    nguoiDaiDien.GhiChu = cmnd;
+                    if (lstKhachHang.Count != 0)
+                    {
+                        foreach (var kh in lstKhachHang)
+                        {
+                            kh.TrangThaiDatPhong = 1;
+                        }
+                        models.SaveChanges();
+                    }
+                    else
+                        status = "Lỗi nhận phòng!";
+                }
+                else
+                    status = "Lỗi không tìm được người đại diện";
+               
+                
+            }
+            catch (Exception)
+            {
+                status = "Lỗi nhận phòng!";
+            }
+            
+            return status;
+        }
+        public List<KhachHangDTO> LayDanhSachKhachHangCungPhong(int idPhong)
         {
             DateTime today = DateTime.Now;
-            var lstphong = models.Phongs.Where(e => e.IsDelete == false).Select(e => new PhongDTO
-            {
-                ID = e.ID,
-                MaPhong = e.MaPhong,
-                SoPhong = e.SoPhong,
-                LoaiPhong = e.LoaiPhong,
-                Gia = e.Gia,
-                TrangThai = e.TrangThai,
-                IsDelete = e.IsDelete
-            }).ToList();
-            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiXacNhan != false).Select(kh => new KhachHangDTO {
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == idPhong && kh.ThoiGianNhan.CompareTo(today) >= 0 && kh.ThoiGianTra.CompareTo(today) <= 0).Select(kh => new KhachHangDTO {
                 ID = kh.ID,
                 HoVaTen = kh.HoVaTen,
                 SoDienThoai = kh.SoDienThoai,
@@ -299,96 +464,74 @@ namespace QLKSProject.Business.NhanVien
                 IDPhong = kh.IDPhong,
                 GhiChu = kh.GhiChu
             }).ToList();
-            foreach (var phong in lstphong)
-            {
-                var lstKhachHangPhong = lstKhachHang.Where(kh => kh.IDPhong == phong.ID).ToList();
-                foreach (var kh in lstKhachHangPhong)
-                {
-                    if (kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 1)
-                        phong.TrangThai = false;
-                }
-            }
-            return lstphong;
+            return lstKhachHang;
         }
-        public List<DoanDTO> LayDanhSachDoanTheoTrangThaiDatPhong(int trangThaiDatPhong)
+        #endregion
+
+        #region DichVuPhong
+        public List<LichSuDichVuDTO> LayDSLichSuDichVu()
         {
-            var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == trangThaiDatPhong && d.IsDelete != true).Select(d => new DoanDTO
-            {
-                ID = d.ID,
-                MaDoan = d.MaDoan,
-                TenDoan = d.TenDoan,
-                NgayGui = d.NgayGui,
-                TenTruongDoan = d.TenTruongDoan,
-                ThoiGianNhan = d.ThoiGianNhan,
-                ThoiGianTra = d.ThoiGianTra,
-                IsDelete = d.IsDelete,
-                TrangThaiDatPhong = d.TrangThaiDatPhong,
-                TrangThaiXacNhan = d.TrangThaiXacNhan
+            var lstLichSuDichVu = models.LichSuDichVus.Where(l => l.IsDelete != true).Select(l => new LichSuDichVuDTO {
+                ID = l.ID,
+                IDPhong = l.IDPhong,
+                SoPhong = l.SoPhong,
+                IDDichVu = l.IDDichVu,
+                TenDichVu = l.TenDichVu,
+                NgayGoiDichVu = l.NgayGoiDichVu,
+                GhiChu = l.GhiChu,
+                IsDelete = l.IsDelete,
+                IDKhachHang = l.IDKhachHang,
+                HoVaTenKhachHang = l.HoVaTenKhachHang
             }).ToList();
-            return lstDoan;
+            lstLichSuDichVu = lstLichSuDichVu.OrderBy(d => d.NgayGoiDichVu).ToList();
+            return lstLichSuDichVu;
         }
-        public List<PhongDTO> LayDanhSachPhongTheoDieuKien(DateTime ngayNhan, DateTime ngayTra)
+        public bool ThemMoiDichVuPhong(LichSuDichVuDTO dichVuPhong)
         {
-            var lstphong = models.Phongs.Where(e => e.IsDelete == false).Select(e => new PhongDTO
-            {
-                ID = e.ID,
-                MaPhong = e.MaPhong,
-                SoPhong = e.SoPhong,
-                LoaiPhong = e.LoaiPhong,
-                Gia = e.Gia,
-                TrangThai = e.TrangThai,
-                IsDelete = e.IsDelete
-            });
-            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiXacNhan != false).Select(kh => new KhachHangDTO
-            {
-                ID = kh.ID,
-                HoVaTen = kh.HoVaTen,
-                SoDienThoai = kh.SoDienThoai,
-                Email = kh.Email,
-                DiaChi = kh.DiaChi,
-                Nhom = kh.Nhom,
-                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
-                ThoiGianNhan = kh.ThoiGianNhan,
-                ThoiGianTra = kh.ThoiGianTra,
-                MaDoan = kh.MaDoan,
-                GioiTinh = kh.GioiTinh,
-                LoaiKhachHang = kh.LoaiKhachHang,
-                TruongDoan = kh.TruongDoan,
-                IsDelete = kh.IsDelete,
-                TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                TrangThaiXacNhan = kh.TrangThaiXacNhan
-            }).ToList();
-            foreach (var phong in lstphong)
-            {
-                var lstKhachHangPhong = lstKhachHang.Where(kh => kh.IDPhong == phong.ID).ToList();
-                foreach (var kh in lstKhachHangPhong)
-                {
-                    if (kh.ThoiGianNhan.CompareTo(ngayNhan) <= 0 && kh.ThoiGianTra.CompareTo(ngayNhan) >= 1)
-                        phong.TrangThai = false;
-                    if (kh.ThoiGianNhan.CompareTo(ngayTra) <= 0 && kh.ThoiGianTra.CompareTo(ngayTra) >= 1)
-                        phong.TrangThai = false;
-                }
-            }
-            return lstphong.ToList();
-        }
-        public bool XoaDoan(string maDoan)
-        {
-            bool b = true;
             try
             {
-                var doan = models.Doans.Where(d => d.MaDoan == maDoan).FirstOrDefault();
-                doan.IsDelete = true;
-                doan.TrangThaiDatPhong = 0;
-                doan.TrangThaiXacNhan = false;
+                LichSuDichVu lichSuDichVu = new LichSuDichVu();
+                lichSuDichVu.IDDichVu = dichVuPhong.IDDichVu;
+                lichSuDichVu.IDKhachHang = dichVuPhong.IDKhachHang;
+                lichSuDichVu.IDPhong = dichVuPhong.IDPhong;
+                lichSuDichVu.IsDelete = false;
+                lichSuDichVu.NgayGoiDichVu = dichVuPhong.NgayGoiDichVu;
+                lichSuDichVu.SoPhong = dichVuPhong.SoPhong;
+                lichSuDichVu.TenDichVu = dichVuPhong.TenDichVu;
+                lichSuDichVu.HoVaTenKhachHang = dichVuPhong.HoVaTenKhachHang;
+                lichSuDichVu.GhiChu = dichVuPhong.GhiChu;
+                models.LichSuDichVus.Add(lichSuDichVu);
+                models.SaveChanges();
+                return true;
             }
             catch (Exception)
             {
                 return false;
             }
-            models.SaveChanges();
-            return b;
+            
+        }
+        public string XoaDichVuPhong(int id)
+        {
+            string status = "ok";
+            var dichVuPhong = models.LichSuDichVus.Where(d => d.ID == id).FirstOrDefault();
+            try
+            {
+                if (dichVuPhong == null)
+                    status = "Không tìm thấy lịch sử dịch vụ của đối tượng được chọn!!!";
+                else
+                {
+                    dichVuPhong.IsDelete = true;
+                    models.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                status = "Lỗi không xóa được Lịch sử dịch vụ!!!";
+            }
+            return status;
         }
         #endregion
+
         #region private methods
         private void LuuDanhSachKhachHangDatPhongThanhCong(List<KhachHangDTO> khachHangDTOs)
         {
@@ -408,6 +551,7 @@ namespace QLKSProject.Business.NhanVien
             {
                 lstKhachHang[i].GhiChu = khachHangDTOs[i].GhiChu;
                 lstKhachHang[i].IDPhong = -1;
+                lstKhachHang[i].TrangThaiDatPhong = -1;
             }
         }
 
@@ -510,29 +654,8 @@ namespace QLKSProject.Business.NhanVien
             return soPhong;
 
         }
-        private string RemoveUnicode(string text)
-        {
-            string[] arr1 = new string[] { "á", "à", "ả", "ã", "ạ", "â", "ấ", "ầ", "ẩ", "ẫ", "ậ", "ă", "ắ", "ằ", "ẳ", "ẵ", "ặ",
-                                            "đ","é","è","ẻ","ẽ","ẹ","ê","ế","ề","ể","ễ","ệ","í","ì","ỉ","ĩ","ị",
-                                            "ó","ò","ỏ","õ","ọ","ô","ố","ồ","ổ","ỗ","ộ","ơ","ớ","ờ","ở","ỡ","ợ",
-                                            "ú","ù","ủ","ũ","ụ","ư","ứ","ừ","ử","ữ","ự","ý","ỳ","ỷ","ỹ","ỵ",};
-            string[] arr2 = new string[] { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a",
-                                            "d","e","e","e","e","e","e","e","e","e","e","e","i","i","i","i","i",
-                                            "o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o",
-                                            "u","u","u","u","u","u","u","u","u","u","u","y","y","y","y","y",};
-            for (int i = 0; i < arr1.Length; i++)
-            {
-                text = text.Replace(arr1[i], arr2[i]);
-                text = text.Replace(arr1[i].ToUpper(), arr2[i].ToUpper());
-            }
-            return text;
-        }
+        
         
         #endregion
-        /*using (StreamWriter sw = new StreamWriter("C:\\Users\\TuA\\Documents\\1. VLU\\textfile.txt"))
-		  {
-		    for(int i = 0; i<lstThuocTinh.Length;i++)
-				sw.WriteLine(lstThuocTinh[i]+i);
-          }*/
     }
 }

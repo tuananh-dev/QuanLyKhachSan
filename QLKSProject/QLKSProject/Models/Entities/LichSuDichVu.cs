@@ -16,7 +16,13 @@ namespace QLKSProject.Models.Entities
         public int IDPhong { get; set; }
 
         [Required]
+        public string SoPhong { get; set; }
+
+        [Required]
         public int IDDichVu { get; set; }
+
+        [Required]
+        public string TenDichVu { get; set; }
 
         [Required]
         [Column(TypeName = "datetime2")]
@@ -25,7 +31,13 @@ namespace QLKSProject.Models.Entities
         public string GhiChu { get; set; }
 
         [Required]
+        public bool IsDelete { get; set; }
+
+        [Required]
         public int IDKhachHang { get; set; }
+
+        [Required]
+        public string HoVaTenKhachHang { get; set; }
 
         [ForeignKey("IDPhong")]
         public virtual Phong Phong_IDPhong { get; set; }

@@ -87,11 +87,11 @@ namespace QLKSProject.Business.Home
 					khachHang.ThoiGianNhan = thoiGianNhan;
 					khachHang.ThoiGianTra = thoiGianTra;
 					khachHang.MaDoan = maDoan;
-					khachHang.GioiTinh = lstThuocTinh[35].Trim().Equals("nu") ? false : true;
+					khachHang.GioiTinh = RemoveUnicode(lstThuocTinh[35].ToLower().Replace(" ", "")).Equals("nu") ? false : true;
 					khachHang.LoaiKhachHang = lstThuocTinh[27].Trim().Equals("nl") ? false : true;
 					khachHang.TruongDoan = khachHang.HoVaTen.Trim().Equals(tenTruongDoan.Trim()) ? true : false;
 					khachHang.IsDelete = false;
-					khachHang.TrangThaiDatPhong = false;
+					khachHang.TrangThaiDatPhong = -1;
 					khachHang.IDPhong = -1;
 					khachHang.TrangThaiXacNhan = false;
 					lstKhachHangDTO.Add(khachHang);

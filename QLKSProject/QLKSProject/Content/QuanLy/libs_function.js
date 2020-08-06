@@ -23,7 +23,7 @@ function loadData(idList, url) {
 
     $.ajax({
         type: 'GET',
-        url: '/api/' + url,
+        url: '/SEP23Team2/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
@@ -116,7 +116,7 @@ function loadDataDetail(edit, url, id) {
 
     $.ajax({
         type: 'GET',
-        url: '/api/' + url + id,
+        url: '/SEP23Team2/api/' + url + id,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
             xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
@@ -180,7 +180,7 @@ function loadDataDetail(edit, url, id) {
 function loadDSKHTheoMaDoan(info, id) {
     $.ajax({
         type: 'GET',
-        url: '/api/' + info.url + id,
+        url: '/SEP23Team2/api/' + info.url + id,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
@@ -212,11 +212,12 @@ function loadDSKHTheoMaDoan(info, id) {
                 //if (val.GhiChu == null) {
                 //    val.GhiChu = '';
                 //}
-                info.id.append('<tr><td id="hovaten' + i + '" >' + val.HoVaTen + '</td>< td id="nhom' + i + '" > ' + val.Nhom + '</td ><td><select id="truongdoan' + i + '" name="truongdoan" value="' + val.TruongDoan + '"><option value="true" ' + tdoan + '>Trưởng Đoàn</option><option value="false" ' + tvien + '>Thành Viên</option></select ></td ><td id="nguoiDD' + i + '" >' + val.NguoiDaiDienCuaTreEm + '</td><td><select id="gioitinh' + i + '" name="gioitinh" value="' + val.GioiTinh + '"><option value="true" ' + gtNam + '>Nam</option><option value="false" ' + gtNu + ' >Nữ</option ></select ></td ><td><label>' + val.GhiChu + '</label></td><td style="display: none"><input type="text" id="sdt' + i + '" name="sdt" value="' + val.SoDienThoai + '"></td><td style="display: none"><input type="email" id="email' + i + '" name="email" value="' + val.Email + '"></td><td class="center" style="display:none;"><input type="text" id="loaikh' + i + '" name="loaiKH" value="' + val.LoaiKhachHang + '"></td><td class="center" style="display: none"><input type="text" id="diachi' + i + '" name="diachi" value="' + val.DiaChi + '"></td><td class="center" style="display: none"><input type="text" id="id' + i + '" name="id" value="' + val.ID + '"></td><td class="center" style="display: none"><input type="text" id="tgnhan' + i + '" name="tgnhan" value="' + val.ThoiGianNhan + '"></td><td style="display: none" class="center"><input type="text" id="tgtra' + i + '" name="tgtra" value="' + val.ThoiGianTra + '"></td><td class="center" style="display: none"><input type="text" id="madoan' + i + '" name="madoan" value="' + val.MaDoan + '"></td><td style="display: none" class="center"><input type="text" id="isdelete' + i + '" name="isdelete" value="' + val.IsDelete + '"></td><td class="center" style="display: none"><input type="text" id="trangthaidatphong' + i + '" name="trangthaidatphong" value="' + val.TrangThaiDatPhong + '"></td><td style="display: none" class="center"><input type="text" id="idphong' + i + '" name="idphong" value="' + val.IDPhong + '"></td><td style="display: none" class="center"><input type="text" id="trangthaixacnhan' + i + '" name="trangthaixacnhan" value="' + val.TrangThaiXacNhan + '"></td></tr>');
+                info.id.append('<tr class="odd gradeX"><td style="text-align:left"><input type="text" style="width:100%" id="hovaten' + i + '" name="hovaten" value="' + val.HoVaTen + '"></td><td class="center"><input type="number" pattern="-?[0-9]*(\.[0-9]+)?" style="text-align:center;width: 50px" id="nhom' + i + '" name="nhom" value="' + val.Nhom + '"></td><td class="center" ><select id="truongdoan' + i + '" name="truongdoan" value="' + val.TruongDoan + '"><option value="true" ' + tdoan + '>Trưởng Đoàn</option><option value="false" ' + tvien + '>Thành Viên</option></select></td><td class="center"><input type="text" style="width: 100%" id="nguoiDD' + i + '" name="nguoiDD" value="' + val.NguoiDaiDienCuaTreEm + '"></td><td class="center"><select id="gioitinh' + i + '" name="gioitinh" value="' + val.GioiTinh + '"><option value="true" ' + gtNam + '>Nam</option><option value="false" ' + gtNu + ' >Nữ</option ></select></td><td><label>' + val.GhiChu + '</label></td><td style="display: none"><input type="text" id="sdt' + i + '" name="sdt" value="' + val.SoDienThoai + '"></td><td style="display: none"><input type="email" id="email' + i + '" name="email" value="' + val.Email + '"></td><td class="center" style="display:none;"><input type="text" id="loaikh' + i + '" name="loaiKH" value="' + val.LoaiKhachHang + '"></td><td class="center" style="display: none"><input type="text" id="diachi' + i + '" name="diachi" value="' + val.DiaChi + '"></td><td class="center" style="display: none"><input type="text" id="id' + i + '" name="id" value="' + val.ID + '"></td><td class="center" style="display: none"><input type="text" id="tgnhan' + i + '" name="tgnhan" value="' + val.ThoiGianNhan + '"></td><td style="display: none" class="center"><input type="text" id="tgtra' + i + '" name="tgtra" value="' + val.ThoiGianTra + '"></td><td class="center" style="display: none"><input type="text" id="madoan' + i + '" name="madoan" value="' + val.MaDoan + '"></td><td style="display: none" class="center"><input type="text" id="isdelete' + i + '" name="isdelete" value="' + val.IsDelete + '"></td><td class="center" style="display: none"><input type="text" id="trangthaidatphong' + i + '" name="trangthaidatphong" value="' + val.TrangThaiDatPhong + '"></td><td style="display: none" class="center"><input type="text" id="idphong' + i + '" name="idphong" value="' + val.IDPhong + '"></td><td style="display: none" class="center"><input type="text" id="trangthaixacnhan' + i + '" name="trangthaixacnhan" value="' + val.TrangThaiXacNhan + '"></td></tr>');
+
 
                 i++
             })
-            //'<tr class="odd gradeX"><td style="text-align:left"><input type="text" style="width:100%" id="hovaten' + i + '" name="hovaten" value="' + val.HoVaTen + '"></td><td class="center"><input type="text" style="text-align:center;width: 30px" id="nhom' + i + '" name="nhom" value="' + val.Nhom + '"></td><td class="center" ><select id="truongdoan' + i + '" name="truongdoan" value="' + val.TruongDoan + '"><option value="true" ' + tdoan + '>Trưởng Đoàn</option><option value="false" ' + tvien + '>Thành Viên</option></select></td><td class="center"><input type="text" style="width: 100%" id="nguoiDD' + i + '" name="nguoiDD" value="' + val.NguoiDaiDienCuaTreEm + '"></td><td class="center"><select id="gioitinh' + i + '" name="gioitinh" value="' + val.GioiTinh + '"><option value="true" ' + gtNam + '>Nam</option><option value="false" ' + gtNu + ' >Nữ</option ></select></td><td class="center"><label>' + val.GhiChu + '</label></td><td style="display: none"><input type="text" id="sdt' + i + '" name="sdt" value="' + val.SoDienThoai + '"></td><td style="display: none"><input type="email" id="email' + i + '" name="email" value="' + val.Email + '"></td><td class="center" style="display:none;"><input type="text" id="loaikh' + i + '" name="loaiKH" value="' + val.LoaiKhachHang + '"></td><td class="center" style="display: none"><input type="text" id="diachi' + i + '" name="diachi" value="' + val.DiaChi + '"></td><td class="center" style="display: none"><input type="text" id="id' + i + '" name="id" value="' + val.ID + '"></td><td class="center" style="display: none"><input type="text" id="tgnhan' + i + '" name="tgnhan" value="' + val.ThoiGianNhan + '"></td><td style="display: none" class="center"><input type="text" id="tgtra' + i + '" name="tgtra" value="' + val.ThoiGianTra + '"></td><td class="center" style="display: none"><input type="text" id="madoan' + i + '" name="madoan" value="' + val.MaDoan + '"></td><td style="display: none" class="center"><input type="text" id="isdelete' + i + '" name="isdelete" value="' + val.IsDelete + '"></td><td class="center" style="display: none"><input type="text" id="trangthaidatphong' + i + '" name="trangthaidatphong" value="' + val.TrangThaiDatPhong + '"></td><td style="display: none" class="center"><input type="text" id="idphong' + i + '" name="idphong" value="' + val.IDPhong + '"></td><td style="display: none" class="center"><input type="text" id="trangthaixacnhan' + i + '" name="trangthaixacnhan" value="' + val.TrangThaiXacNhan + '"></td></tr>
+
             sessionStorage.setItem('length', i);
         },
         error: function (data) {
@@ -230,7 +231,7 @@ function loadDSKHTheoMaDoan(info, id) {
 function loadDSPhong(url) {
     $.ajax({
         type: 'GET',
-        url: '/api/' + url,
+        url: '/SEP23Team2/api/' + url,
         dataType: 'json',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
@@ -240,22 +241,22 @@ function loadDSPhong(url) {
             'data-type': 'json',
         },
         success: function (data) {
-            console.log(data)
-            //for (i = 1; i < 7; i++) {
-            //    $.each(data, function (index, val) {
-            //        var color = "bg-success";
-            //        var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
-            //        if (val.TrangThai == -1) {
-            //            color = "bg-default";
-            //        } else if (val.TrangThai == 0) {
-            //            color = "bg-warning";
-            //        }
-            //        if (val.SoPhong.charAt(0) == '' + i) {
-            //            $('#row' + i).append('<span class="info-box ' + color + '" style="font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" > ' + val.SoPhong + '</span > ');
-            //        }
-            //    })
 
-            //}
+            for (i = 1; i < 10; i++) {
+                $.each(data, function (index, val) {
+                    var color = "bg-success";
+                    var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
+                    if (val.TrangThai == -1) {
+                        color = "bg-default";
+                    } else if (val.TrangThai == 0) {
+                        color = "bg-warning";
+                    }
+                    if (val.SoPhong.charAt(0) == '' + i) {
+                        $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;"> ' + val.SoPhong + '</button> ');
+                    }
+                })
+
+            }
         },
         error: function (data) {
 
@@ -269,7 +270,7 @@ function loadDSPhong(url) {
 function addData(info, dataInput) {
     $.ajax({
         type: 'POST',
-        url: '/api/' + info.url,
+        url: '/SEP23Team2/api/' + info.url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
@@ -293,6 +294,8 @@ function addData(info, dataInput) {
                 icon: 'error',
                 title: 'Oops...',
                 text: data.responseJSON.Message
+            }).then(value => {
+                window.location.reload();
             })
         }
 
@@ -301,7 +304,7 @@ function addData(info, dataInput) {
 
 function editData(info, dataInput) {
     $.ajax({
-        url: '/api/' + info.url,
+        url: '/SEP23Team2/api/' + info.url,
         method: 'PUT',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
@@ -345,7 +348,7 @@ function deleteData(info, dataInput) {
         if (result.value) {
 
             $.ajax({
-                url: '/api/' + info.url + dataInput,
+                url: '/SEP23Team2/api/' + info.url + dataInput,
                 method: 'DELETE',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
@@ -387,7 +390,7 @@ function deleteData(info, dataInput) {
 //        if (result.value) {
 
 //            $.ajax({
-//                url: '/api/' + info.url,
+//                url: '/SEP23Team2/api/' + info.url,
 //                method: 'DELETE',
 //                beforeSend: function (xhr) {
 //                    xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
@@ -411,7 +414,7 @@ function deleteData(info, dataInput) {
 function XepPhong(info, url, dataId) {
     $.ajax({
         type: 'GET',
-        url: '/api/' + url + dataId,
+        url: '/SEP23Team2/api/' + url + dataId,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
@@ -440,7 +443,7 @@ function XepPhong(info, url, dataId) {
 function XepPhongTatCa(info, url) {
     $.ajax({
         type: 'GET',
-        url: '/api/' + url,
+        url: '/SEP23Team2/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
@@ -484,7 +487,7 @@ function HuyXacNhanXepPhong(url, dataInput) {
             $('#cancel').css("display", "none");
             $('#loadingcancel').css("display", "block");
             $.ajax({
-                url: '/api/' + url + dataInput,
+                url: '/SEP23Team2/api/' + url + dataInput,
                 method: 'GET',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
@@ -518,7 +521,7 @@ function formatNumber(num) {
 function XacNhanDatPhong() {
     $.ajax({
         type: 'GET',
-        url: '/api/KhachHang/XacNhanDatPhong/' + sessionStorage.getItem('madoan'),
+        url: '/SEP23Team2/api/KhachHang/XacNhanDatPhong/' + sessionStorage.getItem('madoan'),
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
 
@@ -549,7 +552,7 @@ function XacNhanDatPhong() {
 
 function XepPhongThuNghiem(url, dataInput) {
     $.ajax({
-        url: '/api/' + url,
+        url: '/SEP23Team2/api/' + url,
         method: 'POST',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
@@ -573,9 +576,11 @@ function XepPhongThuNghiem(url, dataInput) {
                 'Oop...!',
                 data.responseJSON.Message,
                 'error'
+            ).then(() => {
+                $('#luu').css('display', 'block');
+                $('#loading').css('display', 'none');
+            })
 
-
-            );
         }
 
     })

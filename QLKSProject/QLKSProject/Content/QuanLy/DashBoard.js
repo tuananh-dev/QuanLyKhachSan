@@ -74,7 +74,7 @@ function dashboard_Circle(data, url) {
     var thang = data.thang;
     $.ajax({
         type: 'POST',
-        url: '/api/' + url,
+        url: '/SEP23Team2/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
@@ -117,7 +117,7 @@ function dashboard_ThreeBar(data, url, thang) {
     var quater = data.quy;
     $.ajax({
         type: 'POST',
-        url: '/api/' + url,
+        url: '/SEP23Team2/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
             xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
@@ -166,7 +166,7 @@ function dashboard_ThreeBar(data, url, thang) {
 function dashboard_FourBox(dataInput, url, position) {
     $.ajax({
         type: 'POST',
-        url: '/api/' + url,
+        url: '/SEP23Team2/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },

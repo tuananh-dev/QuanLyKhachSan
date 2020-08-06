@@ -1,51 +1,35 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <!-- BEGIN HEAD -->
-<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/all_rooms.cshtml by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:32 GMT -->
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.cshtml by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:35:49 GMT -->
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta name="description" content="Responsive Admin Template" />
-    <meta name="author" content="SmartUniversity" />
     <title>Color Hotel</title>
     <!-- icons -->
     <link href="~/Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!--bootstrap -->
     <link href="~/Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/plugins/summernote/summernote.css" rel="stylesheet" />
+    <!-- morris chart -->
+    <link href="~/Content/QuanLy/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
     <!-- Material Design Lite CSS -->
-    <link rel="stylesheet" href="~/Content/QuanLy/plugins/material/material.min.css">
-    <link rel="stylesheet" href="~/Content/QuanLy/css/material_style.css">
-    <!-- data tables -->
-    <link href="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet"
-          type="text/css" />
+    <link href="~/Content/QuanLy/plugins/material/material.min.css" rel="stylesheet" />
+    <link href="~/Content/QuanLy/css/material_style.css" rel="stylesheet" />
     <!-- animation -->
-    <link href="~/Content/QuanLy/css/pages/animate_page.css" rel="stylesheet">
+    <link href="~/Content/QuanLy/css/pages/animate_page.css" rel="stylesheet" />
     <!-- Template Styles -->
-    <link href="~/Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
+
     <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script src="~/Content/QuanLy/libs_function.js"></script>
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            checkSession();
-
-
-
-
-            var layDSPhong = 'NhanVien/LayDanhSachPhong';
-
-            loadDSPhong(layDSPhong);
-
-        });
-    </script>
+    
 </head>
 <!-- END HEAD -->
 
@@ -57,10 +41,21 @@
                 <!-- logo start -->
                 <div class="page-logo">
                     <a href="~/TrangChu.cshtml">
+                        @*<img alt="" src="~/Content/QuanLy/img/logo.png">*@
                         <span class="logo-default">Color Hotel</span>
                     </a>
                 </div>
-                
+                <!-- logo end -->
+                <!--<ul class="nav navbar-nav navbar-left in">
+                    <li><a href="../Phong_NhanVien/DanhSachPhong.cshtml" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
+                </ul>
+                <form class="search-form-opened" action="#" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search..." name="query">
+
+                    </div>
+                </form>-->
+                <!-- start mobile menu -->
                 <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
                    data-target=".navbar-collapse">
                     <span></span>
@@ -69,20 +64,20 @@
                 <!-- start header menu -->
                 <div class="top-menu">
                     <ul class="nav navbar-nav pull-right">
-                       
+                        <!-- start notification dropdown -->
+                        <!-- end notification dropdown -->
+                        <!-- start message dropdown -->
+                        <!-- end message dropdown -->
+                        <!-- start manage user dropdown -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                data-close-others="true">
                                 <img alt="" class="img-circle " src="~/Content/QuanLy/img/dp.jpg" />
-                                <span class="username username-hide-on-mobile nameuser"> John </span>
+                                <span class="username username-hide-on-mobile nameuser">  </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-user"></i> Profile
-                                    </a>
-                                </li>
+
 
                                 <li class="divider"> </li>
 
@@ -121,8 +116,8 @@
                                         </div>
                                     </div>
                                     <div class="profile-usertitle">
-                                        <div class="sidebar-userpic-name nameuser"> </div>
-                                        <div class="profile-usertitle-job" id="roleuser"> </div>
+                                        <div class="sidebar-userpic-name nameuser"></div>
+                                        <div class="profile-usertitle-job" id="roleuser"></div>
                                     </div>
 
                                 </div>
@@ -130,8 +125,9 @@
 
 
 
+
                             <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
+                                <a href="/SEP23Team2/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Phòng</span>
                                     <span class="arrow"></span>
@@ -139,7 +135,7 @@
 
                             </li>
                             <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
+                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đặt Phòng Thành Công</span>
                                     <span class="arrow"></span>
@@ -147,7 +143,7 @@
 
                             </li>
                             <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
+                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đặt Phòng Thất Bại</span>
                                     <span class="arrow"></span>
@@ -155,7 +151,7 @@
 
                             </li>
                             <li class="nav-item active nv">
-                                <a href="/Views/NhanVienViews/Doan/Doan.cshtml" class="nav-link nav-toggle">
+                                <a href="/SEP23Team2/Views/NhanVienViews/Doan/Doan.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đoàn</span>
                                     <span class="arrow"></span>
@@ -168,7 +164,6 @@
                 </div>
             </div>
             <!-- end sidebar menu -->
-            <!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content" style="min-height: 700px">
                     <div class="page-bar">
@@ -178,7 +173,7 @@
                             </div>
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
-                                    
+
                                     <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
                                                                        href="DanhSachPhong.cshtml">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
@@ -188,30 +183,30 @@
                         </div>
                     </div>
                     <!--<div class="row" style="border: 1px solid red;width: 100%">
-                        <div class="col-md-1 col-md-1 col-12" style="border: 1px solid black; ">
-                            <span class="info-box bg-success" style="font-weight: 700;font-size: 28px;padding: 20px 20px;">101</span>
+                <div class="col-md-1 col-md-1 col-12" style="border: 1px solid black; ">
+                    <span class="info-box bg-success" style="font-weight: 700;font-size: 28px;padding: 20px 20px;">101</span>
 
-                        </div>
-                    </div>-->
+                </div>
+            </div>-->
                     <div id="dstang">
 
-                        <h3 style="display: block;margin-left: 15px;"> Tầng 1</h3>
+                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 1</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row1"></div>
-                        <h3 style="display: block;margin-left: 15px;"> Tầng 2</h3>
+                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 2</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row2"></div>
-                        <h3 style="display: block;margin-left: 15px;"> Tầng 3</h3>
+                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 3</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row3"></div>
-                        <h3 style="display: block;margin-left: 15px;"> Tầng 4</h3>
+                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 4</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row4"></div>
-                        <h3 style="display: block;margin-left: 15px;"> Tầng 5</h3>
+                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 5</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row5"></div>
-                        <h3 style="display: block;margin-left: 15px;"> Tầng 6</h3>
+                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 6</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row6"></div>
-                        <h3 style="display: block;margin-left: 15px;"> Tầng 7</h3>
+                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 7</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row7"></div>
-                        <h3 style="display: block;margin-left: 15px;"> Tầng 8</h3>
+                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 8</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row8"></div>
-                        <h3 style="display: block;margin-left: 15px;"> Tầng 9</h3>
+                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 9</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row9"></div>
 
 
@@ -221,40 +216,51 @@
 
                     <!--<div class="content" style="margin:0;padding:0;" id="dsphong">
 
-                        <h3>Tầng 1</h3>
-                        <div class="row" id="row1" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 2</h3>
-                        <div class="row" id="row2" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 3</h3>
-                        <div class="row" id="row3" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 4</h3>
-                        <div class="row" id="row4" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 5</h3>
-                        <div class="row" id="row5" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 6</h3>
-                        <div class="row" id="row6" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 7</h3>
-                        <div class="row" id="row7" style="margin:0;padding:0;"></div>
+                <h3>Tầng 1</h3>
+                <div class="row" id="row1" style="margin:0;padding:0;"></div>
+                <h3>Tầng 2</h3>
+                <div class="row" id="row2" style="margin:0;padding:0;"></div>
+                <h3>Tầng 3</h3>
+                <div class="row" id="row3" style="margin:0;padding:0;"></div>
+                <h3>Tầng 4</h3>
+                <div class="row" id="row4" style="margin:0;padding:0;"></div>
+                <h3>Tầng 5</h3>
+                <div class="row" id="row5" style="margin:0;padding:0;"></div>
+                <h3>Tầng 6</h3>
+                <div class="row" id="row6" style="margin:0;padding:0;"></div>
+                <h3>Tầng 7</h3>
+                <div class="row" id="row7" style="margin:0;padding:0;"></div>
 
 
 
-                    </div>-->
+            </div>-->
                 </div>
             </div>
-            <!-- end page content -->
-        </div>
-        <!-- end page container -->
-        <!-- start footer -->
-        <div class="page-footer">
-            <div class="page-footer-inner">
-                2020 &copy; Hotel Color
 
+
+
+
+
+
+
+
+
+
+
+            <!-- Modal -->
+            <!-- end page container -->
+            <!-- start footer -->
+            <div class="page-footer">
+                <div class="page-footer-inner">
+                    2020 &copy; Hotel Color
+
+                </div>
+                <div class="scroll-to-top">
+                    <i class="icon-arrow-up"></i>
+                </div>
             </div>
-            <div class="scroll-to-top">
-                <i class="icon-arrow-up"></i>
-            </div>
+            <!-- end footer -->
         </div>
-        <!-- end footer -->
     </div>
     <!-- start js include path -->
     <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
@@ -263,21 +269,37 @@
     <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- bootstrap -->
     <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/Content/QuanLy/js/pages/sparkline/sparkline-data.js"></script>
     <!-- Common js-->
     <script src="~/Content/QuanLy/js/app.js"></script>
     <script src="~/Content/QuanLy/js/layout.js"></script>
     <script src="~/Content/QuanLy/js/theme-color.js"></script>
-    <!-- data tables -->
-    <!--<script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
-    <!--<script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>-->
-    <!--<script src="~/Content/QuanLy/js/pages/table/table_data.js"></script>-->
-    <!-- Material -->
+    <!-- material -->
     <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
     <!-- animation -->
     <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
     <!-- end js include path -->
+
+
+
+    <script src="~/Content/QuanLy/js/pages/material-loading/material-loading.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            checkSession();
+
+            var layDSPhong = 'NhanVien/LayDanhSachPhong';
+
+            loadDSPhong(layDSPhong);
+
+
+
+        });
+    </script>
+
+
 </body>
 
 
-<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/all_rooms.cshtml by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:38:33 GMT -->
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.cshtml by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:36:48 GMT -->
 </html>

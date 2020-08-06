@@ -63,7 +63,7 @@ namespace QLKSProject.Models.Entities
         public bool IsDelete { get; set; }
         
         [Required]
-        public bool TrangThaiDatPhong { get; set; }
+        public int TrangThaiDatPhong { get; set; }
 
         public int IDPhong { get; set; }
 
