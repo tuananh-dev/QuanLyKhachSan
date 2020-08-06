@@ -257,15 +257,15 @@ namespace QLKSProject.Controllers.QuanLy
         {
             int thang = int.Parse(dynamic.thang.ToString());
             int nam = int.Parse(dynamic.nam.ToString());
-            using(QuanLyBusiness quanLyBusiness = new QuanLyBusiness())
+            using (QuanLyBusiness quanLyBusiness = new QuanLyBusiness())
             {
                 return Ok(quanLyBusiness.BaoCaoThongKeTheoThang(thang, nam));
-            }   
+            }
         }
         [HttpPost]
         public IHttpActionResult XuatBaoCaoThongKeTheoQuy(dynamic dynamic)
         {
-            if(dynamic.quy == null)
+            if (dynamic.quy == null)
             {
                 return BadRequest("Không có dữ liệu truyền vào!");
             }
