@@ -8,7 +8,7 @@ namespace QLKSProject.Models.DTO
         public string SoPhong { get; set; }
         public int LoaiPhong { get; set; }    
         public int Gia { get; set; }
-        public bool TrangThai { get; set; }
+        public int TrangThai { get; set; }
         public bool IsDelete { get; set; }
     }
 }

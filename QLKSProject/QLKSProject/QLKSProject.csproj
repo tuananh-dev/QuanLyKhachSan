@@ -541,6 +541,10 @@
     <Compile Include="Migrations\202008051025060_ubDBv02.designer.cs">
       <DependentUpon>202008051025060_ubDBv02.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008061657517_ubdbv03.cs" />
+    <Compile Include="Migrations\202008061657517_ubdbv03.designer.cs">
+      <DependentUpon>202008061657517_ubdbv03.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\KhachHangNhanPhongDTO.cs" />
     <Compile Include="Models\DTO\KhachHangTraPhongDTO.cs" />
@@ -718,6 +722,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008051025060_ubDBv02.resx">
       <DependentUpon>202008051025060_ubDBv02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008061657517_ubdbv03.resx">
+      <DependentUpon>202008061657517_ubdbv03.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

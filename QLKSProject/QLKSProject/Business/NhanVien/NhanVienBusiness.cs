@@ -74,7 +74,7 @@ namespace QLKSProject.Business.NhanVien
                 foreach (var kh in lstKhachHangPhong)
                 {
                     if (kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 1)
-                        phong.TrangThai = false;
+                        phong.TrangThai = kh.TrangThaiDatPhong;
                 }
             }
             return lstphong;
@@ -135,9 +135,9 @@ namespace QLKSProject.Business.NhanVien
                 foreach (var kh in lstKhachHangPhong)
                 {
                     if (kh.ThoiGianNhan.CompareTo(ngayNhan) <= 0 && kh.ThoiGianTra.CompareTo(ngayNhan) >= 1)
-                        phong.TrangThai = false;
+                        phong.TrangThai = kh.TrangThaiDatPhong;
                     if (kh.ThoiGianNhan.CompareTo(ngayTra) <= 0 && kh.ThoiGianTra.CompareTo(ngayTra) >= 1)
-                        phong.TrangThai = false;
+                        phong.TrangThai = kh.TrangThaiDatPhong;
                 }
             }
             return lstphong.ToList();
@@ -274,7 +274,7 @@ namespace QLKSProject.Business.NhanVien
                                 {
                                     if (phong.ID == idPhong)
                                     {
-                                        phong.TrangThai = false;
+                                        phong.TrangThai = 0;
                                         break;
                                     }
 
@@ -305,7 +305,7 @@ namespace QLKSProject.Business.NhanVien
                                     foreach (var phong in lstPhong)
                                     {
                                         if (phong.ID == idPhong)
-                                            phong.TrangThai = false;
+                                            phong.TrangThai = 0;
                                     }
                                 }
                             }
@@ -409,7 +409,6 @@ namespace QLKSProject.Business.NhanVien
             string status = "ok";
             try
             {
-                bool b = true;
                 DateTime today = DateTime.Now;
                 var phong = models.Phongs.Where(p => p.SoPhong.Equals(soPhong)).FirstOrDefault();
                 var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == phong.ID && kh.TrangThaiDatPhong == 0).ToList();
@@ -618,7 +617,7 @@ namespace QLKSProject.Business.NhanVien
             var lstPhong = phongDTOs.Where(p => p.LoaiPhong == loaiPhong).ToList();
             foreach (var phong in lstPhong)
             {
-                if (phong.TrangThai != false)
+                if (phong.TrangThai < 0)
                 {
                     var lstKhachHang = khachHangDTOs.Where(kh => kh.IDPhong == phong.ID).ToList();
                     if (lstKhachHang.Count == 0)
@@ -630,7 +629,7 @@ namespace QLKSProject.Business.NhanVien
                     {
                         foreach (var khachHang in lstKhachHang)
                         {
-                            if (phong.TrangThai != false)
+                            if (phong.TrangThai < 0)
                             {
                                 int ngayNhanTTVoiNgaytra = ngayNhan.CompareTo(khachHang.ThoiGianTra);
                                 int ngayTraTTVoiNgayNhan = ngayTra.CompareTo(khachHang.ThoiGianNhan);
@@ -641,7 +640,7 @@ namespace QLKSProject.Business.NhanVien
                                 }
                                 else
                                 {
-                                    phong.TrangThai = false;
+                                    phong.TrangThai = 0;
                                 }
                             }               
                         }

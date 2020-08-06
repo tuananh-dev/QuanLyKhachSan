@@ -15,9 +15,9 @@ namespace QLKSProject.Business
             bool b = true;
             try
             {
-/*                TaoPhong(9, 9);*/
-/*                TaoDichVu();*/
-                TaoTaiKhoan();
+                TaoPhong(9, 9);
+                /*                TaoDichVu();*/
+/*                TaoTaiKhoan();*/
 /*                TaoTienIch();*/
                 /*                TaoDoanKhachHang(12);*/
             }
@@ -45,7 +45,7 @@ namespace QLKSProject.Business
                     phong.MaPhong = rd.Next(1, 4).ToString() + (i < 10 ? "0" + i : "" + i) + (j < 10 ? "0" + j : "" + j);
                     phong.LoaiPhong = x<(sum/3)?1:rd.Next(1, 5);
                     phong.Gia = rd.Next(1, 5) * 1000000;
-                    phong.TrangThai = true;
+                    phong.TrangThai = -1;
                     if (rd.Next(1, 10) == 2)
                         phong.IsDelete = true;
                     else
@@ -220,28 +220,6 @@ namespace QLKSProject.Business
             var range = to - from;
             var randTimeSpan = new TimeSpan((long)(rd.NextDouble() * range.Ticks));
             return from + randTimeSpan;
-        }
-        /*        private List<KhachHang> GanTreEmChoKhachHang(List<int> lstTre, List<KhachHang> lstKhachHang)
-                {
-
-                    return lstKhachHang;
-                }*/
-        private string RemoveUnicode(string text)
-        {
-            string[] arr1 = new string[] { "á", "à", "ả", "ã", "ạ", "â", "ấ", "ầ", "ẩ", "ẫ", "ậ", "ă", "ắ", "ằ", "ẳ", "ẵ", "ặ",
-                                            "đ","é","è","ẻ","ẽ","ẹ","ê","ế","ề","ể","ễ","ệ","í","ì","ỉ","ĩ","ị",
-                                            "ó","ò","ỏ","õ","ọ","ô","ố","ồ","ổ","ỗ","ộ","ơ","ớ","ờ","ở","ỡ","ợ",
-                                            "ú","ù","ủ","ũ","ụ","ư","ứ","ừ","ử","ữ","ự","ý","ỳ","ỷ","ỹ","ỵ",};
-            string[] arr2 = new string[] { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a",
-                                            "d","e","e","e","e","e","e","e","e","e","e","e","i","i","i","i","i",
-                                            "o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o",
-                                            "u","u","u","u","u","u","u","u","u","u","u","y","y","y","y","y",};
-            for (int i = 0; i < arr1.Length; i++)
-            {
-                text = text.Replace(arr1[i], arr2[i]);
-                text = text.Replace(arr1[i].ToUpper(), arr2[i].ToUpper());
-            }
-            return text;
         }
         #endregion
 

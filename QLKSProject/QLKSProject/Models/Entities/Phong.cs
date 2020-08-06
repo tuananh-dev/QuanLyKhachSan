@@ -27,7 +27,7 @@ namespace QLKSProject.Models.Entities
         public int Gia { get; set; }
 
         [Required]
-        public bool TrangThai { get; set; }
+        public int TrangThai { get; set; }
 
         [Required]
         public bool IsDelete { get; set; }

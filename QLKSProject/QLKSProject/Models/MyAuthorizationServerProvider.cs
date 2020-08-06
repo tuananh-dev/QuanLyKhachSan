@@ -10,11 +10,15 @@ namespace QLKSProject.Models
 {
     public class MyAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             context.Validated();
         }
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             using (UserMasterRepository _repo = new UserMasterRepository())
             {

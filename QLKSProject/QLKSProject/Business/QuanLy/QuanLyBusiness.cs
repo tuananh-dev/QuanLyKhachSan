@@ -148,7 +148,7 @@ namespace QLKSProject.Business.QuanLy
                 foreach (var kh in lstKhachHangPhong)
                 {
                     if (kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 1)
-                        phong.TrangThai = false;
+                        phong.TrangThai = kh.TrangThaiDatPhong;
                 }
             }
             return lstphong.ToList();
@@ -770,7 +770,7 @@ namespace QLKSProject.Business.QuanLy
                     phong.SoPhong = maPhong;
                     phong.LoaiPhong = loaiPhong;
                     phong.IsDelete = false;
-                    phong.TrangThai = true;
+                    phong.TrangThai = -1;
                     phong.Gia = gia;
                     models.Phongs.Add(phong);
                 }
