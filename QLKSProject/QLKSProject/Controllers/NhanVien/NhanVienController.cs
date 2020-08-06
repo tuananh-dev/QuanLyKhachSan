@@ -108,7 +108,7 @@ namespace QLKSProject.Controllers.NhanVien
             }
         }
         [HttpPost]
-        public IHttpActionResult LayDanhSachPhongTheoDieuKien(dynamic dynamic)
+        public IHttpActionResult LayDanhSachPhongTheoDieuKien([FromBody]dynamic dynamic)
         {
             if (dynamic == null)
                 return BadRequest();
@@ -120,7 +120,7 @@ namespace QLKSProject.Controllers.NhanVien
             }
         }
         [HttpPost] 
-        public IHttpActionResult KhachHangNhanPhong(dynamic dynamic)
+        public IHttpActionResult KhachHangNhanPhong([FromBody]dynamic dynamic)
         {
             KhachHangNhanPhongDTO khachHang = JsonConvert.DeserializeObject<KhachHangNhanPhongDTO>(dynamic.ToString());
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
@@ -133,7 +133,7 @@ namespace QLKSProject.Controllers.NhanVien
             }
         }
         [HttpPost]
-        public IHttpActionResult KhachHangTraPhong(dynamic dynamic)
+        public IHttpActionResult KhachHangTraPhong([FromBody]dynamic dynamic)
         {
             KhachHangTraPhongDTO khachHang = JsonConvert.DeserializeObject<KhachHangTraPhongDTO>(dynamic.ToString());
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
@@ -143,6 +143,14 @@ namespace QLKSProject.Controllers.NhanVien
                     return Ok("Trả phòng thành công!");
                 else
                     return BadRequest(status);
+            }
+        }
+        [HttpGet]
+        public IHttpActionResult LayDanhSachKhachHangCungPhong([FromUri]int id)
+        {
+            using (NhanVienBusiness nhanVien = new NhanVienBusiness())
+            {
+                return Ok(nhanVien.LayDanhSachKhachHangCungPhong(id));
             }
         }
         #endregion
