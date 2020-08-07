@@ -24,12 +24,20 @@
     <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script src="~/Content/QuanLy/libs_function.js"></script>
-    
+    <style>
+        /*.popover {
+            max-width: 500px;
+            height: 300px;
+        }*/
+    </style>
 </head>
 <!-- END HEAD -->
 
@@ -204,49 +212,44 @@
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row6"></div>
                         <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 7</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row7"></div>
-                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 8</h3>
+                        <h3 style="display: block; margin-left: 15px;" class="floor"> Tầng 8</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row8"></div>
                         <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 9</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row9"></div>
 
 
                     </div>
-
-
-
-                    <!--<div class="content" style="margin:0;padding:0;" id="dsphong">
-
-                        <h3>Tầng 1</h3>
-                        <div class="row" id="row1" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 2</h3>
-                        <div class="row" id="row2" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 3</h3>
-                        <div class="row" id="row3" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 4</h3>
-                        <div class="row" id="row4" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 5</h3>
-                        <div class="row" id="row5" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 6</h3>
-                        <div class="row" id="row6" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 7</h3>
-                        <div class="row" id="row7" style="margin:0;padding:0;"></div>
-
-
-
-                    </div>-->
                 </div>
             </div>
 
+            <div id="popover-form-nhanp" class="hide">
+                <form id="myform-nhanp" role="form">
+                    <div class="form-group">
+                        <input id="cmnd-nhanp" type="text" placeholder="CMND" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <select id="nguoidaidien-nhanp" class="form-control">
+                        </select>
 
+                    </div>
+                    <button type="submit" class="btn btn-success">Nhận Phòng</button>
+                </form>
+            </div>
 
-
-
-
-
-
-
-
-
+            <div id="popover-form-trap" class="hide">
+                <form id="myform-trap" role="form">
+                    <div class="form-group">
+                        <h2 class="form-control" id="tendaidien"></h2>
+                        <p id="cmnd-trap"></p>
+                    </div>
+                    <div>
+                        <label>Dịch Vụ: </label>
+                        <ul id="dsdv">
+                        </ul>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Trả Phòng</button>
+                </form>
+            </div>
             <!-- Modal -->
             <!-- end page container -->
             <!-- start footer -->
@@ -282,7 +285,9 @@
 
     <!-- end js include path -->
 
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script src="~/Content/QuanLy/js/pages/material-loading/material-loading.js"></script>
     <script type="text/javascript">
@@ -292,6 +297,42 @@
             var layDSPhong = 'NhanVien/LayDanhSachPhong';
 
             loadDSPhong(layDSPhong);
+
+            //$('button.info-box.bg-warning').popover({
+            //    title: '<h4>' + $(this).val() + '</h4>',
+            //    container: 'body',
+            //    placement: 'right',
+            //    html: true,
+            //    content: function () {
+            //        return $('#popover-form-nhanp').html();
+            //    }
+            //});
+            $('body').on('click', '.info-box.bg-warning', function () {
+                
+                $(this).popover({
+                    container: 'body',
+                    placement: 'right',
+                    html: true,
+                    content: function () {
+                        return $('#popover-form-nhanp').html();
+                    }
+                });
+
+            })
+
+            $('body').on('click', '.info-box.bg-success', function () {
+
+                $(this).popover({
+                    container: 'body',
+                    placement: 'right',
+                    html: true,
+                    content: function () {
+                        return $('#popover-form-trap').html();
+                    }
+                });
+
+            })
+
 
 
 

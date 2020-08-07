@@ -136,31 +136,7 @@
                 nam: txtNamQuy
             }
 
-            $('#btnXemThang').click(function () {
 
-                txtThang = $('#thang').val();
-                txtNamThang = $('#namthang').val();
-                var dataMonth = {
-                    thang: parseInt(txtThang),
-                    nam: txtNamThang
-                }
-
-                dashboard_Circle(dataMonth, tkThang);
-
-            })
-
-            $('#btnXemQuy').click(function () {
-
-                txtQuy = $('#quy').val();
-                txtNamQuy = $('#namquy').val();
-                var dataQuater = {
-                    quy: parseInt(txtQuy),
-                    nam: txtNamQuy
-                }
-
-                dashboard_ThreeBar(dataQuater, tkQuy, dsThang);
-
-            })
             var posThang = {
                 tptt: $('#tptthang'),
                 dvtt: $('#dvtthang'),
@@ -181,7 +157,43 @@
             dashboard_FourBox(dataMonth, tkSSThang, posThang);
             dashboard_FourBox(dataQuater, tkSSQuy, posQuy);
 
+            $('#btnXemThang').click(function () {
 
+                txtThang = $('#thang').val();
+                txtNamThang = $('#namthang').val();
+                var dataMonth = {
+                    thang: parseInt(txtThang),
+                    nam: txtNamThang
+                }
+                var posThang = {
+                    tptt: $('#tptthang'),
+                    dvtt: $('#dvtthang'),
+                    progr_tptt: $('#progr-tptthang'),
+                    progr_dvtt: $('#progr-dvtthang')
+                }
+
+                dashboard_Circle(dataMonth, tkThang);
+                dashboard_FourBox(dataMonth, tkSSThang, posThang);
+            })
+
+            $('#btnXemQuy').click(function () {
+
+                txtQuy = $('#quy').val();
+                txtNamQuy = $('#namquy').val();
+                var dataQuater = {
+                    quy: parseInt(txtQuy),
+                    nam: txtNamQuy
+                }
+                var posQuy = {
+                    tptq: $('#tptquy'),
+                    dvtq: $('#dvtquy'),
+                    progr_tptq: $('#progr-tptquy'),
+                    progr_dvtq: $('#progr-dvtquy'),
+                }
+
+                dashboard_ThreeBar(dataQuater, tkQuy, dsThang);
+                dashboard_FourBox(dataQuater, tkSSQuy, posQuy);
+            })
 
 
 
@@ -223,7 +235,7 @@
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
-                               
+
                                 <li class="divider"> </li>
 
                                 <li>
