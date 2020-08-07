@@ -25,61 +25,11 @@
     <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
 
+    <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script src="~/Content/QuanLy/libs_function.js"></script>
-
-    <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
-    <script type="text/javascript">
-        $(document).ready(function () {
-            checkSession();
-
-            var layDSPhong = 'NhanVien/LayDanhSachPhong';
-            var layKHTheoPhong = 'NhanVien/LayDanhSachTenKhachHangChungPhong/';
-            loadDSPhong(layDSPhong);
-            var maPhong;
-            var cmnd;
-            var nguoiDaiDien;
-            $('body').on('click', '.info-box.bg-warning', function () {
-                maPhong = $(this).attr('data-id');
-                var info = {
-                    idLoad: '#nguoidaidien-nhanp-ul',
-                    url: layKHTheoPhong
-
-                }
-                LayThongTinKHTheoPhong(info, maPhong);
-                $('#nhanphongModal').modal('show');
-            })
-
-            $('body').on('click', '.info-box.bg-success', function () {
-                maPhong = $(this).attr('data-id');
-                //var info = {
-                //    idLoad: '#',
-                //    url: layKHTheoPhong
-
-                //}
-                //LayThongTinKHTheoPhong(info, maPhong);
-                $('#traphongModal').modal('show');
-            })
-            $('body').on('click', '#btn-nhanphong', function () {
-                cmnd = $('#cmnd-nhanp').val();
-                nguoiDaiDien = $('#nguoidaidien-nhanp-ul').val();
-                console.log(maPhong)
-            })
-
-
-
-
-
-        });
-
-    </script>
-    <style>
-        /*.popover {
-            max-width: 500px;
-            height: 300px;
-        }*/
-    </style>
+    
 </head>
 <!-- END HEAD -->
 
@@ -254,115 +204,48 @@
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row6"></div>
                         <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 7</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row7"></div>
-                        <h3 style="display: block; margin-left: 15px;" class="floor"> Tầng 8</h3>
+                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 8</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row8"></div>
                         <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 9</h3>
                         <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row9"></div>
 
 
                     </div>
+
+
+
+                    <!--<div class="content" style="margin:0;padding:0;" id="dsphong">
+
+                        <h3>Tầng 1</h3>
+                        <div class="row" id="row1" style="margin:0;padding:0;"></div>
+                        <h3>Tầng 2</h3>
+                        <div class="row" id="row2" style="margin:0;padding:0;"></div>
+                        <h3>Tầng 3</h3>
+                        <div class="row" id="row3" style="margin:0;padding:0;"></div>
+                        <h3>Tầng 4</h3>
+                        <div class="row" id="row4" style="margin:0;padding:0;"></div>
+                        <h3>Tầng 5</h3>
+                        <div class="row" id="row5" style="margin:0;padding:0;"></div>
+                        <h3>Tầng 6</h3>
+                        <div class="row" id="row6" style="margin:0;padding:0;"></div>
+                        <h3>Tầng 7</h3>
+                        <div class="row" id="row7" style="margin:0;padding:0;"></div>
+
+
+
+                    </div>-->
                 </div>
             </div>
-            <div class="modal fade" tabindex="-1" id="nhanphongModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
 
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="card-head">
-                                        <div style="font-size:25px">Thông Tin Phòng</div>
-                                    </div>
-                                    <div class="card-box">
 
-                                        <div class="card-body row">
-                                            <div class="col-lg-12 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="cmnd-nhanp">
-                                                    <label class="mdl-textfield__label">CMND</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 p-t-20">
 
-                                                <select id="nguoidaidien-nhanp-ul" class="form-control" style="padding-left:0;border-radius:0;border:none;border-bottom: 1px solid lightgray;"></select>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 p-t-20 text-center">
-                                            <button type="button"
-                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-nhanphong">
-                                                Nhận Phòng
-                                            </button>
-                                            <button type="button"
-                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                                Hủy
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
 
-                            </div>
 
-                        </div>
-                    </div>
-                    <!-- End Modal -->
-                    <!-- end chat sidebar -->
-                </div>
-            </div>
-            <div class="modal fade" tabindex="-1" id="traphongModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
 
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="card-head">
-                                        <div style="font-size:25px">Thông Tin Phòng</div>
-                                    </div>
-                                    <div class="card-box">
 
-                                        <div class="card-body row">
-                                            <div class="col-lg-12 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <label class="mdl-textfield__input" type="text" id="cmnd-trap"></label>
-                                                    <label class="mdl-textfield__label" style="top:0">CMND</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <label class="mdl-textfield__input" type="text" id="nguoidaidien-trap"></label>
-                                                    <label class="mdl-textfield__label" style="top:0">Người Đại Diện</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <label class="mdl-textfield__input" type="text" id="dichvu-trap"></label>
-                                                    <label class="mdl-textfield__label" style="top:0">Dịch Vụ</label>
-                                                </div>
-                                            </div>
 
-                                        </div>
-                                        <div class="col-lg-12 p-t-20 text-center">
-                                            <button type="button"
-                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-traphong">
-                                                Trả Phòng
-                                            </button>
-                                            <button type="button"
-                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                                Hủy
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
 
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- End Modal -->
-                    <!-- end chat sidebar -->
-                </div>
-            </div>
 
             <!-- Modal -->
             <!-- end page container -->
@@ -393,17 +276,27 @@
     <script src="~/Content/QuanLy/js/layout.js"></script>
     <script src="~/Content/QuanLy/js/theme-color.js"></script>
     <!-- material -->
-    <!-- end js include path -->
-    <script src="~/Content/QuanLy/js/pages/material-loading/material-loading.js"></script>
-
-    <script src="~/Content/QuanLy/js/pages/material_select/getmdl-select.js"></script>
-    <!-- Material -->
     <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
     <!-- animation -->
     <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
 
+    <!-- end js include path -->
 
 
+
+    <script src="~/Content/QuanLy/js/pages/material-loading/material-loading.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            checkSession();
+
+            var layDSPhong = 'NhanVien/LayDanhSachPhong';
+
+            loadDSPhong(layDSPhong);
+
+
+
+        });
+    </script>
 
 
 </body>
