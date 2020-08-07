@@ -451,6 +451,7 @@ namespace QLKSProject.Business.QuanLy
             }).ToList();
             var lstDV = models.DichVus.Where(d => d.IsDelete != true).Select(d => d.TenDichVu).ToList();
             List<ThongKeTheoThangDTO> lstBaoCaoThongKeDTO = new List<ThongKeTheoThangDTO>();
+
             lstBaoCaoThongKeDTO.Add(DoanhThuChoThuePhongTheoThang(thang, nam, lstPhong, lstKhachHang));
             foreach (var dv in lstDV)
             {
@@ -745,11 +746,13 @@ namespace QLKSProject.Business.QuanLy
             else
                 return false;
         }
+
         private ThongKeTheoQuyDTO DoanhThuChoThuePhongTheoQuy(int thang1, int thang2, int thang3, int nam, List<PhongDTO> phongDTOs, List<KhachHangDTO> khachHangDTOs)
         {
             var doanhThuChoThuePhongThang1 = DoanhThuChoThuePhongTheoThang(thang1, nam, phongDTOs, khachHangDTOs);
             var doanhThuChoThuePhongThang2 = DoanhThuChoThuePhongTheoThang(thang2, nam, phongDTOs, khachHangDTOs);
             var doanhThuChoThuePhongThang3 = DoanhThuChoThuePhongTheoThang(thang3, nam, phongDTOs, khachHangDTOs);
+
             ThongKeTheoQuyDTO thongKeTheoQuyDTO = new ThongKeTheoQuyDTO();
             thongKeTheoQuyDTO.TenDichVu = doanhThuChoThuePhongThang1.TenDichVu;
             thongKeTheoQuyDTO.DoanhThu1 = doanhThuChoThuePhongThang1.DoanThu;
@@ -807,6 +810,7 @@ namespace QLKSProject.Business.QuanLy
             thongKeTheoQuyDTO.TrungBinh = (thongKeTheoQuyDTO.DoanhThu1 + thongKeTheoQuyDTO.DoanhThu2 + thongKeTheoQuyDTO.DoanhThu3) / 3;
             return thongKeTheoQuyDTO;
         }
+       
         #endregion
     }
 }

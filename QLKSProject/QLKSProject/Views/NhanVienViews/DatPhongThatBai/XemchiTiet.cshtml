@@ -10,25 +10,35 @@
     <link href="~/Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!--bootstrap -->
     <link href="~/Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/QuanLy/plugins/summernote/summernote.css" rel="stylesheet">
-    <!-- morris chart -->
-    <link href="~/Content/QuanLy/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
     <!-- Material Design Lite CSS -->
     <link rel="stylesheet" href="~/Content/QuanLy/plugins/material/material.min.css">
     <link rel="stylesheet" href="~/Content/QuanLy/css/material_style.css">
     <!-- animation -->
     <link href="~/Content/QuanLy/css/pages/animate_page.css" rel="stylesheet">
     <!-- Template Styles -->
-    <link href="~/Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
-
     <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
+    <!-- favicon -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script src="~/Content/QuanLy/libs_function.js"></script>
+    <style>
+        #dsdatphong tr td input {
+            border: none;
+            padding: 10px 5px;
+            background: none;
+        }
+
+        #dsdatphong tr td select {
+            padding: 8px;
+            border: none;
+            background: none;
+        }
+    </style>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -47,6 +57,8 @@
 
 
             $('#luu').click(function () {
+                $('#luu').css('display', 'none');
+                $('#loading').css('display', 'block');
                 var list = [];
 
 
@@ -130,11 +142,7 @@
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-user"></i> Profile
-                                    </a>
-                                </li>
+                                
 
                                 <li class="divider"> </li>
 
@@ -180,35 +188,43 @@
                                 </div>
                             </li>
 
+                            <li class="nav-item active ql">
+                                <a href="/SEP23Team2/Views/QuanLyViews/ThongKe/ThongKe.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">business_center</i>
+                                    <span class="title">Thống Kê</span>
+                                    <span class="arrow"></span>
+                                </a>
 
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
+                            </li>
+
+                            <li class="nav-item active ql">
+                                <a href="/SEP23Team2/Views/QuanLyViews/DichVu/DSDichVu.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">business_center</i>
+                                    <span class="title">Dịch Vụ</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active ql">
+                                <a href="/SEP23Team2/Views/QuanLyViews/TienIch/DSTienIch.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
+                                    <span class="title">Tiện Ích</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active ql">
+                                <a href="/SEP23Team2/Views/QuanLyViews/Phong/DSPhong.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">vpn_key</i>
                                     <span class="title">Phòng</span>
                                     <span class="arrow"></span>
                                 </a>
 
                             </li>
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
+                            <li class="nav-item active ql">
+                                <a href="/SEP23Team2/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thành Công</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thất Bại</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/Doan/Doan.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đoàn</span>
+                                    <span class="title">Tài Khoản Nhân Viên</span>
                                     <span class="arrow"></span>
                                 </a>
 
@@ -236,35 +252,45 @@
                             </ol>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-box">
+                            <div class="card-box">
 
                                 <div class="card-body ">
 
                                     <div class="table-scrollable">
-                                        <table class="table table-hover table-checkable order-column full-width"
-                                               id="example">
+                                        <table class="table table-striped"
+                                               id="mainTable">
                                             <thead>
-                                                <tr style="">
-                                                    <th class="" style="min-width: 270px;text-align:left;"> Họ và Tên</th>
-                                                    <th class="center" style="min-width: 90px"> Nhóm </th>
-                                                    <th class="center" style="min-width: 170px"> Loại Khách Hàng </th>
-                                                    <th class="center" style="min-width: 240px;text-align:left;"> Người Đại Diện </th>
-                                                    <th class="center" style="min-width: 170px"> Giới Tính </th>
-                                                    <th class=""> Ghi Chú </th>
+                                                <tr>
+                                                    @*<th> Họ và Tên</th>
+                                                        <th> Nhóm </th>
+                                                        <th> Trường Đoàn </th>
+                                                        <th> Người Đại Diện </th>
+                                                        <th> Giới Tính </th>
+                                                        <th> Ghi Chú </th>*@
+
+                                                    <th style="text-align:left;width: 210px;"> Họ và Tên</th>
+                                                    <th class="center" style="width: 80px"> Nhóm </th>
+                                                    <th class="center" style="width: 170px"> Trường Đoàn </th>
+                                                    <th class="center" style="width: 210px;text-align:left;"> Người Đại Diện </th>
+                                                    <th class="center" style="width: 170px"> Giới Tính </th>
+                                                    <th> Ghi Chú </th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="dsdatphong">
+                                            <tbody id="dsdatphong" style="border-bottom: 3px solid;">
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="row p-b-20" style="float: right;margin: 0">
+                                    <div class="row p-b-20" style="float: right;">
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="btn-group">
+                                                <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" id="loading" style="display:none;"></div>
                                                 <button id="luu" class="btn btn-info">
                                                     Xếp Phòng
                                                 </button>
+
                                             </div>
                                         </div>
 
@@ -290,25 +316,24 @@
             <!-- end footer -->
         </div>
     </div>
-    <!-- start js include path -->
     <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
     <script src="~/Content/QuanLy/plugins/popper/popper.min.js"></script>
     <script src="~/Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
     <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- bootstrap -->
     <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/sparkline/jquery.sparkline.min.js"></script>
-    <script src="~/Content/QuanLy/js/pages/sparkline/sparkline-data.js"></script>
+    <!-- data tables -->
+    <script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/datatables/editabletable.js"></script>
+    <script src="~/Content/QuanLy/js/pages/table/editable_table_data.js"></script>
     <!-- Common js-->
     <script src="~/Content/QuanLy/js/app.js"></script>
     <script src="~/Content/QuanLy/js/layout.js"></script>
     <script src="~/Content/QuanLy/js/theme-color.js"></script>
-    <!-- material -->
+    <!-- Material -->
     <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
-
     <!-- animation -->
     <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
-    <!-- end js include path -->
 </body>
 
 

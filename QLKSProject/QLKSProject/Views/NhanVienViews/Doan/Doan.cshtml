@@ -44,21 +44,24 @@
             $('body').on('click', 'a.btn.btn-info.btn-xs', function () {
                 console.log("click");
                 $(this).css("display", "none");
-                $('#loading').css("display", "clock");
+                $('#loading').css("display", "block");
 
                 dataId = $(this).attr("data-id");
                 var info = {
                     id: idList,
                     urlLoad: layDSDoan
                 }
-                XepPhong(info, xepPhong , dataId);
+                XepPhong(info, xepPhong, dataId);
             })
             $('#xepall').click(function () {
+                $(this).css("display", "none");
+                $('#loadingAll').css("display", "block");
                 var info = {
                     id: idList,
                     urlLoad: layDSDoan
                 }
                 XepPhongTatCa(info, xepPhongAll);
+                
             })
 
 
@@ -111,11 +114,7 @@
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-user"></i> Profile
-                                    </a>
-                                </li>
+
 
                                 <li class="divider"> </li>
 
@@ -160,6 +159,7 @@
 
                                 </div>
                             </li>
+
 
 
 
@@ -229,6 +229,7 @@
                                                 <button id="xepall" class="btn btn-info">
                                                     Xếp Phòng Tất Cả
                                                 </button>
+                                                <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" id="loadingAll" style="display:none;"></div>
                                             </div>
                                         </div>
 

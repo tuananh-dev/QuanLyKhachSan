@@ -344,6 +344,7 @@
     <Content Include="Content\QuanLy\css\style.css" />
     <Content Include="Content\QuanLy\css\theme-color.css" />
     <Content Include="Content\QuanLy\DashBoard.js" />
+    <Content Include="Content\QuanLy\img\bg-01.jpg" />
     <Content Include="Content\QuanLy\img\dp.jpg" />
     <Content Include="Content\QuanLy\img\favicon.ico" />
     <Content Include="Content\QuanLy\img\logo.png" />
@@ -531,19 +532,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008050915355_udDBv01.cs" />
-    <Compile Include="Migrations\202008050915355_udDBv01.designer.cs">
-      <DependentUpon>202008050915355_udDBv01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008051025060_ubDBv02.cs" />
-    <Compile Include="Migrations\202008051025060_ubDBv02.designer.cs">
-      <DependentUpon>202008051025060_ubDBv02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008061657517_ubdbv03.cs" />
-    <Compile Include="Migrations\202008061657517_ubdbv03.designer.cs">
-      <DependentUpon>202008061657517_ubdbv03.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DTO\KhachHangNhanPhongDTO.cs" />
     <Compile Include="Models\DTO\KhachHangTraPhongDTO.cs" />
     <Compile Include="Models\DTO\SoSanhThongKeDTO.cs" />
@@ -707,23 +695,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202008050915355_udDBv01.resx">
-      <DependentUpon>202008050915355_udDBv01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008051025060_ubDBv02.resx">
-      <DependentUpon>202008051025060_ubDBv02.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008061657517_ubdbv03.resx">
-      <DependentUpon>202008061657517_ubdbv03.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
