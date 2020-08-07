@@ -252,7 +252,7 @@ function loadDSPhong(url) {
                         color = "bg-warning";
                     }
                     if (val.SoPhong.charAt(0) == '' + i) {
-                        $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;"> ' + val.SoPhong + '</button> ');
+                        $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" data-id="' + val.ID + '"> ' + val.SoPhong + '</button> ');
                     }
                 })
 
@@ -461,7 +461,7 @@ function XepPhongTatCa(info, url) {
                 $('#loadingAll').css("display", "none");
                 loadData(info.id, info.urlLoad);
             })
-            
+
         },
         error: function (data) {
             Swal.fire({
@@ -473,11 +473,11 @@ function XepPhongTatCa(info, url) {
                 $('#loadingAll').css("display", "none");
                 loadData(info.id, info.urlLoad);
             })
-            
+
 
         }
     })
-   
+
 
 }
 
@@ -511,7 +511,7 @@ function HuyXacNhanXepPhong(url, dataInput) {
                         sessionStorage.removeItem('role');
                         sessionStorage.removeItem('accessToken');
                         sessionStorage.removeItem('fullname');
-                        window.location.pathname = "/TrangChu.cshtml";
+                        window.location.pathname = "/SEP23Team2/TrangChu.cshtml";
                     })
 
 
@@ -541,7 +541,7 @@ function XacNhanDatPhong() {
             console.log(data);
             Swal.fire(
                 'Xác Nhận Đặt Phòng Thành Công!',
-                '!',
+                '',
                 'success'
             ).then(val => {
                 location.reload();
@@ -593,6 +593,30 @@ function XepPhongThuNghiem(url, dataInput) {
 
         }
 
+    })
+}
+
+function LayThongTinKHTheoPhong(info, id) {
+    $.ajax({
+        type: 'GET',
+        url: '/SEP23Team2/api/' + info.url + id,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+        },
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+        dataType: 'json',
+        success: function (data) {
+            $(info.idLoad).empty();
+            $.each(data, function (index, val) {
+                $(info.idLoad).append('<option value="' + val + '">' + val + '</option>');
+            })
+        },
+        error: function (data) {
+
+            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
+                window.location.pathname("/404.cshtml");
+            }
+        }
     })
 }
 
