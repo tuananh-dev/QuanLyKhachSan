@@ -146,13 +146,23 @@ namespace QLKSProject.Controllers.NhanVien
             }
         }
         [HttpGet]
-        public IHttpActionResult LayDanhSachKhachHangCungPhong([FromUri]int id)
+        public IHttpActionResult LayDanhSachTenKhachHangChungPhong([FromUri]int id)
         {
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
-                return Ok(nhanVien.LayDanhSachKhachHangCungPhong(id));
+                return Ok(nhanVien.LayDanhSachTenKhachHangChungPhong(id));
             }
         }
+
+        [HttpGet]
+        public IHttpActionResult LayThongTinChiPhiPhong([FromUri]int id)
+        {
+            using (NhanVienBusiness nhanVien = new NhanVienBusiness())
+            {
+                return Ok(nhanVien.LayThongTinChiPhiPhong(id));
+            }
+        }
+
         #endregion
 
         #region Dich Vu Phong

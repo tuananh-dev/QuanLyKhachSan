@@ -318,7 +318,7 @@
                                             var startDate = document.getElementById("datphongtungay").value;
                                             var endDate = document.getElementById("denngay").value;
 
-                                            if ((Date.parse(endDate) < Date.parse(startDate))) {
+                                            if ((Date.parse(endDate) <= Date.parse(startDate))) {
                                                 //alert("Ngày trả phòng phải lớn hơn ngày nhận phòng");
 
                                                 swal({
@@ -349,7 +349,7 @@
                                             var startDate = document.getElementById("datphongtungay").value;
                                             var endDate = document.getElementById("denngay").value;
 
-                                            if ((Date.parse(endDate) < Date.parse(startDate))) {
+                                            if ((Date.parse(endDate) <= Date.parse(startDate))) {
                                                 //alert("Ngày trả phòng phải lớn hơn ngày nhận phòng");
 
                                                 swal({
