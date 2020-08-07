@@ -456,19 +456,28 @@ function XepPhongTatCa(info, url) {
                 'Success!',
                 'Thành Công: ' + tc + '   Thất Bại: ' + tb,
                 'success'
-            )
-            loadData(info.id, info.urlLoad);
+            ).then(value => {
+                $('#xepall').css("display", "block");
+                $('#loadingAll').css("display", "none");
+                loadData(info.id, info.urlLoad);
+            })
+            
         },
         error: function (data) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: data.responseJSON.Message
+            }).then(value => {
+                $('#xepall').css("display", "block");
+                $('#loadingAll').css("display", "none");
+                loadData(info.id, info.urlLoad);
             })
-            loadData(info.id, info.urlLoad);
+            
 
         }
     })
+   
 
 }
 
@@ -566,7 +575,7 @@ function XepPhongThuNghiem(url, dataInput) {
                 '',
                 'success'
             ).then(val => {
-                window.location.pathname = "/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml";
+                window.location.pathname = "/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml";
             })
 
 
@@ -579,6 +588,7 @@ function XepPhongThuNghiem(url, dataInput) {
             ).then(() => {
                 $('#luu').css('display', 'block');
                 $('#loading').css('display', 'none');
+                window.location.reload();
             })
 
         }

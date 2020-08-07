@@ -52,7 +52,7 @@ namespace QLKSProject.Business.QuanLy
                 tk.UserRoles = userMaster.UserRoles;
                 tk.FullName = userMaster.FullName;
                 tk.PhoneNumber = userMaster.PhoneNumber;
-                tk.UserEmailID = userMaster.UserEmailID;            
+                tk.UserEmailID = userMaster.UserEmailID;
                 tk.IsDelete = userMaster.IsDelete;
                 tk.MaDoan = userMaster.MaDoan;
                 tk.UserID = userMaster.UserID;
@@ -68,25 +68,25 @@ namespace QLKSProject.Business.QuanLy
         public string CapNhatTaiKhoan(UserMasterDTO userMaster)
         {
             string status = "ok";
-            if(CheckUserMaster(userMaster.UserName))
-            try
-            {
-                var tk = models.UserMasters.Where(s => s.ID == userMaster.ID).FirstOrDefault();
-                tk.UserName = userMaster.UserName;
-                tk.UserPassword = userMaster.UserPassword;
-                tk.UserRoles = userMaster.UserRoles;
-                tk.FullName = userMaster.FullName;
-                tk.PhoneNumber = userMaster.PhoneNumber;
-                tk.UserEmailID = userMaster.UserEmailID;
-                tk.IsDelete = userMaster.IsDelete;
-                tk.MaDoan = userMaster.MaDoan;
-                tk.UserID = userMaster.UserID;
-                models.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return status = "Lỗi không thể lưu tài khoản!";
-            }
+            if (CheckUserMaster(userMaster.UserName))
+                try
+                {
+                    var tk = models.UserMasters.Where(s => s.ID == userMaster.ID).FirstOrDefault();
+                    tk.UserName = userMaster.UserName;
+                    tk.UserPassword = userMaster.UserPassword;
+                    tk.UserRoles = userMaster.UserRoles;
+                    tk.FullName = userMaster.FullName;
+                    tk.PhoneNumber = userMaster.PhoneNumber;
+                    tk.UserEmailID = userMaster.UserEmailID;
+                    tk.IsDelete = userMaster.IsDelete;
+                    tk.MaDoan = userMaster.MaDoan;
+                    tk.UserID = userMaster.UserID;
+                    models.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return status = "Lỗi không thể lưu tài khoản!";
+                }
             else
             {
                 return status = "Lỗi tài khoản đã tồn tại!";
@@ -148,7 +148,7 @@ namespace QLKSProject.Business.QuanLy
                 foreach (var kh in lstKhachHangPhong)
                 {
                     if (kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 1)
-                        phong.TrangThai = false;
+                        phong.TrangThai = kh.TrangThaiDatPhong;
                 }
             }
             return lstphong.ToList();
@@ -234,7 +234,7 @@ namespace QLKSProject.Business.QuanLy
             {
                 return false;
             }
-            
+
         }
         public string TaoDanhSachPhong(ThemPhongTheoLauDTO themPhongTheoLauDTO)
         {
@@ -244,7 +244,7 @@ namespace QLKSProject.Business.QuanLy
             foreach (var phong in lstPhong)
             {
                 int lau = int.Parse(phong.Substring(0, 1));
-                if(themPhongTheoLauDTO.Lau == lau)
+                if (themPhongTheoLauDTO.Lau == lau)
                 {
                     if (status.Equals("ok"))
                         status = "";
@@ -450,7 +450,8 @@ namespace QLKSProject.Business.QuanLy
             }).ToList();
             var lstDV = models.DichVus.Where(d => d.IsDelete != true).Select(d => d.TenDichVu).ToList();
             List<ThongKeTheoThangDTO> lstBaoCaoThongKeDTO = new List<ThongKeTheoThangDTO>();
-            lstBaoCaoThongKeDTO.Add(DoanhThuChoThuePhong(thang, nam, lstPhong, lstKhachHang));
+
+            lstBaoCaoThongKeDTO.Add(DoanhThuChoThuePhongTheoThang(thang, nam, lstPhong, lstKhachHang));
             foreach (var dv in lstDV)
             {
                 lstBaoCaoThongKeDTO.Add(ThongKeDichVuTheoThang(thang, nam, dv));
@@ -530,10 +531,10 @@ namespace QLKSProject.Business.QuanLy
             List<ThongKeTheoThangDTO> lstThongKeTheoThangHienTai;
             List<ThongKeTheoThangDTO> lstThongKeTheoThangTruoc;
             lstThongKeTheoThangHienTai = BaoCaoThongKeTheoThang(thang, nam);
-            if(thang != 1)
+            if (thang != 1)
                 lstThongKeTheoThangTruoc = BaoCaoThongKeTheoThang(thang - 1, nam);
             else
-                lstThongKeTheoThangTruoc = BaoCaoThongKeTheoThang(12, nam-1);
+                lstThongKeTheoThangTruoc = BaoCaoThongKeTheoThang(12, nam - 1);
             foreach (var thongKe in lstThongKeTheoThangHienTai)
             {
                 if (thongKe.TenDichVu.Equals("Cho thuê phòng"))
@@ -553,8 +554,15 @@ namespace QLKSProject.Business.QuanLy
                 doanhThuDichVuQK = doanhThuDichVuHT;
             if (doanhThuThuePhongQK == 0)
                 doanhThuThuePhongQK = doanhThuThuePhongHT;
-            soSanhThongKeDTO.TienThuePhong = (doanhThuThuePhongHT / doanhThuThuePhongQK) * 100;
-            soSanhThongKeDTO.TienDichVu = (doanhThuDichVuHT / doanhThuDichVuQK) * 100;
+            if(doanhThuDichVuHT == 0 && doanhThuDichVuQK == 0) 
+                soSanhThongKeDTO.TienDichVu = 0;
+            else
+                soSanhThongKeDTO.TienDichVu = (doanhThuDichVuHT / doanhThuDichVuQK) * 100;
+            if (doanhThuThuePhongHT == 0 && doanhThuThuePhongQK == 0)
+                soSanhThongKeDTO.TienThuePhong = 0;
+            else
+                soSanhThongKeDTO.TienThuePhong = (doanhThuThuePhongHT / doanhThuThuePhongQK) * 100;
+            
             return soSanhThongKeDTO;
         }
         public SoSanhThongKeDTO SoSanhThongKeTheoQuy(int quy, int nam)
@@ -585,12 +593,18 @@ namespace QLKSProject.Business.QuanLy
                     doanhThuDichVuQK += thongKe.TrungBinh;
             }
             SoSanhThongKeDTO soSanhThongKeDTO = new SoSanhThongKeDTO();
-            if(doanhThuDichVuQK ==0)
+            if (doanhThuDichVuQK == 0)
                 doanhThuDichVuQK = doanhThuDichVuHT;
             if (doanhThuThuePhongQK == 0)
                 doanhThuThuePhongQK = doanhThuThuePhongHT;
-            soSanhThongKeDTO.TienThuePhong = (doanhThuThuePhongHT / doanhThuThuePhongQK) * 100;
-            soSanhThongKeDTO.TienDichVu = (doanhThuDichVuHT / doanhThuDichVuQK) * 100;
+            if (doanhThuDichVuHT == 0 && doanhThuDichVuQK == 0)
+                soSanhThongKeDTO.TienDichVu = 0;
+            else
+                soSanhThongKeDTO.TienDichVu = (doanhThuDichVuHT / doanhThuDichVuQK) * 100;
+            if (doanhThuThuePhongHT == 0 && doanhThuThuePhongQK == 0)
+                soSanhThongKeDTO.TienThuePhong = 0;
+            else
+                soSanhThongKeDTO.TienThuePhong = (doanhThuThuePhongHT / doanhThuThuePhongQK) * 100;
             return soSanhThongKeDTO;
         }
         #endregion
@@ -699,7 +713,7 @@ namespace QLKSProject.Business.QuanLy
             }
             return soNgay;
         }
-        private ThongKeTheoThangDTO DoanhThuChoThuePhong(int thang, int nam, List<PhongDTO> phongDTOs, List<KhachHangDTO> khachHangDTOs)
+        private ThongKeTheoThangDTO DoanhThuChoThuePhongTheoThang(int thang, int nam, List<PhongDTO> phongDTOs, List<KhachHangDTO> khachHangDTOs)
         {
             int cuoiThang = TinhNgayCuoiThang(thang, nam);
             double doanhThu = 0;
@@ -731,11 +745,13 @@ namespace QLKSProject.Business.QuanLy
             else
                 return false;
         }
-        private ThongKeTheoQuyDTO DoanhThuChoThuePhongTheoQuy(int thang1,int thang2,int thang3, int nam, List<PhongDTO> phongDTOs, List<KhachHangDTO> khachHangDTOs)
-        {    
-            var doanhThuChoThuePhongThang1 = DoanhThuChoThuePhong(thang1, nam, phongDTOs, khachHangDTOs);
-            var doanhThuChoThuePhongThang2 = DoanhThuChoThuePhong(thang2, nam, phongDTOs, khachHangDTOs);
-            var doanhThuChoThuePhongThang3 = DoanhThuChoThuePhong(thang3, nam, phongDTOs, khachHangDTOs);
+
+        private ThongKeTheoQuyDTO DoanhThuChoThuePhongTheoQuy(int thang1, int thang2, int thang3, int nam, List<PhongDTO> phongDTOs, List<KhachHangDTO> khachHangDTOs)
+        {
+            var doanhThuChoThuePhongThang1 = DoanhThuChoThuePhongTheoThang(thang1, nam, phongDTOs, khachHangDTOs);
+            var doanhThuChoThuePhongThang2 = DoanhThuChoThuePhongTheoThang(thang2, nam, phongDTOs, khachHangDTOs);
+            var doanhThuChoThuePhongThang3 = DoanhThuChoThuePhongTheoThang(thang3, nam, phongDTOs, khachHangDTOs);
+
             ThongKeTheoQuyDTO thongKeTheoQuyDTO = new ThongKeTheoQuyDTO();
             thongKeTheoQuyDTO.TenDichVu = doanhThuChoThuePhongThang1.TenDichVu;
             thongKeTheoQuyDTO.DoanhThu1 = doanhThuChoThuePhongThang1.DoanThu;
@@ -757,7 +773,7 @@ namespace QLKSProject.Business.QuanLy
                     phong.SoPhong = maPhong;
                     phong.LoaiPhong = loaiPhong;
                     phong.IsDelete = false;
-                    phong.TrangThai = true;
+                    phong.TrangThai = -1;
                     phong.Gia = gia;
                     models.Phongs.Add(phong);
                 }
@@ -766,24 +782,24 @@ namespace QLKSProject.Business.QuanLy
             catch (Exception)
             {
                 return false;
-            }         
-            
+            }
+
         }
         private ThongKeTheoThangDTO ThongKeDichVuTheoThang(int thang, int nam, string tenDV)
         {
+            ThongKeTheoThangDTO thongKeTheoThangDTO = new ThongKeTheoThangDTO();
             double doanhThu = 0;
             var lstDV = models.LichSuDichVus.Where(l => l.TenDichVu.Equals(tenDV) && l.NgayGoiDichVu.Month == thang && l.NgayGoiDichVu.Year == nam).ToList();
-            var gia = models.DichVus.Where(d => d.TenDichVu.Equals(lstDV[0].TenDichVu)).Select(d => d.Gia).FirstOrDefault();
+            var gia = models.DichVus.Where(d => d.TenDichVu.Equals(tenDV)).Select(d => d.Gia).FirstOrDefault();
             foreach (var dv in lstDV)
             {
                 doanhThu += gia;
             }
-            ThongKeTheoThangDTO thongKeTheoThangDTO = new ThongKeTheoThangDTO();
             thongKeTheoThangDTO.DoanThu = doanhThu;
             thongKeTheoThangDTO.TenDichVu = tenDV;
             return thongKeTheoThangDTO;
         }
-        private ThongKeTheoQuyDTO ThongKeDichVuTheoQuy(int thang1,int thang2,int thang3, int nam, string tenDV)
+        private ThongKeTheoQuyDTO ThongKeDichVuTheoQuy(int thang1, int thang2, int thang3, int nam, string tenDV)
         {
             ThongKeTheoQuyDTO thongKeTheoQuyDTO = new ThongKeTheoQuyDTO();
             thongKeTheoQuyDTO.TenDichVu = tenDV;
@@ -793,6 +809,7 @@ namespace QLKSProject.Business.QuanLy
             thongKeTheoQuyDTO.TrungBinh = (thongKeTheoQuyDTO.DoanhThu1 + thongKeTheoQuyDTO.DoanhThu2 + thongKeTheoQuyDTO.DoanhThu3) / 3;
             return thongKeTheoQuyDTO;
         }
+       
         #endregion
     }
 }
