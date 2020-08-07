@@ -252,7 +252,7 @@ function loadDSPhong(url) {
                         color = "bg-warning";
                     }
                     if (val.SoPhong.charAt(0) == '' + i) {
-                        $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" data-id="' + val.SoPhong + '"> ' + val.SoPhong + '</button> ');
+                        $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" data-id="' + val.ID + '"> ' + val.SoPhong + '</button> ');
                     }
                 })
 
@@ -461,7 +461,7 @@ function XepPhongTatCa(info, url) {
                 $('#loadingAll').css("display", "none");
                 loadData(info.id, info.urlLoad);
             })
-            
+
         },
         error: function (data) {
             Swal.fire({
@@ -473,11 +473,11 @@ function XepPhongTatCa(info, url) {
                 $('#loadingAll').css("display", "none");
                 loadData(info.id, info.urlLoad);
             })
-            
+
 
         }
     })
-   
+
 
 }
 
@@ -596,7 +596,7 @@ function XepPhongThuNghiem(url, dataInput) {
     })
 }
 
-function LayThogTinKHTheoPhong(info, id) {
+function LayThongTinKHTheoPhong(info, id) {
     $.ajax({
         type: 'GET',
         url: '/SEP23Team2/api/' + info.url + id,
@@ -606,12 +606,10 @@ function LayThogTinKHTheoPhong(info, id) {
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         dataType: 'json',
         success: function (data) {
-            var i = 0;
+            $(info.idLoad).empty();
             $.each(data, function (index, val) {
-                
+                $(info.idLoad).append('<option value="' + val + '">' + val + '</option>');
             })
-
-            sessionStorage.setItem('length', i);
         },
         error: function (data) {
 

@@ -223,7 +223,7 @@
             </div>
 
             <div id="popover-form-nhanp" class="hide">
-                <form id="myform-nhanp" role="form">
+                <div id="myform-nhanp" role="form">
                     <div class="form-group">
                         <input id="cmnd-nhanp" type="text" placeholder="CMND" class="form-control" />
                     </div>
@@ -232,12 +232,12 @@
                         </select>
 
                     </div>
-                    <button type="submit" class="btn btn-success">Nhận Phòng</button>
-                </form>
+                    <button type="submit" id="btn-nhanphong" class="btn btn-success">Nhận Phòng</button>
+                </div>
             </div>
 
             <div id="popover-form-trap" class="hide">
-                <form id="myform-trap" role="form">
+                <div id="myform-trap" role="form">
                     <div class="form-group">
                         <h2 class="form-control" id="tendaidien"></h2>
                         <p id="cmnd-trap"></p>
@@ -247,8 +247,8 @@
                         <ul id="dsdv">
                         </ul>
                     </div>
-                    <button type="submit" class="btn btn-danger">Trả Phòng</button>
-                </form>
+                    <button type="submit" id="" class="btn btn-danger">Trả Phòng</button>
+                </div>
             </div>
             <!-- Modal -->
             <!-- end page container -->
@@ -295,42 +295,51 @@
             checkSession();
 
             var layDSPhong = 'NhanVien/LayDanhSachPhong';
-
+            var layKHTheoPhong = 'NhanVien/LayDanhSachTenKhachHangChungPhong/';
             loadDSPhong(layDSPhong);
-
-            //$('button.info-box.bg-warning').popover({
-            //    title: '<h4>' + $(this).val() + '</h4>',
-            //    container: 'body',
-            //    placement: 'right',
-            //    html: true,
-            //    content: function () {
-            //        return $('#popover-form-nhanp').html();
-            //    }
-            //});
+            var closeWarning = false;
+            var closeSuccess = false;
             $('body').on('click', '.info-box.bg-warning', function () {
-                
-                $(this).popover({
-                    container: 'body',
-                    placement: 'right',
-                    html: true,
-                    content: function () {
-                        return $('#popover-form-nhanp').html();
+                closeWarning = !closeWarning;
+                if (closeWarning) {
+                    var maPhong = $(this).attr('data-id');
+                    var info = {
+                        idLoad: '#nguoidaidien-nhanp',
+                        url: layKHTheoPhong
+
                     }
-                });
+                    LayThongTinKHTheoPhong(info, maPhong);
+                    $(this).popover({
+                        container: 'body',
+                        placement: 'right',
+                        html: true,
+                        content: function () {
+                            return $('#popover-form-nhanp').html();
+                        }
+                    });
+                }
+
 
             })
 
             $('body').on('click', '.info-box.bg-success', function () {
+                closeSuccess = !closeSuccess;
+                if (closeSuccess) {
+                    $(this).popover({
+                        container: 'body',
+                        placement: 'right',
+                        html: true,
+                        content: function () {
+                            return $('#popover-form-trap').html();
+                        }
+                    });
+                }
+            })
 
-                $(this).popover({
-                    container: 'body',
-                    placement: 'right',
-                    html: true,
-                    content: function () {
-                        return $('#popover-form-trap').html();
-                    }
-                });
-
+            $('body').on('click', '#btn-nhanphong', function () {
+                var cmnd = $('#cmnd-nhanp').val();
+                var nguoiDaiDien = $('#nguoidaidien-nhanp').val();
+                console.log(cmnd + "-" + nguoiDaiDien);
             })
 
 
