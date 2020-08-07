@@ -29,7 +29,8 @@ namespace QLKSProject.Business.NhanVien
                 TruongDoan = kh.TruongDoan,
                 IsDelete = kh.IsDelete,
                 TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                TrangThaiXacNhan = kh.TrangThaiXacNhan
+                TrangThaiXacNhan = kh.TrangThaiXacNhan,
+                GhiChu = kh.GhiChu
             }).ToList();
             //Xap xep khach hang theo nhom
             lstKhachHang = lstKhachHang.OrderBy(kh => kh.Nhom).ToList();
@@ -311,10 +312,10 @@ namespace QLKSProject.Business.NhanVien
                             }
                             else
                             {
-                                trangThaiDatPhong = "Không lấy được số phòng của loại phòng <" + nhom + "> cho khách !!!";
+                                trangThaiDatPhong = "Không lấy được số phòng của loại phòng <" + loaiPhong + "> cho khách !!!";
                                 foreach (var khachHang in lstNhomKhachHang)
                                 {
-                                    khachHang.GhiChu = "Hết phòng loại <" + nhom + " Không có phòng phù hợp";
+                                    khachHang.GhiChu = "Hết phòng loại <" + loaiPhong + "> Không có phòng phù hợp";
                                 }
                             }
                         }

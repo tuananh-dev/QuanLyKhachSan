@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace QLKSProjectTest
+namespace QLKSProject_UnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class NhanVien_UnitTest
     {
         [TestMethod]
         public void LayDanhSachKhachHangTheoMaDoanSuccess()

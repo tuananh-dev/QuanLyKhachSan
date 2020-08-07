@@ -151,6 +151,7 @@ namespace QLKSProject.Business.QuanLy
                         phong.TrangThai = kh.TrangThaiDatPhong;
                 }
             }
+            lstphong = lstphong.OrderBy(l => l.LoaiPhong).ToList();
             return lstphong.ToList();
         }
         public PhongDTO LayPhong(int idPhong)

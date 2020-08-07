@@ -7,6 +7,8 @@
 <head>
     <link href="~/Content/Home/ChiTietPhong/css/style.css" rel="stylesheet" />
     <link href="~/Content/Home/ChiTietPhong/css/reset.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="site-wrap">
@@ -66,49 +68,54 @@
                     </div>
                 </div>
                 <div class="row">
-
                     <div class="col-md-6 col-lg-3 mb-5">
                         <div class="hotel-room text-center">
                             <ul class="cd-items cd-container" style="padding:0;width: 100%;">
                                 <li class="cd-item" style="width:100%; margin: 0;">
-                                    <img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Item Preview" class="img-responsive">
-                                    <button class="cd-trigger" data-target="#product_view">Xem Chi Tiết</button>
+                                    <img src="~/Content/Home/ChiTietPhong/img/1.jpg" alt="Item Preview" class="img-responsive">
+                                    <button class="cd-trigger" id="xct1">Xem Chi Tiết</button>
                                 </li>
                             </ul>
                             <div class="hotel-room text-center">
-                                @*<a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>*@
                                 <div class="hotel-room-body">
                                     <h3 class="heading mb-0"><a>Phòng Đơn</a></h3>
                                     <strong class="price">1.000.000 vnđ  / Ngày</strong>
                                 </div>
-                                <div class="cd-quick-view" style="margin-top: 30px">
-                                    <div class="cd-slider-wrapper">
-                                        <ul class="cd-slider">
-                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Product 4"></li>
-                                            <li><img src="~/Content/Home/ChiTietPhong/img/Laluna-Suite-view.jpg" alt="Product 5"></li>
-                                            <li><img src="~/Content/Home/ChiTietPhong/img/Superb-Deluxe-Twin-303-bathroom.jpg" alt="Product 6"></li>
-                                        </ul> <!-- cd-slider -->
+                                <script>
+                                    $(document).ready(function (e) {
+                                        $("#xct1").click(function () {
+                                            $("#cdqv2").hide();
+                                            $("#cdqv3").hide();
+                                            $("#cdqv4").hide();
+                                            $("#cdqv1").show();
+                                        });
+                                    });
+                                </script>
+                                <div class="cd-quick-view" style="margin-top: 30px" id="cdqv1">
 
+                                    <div class="cd-slider-wrapper" id="cssw1">
+                                        <ul class="cd-slider">
+                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/1.jpg" alt="Product 1"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/3.jpg" alt="Product 2"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/2.jpg" alt="Product 3"></li>
+                                        </ul> <!-- cd-slider -->
                                         <ul class="cd-slider-navigation">
                                             <li><a class="cd-next">Prev</a></li>
                                             <li><a class="cd-prev">Next</a></li>
                                         </ul> <!-- cd-slider-navigation -->
                                     </div> <!-- cd-slider-wrapper -->
-
-                                    <div class="cd-item-info" id="product_view">
+                                    <div class="cd-item-info" id="product_view" style="margin-top:-38px">
                                         <h2>PHÒNG ĐƠN</h2>
-                                        <p align="left">
-                                            Số Khách: Tối Đa
+                                        <p align="left" style="color:black">
+                                            <b>Số Khách:</b>  2 Khách
                                             <br>
-                                            Số Khách: 4 người
+                                            <b>Kích Thước:</b>  32m2
                                             <br>
-                                            Số Khách: 4 người
+                                            <b>Tiện Ích Trong Phòng:</b>Máy Lạnh, Tivi, Tủ Lạnh, Máy Nước Nóng Lạnh...
+                                            <br>
+                                            <b>Hướng Nhìn: </b> Toàn Cảnh Sông Hoài...
                                             <br>
                                         </p>
-                                        @*<ul class="cd-item-action">
-                                                <li><button class="add-to-cart">Add to cart</button></li>
-                                                <li><a href="#0">Learn more</a></li>
-                                            </ul>  cd-item-action*@
                                     </div> <!-- cd-item-info -->
                                     <a href="#" class="cd-close">Close</a>
                                 </div> <!-- cd-quick-view -->
@@ -117,48 +124,51 @@
                     </div>
                     <div class="col-md-6 col-lg-3 mb-5">
                         <div class="hotel-room text-center">
+                            <script>
+                                $(document).ready(function (e) {
+                                    $("#xct2").click(function () {
+                                        $("#cdqv1").hide();
+                                        $("#cdqv3").hide();
+                                        $("#cdqv4").hide();
+                                        $("#cdqv2").show();
+                                    });
+                                });
+                            </script>
                             <ul class="cd-items cd-container" style="padding:0;width: 100%;">
                                 <li class="cd-item" style="width:100%; margin: 0;">
-                                    <img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Item Preview" class="img-responsive">
-                                    <button class="cd-trigger" data-target="#product_view2">Xem Chi Tiết</button>
+                                    <img src="~/Content/Home/ChiTietPhong/img/4.jpg" alt="Item Preview" class="img-responsive">
+                                    <button class="cd-trigger" id="xct2">Xem Chi Tiết</button>
                                 </li>
                             </ul>
                             <div class="hotel-room text-center">
-                                @*<a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>*@
                                 <div class="hotel-room-body">
                                     <h3 class="heading mb-0"><a>Phòng Đôi</a></h3>
                                     <strong class="price">2.000.000 vnđ  / Ngày</strong>
                                 </div>
-                                <div class="cd-quick-view" style="margin-top: 30px" id="product_view2">
-                                    <div class="cd-slider-wrapper">
+                                <div class="cd-quick-view" style="margin-top: 30px" id="cdqv2">
+                                    <div class="cd-slider-wrapper" id="cdsw2">
                                         <ul class="cd-slider">
-                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Product 4"></li>
-                                            <li><img src="~/Content/Home/ChiTietPhong/img/Laluna-Suite-view.jpg" alt="Product 5"></li>
-                                            <li><img src="~/Content/Home/ChiTietPhong/img/Superb-Deluxe-Twin-303-bathroom.jpg" alt="Product 6"></li>
+                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/4.jpg" alt="Product 4"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/6.jpg" alt="Product 5"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/5.jpg" alt="Product 6"></li>
                                         </ul> <!-- cd-slider -->
-
-                                        <ul class="cd-slider-navigation">
+                                        <ul class="cd-slider-navigation" id="cdsn2">
                                             <li><a class="cd-next">Prev</a></li>
                                             <li><a class="cd-prev">Next</a></li>
                                         </ul> <!-- cd-slider-navigation -->
                                     </div> <!-- cd-slider-wrapper -->
-
-                                    <div class="cd-item-info">
-                                        <h2>PHÒNG Đôi</h2>
-                                        <p align="left">
-                                            Số Khách: Tối Đa
+                                    <div class="cd-item-info" id="cd2" style="margin-top:-38px">
+                                        <h2>PHÒNG ĐÔI</h2>
+                                        <p align="left" style="color:black">
+                                            <b>Số Khách:</b>  2 Khách
                                             <br>
-                                            Số Khách: 4 người
+                                            <b>Kích Thước:</b>  34m2
                                             <br>
-                                            Số Khách: 4 người
+                                            <b>Tiện Ích Trong Phòng:</b>   Máy Lạnh, Tivi, Tủ Lạnh, Máy Nước Nóng Lạnh...
+                                            <br>
+                                            <b>Hướng Nhìn: </b>Thành Phố Hội An...
                                             <br>
                                         </p>
-
-
-                                        @*<ul class="cd-item-action">
-                                                <li><button class="add-to-cart">Add to cart</button></li>
-                                                <li><a href="#0">Learn more</a></li>
-                                            </ul>  cd-item-action*@
                                     </div> <!-- cd-item-info -->
                                     <a href="#" class="cd-close">Close</a>
                                 </div> <!-- cd-quick-view -->
@@ -167,46 +177,51 @@
                     </div>
                     <div class="col-md-6 col-lg-3 mb-5">
                         <div class="hotel-room text-center">
+                            <script>
+                                $(document).ready(function (e) {
+                                    $("#xct3").click(function () {
+                                        $("#cdqv1").hide();
+                                        $("#cdqv2").hide();
+                                        $("#cdqv4").hide();
+                                        $("#cdqv3").show();
+                                    });
+                                });
+                            </script>
                             <ul class="cd-items cd-container" style="padding:0;width: 100%;">
                                 <li class="cd-item" style="width:100%; margin: 0;">
-                                    <img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Item Preview" class="img-responsive">
-                                    <button class="cd-trigger" data-target="#product_view2">Xem Chi Tiết</button>
+                                    <img src="~/Content/Home/ChiTietPhong/img/7.jpg" alt="Item Preview" class="img-responsive">
+                                    <button class="cd-trigger" id="xct3">Xem Chi Tiết</button>
                                 </li>
                             </ul>
                             <div class="hotel-room text-center">
-                                @*<a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>*@
                                 <div class="hotel-room-body">
-                                    <h3 class="heading mb-0"><a>Phòng Ba</a></h3>
+                                    <h3 class="heading mb-0"><a>Phòng 3 Người</a></h3>
                                     <strong class="price">3.000.000 vnđ  / Ngày</strong>
                                 </div>
-                                <div class="cd-quick-view" style="margin-top: 30px" id="product_view2">
+                                <div class="cd-quick-view" style="margin-top: 30px" id="cdqv3">
                                     <div class="cd-slider-wrapper">
                                         <ul class="cd-slider">
-                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Product 4"></li>
-                                            <li><img src="~/Content/Home/ChiTietPhong/img/Laluna-Suite-view.jpg" alt="Product 5"></li>
-                                            <li><img src="~/Content/Home/ChiTietPhong/img/Superb-Deluxe-Twin-303-bathroom.jpg" alt="Product 6"></li>
+                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/7.jpg" alt="Product 7"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/9.jpg" alt="Product 8"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/8.jpg" alt="Product 9"></li>
                                         </ul> <!-- cd-slider -->
-
                                         <ul class="cd-slider-navigation">
                                             <li><a class="cd-next">Prev</a></li>
                                             <li><a class="cd-prev">Next</a></li>
                                         </ul> <!-- cd-slider-navigation -->
                                     </div> <!-- cd-slider-wrapper -->
-
-                                    <div class="cd-item-info">
-                                        <h2>PHÒNG ĐÔI</h2>
-                                        <p align="left">
-                                            Số Khách: Tối Đa
+                                    <div class="cd-item-info" id="cd3" style="margin:-38px">
+                                        <h2>PHÒNG 3 NGƯỜI</h2>
+                                        <p align="left" style="color:black">
+                                            <b>Số Khách:</b>  3 Khách
                                             <br>
-                                            Số Khách: 4 người
+                                            <b>Kích Thước:</b>  42m2
                                             <br>
-                                            Số Khách: 4 người
+                                            <b>Tiện Ích Trong Phòng:</b>Máy Lạnh, Tivi, Tủ Lạnh, Máy Nước Nóng Lạnh, Bồn Tắm...
+                                            <br>
+                                            <b>Hướng Nhìn: </b> Toàn Cảnh Sông Hoài, Thành Phố Hội An...
                                             <br>
                                         </p>
-                                        @*<ul class="cd-item-action">
-                                                <li><button class="add-to-cart">Add to cart</button></li>
-                                                <li><a href="#0">Learn more</a></li>
-                                            </ul>  cd-item-action*@
                                     </div> <!-- cd-item-info -->
                                     <a href="#" class="cd-close">Close</a>
                                 </div> <!-- cd-quick-view -->
@@ -215,107 +230,61 @@
                     </div>
                     <div class="col-md-6 col-lg-3 mb-5">
                         <div class="hotel-room text-center">
+                            <script>
+                                $(document).ready(function (e) {
+                                    $("#xct4").click(function () {
+                                        $("#cdqv1").hide();
+                                        $("#cdqv2").hide();
+                                        $("#cdqv3").hide();
+                                        $("#cdqv4").show();
+                                    });
+                                });
+                            </script>
                             <ul class="cd-items cd-container" style="padding:0;width: 100%;">
                                 <li class="cd-item" style="width:100%; margin: 0;">
-                                    <img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Item Preview" class="img-responsive">
-                                    <button class="cd-trigger" data-target="#product_view2">Xem Chi Tiết</button>
+                                    <img src="~/Content/Home/ChiTietPhong/img/10.jpg" alt="Item Preview" class="img-responsive" style="height:160px">
+                                    <button class="cd-trigger" id="xct4">Xem Chi Tiết</button>
                                 </li>
                             </ul>
                             <div class="hotel-room text-center">
-                                @*<a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>*@
                                 <div class="hotel-room-body">
-                                    <h3 class="heading mb-0"><a>Phòng Đôi</a></h3>
-                                    <strong class="price">2.000.000 vnđ  / Ngày</strong>
+                                    <h3 class="heading mb-0"><a>Phòng 4 Người</a></h3>
+                                    <strong class="price">4.000.000 vnđ  / Ngày</strong>
                                 </div>
-                                <div class="cd-quick-view" style="margin-top: 30px" id="product_view2">
+                                <div class="cd-quick-view" style="margin-top: 30px" id="cdqv4">
                                     <div class="cd-slider-wrapper">
                                         <ul class="cd-slider">
-                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Product 4"></li>
-                                            <li><img src="~/Content/Home/ChiTietPhong/img/Laluna-Suite-view.jpg" alt="Product 5"></li>
-                                            <li><img src="~/Content/Home/ChiTietPhong/img/Superb-Deluxe-Twin-303-bathroom.jpg" alt="Product 6"></li>
+                                            <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/10.jpg" style="height:250px" alt="Product 4"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/12.jpg" alt="Product 5"></li>
+                                            <li><img src="~/Content/Home/ChiTietPhong/img/11.jpg" alt="Product 6"></li>
                                         </ul> <!-- cd-slider -->
-
                                         <ul class="cd-slider-navigation">
                                             <li><a class="cd-next">Prev</a></li>
                                             <li><a class="cd-prev">Next</a></li>
                                         </ul> <!-- cd-slider-navigation -->
                                     </div> <!-- cd-slider-wrapper -->
+                                    <div class="cd-item-info" id="cd4" style="margin:-38px">
+                                        <h2>PHÒNG 4 NGƯỜI</h2>
+                                        <p align="left" style="color:black">
 
-                                    <div class="cd-item-info">
-                                        <h2>PHÒNG ĐÔI</h2>
-                                        <p align="left">
-                                            Số Khách: Tối Đa
+                                            <b>Số Khách:</b>  4 Khách
                                             <br>
-                                            Số Khách: 4 người
+                                            <b>Kích Thước:</b>  60m2
                                             <br>
-                                            Số Khách: 4 người
+                                            <b>Tiện Ích Trong Phòng:</b>   Máy Lạnh, Tivi, Tủ Lạnh, Máy Nước Nóng Lạnh, Bồn Tấm
+                                            <br>
+                                            <b>Hướng Nhìn: </b> Toàn Cảnh Sông Hoài, Thành Phố Hội An...
                                             <br>
                                         </p>
-                                        @*<ul class="cd-item-action">
-                                                <li><button class="add-to-cart">Add to cart</button></li>
-                                                <li><a href="#0">Learn more</a></li>
-                                            </ul>  cd-item-action*@
                                     </div> <!-- cd-item-info -->
                                     <a href="#" class="cd-close">Close</a>
                                 </div> <!-- cd-quick-view -->
                             </div>
                         </div>
                     </div>
-
-
-                    @*<div class="col-md-6 col-lg-3 mb-5">
-                            <div class="hotel-room text-center">
-                                <ul class="cd-items cd-container" style="padding:0;width: 100%;">
-                                    <li class="cd-item" style="width:100%; margin: 0;">
-                                        <img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Item Preview" class="img-responsive">
-                                        <button1 class="cd-trigger">Xem Chi Tiết</button1>
-                                    </li>
-                                </ul>
-                                <div class="hotel-room text-center">
-                                    <a href="#" class="d-block mb-0 thumbnail"><img src="~/Content/Home/images/img_3.jpg" alt="Image" class="img-fluid"></a>
-                                    <div class="hotel-room-body">
-                                        <h3 class="heading mb-0"><a>Phòng 3 Người</a></h3>
-                                        <strong class="price">3.000.000 vnđ  / Ngày</strong>
-                                    </div>
-                                    <div class="cd-quick-view" style="margin-top: 30px">
-                                        <div class="cd-slider-wrapper">
-                                            <ul class="cd-slider">
-                                                <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/img_2.jpg" alt="Product 4"></li>
-                                                <li><img src="~/Content/Home/ChiTietPhong/img/Laluna-Suite-view.jpg" alt="Product 5"></li>
-                                                <li><img src="~/Content/Home/ChiTietPhong/img/Superb-Deluxe-Twin-303-bathroom.jpg" alt="Product 6"></li>
-                                            </ul>  cd-slider
-
-                                            <ul class="cd-slider-navigation">
-                                                <li><a class="cd-next">Prev</a></li>
-                                                <li><a class="cd-prev">Next</a></li>
-                                            </ul>  cd-slider-navigation
-                                        </div>  cd-slider-wrapper
-
-                                        <div class="cd-item-info">
-                                            <h2>PHÒNG 3 NGƯỜI</h2>
-                                            <p align="left">
-                                                Số Khách: Tối Đa
-                                                <br>
-                                                Số Khách: 4 người
-                                                <br>
-                                                Số Khách: 4 người
-                                                <br>
-                                            </p>
-
-
-                                            <ul class="cd-item-action">
-                                    <li><button class="add-to-cart">Add to cart</button></li>
-                                    <li><a href="#0">Learn more</a></li>
-                                </ul>  cd-item-action
-                                        </div>  cd-item-info
-                                        <a href="#" class="cd-close">Close</a>
-                                    </div>  cd-quick-view
-                                </div>
-                            </div>
-                        </div>*@
                 </div>
             </div>
-        </div>>
+        </div>
         <div @*class="site-section"*@>
             <div class="container">
                 <div class="row align-items-center">
