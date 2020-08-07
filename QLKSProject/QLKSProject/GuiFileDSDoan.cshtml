@@ -192,7 +192,7 @@
                                             @*<li><a href="events.html">Events</a></li>*@
                                             <li><a style="color:dimgray" href="GioiThieu.cshtml">Giới Thiệu</a></li>
                                             @*<li><a href="contact.cshtml">Contact</a></li>*@
-                                            <li @*class="active"*@><a style="color:red" href="GuiFileDSDoan.cshtml">Gửi Danh Sách Đoàn  </a></li>
+                                            <li @*class="active"*@><a style="color:red" href="GuiFileDSDoan.cshtml">Gửi File</a></li>
                                             <li> <a href="~/DangNhap.cshtml" class="btn btn-primary pill text-white px-4" style="background-color:red;border-color:red">Đăng Nhập</a></li>
                                         </ul>
 
@@ -268,7 +268,7 @@
                                     <div>
                                         <div class="container">
                                             <div class="a">
-                                                <h1>Gửi Danh Sách Đoàn</h1>
+                                                <h1>Gửi Danh Sách Thành Viên Đoàn</h1>
 
                                             </div>
                                         </div>
@@ -288,14 +288,14 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-md-12 mb-3 mb-md-0">
-                                        <label class="font-weight-bold" for="phone">Đặt Phòng Từ Ngày</label>
+                                        <label class="font-weight-bold" for="phone">Ngày Nhận Phòng</label>
                                         <input type="date" id="datphongtungay" class="form-control" name="datphongtungay" required>
                                     </div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-md-12 mb-3 mb-md-0">
 
-                                        <label class="font-weight-bold" for="phone">Đến Ngày</label>
+                                        <label class="font-weight-bold" for="phone">Ngày Trả Phòng</label>
                                         <input type="date" id="denngay" class="form-control" name="denngay" required>
                                     </div>
                                     <script>
@@ -322,7 +322,7 @@
                                                 //alert("Ngày trả phòng phải lớn hơn ngày nhận phòng");
 
                                                 swal({
-                                                    title: "Ngày trả phòng phải lớn hơn ngày nhận phòng",
+                                                    title: "Ngày trả phòng phải sau ngày nhận phòng",
                                                     //text: "File Không đúng định dạng vui lòng chọn lại",
                                                     //type: "warning",
                                                     confirmButtonColor: '#f23a2e',
@@ -353,7 +353,7 @@
                                                 //alert("Ngày trả phòng phải lớn hơn ngày nhận phòng");
 
                                                 swal({
-                                                    title: "Ngày trả phòng phải lớn hơn ngày nhận phòng",
+                                                    title: "Ngày trả phòng phải sau ngày nhận phòng",
                                                     //text: "File Không đúng định dạng vui lòng chọn lại",
                                                     //type: "warning",
                                                     confirmButtonColor: '#f23a2e',
@@ -403,7 +403,7 @@
                                                 if (FileSize > 3) {
                                                     //alert('File size exceeds 3 MB');
                                                     swal({
-                                                        title: "Kích thước file không được lớn hơn 3MB",
+                                                        title: "Kích thước file không được vượt quá 3MB",
                                                         //text: "File Không đúng định dạng vui lòng chọn lại",
                                                         //type: "warning",
                                                         confirmButtonColor: '#f23a2e',
