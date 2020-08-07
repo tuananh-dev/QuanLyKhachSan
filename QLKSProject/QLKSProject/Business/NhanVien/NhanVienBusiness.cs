@@ -441,30 +441,30 @@ namespace QLKSProject.Business.NhanVien
             
             return status;
         }
-        public List<KhachHangDTO> LayDanhSachKhachHangCungPhong(int idPhong)
+        public List<string> LayDanhSachTenKhachHangChungPhong(int idPhong)
         {
             DateTime today = DateTime.Now;
-            var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == idPhong && kh.ThoiGianNhan.CompareTo(today) >= 0 && kh.ThoiGianTra.CompareTo(today) <= 0).Select(kh => new KhachHangDTO {
-                ID = kh.ID,
-                HoVaTen = kh.HoVaTen,
-                SoDienThoai = kh.SoDienThoai,
-                Email = kh.Email,
-                DiaChi = kh.DiaChi,
-                Nhom = kh.Nhom,
-                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
-                ThoiGianNhan = kh.ThoiGianNhan,
-                ThoiGianTra = kh.ThoiGianTra,
-                MaDoan = kh.MaDoan,
-                GioiTinh = kh.GioiTinh,
-                LoaiKhachHang = kh.LoaiKhachHang,
-                TruongDoan = kh.TruongDoan,
-                IsDelete = kh.IsDelete,
-                TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                TrangThaiXacNhan = kh.TrangThaiXacNhan,
-                IDPhong = kh.IDPhong,
-                GhiChu = kh.GhiChu
-            }).ToList();
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == idPhong && kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 0).Select(kh => kh.HoVaTen).ToList();
             return lstKhachHang;
+        }
+        public List<string> LayThongTinChiPhiPhong(int idPhong)
+        {
+            List<string> thongTinChiPhiPhong = new List<string>();
+            DateTime today = DateTime.Now;
+            var khachHang = models.KhachHangs.Where(kh => kh.IDPhong == idPhong && kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 0 && kh.GhiChu != null).FirstOrDefault();
+            thongTinChiPhiPhong.Add(khachHang.HoVaTen);
+            thongTinChiPhiPhong.Add(khachHang.GhiChu);
+            var lstPhongDichVu = models.LichSuDichVus.Where(p => p.IDPhong == idPhong && khachHang.ThoiGianNhan.CompareTo(p.NgayGoiDichVu) <= 0 && khachHang.ThoiGianTra.CompareTo(p.NgayGoiDichVu) >= 0).ToList();
+            string thongTinChiPhi = "";
+            int tongChiPhi = 0;
+            foreach (var dv in lstPhongDichVu)
+            {
+                tongChiPhi += LayGiaDV(dv.TenDichVu);
+                thongTinChiPhi = dv.TenDichVu + "  " + dv.HoVaTenKhachHang + "  " + LayGiaDV(dv.TenDichVu);
+                thongTinChiPhiPhong.Add(thongTinChiPhi);
+            }
+            thongTinChiPhiPhong.Add(tongChiPhi.ToString());
+            return thongTinChiPhiPhong;
         }
         #endregion
 
@@ -549,7 +549,10 @@ namespace QLKSProject.Business.NhanVien
             var lstKhachHang = models.KhachHangs.Where(kh => kh.IsDelete != true && kh.MaDoan.Equals(maDoan)).ToList();
             for (int i = 0; i < lstKhachHang.Count; i++)
             {
-                lstKhachHang[i].GhiChu = khachHangDTOs[i].GhiChu;
+                if (khachHangDTOs[i].GhiChu != null)
+                    lstKhachHang[i].GhiChu = khachHangDTOs[i].GhiChu;
+                else
+                    lstKhachHang[i].GhiChu = "Đoàn đặt phòng lỗi";
                 lstKhachHang[i].IDPhong = -1;
                 lstKhachHang[i].TrangThaiDatPhong = -1;
             }
@@ -654,7 +657,10 @@ namespace QLKSProject.Business.NhanVien
             return soPhong;
 
         }
-        
+        private int LayGiaDV(string tenDv)
+        {
+            return models.DichVus.Where(d => d.TenDichVu.Equals(tenDv)).Select(d => d.Gia).FirstOrDefault();
+        }
         
         #endregion
     }
