@@ -413,7 +413,7 @@ namespace QLKSProject.Business.NhanVien
             {
                 DateTime today = DateTime.Now;
                 var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == idPhong && kh.TrangThaiDatPhong == 0).ToList();
-                lstKhachHang = lstKhachHang.Where(kh => kh.ThoiGianNhan.CompareTo(today) >= 0 && kh.ThoiGianTra.CompareTo(today) <= 0).ToList();
+                lstKhachHang = lstKhachHang.Where(kh => kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 0).ToList();
                 var nguoiDaiDien = lstKhachHang.Where(kh => kh.HoVaTen.Equals(hovaten)).FirstOrDefault();
                 nguoiDaiDien.GhiChu = cmnd;
                 if (lstKhachHang.Count != 0)
