@@ -20,7 +20,6 @@ namespace QLKSProject.Controllers.Home
             {
                 return BadRequest();
             }
-
             string tenDoan = dynamic.TenDoan.ToString();
             string tenTruongDoan = dynamic.TenTruongDoan.ToString();
             DateTime thoiGianNhan = dynamic.ThoiGianNhan;

@@ -7,7 +7,7 @@ namespace QLKSProject.Models.DTO
 {
     public class KhachHangNhanPhongDTO
     {
-        public string SoPhong { get; set; }
+        public int IdPhong { get; set; }
         public string HoVaTen { get; set; }
         public string CMND { get; set; }
     }
