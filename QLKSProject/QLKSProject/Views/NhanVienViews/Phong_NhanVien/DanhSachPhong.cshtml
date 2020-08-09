@@ -29,7 +29,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script src="~/Content/QuanLy/libs_function.js"></script>
-
+    <link rel="stylesheet" href="~/Content/QuanLy/plugins/flatpicker/flatpickr.min.css">
 
     <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
     <script type="text/javascript">
@@ -39,22 +39,50 @@
             var layDSPhong = 'NhanVien/LayDanhSachPhong';
             var layKHTheoPhong = 'NhanVien/LayDanhSachTenKhachHangChungPhong/';
             var layChiPhiTheoPhong = 'NhanVien/LayThongTinChiPhiPhong/';
+            var KHTraPhong = 'NhanVien/KhachHangTraPhong';
+            var KHNhanPhong = 'NhanVien/KhachHangNhanPhong';
+
+
+            var idModalTra = '#traphongModal';
+            var idModalNhan = '#nhanphongModal';
             loadDSPhong(layDSPhong);
             var maPhong;
+            var soPhong;
             var cmnd;
             var nguoiDaiDien;
             $('body').on('click', '.info-box.bg-warning', function () {
                 maPhong = $(this).attr('data-id');
+                soPhong = $(this).val();
                 var info = {
                     idLoad: '#nguoidaidien-nhanp-ul',
                     url: layKHTheoPhong
                 }
                 LayThongTinPhong(info, maPhong);
-                $('#nhanphongModal').modal('show');
+                $(idModalNhan).modal('show');
             })
+            $('body').on('click', '#btn-nhanp', function () {
+                cmnd = $('#cmnd-nhanp').val();
+
+                nguoiDaiDien = $('#nguoidaidien-nhanp-ul').val();
+                var dataInput = {
+                    SoPhong: soPhong,
+                    HoVaTen: nguoiDaiDien,
+                    CMND: cmnd
+                }
+                console.log(dataInput.HoVaTen);
+                var info = {
+                    url: KHNhanPhong,
+                    modal: idModalNhan,
+                    urlLoad: layDSPhong
+                }
+                KhachHangNhanTraPhong(info, dataInput);
+                //console.log(maPhong)
+            })
+
 
             $('body').on('click', '.info-box.bg-success', function () {
                 maPhong = $(this).attr('data-id');
+                soPhong = $(this).val();
                 var info = {
                     idCMND: '#cmnd-trap',
                     idNguoiDaiDien: '#nguoidaidien-trap',
@@ -63,24 +91,28 @@
 
                 }
                 LayThongTinPhong(info, maPhong);
-                $('#traphongModal').modal('show');
+                $(idModalTra).modal('show');
             })
-            $('body').on('click', '#btn-nhanphong', function () {
+
+            $('body').on('click', '#btn-trap', function () {
                 cmnd = $('#cmnd-nhanp').val();
-                nguoiDaiDien = $('#nguoidaidien-nhanp-ul').val();
+                var info = {
+                    url: KHTraPhong,
+                    urlLoad: layDSPhong,
+                    modal: idModalTra
+                }
                 var dataInput = {
-                    SoPhong: maPhong,
-                    HoVaTen: nguoiDaiDien,
+                    SoPhong: soPhong,
                     CMND: cmnd
                 }
-                var info = {
-                    url: 'NhanVien/KhachHangNhanPhong',
-                    modal: '#traphongModal',
-                    urlLoad: layDSPhong
-                }
-                KhachHangNhanPhong(info, dataInput);
-                //console.log(maPhong)
+                KhachHangNhanTraPhong(info, dataInput);
             })
+            
+            //$('body').on('click', '#btn-adddichvu', function () {
+
+            //})
+
+
         });
 
     </script>
@@ -229,9 +261,13 @@
                 <div class="page-content" style="min-height: 700px">
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
-                            <div class=" pull-left">
+                            <div class="pull-left">
                                 <div class="page-title">Danh Sách Phòng</div>
                             </div>
+
+
+
+
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
 
@@ -249,6 +285,14 @@
 
                         </div>
                     </div>-->
+                    @*<div class="card-body">
+                        <div class="col-lg-3 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" type="text" id="daterange">
+                                <label class="mdl-textfield__label">Chọn Ngày Nhận - Trả</label>
+                            </div>
+                        </div>
+                    </div>*@
                     <div id="dstang">
 
                         <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 1</h3>
@@ -272,33 +316,110 @@
 
 
                     </div>
-
-
-
-                    <!--<div class="content" style="margin:0;padding:0;" id="dsphong">
-
-                        <h3>Tầng 1</h3>
-                        <div class="row" id="row1" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 2</h3>
-                        <div class="row" id="row2" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 3</h3>
-                        <div class="row" id="row3" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 4</h3>
-                        <div class="row" id="row4" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 5</h3>
-                        <div class="row" id="row5" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 6</h3>
-                        <div class="row" id="row6" style="margin:0;padding:0;"></div>
-                        <h3>Tầng 7</h3>
-                        <div class="row" id="row7" style="margin:0;padding:0;"></div>
-
-
-
-                    </div>-->
                 </div>
             </div>
+            <div class="modal fade" tabindex="-1" id="nhanphongModal" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="width:400px">
 
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Nhận Phòng</h4>
+                                    <div class="card-box">
 
+                                        <div class="card-body row">
+                                            <div class="col-lg-12 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <input class="mdl-textfield__input" type="text" id="cmnd-nhanp">
+                                                    <label class="mdl-textfield__label">CMND</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                                    <select id="nguoidaidien-nhanp-ul" class="form-control">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 p-t-20 text-center">
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-nhanp">
+                                            Nhận Phòng
+                                        </button>
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                            Hủy
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Modal -->
+                <!-- end chat sidebar -->
+            </div>
+            <div class="modal fade" tabindex="-1" id="traphongModal" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="width:400px">
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Trả Phòng</h4>
+                                    <div class="card-box">
+
+                                        <div class="card-body row">
+                                            <div class="col-lg-12 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <label class="mdl-textfield__input" type="text" id="cmnd-trap" value=""></label>
+                                                    @*<label class="mdl-textfield__label" style="top:0;">CMND</label>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <label class="mdl-textfield__input" type="text" id="nguoidaidien-trap"></label>
+                                                    @*<label class="mdl-textfield__label" style="top:0;">Người Đại Diện</label>*@
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                                    <ul id="dichvu-trap" style="list-style:none;">
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 p-t-20 text-center">
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-trap">
+                                            Trả Phòng
+                                        </button>
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-adddichvu">
+                                            Thêm Dịch Vụ
+                                        </button>
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                            Hủy
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Modal -->
+                <!-- end chat sidebar -->
+            </div>
 
 
 
@@ -343,21 +464,22 @@
 
     <!-- end js include path -->
 
-
+    <script src="~/Content/QuanLy/plugins/flatpicker/flatpickr.min.js"></script>
+    <script src="~/Content/QuanLy/js/pages/datetime/datetime-data.js"></script>
 
     <script src="~/Content/QuanLy/js/pages/material-loading/material-loading.js"></script>
     @*<script type="text/javascript">
-        $(document).ready(function () {
-            checkSession();
+            $(document).ready(function () {
+                checkSession();
 
-            var layDSPhong = 'NhanVien/LayDanhSachPhong';
+                var layDSPhong = 'NhanVien/LayDanhSachPhong';
 
-            loadDSPhong(layDSPhong);
+                loadDSPhong(layDSPhong);
 
 
 
-        });
-    </script>*@
+            });
+        </script>*@
 
 
 </body>

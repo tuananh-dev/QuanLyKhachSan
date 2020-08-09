@@ -60,7 +60,7 @@ function loadData(idList, url) {
                         var tgNhan = new Date(val.ThoiGianNhan);
                         var tgTra = new Date(val.ThoiGianTra);
                         var ngayGui = new Date(val.NgayGui);
-                        position.append('<tr class="odd gradeX"><td >' + val.TenDoan + '</td><td >' + val.TenTruongDoan + '</td><td >' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td >' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td >' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td style="display:flex;justify-content:center;align-items:center;"><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '" style="color: lightgray" >Xếp Phòng</a><div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none" id="loading"></div><a class="btn btn-danger btn-xs" data-id="' + val.MaDoan + '">Xóa</a></td ></tr > ');
+                        position.append('<tr class="odd gradeX"><td >' + val.TenDoan + '</td><td >' + val.TenTruongDoan + '</td><td >' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td >' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td >' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td style="display:flex;justify-content:center;align-items:center;"><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '" style="color: lightgray" >Xếp Phòng</a><div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-right: 10px" id="loading"></div><a class="btn btn-danger btn-xs" data-id="' + val.MaDoan + '">Xóa</a></td ></tr > ');
                         break;
                     case 'KhachHang/LayDanhSachKhachHangTheoMaDoan/' + sessionStorage.getItem('madoan'):
                         var daidien = 'Trống';
@@ -243,6 +243,7 @@ function loadDSPhong(url) {
         success: function (data) {
 
             for (i = 1; i < 10; i++) {
+                $('#row' + i).empty();
                 $.each(data, function (index, val) {
                     var color = "bg-success";
                     var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
@@ -252,7 +253,8 @@ function loadDSPhong(url) {
                         color = "bg-warning";
                     }
                     if (val.SoPhong.charAt(0) == '' + i) {
-                        $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" data-id="' + val.ID+'"> ' + val.SoPhong + '</button> ');
+
+                        $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" data-id="' + val.ID + '" value="' + val.SoPhong + '"> ' + val.SoPhong + '</button> ');
                     }
                 })
 
@@ -461,7 +463,7 @@ function XepPhongTatCa(info, url) {
                 $('#loadingAll').css("display", "none");
                 loadData(info.id, info.urlLoad);
             })
-            
+
         },
         error: function (data) {
             Swal.fire({
@@ -473,11 +475,11 @@ function XepPhongTatCa(info, url) {
                 $('#loadingAll').css("display", "none");
                 loadData(info.id, info.urlLoad);
             })
-            
+
 
         }
     })
-   
+
 
 }
 
@@ -616,9 +618,19 @@ function LayThongTinPhong(info, id) {
                     })
                     break;
                 case 'NhanVien/LayThongTinChiPhiPhong/':
-                    $(info.idCMND).val('cmnd');
-                    $(info.idNguoiDaiDien).val('ndd');
-                    $(info.idDichVu).val('dv');
+                    $(info.idCMND).empty();
+                    $(info.idNguoiDaiDien).empty();
+                    $(info.idDichVu).empty();
+
+                    $(info.idCMND).val(data[1]);
+                    $(info.idCMND).html(data[1]);
+                    $(info.idNguoiDaiDien).val(data[0]);
+                    $(info.idNguoiDaiDien).html(data[0]);
+                    for (i = 2; i < data.length; i++) {
+                        $(info.idDichVu).append('<li>' + data[i] + '</li>');
+                    }
+
+
                     break;
 
             }
@@ -633,7 +645,7 @@ function LayThongTinPhong(info, id) {
     })
 }
 
-function KhachHangNhanPhong(info, dataInput) {
+function KhachHangNhanTraPhong(info, dataInput) {
     $.ajax({
         type: 'POST',
         url: '/SEP23Team2/api/' + info.url,
@@ -647,11 +659,22 @@ function KhachHangNhanPhong(info, dataInput) {
         data: JSON.stringify(dataInput),
         success: function (data) {
             $(info.modal).modal('hide');
-            Swal.fire(
-                'Nhận Phòng Thành Công!',
-                '',
-                'success'
-            )
+            switch (info.url) {
+                case 'NhanVien/KhachHangTraPhong':
+                    Swal.fire(
+                        'Trả Phòng Thành Công!',
+                        '',
+                        'success'
+                    )
+                    break;
+                case 'NhanVien/KhachHangNhanPhong':
+                    Swal.fire(
+                        'Nhận Phòng Thành Công!',
+                        '',
+                        'success'
+                    )
+                    break;
+            }
             loadDSPhong(info.urlLoad);
 
         }, error: function (data) {
@@ -668,6 +691,76 @@ function KhachHangNhanPhong(info, dataInput) {
     })
 }
 
+//function KhachHangNhanPhong(info, dataInput) {
+//    $.ajax({
+//        type: 'POST',
+//        url: '/SEP23Team2/api/' + info.url,
+//        beforeSend: function (xhr) {
+//            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+//        },
+//        headers: {
+//            'content-type': 'application/json',
+//            'data-type': 'json',
+//        },
+//        data: JSON.stringify(dataInput),
+//        success: function (data) {
+//            $(info.modal).modal('hide');
+//            Swal.fire(
+//                'Nhận Phòng Thành Công!',
+//                '',
+//                'success'
+//            )
+//            loadDSPhong(info.urlLoad);
+
+//        }, error: function (data) {
+//            $(info.modal).modal('hide');
+//            Swal.fire({
+//                icon: 'error',
+//                title: 'Oops...',
+//                text: data.responseJSON.Message
+//            }).then(value => {
+//                window.location.reload();
+//            })
+//        }
+
+//    })
+//}
+
+
+//function KhachHangTraPhong(info, dataInput) {
+//    $.ajax({
+//        type: 'POST',
+//        url: '/SEP23Team2/api/' + info.url,
+//        beforeSend: function (xhr) {
+//            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+//        },
+//        headers: {
+//            'content-type': 'application/json',
+//            'data-type': 'json',
+//        },
+//        data: JSON.stringify(dataInput),
+//        success: function (data) {
+//            $(info.modal).modal('hide');
+//            Swal.fire(
+//                'Trả Phòng Thành Công!',
+//                '',
+//                'success'
+//            )
+//            loadDSPhong(info.urlLoad);
+
+//        }, error: function (data) {
+//            $(info.modal).modal('hide');
+//            Swal.fire({
+//                icon: 'error',
+//                title: 'Oops...',
+//                text: data.responseJSON.Message
+//            }).then(value => {
+//                window.location.reload();
+//            })
+//        }
+
+//    })
+//}
 //function LayThongTinChiPhiPhong(info, id) {
 //    $.ajax({
 //        type: 'GET',
