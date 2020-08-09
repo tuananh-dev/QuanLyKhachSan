@@ -46,12 +46,15 @@ function loadData(idList, url) {
                     case 'Quanly/LayDanhSachPhong':
                         var tien = formatNumber(val.Gia);
                         var tt = "Trống";
-                        var label = "label-warning";
-                        if (val.TrangThai) {
+                        var label = "";
+                        if (val.TrangThai == '0') {
+                            tt = "Đang Chờ"
+                            label = "label-warning"
+                        } else if (val.TrangThai == '1') {
                             tt = "Đang sử dụng"
                             label = "label-success"
                         }
-                        position.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + tien + '</td><td class="center"><span class="label label-sm ' + label + '">' + tt + '</span></td><td class="center"><a class="btn btn-tbl-edit btn-xs btn-edit" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></><a class="btn btn-tbl-delete btn-xs btn-delete" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+                        position.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + tien + '</td><td class="center"><span class="label label-sm ' + label + '" style="background-color:#cddadb; ">' + tt + '</span></td><td class="center"><a class="btn btn-tbl-edit btn-xs btn-edit" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></><a class="btn btn-tbl-delete btn-xs btn-delete" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
                         break;
                     case 'Quanly/LayDanhSachTaiKhoan':
                         position.prepend('<tr class="odd gradeX"><td style="text-align: left;max-width: 150px">' + val.UserName + '</td><td >' + val.UserPassword + '</td><td >' + val.FullName + '</td><td >' + val.PhoneNumber + '</td><td >' + val.UserEmailID + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
@@ -64,6 +67,7 @@ function loadData(idList, url) {
                         break;
                     case 'KhachHang/LayDanhSachKhachHangTheoMaDoan/' + sessionStorage.getItem('madoan'):
                         var daidien = 'Trống';
+                        var bg = '';
                         if (val.NguoiDaiDienCuaTreEm != '0') {
                             daidien = val.NguoiDaiDienCuaTreEm;
                         }
@@ -74,7 +78,7 @@ function loadData(idList, url) {
 
                         var tgNhan = new Date(val.ThoiGianNhan);
                         var tgTra = new Date(val.ThoiGianTra);
-                        position.prepend('<tr class="odd gradeX"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.Sophong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
+                        position.prepend('<tr class="odd gradeX ' + bg + '"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.Sophong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
                         break;
                     case 'NhanVien/LayDanhSachDoanDatPhongThanhCong':
                         var tgNhan = new Date(val.ThoiGianNhan);
@@ -190,6 +194,7 @@ function loadDSKHTheoMaDoan(info, id) {
             var i = 0;
             //sessionStorage.setItem('id', val.ID);
             $.each(data, function (index, val) {
+                var bg = '';
                 var tvien = '';
                 var tdoan = '';
                 var gtNam = '';
@@ -209,10 +214,11 @@ function loadDSKHTheoMaDoan(info, id) {
                     gtNu = 'selected';
                     gtNam = '';
                 }
-                //if (val.GhiChu == null) {
-                //    val.GhiChu = '';
-                //}
-                info.id.append('<tr class="odd gradeX"><td style="text-align:left"><input type="text" style="width:100%" id="hovaten' + i + '" name="hovaten" value="' + val.HoVaTen + '"></td><td class="center"><input type="number" pattern="-?[0-9]*(\.[0-9]+)?" style="text-align:center;width: 50px" id="nhom' + i + '" name="nhom" value="' + val.Nhom + '"></td><td class="center" ><select id="truongdoan' + i + '" name="truongdoan" value="' + val.TruongDoan + '"><option value="true" ' + tdoan + '>Trưởng Đoàn</option><option value="false" ' + tvien + '>Thành Viên</option></select></td><td class="center"><input type="text" style="width: 100%" id="nguoiDD' + i + '" name="nguoiDD" value="' + val.NguoiDaiDienCuaTreEm + '"></td><td class="center"><select id="gioitinh' + i + '" name="gioitinh" value="' + val.GioiTinh + '"><option value="true" ' + gtNam + '>Nam</option><option value="false" ' + gtNu + ' >Nữ</option ></select></td><td><label>' + val.GhiChu + '</label></td><td style="display: none"><input type="text" id="sdt' + i + '" name="sdt" value="' + val.SoDienThoai + '"></td><td style="display: none"><input type="email" id="email' + i + '" name="email" value="' + val.Email + '"></td><td class="center" style="display:none;"><input type="text" id="loaikh' + i + '" name="loaiKH" value="' + val.LoaiKhachHang + '"></td><td class="center" style="display: none"><input type="text" id="diachi' + i + '" name="diachi" value="' + val.DiaChi + '"></td><td class="center" style="display: none"><input type="text" id="id' + i + '" name="id" value="' + val.ID + '"></td><td class="center" style="display: none"><input type="text" id="tgnhan' + i + '" name="tgnhan" value="' + val.ThoiGianNhan + '"></td><td style="display: none" class="center"><input type="text" id="tgtra' + i + '" name="tgtra" value="' + val.ThoiGianTra + '"></td><td class="center" style="display: none"><input type="text" id="madoan' + i + '" name="madoan" value="' + val.MaDoan + '"></td><td style="display: none" class="center"><input type="text" id="isdelete' + i + '" name="isdelete" value="' + val.IsDelete + '"></td><td class="center" style="display: none"><input type="text" id="trangthaidatphong' + i + '" name="trangthaidatphong" value="' + val.TrangThaiDatPhong + '"></td><td style="display: none" class="center"><input type="text" id="idphong' + i + '" name="idphong" value="' + val.IDPhong + '"></td><td style="display: none" class="center"><input type="text" id="trangthaixacnhan' + i + '" name="trangthaixacnhan" value="' + val.TrangThaiXacNhan + '"></td></tr>');
+                if (val.GhiChu != null) {
+                    bg = 'background-color: #e0c187;';
+                }
+
+                info.id.append('<tr class="odd gradeX" style="' + bg + '"><td style="text-align:left"><input type="text" style="width:100%" id="hovaten' + i + '" name="hovaten" value="' + val.HoVaTen + '"></td><td class="center"><input type="number" pattern="-?[0-9]*(\.[0-9]+)?" style="text-align:center;width: 50px" id="nhom' + i + '" name="nhom" value="' + val.Nhom + '"></td><td class="center" ><select id="truongdoan' + i + '" name="truongdoan" value="' + val.TruongDoan + '"><option value="true" ' + tdoan + '>Trưởng Đoàn</option><option value="false" ' + tvien + '>Thành Viên</option></select></td><td class="center"><input type="text" style="width: 100%" id="nguoiDD' + i + '" name="nguoiDD" value="' + val.NguoiDaiDienCuaTreEm + '"></td><td class="center"><select id="gioitinh' + i + '" name="gioitinh" value="' + val.GioiTinh + '"><option value="true" ' + gtNam + '>Nam</option><option value="false" ' + gtNu + ' >Nữ</option ></select></td><td><label>' + val.GhiChu + '</label></td><td style="display: none"><input type="text" id="sdt' + i + '" name="sdt" value="' + val.SoDienThoai + '"></td><td style="display: none"><input type="email" id="email' + i + '" name="email" value="' + val.Email + '"></td><td class="center" style="display:none;"><input type="text" id="loaikh' + i + '" name="loaiKH" value="' + val.LoaiKhachHang + '"></td><td class="center" style="display: none"><input type="text" id="diachi' + i + '" name="diachi" value="' + val.DiaChi + '"></td><td class="center" style="display: none"><input type="text" id="id' + i + '" name="id" value="' + val.ID + '"></td><td class="center" style="display: none"><input type="text" id="tgnhan' + i + '" name="tgnhan" value="' + val.ThoiGianNhan + '"></td><td style="display: none" class="center"><input type="text" id="tgtra' + i + '" name="tgtra" value="' + val.ThoiGianTra + '"></td><td class="center" style="display: none"><input type="text" id="madoan' + i + '" name="madoan" value="' + val.MaDoan + '"></td><td style="display: none" class="center"><input type="text" id="isdelete' + i + '" name="isdelete" value="' + val.IsDelete + '"></td><td class="center" style="display: none"><input type="text" id="trangthaidatphong' + i + '" name="trangthaidatphong" value="' + val.TrangThaiDatPhong + '"></td><td style="display: none" class="center"><input type="text" id="idphong' + i + '" name="idphong" value="' + val.IDPhong + '"></td><td style="display: none" class="center"><input type="text" id="trangthaixacnhan' + i + '" name="trangthaixacnhan" value="' + val.TrangThaiXacNhan + '"></td></tr>');
 
 
                 i++
@@ -364,7 +370,7 @@ function deleteData(info, dataInput) {
                 error: function (data) {
 
                     if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                        window.location.pathname("/404.cshtml");
+                        window.location.pathname("/SEP23Team2/404.cshtml");
                     }
                 }
             })

@@ -65,11 +65,11 @@
 
                 nguoiDaiDien = $('#nguoidaidien-nhanp-ul').val();
                 var dataInput = {
-                    SoPhong: soPhong,
+                    ID: maPhong,
                     HoVaTen: nguoiDaiDien,
                     CMND: cmnd
                 }
-                console.log(dataInput.HoVaTen);
+                console.log(dataInput);
                 var info = {
                     url: KHNhanPhong,
                     modal: idModalNhan,
@@ -82,7 +82,7 @@
 
             $('body').on('click', '.info-box.bg-success', function () {
                 maPhong = $(this).attr('data-id');
-                soPhong = $(this).val();
+                //soPhong = $(this).val();
                 var info = {
                     idCMND: '#cmnd-trap',
                     idNguoiDaiDien: '#nguoidaidien-trap',
@@ -102,15 +102,15 @@
                     modal: idModalTra
                 }
                 var dataInput = {
-                    SoPhong: soPhong,
+                    ID: maPhong,
                     CMND: cmnd
                 }
                 KhachHangNhanTraPhong(info, dataInput);
             })
             
-            //$('body').on('click', '#btn-adddichvu', function () {
-
-            //})
+            $('body').on('click', '#btn-adddichvu', function () {
+                $('#addDichVuModal').modal('show');
+            })
 
 
         });
@@ -280,19 +280,19 @@
                         </div>
                     </div>
                     <!--<div class="row" style="border: 1px solid red;width: 100%">
-                        <div class="col-md-1 col-md-1 col-12" style="border: 1px solid black; ">
-                            <span class="info-box bg-success" style="font-weight: 700;font-size: 28px;padding: 20px 20px;">101</span>
+                <div class="col-md-1 col-md-1 col-12" style="border: 1px solid black; ">
+                    <span class="info-box bg-success" style="font-weight: 700;font-size: 28px;padding: 20px 20px;">101</span>
 
-                        </div>
-                    </div>-->
+                </div>
+            </div>-->
                     @*<div class="card-body">
-                        <div class="col-lg-3 p-t-20">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                <input class="mdl-textfield__input" type="text" id="daterange">
-                                <label class="mdl-textfield__label">Chọn Ngày Nhận - Trả</label>
-                            </div>
+                    <div class="col-lg-3 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" type="text" id="daterange">
+                            <label class="mdl-textfield__label">Chọn Ngày Nhận - Trả</label>
                         </div>
-                    </div>*@
+                    </div>
+                </div>*@
                     <div id="dstang">
 
                         <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 1</h3>
@@ -336,7 +336,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-6 p-t-20">
+                                            <div class="col-lg-12 p-t-20">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
                                                     <select id="nguoidaidien-nhanp-ul" class="form-control">
                                                     </select>
@@ -420,7 +420,59 @@
                 <!-- End Modal -->
                 <!-- end chat sidebar -->
             </div>
+            <div class="modal fade" tabindex="-1" id="addDichVuModal" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="width:400px">
 
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Dịch Vụ Vào Phòng</h4>
+                                    <div class="card-box">
+
+                                        <div class="card-body row">
+                                            <div class="col-lg-12 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                                    <select id="dichvu-ul" class="form-control">
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                                    <select id="nguoidaidien-ul" class="form-control">
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 p-t-20">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                    <input class="mdl-textfield__input" type="text" id="date">
+                                                    <label class="mdl-textfield__label">Thời Gian</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 p-t-20 text-center">
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-adddichvu">
+                                            Thêm
+                                        </button>
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
+                                            Hủy
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-----end modal-->
+                <!-- end page content -->
+            </div>
 
 
 
