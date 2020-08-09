@@ -36,6 +36,7 @@
 
             var layDSPhong = 'NhanVien/LayDanhSachPhong';
             var layKHTheoPhong = 'NhanVien/LayDanhSachTenKhachHangChungPhong/';
+            var layChiPhiTheoPhong = 'NhanVien/LayThongTinChiPhiPhong/';
             loadDSPhong(layDSPhong);
             var maPhong;
             var cmnd;
@@ -45,26 +46,38 @@
                 var info = {
                     idLoad: '#nguoidaidien-nhanp-ul',
                     url: layKHTheoPhong
-
                 }
-                LayThongTinKHTheoPhong(info, maPhong);
+                LayThongTinPhong(info, maPhong);
                 $('#nhanphongModal').modal('show');
             })
 
             $('body').on('click', '.info-box.bg-success', function () {
                 maPhong = $(this).attr('data-id');
-                //var info = {
-                //    idLoad: '#',
-                //    url: layKHTheoPhong
+                var info = {
+                    idCMND: '#cmnd-trap',
+                    idNguoiDaiDien: '#nguoidaidien-trap',
+                    idDichVu: '#dichvu-trap',
+                    url: layChiPhiTheoPhong
 
-                //}
-                //LayThongTinKHTheoPhong(info, maPhong);
+                }
+                LayThongTinPhong(info, maPhong);
                 $('#traphongModal').modal('show');
             })
             $('body').on('click', '#btn-nhanphong', function () {
                 cmnd = $('#cmnd-nhanp').val();
                 nguoiDaiDien = $('#nguoidaidien-nhanp-ul').val();
-                console.log(maPhong)
+                var dataInput = {
+                    SoPhong: maPhong,
+                    HoVaTen: nguoiDaiDien,
+                    CMND: cmnd
+                }
+                var info = {
+                    url: 'NhanVien/KhachHangNhanPhong',
+                    modal: '#traphongModal',
+                    urlLoad: layDSPhong
+                }
+                KhachHangNhanPhong(info, dataInput);
+                //console.log(maPhong)
             })
 
 

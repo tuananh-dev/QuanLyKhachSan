@@ -596,7 +596,7 @@ function XepPhongThuNghiem(url, dataInput) {
     })
 }
 
-function LayThongTinKHTheoPhong(info, id) {
+function LayThongTinPhong(info, id) {
     $.ajax({
         type: 'GET',
         url: '/SEP23Team2/api/' + info.url + id,
@@ -606,10 +606,21 @@ function LayThongTinKHTheoPhong(info, id) {
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         dataType: 'json',
         success: function (data) {
-            $(info.idLoad).empty();
-            $.each(data, function (index, val) {
-                $(info.idLoad).append('<option value="' + val + '">' + val + '</option>');
-            })
+            switch (info.url) {
+                case 'NhanVien/LayDanhSachTenKhachHangChungPhong/':
+                    $(info.idLoad).empty();
+                    $.each(data, function (index, val) {
+                        $(info.idLoad).append('<option value="' + val + '">' + val + '</option>');
+                    })
+                    break;
+                case 'NhanVien/LayThongTinChiPhiPhong/':
+                    $(info.idCMND).val('cmnd');
+                    $(info.idNguoiDaiDien).val('ndd');
+                    $(info.idDichVu).val('dv');
+                    break;
+
+            }
+
         },
         error: function (data) {
 
@@ -619,4 +630,63 @@ function LayThongTinKHTheoPhong(info, id) {
         }
     })
 }
+
+function KhachHangNhanPhong(info, dataInput) {
+    $.ajax({
+        type: 'POST',
+        url: '/SEP23Team2/api/' + info.url,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+        },
+        headers: {
+            'content-type': 'application/json',
+            'data-type': 'json',
+        },
+        data: JSON.stringify(dataInput),
+        success: function (data) {
+            $(info.modal).modal('hide');
+            Swal.fire(
+                'Thêm Thành Công!',
+                '',
+                'success'
+            )
+            loadDSPhong(info.urlLoad);
+
+        }, error: function (data) {
+            $(info.modal).modal('hide');
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: data.responseJSON.Message
+            }).then(value => {
+                window.location.reload();
+            })
+        }
+
+    })
+}
+
+//function LayThongTinChiPhiPhong(info, id) {
+//    $.ajax({
+//        type: 'GET',
+//        url: '/SEP23Team2/api/' + info.url + id,
+//        beforeSend: function (xhr) {
+//            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+//        },
+//        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+//        dataType: 'json',
+//        success: function (data) {
+//            $(info.idLoad).empty();
+//            $.each(data, function (index, val) {
+//                $(info.idLoad).append('<option value="' + val + '">' + val + '</option>');
+//            })
+//        },
+//        error: function (data) {
+
+//            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
+//                window.location.pathname("/404.cshtml");
+//            }
+//        }
+//    })
+//}
 
