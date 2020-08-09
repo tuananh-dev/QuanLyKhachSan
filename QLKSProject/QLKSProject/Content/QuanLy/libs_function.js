@@ -252,7 +252,7 @@ function loadDSPhong(url) {
                         color = "bg-warning";
                     }
                     if (val.SoPhong.charAt(0) == '' + i) {
-                        $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" data-id="' + val.ID + '"> ' + val.SoPhong + '</button> ');
+                        $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" data-id="' + val.ID+'"> ' + val.SoPhong + '</button> ');
                     }
                 })
 
@@ -461,7 +461,7 @@ function XepPhongTatCa(info, url) {
                 $('#loadingAll').css("display", "none");
                 loadData(info.id, info.urlLoad);
             })
-
+            
         },
         error: function (data) {
             Swal.fire({
@@ -473,11 +473,11 @@ function XepPhongTatCa(info, url) {
                 $('#loadingAll').css("display", "none");
                 loadData(info.id, info.urlLoad);
             })
-
+            
 
         }
     })
-
+   
 
 }
 
@@ -596,7 +596,9 @@ function XepPhongThuNghiem(url, dataInput) {
     })
 }
 
+
 function LayThongTinPhong(info, id) {
+    console.log('/SEP23Team2/api/' + info.url + id);
     $.ajax({
         type: 'GET',
         url: '/SEP23Team2/api/' + info.url + id,
@@ -646,7 +648,7 @@ function KhachHangNhanPhong(info, dataInput) {
         success: function (data) {
             $(info.modal).modal('hide');
             Swal.fire(
-                'Thêm Thành Công!',
+                'Nhận Phòng Thành Công!',
                 '',
                 'success'
             )
@@ -689,4 +691,5 @@ function KhachHangNhanPhong(info, dataInput) {
 //        }
 //    })
 //}
+
 

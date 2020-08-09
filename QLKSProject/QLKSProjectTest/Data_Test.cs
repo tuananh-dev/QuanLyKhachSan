@@ -10,9 +10,10 @@ namespace QLKSProject_UnitTest
 {
     class Data_Test
     {
-/*        protected List<KhachHangDTO> DanhSachKhachHang()
+/*        protected string FileKhachHangJson()
         {
             
+            return file;
         }*/
     }
 }

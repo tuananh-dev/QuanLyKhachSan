@@ -57,10 +57,10 @@ namespace QLKSProject.Business
         }
         #endregion
 
-        #region Ham Tai Su Dung
+        #region 
         protected string GuiMailTuDong(string toEmail,string subject, string body)
         {
-            string senderID = "nguyenductuananh110@gmail.com";
+            string senderID = "colorhotel.sep23team2@gmail.com";
             string senderPassword = "Anhanh01";
             string result = "Email Sent Successfully";
             
