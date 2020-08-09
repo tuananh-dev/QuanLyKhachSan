@@ -125,7 +125,7 @@ namespace QLKSProject.Controllers.NhanVien
             KhachHangNhanPhongDTO khachHang = JsonConvert.DeserializeObject<KhachHangNhanPhongDTO>(dynamic.ToString());
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
-                string status = nhanVien.KhachHangNhanPhong(khachHang.SoPhong, khachHang.HoVaTen, khachHang.CMND);
+                string status = nhanVien.KhachHangNhanPhong(khachHang.IdPhong, khachHang.HoVaTen, khachHang.CMND);
                 if (status.Equals("ok"))
                     return Ok("Nhận phòng thành công!");
                 else
@@ -133,12 +133,11 @@ namespace QLKSProject.Controllers.NhanVien
             }
         }
         [HttpPost]
-        public IHttpActionResult KhachHangTraPhong([FromBody]dynamic dynamic)
-        {
-            KhachHangTraPhongDTO khachHang = JsonConvert.DeserializeObject<KhachHangTraPhongDTO>(dynamic.ToString());
+        public IHttpActionResult KhachHangTraPhong([FromBody]string cmnd)
+        {         
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
-                string status = nhanVien.KhachHangTraPhong(khachHang.SoPhong, khachHang.CMND);
+                string status = nhanVien.KhachHangTraPhong(cmnd);
                 if (status.Equals("ok"))
                     return Ok("Trả phòng thành công!");
                 else

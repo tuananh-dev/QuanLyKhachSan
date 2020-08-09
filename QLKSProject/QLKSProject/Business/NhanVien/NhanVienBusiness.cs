@@ -49,7 +49,8 @@ namespace QLKSProject.Business.NhanVien
                 TrangThai = e.TrangThai,
                 IsDelete = e.IsDelete
             }).ToList();
-            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiXacNhan != false).Select(kh => new KhachHangDTO {
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiXacNhan != false).Select(kh => new KhachHangDTO
+            {
                 ID = kh.ID,
                 HoVaTen = kh.HoVaTen,
                 SoDienThoai = kh.SoDienThoai,
@@ -222,7 +223,7 @@ namespace QLKSProject.Business.NhanVien
                     IDPhong = kh.IDPhong,
                     TrangThaiXacNhan = kh.TrangThaiXacNhan
                 }).ToList();
-                var lstKhachHang = models.KhachHangs.Select(kh => new KhachHangDTO
+                var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong == 0 || kh.TrangThaiDatPhong == 1).Select(kh => new KhachHangDTO
                 {
                     ID = kh.ID,
                     HoVaTen = kh.HoVaTen,
@@ -242,6 +243,7 @@ namespace QLKSProject.Business.NhanVien
                     IDPhong = kh.IDPhong,
                     TrangThaiXacNhan = kh.TrangThaiXacNhan
                 }).ToList();
+                lstKhachHang = lstKhachHang.Where(kh => kh.IsDelete != true).ToList();
                 var lstPhong = models.Phongs.Where(p => p.IsDelete != true).Select(p => new PhongDTO
                 {
                     ID = p.ID,
@@ -380,13 +382,12 @@ namespace QLKSProject.Business.NhanVien
             string result = soPhongThanhCong + "-" + soPhongThatBai;
             return result;
         }
-        public string KhachHangTraPhong(string soPhong, string cmnd)
+        public string KhachHangTraPhong(string cmnd)
         {
             string status = "ok";
             try
             {
                 DateTime today = DateTime.Now;
-                var phong = models.Phongs.Where(p => p.SoPhong == soPhong).FirstOrDefault();
                 var khachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong == 1 && kh.GhiChu.Equals(cmnd)).FirstOrDefault();
                 var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan == khachHang.MaDoan && kh.Nhom == khachHang.Nhom).ToList();
                 foreach (var kh in lstKhachHang)
@@ -402,43 +403,37 @@ namespace QLKSProject.Business.NhanVien
             {
                 status = "Trả phòng thất bại!";
             }
-            
+
             return status;
         }
-        public string KhachHangNhanPhong(string soPhong,string hovaten, string cmnd)
+        public string KhachHangNhanPhong(int idPhong, string hovaten, string cmnd)
         {
             string status = "ok";
             try
             {
                 DateTime today = DateTime.Now;
-                var phong = models.Phongs.Where(p => p.SoPhong.Equals(soPhong)).FirstOrDefault();
-                var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == phong.ID && kh.TrangThaiDatPhong == 0).ToList();
+                var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == idPhong && kh.TrangThaiDatPhong == 0).ToList();
                 lstKhachHang = lstKhachHang.Where(kh => kh.ThoiGianNhan.CompareTo(today) >= 0 && kh.ThoiGianTra.CompareTo(today) <= 0).ToList();
                 var nguoiDaiDien = lstKhachHang.Where(kh => kh.HoVaTen.Equals(hovaten)).FirstOrDefault();
-                if (nguoiDaiDien != null)
+                nguoiDaiDien.GhiChu = cmnd;
+                if (lstKhachHang.Count != 0)
                 {
-                    nguoiDaiDien.GhiChu = cmnd;
-                    if (lstKhachHang.Count != 0)
+                    foreach (var kh in lstKhachHang)
                     {
-                        foreach (var kh in lstKhachHang)
-                        {
-                            kh.TrangThaiDatPhong = 1;
-                        }
-                        models.SaveChanges();
+                        kh.TrangThaiDatPhong = 1;
                     }
-                    else
-                        status = "Lỗi nhận phòng!";
+                    models.SaveChanges();
                 }
                 else
-                    status = "Lỗi không tìm được người đại diện";
-               
-                
+                    status = "Lỗi nhận phòng!";
+
+
             }
             catch (Exception)
             {
                 status = "Lỗi nhận phòng!";
             }
-            
+
             return status;
         }
         public List<string> LayDanhSachTenKhachHangChungPhong(int idPhong)
@@ -471,7 +466,8 @@ namespace QLKSProject.Business.NhanVien
         #region DichVuPhong
         public List<LichSuDichVuDTO> LayDSLichSuDichVu()
         {
-            var lstLichSuDichVu = models.LichSuDichVus.Where(l => l.IsDelete != true).Select(l => new LichSuDichVuDTO {
+            var lstLichSuDichVu = models.LichSuDichVus.Where(l => l.IsDelete != true).Select(l => new LichSuDichVuDTO
+            {
                 ID = l.ID,
                 IDPhong = l.IDPhong,
                 SoPhong = l.SoPhong,
@@ -508,7 +504,7 @@ namespace QLKSProject.Business.NhanVien
             {
                 return false;
             }
-            
+
         }
         public string XoaDichVuPhong(int id)
         {
@@ -540,7 +536,7 @@ namespace QLKSProject.Business.NhanVien
             for (int i = 0; i < lstKhachHang.Count; i++)
             {
                 lstKhachHang[i].TrangThaiDatPhong = khachHangDTOs[i].TrangThaiDatPhong;
-                lstKhachHang[i].IDPhong = khachHangDTOs[i].IDPhong;              
+                lstKhachHang[i].IDPhong = khachHangDTOs[i].IDPhong;
             }
         }
         private void LuuDanhSachKhachHangDatPhongThatBai(List<KhachHangDTO> khachHangDTOs)
@@ -551,8 +547,7 @@ namespace QLKSProject.Business.NhanVien
             {
                 if (khachHangDTOs[i].GhiChu != null)
                     lstKhachHang[i].GhiChu = khachHangDTOs[i].GhiChu;
-                else
-                    lstKhachHang[i].GhiChu = "Đoàn đặt phòng lỗi";
+
                 lstKhachHang[i].IDPhong = -1;
                 lstKhachHang[i].TrangThaiDatPhong = -1;
             }
@@ -646,7 +641,7 @@ namespace QLKSProject.Business.NhanVien
                                 {
                                     phong.TrangThai = 0;
                                 }
-                            }               
+                            }
                         }
                     }
                     if (soPhong > 0)
@@ -661,7 +656,7 @@ namespace QLKSProject.Business.NhanVien
         {
             return models.DichVus.Where(d => d.TenDichVu.Equals(tenDv)).Select(d => d.Gia).FirstOrDefault();
         }
-        
+
         #endregion
     }
 }
