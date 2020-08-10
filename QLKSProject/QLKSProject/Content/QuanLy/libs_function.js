@@ -106,12 +106,10 @@ function loadData(idList, url) {
                         break;
 
                     case 'NhanVien/LayDanhSachPhong':
-                        position.empty();
                         position.prepend('<option value="' + val.ID + '"> ' + val.SoPhong + '</option>');
                         break;
                     case 'NhanVien/LayDanhSachDichVu':
-                        position.empty();
-                        position.prepend('<option value="' + val.ID + '" data-id="' + val.Gia + '"> ' + val.TenDichVu + '</option>');
+                        position.prepend('<option value="' + val.ID + '" > ' + val.TenDichVu + '  -  ' + formatNumber(val.Gia) + '</option>');
                         break;
 
                 }
@@ -630,7 +628,6 @@ function LayThongTinPhong(info, id) {
 
             switch (info.url) {
                 case 'NhanVien/LayDanhSachTenKhachHangChungPhong/':
-                    console.log(data)
                     $(info.idLoad).empty();
                     $.each(data, function (index, val) {
                         $(info.idLoad).append('<option value="' + val + '">' + val + '</option>');

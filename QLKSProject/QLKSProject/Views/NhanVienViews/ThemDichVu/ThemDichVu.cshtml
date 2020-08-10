@@ -53,7 +53,7 @@
 
 
                 //api load khi them DV vao Phong
-                var layDSDichVu = 'NhanVien/LayDSDichVu';//something went wrong
+                var layDSDichVu = 'NhanVien/LayDanhSachDichVu';
                 var layDSPhong = 'NhanVien/LayDanhSachPhong';
                 var layDSNguoiTrongPhong = 'NhanVien/LayDanhSachTenKhachHangChungPhong/';
 
@@ -74,46 +74,48 @@
                 $("#addDichVuPhong").click(function () {
                     var idDSPhong = '#dsphong-select';
                     var idDSDichVu = '#dsdichvu-select';
-                    // var info = {
-                    //    idLoad: '#dsnguoitrongphong-select',
-                    //    url: layDSNguoiTrongPhong
-                    //}
-                    
+
+
                     loadData(idDSPhong, layDSPhong);
-                    //LayThongTinPhong(info, idPhong);
+                    loadData(idDSDichVu, layDSDichVu);
+
 
                     $(idModalAdd).modal('show');
                 })
                 $('#dsphong-select').change(function () {
                     var idPhong = $(this).val();
-                    console.log(idPhong);
                     var info = {
                         idLoad: '#dsnguoitrongphong-select',
-                        url: 'NhanVien/LayDanhSachTenKhachHangChungPhong/'
+                        url: layDSNguoiTrongPhong
                     }
                     LayThongTinPhong(info, idPhong);
 
                 })
 
 
-                $('#btn-add').click(function () {
+
+
+                $('#btn-adddvphong').click(function () {
 
 
 
-                    //var data = {
-                    //    MaPhong: loaiPhong + "0" + $('#solau-add').val() + $('#sophong-add').val(),
-                    //    LoaiPhong: loaiPhong,
-                    //    Gia: $('#gia-add').val(),
-                    //    SoPhong: $('#solau-add').val() + $('#sophong-add').val(),
-                    //    TrangThai: false,
-                    //    IsDelete: false,
-                    //}
-                    //var info = {
-                    //    id: idList,
-                    //    url: themPhong,
-                    //    urlLoad: layDSPhong,
-                    //    modal: idModalAdd
-                    //};
+                    var data = {
+                        IDDichVu : $('#dsdichvu-select').val(),
+                        IDKhachHang : $('#dsnguoitrongphong-select').val(),
+                        IDPhong : $('#dsphong-select').val(),
+                        IsDelete: false,
+                        SoPhong: $('#dsphong-select').html(),
+                        TenDichVu: $('#dsdichvu-select').html(),
+                        HoVaTenKhachHang: $('#dsnguoitrongphong-select').html(),
+                        GhiChu :$('#ghichu').html()
+                    }
+                    var info = {
+                        id: idList,
+                        url: themDichVuPhong,
+                        urlLoad: layDSDichVuPhong,
+                        modal: idModalAdd
+                    };
+                    console.log(data);
                     //addData(info, data);
                 });
             });
@@ -333,25 +335,34 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Phòng</h4>
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Dịch Vụ Phòng</h4>
                                     <div class="card-box">
 
                                         <div class="card-body row">
 
                                             <div class="col-lg-12 p-t-20">
+                                                <label>Dịch Vụ</label>
                                                 <select class="form-control" id="dsdichvu-select">
                                                 </select>
-                                                <label id="price-dv"></label>
                                             </div>
-
                                             <div class="col-lg-12 p-t-20">
+                                                <label>Phòng</label>
                                                 <select class="form-control" id="dsphong-select">
                                                 </select>
                                             </div>
 
                                             <div class="col-lg-12 p-t-20">
+                                                <label>Thành Viên</label>
                                                 <select class="form-control" id="dsnguoitrongphong-select">
+                                                    <option selected>---Phòng Chưa Nhận---</option>
                                                 </select>
+                                            </div>
+
+                                            <div class="col-lg-12 p-t-20">
+                                                <label>Ghi Chú</label>
+                                                <textarea id="ghichu" placeholder="Ghi Chú"></textarea>
+
+                                               
                                             </div>
 
                                         </div>
