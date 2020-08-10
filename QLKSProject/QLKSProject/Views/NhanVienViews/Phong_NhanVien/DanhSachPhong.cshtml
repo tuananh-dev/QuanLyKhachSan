@@ -63,7 +63,7 @@
             $('body').on('click', '#btn-nhanp', function () {
                 cmnd = $('#cmnd-nhanp').val();
 
-                nguoiDaiDien = $('#nguoidaidien-nhanp-ul').val();
+                nguoiDaiDien = $('#nguoidaidien-nhanp-ul option:selected').text();
                 var dataInput = {
                     IDPhong: maPhong,
                     HoVaTen: nguoiDaiDien,

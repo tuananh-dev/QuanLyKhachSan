@@ -22,6 +22,7 @@
     <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
     <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
+    <link rel="stylesheet" href="~/Content/QuanLy/plugins/flatpicker/flatpickr.min.css">
     <!-- favicon -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/Content/QuanLy/Jquery.js"></script>
@@ -45,7 +46,9 @@
             checkSession();
 
             var idList = $('#dsdatphong');
+            var idListPhongTrong = $('#dsphongtrong');
             var layDS = 'NhanVien/LayDanhSachKhachHangTheoMaDoan/';
+            var lauDSPhongTheoNgay = 'NhanVien/LayDanhSachPhongTheoDieuKien';
             var XepPhongThu = 'NhanVien/DatPhongThuNghiem';
             var info = {
                 id: idList,
@@ -91,6 +94,34 @@
 
 
 
+            })
+
+            $('#xemphongtrong').click(function () {
+                var thoigianNhan;
+                var thoigianTra;
+
+                if ($('#daterange').val().indexOf(' to ') != -1) {
+                    var thoigian = $('#daterange').val().split(' to ');
+                    thoigianNhan = thoigian[0];
+                    thoigianTra = thoigian[1];
+                } else {
+                    thoigianNhan = $('#daterange').val();
+                    thoigianTra = $('#daterange').val();
+                }
+
+
+                var dataInput = {
+                    NgayNhan: thoigianNhan,
+                    NgayTra: thoigianTra
+                }
+                console.log(dataInput);
+                var info = {
+                    url: lauDSPhongTheoNgay,
+                    id: idListPhongTrong,
+                }
+
+                loadDSPhongTrong(info, dataInput);
+                $('#dsphongtrong').modal('show');
             })
         })
     </script>
@@ -138,11 +169,11 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                data-close-others="true">
                                 <img alt="" class="img-circle " src="~/Content/QuanLy/img/dp.jpg" />
-                                <span class="username username-hide-on-mobile nameuser"> John </span>
+                                <span class="username username-hide-on-mobile nameuser"> </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
-                                
+
 
                                 <li class="divider"> </li>
 
@@ -256,6 +287,21 @@
                         <div class="col-md-12">
                             <div class="card-box">
 
+                                <div class="row">
+                                    <div class="col-lg-3 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text" id="daterange">
+                                            <label class="mdl-textfield__label">Chọn Thời Gian </label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-2 p-t-20">
+                                        <button class="btn btn-success" id="xemphongtrong">Xem Phòng Trống</button>
+
+                                    </div>
+
+                                </div>
+
                                 <div class="card-body ">
 
                                     <div class="table-scrollable">
@@ -300,6 +346,49 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" tabindex="-1" id="dsphongtrong" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="width:1000px">
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Phòng</h4>
+                                    <div class="card-box">
+
+                                        <div id="dsphongtrong">
+
+                                            <h3 style="display: block;margin-left: 15px;" class="floor"> Phòng Loại 1</h3>
+                                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row1"></div>
+                                            <h3 style="display: block;margin-left: 15px;" class="floor"> Phòng Loại 2</h3>
+                                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row2"></div>
+                                            <h3 style="display: block;margin-left: 15px;" class="floor"> Phòng Loại 3</h3>
+                                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row3"></div>
+                                            <h3 style="display: block;margin-left: 15px;" class="floor"> Phòng Loại 4</h3>
+                                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row4"></div>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 p-t-20 text-center">
+
+                                        <button type="button"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-primary" data-dismiss="modal">
+                                            Ok
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-----end modal-->
+                <!-- end page content -->
+            </div>
             <!-- Modal -->
             <!-- end page container -->
             <!-- start footer -->
@@ -331,6 +420,8 @@
     <script src="~/Content/QuanLy/js/theme-color.js"></script>
     <!-- Material -->
     <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/flatpicker/flatpickr.min.js"></script>
+    <script src="~/Content/QuanLy/js/pages/datetime/datetime-data.js"></script>
     <!-- animation -->
     <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
 </body>

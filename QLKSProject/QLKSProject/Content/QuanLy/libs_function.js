@@ -109,7 +109,7 @@ function loadData(idList, url) {
                         position.prepend('<option value="' + val.ID + '"> ' + val.SoPhong + '</option>');
                         break;
                     case 'NhanVien/LayDanhSachDichVu':
-                        position.prepend('<option value="' + val.ID + '" > ' + val.TenDichVu + '  -  ' + formatNumber(val.Gia) + '</option>');
+                        position.prepend('<option value="' + val.ID + '" >' + val.TenDichVu + '-' + formatNumber(val.Gia) + '</option>');
                         break;
 
                 }
@@ -120,7 +120,7 @@ function loadData(idList, url) {
         error: function (data) {
 
             if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.pathname("/404.cshtml");
+                window.location.pathname("/SEP23Team2/404.cshtml");
             }
         }
     });
@@ -258,7 +258,7 @@ function loadDSPhong(url) {
             'data-type': 'json',
         },
         success: function (data) {
-
+            
             for (i = 1; i < 10; i++) {
                 $('#row' + i).empty();
                 $.each(data, function (index, val) {
@@ -283,6 +283,32 @@ function loadDSPhong(url) {
                 window.location.pathname("/404.cshtml");
             }
         }
+    })
+}
+
+function loadDSPhongTrong(info, dataInput) {
+    $.ajax({
+        type: 'POST',
+        url: '/SEP23Team2/api/' + info.url,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+        },
+        headers: {
+            'content-type': 'application/json',
+            'data-type': 'json',
+        },
+        data: JSON.stringify(dataInput),
+        success: function (data) {
+            console.log(data);
+
+        }, error: function (data) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: data.responseJSON.Message
+            })
+        }
+
     })
 }
 
@@ -471,7 +497,7 @@ function XepPhongTatCa(info, url) {
             var tc = str[0];
             var tb = str[1];
             Swal.fire(
-                'Success!',
+                'Hoàn Tất!',
                 'Thành Công: ' + tc + '   Thất Bại: ' + tb,
                 'success'
             ).then(value => {

@@ -62,7 +62,6 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpDelete]
         public IHttpActionResult XoaTaiKhoan([FromUri]int id)
         {
-            IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 if (quanLy.XoaTaiKhoan(id))
@@ -143,7 +142,6 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpGet]
         public IHttpActionResult LayDanhSachDichVu()
         {
-            IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 return Ok(quanLy.LayDanhSachDichVu());
@@ -173,7 +171,6 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpPut]
         public IHttpActionResult CapNhatDichVu([FromBody]dynamic dynamic)
         {
-            IHttpActionResult respon = Ok();
             DichVuDTO dv = JsonConvert.DeserializeObject<DichVuDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
@@ -199,7 +196,6 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpGet]
         public IHttpActionResult LayDanhSachTienIch()
         {
-            IHttpActionResult respon = Ok();
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 return Ok(quanLy.LayDanhSachTienIch());

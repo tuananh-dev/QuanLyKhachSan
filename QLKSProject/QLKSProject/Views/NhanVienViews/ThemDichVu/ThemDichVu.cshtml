@@ -105,9 +105,9 @@
                         IDPhong : $('#dsphong-select').val(),
                         IsDelete: false,
                         SoPhong: $('#dsphong-select option:selected').text(),
-                        TenDichVu: $('#dsdichvu-select option:selected').text(),
+                        TenDichVu: $('#dsdichvu-select option:selected').text().split('-')[0],
                         HoVaTenKhachHang: $('#dsnguoitrongphong-select option:selected').text(),
-                        GhiChu: $('#ghichu').text()
+                        GhiChu: $('#ghichu').val()
                     }
                     var info = {
                         id: idList,
@@ -115,8 +115,7 @@
                         urlLoad: layDSDichVuPhong,
                         modal: idModalAdd
                     };
-                    console.log(data);
-                    //addData(info, data);
+                    addData(info, data);
                 });
             });
 
@@ -307,11 +306,11 @@
                                                    id="example4">
                                                 <thead>
                                                     <tr>
-                                                        <th class="center" style="width: 130px"> Số Phòng </th>
-                                                        <th class="center" style="width: 180px"> Tên Khách Hàng </th>
-                                                        <th class="center" style="width: 130px"> Tên Dịch Vụ </th>
-                                                        <th class="center" style="width: 130px"> Ngày Gọi </th>
-                                                        <th class="center" style="width: 180px"> Ghi Chú </th>
+                                                        <th class="" style="width: 130px"> Số Phòng </th>
+                                                        <th class="" style="width: 180px"> Tên Khách Hàng </th>
+                                                        <th class="" style="width: 130px"> Tên Dịch Vụ </th>
+                                                        <th class="" style="width: 130px"> Ngày Gọi </th>
+                                                        <th class="" style="width: 180px"> Ghi Chú </th>
                                                         <th class="center"> Chức Năng </th>
                                                     </tr>
                                                 </thead>
@@ -359,8 +358,8 @@
                                             </div>
 
                                             <div class="col-lg-12 p-t-20">
-                                                <label>Ghi Chú</label>
-                                                <textarea id="ghichu" placeholder="Ghi Chú"></textarea>
+                                                <label style="display:block">Ghi Chú</label>
+                                                <textarea id="ghichu" cols="42" rows="2" style="border:none;border-bottom: 1px solid;outline: none;"></textarea>
 
                                                
                                             </div>
