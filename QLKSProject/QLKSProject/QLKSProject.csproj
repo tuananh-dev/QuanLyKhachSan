@@ -501,6 +501,7 @@
     <None Include="Views\NhanVienViews\DatPhongThatBai\XemchiTiet.cshtml" />
     <None Include="Views\NhanVienViews\Doan\Doan.cshtml" />
     <None Include="Views\NhanVienViews\Phong_NhanVien\DanhSachPhong.cshtml" />
+    <Content Include="Views\NhanVienViews\ThemDichVu\ThemDichVu.cshtml" />
     <None Include="Views\QuanLyViews\DichVu\DSDichVu.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
