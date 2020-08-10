@@ -299,7 +299,10 @@ function loadDSPhongTrong(info, dataInput) {
         },
         data: JSON.stringify(dataInput),
         success: function (data) {
-            console.log(data);
+            $.each(data, function (index, val) {
+                var row = val.split('-');
+                info.id.append('<h3 style="display: block;margin-left: 15px;" class="floor">Phòng loại ' + row[0] + ': trống '+row[1]+' phòng'+'</h3>');
+            })
 
         }, error: function (data) {
             Swal.fire({
@@ -658,8 +661,12 @@ function LayThongTinPhong(info, id) {
                     $.each(data, function (index, val) {
                         $(info.idLoad).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
                     })
-
-
+                    break;
+                case 'NhanVien/LayDanhSachTenKhachHangChungPhongDichVuPhong/':
+                    $(info.idLoad).empty();
+                    $.each(data, function (index, val) {
+                        $(info.idLoad).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
+                    })
                     break;
                 case 'NhanVien/LayThongTinChiPhiPhong/':
                     $(info.idCMND).empty();

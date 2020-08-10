@@ -83,6 +83,7 @@ namespace QLKSProject.Business.NhanVien
         }
         public List<DoanDTO> LayDanhSachDoanTheoTrangThaiDatPhong(int trangThaiDatPhong)
         {
+            DateTime today = DateTime.Now;
             var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == trangThaiDatPhong && d.IsDelete != true).Select(d => new DoanDTO
             {
                 ID = d.ID,
@@ -97,10 +98,10 @@ namespace QLKSProject.Business.NhanVien
                 TrangThaiXacNhan = d.TrangThaiXacNhan
             }).ToList();
             //Xap xep danh sach doan theo ngay gui
-            lstDoan = lstDoan.OrderByDescending(d => d.NgayGui).ToList();
+            lstDoan = lstDoan.Where(d => d.ThoiGianTra.CompareTo(today) >= 0).OrderByDescending(d => d.NgayGui).ToList();
             return lstDoan;
         }
-        public List<PhongDTO> LayDanhSachPhongTheoDieuKien(DateTime ngayNhan, DateTime ngayTra)
+        public List<string> LayDanhSachPhongTheoDieuKien(DateTime ngayNhan, DateTime ngayTra)
         {
             var lstphong = models.Phongs.Where(e => e.IsDelete == false).Select(e => new PhongDTO
             {
@@ -111,7 +112,7 @@ namespace QLKSProject.Business.NhanVien
                 Gia = e.Gia,
                 TrangThai = e.TrangThai,
                 IsDelete = e.IsDelete
-            });
+            }).ToList();
             var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiXacNhan != false).Select(kh => new KhachHangDTO
             {
                 ID = kh.ID,
@@ -142,22 +143,24 @@ namespace QLKSProject.Business.NhanVien
                         phong.TrangThai = kh.TrangThaiDatPhong;
                 }
             }
-            return lstphong.ToList();
+            List<string> dsLoaiPhongTrong = new List<string>();
+            var lstLoaiPhong = lstphong.GroupBy(p => p.LoaiPhong).ToList();
+            foreach (var dsPhong in lstLoaiPhong)
+            {
+                int count = 0;
+                string loaiPhong = "";
+                foreach (var p in dsPhong)
+                {
+                    count++;
+                    loaiPhong = p.LoaiPhong.ToString();
+                }
+                dsLoaiPhongTrong.Add(loaiPhong + "-" + count);
+            }
+            return dsLoaiPhongTrong;
         }
         public bool XoaDoan(string maDoan)
         {
-            bool b = true;
-            try
-            {
-                var doan = models.Doans.Where(d => d.MaDoan == maDoan).FirstOrDefault();
-                doan.IsDelete = true;
-                doan.TrangThaiDatPhong = 0;
-                doan.TrangThaiXacNhan = false;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            bool b = XoaDoanTheoMaDoan(maDoan);
             models.SaveChanges();
             return b;
         }
@@ -223,7 +226,7 @@ namespace QLKSProject.Business.NhanVien
                     IDPhong = kh.IDPhong,
                     TrangThaiXacNhan = kh.TrangThaiXacNhan
                 }).ToList();
-                var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong == 0 || kh.TrangThaiDatPhong == 1).Select(kh => new KhachHangDTO
+                var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong >= 0 && kh.IsDelete != true).Select(kh => new KhachHangDTO
                 {
                     ID = kh.ID,
                     HoVaTen = kh.HoVaTen,
@@ -243,7 +246,6 @@ namespace QLKSProject.Business.NhanVien
                     IDPhong = kh.IDPhong,
                     TrangThaiXacNhan = kh.TrangThaiXacNhan
                 }).ToList();
-                lstKhachHang = lstKhachHang.Where(kh => kh.IsDelete != true).ToList();
                 var lstPhong = models.Phongs.Where(p => p.IsDelete != true).Select(p => new PhongDTO
                 {
                     ID = p.ID,
@@ -393,7 +395,7 @@ namespace QLKSProject.Business.NhanVien
                 foreach (var kh in lstKhachHang)
                 {
                     kh.ThoiGianTra = today;
-                    kh.TrangThaiDatPhong = 2;
+                    kh.TrangThaiDatPhong = -2;
                     if (kh.GhiChu != null)
                         kh.GhiChu = "Da tra phong";
                 }
@@ -431,7 +433,7 @@ namespace QLKSProject.Business.NhanVien
             }
             catch (Exception)
             {
-                status = "Lỗi nhận phòng!";
+                status = "Lỗi lưu CSDL!";
             }
 
             return status;
@@ -565,6 +567,8 @@ namespace QLKSProject.Business.NhanVien
         private void LuuDanhSachKhachHangDatPhongThanhCong(List<KhachHangDTO> khachHangDTOs)
         {
             string maDoan = khachHangDTOs[0].MaDoan;
+            var doan = models.Doans.Where(d => d.MaDoan.Equals(maDoan)).FirstOrDefault();
+            doan.TrangThaiDatPhong = 1;
             var lstKhachHang = models.KhachHangs.Where(kh => kh.IsDelete != true && kh.MaDoan.Equals(maDoan)).ToList();
             for (int i = 0; i < lstKhachHang.Count; i++)
             {
@@ -575,6 +579,8 @@ namespace QLKSProject.Business.NhanVien
         private void LuuDanhSachKhachHangDatPhongThatBai(List<KhachHangDTO> khachHangDTOs)
         {
             string maDoan = khachHangDTOs[0].MaDoan;
+            var doan = models.Doans.Where(d => d.MaDoan.Equals(maDoan)).FirstOrDefault();
+            doan.TrangThaiDatPhong = -1;
             var lstKhachHang = models.KhachHangs.Where(kh => kh.IsDelete != true && kh.MaDoan.Equals(maDoan)).ToList();
             for (int i = 0; i < lstKhachHang.Count; i++)
             {
@@ -688,6 +694,22 @@ namespace QLKSProject.Business.NhanVien
         private int LayGiaDV(string tenDv)
         {
             return models.DichVus.Where(d => d.TenDichVu.Equals(tenDv)).Select(d => d.Gia).FirstOrDefault();
+        }
+        private bool XoaDoanTheoMaDoan(string maDoan)
+        {
+            bool b = true;
+            try
+            {
+                var doan = models.Doans.Where(d => d.MaDoan == maDoan).FirstOrDefault();
+                doan.IsDelete = true;
+                doan.TrangThaiDatPhong = 0;
+                doan.TrangThaiXacNhan = false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return b;
         }
 
         #endregion
