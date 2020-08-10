@@ -81,6 +81,7 @@ namespace QLKSProject.Business.KhachHangBusiness
                     {
                         kh.IsDelete = true;
                         kh.IDPhong = -2;
+                        kh.TrangThaiDatPhong = -2;
                         kh.GhiChu = "Khách hàng đã hủy đặt phòng";
                     }
                     models.SaveChanges();

@@ -112,8 +112,8 @@ namespace QLKSProject.Controllers.NhanVien
         {
             if (dynamic == null)
                 return BadRequest();
-            DateTime ngayNhan = JsonConvert.DeserializeObject<DateTime>(dynamic.NgayNhan.ToString());
-            DateTime ngayTra = JsonConvert.DeserializeObject<DateTime>(dynamic.NgayTra.ToString());
+            DateTime ngayNhan = dynamic.NgayNhan;
+            DateTime ngayTra = dynamic.NgayTra;
             using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
                 return Ok(nhanVienBusiness.LayDanhSachPhongTheoDieuKien(ngayNhan, ngayTra));
@@ -152,7 +152,6 @@ namespace QLKSProject.Controllers.NhanVien
                 return Ok(nhanVien.LayDanhSachTenKhachHangChungPhong(id));
             }
         }
-
         [HttpGet]
         public IHttpActionResult LayThongTinChiPhiPhong([FromUri]int id)
         {
@@ -161,7 +160,6 @@ namespace QLKSProject.Controllers.NhanVien
                 return Ok(nhanVien.LayThongTinChiPhiPhong(id));
             }
         }
-
         #endregion
 
         #region Dich Vu Phong
