@@ -438,7 +438,7 @@ namespace QLKSProject.Business.NhanVien
 
             return status;
         }
-        public List<KhachHangDTO> LayDanhSachTenKhachHangChungPhong(int idPhong)
+        public List<KhachHangDTO> DanhSachKhachHangChungPhong(int idPhong)
         {
             DateTime today = DateTime.Now;
             var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == idPhong && kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 0).Select(kh => new KhachHangDTO 
@@ -485,7 +485,32 @@ namespace QLKSProject.Business.NhanVien
         #endregion
 
         #region DichVuPhong
-
+        public List<KhachHangDTO> DanhSachKhachHangChungPhongDichVuPhong(int idPhong)
+        {
+            DateTime today = DateTime.Now;
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == idPhong && kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 0).Select(kh => new KhachHangDTO
+            {
+                ID = kh.ID,
+                HoVaTen = kh.HoVaTen,
+                SoDienThoai = kh.SoDienThoai,
+                Email = kh.Email,
+                DiaChi = kh.DiaChi,
+                Nhom = kh.Nhom,
+                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = kh.ThoiGianNhan,
+                ThoiGianTra = kh.ThoiGianTra,
+                MaDoan = kh.MaDoan,
+                GioiTinh = kh.GioiTinh,
+                LoaiKhachHang = kh.LoaiKhachHang,
+                TruongDoan = kh.TruongDoan,
+                IsDelete = kh.IsDelete,
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                IDPhong = kh.IDPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
+            }).ToList();
+            lstKhachHang = lstKhachHang.Where(kh => kh.TrangThaiDatPhong == 1).ToList();
+            return lstKhachHang;
+        }
         public List<LichSuDichVuDTO> LayDSLichSuDichVu()
         {
             var lstLichSuDichVu = models.LichSuDichVus.Where(l => l.IsDelete != true).Select(l => new LichSuDichVuDTO
