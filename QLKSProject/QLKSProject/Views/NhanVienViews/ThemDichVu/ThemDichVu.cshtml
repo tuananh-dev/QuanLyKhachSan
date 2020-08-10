@@ -55,7 +55,7 @@
                 //api load khi them DV vao Phong
                 var layDSDichVu = 'NhanVien/LayDanhSachDichVu';
                 var layDSPhong = 'NhanVien/LayDanhSachPhong';
-                var layDSNguoiTrongPhong = 'NhanVien/LayDanhSachTenKhachHangChungPhongDichVuPhong/';
+                var layDSNguoiTrongPhong = 'NhanVien/DanhSachKhachHangChungPhongDichVuPhong/';
 
                 loadData(idList, layDSDichVuPhong);
 
@@ -105,7 +105,7 @@
                         IDPhong : $('#dsphong-select').val(),
                         IsDelete: false,
                         SoPhong: $('#dsphong-select option:selected').text(),
-                        TenDichVu: $('#dsdichvu-select option:selected').text().split('-')[0],
+                        TenDichVu: $('#dsdichvu-select option:selected').text().split('+')[0].trim(),
                         HoVaTenKhachHang: $('#dsnguoitrongphong-select option:selected').text(),
                         GhiChu: $('#ghichu').val()
                     }
@@ -115,6 +115,7 @@
                         urlLoad: layDSDichVuPhong,
                         modal: idModalAdd
                     };
+                    console.log(data);
                     addData(info, data);
                 });
             });

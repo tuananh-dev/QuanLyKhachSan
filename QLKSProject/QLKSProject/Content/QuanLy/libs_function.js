@@ -109,7 +109,7 @@ function loadData(idList, url) {
                         position.prepend('<option value="' + val.ID + '"> ' + val.SoPhong + '</option>');
                         break;
                     case 'NhanVien/LayDanhSachDichVu':
-                        position.prepend('<option value="' + val.ID + '" >' + val.TenDichVu + '-' + formatNumber(val.Gia) + '</option>');
+                        position.prepend('<option value="' + val.ID + '" >' + val.TenDichVu +'&nbsp;&nbsp;&nbsp;'+' +' + formatNumber(val.Gia) + '</option>');
                         break;
 
                 }
@@ -662,7 +662,7 @@ function LayThongTinPhong(info, id) {
                         $(info.idLoad).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
                     })
                     break;
-                case 'NhanVien/LayDanhSachTenKhachHangChungPhongDichVuPhong/':
+                case 'NhanVien/DanhSachKhachHangChungPhongDichVuPhong/':
                     $(info.idLoad).empty();
                     $.each(data, function (index, val) {
                         $(info.idLoad).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
@@ -677,9 +677,11 @@ function LayThongTinPhong(info, id) {
                     $(info.idCMND).html(data[1]);
                     $(info.idNguoiDaiDien).val(data[0]);
                     $(info.idNguoiDaiDien).html(data[0]);
-                    for (i = 2; i < data.length; i++) {
+                    for (i = 2; i < data.length - 1; i++) {
                         $(info.idDichVu).append('<li>' + data[i] + '</li>');
                     }
+                    $(info.idDichVu).append('<li>Tổng Tiền: ' + data[data.length - 1] + '</li>');
+                    console.log(data);
 
 
                     break;

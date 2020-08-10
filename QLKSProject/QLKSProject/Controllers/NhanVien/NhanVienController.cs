@@ -149,7 +149,15 @@ namespace QLKSProject.Controllers.NhanVien
         {
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
-                return Ok(nhanVien.LayDanhSachTenKhachHangChungPhong(id));
+                return Ok(nhanVien.DanhSachKhachHangChungPhong(id));
+            }
+        }
+        [HttpGet]
+        public IHttpActionResult DanhSachKhachHangChungPhongDichVuPhong([FromUri]int id)
+        {
+            using (NhanVienBusiness nhanVien = new NhanVienBusiness())
+            {
+                return Ok(nhanVien.DanhSachKhachHangChungPhongDichVuPhong(id));
             }
         }
         [HttpGet]
