@@ -436,10 +436,29 @@ namespace QLKSProject.Business.NhanVien
 
             return status;
         }
-        public List<string> LayDanhSachTenKhachHangChungPhong(int idPhong)
+        public List<KhachHangDTO> LayDanhSachTenKhachHangChungPhong(int idPhong)
         {
             DateTime today = DateTime.Now;
-            var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == idPhong && kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 0).Select(kh => kh.HoVaTen).ToList();
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.IDPhong == idPhong && kh.ThoiGianNhan.CompareTo(today) <= 0 && kh.ThoiGianTra.CompareTo(today) >= 0).Select(kh => new KhachHangDTO 
+            {
+                ID = kh.ID,
+                HoVaTen = kh.HoVaTen,
+                SoDienThoai = kh.SoDienThoai,
+                Email = kh.Email,
+                DiaChi = kh.DiaChi,
+                Nhom = kh.Nhom,
+                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = kh.ThoiGianNhan,
+                ThoiGianTra = kh.ThoiGianTra,
+                MaDoan = kh.MaDoan,
+                GioiTinh = kh.GioiTinh,
+                LoaiKhachHang = kh.LoaiKhachHang,
+                TruongDoan = kh.TruongDoan,
+                IsDelete = kh.IsDelete,
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                IDPhong = kh.IDPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
+            }).ToList();
             return lstKhachHang;
         }
         public List<string> LayThongTinChiPhiPhong(int idPhong)
