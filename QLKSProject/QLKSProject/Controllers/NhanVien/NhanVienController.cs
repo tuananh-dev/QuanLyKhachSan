@@ -125,7 +125,7 @@ namespace QLKSProject.Controllers.NhanVien
             KhachHangNhanPhongDTO khachHang = JsonConvert.DeserializeObject<KhachHangNhanPhongDTO>(dynamic.ToString());
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
-                string status = nhanVien.KhachHangNhanPhong(khachHang.IdPhong, khachHang.HoVaTen, khachHang.CMND);
+                string status = nhanVien.KhachHangNhanPhong(khachHang.IDPhong, khachHang.HoVaTen, khachHang.CMND);
                 if (status.Equals("ok"))
                     return Ok("Nhận phòng thành công!");
                 else
