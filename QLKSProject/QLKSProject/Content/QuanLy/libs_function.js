@@ -630,7 +630,7 @@ function LayThongTinPhong(info, id) {
                 case 'NhanVien/LayDanhSachTenKhachHangChungPhong/':
                     $(info.idLoad).empty();
                     $.each(data, function (index, val) {
-                        $(info.idLoad).append('<option value="' + val + '">' + val + '</option>');
+                        $(info.idLoad).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
                     })
 
 

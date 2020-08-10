@@ -104,10 +104,10 @@
                         IDKhachHang : $('#dsnguoitrongphong-select').val(),
                         IDPhong : $('#dsphong-select').val(),
                         IsDelete: false,
-                        SoPhong: $('#dsphong-select').html(),
-                        TenDichVu: $('#dsdichvu-select').html(),
-                        HoVaTenKhachHang: $('#dsnguoitrongphong-select').html(),
-                        GhiChu :$('#ghichu').html()
+                        SoPhong: $('#dsphong-select option:selected').text(),
+                        TenDichVu: $('#dsdichvu-select option:selected').text(),
+                        HoVaTenKhachHang: $('#dsnguoitrongphong-select option:selected').text(),
+                        GhiChu: $('#ghichu').text()
                     }
                     var info = {
                         id: idList,
