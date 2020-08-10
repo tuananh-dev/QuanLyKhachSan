@@ -285,8 +285,8 @@ namespace QLKSProject.Business.NhanVien
                             }
                             else
                             {
-                                trangThaiDatPhong = "Không lấy được phòng cho khách hàng (Hết phòng) !!!";
-                                khachHang.GhiChu = "Hết phòng/ Không có phòng phù hợp";
+                                trangThaiDatPhong = "Không lấy được số phòng của loại phòng <" + loaiPhong + "> cho khách !!!";
+                                khachHang.GhiChu = "Hết phòng loại <" + loaiPhong + ">";
                             }
 
                         }
@@ -317,7 +317,7 @@ namespace QLKSProject.Business.NhanVien
                                 trangThaiDatPhong = "Không lấy được số phòng của loại phòng <" + loaiPhong + "> cho khách !!!";
                                 foreach (var khachHang in lstNhomKhachHang)
                                 {
-                                    khachHang.GhiChu = "Hết phòng loại <" + loaiPhong + "> Không có phòng phù hợp";
+                                    khachHang.GhiChu = "Hết phòng loại <" + loaiPhong + ">";
                                 }
                             }
                         }
@@ -464,6 +464,7 @@ namespace QLKSProject.Business.NhanVien
         #endregion
 
         #region DichVuPhong
+
         public List<LichSuDichVuDTO> LayDSLichSuDichVu()
         {
             var lstLichSuDichVu = models.LichSuDichVus.Where(l => l.IsDelete != true).Select(l => new LichSuDichVuDTO
@@ -525,6 +526,18 @@ namespace QLKSProject.Business.NhanVien
                 status = "Lỗi không xóa được Lịch sử dịch vụ!!!";
             }
             return status;
+        }
+        public List<DichVuDTO> LayDanhSachDichVu()
+        {
+            var lstdichvu = models.DichVus.Where(e => e.IsDelete == false).Select(e => new DichVuDTO
+            {
+                ID = e.ID,
+                TenDichVu = e.TenDichVu,
+                Gia = e.Gia,
+                MoTa = e.MoTa,
+                IsDelete = e.IsDelete
+            });
+            return lstdichvu.ToList();
         }
         #endregion
 

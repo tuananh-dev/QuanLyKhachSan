@@ -197,6 +197,15 @@ namespace QLKSProject.Controllers.NhanVien
                     return BadRequest("Xóa thất bại!");
             }
         }
+        [HttpGet]
+        public IHttpActionResult LayDanhSachDichVu()
+        {
+            IHttpActionResult respon = Ok();
+            using (NhanVienBusiness nhanVien = new NhanVienBusiness())
+            {
+                return Ok(nhanVien.LayDanhSachDichVu());
+            }
+        }
         #endregion
     }
 }
