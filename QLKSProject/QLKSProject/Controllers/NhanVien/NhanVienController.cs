@@ -200,7 +200,7 @@ namespace QLKSProject.Controllers.NhanVien
         [HttpGet]
         public IHttpActionResult LayDanhSachDichVu()
         {
-            IHttpActionResult respon = Ok();
+
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
                 return Ok(nhanVien.LayDanhSachDichVu());

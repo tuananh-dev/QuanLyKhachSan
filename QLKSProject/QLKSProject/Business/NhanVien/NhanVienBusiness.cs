@@ -485,6 +485,7 @@ namespace QLKSProject.Business.NhanVien
         }
         public bool ThemMoiDichVuPhong(LichSuDichVuDTO dichVuPhong)
         {
+            DateTime today = DateTime.Now;
             try
             {
                 LichSuDichVu lichSuDichVu = new LichSuDichVu();
@@ -492,7 +493,7 @@ namespace QLKSProject.Business.NhanVien
                 lichSuDichVu.IDKhachHang = dichVuPhong.IDKhachHang;
                 lichSuDichVu.IDPhong = dichVuPhong.IDPhong;
                 lichSuDichVu.IsDelete = false;
-                lichSuDichVu.NgayGoiDichVu = dichVuPhong.NgayGoiDichVu;
+                lichSuDichVu.NgayGoiDichVu = today;
                 lichSuDichVu.SoPhong = dichVuPhong.SoPhong;
                 lichSuDichVu.TenDichVu = dichVuPhong.TenDichVu;
                 lichSuDichVu.HoVaTenKhachHang = dichVuPhong.HoVaTenKhachHang;

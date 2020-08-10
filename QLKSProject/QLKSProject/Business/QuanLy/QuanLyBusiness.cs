@@ -171,7 +171,7 @@ namespace QLKSProject.Business.QuanLy
         public string ThemPhong(PhongDTO phong)
         {
             string status = "ok";
-            Models.Entities.Phong ph = new Models.Entities.Phong();
+            Phong ph = new Phong();
             if (CheckPhong(phong.SoPhong))
             {
                 ph.MaPhong = phong.MaPhong;
