@@ -7,7 +7,7 @@ namespace QLKSProject.Models.DTO
 {
     public class QuanLyLoaiPhongDTO
     {
-        public string TenLoaiPhong { get; set; }
+        public int LoaiPhong { get; set; }
         public int Gia { get; set; }
     }
 }

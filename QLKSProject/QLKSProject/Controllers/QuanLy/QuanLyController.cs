@@ -145,6 +145,19 @@ namespace QLKSProject.Controllers.QuanLy
                 return Ok(quanLy.LayDanhSachLoaiPhong());
             }
         }
+        [HttpPut]
+        public IHttpActionResult CapNhatLoaiPhong([FromBody] dynamic dynamic)
+        {
+            List<QuanLyLoaiPhongDTO> quanLyLoaiPhongDTOs = JsonConvert.DeserializeObject<List<QuanLyLoaiPhongDTO>>(dynamic.ToString());
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                if (quanLy.CapNhatLoaiPhong(quanLyLoaiPhongDTOs))
+                    return Ok("Cập nhật phòng thành công!");
+                else
+                    return BadRequest("Cập nhật phòng thất bại!");
+            }
+        }
+
         #endregion
         #region API xu ly DichVu
         [HttpGet]
