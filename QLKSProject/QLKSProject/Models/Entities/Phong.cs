@@ -17,7 +17,7 @@ namespace QLKSProject.Models.Entities
         public string MaPhong { get; set; }
 
         [Required]
-        [StringLength(3)]
+        [StringLength(4)]
         public string SoPhong { get; set; }
 
         [Required]
