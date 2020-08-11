@@ -30,66 +30,83 @@
         <!-- favicon -->
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
+        <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
         <script src="~/Content/QuanLy/Jquery.js"></script>
         <script src="~/Content/QuanLy/libs_function.js"></script>
+        <style>
+            #dsloaiphong tr td input {
+                border: none;
+                padding: 10px 5px;
+                background: none;
+            }
 
+            #dsloaiphong tr td select {
+                padding: 8px;
+                border: none;
+                background: none;
+            }
+        </style>
         <script type="text/javascript">
 
             $(document).ready(function () {
                 checkSession();
 
-                //var mota = $();
-                var dataId;
+
                 var idList = '#dsloaiphong';
                 //Modal
-                var idModalEdit = '#editModal';
 
                 //API
-                var layDSPhong = 'Quanly/LayDanhSachLoaiPhong';
-                var suaPhong = 'Quanly/CapNhatLoaiPhong';
-               
+                var layDSLoaiPhong = 'Quanly/LayDanhSachLoaiPhong';
+                var suaLoaiPhong = 'Quanly/CapNhatLoaiPhong';
 
-
-
-                loadData(idList, layDSPhong);
-
-               
-
-
-                $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
-                    $(idModalEdit).modal('show');
-                    dataId = $(this).attr("data-id");
-                    var edit = {
-                        
-                        gia: '#gia-edit',
-                        mota: ''
+                LoadDSLoaiPhong(idList, layDSLoaiPhong);
+                $('#luu').click(function () {
+                    var list = [];
+                    for (i = 0; i < 4; i++) {
+                        var obj = {
+                            LoaiPhong: i + 1,
+                            Gia: $('#gia' + i).val()
+                        }
+                        list.push(obj);
                     }
-
-                    loadDataDetail(edit, layPhong, dataId);
-                })
-
-                $('#btn-edit').click(function () {
-                   
-                    
-                    var data = {
-                        ID: dataId,
-                        MaPhong: loaiPhong + _0 + $('#solau-edit').val() + $('#sophong-edit').val(),
-                        LoaiPhong: loaiPhong,
-                        Gia: $('#gia-edit').val(),
-                        SoPhong: $('#solau-edit').val() + $('#sophong-edit').val()
-                    };
                     var info = {
+                        url: suaLoaiPhong,
                         id: idList,
-                        url: suaPhong,
-                        urlLoad: layDSPhong,
-                        modal: idModalEdit
-                    };
-                    console.log(data);
-                    editData(info, data);
+                        urlLoad: layDSLoaiPhong
+                    }
+                    editAllLoaiPhong(info, list);
+                })
+                //$('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
+                //    $(idModalEdit).modal('show');
+                //    dataId = $(this).attr("data-id");
+                //    var edit = {
+                //        gia: '#gia-edit',
+                //    }
 
-                });
-               
+                //    loadDataDetail(edit, layPhong, dataId);
+                //})
+
+                //$('#btn-edit').click(function () {
+
+
+                //    var data = {
+                //        ID: dataId,
+                //        MaPhong: loaiPhong + _0 + $('#solau-edit').val() + $('#sophong-edit').val(),
+                //        LoaiPhong: loaiPhong,
+                //        Gia: $('#gia-edit').val(),
+                //        SoPhong: $('#solau-edit').val() + $('#sophong-edit').val()
+                //    };
+                //    var info = {
+                //        id: idList,
+                //        url: suaPhong,
+                //        urlLoad: layDSPhong,
+                //        modal: idModalEdit
+                //    };
+                //    console.log(data);
+                //    editData(info, data);
+
+                //});
+
 
 
             });
@@ -272,143 +289,80 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card card-box">
+                                <div class="card card-box card-topline-red">
 
-                                    <div class="card-body ">
-                                        @*<div class="row p-b-20">
-                                            <div class="col-md-6 col-sm-6 col-6">
-                                                <div class="btn-group">
-                                                    <button id="addRow" class="btn btn-info">
-                                                        Thêm Mới Phòng <i class="fa fa-plus"></i>
-                                                    </button>
 
-                                                </div>
+                                    <div class="table-scrollable" style="border-bottom: 2px solid;"> 
+                                        <table class="table table-striped"
+                                               id="mainTable">
+                                            <thead>
+                                                <tr>
+                                                    <th class="center"> Tên </th>
+                                                    <th class="center"> Giá </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="dsloaiphong">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row p-b-20" style="text-align: right;">
+                                        <div class="col-md-12 col-sm-6 col-6">
+                                            <div class="btn-group">
+                                                <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" id="loading" style="display:none;"></div>
+                                                <button id="luu" class="btn btn-info" >
+                                                    Lưu Thay Đổi
+                                                </button>
+
                                             </div>
-
-                                        </div>*@
-                                        <div class="table-scrollable">
-                                            <table class="table display product-overview mb-30"
-                                                   id="example4">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="center" style="width: 130px"> Tên </th>
-                                                        <th class="center" style="width: 130px"> Giá </th>
-                                                        <th class="center" style="width: 130px"> Mô tả </th>
-                                                        
-                                                        <th class="center"> Chức Năng </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="dsloaiphong">
-                                                </tbody>
-                                            </table>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!----Modal-->
-                
-
-                <div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content" style="width:400px">
-
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Chỉnh Sửa Loại Phòng</h4>
-                                        <div class="card-box">
-
-                                            <div class="card-body row">
-                                                <div class="col-lg-6 p-t-20">
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                        <input class="mdl-textfield__input" type="number"
-                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="solau-edit" disabled>
-                                                        <label class="mdl-textfield__label" style="top:0;">Tên</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 p-t-20">
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                        <input class="mdl-textfield__input" type="number"
-                                                               pattern="-?[0-9]*(\.[0-9]+)?" id="gia-edit">
-                                                        <label class="mdl-textfield__label" for="gia-edit" style="top:0;">Giá</label>
-                                                        <span class="mdl-textfield__error">Phải Là Số</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 p-t-20">
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                        <input class="mdl-textfield__input" type="number"
-                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="mota-edit">
-                                                        <label class="mdl-textfield__label" for="mota-edit" style="top:0;">Mô Tả</label>
-                                                    </div>
-                                                </div>
-
-
-
-
-
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 p-t-20 text-center">
-                                            <button type="button"
-                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-edit">
-                                                Lưu
-                                            </button>
-                                            <button type="button"
-                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                                Hủy
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-----end modal-->
-                    <!-- end page content -->
-                </div>
-
-                <!-- end page container -->
-                <!-- start footer -->
-                <div class="page-footer">
-                    <div class="page-footer-inner">
-                        2020 &copy; Hotel Color
-
-                    </div>
-                    <div class="scroll-to-top">
-                        <i class="icon-arrow-up"></i>
-                    </div>
-                </div>
-                <!-- end footer -->
             </div>
-            <!-- start js include path -->
-            <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
-            <!--<script src="~/Content/QuanLy/plugins/popper/popper.min.js"></script>-->
-            <script src="~/Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
-            <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-            <!-- bootstrap -->
-            <!--<script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
-            <!--<script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>-->
-            <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
-            <!-- Material -->
-            <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
-            <script src="~/Content/QuanLy/js/pages/material_select/getmdl-select.js"></script>
-            <!-- Common js-->
-            <script src="~/Content/QuanLy/js/app.js"></script>
-            <script src="~/Content/QuanLy/js/layout.js"></script>
-            <script src="~/Content/QuanLy/js/theme-color.js"></script>
-            <!--<script src="~//plugins/dropzone/dropzone.js"></script>-->
-            <!--<script src="~//plugins/dropzone/dropzone-call.js"></script>-->
-            <!-- Material -->
-            <!--<script src="~/Content/QuanLy/plugins/material/material.min.js"></script>-->
-            <!-- animation -->
-            <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
-            <!-- end js include path -->
+            <!----Modal-->
+            <!-- end page container -->
+            <!-- start footer -->
+            <div class="page-footer">
+                <div class="page-footer-inner">
+                    2020 &copy; Hotel Color
+
+                </div>
+                <div class="scroll-to-top">
+                    <i class="icon-arrow-up"></i>
+                </div>
+            </div>
+            <!-- end footer -->
+        </div>
+        <!-- start js include path -->
+        <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
+        <!--<script src="~/Content/QuanLy/plugins/popper/popper.min.js"></script>-->
+        <script src="~/Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
+        <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <!-- bootstrap -->
+        <!--<script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
+        <!--<script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>-->
+        <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Material -->
+        <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
+        <script src="~/Content/QuanLy/js/pages/material_select/getmdl-select.js"></script>
+        <!-- Common js-->
+        <script src="~/Content/QuanLy/js/app.js"></script>
+        <script src="~/Content/QuanLy/js/layout.js"></script>
+        <script src="~/Content/QuanLy/js/theme-color.js"></script>
+        <script src="~/Content/QuanLy/plugins/datatables/editabletable.js"></script>
+        <script src="~/Content/QuanLy/js/pages/table/editable_table_data.js"></script>
+        <!--<script src="~//plugins/dropzone/dropzone.js"></script>-->
+        <!--<script src="~//plugins/dropzone/dropzone-call.js"></script>-->
+        <!-- Material -->
+        <!--<script src="~/Content/QuanLy/plugins/material/material.min.js"></script>-->
+        <!-- animation -->
+        <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
+        <!-- end js include path -->
     </body>
 
 

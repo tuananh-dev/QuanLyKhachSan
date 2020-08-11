@@ -109,7 +109,7 @@ function loadData(idList, url) {
                         position.prepend('<option value="' + val.ID + '"> ' + val.SoPhong + '</option>');
                         break;
                     case 'NhanVien/LayDanhSachDichVu':
-                        position.prepend('<option value="' + val.ID + '" >' + val.TenDichVu +'&nbsp;&nbsp;&nbsp;'+' +' + formatNumber(val.Gia) + '</option>');
+                        position.prepend('<option value="' + val.ID + '" >' + val.TenDichVu + '&nbsp;&nbsp;&nbsp;' + ' +' + formatNumber(val.Gia) + '</option>');
                         break;
 
                 }
@@ -240,7 +240,35 @@ function loadDSKHTheoMaDoan(info, id) {
         error: function (data) {
 
             if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.pathname("/404.cshtml");
+                window.location.pathname("/SEP23Team2/404.cshtml");
+            }
+        }
+    })
+}
+function LoadDSLoaiPhong(idList, url) {
+    $.ajax({
+        type: 'GET',
+        url: '/SEP23Team2/api/' + url,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+        },
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+        dataType: 'json',
+        success: function (data) {
+            $(idList).empty();
+            var i = 0;
+            $.each(data, function (index, val) {
+                $(idList).append('<tr class="odd gradeX"><td class="center"><label value="' + val.LoaiPhong + '">Phòng Loại ' + val.LoaiPhong + '</label></td><td class="center"><input type="number" pattern="-?[0-9]*(\.[0-9]+)?" style="text-align:center;width: 125px" id="gia' + i + '" name="gia" value="' + val.Gia + '"></td></tr>');
+                i++
+                
+            })
+
+            //sessionStorage.setItem('length', i);
+        },
+        error: function (data) {
+
+            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
+                window.location.pathname("/SEP23Team2/404.cshtml");
             }
         }
     })
@@ -258,7 +286,7 @@ function loadDSPhong(url) {
             'data-type': 'json',
         },
         success: function (data) {
-            
+
             for (i = 1; i < 10; i++) {
                 $('#row' + i).empty();
                 $.each(data, function (index, val) {
@@ -304,7 +332,7 @@ function loadDSPhongTrong(info, dataInput) {
             info.id.empty();
             $.each(data, function (index, val) {
                 var row = val.split('-');
-                info.id.append('<h3 style="display: block;margin-left: 15px;" class="floor">Phòng loại ' + row[0] + ': trống '+row[1]+' phòng'+'</h3>');
+                info.id.append('<h3 style="display: block;margin-left: 15px;" class="floor">Phòng loại ' + row[0] + ': trống ' + row[1] + ' phòng' + '</h3>');
             })
 
         }, error: function (data) {
@@ -374,6 +402,41 @@ function editData(info, dataInput) {
         },
         error: function (data) {
             $(info.modal).modal('hide');
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: data.responseJSON.Message
+            })
+        }
+
+    })
+}
+
+function editAllLoaiPhong(info, dataInput) {
+    $.ajax({
+        url: '/SEP23Team2/api/' + info.url,
+        method: 'PUT',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+        },
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+        data: JSON.stringify(dataInput),
+        success: function () {
+            
+            Swal.fire(
+                'Chỉnh Sửa Thành Công!',
+                '',
+                'success'
+            ).then(() => {
+                LoadDSLoaiPhong(info.id, info.urlLoad);
+            })
+              
+            
+            
+
+        },
+        error: function (data) {
+           
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',

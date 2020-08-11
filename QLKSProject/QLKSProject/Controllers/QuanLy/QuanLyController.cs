@@ -137,6 +137,14 @@ namespace QLKSProject.Controllers.QuanLy
                     return BadRequest(result);
             }
         }
+        [HttpGet]
+        public IHttpActionResult LayDanhSachLoaiPhong()
+        {
+            using (QuanLyBusiness quanLy = new QuanLyBusiness())
+            {
+                return Ok(quanLy.LayDanhSachLoaiPhong());
+            }
+        }
         #endregion
         #region API xu ly DichVu
         [HttpGet]
