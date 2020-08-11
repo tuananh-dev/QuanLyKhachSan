@@ -41,66 +41,37 @@
 
                 //var mota = $();
                 var dataId;
-                var idList = '#dsphong';
+                var idList = '#dsloaiphong';
                 //Modal
-                var idModalAdd = '#addModal';
                 var idModalEdit = '#editModal';
 
                 //API
-                var layDSPhong = 'Quanly/LayDanhSachPhong';
-                var themPhong = 'Quanly/ThemPhong';
-                var suaPhong = 'Quanly/CapNhatPhong';
-                var xoaPhong = 'Quanly/XoaPhong?ID=';
-                var layPhong = 'Quanly/LayPhong?ID=';
+                var layDSPhong = 'Quanly/LayDanhSachLoaiPhong';
+                var suaPhong = 'Quanly/CapNhatLoaiPhong';
+               
 
 
 
                 loadData(idList, layDSPhong);
 
-                $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
-
-                    dataId = $(this).attr("data-id");
-                    var info = {
-                        id: idList,
-                        url: xoaPhong,
-                        urlLoad: layDSPhong,
-                    };
-
-                    deleteData(info, dataId);
-                })
+               
 
 
                 $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
                     $(idModalEdit).modal('show');
                     dataId = $(this).attr("data-id");
                     var edit = {
-                        loaiPhong: '#loaiphong-edit',
+                        
                         gia: '#gia-edit',
-                        soLau: '#solau-edit',
-                        soPhong: '#sophong-edit'
+                        mota: ''
                     }
 
                     loadDataDetail(edit, layPhong, dataId);
                 })
 
                 $('#btn-edit').click(function () {
-                    var loaiPhong = "0";
-                     var _0 = '0';
-                    if ($('#loaiphong-edit').val() == "Phòng Loại 1") {
-                        loaiPhong = "1";
-                    }
-                    if ($('#loaiphong-edit').val() == "Phòng Loại 2") {
-                        loaiPhong = "2";
-                    }
-                    if ($('#loaiphong-edit').val() == "Phòng Loại 3") {
-                        loaiPhong = "3";
-                    }
-                    if ($('#loaiphong-edit').val() == "Phòng Loại 4") {
-                        loaiPhong = "4";
-                    }
-                     if (parseInt($('#solau-add').val()) > 9) {
-                        _0 = '';
-                    }
+                   
+                    
                     var data = {
                         ID: dataId,
                         MaPhong: loaiPhong + _0 + $('#solau-edit').val() + $('#sophong-edit').val(),
@@ -118,47 +89,9 @@
                     editData(info, data);
 
                 });
-                $("#addRow").click(function () {
-                    $(idModalAdd).modal('show');
-                })
-
-                $('#btn-add').click(function () {
-                    var loaiPhong = "0";
-                    var _0 = '0';
-                    if ($('#loaiphong-add').val() == "Phòng Loại 1") {
-                        loaiPhong = "1";
-                    }
-                    if ($('#loaiphong-add').val() == "Phòng Loại 2") {
-                        loaiPhong = "2";
-                    }
-                    if ($('#loaiphong-add').val() == "Phòng Loại 3") {
-                        loaiPhong = "3";
-                    }
-                    if ($('#loaiphong-add').val() == "Phòng Loại 4") {
-                        loaiPhong = "4";
-                    }
-                    if (parseInt($('#solau-add').val()) > 9) {
-                        _0 = '';
-                    }
-                    var data = {
-                        MaPhong: loaiPhong + _0 + $('#solau-add').val() + $('#sophong-add').val(),
-                        LoaiPhong: loaiPhong,
-                        Gia: $('#gia-add').val(),
-                        SoPhong: $('#solau-add').val() + $('#sophong-add').val(),
-                        TrangThai: -1,
-                        IsDelete: false,
-                    }
-                    var info = {
-                        id: idList,
-                        url: themPhong,
-                        urlLoad: layDSPhong,
-                        modal: idModalAdd
-                    };
-                    console.log(data);
-                    addData(info, data);
-                });
-
                
+
+
             });
 
         </script>
@@ -213,7 +146,7 @@
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default animated jello">
-                                   
+
 
                                     <li class="divider"> </li>
 
@@ -325,7 +258,7 @@
                         <div class="page-bar">
                             <div class="page-title-breadcrumb">
                                 <div class=" pull-left">
-                                    <div class="page-title">Danh Sách Phòng</div>
+                                    <div class="page-title">Danh Sách Loại Phòng</div>
                                 </div>
                                 <ol class="breadcrumb page-breadcrumb pull-right">
                                     <li>
@@ -342,31 +275,30 @@
                                 <div class="card card-box">
 
                                     <div class="card-body ">
-                                        <div class="row p-b-20">
+                                        @*<div class="row p-b-20">
                                             <div class="col-md-6 col-sm-6 col-6">
                                                 <div class="btn-group">
                                                     <button id="addRow" class="btn btn-info">
                                                         Thêm Mới Phòng <i class="fa fa-plus"></i>
                                                     </button>
-                                                   
+
                                                 </div>
                                             </div>
 
-                                        </div>
+                                        </div>*@
                                         <div class="table-scrollable">
                                             <table class="table display product-overview mb-30"
                                                    id="example4">
                                                 <thead>
                                                     <tr>
-                                                        <th class="center" style="width: 130px"> Mã Phòng </th>
-                                                        <th class="center" style="width: 130px"> Số Phòng </th>
-                                                        <th class="center" style="width: 130px"> Phòng Loại </th>
-                                                        <th class="center" style="width: 180px"> Giá </th>
-                                                        <th class="center" style="width: 180px"> Tình Trạng </th>
+                                                        <th class="center" style="width: 130px"> Tên </th>
+                                                        <th class="center" style="width: 130px"> Giá </th>
+                                                        <th class="center" style="width: 130px"> Mô tả </th>
+                                                        
                                                         <th class="center"> Chức Năng </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="dsphong">
+                                                <tbody id="dsloaiphong">
                                                 </tbody>
                                             </table>
                                         </div>
@@ -377,84 +309,8 @@
                     </div>
                 </div>
                 <!----Modal-->
-                <div class="modal fade" tabindex="-1" id="addModal" data-keyboard="false" data-backdrop="static">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content" style="width:400px">
-
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Phòng</h4>
-                                        <div class="card-box">
-
-                                            <div class="card-body row">
-                                                <div class="col-lg-6 p-t-20">
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                        <input class="mdl-textfield__input" type="number"
-                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="solau-add">
-                                                        <label class="mdl-textfield__label">Số Lầu</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 p-t-20">
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                        <input class="mdl-textfield__input" type="number"
-                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="sophong-add">
-                                                        <label class="mdl-textfield__label" for="sophong-add">Số Phòng</label>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-lg-6 p-t-20">
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                                        <input class="mdl-textfield__input" type="text" id="loaiphong-add" value="" readonly
-                                                               tabIndex="-1">
-                                                        <label for="loaiphong-add" class="pull-right margin-0">
-                                                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                                        </label>
-                                                        <label for="loaiphong-add" class="mdl-textfield__label">Loại Phòng</label>
-                                                        <ul data-mdl-for="loaiphong-add" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                                            <li class="mdl-menu__item">Phòng Loại 1</li>
-                                                            <li class="mdl-menu__item">Phòng Loại 2</li>
-                                                            <li class="mdl-menu__item">Phòng Loại 3</li>
-                                                            <li class="mdl-menu__item">Phòng Loại 4</li>
-
-
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-lg-6 p-t-20">
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                        <input class="mdl-textfield__input" type="number"
-                                                               pattern="-?[0-9]*(\.[0-9]+)?" id="gia-add">
-                                                        <label class="mdl-textfield__label" for="gia-add">Giá</label>
-                                                        <span class="mdl-textfield__error">Phải Là Số</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 p-t-20 text-center">
-                                            <button type="button"
-                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-add">
-                                                Thêm
-                                            </button>
-                                            <button type="button"
-                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                                Hủy
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-----end modal-->
-                    <!-- end page content -->
-                </div>
                 
+
                 <div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
                     <div class="modal-dialog modal-sm">
                         <div class="modal-content" style="width:400px">
@@ -462,44 +318,17 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Chỉnh Sửa Phòng</h4>
+                                        <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Chỉnh Sửa Loại Phòng</h4>
                                         <div class="card-box">
 
                                             <div class="card-body row">
                                                 <div class="col-lg-6 p-t-20">
                                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                         <input class="mdl-textfield__input" type="number"
-                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="solau-edit">
-                                                        <label class="mdl-textfield__label" style="top:0;">Số Lầu</label>
+                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="solau-edit" disabled>
+                                                        <label class="mdl-textfield__label" style="top:0;">Tên</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 p-t-20">
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                        <input class="mdl-textfield__input" type="number"
-                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="sophong-edit">
-                                                        <label class="mdl-textfield__label" for="sophong-edit" style="top:0;">Số Phòng</label>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-lg-6 p-t-20">
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                                        <input class="mdl-textfield__input" type="text" id="loaiphong-edit" value="" readonly data-id=""
-                                                               tabIndex="-1">
-                                                        <label for="loaiphong-edit" class="pull-right margin-0">
-                                                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                                        </label>
-                                                        <label for="loaiphong-edit" class="mdl-textfield__label" style="top:0;">Loại Phòng</label>
-                                                        <ul data-mdl-for="loaiphong-edit" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                                            <li class="mdl-menu__item">Phòng Loại 1</li>
-                                                            <li class="mdl-menu__item">Phòng Loại 2</li>
-                                                            <li class="mdl-menu__item">Phòng Loại 3</li>
-                                                            <li class="mdl-menu__item">Phòng Loại 4</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-
                                                 <div class="col-lg-6 p-t-20">
                                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                         <input class="mdl-textfield__input" type="number"
@@ -508,6 +337,19 @@
                                                         <span class="mdl-textfield__error">Phải Là Số</span>
                                                     </div>
                                                 </div>
+                                                <div class="col-lg-6 p-t-20">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                        <input class="mdl-textfield__input" type="number"
+                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="mota-edit">
+                                                        <label class="mdl-textfield__label" for="mota-edit" style="top:0;">Mô Tả</label>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
                                             </div>
                                         </div>
                                         <div class="col-lg-12 p-t-20 text-center">

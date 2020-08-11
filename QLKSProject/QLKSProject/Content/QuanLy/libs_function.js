@@ -268,6 +268,8 @@ function loadDSPhong(url) {
                         color = "bg-default";
                     } else if (val.TrangThai == 0) {
                         color = "bg-warning";
+                    } else if (val.TrangThai == 2) {
+                        color = "bg-primary";
                     }
                     if (val.SoPhong.charAt(0) == '' + i) {
 
@@ -299,6 +301,7 @@ function loadDSPhongTrong(info, dataInput) {
         },
         data: JSON.stringify(dataInput),
         success: function (data) {
+            info.id.empty();
             $.each(data, function (index, val) {
                 var row = val.split('-');
                 info.id.append('<h3 style="display: block;margin-left: 15px;" class="floor">Phòng loại ' + row[0] + ': trống '+row[1]+' phòng'+'</h3>');
@@ -362,7 +365,7 @@ function editData(info, dataInput) {
         success: function () {
             $(info.modal).modal('hide');
             Swal.fire(
-                'Thêm Thành Công!',
+                'Chỉnh Sửa Thành Công!',
                 '',
                 'success'
             )
