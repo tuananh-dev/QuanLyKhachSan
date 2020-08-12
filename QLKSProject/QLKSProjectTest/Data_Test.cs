@@ -50,6 +50,26 @@ namespace QLKSProject_UnitTest
             var lstTKNhanVien = models.UserMasters.Where(t => t.IsDelete != true && t.UserRoles.Equals("nv")).ToList();
             return lstTKNhanVien.Count();
         }
-
+        public int DemSoLuongPhong()
+        {
+            return models.Phongs.Where(p => p.IsDelete != true).Count();
+        }
+        public PhongDTO LayThongTinPhong()
+        {
+            return models.Phongs.Select(e => new PhongDTO
+            {
+                ID = e.ID,
+                MaPhong = e.MaPhong,
+                SoPhong = e.SoPhong,
+                LoaiPhong = e.LoaiPhong,
+                Gia = e.Gia,
+                TrangThai = e.TrangThai,
+                IsDelete = e.IsDelete
+            }).FirstOrDefault();
+        }
+        public string TaoMoiPhong()
+        {
+            return "{\"MaPhong\":\"41235\",\"SoPhong\":\"1235\",\"LoaiPhong\":\"4\",\"Gia\":\"4000000\",\"TrangThai\":\"-1\",\"IsDelete\":\"false\"}";
+        }
     }
 }

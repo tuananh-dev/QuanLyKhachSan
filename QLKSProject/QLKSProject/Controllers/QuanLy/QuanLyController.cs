@@ -168,7 +168,6 @@ namespace QLKSProject.Controllers.QuanLy
                 return Ok(quanLy.LayDanhSachDichVu());
             }
         }
-
         [HttpGet]
         public IHttpActionResult LayDichVu([FromUri] int id)
         {
@@ -230,7 +229,6 @@ namespace QLKSProject.Controllers.QuanLy
                 return Ok(quanLy.LayTienIch(id));
             }
         }
-
         [HttpPost]
         public IHttpActionResult ThemTienIch([FromBody]dynamic dynamic)
 
