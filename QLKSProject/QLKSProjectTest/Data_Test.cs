@@ -12,6 +12,74 @@ namespace QLKSProjectTest
 {
     class Data_Test : BaseBusinessUnitTest
     {
+        private List<KhachHangDTO> khachHangDTOs;
+        private List<KhachHangDTO> khachHang_MotDoanDTOs;
+        private List<PhongDTO> phongDTOs;
+        public Data_Test()
+        {
+            khachHang_MotDoanDTOs = models.KhachHangs.Where(kh => kh.MaDoan.Equals("1597352230776")).Select(kh => new KhachHangDTO
+            {
+                ID = kh.ID,
+                HoVaTen = kh.HoVaTen,
+                SoDienThoai = kh.SoDienThoai,
+                Email = kh.Email,
+                DiaChi = kh.DiaChi,
+                Nhom = kh.Nhom,
+                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = kh.ThoiGianNhan,
+                ThoiGianTra = kh.ThoiGianTra,
+                MaDoan = kh.MaDoan,
+                GioiTinh = kh.GioiTinh,
+                LoaiKhachHang = kh.LoaiKhachHang,
+                TruongDoan = kh.TruongDoan,
+                IsDelete = kh.IsDelete,
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                IDPhong = kh.IDPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
+            }).ToList();
+            khachHangDTOs = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong >= 0 && kh.IsDelete != true).Select(kh => new KhachHangDTO
+            {
+                ID = kh.ID,
+                HoVaTen = kh.HoVaTen,
+                SoDienThoai = kh.SoDienThoai,
+                Email = kh.Email,
+                DiaChi = kh.DiaChi,
+                Nhom = kh.Nhom,
+                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = kh.ThoiGianNhan,
+                ThoiGianTra = kh.ThoiGianTra,
+                MaDoan = kh.MaDoan,
+                GioiTinh = kh.GioiTinh,
+                LoaiKhachHang = kh.LoaiKhachHang,
+                TruongDoan = kh.TruongDoan,
+                IsDelete = kh.IsDelete,
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                IDPhong = kh.IDPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
+            }).ToList();
+            phongDTOs = models.Phongs.Where(p => p.IsDelete != true).Select(p => new PhongDTO
+            {
+                ID = p.ID,
+                MaPhong = p.MaPhong,
+                SoPhong = p.SoPhong,
+                LoaiPhong = p.LoaiPhong,
+                Gia = p.Gia,
+                TrangThai = p.TrangThai,
+                IsDelete = p.IsDelete
+            }).ToList();
+        }
+        public List<KhachHangDTO> ListKHMotDoan()
+        {
+            return khachHang_MotDoanDTOs;
+        }
+        public List<KhachHangDTO> ListKH()
+        {
+            return khachHangDTOs;
+        }
+        public List<PhongDTO> ListPhong()
+        {
+            return phongDTOs;
+        }
         //Quan Ly
         #region DS Khach Hang
         public List<KhachHangDTO> DanhSachKhachHang()
@@ -163,7 +231,28 @@ namespace QLKSProjectTest
         //Nhan Vien
         public int SoLuongDoan()
         {
-            return models.Doans.Where(d => d.IsDelete != true).Count();
+            return models.Doans.Where(d => d.TrangThaiDatPhong == 0).Count();
+        }
+        public int SoLuongDoanDatPhongThanhCong()
+        {
+            DateTime today = DateTime.Now;
+            var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == 1 && d.IsDelete != true).ToList();
+            lstDoan = lstDoan.Where(d => d.ThoiGianTra.CompareTo(today) >= 0).OrderByDescending(d => d.NgayGui).ToList();
+
+            return lstDoan.Count;
+        }
+        public int SoLuongKhachHangTrongDoan(string maDoan)
+        {
+            return models.KhachHangs.Where(kh => kh.MaDoan == maDoan).Count();
+        }
+        public int SoLuongDoanDatPhongThatBai()
+        {
+            DateTime today = DateTime.Now;
+            var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == -1 && d.IsDelete != true).ToList();
+            //Xap xep danh sach doan theo ngay gui
+            lstDoan = lstDoan.Where(d => d.ThoiGianTra.CompareTo(today) >= 0).OrderByDescending(d => d.NgayGui).ToList();
+
+            return lstDoan.Count;
         }
     }
 }

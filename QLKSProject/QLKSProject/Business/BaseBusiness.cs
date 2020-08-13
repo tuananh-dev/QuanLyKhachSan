@@ -12,6 +12,7 @@ namespace QLKSProject.Business
     {
         protected QLKSDbContext models;
         protected int soPhong;
+        protected string status_datphong;
 
         public BaseBusiness()
         {
