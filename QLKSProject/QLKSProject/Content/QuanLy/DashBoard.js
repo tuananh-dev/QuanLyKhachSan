@@ -120,7 +120,6 @@ function dashboard_ThreeBar(data, url, thang) {
         url: '/SEP23Team2/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
         },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         data: JSON.stringify(data),

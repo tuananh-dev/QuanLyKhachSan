@@ -508,7 +508,6 @@
     <Content Include="GioiThieu.cshtml" />
     <Content Include="GuiFileDSDoan.cshtml" />
     <Content Include="TrangChu.cshtml" />
-    <Content Include="Views\QuanLyViews\LoaiPhong\LoaiPhong.cshtml" />
     <None Include="Views\QuanLyViews\Phong\DSPhong.cshtml" />
     <None Include="Views\QuanLyViews\ThongKe\ThongKe.cshtml" />
     <None Include="Views\QuanLyViews\TienIch\DSTienIch.cshtml" />
