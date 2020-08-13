@@ -268,7 +268,7 @@ namespace QLKSProject.Business.QuanLy
             }
             return status;
         }
-        public List<QuanLyLoaiPhongDTO> LayDanhSachLoaiPhong()
+/*        public List<QuanLyLoaiPhongDTO> LayDanhSachLoaiPhong()
         {
             List<QuanLyLoaiPhongDTO> quanLyLoaiPhongDTOs = new List<QuanLyLoaiPhongDTO>();
 
@@ -307,7 +307,7 @@ namespace QLKSProject.Business.QuanLy
                 return false;
             }
          
-        }
+        }*/
 
         #endregion
 
