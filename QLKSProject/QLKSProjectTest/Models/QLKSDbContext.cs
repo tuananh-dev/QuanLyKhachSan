@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using QLKSProject_UnitTest.Models.Entities;
+using QLKSProjectTest.Models.Entities;
 
 
-namespace QLKSProject_UnitTest.Models
+namespace QLKSProjectTest.Models
 {
     public class QLKSDbContext : DbContext
     {

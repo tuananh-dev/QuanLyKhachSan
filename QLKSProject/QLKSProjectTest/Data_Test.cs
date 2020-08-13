@@ -8,10 +8,11 @@ using QLKSProject;
 using QLKSProject.Models.DTO;
 using QLKSProject.Business.QuanLy;
 
-namespace QLKSProject_UnitTest
+namespace QLKSProjectTest
 {
     class Data_Test : BaseBusinessUnitTest
     {
+        //Quan Ly
         #region DS Khach Hang
         public List<KhachHangDTO> DanhSachKhachHang()
         {
@@ -27,7 +28,6 @@ namespace QLKSProject_UnitTest
             return lstKH;
         }
         #endregion
-
         #region TaiKhoan
         public string TaiKhoan()
         {
@@ -54,7 +54,6 @@ namespace QLKSProject_UnitTest
             return lstTKNhanVien.Count();
         }
         #endregion
-
         #region Phong
         public int DemSoLuongPhong()
         {
@@ -78,7 +77,6 @@ namespace QLKSProject_UnitTest
             return "{\"MaPhong\":\"41235\",\"SoPhong\":\"1235\",\"LoaiPhong\":\"4\",\"Gia\":\"4000000\",\"TrangThai\":\"-1\",\"IsDelete\":\"false\"}";
         }
         #endregion
-
         #region Dich Vu
         public int SoLuongDichVu()
         {
@@ -99,8 +97,20 @@ namespace QLKSProject_UnitTest
         {
             return "{\"TenDichVu\":\"Karaoke\",\"MoTa\":\"Dan am thanh vo cung chat luong\",\"Gia\":\"3000000\",\"IsDelete\":\"false\"}";
         }
+        public void PhucHoiDichVu(int id)
+        {
+            try
+            {
+                var dich_vu = models.DichVus.Where(d => d.ID == id).FirstOrDefault();
+                dich_vu.IsDelete = false;
+                models.SaveChanges();
+            }
+            catch (Exception)
+            {
+            }
+            
+        }
         #endregion
-
         #region Tien Ich
         public int SoLuongTienIch()
         {
@@ -125,7 +135,6 @@ namespace QLKSProject_UnitTest
             var business = new QuanLyBusiness();
             return business.BaoCaoThongKeTheoThang(thang, nam);
         }
-
         public SoSanhThongKeDTO SoSanhThongKeTheoThang(int thang, int nam)
         {
             var business = new QuanLyBusiness();
@@ -136,6 +145,25 @@ namespace QLKSProject_UnitTest
             var business = new QuanLyBusiness();
             return business.SoSanhThongKeTheoQuy(quy, nam);
         }
+        public void PhucHoiTienIchBiXoa(int id)
+        {
+            try
+            {
+                var tien_ich = models.TienIches.Where(t => t.ID == id).FirstOrDefault();
+                tien_ich.IsDelete = false;
+                models.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+            }
+            
+        }
         #endregion
+        //Nhan Vien
+        public int SoLuongDoan()
+        {
+            return models.Doans.Where(d => d.IsDelete != true).Count();
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace QLKSProject_UnitTest.Models.Entities
+namespace QLKSProjectTest.Models.Entities
 {
     public class Doan
     {

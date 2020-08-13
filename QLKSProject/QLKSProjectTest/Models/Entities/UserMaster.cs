@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace QLKSProject_UnitTest.Models.Entities
+namespace QLKSProjectTest.Models.Entities
 {
     public class UserMaster
     {

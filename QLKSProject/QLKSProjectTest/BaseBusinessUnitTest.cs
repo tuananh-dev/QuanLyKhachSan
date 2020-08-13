@@ -6,7 +6,7 @@ using System.Web;
 using QLKSProject.Models;
 
 
-namespace QLKSProject_UnitTest
+namespace QLKSProjectTest
 {
     public class BaseBusinessUnitTest : IDisposable
     {

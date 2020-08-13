@@ -1,7 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 
-namespace QLKSProject_UnitTest.Models.Entities
+namespace QLKSProjectTest.Models.Entities
 {
     public class TienIch
     {

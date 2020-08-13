@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLKSProject", "QLKSProject\QLKSProject.csproj", "{38C488A7-3D68-44D6-A0E6-9F4BA7D4869C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLKSProject_UnitTest", "QLKSProjectTest\QLKSProject_UnitTest.csproj", "{C2F960D3-A721-4C62-847E-D295875250C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLKSProjectTest", "QLKSProjectTest\QLKSProjectTest.csproj", "{C2F960D3-A721-4C62-847E-D295875250C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

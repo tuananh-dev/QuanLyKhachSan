@@ -5,14 +5,14 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<QLKSProject_UnitTest.Models.QLKSDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<QLKSProjectTest.Models.QLKSDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(QLKSProject_UnitTest.Models.QLKSDbContext context)
+        protected override void Seed(QLKSProjectTest.Models.QLKSDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

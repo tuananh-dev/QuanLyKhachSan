@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace QLKSProject_UnitTest.Models.Entities
+namespace QLKSProjectTest.Models.Entities
 {
     public class KhachHang
     {

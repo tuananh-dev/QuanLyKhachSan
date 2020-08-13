@@ -537,7 +537,9 @@
     </Compile>
     <Compile Include="Models\DTO\KhachHangNhanPhongDTO.cs" />
     <Compile Include="Models\DTO\KhachHangTraPhongDTO.cs" />
+    <Compile Include="Models\DTO\QuyNamDTO.cs" />
     <Compile Include="Models\DTO\SoSanhThongKeDTO.cs" />
+    <Compile Include="Models\DTO\ThangNamDTO.cs" />
     <Compile Include="Models\DTO\ThemPhongTheoLauDTO.cs" />
     <Compile Include="Models\DTO\ThongKeTheoThangDTO.cs" />
     <Compile Include="Models\DTO\DichVuDTO.cs" />

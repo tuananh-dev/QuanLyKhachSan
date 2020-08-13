@@ -4,9 +4,11 @@ using System.Web.Http.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using QLKSProject.Models.DTO;
 using QLKSProject.Controllers.QuanLy;
+using Newtonsoft.Json;
+using NPOI.SS.Formula.Functions;
+using QLKSProjectTest;
 
-
-namespace QLKSProject_UnitTest
+namespace QLKSProjectTest
 {
     [TestClass]
     public class QuanLy_UnitTest
@@ -21,7 +23,7 @@ namespace QLKSProject_UnitTest
 
         #region TaiKhoan 
         [TestMethod]
-        public void XoaTaiKhoan()
+        public void XoaTaiKhoan_TestStatusRespone()
         {
             // Act
             IHttpActionResult actionResult = controller.XoaTaiKhoan(137);
@@ -40,7 +42,7 @@ namespace QLKSProject_UnitTest
 
         }
         [TestMethod]
-        public void ThemTaiKhoan()
+        public void ThemTaiKhoan_TestStatusRespone()
         {
             var newAccount = data_test.TaiKhoan();
             // Act
@@ -60,7 +62,7 @@ namespace QLKSProject_UnitTest
 
         }
         [TestMethod]
-        public void LayTaiKhoan()
+        public void LayTaiKhoan_TestStatusRespone()
         {
             //Act
             IHttpActionResult actionResult = controller.LayTaiKhoan(132);
@@ -72,7 +74,7 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual("anhnguyenduc", actual_result.Content.UserName);
         }
         [TestMethod]
-        public void CapNhatTaiKhoan()
+        public void CapNhatTaiKhoan_TestStatusRespone()
         {
             Data_Test data_Test = new Data_Test();
             var newAccount = data_Test.TaiKhoan();
@@ -84,7 +86,7 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual("Cập nhật tài khoản thành công!", actual_result.Content);
         }
         [TestMethod]
-        public void LayDanhSachTaiKhoan()
+        public void LayDanhSachTaiKhoan_TestStatusRespone()
         {
             Data_Test data_Test = new Data_Test();
             var count = data_Test.DemSoLuongTaiKhoan();
@@ -99,7 +101,7 @@ namespace QLKSProject_UnitTest
 
         #region Phong
         [TestMethod]
-        public void LayDanhSachPhong()
+        public void LayDanhSachPhong_TestStatusRespone()
         {
             var actionResult = controller.LayDanhSachPhong();
             //Act
@@ -109,7 +111,7 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual(expected_result, actual_result.Content.Count);
         }
         [TestMethod]
-        public void LayPhong()
+        public void LayPhong_TestStatusRespone()
         {
             var phong = data_test.LayThongTinPhong();
             var actionResult = controller.LayPhong(phong.ID);
@@ -122,7 +124,7 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual(expected_result, actual_result.Content.SoPhong);
         }
         [TestMethod]
-        public void ThemPhong()
+        public void ThemPhong_TestStatusRespone()
         {
             var phong = data_test.TaoMoiPhong();
             var action_result = controller.ThemPhong(phong);
@@ -142,7 +144,7 @@ namespace QLKSProject_UnitTest
             }
         }
         [TestMethod]
-        public void CapNhatPhong()
+        public void CapNhatPhong_TestStatusRespone()
         {
             var phong = data_test.TaoMoiPhong();
             var action_result = controller.CapNhatPhong(phong);
@@ -162,10 +164,9 @@ namespace QLKSProject_UnitTest
             }
         }
         [TestMethod]
-        public void XoaPhong()
+        public void XoaPhong_TestStatusRespone()
         {
-            var phong = data_test.LayThongTinPhong();
-            var action_result = controller.XoaPhong(phong.ID);
+            var action_result = controller.XoaPhong(7);
             //act
             var actual_result1 = action_result as OkNegotiatedContentResult<string>;
             var actual_result2 = action_result as BadRequestErrorMessageResult;
@@ -185,7 +186,7 @@ namespace QLKSProject_UnitTest
 
         #region Dich Vu
         [TestMethod]
-        public void LayDanhSachDichVu()
+        public void LayDanhSachDichVu_TestStatusRespone()
         {
             var action_result = controller.LayDanhSachDichVu();
             //act
@@ -195,7 +196,7 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual(count, actual_result.Content.Count);
         }
         [TestMethod]
-        public void LayDichVu()
+        public void LayDichVu_TestStatusRespone()
         {
             var dich_vu = data_test.LayThongTinDichVu();
             var action_result = controller.LayDichVu(dich_vu.ID);
@@ -206,7 +207,7 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual(expected_result, actual_result.Content.TenDichVu);
         }
         [TestMethod]
-        public void ThemDichVu()
+        public void ThemDichVu_TestStatusRespone()
         {
             var dich_vu = data_test.TaoMoiDichVu();
             var action_result = controller.ThemDichVu(dich_vu);
@@ -227,7 +228,7 @@ namespace QLKSProject_UnitTest
 
         }
         [TestMethod]
-        public void CapNhatDichVu()
+        public void CapNhatDichVu_TestStatusRespone()
         {
             var dich_vu = data_test.TaoMoiDichVu();
             var action_result = controller.CapNhatDichVu(dich_vu);
@@ -247,10 +248,9 @@ namespace QLKSProject_UnitTest
             }
         }
         [TestMethod]
-        public void XoaDichVu()
+        public void XoaDichVu_TestStatusRespone()
         {
-            var dich_vu = data_test.LayThongTinDichVu();
-            var action_result = controller.XoaDichVu(dich_vu.ID);
+            var action_result = controller.XoaDichVu(50);
             //act
             var actual_result1 = action_result as OkNegotiatedContentResult<string>;
             var actual_result2 = action_result as BadRequestErrorMessageResult;
@@ -270,7 +270,7 @@ namespace QLKSProject_UnitTest
 
         #region Tien Ich
         [TestMethod]
-        public void LayDanhSachTienIch_TestStatusReturn()
+        public void LayDanhSachTienIch_TestStatusRespone()
         {
             var action_result = controller.LayDanhSachTienIch();
             //act
@@ -280,7 +280,7 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual(expected_result, actual_result.Content.Count);
         }
         [TestMethod]
-        public void LayTienIch_TestStatusReturn()
+        public void LayTienIch_TestStatusRespone()
         {
             var tien_ich = data_test.LayThongTinTienIch();
             var action_result = controller.LayTienIch(tien_ich.ID);
@@ -291,7 +291,7 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual(expected_result, actual_result.Content.TenTienIch);
         }
         [TestMethod]
-        public void ThemTienIch_TestStatusReturn()
+        public void ThemTienIch_TestStatusRespone()
         {
             var tien_ich = data_test.TaoMoiTienIch();
             var action_result = controller.ThemTienIch(tien_ich);
@@ -311,7 +311,7 @@ namespace QLKSProject_UnitTest
             }
         }
         [TestMethod]
-        public void CapNhatTienIch_TestStatusReturn()
+        public void CapNhatTienIch_TestStatusRespone()
         {
             var tien_ich = data_test.TaoMoiTienIch();
             var action_result = controller.CapNhatTienIch(tien_ich);
@@ -331,10 +331,9 @@ namespace QLKSProject_UnitTest
             }
         }
         [TestMethod]
-        public void XoaTienIch_TestStatusReturn()
+        public void XoaTienIch_TestStatusRespone()
         {
-            var tien_ich = data_test.LayThongTinTienIch();
-            var action_result = controller.XoaTienIch(tien_ich.ID);
+            var action_result = controller.XoaTienIch(42);
             //act
             var actual_result1 = action_result as OkNegotiatedContentResult<string>;
             var actual_result2 = action_result as BadRequestErrorMessageResult;
@@ -354,9 +353,9 @@ namespace QLKSProject_UnitTest
 
         #region Thong Ke
         [TestMethod]
-        public void XuatBaoCaoThongKeTheoThang_TestStatusReturn()
+        public void XuatBaoCaoThongKeTheoThang_TestStatusRespone()
         {
-            string date = "{\"thang\":\"9\",\"nam\":\"2020\"}";
+            string date = "{\"thang\":\"3\",\"nam\":\"2020\"}";
             var action_result = controller.XuatBaoCaoThongKeTheoThang(date);
             //act
             var actual_result = action_result as OkNegotiatedContentResult<List<ThongKeTheoThangDTO>>;
@@ -365,7 +364,7 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual(expected_result, actual_result.Content.Count);
         }
         [TestMethod]
-        public void XuatBaoCaoThongKeTheoQuy_TestStatusReturn()
+        public void XuatBaoCaoThongKeTheoQuy_TestStatusRespone()
         {
             string date = "{\"quy\":\"3\",\"nam\":\"2020\"}";
             var action_result = controller.XuatBaoCaoThongKeTheoQuy(date);
@@ -376,11 +375,11 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual(expected_result, actual_result.Content.Count);
         }
         [TestMethod]
-        public void SoSanhThongKeTheoThang_TestStatusReturn()
+        public void SoSanhThongKeTheoThang_TestStatusRespone()
         {
             var data = data_test.SoSanhThongKeTheoThang(9, 2020);
             string date = "{\"thang\":\"9\",\"nam\":\"2020\"}";
-            var action_result = controller.SoSanhSoSanhThongKeTheoThang(data);
+            var action_result = controller.SoSanhSoSanhThongKeTheoThang(date);
             //act
             var actual_result = action_result as OkNegotiatedContentResult<SoSanhThongKeDTO>;
             var expected_result1 = data.TienDichVu;
@@ -390,7 +389,7 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual(expected_result2, actual_result.Content.TienThuePhong);
         }
         [TestMethod]
-        public void SoSanhThongKeTheoQuy_TestStatusReturn()
+        public void SoSanhThongKeTheoQuy_TestStatusRespone()
         {
             string quy = "{\"quy\":\"3\",\"nam\":\"2020\"}";
             var data = data_test.SoSanhThongKeTheoQuy(3, 2020);
@@ -404,8 +403,5 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual(expected_result2, actual_result.Content.TienThuePhong);
         }
         #endregion
-
-
-
     }
 }
