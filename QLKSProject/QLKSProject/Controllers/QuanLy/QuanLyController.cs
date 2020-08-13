@@ -124,7 +124,7 @@ namespace QLKSProject.Controllers.QuanLy
                     return BadRequest("Xóa phòng thất bại!");
             }
         }
-        [HttpPost]
+/*        [HttpPost]
         public IHttpActionResult TaoDanhSachPhong([FromBody] dynamic dynamic)
         {
             ThemPhongTheoLauDTO themPhongTheoLauDTO = JsonConvert.DeserializeObject<ThemPhongTheoLauDTO>(dynamic.ToString());
@@ -136,16 +136,16 @@ namespace QLKSProject.Controllers.QuanLy
                 else
                     return BadRequest(result);
             }
-        }
-        [HttpGet]
+        }*/
+/*        [HttpGet]
         public IHttpActionResult LayDanhSachLoaiPhong()
         {
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 return Ok(quanLy.LayDanhSachLoaiPhong());
             }
-        }
-        [HttpPut]
+        }*/
+/*        [HttpPut]
         public IHttpActionResult CapNhatLoaiPhong([FromBody] dynamic dynamic)
         {
             List<QuanLyLoaiPhongDTO> quanLyLoaiPhongDTOs = JsonConvert.DeserializeObject<List<QuanLyLoaiPhongDTO>>(dynamic.ToString());
@@ -156,7 +156,7 @@ namespace QLKSProject.Controllers.QuanLy
                 else
                     return BadRequest("Cập nhật phòng thất bại!");
             }
-        }
+        }*/
 
         #endregion
         #region API xu ly DichVu
@@ -168,7 +168,6 @@ namespace QLKSProject.Controllers.QuanLy
                 return Ok(quanLy.LayDanhSachDichVu());
             }
         }
-
         [HttpGet]
         public IHttpActionResult LayDichVu([FromUri] int id)
         {
@@ -230,7 +229,6 @@ namespace QLKSProject.Controllers.QuanLy
                 return Ok(quanLy.LayTienIch(id));
             }
         }
-
         [HttpPost]
         public IHttpActionResult ThemTienIch([FromBody]dynamic dynamic)
 
@@ -272,45 +270,41 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpPost]
         public IHttpActionResult XuatBaoCaoThongKeTheoThang(dynamic dynamic)
         {
-            int thang = int.Parse(dynamic.thang.ToString());
-            int nam = int.Parse(dynamic.nam.ToString());
+            ThangNamDTO thangNam = JsonConvert.DeserializeObject<ThangNamDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLyBusiness = new QuanLyBusiness())
             {
-                return Ok(quanLyBusiness.BaoCaoThongKeTheoThang(thang, nam));
+                return Ok(quanLyBusiness.BaoCaoThongKeTheoThang(thangNam.Thang, thangNam.Nam));
             }
         }
         [HttpPost]
         public IHttpActionResult XuatBaoCaoThongKeTheoQuy(dynamic dynamic)
         {
-            if (dynamic.quy == null)
+            if (dynamic == null)
             {
                 return BadRequest("Không có dữ liệu truyền vào!");
             }
-            int quy = int.Parse(dynamic.quy.ToString());
-            int nam = int.Parse(dynamic.nam.ToString());
+            QuyNamDTO quyNam = JsonConvert.DeserializeObject<QuyNamDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLyBusiness = new QuanLyBusiness())
             {
-                return Ok(quanLyBusiness.BaoCaoThongKeTheoQuy(quy, nam));
+                return Ok(quanLyBusiness.BaoCaoThongKeTheoQuy(quyNam.Quy, quyNam.Nam));
             }
         }
         [HttpPost]
         public IHttpActionResult SoSanhSoSanhThongKeTheoThang(dynamic dynamic)
         {
-            int thang = int.Parse(dynamic.thang.ToString());
-            int nam = int.Parse(dynamic.nam.ToString());
+            ThangNamDTO thangNam = JsonConvert.DeserializeObject<ThangNamDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLyBusiness = new QuanLyBusiness())
             {
-                return Ok(quanLyBusiness.SoSanhThongKeTheoThang(thang, nam));
+                return Ok(quanLyBusiness.SoSanhThongKeTheoThang(thangNam.Thang, thangNam.Nam));
             }
         }
         [HttpPost]
         public IHttpActionResult SoSanhSoSanhThongKeTheoQuy(dynamic dynamic)
         {
-            int quy = int.Parse(dynamic.quy.ToString());
-            int nam = int.Parse(dynamic.nam.ToString());
+            QuyNamDTO quyNam = JsonConvert.DeserializeObject<QuyNamDTO>(dynamic.ToString());
             using (QuanLyBusiness quanLyBusiness = new QuanLyBusiness())
             {
-                return Ok(quanLyBusiness.SoSanhThongKeTheoQuy(quy, nam));
+                return Ok(quanLyBusiness.SoSanhThongKeTheoQuy(quyNam.Quy, quyNam.Nam));
             }
         }
         #endregion
