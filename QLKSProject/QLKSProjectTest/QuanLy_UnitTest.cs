@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using QLKSProject.Models.DTO;
 using QLKSProject.Controllers.QuanLy;
 
+
 namespace QLKSProject_UnitTest
 {
     [TestClass]
@@ -95,6 +96,7 @@ namespace QLKSProject_UnitTest
             Assert.AreEqual(count, actual_result.Content.Count);
         }
         #endregion
+
         #region Phong
         [TestMethod]
         public void LayDanhSachPhong()
@@ -180,6 +182,230 @@ namespace QLKSProject_UnitTest
             }
         }
         #endregion
+
+        #region Dich Vu
+        [TestMethod]
+        public void LayDanhSachDichVu()
+        {
+            var action_result = controller.LayDanhSachDichVu();
+            //act
+            var actual_result = action_result as OkNegotiatedContentResult<List<DichVuDTO>>;
+            var count = data_test.SoLuongDichVu();
+            //assert
+            Assert.AreEqual(count, actual_result.Content.Count);
+        }
+        [TestMethod]
+        public void LayDichVu()
+        {
+            var dich_vu = data_test.LayThongTinDichVu();
+            var action_result = controller.LayDichVu(dich_vu.ID);
+            //act
+            var actual_result = action_result as OkNegotiatedContentResult<DichVuDTO>;
+            var expected_result = dich_vu.TenDichVu;
+            //assert
+            Assert.AreEqual(expected_result, actual_result.Content.TenDichVu);
+        }
+        [TestMethod]
+        public void ThemDichVu()
+        {
+            var dich_vu = data_test.TaoMoiDichVu();
+            var action_result = controller.ThemDichVu(dich_vu);
+            //act
+            var actual_result1 = action_result as OkNegotiatedContentResult<string>;
+            var actual_result2 = action_result as BadRequestErrorMessageResult;
+            var expected_result1 = "Thêm dịch vụ thành công!";
+            var expected_result2 = "Thêm dịch vụ thất bại!";
+            //assert
+            try
+            {
+                Assert.AreEqual(expected_result1, actual_result1.Content);
+            }
+            catch (System.Exception)
+            {
+                Assert.AreEqual(expected_result2, actual_result2.Message);
+            }
+
+        }
+        [TestMethod]
+        public void CapNhatDichVu()
+        {
+            var dich_vu = data_test.TaoMoiDichVu();
+            var action_result = controller.CapNhatDichVu(dich_vu);
+            //act
+            var actual_result1 = action_result as OkNegotiatedContentResult<string>;
+            var actual_result2 = action_result as BadRequestErrorMessageResult;
+            var expected_result1 = "Cập nhật dịch vụ thành công!";
+            var expected_result2 = "Cập nhật dịch vụ thất bại!";
+            //assert
+            try
+            {
+                Assert.AreEqual(expected_result1, actual_result1.Content);
+            }
+            catch (System.Exception)
+            {
+                Assert.AreEqual(expected_result2, actual_result2.Message);
+            }
+        }
+        [TestMethod]
+        public void XoaDichVu()
+        {
+            var dich_vu = data_test.LayThongTinDichVu();
+            var action_result = controller.XoaDichVu(dich_vu.ID);
+            //act
+            var actual_result1 = action_result as OkNegotiatedContentResult<string>;
+            var actual_result2 = action_result as BadRequestErrorMessageResult;
+            var expected_result1 = "Xóa dịch vụ thành công!";
+            var expected_result2 = "Xóa dịch vụ thất bại!";
+            //assert
+            try
+            {
+                Assert.AreEqual(expected_result1, actual_result1.Content);
+            }
+            catch (System.Exception)
+            {
+                Assert.AreEqual(expected_result2, actual_result2.Message);
+            }
+        }
+        #endregion
+
+        #region Tien Ich
+        [TestMethod]
+        public void LayDanhSachTienIch_TestStatusReturn()
+        {
+            var action_result = controller.LayDanhSachTienIch();
+            //act
+            var actual_result = action_result as OkNegotiatedContentResult<List<TienIchDTO>>;
+            var expected_result = data_test.SoLuongTienIch();
+            //assert
+            Assert.AreEqual(expected_result, actual_result.Content.Count);
+        }
+        [TestMethod]
+        public void LayTienIch_TestStatusReturn()
+        {
+            var tien_ich = data_test.LayThongTinTienIch();
+            var action_result = controller.LayTienIch(tien_ich.ID);
+            //act
+            var actual_result = action_result as OkNegotiatedContentResult<TienIchDTO>;
+            var expected_result = tien_ich.TenTienIch;
+            //
+            Assert.AreEqual(expected_result, actual_result.Content.TenTienIch);
+        }
+        [TestMethod]
+        public void ThemTienIch_TestStatusReturn()
+        {
+            var tien_ich = data_test.TaoMoiTienIch();
+            var action_result = controller.ThemTienIch(tien_ich);
+            //act
+            var actual_result1 = action_result as OkNegotiatedContentResult<string>;
+            var actual_result2 = action_result as BadRequestErrorMessageResult;
+            var expected_result1 = "Thêm tiện ích thành công!";
+            var expected_result2 = "Thêm tiện ích thất bại!";
+            //assert
+            try
+            {
+                Assert.AreEqual(expected_result1, actual_result1.Content);
+            }
+            catch (System.Exception)
+            {
+                Assert.AreEqual(expected_result2, actual_result2.Message);
+            }
+        }
+        [TestMethod]
+        public void CapNhatTienIch_TestStatusReturn()
+        {
+            var tien_ich = data_test.TaoMoiTienIch();
+            var action_result = controller.CapNhatTienIch(tien_ich);
+            //act
+            var actual_result1 = action_result as OkNegotiatedContentResult<string>;
+            var actual_result2 = action_result as BadRequestErrorMessageResult;
+            var expected_result1 = "Cập nhật tiện ích thành công!";
+            var expected_result2 = "Cập nhật tiện ích thất bại!";
+            //assert
+            try
+            {
+                Assert.AreEqual(expected_result1, actual_result1.Content);
+            }
+            catch (System.Exception)
+            {
+                Assert.AreEqual(expected_result2, actual_result2.Message);
+            }
+        }
+        [TestMethod]
+        public void XoaTienIch_TestStatusReturn()
+        {
+            var tien_ich = data_test.LayThongTinTienIch();
+            var action_result = controller.XoaTienIch(tien_ich.ID);
+            //act
+            var actual_result1 = action_result as OkNegotiatedContentResult<string>;
+            var actual_result2 = action_result as BadRequestErrorMessageResult;
+            var expected_result1 = "Xóa tiện ích thành công!";
+            var expected_result2 = "Xóa tiện ích thất bại";
+            //assert
+            try
+            {
+                Assert.AreEqual(expected_result1, actual_result1.Content);
+            }
+            catch (System.Exception)
+            {
+                Assert.AreEqual(expected_result2, actual_result2.Message);
+            }
+        }
+        #endregion
+
+        #region Thong Ke
+        [TestMethod]
+        public void XuatBaoCaoThongKeTheoThang_TestStatusReturn()
+        {
+            string date = "{\"thang\":\"9\",\"nam\":\"2020\"}";
+            var action_result = controller.XuatBaoCaoThongKeTheoThang(date);
+            //act
+            var actual_result = action_result as OkNegotiatedContentResult<List<ThongKeTheoThangDTO>>;
+            var expected_result = data_test.SoLuongDichVu() + 1;
+            //assert
+            Assert.AreEqual(expected_result, actual_result.Content.Count);
+        }
+        [TestMethod]
+        public void XuatBaoCaoThongKeTheoQuy_TestStatusReturn()
+        {
+            string date = "{\"quy\":\"3\",\"nam\":\"2020\"}";
+            var action_result = controller.XuatBaoCaoThongKeTheoQuy(date);
+            //act
+            var actual_result = action_result as OkNegotiatedContentResult<List<ThongKeTheoQuyDTO>>;
+            var expected_result = data_test.SoLuongDichVu() + 1;
+            //assert
+            Assert.AreEqual(expected_result, actual_result.Content.Count);
+        }
+        [TestMethod]
+        public void SoSanhThongKeTheoThang_TestStatusReturn()
+        {
+            var data = data_test.SoSanhThongKeTheoThang(9, 2020);
+            string date = "{\"thang\":\"9\",\"nam\":\"2020\"}";
+            var action_result = controller.SoSanhSoSanhThongKeTheoThang(data);
+            //act
+            var actual_result = action_result as OkNegotiatedContentResult<SoSanhThongKeDTO>;
+            var expected_result1 = data.TienDichVu;
+            var expected_result2 = data.TienThuePhong;
+            //assert
+            Assert.AreEqual(expected_result1, actual_result.Content.TienDichVu);
+            Assert.AreEqual(expected_result2, actual_result.Content.TienThuePhong);
+        }
+        [TestMethod]
+        public void SoSanhThongKeTheoQuy_TestStatusReturn()
+        {
+            string quy = "{\"quy\":\"3\",\"nam\":\"2020\"}";
+            var data = data_test.SoSanhThongKeTheoQuy(3, 2020);
+            var action_result = controller.SoSanhSoSanhThongKeTheoQuy(quy);
+            //act
+            var actual_result = action_result as OkNegotiatedContentResult<SoSanhThongKeDTO>;
+            var expected_result1 = data.TienDichVu;
+            var expected_result2 = data.TienThuePhong;
+            //assert
+            Assert.AreEqual(expected_result1, actual_result.Content.TienDichVu);
+            Assert.AreEqual(expected_result2, actual_result.Content.TienThuePhong);
+        }
+        #endregion
+
+
 
     }
 }

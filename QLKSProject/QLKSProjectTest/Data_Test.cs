@@ -6,11 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using QLKSProject;
 using QLKSProject.Models.DTO;
+using QLKSProject.Business.QuanLy;
 
 namespace QLKSProject_UnitTest
 {
     class Data_Test : BaseBusinessUnitTest
     {
+        #region DS Khach Hang
         public List<KhachHangDTO> DanhSachKhachHang()
         {
             var lstKH = new List<KhachHangDTO>();
@@ -24,12 +26,13 @@ namespace QLKSProject_UnitTest
             lstKH.Add(new KhachHangDTO { ID = 9, HoVaTen = "An Dương Vương", SoDienThoai = "1307758298", Email = "khach1@xxx.com", DiaChi = "Lane 1588 Zhuguang Road, Trung Quốc", Nhom = 1, LoaiKhachHang = false, NguoiDaiDienCuaTreEm = "0", GioiTinh = false, MaDoan = "222" });
             return lstKH;
         }
+        #endregion
 
+        #region TaiKhoan
         public string TaiKhoan()
         {
             return "{\"UserName\":\"tuangd\",\"UserPassword\":\"123456\",\"UserRoles\":\"ql\",\"PhoneNumber\":\"09483739455\",\"MaDoan\":\"0\",\"IsDelete\":\"false\",\"UserEmailID\":\"tuangd01@gmail.com\",\"UserID\":\"0\",\"FullName\":\"Nguyễn Đức Tuấn Anh\"}";
         }
-
         public UserMasterDTO TaiKhoanDuocLayMau()
         {
             UserMasterDTO userMaster = new UserMasterDTO();
@@ -50,6 +53,9 @@ namespace QLKSProject_UnitTest
             var lstTKNhanVien = models.UserMasters.Where(t => t.IsDelete != true && t.UserRoles.Equals("nv")).ToList();
             return lstTKNhanVien.Count();
         }
+        #endregion
+
+        #region Phong
         public int DemSoLuongPhong()
         {
             return models.Phongs.Where(p => p.IsDelete != true).Count();
@@ -71,5 +77,65 @@ namespace QLKSProject_UnitTest
         {
             return "{\"MaPhong\":\"41235\",\"SoPhong\":\"1235\",\"LoaiPhong\":\"4\",\"Gia\":\"4000000\",\"TrangThai\":\"-1\",\"IsDelete\":\"false\"}";
         }
+        #endregion
+
+        #region Dich Vu
+        public int SoLuongDichVu()
+        {
+            return models.DichVus.Where(d => d.IsDelete != true).Count();
+        }
+        public DichVuDTO LayThongTinDichVu()
+        {
+            return models.DichVus.Where(d => d.IsDelete != true).Select(d => new DichVuDTO
+            {
+                ID = d.ID,
+                TenDichVu = d.TenDichVu,
+                Gia = d.Gia,
+                MoTa = d.MoTa,
+                IsDelete = d.IsDelete
+            }).FirstOrDefault();
+        }
+        public string TaoMoiDichVu()
+        {
+            return "{\"TenDichVu\":\"Karaoke\",\"MoTa\":\"Dan am thanh vo cung chat luong\",\"Gia\":\"3000000\",\"IsDelete\":\"false\"}";
+        }
+        #endregion
+
+        #region Tien Ich
+        public int SoLuongTienIch()
+        {
+            return models.TienIches.Where(t => t.IsDelete != true).Count();
+        }
+        public TienIchDTO LayThongTinTienIch()
+        {
+            return models.TienIches.Where(t => t.IsDelete != true).Select(t => new TienIchDTO
+            {
+                ID = t.ID,
+                TenTienIch = t.TenTienIch,
+                MoTa = t.MoTa,
+                IsDelete = t.IsDelete
+            }).FirstOrDefault();
+        } 
+        public string TaoMoiTienIch()
+        {
+            return "{\"TenTienIch\":\"Ban Công\",\"MoTa\":\"Ban công có view nhìn ra biển thoáng đãng\",\"IsDelete\":\"false\"}";
+        }
+        public List<ThongKeTheoThangDTO> BaoCaoThongKeTheoThang(int thang, int nam)
+        {
+            var business = new QuanLyBusiness();
+            return business.BaoCaoThongKeTheoThang(thang, nam);
+        }
+
+        public SoSanhThongKeDTO SoSanhThongKeTheoThang(int thang, int nam)
+        {
+            var business = new QuanLyBusiness();
+            return business.SoSanhThongKeTheoThang(thang, nam);
+        }
+        public SoSanhThongKeDTO SoSanhThongKeTheoQuy(int quy, int nam)
+        {
+            var business = new QuanLyBusiness();
+            return business.SoSanhThongKeTheoQuy(quy, nam);
+        }
+        #endregion
     }
 }
