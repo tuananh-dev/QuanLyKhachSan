@@ -276,7 +276,7 @@ namespace QLKSProject.Business.QuanLy
             foreach (var phong in lstPhong)
             {
                 QuanLyLoaiPhongDTO quanLyLoaiPhongDTO = new QuanLyLoaiPhongDTO();
-                quanLyLoaiPhongDTO.TenLoaiPhong = phong.Key.ToString();
+                quanLyLoaiPhongDTO.LoaiPhong = int.Parse(phong.Key.ToString());
                 foreach (var gia in phong)
                 {
                     quanLyLoaiPhongDTO.Gia = gia.Gia;
@@ -285,6 +285,28 @@ namespace QLKSProject.Business.QuanLy
                 quanLyLoaiPhongDTOs.Add(quanLyLoaiPhongDTO);
             }
             return quanLyLoaiPhongDTOs;
+        }
+        public bool CapNhatLoaiPhong(List<QuanLyLoaiPhongDTO> quanLyLoaiPhongDTOs)
+        {
+            try
+            {
+                var lstPhong = models.Phongs.ToList();
+                foreach (var phong in lstPhong)
+                {
+                    foreach (var loaiPhong in quanLyLoaiPhongDTOs)
+                    {
+                        if (phong.LoaiPhong == loaiPhong.LoaiPhong)
+                            phong.Gia = loaiPhong.Gia;
+                    }
+                }
+                models.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+         
         }
 
         #endregion

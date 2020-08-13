@@ -531,7 +531,7 @@ function XepPhong(info, url, dataId) {
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
-        headers: { 'data-type': 'json' },
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
         success: function (data) {
             Swal.fire(
                 'Success!',
@@ -560,7 +560,7 @@ function XepPhongTatCa(info, url) {
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
-        headers: { 'data-type': 'json' },
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
         success: function (data) {
             var str = data.split('-');
             var tc = str[0];
@@ -648,8 +648,7 @@ function XacNhanDatPhong() {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
 
         },
-        headers: { 'data-type': 'json' },
-        dataType: 'json',
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
         success: function (data) {
             console.log(data);
             Swal.fire(
@@ -679,7 +678,7 @@ function XepPhongThuNghiem(url, dataInput) {
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
         data: JSON.stringify(dataInput),
         success: function (data) {
             //$(info.modal).modal('hide');
@@ -718,7 +717,6 @@ function LayThongTinPhong(info, id) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        dataType: 'json',
         success: function (data) {
 
             switch (info.url) {
@@ -771,10 +769,7 @@ function KhachHangNhanTraPhong(info, dataInput) {
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
-        headers: {
-            'content-type': 'application/json',
-            'data-type': 'json',
-        },
+        headers: { 'content-type': 'application/json', 'data-type': 'json' },
         data: JSON.stringify(dataInput),
         success: function (data) {
             $(info.modal).modal('hide');
