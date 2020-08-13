@@ -28,96 +28,87 @@
         <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
         <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
         <!-- favicon -->
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
         <script src="~/Content/QuanLy/Jquery.js"></script>
         <script src="~/Content/QuanLy/libs_function.js"></script>
+        <style>
+            #dsloaiphong tr td input {
+                border: none;
+                padding: 10px 5px;
+                background: none;
+            }
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
+            #dsloaiphong tr td select {
+                padding: 8px;
+                border: none;
+                background: none;
+            }
+        </style>
         <script type="text/javascript">
 
             $(document).ready(function () {
                 checkSession();
 
-                //var mota = $();
-                var dataId;
-                var idList = '#dsdichvuphong';
+
+                var idList = '#dsloaiphong';
                 //Modal
-                var idModalAdd = '#addDichVuPhongModal';
 
                 //API
-                var layDSDichVuPhong = 'NhanVien/LayDSLichSuDichVu';
-                var themDichVuPhong = 'NhanVien/ThemMoiDichVuPhong';
+                var layDSLoaiPhong = 'Quanly/LayDanhSachLoaiPhong';
+                var suaLoaiPhong = 'Quanly/CapNhatLoaiPhong';
 
-                var xoaDichVuPhong = 'NhanVien/XoaDichVuPhong?ID=';
-
-
-                //api load khi them DV vao Phong
-                var layDSDichVu = 'NhanVien/LayDanhSachDichVu';
-                var layDSPhong = 'NhanVien/LayDanhSachPhong';
-                var layDSNguoiTrongPhong = 'NhanVien/DanhSachKhachHangChungPhongDichVuPhong/';
-
-                loadData(idList, layDSDichVuPhong);
-
-                $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
-
-                    dataId = $(this).attr("data-id");
-                    var info = {
-                        id: idList,
-                        url: xoaDichVuPhong,
-                        urlLoad: layDSDichVuPhong,
-                    };
-                    deleteData(info, dataId);
-                })
-
-
-                $("#addDichVuPhong").click(function () {
-                    var idDSPhong = '#dsphong-select';
-                    var idDSDichVu = '#dsdichvu-select';
-
-
-                    loadData(idDSPhong, layDSPhong);
-                    loadData(idDSDichVu, layDSDichVu);
-
-
-                    $(idModalAdd).modal('show');
-                })
-                $('#dsphong-select').change(function () {
-                    var idPhong = $(this).val();
-                    var info = {
-                        idLoad: '#dsnguoitrongphong-select',
-                        url: layDSNguoiTrongPhong
-                    }
-                    LayThongTinPhong(info, idPhong);
-
-                })
-
-
-
-
-                $('#btn-adddvphong').click(function () {
-
-
-
-                    var data = {
-                        IDDichVu: $('#dsdichvu-select').val(),
-                        IDKhachHang: $('#dsnguoitrongphong-select').val(),
-                        IDPhong: $('#dsphong-select').val(),
-                        IsDelete: false,
-                        SoPhong: $('#dsphong-select option:selected').text(),
-                        TenDichVu: $('#dsdichvu-select option:selected').text().split('+')[0].trim(),
-                        HoVaTenKhachHang: $('#dsnguoitrongphong-select option:selected').text(),
-                        GhiChu: $('#ghichu').val()
+                LoadDSLoaiPhong(idList, layDSLoaiPhong);
+                $('#luu').click(function () {
+                    var list = [];
+                    for (i = 0; i < 4; i++) {
+                        var obj = {
+                            LoaiPhong: i + 1,
+                            Gia: $('#gia' + i).val()
+                        }
+                        list.push(obj);
                     }
                     var info = {
+                        url: suaLoaiPhong,
                         id: idList,
-                        url: themDichVuPhong,
-                        urlLoad: layDSDichVuPhong,
-                        modal: idModalAdd
-                    };
-                    console.log(data);
-                    addData(info, data);
-                });
+                        urlLoad: layDSLoaiPhong
+                    }
+                    editAllLoaiPhong(info, list);
+                })
+                //$('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
+                //    $(idModalEdit).modal('show');
+                //    dataId = $(this).attr("data-id");
+                //    var edit = {
+                //        gia: '#gia-edit',
+                //    }
+
+                //    loadDataDetail(edit, layPhong, dataId);
+                //})
+
+                //$('#btn-edit').click(function () {
+
+
+                //    var data = {
+                //        ID: dataId,
+                //        MaPhong: loaiPhong + _0 + $('#solau-edit').val() + $('#sophong-edit').val(),
+                //        LoaiPhong: loaiPhong,
+                //        Gia: $('#gia-edit').val(),
+                //        SoPhong: $('#solau-edit').val() + $('#sophong-edit').val()
+                //    };
+                //    var info = {
+                //        id: idList,
+                //        url: suaPhong,
+                //        urlLoad: layDSPhong,
+                //        modal: idModalEdit
+                //    };
+                //    console.log(data);
+                //    editData(info, data);
+
+                //});
+
+
+
             });
 
         </script>
@@ -168,7 +159,7 @@
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                    data-close-others="true">
                                     <img alt="" class="img-circle " src="~/Content/QuanLy/img/dp.jpg" />
-                                    <span class="username username-hide-on-mobile nameuser"> </span>
+                                    <span class="username username-hide-on-mobile nameuser"></span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default animated jello">
@@ -220,42 +211,51 @@
 
 
 
-                                <li class="nav-item active nv">
-                                    <a href="/SEP23Team2/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
+                                <li class="nav-item active ql">
+                                    <a href="/SEP23Team2/Views/QuanLyViews/ThongKe/ThongKe.cshtml" class="nav-link nav-toggle">
+                                        <i class="material-icons">business_center</i>
+                                        <span class="title">Thống Kê</span>
+                                        <span class="arrow"></span>
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item active ql">
+                                    <a href="/SEP23Team2/Views/QuanLyViews/DichVu/DSDichVu.cshtml" class="nav-link nav-toggle">
+                                        <i class="material-icons">business_center</i>
+                                        <span class="title">Dịch Vụ</span>
+                                        <span class="arrow"></span>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item active ql">
+                                    <a href="/SEP23Team2/Views/QuanLyViews/TienIch/DSTienIch.cshtml" class="nav-link nav-toggle">
                                         <i class="material-icons">group</i>
+                                        <span class="title">Tiện Ích</span>
+                                        <span class="arrow"></span>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item active ql">
+                                    <a href="/SEP23Team2/Views/QuanLyViews/Phong/DSPhong.cshtml" class="nav-link nav-toggle">
+                                        <i class="material-icons">vpn_key</i>
                                         <span class="title">Phòng</span>
                                         <span class="arrow"></span>
                                     </a>
 
                                 </li>
-                                <li class="nav-item active nv">
-                                    <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
+                                <li class="nav-item active ql">
+                                    <a href="/SEP23Team2/Views/QuanLyViews/TKNhanVien/DSTKNhanVien.cshtml" class="nav-link nav-toggle">
                                         <i class="material-icons">group</i>
-                                        <span class="title">Đặt Phòng Thành Công</span>
+                                        <span class="title">Tài Khoản Nhân Viên</span>
                                         <span class="arrow"></span>
                                     </a>
 
                                 </li>
-                                <li class="nav-item active nv">
-                                    <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
+                                <li class="nav-item active ql">
+                                    <a href="/SEP23Team2/Views/QuanLyViews/LoaiPhong/LoaiPhong.cshtml" class="nav-link nav-toggle">
                                         <i class="material-icons">group</i>
-                                        <span class="title">Đặt Phòng Thất Bại</span>
-                                        <span class="arrow"></span>
-                                    </a>
-
-                                </li>
-                                <li class="nav-item active nv">
-                                    <a href="/SEP23Team2/Views/NhanVienViews/Doan/Doan.cshtml" class="nav-link nav-toggle">
-                                        <i class="material-icons">group</i>
-                                        <span class="title">Đoàn</span>
-                                        <span class="arrow"></span>
-                                    </a>
-
-                                </li>
-                                <li class="nav-item active nv">
-                                    <a href="/SEP23Team2/Views/NhanVienViews/ThemDichVu/ThemDichVu.cshtml" class="nav-link nav-toggle">
-                                        <i class="material-icons">group</i>
-                                        <span class="title">Thêm Dịch Vụ - Phòng</span>
+                                        <span class="title">Loại Phòng</span>
                                         <span class="arrow"></span>
                                     </a>
 
@@ -275,120 +275,56 @@
                         <div class="page-bar">
                             <div class="page-title-breadcrumb">
                                 <div class=" pull-left">
-                                    <div class="page-title">Thêm Dịch Vụ Vào Phòng</div>
+                                    <div class="page-title">Danh Sách Loại Phòng</div>
                                 </div>
-                            </div>
-                            <ol class="breadcrumb page-breadcrumb pull-right">
-                                <li>
-                                    <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                                                       href="../../NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
-                                </li>
+                                <ol class="breadcrumb page-breadcrumb pull-right">
+                                    <li>
+                                        <i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+                                                                           href="../../NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml">Trang Chủ</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                    </li>
 
-                                <li class="active">Thêm Dịch Vụ Vào Phòng</li>
-                            </ol>
+                                    <li class="active">Danh Sách Phòng</li>
+                                </ol>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card card-box" style="border-top: 2px solid green">
+                                <div class="card card-box" style="border-top: 2px solid red">
 
-                                    <div class="card-body ">
-                                        <div class="row p-b-20">
-                                            <div class="col-md-6 col-sm-6 col-6">
-                                                <div class="btn-group">
-                                                    <button href="" id="addDichVuPhong" class="btn btn-info">
-                                                        Thêm Dịch Vụ Vào Phòng <i class="fa fa-plus"></i>
-                                                    </button>
-                                                </div>
+
+                                    <div class="table-scrollable" style="border-bottom: 2px solid gray;"> 
+                                        <table class="table table-striped"
+                                               id="mainTable">
+                                            <thead>
+                                                <tr>
+                                                    <th class="center"> Tên </th>
+                                                    <th class="center"> Giá </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="dsloaiphong">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row p-b-20" style="text-align: right;margin-right: 20px">
+                                        <div class="col-md-12 col-sm-6 col-6">
+                                            <div class="btn-group">
+                                                <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" id="loading" style="display:none;"></div>
+                                                <button id="luu" class="btn btn-info" >
+                                                    Lưu Thay Đổi
+                                                </button>
+
                                             </div>
+                                        </div>
 
-                                        </div>
-                                        <div class="table-scrollable">
-                                            <table class="table display product-overview mb-30"
-                                                   id="example4">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="" style="width: 130px"> Số Phòng </th>
-                                                        <th class="" style="width: 180px"> Tên Khách Hàng </th>
-                                                        <th class="" style="width: 130px"> Tên Dịch Vụ </th>
-                                                        <th class="" style="width: 130px"> Ngày Gọi </th>
-                                                        <th class=""> Ghi Chú </th>
-                                                        <th class="center"> Chức Năng </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="dsdichvuphong">
-                                                </tbody>
-                                            </table>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <!----Modal-->
-            <div class="modal fade" tabindex="-1" id="addDichVuPhongModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
-
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Dịch Vụ Phòng</h4>
-                                    <div class="card-box" style="border-top: 2px solid gray">
-
-                                        <div class="card-body row">
-
-                                            <div class="col-lg-12 p-t-20">
-                                                <label>Dịch Vụ</label>
-                                                <select class="form-control" id="dsdichvu-select">
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-12 p-t-20">
-                                                <label>Phòng</label>
-                                                <select class="form-control" id="dsphong-select">
-                                                </select>
-                                            </div>
-
-                                            <div class="col-lg-12 p-t-20">
-                                                <label>Thành Viên</label>
-                                                <select class="form-control" id="dsnguoitrongphong-select">
-                                                    <option selected>---Phòng Chưa Nhận---</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-lg-12 p-t-20">
-                                                <label style="display:block">Ghi Chú</label>
-                                                <textarea id="ghichu" cols="42" rows="2" style="border:none;border-bottom: 1px solid;outline: none;"></textarea>
-
-                                               
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-adddvphong">
-                                            Thêm Dịch Vụ
-                                        </button>
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                            Hủy
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-----end modal-->
-                <!-- end page content -->
-            </div>
-
-
             <!-- end page container -->
             <!-- start footer -->
             <div class="page-footer">
@@ -418,6 +354,8 @@
         <script src="~/Content/QuanLy/js/app.js"></script>
         <script src="~/Content/QuanLy/js/layout.js"></script>
         <script src="~/Content/QuanLy/js/theme-color.js"></script>
+        <script src="~/Content/QuanLy/plugins/datatables/editabletable.js"></script>
+        <script src="~/Content/QuanLy/js/pages/table/editable_table_data.js"></script>
         <!--<script src="~//plugins/dropzone/dropzone.js"></script>-->
         <!--<script src="~//plugins/dropzone/dropzone-call.js"></script>-->
         <!-- Material -->
