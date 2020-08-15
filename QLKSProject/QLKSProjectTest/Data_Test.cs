@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using QLKSProject;
 using QLKSProject.Models.DTO;
 using QLKSProject.Business.QuanLy;
+using QLKSProject.Business.NhanVien;
+using QLKSProject.Business.Home;
+using QLKSProject.Business.KhachHangBusiness;
 
 namespace QLKSProjectTest
 {
@@ -15,6 +18,10 @@ namespace QLKSProjectTest
         private List<KhachHangDTO> khachHangDTOs;
         private List<KhachHangDTO> khachHang_MotDoanDTOs;
         private List<PhongDTO> phongDTOs;
+        public int idPhong;
+        private NhanVienBusiness nhanvien;
+        private HomeBusiness home;
+        private KhachHangBusiness khachhang;
         public Data_Test()
         {
             khachHang_MotDoanDTOs = models.KhachHangs.Where(kh => kh.MaDoan.Equals("1597352230776")).Select(kh => new KhachHangDTO
@@ -67,6 +74,10 @@ namespace QLKSProjectTest
                 TrangThai = p.TrangThai,
                 IsDelete = p.IsDelete
             }).ToList();
+            idPhong = 236;
+            nhanvien = new NhanVienBusiness();
+            home = new HomeBusiness();
+            khachhang = new KhachHangBusiness(); 
         }
         public List<KhachHangDTO> ListKHMotDoan()
         {
@@ -176,7 +187,7 @@ namespace QLKSProjectTest
             catch (Exception)
             {
             }
-            
+
         }
         #endregion
         #region Tien Ich
@@ -193,7 +204,7 @@ namespace QLKSProjectTest
                 MoTa = t.MoTa,
                 IsDelete = t.IsDelete
             }).FirstOrDefault();
-        } 
+        }
         public string TaoMoiTienIch()
         {
             return "{\"TenTienIch\":\"Ban Công\",\"MoTa\":\"Ban công có view nhìn ra biển thoáng đãng\",\"IsDelete\":\"false\"}";
@@ -225,7 +236,7 @@ namespace QLKSProjectTest
             {
 
             }
-            
+
         }
         #endregion
         //Nhan Vien
@@ -254,5 +265,44 @@ namespace QLKSProjectTest
 
             return lstDoan.Count;
         }
+        public int SoLuongPhongTheoDieuKien()
+        {
+            DateTime ngayNhan = new DateTime(2020, 8, 20);
+            DateTime ngayTra = new DateTime(2020, 8, 20);
+            NhanVienBusiness nhanvien = new NhanVienBusiness();
+            return nhanvien.LayDanhSachPhongTheoDieuKien(ngayNhan, ngayTra).Count;
+
+        }
+        public int SoLuongKhachHangChungPhong()
+        {
+            return nhanvien.DanhSachKhachHangChungPhong(idPhong).Count;
+        }
+        public int SoLuongKhachHangChungPhongDichVuPhong()
+        {
+            return nhanvien.DanhSachKhachHangChungPhongDichVuPhong(idPhong).Count;
+        }
+        public int SoLuongThongTinChiPhiPhong()
+        {
+            if (nhanvien.LayThongTinChiPhiPhong(idPhong) != null)
+                return nhanvien.LayThongTinChiPhiPhong(idPhong).Count;
+            else
+                return 0;
+        }
+        public int SoLuongLichSuDichVu()
+        {
+            return nhanvien.LayDSLichSuDichVu().Count;
+        }
+        public string TaoLichSuDichVu()
+        {
+            return "{\"IDPhong\":\"234\",\"SoPhong\":\"1234\",\"IDDichVu\":\"2\",\"TenDichVu\":\"Ăn uống\",\"NgayGoiDichVu\":\"2020/8/26\",\"GhiChu\":\"Giao đúng ngày\",\"IsDelete\":\"false\",\"IDKhachHang\":\"334\",\"HoVaTenKhachHang\":\"Nguyễn Đức Tuấn Anh\"}";
+        }
+        //Home
+        public string ThongBaoLoi()
+        {
+            FileKhachHangDTO file = new FileKhachHangDTO();
+            return home.LayFileDanhSachKhachHang(file.TenDoan, file.TenTruongDoan, file.ThoiGianNhan, file.ThoiGianTra, file.Files);
+        }
+        //Khach Hang
+
     }
 }

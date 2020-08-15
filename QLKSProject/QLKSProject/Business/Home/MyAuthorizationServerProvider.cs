@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace QLKSProject.Models
+namespace QLKSProject.Business
 {
     public class MyAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {

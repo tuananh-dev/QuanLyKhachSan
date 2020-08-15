@@ -38,7 +38,7 @@ namespace QLKSProject.Controllers.NhanVien
         {
             using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
-                return Ok(nhanVienBusiness.DatPhongChoNhieuDoan());
+                return Ok(nhanVienBusiness.DatPHongNhieuDoanKhachHang());
             }
         }
         #endregion
@@ -112,11 +112,10 @@ namespace QLKSProject.Controllers.NhanVien
         {
             if (dynamic == null)
                 return BadRequest();
-            DateTime ngayNhan = dynamic.NgayNhan;
-            DateTime ngayTra = dynamic.NgayTra;
+            ThoiGianDatPhongDTO thoiGianDatPhong = JsonConvert.DeserializeObject<ThoiGianDatPhongDTO>(dynamic.ToString());
             using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
-                return Ok(nhanVienBusiness.LayDanhSachPhongTheoDieuKien(ngayNhan, ngayTra));
+                return Ok(nhanVienBusiness.LayDanhSachPhongTheoDieuKien(thoiGianDatPhong.NgayNhan, thoiGianDatPhong.NgayTra));
             }
         }
         [HttpPost]
@@ -165,7 +164,10 @@ namespace QLKSProject.Controllers.NhanVien
         {
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
-                return Ok(nhanVien.LayThongTinChiPhiPhong(id));
+                if (nhanVien.LayThongTinChiPhiPhong(id) == null)
+                    return BadRequest("Khách hàng không gọi dịch vụ!");
+                else
+                    return Ok(nhanVien.LayThongTinChiPhiPhong(id));
             }
         }
         #endregion

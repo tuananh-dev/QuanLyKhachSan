@@ -535,12 +535,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTO\DatPhongNhanhDTO.cs" />
     <Compile Include="Models\DTO\KhachHangNhanPhongDTO.cs" />
     <Compile Include="Models\DTO\KhachHangTraPhongDTO.cs" />
+    <Compile Include="Models\DTO\QuanLyLoaiPhongDTO.cs" />
     <Compile Include="Models\DTO\QuyNamDTO.cs" />
     <Compile Include="Models\DTO\SoSanhThongKeDTO.cs" />
     <Compile Include="Models\DTO\ThangNamDTO.cs" />
     <Compile Include="Models\DTO\ThemPhongTheoLauDTO.cs" />
+    <Compile Include="Models\DTO\ThoiGianDatPhongDTO.cs" />
     <Compile Include="Models\DTO\ThongKeTheoThangDTO.cs" />
     <Compile Include="Models\DTO\DichVuDTO.cs" />
     <Compile Include="Models\DTO\DoanDTO.cs" />
@@ -558,9 +561,9 @@
     <Compile Include="Models\Entities\LichSuDichVu.cs" />
     <Compile Include="Models\Entities\TienIch.cs" />
     <Compile Include="Models\Entities\UserMaster.cs" />
-    <Compile Include="Models\MyAuthorizationServerProvider.cs" />
+    <Compile Include="Business\Home\MyAuthorizationServerProvider.cs" />
     <Compile Include="Models\QLKSDbContext.cs" />
-    <Compile Include="Models\UserMasterResponsitory.cs" />
+    <Compile Include="Business\Home\UserMasterResponsitory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
