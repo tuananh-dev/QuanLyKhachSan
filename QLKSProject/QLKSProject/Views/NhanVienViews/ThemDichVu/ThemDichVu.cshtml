@@ -57,7 +57,38 @@
                 var layDSPhong = 'NhanVien/LayDanhSachPhong';
                 var layDSNguoiTrongPhong = 'NhanVien/DanhSachKhachHangChungPhongDichVuPhong/';
 
-                loadData(idList, layDSDichVuPhong);
+                loadData(layDSDichVuPhong, function (data) {
+                    $(idList).DataTable({
+                        destroy: true,
+                        data: data,
+                        columns: [
+                            { 'data': 'SoPhong' },
+                            { 'data': 'HoVaTenKhachHang' },
+                            { 'data': 'TenDichVu' },
+                            {
+                                'data': null,
+                                'render': function (data, type, row) {
+                                    var ngayGoi = new Date(row.NgayGoiDichVu);
+                                    return '' + ngayGoi.getDate() + '-' + (ngayGoi.getMonth() + 1) + '-' + ngayGoi.getFullYear() + ''
+                                }
+                            },
+                            { 'data': 'GhiChu' },
+                            {
+                                'data': null,
+                                'render': function (data, type, row) {
+                                    return '<a class="btn btn-tbl-delete btn-xs" data-id="' + row.ID + '" > <i class="fa fa-trash-o "></i></a>'
+                                }
+                            }
+                        ],
+                        "columnDefs": [
+                            { "orderable": false, "targets": 3 },
+                            { "orderable": false, "targets": 2 },
+                            { "orderable": false, "targets": 4 },
+                            { "orderable": false, "targets": 5 },
+                        ]
+                    });
+                });
+                //loadData(idList, layDSDichVuPhong);
 
                 $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
 
@@ -76,29 +107,33 @@
                     var idDSDichVu = '#dsdichvu-select';
 
 
-                    loadData(idDSPhong, layDSPhong);
-                    loadData(idDSDichVu, layDSDichVu);
+                    loadData(layDSPhong, function (data) {
+                        $.each(data, function (index, val) {
+                            $(idDSPhong).prepend('<option value="' + val.ID + '"> ' + val.SoPhong + '</option>');
+                        })
+                    })
+                    loadData(layDSDichVu, function (data) {
+                        $.each(data, function (index, val) {
+                            $(idDSDichVu).prepend('<option value="' + val.ID + '" >' + val.TenDichVu + '&nbsp;&nbsp;&nbsp;' + ' +' + formatNumber(val.Gia) + '</option>');
+                        })
+                    })
+
 
 
                     $(idModalAdd).modal('show');
                 })
                 $('#dsphong-select').change(function () {
                     var idPhong = $(this).val();
-                    var info = {
-                        idLoad: '#dsnguoitrongphong-select',
-                        url: layDSNguoiTrongPhong
-                    }
-                    LayThongTinPhong(info, idPhong);
-
+                    var idDSNguoiTrongPhong = '#dsnguoitrongphong-select';
+                    loadDataWithID(layDSNguoiTrongPhong, idPhong, function (data) {
+                        $.each(data, function (index, val) {
+                            $(idDSNguoiTrongPhong).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
+                        })
+                    })
                 })
 
-
-
-
                 $('#btn-adddvphong').click(function () {
-
-
-
+                    $(idModalAdd).modal('hide');
                     var data = {
                         IDDichVu: $('#dsdichvu-select').val(),
                         IDKhachHang: $('#dsnguoitrongphong-select').val(),
@@ -110,10 +145,7 @@
                         GhiChu: $('#ghichu').val()
                     }
                     var info = {
-                        id: idList,
                         url: themDichVuPhong,
-                        urlLoad: layDSDichVuPhong,
-                        modal: idModalAdd
                     };
                     console.log(data);
                     addData(info, data);
@@ -304,7 +336,7 @@
                                         </div>
                                         <div class="table-scrollable">
                                             <table class="table display product-overview mb-30"
-                                                   id="example4">
+                                                   id="dsdichvuphong">
                                                 <thead>
                                                     <tr>
                                                         <th class="" style="width: 130px"> Số Phòng </th>
@@ -315,7 +347,7 @@
                                                         <th class="center"> Chức Năng </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="dsdichvuphong">
+                                                <tbody>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -362,7 +394,7 @@
                                                 <label style="display:block">Ghi Chú</label>
                                                 <textarea id="ghichu" cols="42" rows="2" style="border:none;border-bottom: 1px solid;outline: none;"></textarea>
 
-                                               
+
                                             </div>
 
                                         </div>
@@ -408,8 +440,8 @@
         <script src="~/Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
         <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
         <!-- bootstrap -->
-        <!--<script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
-        <!--<script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>-->
+        <script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
         <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
         <!-- Material -->
         <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>

@@ -23,6 +23,8 @@
     <link href="~/Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet"
+          type="text/css" />
     <!-- favicon -->
     <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -35,7 +37,6 @@
 
             //var mota = $();
             var dataId;
-            var idList = '#dstienich';
             //Modal
             var idModalAdd = '#addModal';
             var idModalEdit = '#editModal';
@@ -47,24 +48,44 @@
             var xoaTienIch = 'Quanly/XoaTienIch?ID=';
             var layTienIch = 'Quanly/LayTienIch?ID=';
 
+            //load Data
+            loadData(layDSTienIch, function (data) {
+                $('#example').DataTable({
+                    destroy: true,
+                    data: data,
+                    columns: [
+                        { 'data': 'TenTienIch' },
+                        { 'data': 'MoTa' },
+                        {
+                            'data': null,
+                            'render': function (data, type, row) {
+                                return '<a class="btn btn-tbl-edit btn-xs" data-id="' + row.ID + '"> <i class="fa fa-pencil" style="color: lightgray"></i></a> <a class="btn btn-tbl-delete btn-xs" data-id="' + row.ID + '"><i class="fa fa-trash-o" data-id="ID"></i></a>'
+                            }
+                        }
+                    ],
+                    "columnDefs": [
+                        { "orderable": false, "targets": 2 },
+                        { "orderable": false, "targets": 1 }
+                    ]
+                });
+            });
 
-            loadData(idList, layDSTienIch);
 
+            //delete
             $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
 
                 dataId = $(this).attr("data-id");
 
                 var info = {
-                    id: idList,
                     url: xoaTienIch,
-                    urlLoad: layDSTienIch,
+                    ID: dataId
                 };
-                deleteData(info, dataId);
+                deleteData(info);
 
 
             })
 
-
+            //Edit
             $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
                 $(idModalEdit).modal('show');
                 dataId = $(this).attr("data-id");
@@ -72,40 +93,40 @@
                     tenTienIch: '#tenTI-edit',
                     mota: '#mota-edit',
                 }
-
-                loadDataDetail(edit, layTienIch, dataId);
+                loadDataWithID(layTienIch, dataId, function (data) {
+                    $(edit.mota).val(data.MoTa);
+                    $(edit.tenTienIch).val(data.TenTienIch);
+                });
+                //loadDataDetail(edit, layTienIch, dataId);
             })
 
             $('#btn-edit').click(function () {
+                $(idModalEdit).modal('hide');
                 var data = {
                     ID: dataId,
                     TenTienIch: $('#tenTI-edit').val(),
                     Mota: $('#mota-edit').val(),
                     IsDelete: false,
                 };
-                var info = {
-                    id: idList,
-                    url: suaTienIch,
-                    urlLoad: layDSTienIch,
-                    modal: idModalEdit
-                };
-                editData(info, data);
+                
+                editData(suaTienIch, data);
 
             });
-            $("#addRow").click(function () {
+
+            //Add
+            $("#addRow1").click(function () {
                 $(idModalAdd).modal('show');
             })
 
             $('#btn-add').click(function () {
+                $(idModalAdd).modal('hide');
                 var data = {
                     TenTienIch: $('#tenTI').val(),
                     Mota: $('#mota').val(),
                     IsDelete: false,
                 }
                 var info = {
-                    id: idList,
                     url: themTienIch,
-                    urlLoad: layDSTienIch,
                     modal: idModalAdd
                 };
                 addData(info, data);
@@ -159,7 +180,7 @@
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
-                                
+
 
                                 <li class="divider"> </li>
 
@@ -248,7 +269,14 @@
                                 </a>
 
                             </li>
-                            
+                            <li class="nav-item active ql">
+                                <a href="/SEP23Team2/Views/QuanLyViews/LoaiPhong/LoaiPhong.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Loại Phòng</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
 
                         </ul>
                     </div>
@@ -280,7 +308,7 @@
                                     <div class="row p-b-20">
                                         <div class="col-md-6 col-sm-6 col-6">
                                             <div class="btn-group">
-                                                <button href="" id="addRow" class="btn btn-info">
+                                                <button href="" id="addRow1" class="btn btn-info">
 
                                                     Thêm Mới Tiện Ích<i class="fa fa-plus"></i>
                                                 </button>
@@ -295,9 +323,9 @@
                                                id="example">
                                             <thead>
                                                 <tr>
-                                                    <th> Tên tiện ích </th>
+                                                    <th style="min-width:160px"> Tên tiện ích </th>
                                                     <th> Mô Tả </th>
-                                                    <th class="center"> Chức Năng </th>
+                                                    <th class="center" style="min-width:90px"> Chức Năng </th>
                                                 </tr>
                                             </thead>
                                             <tbody id="dstienich">
@@ -430,6 +458,10 @@
     <script src="~/Content/QuanLy/js/app.js"></script>
     <script src="~/Content/QuanLy/js/layout.js"></script>
     <script src="~/Content/QuanLy/js/theme-color.js"></script>
+
+    <script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Content/QuanLy/js/pages/table/table_data.js"></script>
     <!-- material -->
     <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
 

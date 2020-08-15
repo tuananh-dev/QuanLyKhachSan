@@ -9,7 +9,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="description" content="Responsive Admin Template" />
     <meta name="author" content="SmartUniversity" />
-    <title>Spice Hotel | Bootstrap 4 Admin Dashboard Template + UI Kit</title>
+    <title>Color Hotel</title>
     <!-- icons -->
     <link href="Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="Content/QuanLy/plugins/iconic/css/material-design-iconic-font.min.css">
@@ -18,9 +18,16 @@
     <!-- style -->
     <link rel="stylesheet" href="Content/QuanLy/css/pages/extra_pages.css">
     <!-- favicon -->
-    <link rel="shortcut icon" href="Content/QuanLy/img/favicon.ico" />
+    <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
+    <script src="~/Content/QuanLy/Jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#gotohome').click(function () {
+                window.location.href = "trangchu.cshtml"
+            })
+        })
 
-
+    </script>
 </head>
 
 <body>
@@ -33,10 +40,14 @@
                         <i class="zmdi zmdi-flower"></i>
                     </span>
                     <span class="form404-title p-b-34 p-t-27">
-                        404
+                        Lỗi 404
                     </span>
                     <p class="content-404">Trang bạn đang tìm kiếm không tồn tại hoặc một lỗi khác đã xảy ra.</p>
-                    
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" id="gotohome">
+                            Về Trang Chủ
+                        </button>
+                    </div>
 
                 </form>
             </div>

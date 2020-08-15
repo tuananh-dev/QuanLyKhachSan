@@ -347,7 +347,6 @@
     <Content Include="Content\QuanLy\DashBoard.js" />
     <Content Include="Content\QuanLy\img\bg-01.jpg" />
     <Content Include="Content\QuanLy\img\dp.jpg" />
-    <Content Include="Content\QuanLy\img\favicon.ico" />
     <Content Include="Content\QuanLy\img\logo.png" />
     <Content Include="Content\QuanLy\Jquery.js" />
     <Content Include="Content\QuanLy\js\app.js" />
@@ -508,6 +507,7 @@
     <Content Include="GioiThieu.cshtml" />
     <Content Include="GuiFileDSDoan.cshtml" />
     <Content Include="TrangChu.cshtml" />
+    <Content Include="Views\QuanLyViews\LoaiPhong\LoaiPhong.cshtml" />
     <None Include="Views\QuanLyViews\Phong\DSPhong.cshtml" />
     <None Include="Views\QuanLyViews\ThongKe\ThongKe.cshtml" />
     <None Include="Views\QuanLyViews\TienIch\DSTienIch.cshtml" />

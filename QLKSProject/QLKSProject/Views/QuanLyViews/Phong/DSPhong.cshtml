@@ -54,19 +54,69 @@
                 var layPhong = 'Quanly/LayPhong?ID=';
 
 
+                //var tien = formatNumber(val.Gia);
+                //                        var tt = "Trống";
+                //                        var label = "";
+                //                        if (val.TrangThai == '0') {
+                //                            tt = "Đang Chờ"
+                //                            label = "label-warning"
+                //                        } else if (val.TrangThai == '1') {
+                //                            tt = "Đang sử dụng"
+                //                            label = "label-success"
+                //                        }
+                loadData(layDSPhong, function (data) {
 
-                loadData(idList, layDSPhong);
+                    $(idList).DataTable({
+                        destroy: true,
+                        data: data,
+                        columns: [
+                            { 'data': 'SoPhong' },
+                            { 'data': 'LoaiPhong' },
+                            {
+                                'data': null,
+                                'render': function (data, type, row) {
+                                    return formatNumber(row.Gia)
+                                }
+                            },
+                            {
+                                'data': null,
+                                'render': function (data, type, row) {
+                                    var tt = "Trống";
+                                    var label = "";
+                                    if (row.TrangThai == '0') {
+                                        tt = "Đang Chờ"
+                                        label = "label-warning"
+                                    } else if (row.TrangThai == '1') {
+                                        tt = "Đang sử dụng"
+                                        label = "label-success"
+                                    }
+                                    return '<span class="label label-sm ' + label + '" style="background-color:#cddadb; ">' + tt + '</span>'
+                                }
+                            },
+                            {
+                                'data': null,
+                                'render': function (data, type, row) {
+                                    return '<a class="btn btn-tbl-edit btn-xs" data-id="' + row.ID + '"> <i class="fa fa-pencil" style="color: lightgray"></i></a> <a class="btn btn-tbl-delete btn-xs" data-id="' + row.ID + '"><i class="fa fa-trash-o" data-id="ID"></i></a>'
+                                }
+                            }
+                        ],
+                        "columnDefs": [
+                            { "orderable": false, "targets": 4 },
+                            { "orderable": false, "targets": 2 },
+                            { "orderable": false, "targets": 3 }
+                        ]
+                    });
+                });
 
                 $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
 
                     dataId = $(this).attr("data-id");
                     var info = {
-                        id: idList,
+                        ID: dataId,
                         url: xoaPhong,
-                        urlLoad: layDSPhong,
                     };
 
-                    deleteData(info, dataId);
+                    deleteData(info);
                 })
 
 
@@ -79,13 +129,35 @@
                         soLau: '#solau-edit',
                         soPhong: '#sophong-edit'
                     }
+                    loadDataWithID(layPhong, dataId, function (data) {
+                        var loaiPhong;
+                        if (data.LoaiPhong == "1") {
+                            loaiPhong = "Phòng Loại 1";
+                        }
+                        if (data.LoaiPhong == "2") {
+                            loaiPhong = "Phòng Loại 2";
+                        }
+                        if (data.LoaiPhong == "3") {
+                            loaiPhong = "Phòng Loại 3";
+                        }
+                        if (data.LoaiPhong == "4") {
+                            loaiPhong = "Phòng Loại 4";
+                        }
+                        var soLau = data.SoPhong.slice(0, 1);
+                        var soPhong = data.SoPhong.slice(1);
 
-                    loadDataDetail(edit, layPhong, dataId);
+                        $(edit.loaiPhong).val(loaiPhong);
+                        $(edit.gia).val(data.Gia);
+                        $(edit.soLau).val(soLau);
+                        $(edit.soPhong).val(soPhong);
+                    });
+                    //loadDataDetail(edit, layPhong, dataId);
                 })
 
                 $('#btn-edit').click(function () {
+                    $(idModalEdit).modal('hide');
                     var loaiPhong = "0";
-                     var _0 = '0';
+                    var _0 = '0';
                     if ($('#loaiphong-edit').val() == "Phòng Loại 1") {
                         loaiPhong = "1";
                     }
@@ -98,7 +170,7 @@
                     if ($('#loaiphong-edit').val() == "Phòng Loại 4") {
                         loaiPhong = "4";
                     }
-                     if (parseInt($('#solau-add').val()) > 9) {
+                    if (parseInt($('#solau-add').val()) > 9) {
                         _0 = '';
                     }
                     var data = {
@@ -108,14 +180,8 @@
                         Gia: $('#gia-edit').val(),
                         SoPhong: $('#solau-edit').val() + $('#sophong-edit').val()
                     };
-                    var info = {
-                        id: idList,
-                        url: suaPhong,
-                        urlLoad: layDSPhong,
-                        modal: idModalEdit
-                    };
-                    console.log(data);
-                    editData(info, data);
+                    
+                    editData(suaPhong, data);
 
                 });
                 $("#addRow").click(function () {
@@ -123,6 +189,7 @@
                 })
 
                 $('#btn-add').click(function () {
+                    $(idModalAdd).modal('hide');
                     var loaiPhong = "0";
                     var _0 = '0';
                     if ($('#loaiphong-add').val() == "Phòng Loại 1") {
@@ -149,16 +216,14 @@
                         IsDelete: false,
                     }
                     var info = {
-                        id: idList,
                         url: themPhong,
-                        urlLoad: layDSPhong,
                         modal: idModalAdd
                     };
                     console.log(data);
                     addData(info, data);
                 });
 
-               
+
             });
 
         </script>
@@ -213,7 +278,7 @@
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default animated jello">
-                                   
+
 
                                     <li class="divider"> </li>
 
@@ -302,7 +367,14 @@
                                     </a>
 
                                 </li>
-                                
+                                <li class="nav-item active ql">
+                                    <a href="/SEP23Team2/Views/QuanLyViews/LoaiPhong/LoaiPhong.cshtml" class="nav-link nav-toggle">
+                                        <i class="material-icons">group</i>
+                                        <span class="title">Loại Phòng</span>
+                                        <span class="arrow"></span>
+                                    </a>
+
+                                </li>
 
 
 
@@ -332,7 +404,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card card-box"  style="border-top: 2px solid teal">
+                                <div class="card card-box" style="border-top: 2px solid teal">
 
                                     <div class="card-body ">
                                         <div class="row p-b-20">
@@ -341,25 +413,24 @@
                                                     <button id="addRow" class="btn btn-info">
                                                         Thêm Mới Phòng <i class="fa fa-plus"></i>
                                                     </button>
-                                                   
+
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div class="table-scrollable">
                                             <table class="table display product-overview mb-30"
-                                                   id="example4">
+                                                   id="dsphong">
                                                 <thead>
                                                     <tr>
-                                                        <th class="center" style="width: 130px"> Mã Phòng </th>
-                                                        <th class="center" style="width: 130px"> Số Phòng </th>
-                                                        <th class="center" style="width: 130px"> Phòng Loại </th>
-                                                        <th class="center" style="width: 180px"> Giá </th>
-                                                        <th class="center" style="width: 180px"> Tình Trạng </th>
-                                                        <th class="center"> Chức Năng </th>
+                                                        <th> Số Phòng </th>
+                                                        <th> Phòng Loại </th>
+                                                        <th> Giá </th>
+                                                        <th> Tình Trạng </th>
+                                                        <th> Chức Năng </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="dsphong">
+                                                <tbody>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -378,7 +449,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Phòng</h4>
-                                        <div class="card-box"  style="border-top: 2px solid purple">
+                                        <div class="card-box" style="border-top: 2px solid purple">
 
                                             <div class="card-body row">
                                                 <div class="col-lg-6 p-t-20">
@@ -447,7 +518,7 @@
                     <!-----end modal-->
                     <!-- end page content -->
                 </div>
-                
+
                 <div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
                     <div class="modal-dialog modal-sm">
                         <div class="modal-content" style="width:400px">
@@ -543,8 +614,8 @@
             <script src="~/Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
             <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
             <!-- bootstrap -->
-            <!--<script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>-->
-            <!--<script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>-->
+            <script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>
+            <script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
             <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
             <!-- Material -->
             <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>

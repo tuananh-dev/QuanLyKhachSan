@@ -49,15 +49,14 @@
             var idListPhongTrong = $('#dsphongtrong');
             var layDS = 'NhanVien/LayDanhSachKhachHangTheoMaDoan/';
             var lauDSPhongTheoNgay = 'NhanVien/LayDanhSachPhongTheoDieuKien';
-            var XepPhongThu = 'NhanVien/DatPhongThuNghiem';
             var info = {
                 id: idList,
                 url: layDS
             }
 
 
+            
             loadDSKHTheoMaDoan(info, sessionStorage.getItem('madoan'));
-
 
             $('#luu').click(function () {
                 $('#luu').css('display', 'none');
@@ -89,8 +88,7 @@
                     }
                     list.push(obj);
                 }
-                console.log(list);
-                XepPhongThuNghiem(XepPhongThu, list);
+                XepPhongThuNghiem(list);
 
 
 

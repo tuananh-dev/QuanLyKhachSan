@@ -1,5 +1,5 @@
 ﻿
-
+//orther function
 function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + " VND";
 }
@@ -21,11 +21,9 @@ function checkSession() {
     //console.log("hello")
 }
 //Xem Them Xoa Sua
+function loadData(url, callback) {
 
-function loadData(idList, url) {
-    var position = $(idList);
-
-    $.ajax({
+    return $.ajax({
         type: 'GET',
         url: '/SEP23Team2/api/' + url,
         beforeSend: function (xhr) {
@@ -34,103 +32,36 @@ function loadData(idList, url) {
         headers: {
             'content-type': 'application/json',
             'data-type': 'json',
-        },
-        success: function (data) {
-            position.empty();
-
-            $.each(data, function (index, val) {
-                switch (url) {
-                    case 'Quanly/LayDanhSachTienIch':
-                        position.prepend('<tr class="odd gradeX"><td>' + val.TenTienIch + '</td><td >' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                        break;
-                    case 'Quanly/LayDanhSachDichVu':
-                        var tien = formatNumber(val.Gia);
-                        position.prepend('<tr class="odd gradeX"><td >' + val.TenDichVu + '</td><td >' + tien + '</td><td >' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                        break;
-                    case 'Quanly/LayDanhSachPhong':
-                        var tien = formatNumber(val.Gia);
-                        var tt = "Trống";
-                        var label = "";
-                        if (val.TrangThai == '0') {
-                            tt = "Đang Chờ"
-                            label = "label-warning"
-                        } else if (val.TrangThai == '1') {
-                            tt = "Đang sử dụng"
-                            label = "label-success"
-                        }
-                        position.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + tien + '</td><td class="center"><span class="label label-sm ' + label + '" style="background-color:#cddadb; ">' + tt + '</span></td><td class="center"><a class="btn btn-tbl-edit btn-xs btn-edit" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></><a class="btn btn-tbl-delete btn-xs btn-delete" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                        break;
-                    case 'Quanly/LayDanhSachTaiKhoan':
-                        position.prepend('<tr class="odd gradeX"><td style="text-align: left;max-width: 150px">' + val.UserName + '</td><td >' + val.UserPassword + '</td><td >' + val.FullName + '</td><td >' + val.PhoneNumber + '</td><td >' + val.UserEmailID + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
-                        break;
-                    case 'NhanVien/LayDanhSachDoan':
-                        var tgNhan = new Date(val.ThoiGianNhan);
-                        var tgTra = new Date(val.ThoiGianTra);
-                        var ngayGui = new Date(val.NgayGui);
-                        position.append('<tr class="odd gradeX"><td >' + val.TenDoan + '</td><td >' + val.TenTruongDoan + '</td><td >' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td >' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td >' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td style="display:flex;justify-content:center;align-items:center;"><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '" style="color: lightgray" >Xếp Phòng</a><div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-right: 10px" id="loading"></div><a class="btn btn-danger btn-xs" data-id="' + val.MaDoan + '">Xóa</a></td ></tr > ');
-                        break;
-                    case 'KhachHang/LayDanhSachKhachHangTheoMaDoan/' + sessionStorage.getItem('madoan'):
-                        var daidien = 'Trống';
-                        var bg = '';
-                        if (val.NguoiDaiDienCuaTreEm != '0') {
-                            daidien = val.NguoiDaiDienCuaTreEm;
-                        }
-                        if (val.TrangThaiXacNhan) {
-                            $('#confirm').css("display", "none");
-                            $('#cancel').css("display", "none");
-                        }
-
-                        var tgNhan = new Date(val.ThoiGianNhan);
-                        var tgTra = new Date(val.ThoiGianTra);
-                        position.prepend('<tr class="odd gradeX ' + bg + '"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.Sophong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
-                        break;
-                    case 'NhanVien/LayDanhSachDoanDatPhongThanhCong':
-                        var tgNhan = new Date(val.ThoiGianNhan);
-                        var tgTra = new Date(val.ThoiGianTra);
-                        var ngayGui = new Date(val.NgayGui);
-                        var color = 'label-warning';
-                        var ttxn = 'Đang chờ';
-                        if (val.TrangThaiXacNhan) {
-                            ttxn = 'Đã Xác Nhận'
-                            color = 'label-success';
-                        }
-                        position.append('<tr class="odd gradeX"><td style="text-align:left" > ' + val.TenTruongDoan + '</td ><td >' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td><label class="label ' + color + '">' + ttxn + '</label></td></tr > ');
-                        break;
-                    case 'NhanVien/LayDanhSachDoanDatPhongThatBai':
-
-                        var tgNhan = new Date(val.ThoiGianNhan);
-                        var tgTra = new Date(val.ThoiGianTra);
-                        var ngayGui = new Date(val.NgayGui);
-                        position.append('<tr class="odd gradeX" data-id="' + val.MaDoan + '"><td style="text-align:left"> ' + val.TenTruongDoan + '</td><td>' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td class="center"><a class="btn btn-danger btn-xs" data-id="' + val.MaDoan + '"><i class="fa fa-trash-o "></i></a><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '"><i class="fa fa-arrow-circle-o-right "></i></a></td></tr > ');
-                        break;
-                    case 'NhanVien/LayDSLichSuDichVu':
-                        var ngayGui = new Date(val.NgayGoiDichVu);
-                        position.prepend('<tr class="odd gradeX"><td> ' + val.SoPhong + '</td><td>' + val.HoVaTenKhachHang + '</td><td>' + val.TenDichVu + '</td><td>' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td>' + val.GhiChu + '</td><td class="center"><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr > ');
-
-                        break;
-
-                    case 'NhanVien/LayDanhSachPhong':
-                        position.prepend('<option value="' + val.ID + '"> ' + val.SoPhong + '</option>');
-                        break;
-                    case 'NhanVien/LayDanhSachDichVu':
-                        position.prepend('<option value="' + val.ID + '" >' + val.TenDichVu + '&nbsp;&nbsp;&nbsp;' + ' +' + formatNumber(val.Gia) + '</option>');
-                        break;
-
-                }
-
-            });
-
-        },
-        error: function (data) {
-
-            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.pathname("/SEP23Team2/404.cshtml");
-            }
         }
-    });
+
+    }).done(callback).fail(function (jqXHR, textStatus, errorThrown) {
+        if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+            window.location.href = "/SEP23Team2/404.cshtml";
+        }
+    })
+
 }
+
+function loadDataWithID(url, id, callback) {
+    return $.ajax({
+        type: 'GET',
+        url: '/SEP23Team2/api/' + url + id,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+        },
+        headers: {
+            'content-type': 'application/json',
+            'data-type': 'json',
+        }
+    }).done(callback).fail(function (jqXHR, textStatus, errorThrown) {
+        if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+            window.location.href = "/SEP23Team2/404.cshtml";
+        }
+    })
+}
+
 function addData(info, dataInput) {
-    $.ajax({
+    return $.ajax({
         type: 'POST',
         url: '/SEP23Team2/api/' + info.url,
         beforeSend: function (xhr) {
@@ -141,61 +72,48 @@ function addData(info, dataInput) {
             'data-type': 'json',
         },
         data: JSON.stringify(dataInput),
-        success: function (data) {
-            $(info.modal).modal('hide');
-            Swal.fire(
-                'Thêm Thành Công!',
-                '',
-                'success'
-            )
-            loadData(info.id, info.urlLoad);
+    }).done(function (data) {
+        Swal.fire(
+            'Thêm Thành Công!',
+            '',
+            'success'
+        ).then(() => {
+            window.location.reload();
+        })
 
-        }, error: function (data) {
-            $(info.modal).modal('hide');
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: data.responseJSON.Message
-            }).then(value => {
-                window.location.reload();
-            })
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+            window.location.href = "/SEP23Team2/404.cshtml";
         }
-
     })
 }
 
-function editData(info, dataInput) {
+function editData(url, dataInput) {
     $.ajax({
-        url: '/SEP23Team2/api/' + info.url,
+        url: '/SEP23Team2/api/' + url,
         method: 'PUT',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         data: JSON.stringify(dataInput),
-        success: function () {
-            $(info.modal).modal('hide');
-            Swal.fire(
-                'Chỉnh Sửa Thành Công!',
-                '',
-                'success'
-            )
-            loadData(info.id, info.urlLoad);
+    }).done(function (data) {
+        Swal.fire(
+            'Chỉnh Sửa Thành Công!',
+            '',
+            'success'
+        ).then(() => {
+            window.location.reload();
+        })
 
-        },
-        error: function (data) {
-            $(info.modal).modal('hide');
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: data.responseJSON.Message
-            })
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+            window.location.href = "/SEP23Team2/404.cshtml";
         }
-
     })
 }
 
-function deleteData(info, dataInput) {
+function deleteData(info) {
 
     Swal.fire({
         title: 'Bạn có chắc muốn Xóa?',
@@ -210,102 +128,34 @@ function deleteData(info, dataInput) {
         if (result.value) {
 
             $.ajax({
-                url: '/SEP23Team2/api/' + info.url + dataInput,
+                url: '/SEP23Team2/api/' + info.url + info.ID,
                 method: 'DELETE',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
                 },
                 headers: { 'content-type': 'application/json', 'data-type': 'json' },
-                success: function (data, textStatus, xhr) {
-
-                    loadData(info.id, info.urlLoad);
-                },
-                error: function (data) {
-
-                    if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                        window.location.pathname("/SEP23Team2/404.cshtml");
-                    }
+            }).done(function (data) {
+                Swal.fire(
+                    'Đã Xóa!',
+                    '',
+                    'success'
+                ).then(() => {
+                    window.location.reload();
+                })
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+                    window.location.href = "/SEP23Team2/404.cshtml";
                 }
             })
-            Swal.fire(
-                'Đã Xóa!',
-                '',
-                'success'
-            )
+
         }
     })
 
 }
 //End
 
-//Load 1 row du lieu khi Edit
-function loadDataDetail(edit, url, id) {
 
-
-    $.ajax({
-        type: 'GET',
-        url: '/SEP23Team2/api/' + url + id,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-            xhr.setRequestHeader("contentType", "application/json;charset=UTF-8");
-        },
-        headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        dataType: 'json',
-        success: function (data) {
-            switch (url) {
-                case 'Quanly/LayTienIch?ID=':
-                    $(edit.mota).val(data.MoTa);
-                    $(edit.tenTienIch).val(data.TenTienIch);
-                    break;
-                case 'QuanLy/LayDichVu?ID=':
-                    $("textarea" + edit.moTa).val(data.MoTa);
-                    $(edit.tenDV).val(data.TenDichVu);
-                    $(edit.gia).val(data.Gia);
-                    break;
-                case 'Quanly/LayPhong?ID=':
-                    var loaiPhong;
-                    if (data.LoaiPhong == "1") {
-                        loaiPhong = "Phòng Loại 1";
-                    }
-                    if (data.LoaiPhong == "2") {
-                        loaiPhong = "Phòng Loại 2";
-                    }
-                    if (data.LoaiPhong == "3") {
-                        loaiPhong = "Phòng Loại 3";
-                    }
-                    if (data.LoaiPhong == "4") {
-                        loaiPhong = "Phòng Loại 4";
-                    }
-                    var soLau = data.SoPhong.slice(0, 1);
-                    var soPhong = data.SoPhong.slice(1);
-
-                    $(edit.loaiPhong).val(loaiPhong);
-                    $(edit.gia).val(data.Gia);
-                    $(edit.soLau).val(soLau);
-                    $(edit.soPhong).val(soPhong);
-                    break;
-                case 'Quanly/LayTaiKhoan?ID=':
-                    //console.log(data.FullName + '' + data.MatKhau + '' + data.HoVaTen + '' + data.SoDienThoai + '' + data.Mail);
-                    $(edit.TenTaiKhoan).val(data.UserName);
-                    $(edit.MatKhau).val(data.UserPassword);
-                    $(edit.HoVaTen).val(data.FullName);
-                    $(edit.SoDienThoai).val(data.PhoneNumber);
-                    $(edit.Mail).val(data.UserEmailID);
-                    break;
-                default:
-                // code block
-            }
-        },
-        error: function (data) {
-
-            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.pathname("/404.cshtml");
-            }
-        }
-    });
-}
-
-//View KhachHang
+//View xemchitiet
 function loadDSKHTheoMaDoan(info, id) {
     $.ajax({
         type: 'GET',
@@ -360,80 +210,43 @@ function loadDSKHTheoMaDoan(info, id) {
     })
 }
 
-//Load DS Phong trống View QuanLy/Xemchitiet
-function LoadDSLoaiPhong(idList, url) {
-    $.ajax({
-        type: 'GET',
-        url: '/SEP23Team2/api/' + url,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-        },
-        headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        dataType: 'json',
-        success: function (data) {
-            $(idList).empty();
-            var i = 0;
-            $.each(data, function (index, val) {
-                $(idList).append('<tr class="odd gradeX"><td class="center"><label value="' + val.LoaiPhong + '">Phòng Loại ' + val.LoaiPhong + '</label></td><td class="center"><input type="number" pattern="-?[0-9]*(\.[0-9]+)?" style="text-align:center;width: 125px" id="gia' + i + '" name="gia" value="' + val.Gia + '"></td></tr>');
-                i++
-                
-            })
-
-            //sessionStorage.setItem('length', i);
-        },
-        error: function (data) {
-
-            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.pathname("/SEP23Team2/404.cshtml");
-            }
-        }
-    })
-}
-
 //Load DS phong View Nhanvien
-function loadDSPhong(url) {
-    $.ajax({
-        type: 'GET',
-        url: '/SEP23Team2/api/' + url,
-        dataType: 'json',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-        },
-        headers: {
-            'content-type': 'application/json',
-            'data-type': 'json',
-        },
-        success: function (data) {
+//function loadDSPhong(url) {
+//    $.ajax({
+//        type: 'GET',
+//        url: '/SEP23Team2/api/' + url,
+//        dataType: 'json',
+//        beforeSend: function (xhr) {
+//            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+//        },
+//        headers: { 'content-type': 'application/json', 'data-type': 'json' }
+//    }).done((data) => {
+//        for (i = 1; i < 10; i++) {
+//            $('#row' + i).empty();
+//            $.each(data, function (index, val) {
+//                var color = "bg-success";
+//                if (val.TrangThai == -1) {
+//                    color = "bg-default";
+//                } else if (val.TrangThai == 0) {
+//                    color = "bg-warning";
+//                } else if (val.TrangThai == 2) {
+//                    color = "bg-primary";
+//                }
+//                if (val.SoPhong.charAt(0) == '' + i) {
 
-            for (i = 1; i < 10; i++) {
-                $('#row' + i).empty();
-                $.each(data, function (index, val) {
-                    var color = "bg-success";
-                    var info = "Số Phòng: " + val.SoPhong + "\r\nLoại Phòng: " + val.LoaiPhong + "\r\nGiá: " + val.Gia + "\r\n";
-                    if (val.TrangThai == -1) {
-                        color = "bg-default";
-                    } else if (val.TrangThai == 0) {
-                        color = "bg-warning";
-                    } else if (val.TrangThai == 2) {
-                        color = "bg-primary";
-                    }
-                    if (val.SoPhong.charAt(0) == '' + i) {
+//                    $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" data-id="' + val.ID + '" value="' + val.SoPhong + '"> ' + val.SoPhong + '</button> ');
+//                }
+//            })
 
-                        $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" data-id="' + val.ID + '" value="' + val.SoPhong + '"> ' + val.SoPhong + '</button> ');
-                    }
-                })
+//        }
+//    }).fail(function (jqXHR, textStatus, errorThrown) {
+//        if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+//            window.location.href = "/SEP23Team2/404.cshtml";
+//        }
+//    })
+//}
 
-            }
-        },
-        error: function (data) {
-
-            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.pathname("/404.cshtml");
-            }
-        }
-    })
-}
-
+//Load DS Phong trống View Nhanvien/Datphongthatbai/xemchitiet
 function loadDSPhongTrong(info, dataInput) {
     $.ajax({
         type: 'POST',
@@ -465,114 +278,68 @@ function loadDSPhongTrong(info, dataInput) {
 }
 
 
-
-function editAllLoaiPhong(info, dataInput) {
-    $.ajax({
-        url: '/SEP23Team2/api/' + info.url,
-        method: 'PUT',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-        },
-        headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        data: JSON.stringify(dataInput),
-        success: function () {
-            
-            Swal.fire(
-                'Chỉnh Sửa Thành Công!',
-                '',
-                'success'
-            ).then(() => {
-                LoadDSLoaiPhong(info.id, info.urlLoad);
-            })
-              
-            
-            
-
-        },
-        error: function (data) {
-           
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: data.responseJSON.Message
-            })
-        }
-
-    })
-}
-
 //Xep Phong
-function XepPhong(info, url, dataId) {
+function XepPhong(ID) {
     $.ajax({
         type: 'GET',
-        url: '/SEP23Team2/api/' + url + dataId,
+        url: '/SEP23Team2/api/NhanVien/DatPhongChoTungDoan/' + ID,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        success: function (data) {
-            Swal.fire(
-                'Success!',
-                '',
-                'success'
-            )
-            loadData(info.id, info.urlLoad);
-        },
-        error: function (data) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: data.responseJSON.Message
-            })
-            loadData(info.id, info.urlLoad);
-
+    }).done((data) => {
+        Swal.fire(
+            'Success!',
+            '',
+            'success'
+        ).then(() => {
+            window.location.reload();
+        })
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+            window.location.href = "/SEP23Team2/404.cshtml";
         }
+        console.log(jqXHR.responseJSON.Message);
     })
 
 }
 
-function XepPhongTatCa(info, url) {
+function XepPhongTatCa() {
     $.ajax({
         type: 'GET',
-        url: '/SEP23Team2/api/' + url,
+        url: '/SEP23Team2/api/NhanVien/DatPhongChoNhieuDoan',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
-        headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        success: function (data) {
-            var str = data.split('-');
-            var tc = str[0];
-            var tb = str[1];
-            Swal.fire(
-                'Hoàn Tất!',
-                'Thành Công: ' + tc + '   Thất Bại: ' + tb,
-                'success'
-            ).then(value => {
-                $('#xepall').css("display", "block");
-                $('#loadingAll').css("display", "none");
-                loadData(info.id, info.urlLoad);
-            })
-
-        },
-        error: function (data) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: data.responseJSON.Message
-            }).then(value => {
-                $('#xepall').css("display", "block");
-                $('#loadingAll').css("display", "none");
-                loadData(info.id, info.urlLoad);
-            })
-
-
-        }
+        headers: { 'content-type': 'application/json', 'data-type': 'json' }
+    }).done((data) => {
+        var str = data.split('-');
+        var tc = str[0];
+        var tb = str[1];
+        Swal.fire(
+            'Hoàn Tất!',
+            'Thành Công: ' + tc + '   Thất Bại: ' + tb,
+            'success'
+        ).then(value => {
+            $('#xepall').css("display", "block");
+            $('#loadingAll').css("display", "none");
+            window.location.reload();
+        })
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: jqXHR.responseJSON.Message
+        }).then(value => {
+            $('#xepall').css("display", "block");
+            window.location.reload();
+        })
     })
 
 
 }
 
-function HuyXacNhanXepPhong(url, dataInput) {
+function HuyXacNhanXepPhong() {
     Swal.fire({
         title: 'Bạn có chắc muốn Xóa?',
         text: "Bạn sẽ không thể quay lại!",
@@ -587,27 +354,34 @@ function HuyXacNhanXepPhong(url, dataInput) {
             $('#cancel').css("display", "none");
             $('#loadingcancel').css("display", "block");
             $.ajax({
-                url: '/SEP23Team2/api/' + url + dataInput,
+                url: '/SEP23Team2/api/KhachHang/HuyDatPhong/' + sessionStorage.getItem('madoan'),
                 method: 'GET',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
                 },
-                headers: { 'content-type': 'application/json', 'data-type': 'json' },
-                success: function (data, textStatus, xhr) {
-                    Swal.fire(
-                        'Đã Xóa!',
-                        '',
-                        'success'
-                    ).then(val => {
-                        sessionStorage.removeItem('role');
-                        sessionStorage.removeItem('accessToken');
-                        sessionStorage.removeItem('fullname');
-                        window.location.pathname = "/SEP23Team2/TrangChu.cshtml";
+                headers: { 'content-type': 'application/json', 'data-type': 'json' }
+            }).done(() => {
+                Swal.fire(
+                    'Đã Xóa!',
+                    '',
+                    'success'
+                ).then(val => {
+                    sessionStorage.removeItem('role');
+                    sessionStorage.removeItem('accessToken');
+                    sessionStorage.removeItem('fullname');
+                    window.location.href = "/SEP23Team2/TrangChu.cshtml";
+                })
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+                    window.location.href = "/SEP23Team2/404.cshtml";
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: jqXHR.responseJSON.Message
                     })
-
-
-
                 }
+
             })
 
         }
@@ -623,154 +397,80 @@ function XacNhanDatPhong() {
 
         },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        success: function (data) {
-            console.log(data);
-            Swal.fire(
-                'Xác Nhận Đặt Phòng Thành Công!',
-                '',
-                'success'
-            ).then(val => {
-                location.reload();
-            })
-
-        },
-        error: function (data) {
+    }).done(() => {
+        Swal.fire(
+            'Xác Nhận Đặt Phòng Thành Công!',
+            '',
+            'success'
+        ).then(val => {
+            window.location.reload();
+        })
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+            window.location.href = "/SEP23Team2/404.cshtml";
+        } else {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: data.responseJSON.Message
+                text: jqXHR.responseJSON.Message
             })
-            loadData(info.id, info.urlLoad);
         }
+
     })
 }
 
-function XepPhongThuNghiem(url, dataInput) {
+function XepPhongThuNghiem(dataInput) {
     $.ajax({
-        url: '/SEP23Team2/api/' + url,
+        url: '/SEP23Team2/api/NhanVien/DatPhongThuNghiem',
         method: 'POST',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        data: JSON.stringify(dataInput),
-        success: function (data) {
-            //$(info.modal).modal('hide');
-            Swal.fire(
-                'Success!',
-                '',
-                'success'
-            ).then(val => {
-                window.location.pathname = "/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml";
-            })
-
-
-        }, error: function (data) {
-            console.log(data);
+        data: JSON.stringify(dataInput)
+    }).done(() => {
+        Swal.fire(
+            'Success!',
+            '',
+            'success'
+        ).then(val => {
+            window.location.pathname = "/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml";
+        })
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+            window.location.href = "/SEP23Team2/404.cshtml";
+        } else {
             swal.fire(
                 'Oop...!',
-                data.responseJSON.Message,
+                jqXHR.responseJSON.Message,
                 'error'
             ).then(() => {
                 $('#luu').css('display', 'block');
                 $('#loading').css('display', 'none');
                 window.location.reload();
             })
-
         }
 
     })
 }
 
-
-function LayThongTinPhong(info, id) {
-    $.ajax({
-        type: 'GET',
-        url: '/SEP23Team2/api/' + info.url + id,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
-        },
-        headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        success: function (data) {
-
-            switch (info.url) {
-                case 'NhanVien/LayDanhSachTenKhachHangChungPhong/':
-                    $(info.idLoad).empty();
-                    $.each(data, function (index, val) {
-                        $(info.idLoad).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
-                    })
-                    break;
-                case 'NhanVien/DanhSachKhachHangChungPhongDichVuPhong/':
-                    $(info.idLoad).empty();
-                    $.each(data, function (index, val) {
-                        $(info.idLoad).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
-                    })
-                    break;
-                case 'NhanVien/LayThongTinChiPhiPhong/':
-                    $(info.idCMND).empty();
-                    $(info.idNguoiDaiDien).empty();
-                    $(info.idDichVu).empty();
-
-                    $(info.idCMND).val(data[1]);
-                    $(info.idCMND).html(data[1]);
-                    $(info.idNguoiDaiDien).val(data[0]);
-                    $(info.idNguoiDaiDien).html(data[0]);
-                    for (i = 2; i < data.length - 1; i++) {
-                        $(info.idDichVu).append('<li>' + data[i] + '</li>');
-                    }
-                    $(info.idDichVu).append('<li>Tổng Tiền: ' + data[data.length - 1] + '</li>');
-                    console.log(data);
-
-
-                    break;
-
-            }
-
-        },
-        error: function (data) {
-
-            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.pathname("/404.cshtml");
-            }
-        }
-    })
-}
-
-function KhachHangNhanTraPhong(info, dataInput) {
-    $.ajax({
+function KhachHangNhanTraPhong(url, dataInput, callback) {
+    return $.ajax({
         type: 'POST',
-        url: '/SEP23Team2/api/' + info.url,
+        url: '/SEP23Team2/api/' + url,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
         },
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
-        data: JSON.stringify(dataInput),
-        success: function (data) {
-            $(info.modal).modal('hide');
-            switch (info.url) {
-                case 'NhanVien/KhachHangTraPhong':
-                    Swal.fire(
-                        'Trả Phòng Thành Công!',
-                        '',
-                        'success'
-                    )
-                    break;
-                case 'NhanVien/KhachHangNhanPhong':
-                    Swal.fire(
-                        'Nhận Phòng Thành Công!',
-                        '',
-                        'success'
-                    )
-                    break;
-            }
-            loadDSPhong(info.urlLoad);
-
-        }, error: function (data) {
-            $(info.modal).modal('hide');
+        data: JSON.stringify(dataInput)
+    }).done(callback).fail(function (jqXHR, textStatus, errorThrown) {
+        if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+            window.location.href = "/SEP23Team2/404.cshtml";
+        } else {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: data.responseJSON.Message
+                text: jqXHR.responseJSON.Message
             }).then(value => {
                 window.location.reload();
             })
@@ -779,5 +479,242 @@ function KhachHangNhanTraPhong(info, dataInput) {
     })
 }
 
+
+//function loadData(idList, url) {
+//    var position = $(idList);
+
+//    $.ajax({
+//        type: 'GET',
+//        url: '/SEP23Team2/api/' + url,
+//        beforeSend: function (xhr) {
+//            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+//        },
+//        headers: {
+//            'content-type': 'application/json',
+//            'data-type': 'json',
+//        },
+//        success: function (data) {
+//            position.empty();
+
+//            $.each(data, function (index, val) {
+//                switch (url) {
+//                    case 'Quanly/LayDanhSachTienIch':
+//                        position.prepend('<tr class="odd gradeX"><td>' + val.TenTienIch + '</td><td >' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+
+//                        break;
+//                    case 'Quanly/LayDanhSachDichVu':
+//                        var tien = formatNumber(val.Gia);
+//                        position.prepend('<tr class="odd gradeX"><td >' + val.TenDichVu + '</td><td >' + tien + '</td><td >' + val.MoTa + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '" ><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+//                        break;
+//                    case 'Quanly/LayDanhSachPhong':
+//                        var tien = formatNumber(val.Gia);
+//                        var tt = "Trống";
+//                        var label = "";
+//                        if (val.TrangThai == '0') {
+//                            tt = "Đang Chờ"
+//                            label = "label-warning"
+//                        } else if (val.TrangThai == '1') {
+//                            tt = "Đang sử dụng"
+//                            label = "label-success"
+//                        }
+//                        position.prepend('<tr class="odd gradeX"><td class="center">' + val.MaPhong + '</td><td class="center">' + val.SoPhong + '</td><td class="center">' + val.LoaiPhong + '</td><td class="center">' + tien + '</td><td class="center"><span class="label label-sm ' + label + '" style="background-color:#cddadb; ">' + tt + '</span></td><td class="center"><a class="btn btn-tbl-edit btn-xs btn-edit" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></><a class="btn btn-tbl-delete btn-xs btn-delete" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+//                        break;
+//                    case 'Quanly/LayDanhSachTaiKhoan':
+//                        position.prepend('<tr class="odd gradeX"><td style="text-align: left;max-width: 150px">' + val.UserName + '</td><td >' + val.UserPassword + '</td><td >' + val.FullName + '</td><td >' + val.PhoneNumber + '</td><td >' + val.UserEmailID + '</td><td class="center"><a class="btn btn-tbl-edit btn-xs" data-id="' + val.ID + '"><i class="fa fa-pencil" style="color: lightgray"></i></a><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr>');
+//                        break;
+//                    case 'NhanVien/LayDanhSachDoan':
+//                        var tgNhan = new Date(val.ThoiGianNhan);
+//                        var tgTra = new Date(val.ThoiGianTra);
+//                        var ngayGui = new Date(val.NgayGui);
+//                        position.append('<tr class="odd gradeX"><td >' + val.TenDoan + '</td><td >' + val.TenTruongDoan + '</td><td >' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td >' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td >' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td style="display:flex;justify-content:center;align-items:center;"><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '" style="color: lightgray" >Xếp Phòng</a><div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-right: 10px" id="loading"></div><a class="btn btn-danger btn-xs" data-id="' + val.MaDoan + '">Xóa</a></td ></tr > ');
+//                        break;
+
+
+//                    case 'KhachHang/LayDanhSachKhachHangTheoMaDoan/' + sessionStorage.getItem('madoan'):
+//                        var daidien = 'Trống';
+//                        var bg = '';
+//                        if (val.NguoiDaiDienCuaTreEm != '0') {
+//                            daidien = val.NguoiDaiDienCuaTreEm;
+//                        }
+//                        if (val.TrangThaiXacNhan) {
+//                            $('#confirm').css("display", "none");
+//                            $('#cancel').css("display", "none");
+//                        }
+
+//                        var tgNhan = new Date(val.ThoiGianNhan);
+//                        var tgTra = new Date(val.ThoiGianTra);
+//                        position.prepend('<tr class="odd gradeX ' + bg + '"><td style="text-align:left"> ' + val.HoVaTen + '</td > <td >' + val.SoDienThoai + '</td> <td >' + val.Email + '</td> <td class="">' + daidien + '</td> <td class="center">' + val.Nhom + '</td> <td class="center">' + val.Sophong + '</td> <td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td> <td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td></tr > ');
+//                        break;
+//                    case 'NhanVien/LayDanhSachDoanDatPhongThanhCong':
+//                        var tgNhan = new Date(val.ThoiGianNhan);
+//                        var tgTra = new Date(val.ThoiGianTra);
+//                        var ngayGui = new Date(val.NgayGui);
+//                        var color = 'label-warning';
+//                        var ttxn = 'Đang chờ';
+//                        if (val.TrangThaiXacNhan) {
+//                            ttxn = 'Đã Xác Nhận'
+//                            color = 'label-success';
+//                        }
+//                        position.append('<tr class="odd gradeX"><td style="text-align:left" > ' + val.TenTruongDoan + '</td ><td >' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td><label class="label ' + color + '">' + ttxn + '</label></td></tr > ');
+//                        break;
+//                    case 'NhanVien/LayDanhSachDoanDatPhongThatBai':
+
+//                        var tgNhan = new Date(val.ThoiGianNhan);
+//                        var tgTra = new Date(val.ThoiGianTra);
+//                        var ngayGui = new Date(val.NgayGui);
+//                        position.append('<tr class="odd gradeX" data-id="' + val.MaDoan + '"><td style="text-align:left"> ' + val.TenTruongDoan + '</td><td>' + val.TenDoan + '</td><td class="center">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</td><td class="center">' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</td><td class="center">' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td class="center"><a class="btn btn-danger btn-xs" data-id="' + val.MaDoan + '"><i class="fa fa-trash-o "></i></a><a class="btn btn-info btn-xs" data-id="' + val.MaDoan + '"><i class="fa fa-arrow-circle-o-right "></i></a></td></tr > ');
+//                        break;
+//                    case 'NhanVien/LayDSLichSuDichVu':
+//                        var ngayGui = new Date(val.NgayGoiDichVu);
+//                        position.prepend('<tr class="odd gradeX"><td> ' + val.SoPhong + '</td><td>' + val.HoVaTenKhachHang + '</td><td>' + val.TenDichVu + '</td><td>' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + '</td><td>' + val.GhiChu + '</td><td class="center"><a class="btn btn-tbl-delete btn-xs" data-id="' + val.ID + '"><i class="fa fa-trash-o "></i></a></td></tr > ');
+
+//                        break;
+
+//                    case 'NhanVien/LayDanhSachPhong':
+//                        position.prepend('<option value="' + val.ID + '"> ' + val.SoPhong + '</option>');
+//                        break;
+//                    case 'NhanVien/LayDanhSachDichVu':
+//                        position.prepend('<option value="' + val.ID + '" >' + val.TenDichVu + '&nbsp;&nbsp;&nbsp;' + ' +' + formatNumber(val.Gia) + '</option>');
+//                        break;
+
+//                }
+
+//            });
+
+//        },
+//        error: function (data) {
+
+//            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
+//                window.location.pathname("/SEP23Team2/404.cshtml");
+//            }
+//        }
+//    });
+//}
+
+//Load DS Loai Phong View QuanLy/Xemloaiphong
+//function LoadDSLoaiPhong(idList, url) {
+//    $.ajax({
+//        type: 'GET',
+//        url: '/SEP23Team2/api/' + url,
+//        beforeSend: function (xhr) {
+//            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+//        },
+//        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+//        dataType: 'json',
+//        success: function (data) {
+//            $(idList).empty();
+//            var i = 0;
+//            $.each(data, function (index, val) {
+//                $(idList).append('<tr class="odd gradeX"><td class="center"><label value="' + val.LoaiPhong + '">Phòng Loại ' + val.LoaiPhong + '</label></td><td class="center"><input type="number" pattern="-?[0-9]*(\.[0-9]+)?" style="text-align:center;width: 125px" id="gia' + i + '" name="gia" value="' + val.Gia + '"></td></tr>');
+//                i++
+
+//            })
+
+//            //sessionStorage.setItem('length', i);
+//        },
+//        error: function (data) {
+
+//            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
+//                window.location.pathname("/SEP23Team2/404.cshtml");
+//            }
+//        }
+//    })
+//}
+
+
+//function LayThongTinPhong(info, id) {
+//    $.ajax({
+//        type: 'GET',
+//        url: '/SEP23Team2/api/' + info.url + id,
+//        beforeSend: function (xhr) {
+//            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+//        },
+//        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+//        success: function (data) {
+
+//            switch (info.url) {
+//                case 'NhanVien/LayDanhSachTenKhachHangChungPhong/':
+//                    $(info.idLoad).empty();
+//                    $.each(data, function (index, val) {
+//                        $(info.idLoad).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
+//                    })
+//                    break;
+//                case 'NhanVien/DanhSachKhachHangChungPhongDichVuPhong/':
+//                    $(info.idLoad).empty();
+//                    $.each(data, function (index, val) {
+//                        $(info.idLoad).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
+//                    })
+//                    break;
+//                case 'NhanVien/LayThongTinChiPhiPhong/':
+//                    $(info.idCMND).empty();
+//                    $(info.idNguoiDaiDien).empty();
+//                    $(info.idDichVu).empty();
+
+//                    $(info.idCMND).val(data[1]);
+//                    $(info.idCMND).html(data[1]);
+//                    $(info.idNguoiDaiDien).val(data[0]);
+//                    $(info.idNguoiDaiDien).html(data[0]);
+//                    for (i = 2; i < data.length - 1; i++) {
+//                        $(info.idDichVu).append('<li>' + data[i] + '</li>');
+//                    }
+//                    $(info.idDichVu).append('<li>Tổng Tiền: ' + data[data.length - 1] + '</li>');
+//                    console.log(data);
+
+
+//                    break;
+
+//            }
+
+//        },
+//        error: function (data) {
+
+//            if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
+//                window.location.pathname("/404.cshtml");
+//            }
+//        }
+//    })
+//}
+
+
+//function editAllLoaiPhong(info, dataInput) {
+//    $.ajax({
+//        url: '/SEP23Team2/api/' + info.url,
+//        method: 'PUT',
+//        beforeSend: function (xhr) {
+//            xhr.setRequestHeader('Authorization', 'bearer ' + sessionStorage.getItem('accessToken'));
+//        },
+//        headers: { 'content-type': 'application/json', 'data-type': 'json' },
+//        data: JSON.stringify(dataInput),
+//        success: function () {
+
+
+
+
+
+
+//        },
+//        error: function (data) {
+
+//            Swal.fire({
+//                icon: 'error',
+//                title: 'Oops...',
+//                text: data.responseJSON.Message
+//            })
+//        }
+
+//    }).done(() => {
+//        Swal.fire(
+//            'Chỉnh Sửa Thành Công!',
+//            '',
+//            'success'
+//        ).then(() => {
+//            window.location.reload();
+//        })
+//    }).fail(function (jqXHR, textStatus, errorThrown) {
+//        if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+//            window.location.href = "/SEP23Team2/404.cshtml";
+//        }
+//    })
+//}
 
 

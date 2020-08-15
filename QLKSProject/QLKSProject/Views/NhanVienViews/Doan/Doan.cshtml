@@ -23,6 +23,8 @@
     <link href="~/Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet"
+          type="text/css" />
     <!-- favicon -->
 
     <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
@@ -36,32 +38,66 @@
 
             var idList = $('#dsdoan');
             var layDSDoan = 'NhanVien/LayDanhSachDoan';
-            var xepPhong = "NhanVien/DatPhongChoTungDoan/";
-            var xepPhongAll = "NhanVien/DatPhongChoNhieuDoan";
-            loadData(idList, layDSDoan);
+
+
+            //<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-right: 10px" id="loading"></div> <a class="btn btn-danger btn-xs" data-id="' + val.MaDoan + '">Xóa</a></td >
+            loadData(layDSDoan, function (data) {
+                $(idList).DataTable({
+                    destroy: true,
+                    data: data,
+                    columns: [
+                        { 'data': 'TenDoan' },
+                        { 'data': 'TenTruongDoan' },
+                        {
+                            'data': null,
+                            'render': function (data, type, row) {
+                                var tgNhan = new Date(row.ThoiGianNhan);
+                                return '' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + ''
+                            }
+                        },
+                        {
+                            'data': null,
+                            'render': function (data, type, row) {
+                                var tgTra = new Date(row.ThoiGianTra);
+                                return '' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + ''
+                            },
+                        }, {
+                            'data': null, 'render': function (data, type, row) {
+                                var ngayGui = new Date(row.NgayGui);
+                                return '' + ngayGui.getDate() + '-' + (ngayGui.getMonth() + 1) + '-' + ngayGui.getFullYear() + ''
+                            }
+                        },
+                        {
+                            'data': null,
+                            'render': function (data, type, row) {
+                                return '<a class="btn btn-info btn-xs" data-id="' + row.MaDoan + '"> Xếp Phòng</a ><span class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style = "display: none;margin-right: 10px" id="loading" ></span ><a class="btn btn-danger btn-xs" data-id="' + row.MaDoan + '">Xóa</a>'
+                            }
+                        }
+                    ],
+                    "columnDefs": [
+                        { "orderable": false, "targets": 2 },
+                        { "orderable": false, "targets": 3 },
+                        { "orderable": false, "targets": 4 },
+                        { "orderable": false, "targets": 5 }
+                    ]
+                });
+            });
 
 
             $('body').on('click', 'a.btn.btn-info.btn-xs', function () {
-                console.log("click");
                 $(this).css("display", "none");
                 $('#loading').css("display", "block");
 
                 dataId = $(this).attr("data-id");
-                var info = {
-                    id: idList,
-                    urlLoad: layDSDoan
-                }
-                XepPhong(info, xepPhong, dataId);
+
+                XepPhong(dataId);
             })
             $('#xepall').click(function () {
                 $(this).css("display", "none");
                 $('#loadingAll').css("display", "block");
-                var info = {
-                    id: idList,
-                    urlLoad: layDSDoan
-                }
-                XepPhongTatCa(info, xepPhongAll);
-                
+
+                XepPhongTatCa();
+
             })
 
 
@@ -244,18 +280,18 @@
                                     </div>
                                     <div class="table-scrollable">
                                         <table class="table table-hover table-checkable order-column full-width"
-                                               id="example">
+                                               id="dsdoan">
                                             <thead>
                                                 <tr>
-                                                    <th style="width:300px;"> Tên Đoàn </th>
-                                                    <th style="width:300px;"> Tên Trưởng Đoàn </th>
+                                                    <th> Tên Đoàn </th>
+                                                    <th> Tên Trưởng Đoàn </th>
                                                     <th> Thời Gian Nhận </th>
                                                     <th> Thời Gian Trả </th>
                                                     <th> Ngày Gửi </th>
                                                     <th class="center"> Chức Năng </th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="dsdoan">
+                                            <tbody>
                                             </tbody>
                                         </table>
                                     </div>
@@ -289,6 +325,8 @@
     <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Content/QuanLy/plugins/sparkline/jquery.sparkline.min.js"></script>
     <script src="~/Content/QuanLy/js/pages/sparkline/sparkline-data.js"></script>
+    <script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
     <!-- Common js-->
     <script src="~/Content/QuanLy/js/app.js"></script>
     <script src="~/Content/QuanLy/js/layout.js"></script>

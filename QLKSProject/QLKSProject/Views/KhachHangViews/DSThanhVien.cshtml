@@ -24,6 +24,8 @@
     <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
+    <link href="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet"
+          type="text/css" />
     <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/Content/QuanLy/Jquery.js"></script>
@@ -40,31 +42,56 @@
 
             var idList = $('#dsthanhvien');
             var layDS = 'KhachHang/LayDanhSachKhachHangTheoMaDoan/';
-            var huyXepPhong = 'KhachHang/HuyDatPhong/';
             checkSession();
-            if (sessionStorage.getItem('xacnhan') != "") {
-                sessionStorage.removeItem('xacnhan')
-            }
-
-            loadData(idList, layDS + sessionStorage.getItem('madoan'));
-            //if (sessionStorage.getItem('xacnhan') == "true") {
-            //    $('#confirm').css("display", "none");
-            //    $('#cancel').css("display", "none");
+            //if (sessionStorage.getItem('xacnhan') != "") {
+            //    sessionStorage.removeItem('xacnhan')
             //}
+            loadDataWithID(layDS, sessionStorage.getItem('madoan'), function (data) {
+                console.log(data);
+                if (data[0].TrangThaiXacNhan) {
+                    $('#confirm').css("display", "none");
+                    $('#cancel').css("display", "none");
+                }
+                
+                var tgNhan = new Date(data[0].ThoiGianNhan);
+                var tgTra = new Date(data[0].ThoiGianTra);
+                var strTime = 'Từ <span style="font-size: 18px;font-weight:700;">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</span>&nbsp;&nbsp; Đến <span style="font-size: 18px;font-weight:700;">' + '' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</span>';
+                $('#time').html(strTime);
+
+                $(idList).DataTable({
+                    destroy: true,
+                    data: data,
+                    columns: [
+                        { 'data': 'HoVaTen' },
+                        { 'data': 'SoDienThoai' },
+                        { 'data': 'Email' },
+                        { 'data': 'NguoiDaiDienCuaTreEm' },
+                        { 'data': 'Nhom' },
+                        { 'data': 'Sophong' },
+                        
+                    ],
+                    "columnDefs": [
+                        { "orderable": false, "targets": 3 },
+                        { "orderable": false, "targets": 2 },
+                        { "orderable": false, "targets": 1 }
+                    ]
+                });
+            });
+            if (sessionStorage.getItem('xacnhan') == "true") {
+                $('#confirm').css("display", "none");
+                $('#cancel').css("display", "none");
+            }
 
             $('#confirm').click(function () {
                 $(this).css("display", "none");
                 $('#loadingconfirm').css("display", "block");
-                var info = {
-                    id: idList,
-                    urlLoad: layDS + sessionStorage.getItem('madoan')
-                }
-                XacNhanDatPhong(info);
+
+                XacNhanDatPhong();
 
             })
 
             $('#cancel').click(function () {
-                HuyXacNhanXepPhong(huyXepPhong, sessionStorage.getItem('madoan'));
+                HuyXacNhanXepPhong();
             })
 
             $('.fullname').html(sessionStorage.getItem('fullname'));
@@ -117,7 +144,7 @@
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default animated jello">
-                           
+
 
                             <li class="divider"> </li>
 
@@ -146,33 +173,32 @@
                 <div class="page-title-breadcrumb">
                     <div class="pull-center" style="text-align: center;padding-top: 25px">
                         <h1 class="page-title">Danh Sách Thành Viên</h1>
+                        <p id="time" style="font-size: 15px;"></p>
                     </div>
 
                 </div>
             </div>
             <div class="row" style="">
-                <div class="col-md-10" style="margin: 0 auto;">
+                <div class="col-md-11" style="margin: 0 auto;">
                     <div class="card card-box" style="border-top: 2px solid purple">
 
                         <div class="card-body ">
 
                             <div class="table-scrollable">
                                 <table class="table table-hover table-checkable order-column full-width"
-                                       id="example">
+                                       id="dsthanhvien">
                                     <thead>
                                         <tr>
-                                            <th class="" style="text-align:left;width:200px"> Họ và Tên </th>
-                                            <th class="" style="width:125px"> SĐT</th>
-                                            <th class="" style="width: 50px"> Email</th>
-                                            <th class="" style="width: 200px"> Nguời Đại Diện</th>
-                                            <th class="center" style="width: 10px"> Nhóm</th>
-                                            <th class="center" style="width: 10px"> Phòng </th>
-                                            <th class="center" style="width: 50px"> Thời Gian Nhận Phòng</th>
-                                            <th class="center" style="width: 50px"> Thời Gian Trả Phòng</th>
+                                            <th class="" style="min-width:160px;"> Họ và Tên </th>
+                                            <th class="" style=""> SĐT</th>
+                                            <th class="" style="max-width:160px"> Email</th>
+                                            <th class="" style="min-width:180px;"> Nguời Đại Diện</th>
+                                            <th class="" style=""> Nhóm</th>
+                                            <th class="" style=""> Phòng </th>
 
                                         </tr>
                                     </thead>
-                                    <tbody id="dsthanhvien">
+                                    <tbody>
                                     </tbody>
                                 </table>
                             </div>
@@ -229,8 +255,7 @@
     <script src="~/Content/QuanLy/js/pages/sparkline/sparkline-data.js"></script>
     <!-- Common js-->
     <script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/Content/QuanLy/plugins/datatables/editabletable.js"></script>
-    <script src="~/Content/QuanLy/js/pages/table/editable_table_data.js"></script>
+    <script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
 
     <script src="~/Content/QuanLy/js/app.js"></script>
     <script src="~/Content/QuanLy/js/layout.js"></script>
