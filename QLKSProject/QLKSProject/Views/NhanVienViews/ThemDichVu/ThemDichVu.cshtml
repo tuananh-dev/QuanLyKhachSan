@@ -31,6 +31,7 @@
         <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
         <script src="~/Content/QuanLy/Jquery.js"></script>
         <script src="~/Content/QuanLy/libs_function.js"></script>
+        <link href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="Stylesheet">
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
@@ -108,20 +109,31 @@
 
 
                     loadData(layDSPhong, function (data) {
-                        $.each(data, function (index, val) {
-                            $(idDSPhong).prepend('<option value="' + val.ID + '"> ' + val.SoPhong + '</option>');
-                        })
+
+                        var words = ['boat', 'bear', 'dog', 'drink', 'elephant', 'fruit'];
+
+                        $('#dsphong-select').autocomplete({
+                            source: words
+                        });
+
                     })
                     loadData(layDSDichVu, function (data) {
                         $.each(data, function (index, val) {
-                            $(idDSDichVu).prepend('<option value="' + val.ID + '" >' + val.TenDichVu + '&nbsp;&nbsp;&nbsp;' + ' +' + formatNumber(val.Gia) + '</option>');
+                            $(idDSDichVu).prepend('<option value="' + val.ID + '" data-id="' + formatNumber(val.Gia) + '"> ' + val.TenDichVu + '</option>');
                         })
+
                     })
 
 
 
                     $(idModalAdd).modal('show');
                 })
+                $('#dsdichvu-select').change(function () {
+                    var gia = $('#dsdichvu-select option:selected').attr('data-id');
+                    $('#gia-dv').html(gia);
+                })
+
+
                 $('#dsphong-select').change(function () {
                     var idPhong = $(this).val();
                     var idDSNguoiTrongPhong = '#dsnguoitrongphong-select';
@@ -372,21 +384,27 @@
 
                                         <div class="card-body row">
 
-                                            <div class="col-lg-12 p-t-20">
+                                            <div class="col-lg-7 p-t-20">
                                                 <label>Dịch Vụ</label>
                                                 <select class="form-control" id="dsdichvu-select">
+                                                    <option selected disabled>Chọn Dịch Vụ</option>
                                                 </select>
+                                            </div>
+                                            <div class="col-lg-5 p-t-20">
+                                                <label style="display:block">Giá</label>
+
+                                                <label id="gia-dv">0 VND</label>
                                             </div>
                                             <div class="col-lg-12 p-t-20">
                                                 <label>Phòng</label>
-                                                <select class="form-control" id="dsphong-select">
-                                                </select>
+                                                <input class="mdl-textfield__input" type="text" id="dsphong-select" required>
+
                                             </div>
 
                                             <div class="col-lg-12 p-t-20">
                                                 <label>Thành Viên</label>
                                                 <select class="form-control" id="dsnguoitrongphong-select">
-                                                    <option selected>---Phòng Chưa Nhận---</option>
+                                                    <option selected disabled>Chọn Phòng</option>
                                                 </select>
                                             </div>
 
@@ -456,6 +474,8 @@
         <!--<script src="~/Content/QuanLy/plugins/material/material.min.js"></script>-->
         <!-- animation -->
         <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
+        <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
         <!-- end js include path -->
     </body>
 

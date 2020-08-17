@@ -166,8 +166,11 @@ function loadDSKHTheoMaDoan(info, id) {
         headers: { 'content-type': 'application/json', 'data-type': 'json' },
         dataType: 'json',
         success: function (data) {
+            var tgNhan = new Date(data[0].ThoiGianNhan);
+            var tgTra = new Date(data[0].ThoiGianTra);
+            var str = 'Từ <span style="font-size: 18px;font-weight:700;">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</span>&nbsp;&nbsp; Đến <span style="font-size: 18px;font-weight:700;">' + '' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</span>';
+            $('#thoigian').html(str)
             var i = 0;
-            //sessionStorage.setItem('id', val.ID);
             $.each(data, function (index, val) {
                 var bg = '';
                 var tvien = '';
@@ -259,21 +262,23 @@ function loadDSPhongTrong(info, dataInput) {
             'data-type': 'json',
         },
         data: JSON.stringify(dataInput),
-        success: function (data) {
-            info.id.empty();
-            $.each(data, function (index, val) {
-                var row = val.split('-');
-                info.id.append('<h3 style="display: block;margin-left: 15px;" class="floor">Phòng loại ' + row[0] + ': trống ' + row[1] + ' phòng' + '</h3>');
-            })
-
-        }, error: function (data) {
+    }).done((data) => {
+        info.id.empty();
+        $.each(data, function (index, val) {
+            var row = val.split('-');
+            info.id.append('<h3 style="display: block;margin-left: 15px;" class="floor">Phòng loại ' + row[0] + ': trống ' + row[1] + ' phòng' + '</h3>');
+        })
+        $('#dsphongtrongModal').modal('show');
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
+            window.location.href = "/SEP23Team2/404.cshtml";
+        } else if (jqXHR.responseJSON.Message == 'An error has occurred.'){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: data.responseJSON.Message
+                text: 'Thông tin không hợp lệ !'
             })
         }
-
     })
 }
 

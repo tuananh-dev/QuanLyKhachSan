@@ -330,6 +330,10 @@
     <Content Include="Content\Home\js\slick.min.js" />
     <Content Include="Content\Home\Loadingbt\bootstrap.min.js" />
     <Content Include="Content\Home\Loadingbt\jquery.min.js" />
+    <Content Include="Content\QuanLy\AutoComplete\autocomplete.css" />
+    <Content Include="Content\QuanLy\AutoComplete\autocomplete.js" />
+    <Content Include="Content\QuanLy\AutoComplete\autocomplete.min.css" />
+    <Content Include="Content\QuanLy\AutoComplete\autocomplete.min.js" />
     <Content Include="Content\QuanLy\Bootstrap.js" />
     <Content Include="Content\QuanLy\css\material_style.css" />
     <Content Include="Content\QuanLy\css\pages\animate_page.css" />
