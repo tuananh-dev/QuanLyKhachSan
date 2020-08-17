@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using NPOI.SS.Formula.Functions;
 using QLKSProjectTest;
 
-namespace QLKSProjectTest
+namespace QLKSProjectTest.Test
 {
     [TestClass]
     public class QuanLy_UnitTest

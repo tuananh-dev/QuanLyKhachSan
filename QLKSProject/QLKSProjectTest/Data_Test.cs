@@ -303,6 +303,68 @@ namespace QLKSProjectTest
             return home.LayFileDanhSachKhachHang(file.TenDoan, file.TenTruongDoan, file.ThoiGianNhan, file.ThoiGianTra, file.Files);
         }
         //Khach Hang
+        public string CheckSoPhong()
+        {
+            string result = "ok";
+            int count = 0;
+            var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong >= 0).Select(kh => new KhachHangDTO {
+                ID = kh.ID,
+                HoVaTen = kh.HoVaTen,
+                SoDienThoai = kh.SoDienThoai,
+                Email = kh.Email,
+                DiaChi = kh.DiaChi,
+                Nhom = kh.Nhom,
+                NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
+                ThoiGianNhan = kh.ThoiGianNhan,
+                ThoiGianTra = kh.ThoiGianTra,
+                MaDoan = kh.MaDoan,
+                GioiTinh = kh.GioiTinh,
+                LoaiKhachHang = kh.LoaiKhachHang,
+                TruongDoan = kh.TruongDoan,
+                IsDelete = kh.IsDelete,
+                TrangThaiDatPhong = kh.TrangThaiDatPhong,
+                IDPhong = kh.IDPhong,
+                TrangThaiXacNhan = kh.TrangThaiXacNhan
+            }).ToList();
+            var lstKeyMaDoan = lstKhachHang.GroupBy(s => s.MaDoan).Select(g => g.Key).ToList();
+            for(int i = 0; i< lstKeyMaDoan.Count - 1; i++)
+            {
+                string key = lstKeyMaDoan[i];
+                var lstKH = lstKhachHang.Where(kh => kh.MaDoan == key).ToList();
+                for(int j = i+1; j < lstKeyMaDoan.Count - 1; j++)
+                {
+                    bool dk1 = false;
+                    bool dk2 = false;
+                    string key2 = lstKeyMaDoan[j];
+                    var lstKh2 = lstKhachHang.Where(kh => kh.MaDoan == key2).ToList();
+                    if (lstKh2[0].ThoiGianNhan.CompareTo(lstKH[0].ThoiGianNhan) >= 0 && lstKh2[0].ThoiGianNhan.CompareTo(lstKH[0].ThoiGianTra) <= 0)
+                        dk1 = true;
+                    if (lstKh2[0].ThoiGianNhan.CompareTo(lstKH[0].ThoiGianNhan) <= 0 && lstKh2[0].ThoiGianTra.CompareTo(lstKH[0].ThoiGianNhan) >= 0)
+                        dk2 = true;
+                    if (dk1 || dk2)
+                    {
+                        if (!KiemTraTrungPhong(lstKH, lstKh2))
+                            result += key + "-" + key2 + "/";
+                        count++;
+                    }
+                        
+                }
+            }
+            return result;
+        }
 
+        private bool KiemTraTrungPhong(List<KhachHangDTO> lstKh1, List<KhachHangDTO> lstKH2)
+        {
+            bool b = true;
+            foreach (var kh1 in lstKh1)
+            {
+                foreach (var kh2 in lstKH2)
+                {
+                    if (kh1.IDPhong == kh2.IDPhong)
+                        return false;
+                }
+            }
+            return b;
+        }
     }
 }

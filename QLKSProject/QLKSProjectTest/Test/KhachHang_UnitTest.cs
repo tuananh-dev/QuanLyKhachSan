@@ -69,5 +69,6 @@ namespace QLKSProjectTest.Test
                 Assert.AreEqual(expected_result2, actual_result2.Message);
             }
         }
+
     }
 }

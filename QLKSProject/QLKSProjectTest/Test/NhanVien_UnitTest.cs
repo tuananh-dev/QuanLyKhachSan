@@ -6,7 +6,7 @@ using QLKSProject.Controllers.NhanVien;
 using QLKSProject.Models.DTO;
 using QLKSProject.Business.NhanVien;
 
-namespace QLKSProjectTest
+namespace QLKSProjectTest.Test
 {
     [TestClass]
     public class NhanVien_UnitTest
@@ -286,6 +286,16 @@ namespace QLKSProjectTest
             var expected_result = data_test.SoLuongDichVu();
             //assert
             Assert.AreEqual(expected_result, actual_result.Content.Count);
+        }
+        #endregion
+
+        #region Kiem tra dat phong
+        [TestMethod]
+        public void KiemTraDatPhong()
+        {
+            var action_result = data_test.CheckSoPhong();
+            //assert
+            Assert.AreEqual("ok", action_result);
         }
         #endregion
     }
