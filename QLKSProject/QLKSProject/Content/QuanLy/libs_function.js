@@ -207,7 +207,7 @@ function loadDSKHTheoMaDoan(info, id) {
         error: function (data) {
 
             if (data.responseJSON.Message == 'Authorization has been denied for this request.') {
-                window.location.pathname("/SEP23Team2/404.cshtml");
+                window.location.href = "/SEP23Team2/404.cshtml";
             }
         }
     })

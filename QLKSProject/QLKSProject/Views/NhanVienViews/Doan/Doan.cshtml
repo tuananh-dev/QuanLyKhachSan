@@ -31,6 +31,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script src="~/Content/QuanLy/libs_function.js"></script>
+    <style>
+        tbody tr td {
+            text-align: center;
+        }
+    </style>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -199,30 +204,7 @@
 
 
 
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Phòng</span>
-                                    <span class="arrow"></span>
-                                </a>
 
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thành Công</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thất Bại</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
                             <li class="nav-item active nv">
                                 <a href="/SEP23Team2/Views/NhanVienViews/Doan/Doan.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
@@ -232,8 +214,32 @@
 
                             </li>
                             <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">search</i>
+                                    <span class="title">Đặt Phòng Thành Công</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">assignment_late</i>
+                                    <span class="title">Đặt Phòng Thất Bại</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">vpn_key</i>
+                                    <span class="title">Phòng</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
                                 <a href="/SEP23Team2/Views/NhanVienViews/ThemDichVu/ThemDichVu.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
+                                    <i class="material-icons">queue</i>
                                     <span class="title">Thêm Dịch Vụ - Phòng</span>
                                     <span class="arrow"></span>
                                 </a>
@@ -283,11 +289,11 @@
                                                id="dsdoan">
                                             <thead>
                                                 <tr>
-                                                    <th> Tên Đoàn </th>
-                                                    <th> Tên Trưởng Đoàn </th>
-                                                    <th> Thời Gian Nhận </th>
-                                                    <th> Thời Gian Trả </th>
-                                                    <th> Ngày Gửi </th>
+                                                    <th class="center"> Tên Đoàn </th>
+                                                    <th class="center"> Tên Trưởng Đoàn </th>
+                                                    <th class="center"> Thời Gian Nhận </th>
+                                                    <th class="center"> Thời Gian Trả </th>
+                                                    <th class="center"> Ngày Gửi </th>
                                                     <th class="center"> Chức Năng </th>
                                                 </tr>
                                             </thead>
@@ -336,10 +342,7 @@
     <!-- animation -->
     <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
     <!-- end js include path -->
-
-
-
-    <script src="~/Content/QuanLy/js/pages/material-loading/material-loading.js"></script>
+    @*<script src="~/Content/QuanLy/js/pages/material-loading/material-loading.js"></script>*@
 
 
 

@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:35:49 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <title>Color Hotel</title>
+    <!-- icons -->
+    <link href="~/Content/QuanLy/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!--bootstrap -->
+    <link href="~/Content/QuanLy/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/plugins/summernote/summernote.css" rel="stylesheet">
+    <!-- morris chart -->
+    <link href="~/Content/QuanLy/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <!-- Material Design Lite CSS -->
+    <link rel="stylesheet" href="~/Content/QuanLy/plugins/material/material.min.css">
+    <link rel="stylesheet" href="~/Content/QuanLy/css/material_style.css">
+    <!-- animation -->
+    <link href="~/Content/QuanLy/css/pages/animate_page.css" rel="stylesheet">
+    <!-- Template Styles -->
+    <link href="~/Content/QuanLy/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
+    <!-- favicon -->
+    <link href="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet"
+          type="text/css" />
+    <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="~/Content/QuanLy/Jquery.js"></script>
+    <script src="~/Content/QuanLy/libs_function.js"></script>
+    <style>
+        #dsthanhvien tr td {
+            border: none;
+            background: none;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var idList = $('#dsthanhvien');
+            var layDS = 'KhachHang/LayDanhSachKhachHangTheoMaDoan/';
+            checkSession();
+
+            loadDataWithID(layDS, sessionStorage.getItem('madoan'), function (data) {
+                console.log(data);
+
+                var tgNhan = new Date(data[0].ThoiGianNhan);
+                var tgTra = new Date(data[0].ThoiGianTra);
+                var strTime = 'Từ <span style="font-size: 18px;font-weight:700;">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</span>&nbsp;&nbsp; Đến <span style="font-size: 18px;font-weight:700;">' + '' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</span>';
+                $('#time').html(strTime);
+
+                $(idList).DataTable({
+                    destroy: true,
+                    data: data,
+                    columns: [
+                        { 'data': 'HoVaTen' },
+                        { 'data': 'SoDienThoai' },
+                        { 'data': 'Email' },
+                        { 'data': 'NguoiDaiDienCuaTreEm' },
+                        { 'data': 'Nhom' },
+                        { 'data': 'Sophong' },
+
+                    ],
+                    "columnDefs": [
+                        { "orderable": false, "targets": 3 },
+                        { "orderable": false, "targets": 2 },
+                        { "orderable": false, "targets": 1 }
+                    ]
+                });
+            });
+
+
+            $('.fullname').html(sessionStorage.getItem('fullname'));
+        });
+    </script>
+
+</head>
+<!-- END HEAD -->
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white dark-sidebar-color logo-dark">
+    <div class="page-header navbar navbar-fixed-top">
+        <div class="page-header-inner ">
+            <!-- logo start -->
+            <div class="page-logo">
+                <a href="~/TrangChu.cshtml">
+
+                    <img alt="" src="#">
+                    <span class="logo-default">Color Hotel</span>
+                </a>
+            </div>
+            <!-- logo end -->
+            <!--<ul class="nav navbar-nav navbar-left in">
+                <li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
+            </ul>
+            <form class="search-form-opened" action="#" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." name="query">
+
+                </div>
+            </form>-->
+            <!-- start mobile menu -->
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+               data-target=".navbar-collapse">
+                <span></span>
+            </a>
+            <!-- end mobile menu -->
+            <!-- start header menu -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <!-- start notification dropdown -->
+                    <!-- end notification dropdown -->
+                    <!-- start message dropdown -->
+                    <!-- end message dropdown -->
+                    <!-- start manage user dropdown -->
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <img alt="" class="img-circle " src="~/Content/QuanLy/img/dp.jpg" />
+                            <span class="username username-hide-on-mobile fullname"> </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default animated jello">
+
+
+                            <li class="divider"> </li>
+
+                            <li>
+                                <a href="../../DangNhap.cshtml">
+
+                                    <i class="icon-logout"></i> Log Out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- end manage user dropdown -->
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end header -->
+    <!-- start page container -->
+    <div class="page-container" style="height: 90%;width:98%">
+        <!-- start sidebar menu -->
+        <!-- end sidebar menu -->
+
+        <div class="page-content" style="min-height:755px">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class="pull-center" style="text-align: center;padding-top: 25px">
+                        <h1 class="page-title">Danh Sách Thành Viên</h1>
+                        <p id="time" style="font-size: 15px;"></p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row" style="">
+                <div class="col-md-11" style="margin: 0 auto;">
+                    <div class="card card-box" style="border-top: 2px solid purple">
+
+                        <div class="card-body ">
+
+                            <div class="table-scrollable">
+                                <table class="table table-hover table-checkable order-column full-width"
+                                       id="dsthanhvien">
+                                    <thead>
+                                        <tr>
+                                            <th class="" style="min-width:160px;"> Họ và Tên </th>
+                                            <th class="" style=""> SĐT</th>
+                                            <th class="" style="max-width:160px"> Email</th>
+                                            <th class="" style="min-width:180px;"> Nguời Đại Diện</th>
+                                            <th class="" style=""> Nhóm</th>
+                                            <th class="" style=""> Phòng </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal -->
+            <!-- start footer -->
+            <!-- end footer -->
+        </div>
+        <div class="page-footer" style="width: 102%;position:absolute;bottom:0;left:0;">
+            <div class="page-footer-inner">
+                2020 &copy; Hotel Color
+
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--<div class="page-wrapper" style="">
+
+
+    </div>-->
+    <!-- start js include path -->
+    <script src="~/Content/QuanLy/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/popper/popper.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/jquery-blockui/jquery.blockui.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- bootstrap -->
+    <script src="~/Content/QuanLy/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/Content/QuanLy/js/pages/sparkline/sparkline-data.js"></script>
+    <!-- Common js-->
+    <script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/Content/QuanLy/js/app.js"></script>
+    <script src="~/Content/QuanLy/js/layout.js"></script>
+    <script src="~/Content/QuanLy/js/theme-color.js"></script>
+    <!-- material -->
+    <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
+
+    <!-- animation -->
+    <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
+    <!-- end js include path -->
+</body>
+
+
+<!-- Mirrored from radixtouch.in/templates/admin/hotel/source/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 12:36:48 GMT -->
+</html>

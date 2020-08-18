@@ -29,6 +29,11 @@
     <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script src="~/Content/QuanLy/libs_function.js"></script>
+    <style>
+        tbody tr td {
+            text-align: center;
+        }
+    </style>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -75,16 +80,30 @@
                                 }
                                 return '<label class="label ' + color + '">' + ttxn + '</label>'
                             }
+                        },
+                        {
+                            'data': null,
+                            'render': function (data, type, row) {
+                                return '<a class="btn btn-info btn-xs" data-id="' + row.MaDoan + '">Xem Chi Tiết</a>'
+                            }
                         }
                     ],
                     "columnDefs": [
                         { "orderable": false, "targets": 2 },
-                        { "orderable": false, "targets": 1 }
+                        { "orderable": false, "targets": 1 },
+                        { "orderable": false, "targets": 3 },
+                        { "orderable": false, "targets": 4 },
+                        { "orderable": false, "targets": 5 },
+
                     ]
                 });
             });
 
-
+            $('body').on('click', 'a.btn.btn-info.btn-xs', function () {
+                sessionStorage.setItem('madoan', $(this).attr("data-id"));
+                console.log(sessionStorage.getItem('madoan'));
+                window.location.href = "XemchiTietDoan.cshtml";
+            })
 
 
 
@@ -190,31 +209,6 @@
 
 
 
-
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Phòng</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thành Công</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thất Bại</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
                             <li class="nav-item active nv">
                                 <a href="/SEP23Team2/Views/NhanVienViews/Doan/Doan.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
@@ -224,8 +218,32 @@
 
                             </li>
                             <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">search</i>
+                                    <span class="title">Đặt Phòng Thành Công</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">assignment_late</i>
+                                    <span class="title">Đặt Phòng Thất Bại</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">vpn_key</i>
+                                    <span class="title">Phòng</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
                                 <a href="/SEP23Team2/Views/NhanVienViews/ThemDichVu/ThemDichVu.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
+                                    <i class="material-icons">queue</i>
                                     <span class="title">Thêm Dịch Vụ - Phòng</span>
                                     <span class="arrow"></span>
                                 </a>
@@ -265,12 +283,13 @@
                                                id="dsdatphong">
                                             <thead>
                                                 <tr>
-                                                    <th class="" style="width: 250px;text-align: left;"> Tên Trưởng Đoàn</th>
-                                                    <th class="" style="width: 250px;"> Tên Đoàn</th>
+                                                    <th class="center" style="width: 250px;"> Tên Trưởng Đoàn</th>
+                                                    <th class="center" style="width: 250px;"> Tên Đoàn</th>
                                                     <th class="center"> Thời Gian Nhận </th>
                                                     <th class="center"> Thời Gian Trả </th>
                                                     <th class="center"> Thời Gian Gửi </th>
-                                                    <th class=""> Trạng Thái </th>
+                                                    <th class="center"> Trạng Thái </th>
+                                                    <th class="center"> Chức Năng </th>
 
                                                 </tr>
                                             </thead>

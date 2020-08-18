@@ -568,11 +568,11 @@ var Layout = function () {
         },
 
         getLayoutImgPath: function () {
-            return App.get~/Content/QuanLyPath() + layoutImgPath;
+            return App.getcontent() + layoutImgPath;
         },
 
         getLayoutCssPath: function () {
-            return App.get~/Content/QuanLyPath() + layoutCssPath;
+            return App.getcontent() + layoutCssPath;
         }
     };
 

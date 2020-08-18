@@ -21,11 +21,11 @@
     <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#gotohome').click(function () {
-                window.location.href = "trangchu.cshtml"
-            })
-        })
+        //$(document).ready(function () {
+        //    $('#gotohome').click(function () {
+        //        window.location.pathname = "/SEP23Team2/trangchu.cshtml"
+        //    })
+        //})
 
     </script>
 </head>
@@ -44,9 +44,9 @@
                     </span>
                     <p class="content-404">Trang bạn đang tìm kiếm không tồn tại hoặc một lỗi khác đã xảy ra.</p>
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" id="gotohome">
+                        <a href="trangchu.cshtml" class="login100-form-btn" id="gotohome">
                             Về Trang Chủ
-                        </button>
+                        </a>
                     </div>
 
                 </form>
