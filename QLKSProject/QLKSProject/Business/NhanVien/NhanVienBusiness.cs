@@ -228,6 +228,8 @@ namespace QLKSProject.Business.NhanVien
                     khachHang.GioiTinh = kh.GioiTinh;
                     khachHang.IDPhong = 0;
                     khachHang.GhiChu = "";
+                    khachHang.ThoiGianNhan = kh.ThoiGianNhan;
+                    khachHang.ThoiGianTra = kh.ThoiGianTra;
                 }
                 status = DatPhongChoMotDoanKhachHang(maDoan,lstKhachHangDTO,lstPhongDTO);
                 if(status.Equals("ok"))
