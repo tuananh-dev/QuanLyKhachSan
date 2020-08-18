@@ -1,4 +1,5 @@
-﻿using QLKSProject.Business.Home;
+﻿using Newtonsoft.Json;
+using QLKSProject.Business.Home;
 using QLKSProject.Models.DTO;
 using System;
 using System.Collections.Generic;
@@ -16,19 +17,15 @@ namespace QLKSProject.Controllers.Home
         [HttpPost]
         public IHttpActionResult LayFileDanhSachKhachHang(dynamic dynamic)
         {
-            if (dynamic == null)
+            FileKhachHangDTO file = JsonConvert.DeserializeObject<FileKhachHangDTO>(dynamic.ToString());
+            if (file == null)
             {
                 return BadRequest();
             }
-            string tenDoan = dynamic.TenDoan.ToString();
-            string tenTruongDoan = dynamic.TenTruongDoan.ToString();
-            DateTime thoiGianNhan = dynamic.ThoiGianNhan;
-            DateTime thoiGianTra = dynamic.ThoiGianTra;
-            string fileDSKhachHang = dynamic.Files.ToString();
 
             using (HomeBusiness homeBusiness = new HomeBusiness())
             {
-                string result = homeBusiness.LayFileDanhSachKhachHang(tenDoan, tenTruongDoan, thoiGianNhan, thoiGianTra, fileDSKhachHang);
+                string result = homeBusiness.LayFileDanhSachKhachHang(file.TenDoan, file.TenTruongDoan, file.ThoiGianNhan, file.ThoiGianTra, file.Files);
                 if (result.Equals("ok"))
                     return Ok("Lưu file thành công !"); 
                 else

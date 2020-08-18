@@ -26,19 +26,19 @@ namespace QLKSProject.Controllers.NhanVien
             string result = "";
             using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
-                result = nhanVienBusiness.DatPhong(id);
+                result = nhanVienBusiness.DatPhongChoMotDoan(id);
+                if (result.Equals("ok"))
+                    return Ok(result);
+                else
+                    return BadRequest(result);
             }
-            if (result.Equals("ok"))
-                return Ok(result);
-            else
-                return BadRequest(result);
         }
         [HttpGet]
         public IHttpActionResult DatPhongChoNhieuDoan()
         {
             using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
-                return Ok(nhanVienBusiness.DatPhongChoNhieuDoan());
+                return Ok(nhanVienBusiness.DatPHongNhieuDoanKhachHang());
             }
         }
         #endregion
@@ -112,14 +112,13 @@ namespace QLKSProject.Controllers.NhanVien
         {
             if (dynamic == null)
                 return BadRequest();
-            DateTime ngayNhan = dynamic.NgayNhan;
-            DateTime ngayTra = dynamic.NgayTra;
+            ThoiGianDatPhongDTO thoiGianDatPhong = JsonConvert.DeserializeObject<ThoiGianDatPhongDTO>(dynamic.ToString());
             using (NhanVienBusiness nhanVienBusiness = new NhanVienBusiness())
             {
-                return Ok(nhanVienBusiness.LayDanhSachPhongTheoDieuKien(ngayNhan, ngayTra));
+                return Ok(nhanVienBusiness.LayDanhSachPhongTheoDieuKien(thoiGianDatPhong.NgayNhan, thoiGianDatPhong.NgayTra));
             }
         }
-        [HttpPost] 
+        [HttpPost]
         public IHttpActionResult KhachHangNhanPhong([FromBody]dynamic dynamic)
         {
             KhachHangNhanPhongDTO khachHang = JsonConvert.DeserializeObject<KhachHangNhanPhongDTO>(dynamic.ToString());
@@ -134,7 +133,7 @@ namespace QLKSProject.Controllers.NhanVien
         }
         [HttpPost]
         public IHttpActionResult KhachHangTraPhong([FromBody]string cmnd)
-        {         
+        {
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
                 string status = nhanVien.KhachHangTraPhong(cmnd);
@@ -165,7 +164,10 @@ namespace QLKSProject.Controllers.NhanVien
         {
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
-                return Ok(nhanVien.LayThongTinChiPhiPhong(id));
+                if (nhanVien.LayThongTinChiPhiPhong(id) == null)
+                    return BadRequest("Khách hàng không gọi dịch vụ!");
+                else
+                    return Ok(nhanVien.LayThongTinChiPhiPhong(id));
             }
         }
         #endregion

@@ -111,6 +111,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\QuanLy_UnitTest.cs" />
     <Compile Include="Test\NhanVien_UnitTest.cs" />
+    <Compile Include="Test\Home_UnitTest.cs" />
+    <Compile Include="Test\KhachHang_UnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

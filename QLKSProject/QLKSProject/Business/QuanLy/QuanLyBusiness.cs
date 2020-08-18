@@ -222,53 +222,7 @@ namespace QLKSProject.Business.QuanLy
             }
             return false;
         }
-        public bool XoaDanhSachPhong()
-        {
-            try
-            {
-                var lstPhong = models.Phongs.Select(p => p).ToList();
-                foreach (var phong in lstPhong)
-                {
-                    models.Phongs.Remove(phong);
-                }
-                models.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-        }
-        public string TaoDanhSachPhong(ThemPhongTheoLauDTO themPhongTheoLauDTO)
-        {
-            soPhong = 1;
-            string status = "ok";
-            var lstPhong = models.Phongs.Select(p => p.MaPhong).ToList();
-            foreach (var phong in lstPhong)
-            {
-                int lau = int.Parse(phong.Substring(0, 1));
-                if (themPhongTheoLauDTO.Lau == lau)
-                {
-                    if (status.Equals("ok"))
-                        status = "";
-                    status = "Lỗi lầu đã tồn tại!";
-                }
-            }
-            if (status.Equals("ok"))
-            {
-                if (TaoDanhSachPhongTheoLoaiPhong(1, themPhongTheoLauDTO.Lau, themPhongTheoLauDTO.SoPhongDon, themPhongTheoLauDTO.GiaPhongDon))
-                    status = "Lỗi tạo phòng Đơn!";
-                if (TaoDanhSachPhongTheoLoaiPhong(2, themPhongTheoLauDTO.Lau, themPhongTheoLauDTO.SoPhongDoi, themPhongTheoLauDTO.SoPhongDoi))
-                    status = "Lỗi tạo phòng Đôi!";
-                if (TaoDanhSachPhongTheoLoaiPhong(3, themPhongTheoLauDTO.Lau, themPhongTheoLauDTO.SoPhongLoai3, themPhongTheoLauDTO.SoPhongLoai3))
-                    status = "Lỗi tạo phòng Loại 3!";
-                if (TaoDanhSachPhongTheoLoaiPhong(4, themPhongTheoLauDTO.Lau, themPhongTheoLauDTO.SoPhongLoai4, themPhongTheoLauDTO.SoPhongLoai4))
-                    status = "Lỗi tạo phòng Loại 4!";
-            }
-            return status;
-        }
-/*        public List<QuanLyLoaiPhongDTO> LayDanhSachLoaiPhong()
+        public List<QuanLyLoaiPhongDTO> LayDanhSachLoaiPhong()
         {
             List<QuanLyLoaiPhongDTO> quanLyLoaiPhongDTOs = new List<QuanLyLoaiPhongDTO>();
 
@@ -306,8 +260,8 @@ namespace QLKSProject.Business.QuanLy
             {
                 return false;
             }
-         
-        }*/
+
+        }
 
         #endregion
 

@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using QLKSProject.Models;
+using QLKSProject.Business;
 
 [assembly: OwinStartup(typeof(QLKSProject.App_Start.Startup))]
 

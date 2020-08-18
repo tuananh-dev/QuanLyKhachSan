@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using NPOI.SS.Formula.Functions;
 using QLKSProjectTest;
 
-namespace QLKSProjectTest
+namespace QLKSProjectTest.Test
 {
     [TestClass]
     public class QuanLy_UnitTest
@@ -23,7 +23,7 @@ namespace QLKSProjectTest
 
         #region TaiKhoan 
         [TestMethod]
-        public void XoaTaiKhoan_TestStatusRespone()
+        public void XoaTaiKhoan_TestStatusResponse()
         {
             // Act
             IHttpActionResult actionResult = controller.XoaTaiKhoan(137);
@@ -42,7 +42,7 @@ namespace QLKSProjectTest
 
         }
         [TestMethod]
-        public void ThemTaiKhoan_TestStatusRespone()
+        public void ThemTaiKhoan_TestStatusResponse()
         {
             var newAccount = data_test.TaiKhoan();
             // Act
@@ -62,7 +62,7 @@ namespace QLKSProjectTest
 
         }
         [TestMethod]
-        public void LayTaiKhoan_TestStatusRespone()
+        public void LayTaiKhoan_TestStatusResponse()
         {
             //Act
             IHttpActionResult actionResult = controller.LayTaiKhoan(132);
@@ -74,7 +74,7 @@ namespace QLKSProjectTest
             Assert.AreEqual("anhnguyenduc", actual_result.Content.UserName);
         }
         [TestMethod]
-        public void CapNhatTaiKhoan_TestStatusRespone()
+        public void CapNhatTaiKhoan_TestStatusResponse()
         {
             Data_Test data_Test = new Data_Test();
             var newAccount = data_Test.TaiKhoan();
@@ -86,7 +86,7 @@ namespace QLKSProjectTest
             Assert.AreEqual("Cập nhật tài khoản thành công!", actual_result.Content);
         }
         [TestMethod]
-        public void LayDanhSachTaiKhoan_TestStatusRespone()
+        public void LayDanhSachTaiKhoan_TestStatusResponse()
         {
             Data_Test data_Test = new Data_Test();
             var count = data_Test.DemSoLuongTaiKhoan();
@@ -101,7 +101,7 @@ namespace QLKSProjectTest
 
         #region Phong
         [TestMethod]
-        public void LayDanhSachPhong_TestStatusRespone()
+        public void LayDanhSachPhong_TestStatusResponse()
         {
             var actionResult = controller.LayDanhSachPhong();
             //Act
@@ -111,7 +111,7 @@ namespace QLKSProjectTest
             Assert.AreEqual(expected_result, actual_result.Content.Count);
         }
         [TestMethod]
-        public void LayPhong_TestStatusRespone()
+        public void LayPhong_TestStatusResponse()
         {
             var phong = data_test.LayThongTinPhong();
             var actionResult = controller.LayPhong(phong.ID);
@@ -124,7 +124,7 @@ namespace QLKSProjectTest
             Assert.AreEqual(expected_result, actual_result.Content.SoPhong);
         }
         [TestMethod]
-        public void ThemPhong_TestStatusRespone()
+        public void ThemPhong_TestStatusResponse()
         {
             var phong = data_test.TaoMoiPhong();
             var action_result = controller.ThemPhong(phong);
@@ -144,7 +144,7 @@ namespace QLKSProjectTest
             }
         }
         [TestMethod]
-        public void CapNhatPhong_TestStatusRespone()
+        public void CapNhatPhong_TestStatusResponse()
         {
             var phong = data_test.TaoMoiPhong();
             var action_result = controller.CapNhatPhong(phong);
@@ -164,7 +164,7 @@ namespace QLKSProjectTest
             }
         }
         [TestMethod]
-        public void XoaPhong_TestStatusRespone()
+        public void XoaPhong_TestStatusResponse()
         {
             var action_result = controller.XoaPhong(7);
             //act
@@ -186,7 +186,7 @@ namespace QLKSProjectTest
 
         #region Dich Vu
         [TestMethod]
-        public void LayDanhSachDichVu_TestStatusRespone()
+        public void LayDanhSachDichVu_TestStatusResponse()
         {
             var action_result = controller.LayDanhSachDichVu();
             //act
@@ -196,7 +196,7 @@ namespace QLKSProjectTest
             Assert.AreEqual(count, actual_result.Content.Count);
         }
         [TestMethod]
-        public void LayDichVu_TestStatusRespone()
+        public void LayDichVu_TestStatusResponse()
         {
             var dich_vu = data_test.LayThongTinDichVu();
             var action_result = controller.LayDichVu(dich_vu.ID);
@@ -207,7 +207,7 @@ namespace QLKSProjectTest
             Assert.AreEqual(expected_result, actual_result.Content.TenDichVu);
         }
         [TestMethod]
-        public void ThemDichVu_TestStatusRespone()
+        public void ThemDichVu_TestStatusResponse()
         {
             var dich_vu = data_test.TaoMoiDichVu();
             var action_result = controller.ThemDichVu(dich_vu);
@@ -228,7 +228,7 @@ namespace QLKSProjectTest
 
         }
         [TestMethod]
-        public void CapNhatDichVu_TestStatusRespone()
+        public void CapNhatDichVu_TestStatusResponse()
         {
             var dich_vu = data_test.TaoMoiDichVu();
             var action_result = controller.CapNhatDichVu(dich_vu);
@@ -248,7 +248,7 @@ namespace QLKSProjectTest
             }
         }
         [TestMethod]
-        public void XoaDichVu_TestStatusRespone()
+        public void XoaDichVu_TestStatusResponse()
         {
             var action_result = controller.XoaDichVu(50);
             //act
@@ -270,7 +270,7 @@ namespace QLKSProjectTest
 
         #region Tien Ich
         [TestMethod]
-        public void LayDanhSachTienIch_TestStatusRespone()
+        public void LayDanhSachTienIch_TestStatusResponse()
         {
             var action_result = controller.LayDanhSachTienIch();
             //act
@@ -280,7 +280,7 @@ namespace QLKSProjectTest
             Assert.AreEqual(expected_result, actual_result.Content.Count);
         }
         [TestMethod]
-        public void LayTienIch_TestStatusRespone()
+        public void LayTienIch_TestStatusResponse()
         {
             var tien_ich = data_test.LayThongTinTienIch();
             var action_result = controller.LayTienIch(tien_ich.ID);
@@ -291,7 +291,7 @@ namespace QLKSProjectTest
             Assert.AreEqual(expected_result, actual_result.Content.TenTienIch);
         }
         [TestMethod]
-        public void ThemTienIch_TestStatusRespone()
+        public void ThemTienIch_TestStatusResponse()
         {
             var tien_ich = data_test.TaoMoiTienIch();
             var action_result = controller.ThemTienIch(tien_ich);
@@ -311,7 +311,7 @@ namespace QLKSProjectTest
             }
         }
         [TestMethod]
-        public void CapNhatTienIch_TestStatusRespone()
+        public void CapNhatTienIch_TestStatusResponse()
         {
             var tien_ich = data_test.TaoMoiTienIch();
             var action_result = controller.CapNhatTienIch(tien_ich);
@@ -331,7 +331,7 @@ namespace QLKSProjectTest
             }
         }
         [TestMethod]
-        public void XoaTienIch_TestStatusRespone()
+        public void XoaTienIch_TestStatusResponse()
         {
             var action_result = controller.XoaTienIch(42);
             //act
@@ -353,7 +353,7 @@ namespace QLKSProjectTest
 
         #region Thong Ke
         [TestMethod]
-        public void XuatBaoCaoThongKeTheoThang_TestStatusRespone()
+        public void XuatBaoCaoThongKeTheoThang_TestStatusResponse()
         {
             string date = "{\"thang\":\"3\",\"nam\":\"2020\"}";
             var action_result = controller.XuatBaoCaoThongKeTheoThang(date);
@@ -364,7 +364,7 @@ namespace QLKSProjectTest
             Assert.AreEqual(expected_result, actual_result.Content.Count);
         }
         [TestMethod]
-        public void XuatBaoCaoThongKeTheoQuy_TestStatusRespone()
+        public void XuatBaoCaoThongKeTheoQuy_TestStatusResponse()
         {
             string date = "{\"quy\":\"3\",\"nam\":\"2020\"}";
             var action_result = controller.XuatBaoCaoThongKeTheoQuy(date);
@@ -375,7 +375,7 @@ namespace QLKSProjectTest
             Assert.AreEqual(expected_result, actual_result.Content.Count);
         }
         [TestMethod]
-        public void SoSanhThongKeTheoThang_TestStatusRespone()
+        public void SoSanhThongKeTheoThang_TestStatusResponse()
         {
             var data = data_test.SoSanhThongKeTheoThang(9, 2020);
             string date = "{\"thang\":\"9\",\"nam\":\"2020\"}";
@@ -389,7 +389,7 @@ namespace QLKSProjectTest
             Assert.AreEqual(expected_result2, actual_result.Content.TienThuePhong);
         }
         [TestMethod]
-        public void SoSanhThongKeTheoQuy_TestStatusRespone()
+        public void SoSanhThongKeTheoQuy_TestStatusResponse()
         {
             string quy = "{\"quy\":\"3\",\"nam\":\"2020\"}";
             var data = data_test.SoSanhThongKeTheoQuy(3, 2020);

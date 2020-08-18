@@ -124,28 +124,28 @@ namespace QLKSProject.Controllers.QuanLy
                     return BadRequest("Xóa phòng thất bại!");
             }
         }
-/*        [HttpPost]
-        public IHttpActionResult TaoDanhSachPhong([FromBody] dynamic dynamic)
-        {
-            ThemPhongTheoLauDTO themPhongTheoLauDTO = JsonConvert.DeserializeObject<ThemPhongTheoLauDTO>(dynamic.ToString());
-            using (QuanLyBusiness quanLy = new QuanLyBusiness())
-            {
-                string result = quanLy.TaoDanhSachPhong(themPhongTheoLauDTO);
-                if (result.Equals("ok"))
-                    return Ok("Thêm danh sách phòng thành công!");
-                else
-                    return BadRequest(result);
-            }
-        }*/
-/*        [HttpGet]
+        /*        [HttpPost]
+                public IHttpActionResult TaoDanhSachPhong([FromBody] dynamic dynamic)
+                {
+                    ThemPhongTheoLauDTO themPhongTheoLauDTO = JsonConvert.DeserializeObject<ThemPhongTheoLauDTO>(dynamic.ToString());
+                    using (QuanLyBusiness quanLy = new QuanLyBusiness())
+                    {
+                        string result = quanLy.TaoDanhSachPhong(themPhongTheoLauDTO);
+                        if (result.Equals("ok"))
+                            return Ok("Thêm danh sách phòng thành công!");
+                        else
+                            return BadRequest(result);
+                    }
+                }*/
+        [HttpGet]
         public IHttpActionResult LayDanhSachLoaiPhong()
         {
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 return Ok(quanLy.LayDanhSachLoaiPhong());
             }
-        }*/
-/*        [HttpPut]
+        }
+        [HttpPut]
         public IHttpActionResult CapNhatLoaiPhong([FromBody] dynamic dynamic)
         {
             List<QuanLyLoaiPhongDTO> quanLyLoaiPhongDTOs = JsonConvert.DeserializeObject<List<QuanLyLoaiPhongDTO>>(dynamic.ToString());
@@ -156,7 +156,7 @@ namespace QLKSProject.Controllers.QuanLy
                 else
                     return BadRequest("Cập nhật phòng thất bại!");
             }
-        }*/
+        }
 
         #endregion
         #region API xu ly DichVu
