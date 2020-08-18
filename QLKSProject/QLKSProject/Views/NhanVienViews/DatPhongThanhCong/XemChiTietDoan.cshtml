@@ -43,16 +43,10 @@
             var idList = $('#dsthanhvien');
             var layDS = 'KhachHang/LayDanhSachKhachHangTheoMaDoan/';
             checkSession();
-            //if (sessionStorage.getItem('xacnhan') != "") {
-            //    sessionStorage.removeItem('xacnhan')
-            //}
+
             loadDataWithID(layDS, sessionStorage.getItem('madoan'), function (data) {
                 console.log(data);
-                if (data[0].TrangThaiXacNhan) {
-                    $('#confirm').css("display", "none");
-                    $('#cancel').css("display", "none");
-                }
-                
+
                 var tgNhan = new Date(data[0].ThoiGianNhan);
                 var tgTra = new Date(data[0].ThoiGianTra);
                 var strTime = 'Từ <span style="font-size: 18px;font-weight:700;">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</span>&nbsp;&nbsp; Đến <span style="font-size: 18px;font-weight:700;">' + '' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</span>';
@@ -68,7 +62,7 @@
                         { 'data': 'NguoiDaiDienCuaTreEm' },
                         { 'data': 'Nhom' },
                         { 'data': 'Sophong' },
-                        
+
                     ],
                     "columnDefs": [
                         { "orderable": false, "targets": 3 },
@@ -77,22 +71,7 @@
                     ]
                 });
             });
-            if (sessionStorage.getItem('xacnhan') == "true") {
-                $('#confirm').css("display", "none");
-                $('#cancel').css("display", "none");
-            }
 
-            $('#confirm').click(function () {
-                $(this).css("display", "none");
-                $('#loadingconfirm').css("display", "block");
-
-                XacNhanDatPhong();
-
-            })
-
-            $('#cancel').click(function () {
-                HuyXacNhanXepPhong();
-            })
 
             $('.fullname').html(sessionStorage.getItem('fullname'));
         });
@@ -202,21 +181,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="row p-b-20" style="float:right;margin-bottom: 20px">
-                                <div class="col-md-6 col-sm-6 col-6">
-                                    <div class="btn-group">
-                                        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-right: 40px" id="loadingconfirm"></div>
-                                        <button id="confirm" class="btn btn-info" style="margin-right: 10px">
-                                            Xác Nhận Xếp Phòng
-                                        </button>
-                                        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none;margin-left: 40px" id="loadingcancel"></div>
-                                        <button id="cancel" class="btn" style="background-color: lightgray">
-                                            Hủy Xếp Phòng<i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

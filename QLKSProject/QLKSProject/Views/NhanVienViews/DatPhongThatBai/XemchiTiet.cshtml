@@ -41,7 +41,6 @@
         }
     </style>
     <script type="text/javascript">
-
         $(document).ready(function () {
             checkSession();
 
@@ -49,15 +48,12 @@
             var idListPhongTrong = $('#dsphongtrong');
             var layDS = 'NhanVien/LayDanhSachKhachHangTheoMaDoan/';
             var lauDSPhongTheoNgay = 'NhanVien/LayDanhSachPhongTheoDieuKien';
-            var XepPhongThu = 'NhanVien/DatPhongThuNghiem';
             var info = {
                 id: idList,
                 url: layDS
             }
 
-
             loadDSKHTheoMaDoan(info, sessionStorage.getItem('madoan'));
-
 
             $('#luu').click(function () {
                 $('#luu').css('display', 'none');
@@ -90,7 +86,7 @@
                     list.push(obj);
                 }
                 console.log(list);
-                XepPhongThuNghiem(XepPhongThu, list);
+                XepPhongThuNghiem(list);
 
 
 
@@ -99,29 +95,71 @@
             $('#xemphongtrong').click(function () {
                 var thoigianNhan;
                 var thoigianTra;
-
-                if ($('#daterange').val().indexOf(' to ') != -1) {
-                    var thoigian = $('#daterange').val().split(' to ');
-                    thoigianNhan = thoigian[0];
-                    thoigianTra = thoigian[1];
+                if (!$('#daterange').val()) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Thông tin không hợp lệ !'
+                    })
                 } else {
-                    thoigianNhan = $('#daterange').val();
-                    thoigianTra = $('#daterange').val();
+                    if ($('#daterange').val().indexOf(' to ') != -1) {
+                        var thoigian = $('#daterange').val().split(' to ');
+                        thoigianNhan = thoigian[0];
+                        thoigianTra = thoigian[1];
+                    } else {
+                        thoigianNhan = $('#daterange').val();
+                        thoigianTra = $('#daterange').val();
+                    }
+
+
+                    var dataInput = {
+                        NgayNhan: thoigianNhan,
+                        NgayTra: thoigianTra
+                    }
+                    console.log(dataInput);
+                    var info = {
+                        url: lauDSPhongTheoNgay,
+                        id: idListPhongTrong,
+                    }
+
+                    loadDSPhongTrong(info, dataInput);
                 }
 
 
-                var dataInput = {
-                    NgayNhan: thoigianNhan,
-                    NgayTra: thoigianTra
-                }
-                console.log(dataInput);
-                var info = {
-                    url: lauDSPhongTheoNgay,
-                    id: idListPhongTrong,
+            })
+
+            $('#doingay').click(function () {
+                var thoigianNhan;
+                var thoigianTra;
+                if (!$('#datechange').val()) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Thông tin không hợp lệ !'
+                    })
+
+                } else {
+                    if ($('#datechange').val().indexOf(' to ') != -1) {
+                        var thoigian = $('#datechange').val().split(' to ');
+                        thoigianNhan = thoigian[0];
+                        thoigianTra = thoigian[1];
+                    } else {
+                        thoigianNhan = $('#datechange').val();
+                        thoigianTra = $('#datechange').val();
+                    }
+                    var length = sessionStorage.getItem('length');
+                    for (i = 0; i < length; i++) {
+                        $('#tgnhan' + i).val(thoigianNhan);
+                        $('#tgtra' + i).val(thoigianTra);
+
+                    }
+                    var tgNhan = new Date(thoigianNhan);
+                    var tgTra = new Date(thoigianTra);
+
+                    var str = 'Từ <span style="font-size: 18px;font-weight:700;">' + tgNhan.getDate() + '-' + (tgNhan.getMonth() + 1) + '-' + tgNhan.getFullYear() + '</span>&nbsp;&nbsp; Đến <span style="font-size: 18px;font-weight:700;">' + '' + tgTra.getDate() + '-' + (tgTra.getMonth() + 1) + '-' + tgTra.getFullYear() + '</span>';
+                    $('#thoigian').html(str)
                 }
 
-                loadDSPhongTrong(info, dataInput);
-                $('#dsphongtrongModal').modal('show');
             })
         })
     </script>
@@ -220,30 +258,6 @@
                             </li>
 
                             <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Phòng</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thành Công</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thất Bại</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
                                 <a href="/SEP23Team2/Views/NhanVienViews/Doan/Doan.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đoàn</span>
@@ -252,8 +266,32 @@
 
                             </li>
                             <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">search</i>
+                                    <span class="title">Đặt Phòng Thành Công</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">assignment_late</i>
+                                    <span class="title">Đặt Phòng Thất Bại</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">vpn_key</i>
+                                    <span class="title">Phòng</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
                                 <a href="/SEP23Team2/Views/NhanVienViews/ThemDichVu/ThemDichVu.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
+                                    <i class="material-icons">queue</i>
                                     <span class="title">Thêm Dịch Vụ - Phòng</span>
                                     <span class="arrow"></span>
                                 </a>
@@ -271,6 +309,7 @@
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
                                 <div class="page-title">Danh Sách Đoàn</div>
+                                <p id="thoigian"></p>
                             </div>
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li>
@@ -279,6 +318,7 @@
                                 </li>
 
                                 <li class="active">Danh Sách Đoàn</li>
+
                             </ol>
                         </div>
                     </div>
@@ -294,9 +334,21 @@
                                             <label class="mdl-textfield__label">Chọn Thời Gian </label>
                                         </div>
 
+
                                     </div>
                                     <div class="col-lg-2" style="line-height:72px;">
                                         <button class="btn btn-success" id="xemphongtrong">Xem Phòng Trống</button>
+
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type="text" id="datechange">
+                                            <label class="mdl-textfield__label">Chọn Thời Gian</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-2" style="line-height:72px;float:right">
+                                        <button class="btn btn-info" id="doingay">Đổi Ngày Nhận - Trả</button>
 
                                     </div>
 
@@ -316,12 +368,12 @@
                                                         <th> Giới Tính </th>
                                                         <th> Ghi Chú </th>*@
 
-                                                    <th style="text-align:left;width: 210px;"> Họ và Tên</th>
-                                                    <th class="center" style="width: 80px"> Nhóm </th>
-                                                    <th class="center" style="width: 170px"> Trường Đoàn </th>
-                                                    <th class="center" style="width: 210px;text-align:left;"> Người Đại Diện </th>
-                                                    <th class="center" style="width: 170px"> Giới Tính </th>
-                                                    <th> Ghi Chú </th>
+                                                    <th style="text-align:left;"> Họ và Tên</th>
+                                                    <th class="center" style=""> Nhóm </th>
+                                                    <th class="center" style=""> Trường Đoàn </th>
+                                                    <th class="" style=""> Người Đại Diện </th>
+                                                    <th class="center" style=""> Giới Tính </th>
+                                                    <th style="min-width:215px"> Ghi Chú </th>
                                                 </tr>
                                             </thead>
                                             <tbody id="dsdatphong" style="border-bottom: 3px solid;">
@@ -376,6 +428,7 @@
                 <!-----end modal-->
                 <!-- end page content -->
             </div>
+
             <!-- Modal -->
             <!-- end page container -->
             <!-- start footer -->

@@ -25,7 +25,7 @@
     <link href="~/Content/QuanLy/css/theme-color.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
 
-    <link rel="shortcut icon" href="~/Content/QuanLy/img/favicon.ico" />
+    <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/Content/QuanLy/Jquery.js"></script>
     <script src="~/Content/QuanLy/libs_function.js"></script>
@@ -45,38 +45,76 @@
 
             var idModalTra = '#traphongModal';
             var idModalNhan = '#nhanphongModal';
-            loadDSPhong(layDSPhong);
+            idNguoiDaiDien_Nhan = '#nguoidaidien-nhanp-ul';
+            loadData(layDSPhong, function (data) {
+                var min = parseInt(data[0].SoPhong.slice(0, -2));
+                var max = parseInt(data[1].SoPhong.slice(0, -2));
+                for (i = 2; i < data.length; i++) {
+                    var tmp = parseInt(data[i].SoPhong.slice(0, -2));
+                    if (tmp < min) {
+                        min = tmp;
+                    }
+                    if (tmp > max) {
+                        max = tmp;
+                    }
+                }
+                for (i = min; i <= max; i++) {
+                    $('#dstang').append('<h3 style="display: block;margin-left: 15px;" class="floor"> Tầng ' + i + '</h3><div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row' + i + '"></div>')
+                    $('#row' + i).empty();
+                    $.each(data, function (index, val) {
+                        var color = "bg-success";
+                        if (val.TrangThai == -1) {
+                            color = "bg-default";
+                        } else if (val.TrangThai == 0) {
+                            color = "bg-warning";
+                        } else if (val.TrangThai == 2) {
+                            color = "bg-primary";
+                        }
+                        if (val.SoPhong.slice(0, -2) == '' + i) {
+
+                            $('#row' + i).append('<button class="info-box ' + color + '" style="border:none;outline:none;cursor:pointer;font-weight: 700;font-size: 25px;height:36px;min-height:0;display: flex;justify-content: center;align-items: center;" data-id="' + val.ID + '" value="' + val.SoPhong + '"> ' + val.SoPhong + '</button> ');
+                        }
+                    })
+                }
+                console.log(data);
+            })
             var maPhong;
             var soPhong;
             var cmnd;
             var nguoiDaiDien;
+
+
             $('body').on('click', '.info-box.bg-warning', function () {
                 maPhong = $(this).attr('data-id');
                 console.log(maPhong);
-                var info = {
-                    idLoad: '#nguoidaidien-nhanp-ul',
-                    url: layKHTheoPhong
-                }
-                LayThongTinPhong(info, maPhong);
+                loadDataWithID(layKHTheoPhong, maPhong, function (data) {
+                    $(idNguoiDaiDien_Nhan).empty();
+                    $.each(data, function (index, val) {
+                        $(idNguoiDaiDien_Nhan).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
+                    })
+                });
                 $(idModalNhan).modal('show');
             })
             $('body').on('click', '#btn-nhanp', function () {
                 cmnd = $('#cmnd-nhanp').val();
-
                 nguoiDaiDien = $('#nguoidaidien-nhanp-ul option:selected').text();
+                $(idModalNhan).modal('hide')
                 var dataInput = {
                     IDPhong: maPhong,
                     HoVaTen: nguoiDaiDien,
                     CMND: cmnd
                 }
                 console.log(dataInput);
-                var info = {
-                    url: KHNhanPhong,
-                    modal: idModalNhan,
-                    urlLoad: layDSPhong
-                }
-                KhachHangNhanTraPhong(info, dataInput);
-                //console.log(maPhong)
+
+
+                KhachHangNhanTraPhong(KHNhanPhong, dataInput, function (data) {
+                    Swal.fire(
+                        'Nhận Phòng Thành Công!',
+                        '',
+                        'success'
+                    )
+                    window.location.reload();
+                });
             })
 
 
@@ -86,31 +124,57 @@
                 var info = {
                     idCMND: '#cmnd-trap',
                     idNguoiDaiDien: '#nguoidaidien-trap',
-                    idDichVu: '#dichvu-trap',
-                    url: layChiPhiTheoPhong
-
+                    idDichVu: '#dsdvphong',
                 }
-                LayThongTinPhong(info, maPhong);
+
+                loadDataWithID(layChiPhiTheoPhong, maPhong, function (data) {
+                    //select will empty when loaded
+                    $(info.idCMND).empty();
+                    $(info.idNguoiDaiDien).empty();
+                    $(info.idDichVu).empty();
+                    //tranfer data
+                    $(info.idCMND).val(data[1]);
+                    $(info.idCMND).html(data[1]);
+                    $(info.idNguoiDaiDien).val(data[0]);
+                    $(info.idNguoiDaiDien).html(data[0]);
+                    //split
+
+
+
+
+
+                    for (i = 2; i < data.length - 1; i++) {
+                        var dataStr = data[i].split('-');
+                        $(info.idDichVu).append('<tr style="font-size:13px"><th>' + dataStr[1] + '</th><th>' + dataStr[0] + '</th><th>' + dataStr[2] + '</th></tr>');
+                    }
+
+
+                    $(info.idDichVu).append('<tr><th>Tổng tiền</th><th></th><th id="giatien">' + data[data.length - 1] + '</th></tr>');
+                });
+
+                //LayThongTinPhong(info, maPhong);
                 $(idModalTra).modal('show');
             })
 
             $('body').on('click', '#btn-trap', function () {
                 cmnd = $('#cmnd-nhanp').val();
-                var info = {
-                    url: KHTraPhong,
-                    urlLoad: layDSPhong,
-                    modal: idModalTra
-                }
+                $(idModalTra).modal('hide')
+
                 var dataInput = {
                     IDPhong: maPhong,
                     CMND: cmnd
                 }
-                KhachHangNhanTraPhong(info, dataInput);
+                KhachHangNhanTraPhong(KHTraPhong, dataInput, function (data) {
+                    Swal.fire(
+                        'Trả Phòng Thành Công!',
+                        '',
+                        'success'
+                    )
+                    window.location.reload();
+                });
             })
-            
-            $('body').on('click', '#btn-adddichvu', function () {
-                $('#addDichVuModal').modal('show');
-            })
+
+
 
 
         });
@@ -220,30 +284,6 @@
 
 
                             <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Phòng</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thành Công</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
-                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
-                                    <span class="title">Đặt Phòng Thất Bại</span>
-                                    <span class="arrow"></span>
-                                </a>
-
-                            </li>
-                            <li class="nav-item active nv">
                                 <a href="/SEP23Team2/Views/NhanVienViews/Doan/Doan.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
                                     <span class="title">Đoàn</span>
@@ -252,8 +292,32 @@
 
                             </li>
                             <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThanhCong/DatPhongThanhCong.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">search</i>
+                                    <span class="title">Đặt Phòng Thành Công</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/DatPhongThatBai/DatPhongThatBai.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">assignment_late</i>
+                                    <span class="title">Đặt Phòng Thất Bại</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
+                                <a href="/SEP23Team2/Views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml" class="nav-link nav-toggle">
+                                    <i class="material-icons">vpn_key</i>
+                                    <span class="title">Phòng</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item active nv">
                                 <a href="/SEP23Team2/Views/NhanVienViews/ThemDichVu/ThemDichVu.cshtml" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
+                                    <i class="material-icons">queue</i>
                                     <span class="title">Thêm Dịch Vụ - Phòng</span>
                                     <span class="arrow"></span>
                                 </a>
@@ -287,40 +351,25 @@
                             </ol>
                         </div>
                     </div>
-                    <!--<div class="row" style="border: 1px solid red;width: 100%">
-                <div class="col-md-1 col-md-1 col-12" style="border: 1px solid black; ">
-                    <span class="info-box bg-success" style="font-weight: 700;font-size: 28px;padding: 20px 20px;">101</span>
-
-                </div>
-            </div>-->
-                    @*<div class="card-body">
-                    <div class="col-lg-3 p-t-20">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" id="daterange">
-                            <label class="mdl-textfield__label">Chọn Ngày Nhận - Trả</label>
-                        </div>
-                    </div>
-                </div>*@
                     <div id="dstang">
-
-                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 1</h3>
-                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row1"></div>
-                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 2</h3>
-                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row2"></div>
-                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 3</h3>
-                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row3"></div>
-                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 4</h3>
-                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row4"></div>
-                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 5</h3>
-                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row5"></div>
-                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 6</h3>
-                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row6"></div>
-                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 7</h3>
-                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row7"></div>
-                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 8</h3>
-                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row8"></div>
-                        <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 9</h3>
-                        <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row9"></div>
+                        @*<h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 1</h3>
+                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row1"></div>
+                            <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 2</h3>
+                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row2"></div>
+                            <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 3</h3>
+                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row3"></div>
+                            <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 4</h3>
+                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row4"></div>
+                            <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 5</h3>
+                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row5"></div>
+                            <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 6</h3>
+                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row6"></div>
+                            <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 7</h3>
+                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row7"></div>
+                            <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 8</h3>
+                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row8"></div>
+                            <h3 style="display: block;margin-left: 15px;" class="floor"> Tầng 9</h3>
+                            <div style="display: grid;grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));grid-gap: 10px;width: 95%;margin: 0 auto;" id="row9"></div>*@
 
 
                     </div>
@@ -334,7 +383,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Nhận Phòng</h4>
-                                    <div class="card-box"  style="border-top: 2px solid purple">
+                                    <div class="card-box" style="border-top: 2px solid purple">
 
                                         <div class="card-body row">
                                             <div class="col-lg-12 p-t-20">
@@ -374,7 +423,7 @@
             </div>
             <div class="modal fade" tabindex="-1" id="traphongModal" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
+                    <div class="modal-content" style="width:500px">
 
                         <div class="modal-body">
                             <div class="row">
@@ -399,11 +448,25 @@
                                             </div>
 
                                             <div class="col-lg-12 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                                    <ul id="dichvu-trap" style="list-style:none;">
-                                                        Dịch Vụ Đã Sử Dụng :
-                                                    </ul>
-                                                </div>
+                                                <table style="width:100%" border="1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Tên Khách Hàng</th>
+                                                            <th>Dịch Vụ</th>
+                                                            <th>Giá</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody id="dsdvphong">
+                                                    </tbody>
+
+                                                    @*<tr>
+                                                            <th>Tổng tiền</th>
+                                                            <th></th>
+                                                            <th id="giatien"></th>
+                                                        </tr>*@
+
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -412,7 +475,7 @@
                                                 class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-danger" id="btn-trap">
                                             Trả Phòng
                                         </button>
-                                       
+
                                         <button type="button"
                                                 class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
                                             Hủy
@@ -428,66 +491,6 @@
                 <!-- End Modal -->
                 <!-- end chat sidebar -->
             </div>
-            <div class="modal fade" tabindex="-1" id="addDichVuModal" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content" style="width:400px">
-
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Thêm Dịch Vụ Vào Phòng</h4>
-                                    <div class="card-box"  style="border-top: 2px solid aqua">
-
-                                        <div class="card-body row">
-                                            <div class="col-lg-12 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                                    <select id="dichvu-ul" class="form-control">
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                                    <select id="nguoidaidien-ul" class="form-control">
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 p-t-20">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                    <input class="mdl-textfield__input" type="text" id="date">
-                                                    <label class="mdl-textfield__label">Thời Gian</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary" id="btn-adddichvu">
-                                            Thêm
-                                        </button>
-                                        <button type="button"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" data-dismiss="modal">
-                                            Hủy
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-----end modal-->
-                <!-- end page content -->
-            </div>
-
-
-
-
-
-
-
 
             <!-- Modal -->
             <!-- end page container -->
@@ -527,7 +530,7 @@
     <script src="~/Content/QuanLy/plugins/flatpicker/flatpickr.min.js"></script>
     <script src="~/Content/QuanLy/js/pages/datetime/datetime-data.js"></script>
 
-    <script src="~/Content/QuanLy/js/pages/material-loading/material-loading.js"></script>
+    @*<script src="~/Content/QuanLy/js/pages/material-loading/material-loading.js"></script>*@
     @*<script type="text/javascript">
             $(document).ready(function () {
                 checkSession();

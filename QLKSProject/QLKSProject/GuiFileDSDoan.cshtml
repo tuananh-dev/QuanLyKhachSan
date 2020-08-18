@@ -416,9 +416,12 @@
                                             }
                                         </script>
                                         <input type="file" id="file-upload" name="upload" required onchange="ValidateSingleInput(this); ValidateSize(this);" />
-
+                                        <div class="g-reCAPTCHA" data-sitekey="6Lf00L8ZAAAAAAYG_Q-Hec40D8YKNe78-WR-uLHx"></div>
 
                                     </div>
+                                </div>
+                                <div class="row form-group">
+
                                 </div>
                                 <div class="a">
                                     <br>
@@ -543,6 +546,7 @@
     <script src="~/Content/Home/js/aos.js"></script>
     <script src="~/Content/Home/js/mediaelement-and-player.min.js"></script>
     <script src="~/Content/Home/js/main.js"></script>
+    <script src="https://www.google.com/reCAPTCHA/api.js" async defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var mediaElements = document.querySelectorAll('video, audio'), total = mediaElements.length;

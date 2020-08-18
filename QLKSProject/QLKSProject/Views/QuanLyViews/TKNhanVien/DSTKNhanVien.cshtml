@@ -37,7 +37,7 @@
             checkSession();
 
             var dataId;
-            var idList = '#dstk';
+            var idList = '#tknv';
             //Modal
             var idModalAdd = '#addModal';
             var idModalEdit = '#editModal';
@@ -49,20 +49,44 @@
             var xoaTaiKhoan = 'Quanly/XoaTaiKhoan?ID=';
             var layTaiKhoan = 'Quanly/LayTaiKhoan?ID=';
 
-            loadData(idList, layDSTaiKhoan);
-
+            //load data
+            loadData(layDSTaiKhoan, function (data) {
+                $(idList).DataTable({
+                    destroy: true,
+                    data: data,
+                    columns: [
+                        { 'data': 'UserName' },
+                        { 'data': 'UserPassword' },
+                        { 'data': 'FullName' },
+                        { 'data': 'PhoneNumber' },
+                        { 'data': 'UserEmailID' },
+                        {
+                            'data': null,
+                            'render': function (data, type, row) {
+                                return '<a class="btn btn-tbl-edit btn-xs" data-id="' + row.ID + '"> <i class="fa fa-pencil" style="color: lightgray"></i></a> <a class="btn btn-tbl-delete btn-xs" data-id="' + row.ID + '"><i class="fa fa-trash-o" data-id="ID"></i></a>'
+                            }
+                        }
+                    ],
+                    "columnDefs": [
+                        { "orderable": false, "targets": 5 },
+                        { "orderable": false, "targets": 3 },
+                        { "orderable": false, "targets": 2 },
+                        { "orderable": false, "targets": 1 }
+                    ]
+                });
+            });
+            //delete
             $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
 
                 dataId = $(this).attr("data-id");
                 var info = {
-                    id: idList,
+                    ID: dataId,
                     url: xoaTaiKhoan,
-                    urlLoad: layDSTaiKhoan
                 };
-                deleteData(info, dataId);
+                deleteData(info);
             })
 
-
+            //edit
             $('body').on('click', 'a.btn.btn-tbl-edit.btn-xs', function () {
                 $(idModalEdit).modal('show');
                 dataId = $(this).attr("data-id");
@@ -74,10 +98,18 @@
                     Mail: '#mail-edit'
                 }
 
-                loadDataDetail(edit, layTaiKhoan, dataId);
+                loadDataWithID(layTaiKhoan, dataId, function (data) {
+                    $(edit.TenTaiKhoan).val(data.UserName);
+                    $(edit.MatKhau).val(data.UserPassword);
+                    $(edit.HoVaTen).val(data.FullName);
+                    $(edit.SoDienThoai).val(data.PhoneNumber);
+                    $(edit.Mail).val(data.UserEmailID);
+                });
             })
 
             $('#btn-edit').click(function () {
+                
+                $(idModalEdit).modal('hide');
                 var data = {
                     ID: dataId,
                     UserID: 0,
@@ -90,22 +122,19 @@
                     IsDelete: false,
                     MaDoan: 0
                 };
-                var info = {
-                    id: idList,
-                    url: suaTaiKhoan,
-                    urlLoad: layDSTaiKhoan,
-                    modal: idModalEdit
-                };
+                
                 console.log(data);
-                editData(info, data);
+                editData(suaTaiKhoan, data);
 
             });
+
+            //add
             $("#addRow").click(function () {
                 $(idModalAdd).modal('show');
             })
 
             $('#btn-add').click(function () {
-                
+                $(idModalAdd).modal('hide');
                 var data = {
                     UserName: $('#tentk-add').val(),
                     UserPassword: $('#matkhau-add').val(),
@@ -118,12 +147,9 @@
                     IsDelete: false,
                 }
                 var info = {
-                    id: idList,
                     url: themTaiKhoan,
-                    urlLoad: layDSTaiKhoan,
                     modal: idModalAdd
                 };
-                console.log(data)
                 addData(info, data);
             });
 
@@ -167,7 +193,7 @@
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
-                               
+
 
                                 <li class="divider"> </li>
 
@@ -267,6 +293,7 @@
 
 
 
+
                         </ul>
                     </div>
                 </div>
@@ -310,7 +337,7 @@
                                             </div>
                                             <div class="table-scrollable">
                                                 <table class="table table-hover table-checkable order-column full-width"
-                                                       id="example4">
+                                                       id="tknv">
                                                     <thead>
                                                         <tr>
                                                             <th style="text-align: left"> Tên Tài Khoản </th>
@@ -321,7 +348,7 @@
                                                             <th class="center"> Chức Năng </th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="dstk">
+                                                    <tbody>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -359,7 +386,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h4 class="modal-header" style="height:40px;padding:0;margin:0;border-bottom:none">Chỉnh Sửa Tài Khoản</h4>
-                            <div class="card-box"  style="border-top: 2px solid black">
+                            <div class="card-box" style="border-top: 2px solid black">
 
                                 <div class="card-body row">
                                     <div class="col-lg-6 p-t-20">
@@ -495,6 +522,9 @@
     <!-- Material -->
     <script src="~/Content/QuanLy/plugins/material/material.min.js"></script>
     <script src="~/Content/QuanLy/js/pages/material_select/getmdl-select.js"></script>
+
+    <script src="~/Content/QuanLy/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/QuanLy/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
     <!-- Common js-->
     <script src="~/Content/QuanLy/js/app.js"></script>
     <script src="~/Content/QuanLy/js/layout.js"></script>

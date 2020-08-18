@@ -13,7 +13,7 @@ var App = function() {
 
     var resizeHandlers = [];
 
-    var ~/Content/QuanLyPath = '';
+    var content = '';
 
     var globalImgPath = 'img/';
 
@@ -701,12 +701,12 @@ var App = function() {
             return isIE9;
         },
 
-        get~/Content/QuanLyPath: function() {
-            return ~/Content/QuanLyPath;
+        getcontent: function() {
+            return content;
         },
 
-        set~/Content/QuanLyPath: function(path) {
-            ~/Content/QuanLyPath = path;
+        setcontent: function(path) {
+            content = path;
         },
 
         setGlobalImgPath: function(path) {
@@ -714,11 +714,11 @@ var App = function() {
         },
 
         getGlobalImgPath: function() {
-            return ~/Content/QuanLyPath + globalImgPath;
+            return content + globalImgPath;
         },
 
         getGlobalCssPath: function() {
-            return ~/Content/QuanLyPath + globalCssPath;
+            return content + globalCssPath;
         },
 
         getResponsiveBreakpoint: function(size) {
