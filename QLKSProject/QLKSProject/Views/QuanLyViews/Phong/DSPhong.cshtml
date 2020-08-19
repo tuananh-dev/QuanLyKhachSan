@@ -53,17 +53,6 @@
                 var xoaPhong = 'Quanly/XoaPhong?ID=';
                 var layPhong = 'Quanly/LayPhong?ID=';
 
-
-                //var tien = formatNumber(val.Gia);
-                //                        var tt = "Trống";
-                //                        var label = "";
-                //                        if (val.TrangThai == '0') {
-                //                            tt = "Đang Chờ"
-                //                            label = "label-warning"
-                //                        } else if (val.TrangThai == '1') {
-                //                            tt = "Đang sử dụng"
-                //                            label = "label-success"
-                //                        }
                 loadData(layDSPhong, function (data) {
 
                     $(idList).DataTable({
@@ -243,19 +232,7 @@
                         </a>
                     </div>
                     <!-- logo end -->
-                    <!--<ul class="nav navbar-nav navbar-left in">
-                        <li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
-                    </ul>
-                    <form class="search-form-opened" action="#" method="GET">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="myInput" placeholder="Search..." name="query">
-                            <span class="input-group-btn search-btn">
-                                <a href="javascript:;" class="btn submit">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </form>-->
+
                     <!-- start mobile menu -->
                     <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
                        data-target=".navbar-collapse">
@@ -418,7 +395,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="table-scrollable">
+                                        <div class="table-scrollable" style="min-height:400px;">
                                             <table class="table display product-overview mb-30"
                                                    id="dsphong">
                                                 <thead>
@@ -459,13 +436,7 @@
                                                         <label class="mdl-textfield__label">Số Lầu</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 p-t-20">
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                        <input class="mdl-textfield__input" type="number"
-                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="sophong-add">
-                                                        <label class="mdl-textfield__label" for="sophong-add">Số Phòng</label>
-                                                    </div>
-                                                </div>
+
 
 
                                                 <div class="col-lg-6 p-t-20">
@@ -487,6 +458,13 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="col-lg-6 p-t-20">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                        <input class="mdl-textfield__input" type="number"
+                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="sophong-add">
+                                                        <label class="mdl-textfield__label" for="sophong-add">Số Phòng</label>
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-lg-6 p-t-20">
                                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
@@ -537,14 +515,6 @@
                                                         <label class="mdl-textfield__label" style="top:0;">Số Lầu</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 p-t-20">
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                                        <input class="mdl-textfield__input" type="number"
-                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="sophong-edit">
-                                                        <label class="mdl-textfield__label" for="sophong-edit" style="top:0;">Số Phòng</label>
-                                                    </div>
-                                                </div>
-
 
                                                 <div class="col-lg-6 p-t-20">
                                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
@@ -563,6 +533,13 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="col-lg-6 p-t-20">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                        <input class="mdl-textfield__input" type="number"
+                                                               pattern="^[0-9]{1,2}[:.,-]?$" id="sophong-edit">
+                                                        <label class="mdl-textfield__label" for="sophong-edit" style="top:0;">Số Phòng</label>
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-lg-6 p-t-20">
                                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">

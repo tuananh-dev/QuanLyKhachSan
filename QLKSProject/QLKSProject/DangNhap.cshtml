@@ -29,28 +29,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-
-            sessionStorage.removeItem('role');
-            sessionStorage.removeItem('accessToken');
-            sessionStorage.removeItem('fullname');
-
-            //$.ajax({
-            //    url: '/SEP23Team2/token',
-            //    method: 'POST',
-            //    headers: { 'content-type': 'application/json', 'data-type': 'json' },
-            //    data: {
-            //        username: '',
-            //        password: '',
-            //        grant_type: 'password'
-            //    }
-            //});
-
+            sessionStorage.clear();
         });
     </script>
     <style>
         #btn-close:hover {
             color: red;
-            /*Background:red;*/
         }
     </style>
 </head>
@@ -180,7 +164,7 @@
                                                         window.location.href = "views/QuanLyViews/ThongKe/thongke.cshtml";
                                                         break;
                                                     case 'nv':
-                                                        window.location.href = "views/NhanVienViews/Phong_NhanVien/DanhSachPhong.cshtml";
+                                                        window.location.href = "views/NhanVienViews/Doan/Doan.cshtml";
                                                         break;
                                                     case 'kh':
                                                         window.location.href = "views/KhachHangViews/DSThanhVien.cshtml";
