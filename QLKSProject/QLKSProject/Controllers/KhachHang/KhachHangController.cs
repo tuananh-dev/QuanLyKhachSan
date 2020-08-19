@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using Newtonsoft.Json;
+﻿using System.Web.Http;
 using QLKSProject.Business.KhachHangBusiness;
 
 namespace QLKSProject.Controllers.KhachHang
 {
-    [Authorize(Roles = "kh")]
+    [Authorize(Roles = "kh,nv")]
     public class KhachHangController : ApiController
     {
         [HttpGet]
