@@ -500,6 +500,7 @@
     <Content Include="Global.asax" />
     <Content Include="Views\KhachHangViews\DSThanhVien.cshtml" />
     <None Include="Views\NhanVienViews\DatPhongThanhCong\DatPhongThanhCong.cshtml" />
+    <Content Include="Views\NhanVienViews\DatPhongThanhCong\XemChiTietDoan.cshtml" />
     <None Include="Views\NhanVienViews\DatPhongThatBai\DatPhongThatBai.cshtml" />
     <None Include="Views\NhanVienViews\DatPhongThatBai\XemchiTiet.cshtml" />
     <None Include="Views\NhanVienViews\Doan\Doan.cshtml" />
