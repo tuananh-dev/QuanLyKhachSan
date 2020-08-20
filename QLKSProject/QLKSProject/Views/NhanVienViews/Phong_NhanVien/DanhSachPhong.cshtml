@@ -98,23 +98,42 @@
             $('body').on('click', '#btn-nhanp', function () {
                 cmnd = $('#cmnd-nhanp').val();
                 nguoiDaiDien = $('#nguoidaidien-nhanp-ul option:selected').text();
-                $(idModalNhan).modal('hide')
+
                 var dataInput = {
                     IDPhong: maPhong,
                     HoVaTen: nguoiDaiDien,
                     CMND: cmnd
                 }
-                console.log(dataInput);
+                var message = '';
+                if (isEmpty(dataInput.CMND)) {
+                    message += EMEmpty;
+                }
+
+                $(idModalNhan).modal('hide')
+                if (message.length > 0) {
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: message
+                    }).then(() => {
+                        $(idModalAdd).modal('show');
+                    })
+                } else {
+                    console.log(dataInput);
+                    KhachHangNhanTraPhong(KHNhanPhong, dataInput, function (data) {
+                        Swal.fire(
+                            'Nhận Phòng Thành Công!',
+                            '',
+                            'success'
+                        )
+                        window.location.reload();
+                    });
+                }
 
 
-                KhachHangNhanTraPhong(KHNhanPhong, dataInput, function (data) {
-                    Swal.fire(
-                        'Nhận Phòng Thành Công!',
-                        '',
-                        'success'
-                    )
-                    window.location.reload();
-                });
+
+
             })
 
 
@@ -169,8 +188,10 @@
                         'Trả Phòng Thành Công!',
                         '',
                         'success'
-                    )
-                    window.location.reload();
+                    ).then(() => {
+                        window.location.reload();
+                    })
+
                 });
             })
 
@@ -190,7 +211,7 @@
 </head>
 <!-- END HEAD -->
 
-<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white dark-sidebar-color logo-dark" >
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white dark-sidebar-color logo-dark">
     <div class="page-wrapper" style="overflow:hidden">
         <!-- start header -->
         <div class="page-header navbar navbar-fixed-top">

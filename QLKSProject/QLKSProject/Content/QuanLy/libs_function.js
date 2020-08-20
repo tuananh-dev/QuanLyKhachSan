@@ -1,4 +1,6 @@
-﻿
+﻿var EMEmpty = "Thông tin nhập vào không hợp lệ!\r\n";
+var EMNumber = " phải là số\r\n";
+var EMTwoNumber = " chỉ có 2 chữ số\r\n";
 //orther function
 function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + " VND";
@@ -19,7 +21,22 @@ function checkSession() {
         }
         $('#roleuser').html(role);
     }
-   
+
+}
+
+function isEmpty(str) {
+
+    return (str.length == 0);
+}
+function isNumber(number) {
+    var n = parseInt(number);
+
+    return (n > 0)
+}
+function isTwoNumber(number) {
+
+    var n = parseInt(number);
+    return (n < 100 && n > 0)
 }
 //Xem Them Xoa Sua
 function loadData(url, callback) {
@@ -39,6 +56,11 @@ function loadData(url, callback) {
         if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
             window.location.href = "/SEP23Team2/404.cshtml";
         }
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Thao tác không hợp lệ !'
+        })
     })
 
 }
@@ -58,6 +80,11 @@ function loadDataWithID(url, id, callback) {
         if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
             window.location.href = "/SEP23Team2/404.cshtml";
         }
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Thao tác không hợp lệ !'
+        })
     })
 }
 
@@ -86,6 +113,11 @@ function addData(info, dataInput) {
         if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
             window.location.href = "/SEP23Team2/404.cshtml";
         }
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Thao tác không hợp lệ !'
+        })
     })
 }
 
@@ -111,6 +143,11 @@ function editData(url, dataInput) {
         if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
             window.location.href = "/SEP23Team2/404.cshtml";
         }
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Thao tác không hợp lệ !'
+        })
     })
 }
 
@@ -147,6 +184,11 @@ function deleteData(info) {
                 if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
                     window.location.href = "/SEP23Team2/404.cshtml";
                 }
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Thao tác không hợp lệ !'
+                })
             })
 
         }
@@ -237,7 +279,7 @@ function loadDSPhongTrong(info, dataInput) {
     }).fail(function (jqXHR, textStatus, errorThrown) {
         if (jqXHR.responseJSON.Message == 'Authorization has been denied for this request.') {
             window.location.href = "/SEP23Team2/404.cshtml";
-        } else if (jqXHR.responseJSON.Message == 'An error has occurred.'){
+        } else if (jqXHR.responseJSON.Message == 'An error has occurred.') {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',

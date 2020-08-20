@@ -112,7 +112,7 @@
             })
 
             $('#btn-edit').click(function () {
-                $(idModalEdit).modal('hide');
+                
                 var data = {
                     ID: dataId,
                     TenDichVu: $('#tenDV-edit').val(),
@@ -121,7 +121,29 @@
                     IsDelete: false,
                 };
 
-                editData(suaDichVu, data);
+                //validate
+                var message = '';
+                if (isEmpty(data.TenDichVu) || isEmpty(data.Gia) || isEmpty(data.MoTa)) {
+                    message += EMEmpty;
+                }
+                if (!isNumber(data.Gia)) {
+                    message += 'Giá' + EMNumber;
+                }
+                $(idModalEdit).modal('hide');
+
+                if (message.length > 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: message
+                    }).then(() => {
+                        $(idModalEdit).modal('show');
+                    })
+                } else {
+                    editData(suaDichVu, data);
+                }
+
+
 
 
             });
@@ -131,19 +153,40 @@
             })
 
             $('#btn-add').click(function () {
-                $(idModalAdd).modal('hide');
                 var data = {
                     TenDichVu: $('#tenDV-add').val(),
                     Gia: $('#gia-add').val(),
                     IsDelete: false,
                     MoTa: $('#mota-add').val()
                 }
-                var info = {
-                    url: themDichVu,
-                    modal: idModalAdd
-                };
+                //validate
+                var message = '';
+                if (isEmpty(data.TenDichVu) || isEmpty(data.Gia) || isEmpty(data.MoTa)) {
+                    message += EMEmpty;
+                }
+                if (!isNumber(data.Gia)) {
+                    message += 'Giá' + EMNumber;
+                }
+                $(idModalAdd).modal('hide');
 
-                addData(info, data);
+                if (message.length > 0) {
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: message
+                    }).then(() => {
+                        $(idModalAdd).modal('show');
+                    })
+                } else {
+
+                    var info = {
+                        url: themDichVu,
+                        modal: idModalAdd
+                    };
+                    addData(info, data);
+                }
+
             });
         });
 

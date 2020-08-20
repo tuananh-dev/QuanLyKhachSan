@@ -33,7 +33,11 @@
         <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
         <script src="~/Content/QuanLy/Jquery.js"></script>
         <script src="~/Content/QuanLy/libs_function.js"></script>
-
+        <style>
+            tbody tr td {
+                text-align:center;
+            }
+        </style>
         <script type="text/javascript">
 
             $(document).ready(function () {
@@ -91,8 +95,6 @@
                         ],
                         "columnDefs": [
                             { "orderable": false, "targets": 4 },
-                            { "orderable": false, "targets": 2 },
-                            { "orderable": false, "targets": 3 }
                         ]
                     });
                 });
@@ -144,7 +146,6 @@
                 })
 
                 $('#btn-edit').click(function () {
-                    $(idModalEdit).modal('hide');
                     var loaiPhong = "0";
                     var _0 = '0';
                     if ($('#loaiphong-edit').val() == "Phòng Loại 1") {
@@ -162,6 +163,7 @@
                     if (parseInt($('#solau-add').val()) > 9) {
                         _0 = '';
                     }
+                    $(idModalEdit).modal('hide');
                     var data = {
                         ID: dataId,
                         MaPhong: loaiPhong + _0 + $('#solau-edit').val() + $('#sophong-edit').val(),
@@ -170,7 +172,33 @@
                         SoPhong: $('#solau-edit').val() + $('#sophong-edit').val()
                     };
 
-                    editData(suaPhong, data);
+                    //validate
+                    var message = '';
+                    if (isEmpty(data.LoaiPhong) || isEmpty(data.Gia) || isEmpty($('#solau-add').val()) || isEmpty($('#sophong-add').val())) {
+                        message += EMEmpty;
+                    }
+                    if (!isNumber(data.Gia) || !isNumber($('#solau-add').val()) || !isNumber($('#sophong-add').val())) {
+                        message += '\r\nGiá , Số Lầu , Số Phòng' + EMNumber;
+                    }
+
+                    if (isTwoNumber($('#solau-add').val()) || isTwoNumber($('#sophong-add').val())) {
+                        message += '\r\nSố Lầu , Số Phòng ' + EMTwoNumber;
+                    }
+                   
+
+                    if (message.length > 0) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: message
+                        }).then(() => {
+                            $(idModalEdit).modal('show');
+                        })
+                    } else {
+                        editData(suaPhong, data);
+                    }
+
+
 
                 });
                 $("#addRow").click(function () {
@@ -178,8 +206,7 @@
                 })
 
                 $('#btn-add').click(function () {
-                    $(idModalAdd).modal('hide');
-                    var loaiPhong = "0";
+                    var loaiPhong = "";
                     var _0 = '0';
                     if ($('#loaiphong-add').val() == "Phòng Loại 1") {
                         loaiPhong = "1";
@@ -204,12 +231,38 @@
                         TrangThai: -1,
                         IsDelete: false,
                     }
-                    var info = {
-                        url: themPhong,
-                        modal: idModalAdd
-                    };
-                    console.log(data);
-                    addData(info, data);
+                    //validate
+                    var message = '';
+                    if (isEmpty(data.LoaiPhong) || isEmpty(data.Gia) || isEmpty($('#solau-add').val()) || isEmpty($('#sophong-add').val())) {
+                        message += EMEmpty;
+                    }
+                    if (!isNumber(data.Gia) || !isNumber($('#solau-add').val()) || !isNumber($('#sophong-add').val())) {
+                        message += '\r\nGiá , Số Lầu , Số Phòng' + EMNumber;
+                    }
+
+                    if (isTwoNumber($('#solau-add').val()) || isTwoNumber($('#sophong-add').val())) {
+                        message += '\r\nSố Lầu , Số Phòng ' + EMTwoNumber;
+                    }
+                    $(idModalAdd).modal('hide');
+
+                    if (message.length > 0) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: message
+                        }).then(() => {
+                            $(idModalAdd).modal('show');
+                        })
+                    } else {
+                        var info = {
+                            url: themPhong,
+                            modal: idModalAdd
+                        };
+                        console.log(data);
+                        addData(info, data);
+                    }
+
                 });
 
 
@@ -232,7 +285,6 @@
                         </a>
                     </div>
                     <!-- logo end -->
-
                     <!-- start mobile menu -->
                     <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
                        data-target=".navbar-collapse">
@@ -400,11 +452,11 @@
                                                    id="dsphong">
                                                 <thead>
                                                     <tr>
-                                                        <th> Số Phòng </th>
-                                                        <th> Phòng Loại </th>
-                                                        <th> Giá </th>
-                                                        <th> Tình Trạng </th>
-                                                        <th> Chức Năng </th>
+                                                        <th class="center"> Số Phòng </th>
+                                                        <th class="center"> Phòng Loại </th>
+                                                        <th class="center"> Giá </th>
+                                                        <th class="center"> Tình Trạng </th>
+                                                        <th class="center"> Chức Năng </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

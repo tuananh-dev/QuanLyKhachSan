@@ -108,7 +108,7 @@
             })
 
             $('#btn-edit').click(function () {
-                
+
                 $(idModalEdit).modal('hide');
                 var data = {
                     ID: dataId,
@@ -122,9 +122,27 @@
                     IsDelete: false,
                     MaDoan: 0
                 };
-                
-                console.log(data);
-                editData(suaTaiKhoan, data);
+                //validate
+                var message = '';
+                if (isEmpty(data.UserName) || isEmpty(data.UserPassword) || isEmpty(data.FullName) || isEmpty(data.PhoneNumber) || isEmpty(data.UserEmailID)) {
+                    message += EMEmpty;
+                }
+
+                $(idModalEdit).modal('hide');
+
+                if (message.length > 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: message
+                    }).then(() => {
+                        $(idModalEdit).modal('show');
+                    })
+                } else {
+                    console.log(data);
+                    editData(suaTaiKhoan, data);
+                }
+
 
             });
 
@@ -134,7 +152,7 @@
             })
 
             $('#btn-add').click(function () {
-                $(idModalAdd).modal('hide');
+
                 var data = {
                     UserName: $('#tentk-add').val(),
                     UserPassword: $('#matkhau-add').val(),
@@ -146,11 +164,31 @@
                     MaDoan: 0,
                     IsDelete: false,
                 }
-                var info = {
-                    url: themTaiKhoan,
-                    modal: idModalAdd
-                };
-                addData(info, data);
+                //validate
+                var message = '';
+                if (isEmpty(data.UserName) || isEmpty(data.UserPassword) || isEmpty(data.FullName) || isEmpty(data.PhoneNumber) || isEmpty(data.UserEmailID)) {
+                    message += EMEmpty;
+                }
+
+                $(idModalAdd).modal('hide');
+
+                if (message.length > 0) {
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: message
+                    }).then(() => {
+                        $(idModalAdd).modal('show');
+                    })
+                } else {
+                    var info = {
+                        url: themTaiKhoan,
+                        modal: idModalAdd
+                    };
+                    addData(info, data);
+                }
+
             });
 
         });
@@ -368,8 +406,7 @@
         <!-- start footer -->
         <div class="page-footer">
             <div class="page-footer-inner">
-                2018 &copy; Spice Hotel Template By
-                <a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">RedStar Theme</a>
+                2020 &copy; Color Hotel
             </div>
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>
