@@ -26,7 +26,7 @@ function checkSession() {
 
 function isEmpty(str) {
 
-    return (str.length == 0);
+    return (str == '');
 }
 function isNumber(number) {
     var n = parseInt(number);

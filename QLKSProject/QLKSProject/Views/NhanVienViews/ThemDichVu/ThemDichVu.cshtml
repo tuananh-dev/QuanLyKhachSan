@@ -31,10 +31,18 @@
         <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
         <script src="~/Content/QuanLy/Jquery.js"></script>
         <script src="~/Content/QuanLy/libs_function.js"></script>
-        <link href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="Stylesheet">
 
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.structure.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="Stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
+        <style>
+            tbody tr td {
+                text-align:center;
+            }
+            tbody tr td:nth-last-child(2) {
+                text-align:left;
+            }
+        </style>
         <script type="text/javascript">
 
             $(document).ready(function () {
@@ -45,7 +53,7 @@
                 var idList = '#dsdichvuphong';
                 //Modal
                 var idModalAdd = '#addDichVuPhongModal';
-            
+
                 //API
                 var layDSDichVuPhong = 'NhanVien/LayDSLichSuDichVu';
                 var themDichVuPhong = 'NhanVien/ThemMoiDichVuPhong';
@@ -86,7 +94,6 @@
                         ]
                     });
                 });
-                //loadData(idList, layDSDichVuPhong);
 
                 $('body').on('click', 'a.btn.btn-tbl-delete.btn-xs', function () {
 
@@ -106,15 +113,15 @@
 
 
                     loadData(layDSPhong, function (data) {
-
-                        var words = ['boat', 'bear', 'dog', 'drink', 'elephant', 'fruit'];
-
-                        $('#dsphong-select').autocomplete({
-                            source: words
-                        });
-
+                        $(idDSPhong).empty();
+                        $(idDSPhong).prepend('<option value="">Chọn Phòng</option>');
+                        $.each(data, function (index, val) {
+                            $(idDSPhong).prepend('<option value="' + val.SoPhong + '" data-id="' + val.ID + '"> ' + val.SoPhong + '</option>');
+                        })
                     })
                     loadData(layDSDichVu, function (data) {
+                        $(idDSDichVu).empty();
+                        $(idDSDichVu).prepend('<option value="">Chọn Dịch Vụ</option>');
                         $.each(data, function (index, val) {
                             $(idDSDichVu).prepend('<option value="' + val.ID + '" data-id="' + formatNumber(val.Gia) + '"> ' + val.TenDichVu + '</option>');
                         })
@@ -132,32 +139,66 @@
 
 
                 $('#dsphong-select').change(function () {
-                    var idPhong = $(this).val();
+                    var idPhong = $('#dsphong-select option:selected').attr('data-id');
                     var idDSNguoiTrongPhong = '#dsnguoitrongphong-select';
                     loadDataWithID(layDSNguoiTrongPhong, idPhong, function (data) {
-                        $.each(data, function (index, val) {
-                            $(idDSNguoiTrongPhong).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
-                        })
+                        if (data.length <= 0) {
+                            $(idModalAdd).modal('hide');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Phòng chưa được sử dụng!'
+                            }).then(() => {
+                                $(idModalAdd).modal('show');
+                            })
+                        } else {
+                            $(idDSNguoiTrongPhong).empty();
+                            $.each(data, function (index, val) {
+                                $(idDSNguoiTrongPhong).append('<option value="' + val.ID + '">' + val.HoVaTen + '</option>');
+                            })
+                            console.log('them thanh cong')
+                        }
+
                     })
+
                 })
 
                 $('#btn-adddvphong').click(function () {
-                    $(idModalAdd).modal('hide');
+
                     var data = {
                         IDDichVu: $('#dsdichvu-select').val(),
                         IDKhachHang: $('#dsnguoitrongphong-select').val(),
-                        IDPhong: $('#dsphong-select').val(),
+                        IDPhong: $('#dsphong-select option:selected').attr('data-id'),
                         IsDelete: false,
-                        SoPhong: $('#dsphong-select option:selected').text(),
+                        SoPhong: $('#dsphong-select option:selected').val(),
                         TenDichVu: $('#dsdichvu-select option:selected').text().split('+')[0].trim(),
                         HoVaTenKhachHang: $('#dsnguoitrongphong-select option:selected').text(),
                         GhiChu: $('#ghichu').val()
                     }
-                    var info = {
-                        url: themDichVuPhong,
-                    };
-                    console.log(data);
-                    addData(info, data);
+
+                    $(idModalAdd).modal('hide');
+                    var message = '';
+                    if (isEmpty(data.idDSDichVu) || isEmpty(data.IDKhachHang) || isEmpty(data.IDPhong) || isEmpty(data.GhiChu)) {
+                        message += EMEmpty;
+                    }
+
+                    if (message.length > 0) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: message
+                        }).then(() => {
+                            $(idModalAdd).modal('show');
+                        })
+                    } else {
+                        var info = {
+                            url: themDichVuPhong,
+                        };
+                        console.log(data);
+                        addData(info, data);
+                    }
+
                 });
             });
 
@@ -348,11 +389,11 @@
                                                    id="dsdichvuphong">
                                                 <thead>
                                                     <tr>
-                                                        <th class="" style="width: 130px"> Số Phòng </th>
-                                                        <th class="" style="width: 180px"> Tên Khách Hàng </th>
-                                                        <th class="" style="width: 130px"> Tên Dịch Vụ </th>
-                                                        <th class="" style="width: 130px"> Ngày Gọi </th>
-                                                        <th class=""> Ghi Chú </th>
+                                                        <th class="center" style="width: 130px"> Số Phòng </th>
+                                                        <th class="center" style="width: 180px"> Tên Khách Hàng </th>
+                                                        <th class="center" style="width: 130px"> Tên Dịch Vụ </th>
+                                                        <th class="center" style="width: 130px"> Ngày Gọi </th>
+                                                        <th class="" style=""> Ghi Chú </th>
                                                         <th class="center"> Chức Năng </th>
                                                     </tr>
                                                 </thead>
@@ -394,14 +435,17 @@
                                             </div>
                                             <div class="col-lg-12 p-t-20">
                                                 <label>Phòng</label>
-                                                <input class="mdl-textfield__input" type="text" id="dsphong-select" required>
+                                                <select class="form-control" id="dsphong-select">
+                                                    <option selected disabled>Chọn Phòng</option>
+                                                </select>
+
 
                                             </div>
 
                                             <div class="col-lg-12 p-t-20">
                                                 <label>Thành Viên</label>
                                                 <select class="form-control" id="dsnguoitrongphong-select">
-                                                    <option selected disabled>Chọn Phòng</option>
+                                                    <option selected disabled>Chọn Thành Viên</option>
                                                 </select>
                                             </div>
 
@@ -471,8 +515,8 @@
         <!--<script src="~/Content/QuanLy/plugins/material/material.min.js"></script>-->
         <!-- animation -->
         <script src="~/Content/QuanLy/js/pages/ui/animations.js"></script>
-        <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet" />
-        <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+
         <!-- end js include path -->
     </body>
 
