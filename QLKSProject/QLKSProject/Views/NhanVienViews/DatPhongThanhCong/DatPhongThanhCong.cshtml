@@ -28,6 +28,8 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="~/Content/QuanLy/img/logo.png" />
     <script src="~/Content/QuanLy/Jquery.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/Content/QuanLy/libs_function.js"></script>
     <style>
         tbody tr td {
@@ -42,7 +44,7 @@
 
             var idList = $('#dsdatphong');
             var layDS = 'NhanVien/LayDanhSachDoanDatPhongThanhCong';
-
+            var xoaDoan = 'NhanVien/XoaDoan/';
             loadData(layDS, function (data) {
                 $(idList).DataTable({
                     destroy: true,
@@ -74,6 +76,7 @@
                             'render': function (data, type, row) {
                                 var color = 'label-warning';
                                 var ttxn = 'Đang chờ';
+
                                 if (row.TrangThaiXacNhan) {
                                     ttxn = 'Đã Xác Nhận'
                                     color = 'label-success';
@@ -84,7 +87,7 @@
                         {
                             'data': null,
                             'render': function (data, type, row) {
-                                return '<a class="btn btn-info btn-xs" data-id="' + row.MaDoan + '">Xem Chi Tiết</a>'
+                                return '<a class="btn btn-danger btn-xs" data-id="' + row.MaDoan + '" ><i class="fa fa-trash-o"></i></a ><a class="btn btn-info btn-xs" data-id="' + row.MaDoan + '"><i class="fa fa-arrow-circle-o-right "></i></a>'
                             }
                         }
                     ],
@@ -101,7 +104,14 @@
                 console.log(sessionStorage.getItem('madoan'));
                 window.location.href = "XemchiTietDoan.cshtml";
             })
-
+            $('body').on('click', 'a.btn.btn-danger.btn-xs', function () {
+                dataId = $(this).attr("data-id");
+                var info = {
+                    url: xoaDoan,
+                    ID: dataId
+                };
+                deleteData(info);
+            })
 
 
 
@@ -124,7 +134,6 @@
                     </a>
                 </div>
                 <!-- logo end -->
-                
                 <!-- start mobile menu -->
                 <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
                    data-target=".navbar-collapse">
@@ -134,7 +143,6 @@
                 <!-- start header menu -->
                 <div class="top-menu">
                     <ul class="nav navbar-nav pull-right">
-                       
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                data-close-others="true">
@@ -144,7 +152,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
 
-                                <li class="divider"> </li>
+                                <li class="divider"></li>
 
                                 <li>
                                     <a href="~/DangNhap.cshtml">
@@ -187,12 +195,6 @@
 
                                 </div>
                             </li>
-
-
-
-
-
-
                             <li class="nav-item active nv">
                                 <a href="/SEP23Team2/Views/NhanVienViews/Doan/Doan.cshtml" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
@@ -239,8 +241,8 @@
                 </div>
             </div>
             <!-- end sidebar menu -->
-            <div class="page-content-wrapper">
-                <div class="page-content" style="margin-top:10px;">
+            <div class="page-content-wrapper" style="min-height: 645px;">
+                <div class="page-content">
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
@@ -267,13 +269,13 @@
                                                id="dsdatphong">
                                             <thead>
                                                 <tr>
-                                                    <th class="center" style="width: 250px;"> Tên Trưởng Đoàn</th>
-                                                    <th class="center" style="width: 250px;"> Tên Đoàn</th>
+                                                    <th class="center" style="width: 200px;"> Tên Trưởng Đoàn</th>
+                                                    <th class="center" style="width: 200px;"> Tên Đoàn</th>
                                                     <th class="center"> Thời Gian Nhận </th>
                                                     <th class="center"> Thời Gian Trả </th>
                                                     <th class="center"> Thời Gian Gửi </th>
                                                     <th class="center"> Trạng Thái </th>
-                                                    <th class="center"> Chức Năng </th>
+                                                    <th class="center" style="width: 100px"> Chức Năng </th>
 
                                                 </tr>
                                             </thead>

@@ -28,6 +28,23 @@
     <link rel="stylesheet" href="~/Content/Home/fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="~/Content/Home/css/aos.css">
     <link rel="stylesheet" href="~/Content/Home/css/style.css">
+    <script src="~/Content/QuanLy/libs_function.js"></script>
+    <style>
+        #name ul li a {
+            font-size: 13px;
+            color: #484747;
+            margin: 3px 6px
+        }
+        #name ul li a:hover {
+            color: #f23a2e;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            console.log(sessionStorage.getItem('accessToken'));
+            checkSessionHome();
+        })
+    </script>
 </head>
 <body>
 
@@ -60,8 +77,28 @@
                                             <li><a href="GioiThieu.cshtml">Giới Thiệu</a></li>
 
                                             <li><a href="GuiFileDSDoan.cshtml">Đặt Phòng</a></li>
-                                            <li> <a href="~/DangNhap.cshtml" class="btn btn-primary pill text-white px-4">Đăng Nhập</a></li>
-
+                                            <li id="dn"><a href="~/DangNhap.cshtml" class="btn btn-primary pill text-white px-4">Đăng Nhập</a></li>
+                                            <li class="dropdown dropdown-user" id="name" style="display:none;">
+                                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                                                   data-close-others="true">
+                                                    <span class="username username-hide-on-mobile nameuser"></span>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-menu-default jello">
+                                                    <li id="nv">
+                                                        <a href="~/Views/NhanVienViews/Doan/Doan.cshtml">Về Trang Nhân Viên
+                                                        </a>
+                                                    </li>
+                                                    <li id="ql">
+                                                        <a href="~/Views/QuanLyViews/ThongKe/ThongKe.cshtml"> Về Trang Quản Lý
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="~/DangNhap.cshtml"> Đăng Xuất
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
 
                                         </ul>
                                     </div>
@@ -259,7 +296,7 @@
                                         <h3 class="heading mb-0"><a>Phòng 3 Người</a></h3>
                                         <strong class="price">3.000.000 vnđ  / Ngày</strong>
                                     </div>
-                                    <div class="cd-quick-view" style="margin-top: 30px" id="cdqv3">
+                                    <div class="cd-quick-view" style="        margin-top: 30px" id="cdqv3">
                                         <div class="cd-slider-wrapper">
                                             <ul class="cd-slider">
                                                 <li class="selected"><img src="~/Content/Home/ChiTietPhong/img/7.jpg" alt="Product 7"></li>
@@ -450,7 +487,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <br>
         <footer class="site-footer" c>
