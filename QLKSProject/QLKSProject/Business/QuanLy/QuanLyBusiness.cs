@@ -68,7 +68,6 @@ namespace QLKSProject.Business.QuanLy
         public string CapNhatTaiKhoan(UserMasterDTO userMaster)
         {
             string status = "ok";
-            if (!CheckUserMaster(userMaster.UserName))
                 try
                 {
                     var tk = models.UserMasters.Where(s => s.ID == userMaster.ID).FirstOrDefault();
@@ -90,10 +89,6 @@ namespace QLKSProject.Business.QuanLy
                 {
                     return status = "Lỗi không thể lưu tài khoản!";
                 }
-            else
-            {
-                return status = "Lỗi tài khoản không tồn tại!";
-            }
             return status;
         }
         public bool XoaTaiKhoan(int idUserMaster)
@@ -608,7 +603,7 @@ namespace QLKSProject.Business.QuanLy
         #endregion
 
         #region Private Methods
-        private bool CheckUserMaster(String userName)
+        private bool CheckUserMaster(string  userName)
         {
             bool b = true;
             var lstUserMaster = models.UserMasters.ToList();
