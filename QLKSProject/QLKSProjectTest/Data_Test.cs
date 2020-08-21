@@ -242,14 +242,12 @@ namespace QLKSProjectTest
         //Nhan Vien
         public int SoLuongDoan()
         {
-            return models.Doans.Where(d => d.TrangThaiDatPhong == 0).Count();
+            var lstDoan = nhanvien.LayDanhSachDoanTheoTrangThaiDatPhong(0);
+            return lstDoan.Count();
         }
         public int SoLuongDoanDatPhongThanhCong()
         {
-            DateTime today = DateTime.Now;
-            var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == 1 && d.IsDelete != true).ToList();
-            lstDoan = lstDoan.Where(d => d.ThoiGianTra.CompareTo(today) >= 0).OrderByDescending(d => d.NgayGui).ToList();
-
+            var lstDoan = nhanvien.LayDanhSachDoanTheoTrangThaiDatPhong(1);
             return lstDoan.Count;
         }
         public int SoLuongKhachHangTrongDoan(string maDoan)

@@ -35,9 +35,9 @@ namespace QLKSProject.Controllers.QuanLy
         [HttpPost]
         public IHttpActionResult ThemTaiKhoan([FromBody]dynamic dynamic)
         {
-            if (dynamic == null)
-                return BadRequest();
             UserMasterDTO tk = JsonConvert.DeserializeObject<UserMasterDTO>(dynamic.ToString());
+            if (tk == null)
+                return BadRequest("Thêm tài khoản thất bại!");
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 if (quanLy.ThemTaiKhoan(tk))
@@ -50,6 +50,8 @@ namespace QLKSProject.Controllers.QuanLy
         public IHttpActionResult CapNhatTaiKhoan([FromBody] dynamic dynamic)
         {
             UserMasterDTO tk = JsonConvert.DeserializeObject<UserMasterDTO>(dynamic.ToString());
+            if (tk == null)
+                return BadRequest("Cập nhật thất bại!");
             using (QuanLyBusiness quanLy = new QuanLyBusiness())
             {
                 string result = quanLy.CapNhatTaiKhoan(tk);

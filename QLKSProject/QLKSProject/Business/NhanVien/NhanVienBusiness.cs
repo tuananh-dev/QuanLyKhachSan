@@ -241,23 +241,6 @@ namespace QLKSProject.Business.NhanVien
             }
             return status;
         }
-
-/*        public string DatPhongChoNhieuDoan()
-        {
-            int soPhongThanhCong = 0;
-            int soPhongThatBai = 0;
-            var lstDoan = models.Doans.Where(d => d.TrangThaiDatPhong == 0).ToList();
-            foreach (var doan in lstDoan)
-            {
-                string datPhong = DatPhong(doan.MaDoan);
-                if (datPhong.Equals("ok"))
-                    soPhongThanhCong++;
-                else
-                    soPhongThatBai++;
-            }
-            string result = soPhongThanhCong + "-" + soPhongThatBai;
-            return result;
-        }*/
         public string KhachHangTraPhong(string cmnd)
         {
             string status = "ok";
@@ -358,174 +341,6 @@ namespace QLKSProject.Business.NhanVien
             thongTinChiPhiPhong.Add(tongChiPhi.ToString());
             return thongTinChiPhiPhong;
         }
-/*        public string DatPhong(string maDoan)
-        {
-            string trangThaiDatPhong = "ok";
-
-            var doan = models.Doans.Where(d => d.MaDoan.Equals(maDoan)).FirstOrDefault();
-            if (doan == null)
-                return "Đoàn không tồn tại!";
-            if (doan.TrangThaiDatPhong != 1)
-            {
-                var lstKhachHangMaDoan = models.KhachHangs.Where(kh => kh.MaDoan.Equals(maDoan)).Select(kh => new KhachHangDTO
-                {
-                    ID = kh.ID,
-                    HoVaTen = kh.HoVaTen,
-                    SoDienThoai = kh.SoDienThoai,
-                    Email = kh.Email,
-                    DiaChi = kh.DiaChi,
-                    Nhom = kh.Nhom,
-                    NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
-                    ThoiGianNhan = kh.ThoiGianNhan,
-                    ThoiGianTra = kh.ThoiGianTra,
-                    MaDoan = kh.MaDoan,
-                    GioiTinh = kh.GioiTinh,
-                    LoaiKhachHang = kh.LoaiKhachHang,
-                    TruongDoan = kh.TruongDoan,
-                    IsDelete = kh.IsDelete,
-                    TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                    IDPhong = kh.IDPhong,
-                    TrangThaiXacNhan = kh.TrangThaiXacNhan
-                }).ToList();
-                var lstKhachHang = models.KhachHangs.Where(kh => kh.TrangThaiDatPhong >= 0 && kh.IsDelete != true).Select(kh => new KhachHangDTO
-                {
-                    ID = kh.ID,
-                    HoVaTen = kh.HoVaTen,
-                    SoDienThoai = kh.SoDienThoai,
-                    Email = kh.Email,
-                    DiaChi = kh.DiaChi,
-                    Nhom = kh.Nhom,
-                    NguoiDaiDienCuaTreEm = kh.NguoiDaiDienCuaTreEm,
-                    ThoiGianNhan = kh.ThoiGianNhan,
-                    ThoiGianTra = kh.ThoiGianTra,
-                    MaDoan = kh.MaDoan,
-                    GioiTinh = kh.GioiTinh,
-                    LoaiKhachHang = kh.LoaiKhachHang,
-                    TruongDoan = kh.TruongDoan,
-                    IsDelete = kh.IsDelete,
-                    TrangThaiDatPhong = kh.TrangThaiDatPhong,
-                    IDPhong = kh.IDPhong,
-                    TrangThaiXacNhan = kh.TrangThaiXacNhan
-                }).ToList();
-                var lstPhong = models.Phongs.Where(p => p.IsDelete != true).Select(p => new PhongDTO
-                {
-                    ID = p.ID,
-                    MaPhong = p.MaPhong,
-                    SoPhong = p.SoPhong,
-                    LoaiPhong = p.LoaiPhong,
-                    Gia = p.Gia,
-                    TrangThai = p.TrangThai,
-                    IsDelete = p.IsDelete
-                }).ToList();
-                if (lstPhong.Count == 0)
-                    return trangThaiDatPhong = "Lỗi chưa tạo phòng!!!";
-                List<int> lstNhom = LayDSNhomTrongDSKhachHang(lstKhachHangMaDoan);
-                foreach (var nhom in lstNhom)
-                {
-                    int loaiPhong = 0;
-                    var lstNhomKhachHang = lstKhachHangMaDoan.Where(kh => kh.Nhom == nhom).ToList();
-                    if (nhom == 0)
-                    {
-                        loaiPhong = 1;
-                        foreach (var khachHang in lstNhomKhachHang)
-                        {
-                            int idPhong = LaySoPhongTrong(lstKhachHang, lstPhong, loaiPhong, lstKhachHangMaDoan[0].ThoiGianNhan, lstKhachHangMaDoan[0].ThoiGianTra);
-                            if (idPhong > 0)
-                            {
-                                khachHang.TrangThaiDatPhong = 0;
-                                khachHang.IDPhong = idPhong;
-                                int index = lstKhachHangMaDoan.IndexOf(khachHang);
-                                lstKhachHangMaDoan[index] = khachHang;
-                                foreach (var phong in lstPhong)
-                                {
-                                    if (phong.ID == idPhong)
-                                    {
-                                        phong.TrangThai = 0;
-                                        break;
-                                    }
-
-                                }
-                            }
-                            else
-                            {
-                                trangThaiDatPhong = "Không lấy được số phòng của loại phòng <" + loaiPhong + "> cho khách !!!";
-                                khachHang.GhiChu = "Hết phòng loại <" + loaiPhong + ">";
-                            }
-
-                        }
-                    }
-                    else
-                    {
-                        loaiPhong = TinhSoThanhVienNhom(lstNhomKhachHang);
-                        if (loaiPhong <= 4)
-                        {
-                            int idPhong = LaySoPhongTrong(lstKhachHang, lstPhong, loaiPhong, lstKhachHangMaDoan[0].ThoiGianNhan, lstKhachHangMaDoan[0].ThoiGianTra);
-                            if (idPhong > 0)
-                            {
-                                foreach (var khachHang in lstNhomKhachHang)
-                                {
-                                    khachHang.TrangThaiDatPhong = 0;
-                                    khachHang.IDPhong = idPhong;
-                                    int index = lstKhachHangMaDoan.IndexOf(khachHang);
-                                    lstKhachHangMaDoan[index] = khachHang;
-                                    foreach (var phong in lstPhong)
-                                    {
-                                        if (phong.ID == idPhong)
-                                            phong.TrangThai = 0;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                trangThaiDatPhong = "Không lấy được số phòng của loại phòng <" + loaiPhong + "> cho khách !!!";
-                                foreach (var khachHang in lstNhomKhachHang)
-                                {
-                                    khachHang.GhiChu = "Hết phòng loại <" + loaiPhong + ">";
-                                }
-                            }
-                        }
-                        else
-                        {
-                            trangThaiDatPhong = "Số lượng thành viên trong nhóm quá 4 người !!!";
-                            foreach (var khachHang in lstNhomKhachHang)
-                            {
-                                khachHang.GhiChu = "Số lượng thành viên trong nhóm quá 4 người !!!";
-                            }
-                        }
-
-                    }
-
-                }
-                if (trangThaiDatPhong.Equals("ok"))
-                {
-                    LuuDanhSachKhachHangDatPhongThanhCong(lstKhachHangMaDoan);
-                    // Luu trang thai dat phong thanh cong cho Doan
-                    var khachHangDTO = lstKhachHangMaDoan.Where(kh => kh.TruongDoan == true).FirstOrDefault();
-                    string account = RemoveUnicode(khachHangDTO.HoVaTen.ToLower().Replace(" ", ""));
-                    string password = khachHangDTO.MaDoan.Substring(6);
-                    if (!TaoTaiKhoanChoKhachHang(khachHangDTO, account, password))
-                        trangThaiDatPhong = "Đặt phòng thành công nhưng không tạo được tài khoản cho khách hàng!!!";
-                    else
-                    {
-                        string subject = "Xác nhận đặt phòng tại Color Hotel";
-                        string body = "Dear " + khachHangDTO.HoVaTen + ",<BR><BR>" + "Chúng tôi rất vui mừng vì bạn đã chọn khách sạn của chúng tôi. Danh sách khách hàng của quý khách đã được đặt phòng thành công!" + "<BR>Xin quý khách vui lòng đăng nhập bằng tài khoản và mật khẩu bên đưới để xác nhận.<BR>" + "Account: " + account + "<BR>" + "Password: " + password + "<BR>" + "<BR>Trân trọng,<BR>" + "Hotel Color";
-                        string trangThaiGuiMail = GuiMailTuDong(khachHangDTO.Email, subject, body);
-                        khachHangDTO.GhiChu = trangThaiGuiMail;
-                    }
-
-                }
-                else
-                {
-                    // Luu trang thai dat phong that bai cho Doan
-                    doan.TrangThaiDatPhong = -1;
-                    //Luu ghi chu cho khach hang
-                    LuuDanhSachKhachHangDatPhongThatBai(lstKhachHangMaDoan);
-                }
-            }
-            else
-                trangThaiDatPhong = "Đoàn đặt phòng thành công đã tồn tại !!!";
-            return trangThaiDatPhong;
-        }*/
         public string DatPhongChoMotDoan(string maDoan)
         {
             DateTime today = DateTime.Now;
@@ -731,6 +546,7 @@ namespace QLKSProject.Business.NhanVien
             {
                 lstKhachHang[i].TrangThaiDatPhong = khachHangDTOs[i].TrangThaiDatPhong;
                 lstKhachHang[i].IDPhong = khachHangDTOs[i].IDPhong;
+                lstKhachHang[i].GhiChu = "Đặt phòng thành công";
             }
         }
         private void LuuDanhSachKhachHangDatPhongThatBai(List<KhachHangDTO> khachHangDTOs)
@@ -868,6 +684,13 @@ namespace QLKSProject.Business.NhanVien
                 doan.IsDelete = true;
                 doan.TrangThaiDatPhong = 0;
                 doan.TrangThaiXacNhan = false;
+                var lstKhachHang = models.KhachHangs.Where(kh => kh.MaDoan.Equals(maDoan)).ToList();
+                foreach (var kh in lstKhachHang)
+                {
+                    kh.IsDelete = true;
+                    kh.GhiChu = "Nhân viên xóa đoàn";
+                    kh.IDPhong = -2;
+                }
             }
             catch (Exception)
             {

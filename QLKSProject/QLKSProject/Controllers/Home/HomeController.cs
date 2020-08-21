@@ -33,6 +33,7 @@ namespace QLKSProject.Controllers.Home
 
             }
         }
+
         [Authorize(Roles = "ad,ql,nv,kh")]
         [HttpGet]
         public IHttpActionResult LayUserRoles()
