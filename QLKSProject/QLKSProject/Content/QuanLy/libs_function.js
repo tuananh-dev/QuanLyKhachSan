@@ -24,6 +24,22 @@ function checkSession() {
 
 }
 
+function checkSessionHome() {
+    if (sessionStorage.getItem('role')) {
+        $('#name').css('display', 'inline');
+        $('#dn').css('display', 'none');
+        $('.nameuser').html(sessionStorage.getItem('fullname'));
+        if (sessionStorage.getItem('role') == 'nv') {
+            $('#nv').css('display', 'inline');
+            $('#ql').css('display', 'none');
+        } else {
+            $('#nv').css('display', 'none');
+            $('#ql').css('display', 'inline');
+        }
+
+    }
+}
+
 function isEmpty(str) {
 
     return (str == '');
