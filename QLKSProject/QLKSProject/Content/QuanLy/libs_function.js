@@ -75,7 +75,7 @@ function loadData(url, callback) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Thao tác không hợp lệ !'
+            text: jqXHR.responseJSON.Message
         })
     })
 
@@ -99,7 +99,7 @@ function loadDataWithID(url, id, callback) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Thao tác không hợp lệ !'
+            text: jqXHR.responseJSON.Message
         })
     })
 }
@@ -132,7 +132,7 @@ function addData(info, dataInput) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Thao tác không hợp lệ !'
+            text: jqXHR.responseJSON.Message
         })
     })
 }
@@ -162,7 +162,7 @@ function editData(url, dataInput) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Thao tác không hợp lệ !'
+            text: jqXHR.responseJSON.Message
         })
     })
 }
@@ -203,7 +203,7 @@ function deleteData(info) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Thao tác không hợp lệ !'
+                    text: jqXHR.responseJSON.Message
                 })
             })
 
