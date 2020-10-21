@@ -132,8 +132,9 @@ namespace QLKSProject.Controllers.NhanVien
             }
         }
         [HttpPost]
-        public IHttpActionResult KhachHangTraPhong([FromBody]string cmnd)
+        public IHttpActionResult KhachHangTraPhong([FromBody]dynamic dynamic)
         {
+            string cmnd = dynamic.CMND.ToString();
             using (NhanVienBusiness nhanVien = new NhanVienBusiness())
             {
                 string status = nhanVien.KhachHangTraPhong(cmnd);
